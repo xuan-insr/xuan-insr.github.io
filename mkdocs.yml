@@ -2,17 +2,56 @@ site_name: 咸鱼暄的代码空间
 
 theme:
   name: material
-  icon:
-    logo: logo.ico
+  logo: logo.ico
   favicon: logo.ico
   features:
     - navigation.tabs # 一级菜单在横着的导航栏
     - toc.integrate # 文档 toc 集成到总目录中 
+  language: 'zh'
+  palette:
+    primary: cyan
+    scheme: default
+
 
 markdown_extensions:
   - toc:
       permalink: true # link for each title
       slugify: !!python/name:pymdownx.slugs.uslugify # enable Unicode link
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
 
 google_analytics:
   - UA-247073947-1
@@ -20,5 +59,15 @@ google_analytics:
 
 extra:
   disqus: xuan-insr # disqus 评论系统
+  search:
+    language: 'jp'
+  pagetime: 'on'
+  
 
-# TODO: 搜索
+
+copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
+
+extra_css:
+  - 'from_oi_wiki/css/extra.css?v=13'
+
+# TODO: 搜索 / 颜色
