@@ -1,3 +1,24 @@
-site_name: Saltyfish Xuan's Space
+site_name: 咸鱼暄的代码空间
+
 theme:
   name: material
+  icon:
+    logo: logo.ico
+  favicon: logo.ico
+  features:
+    - navigation.tabs # 一级菜单在横着的导航栏
+    - toc.integrate # 文档 toc 集成到总目录中 
+
+markdown_extensions:
+  - toc:
+      permalink: true # link for each title
+      slugify: !!python/name:pymdownx.slugs.uslugify # enable Unicode link
+
+google_analytics:
+  - UA-247073947-1
+  - auto
+
+extra:
+  disqus: xuan-insr # disqus 评论系统
+
+# TODO: 搜索
