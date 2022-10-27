@@ -1,5 +1,6 @@
 site_name: 咸鱼暄的代码空间
 site_url: https://xuan-insr.github.io/
+
 theme:
   name: material
   logo: logo.ico
@@ -61,7 +62,7 @@ google_analytics:
   - auto
 
 extra:
-  disqus: xuan-insr # disqus 评论系统
+  disqus: 'xuan-insr' # disqus 评论系统
   search:
     language: 'jp'
   pagetime: 'on'
@@ -82,11 +83,11 @@ nav:
     - 主页: index.md
     - 主题: intro/theme.md
   - C++:
-    - C++学习: cpp/index.md
-    - 快速入门C++写题: cpp/cpp_for_contests.md
-    - C++面向对象: 404.md
-    - C++知识补充:
-      - 理解STL——迭代器与函数对象: 404.md
+    - C++ 学习: cpp/index.md
+    - 快速入门 C++ 写题: cpp/cpp_for_contests.md
+    - C++ 面向对象: 404.md
+    - C++ 知识补充:
+      - 理解 STL —— 迭代器与函数对象: 404.md
   - PL&编译
   - 核心课
   - 数学&算法
