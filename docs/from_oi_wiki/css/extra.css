@@ -32,13 +32,13 @@ blockquote.page-copyright i.md-icon {
 }
 
 .button1 {
-    color: whitesmoke;
+    color: white;
     padding: 1px 4px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 15px;
-    margin: 0px 1px;
+    margin: 0px 2px;
     cursor: pointer;
     border-radius: 4px;
 }
