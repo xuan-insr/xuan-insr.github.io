@@ -88,10 +88,10 @@ nav:
     - C++ 面向对象: 404.md
     - C++ 知识补充:
       - 理解 STL —— 迭代器与函数对象: 404.md
-  - PL&编译
-  - 核心课
-  - 数学&算法
-  - 安全
-  - 语言基础
-  - 其他课程
-  - 杂项
+  - PL&编译: pl/index.md
+  - 核心课: core_courses/index.md
+  - 数学&算法: math_and_algo/index.md
+  - 安全: security/index.md
+  - 语言基础: lang/index.md
+  - 其他课程: courses/index.md
+  - 杂项: misc/index.md
