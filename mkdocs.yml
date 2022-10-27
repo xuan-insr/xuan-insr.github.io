@@ -15,6 +15,7 @@ theme:
   font:
     text: 'Fira Sans'
     code: 'Fira Mono'
+  custom_dir: overrides # 用来搞评论的，参考 https://squidfunk.github.io/mkdocs-material/setup/adding-a-comment-system/
 
 
 markdown_extensions:
@@ -62,7 +63,6 @@ google_analytics:
   - auto
 
 extra:
-  disqus: 'xuan-insr' # disqus 评论系统
   search:
     language: 'jp'
   pagetime: 'on'
