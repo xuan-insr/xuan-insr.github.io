@@ -1,5 +1,7 @@
 site_name: 咸鱼暄的代码空间
 site_url: https://xuan-insr.github.io/
+repo_name: xuan-insr/咸鱼暄的代码空间
+repo_url: https://github.com/xuan-insr/xuan-insr.github.io
 
 theme:
   name: material
