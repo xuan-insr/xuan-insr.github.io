@@ -14,6 +14,7 @@
       var attr = this.getAttribute("data-md-color-scheme")
       document.body.setAttribute("data-md-color-scheme", attr)
       localStorage.setItem("data-md-color-scheme",attr);
+      updateScheme();
     })
   })
 </script>
