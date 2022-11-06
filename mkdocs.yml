@@ -15,8 +15,8 @@ theme:
     primary: cyan
     scheme: slate
   font:
-    text: 'Fira Sans'
-    code: 'Fira Mono'
+    text: Roboto
+    code: Roboto Mono
   custom_dir: overrides # 用来搞评论的，参考 https://squidfunk.github.io/mkdocs-material/setup/adding-a-comment-system/
 
 
