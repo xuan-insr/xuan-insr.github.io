@@ -1,3 +1,7 @@
+.md-typeset div.arithmatex {
+  overflow-y: hidden;
+} /* 解决公式带纵向滚动条 */
+
 .md-typeset table:not([class]) th {
     min-width: 0rem;
 }
