@@ -157,51 +157,51 @@ $$\cfrac{\cfrac{\cfrac{}{\text{empty tree}}\quad \cfrac{}{\text{empty tree}}}{\t
 
 ### 3.6 Defining Functions by Rules | 用规则定义函数
 
-例如，我们可以定义自然数的加法函数 $sum(a; b; c)$，表示 $c$ 是 $a$ 与 $b$ 的和：
+例如，我们可以定义自然数的加法函数 $\text{sum}(a; b; c)$，表示 $c$ 是 $a$ 与 $b$ 的和：
 
-$$\frac{b\text{ nat}}{sum(\text{zero};b;b)}$$
+$$\frac{b\text{ nat}}{\text{sum}(\text{zero};b;b)}$$
 
-$$\frac{sum(a;b;c)}{sum(\text{succ}(a);b;\text{succ}(c))}$$
+$$\frac{\text{sum}(a;b;c)}{\text{sum}(\text{succ}(a);b;\text{succ}(c))}$$
 
 !!! info "定理 3.5"
     !!! info ""
-        **定理 3.5** 对于每个 $a\text{ nat}$ 和 $b\text{ nat}$，存在唯一的 $c\text{ nat}$ 使得 $sum(a; b; c)$。
+        **定理 3.5** 对于每个 $a\text{ nat}$ 和 $b\text{ nat}$，存在唯一的 $c\text{ nat}$ 使得 $\text{sum}(a; b; c)$。
 
-    先证存在性，即如果 $a\text{ nat}$ 且 $b\text{ nat}$，存在 $c\text{ nat}$ 使得 $sum(a; b; c)$。
+    先证存在性，即如果 $a\text{ nat}$ 且 $b\text{ nat}$，存在 $c\text{ nat}$ 使得 $\text{sum}(a; b; c)$。
 
-    设 $P(a)$ 为：如果 $b\text{ nat}$，存在 $c\text{ nat}$ 使得 $sum(a; b; c)$。用规则归纳证明如果 $a\text{ nat}$ 则 $P(a)$ 成立：
+    设 $P(a)$ 为：如果 $b\text{ nat}$，存在 $c\text{ nat}$ 使得 $\text{sum}(a; b; c)$。用规则归纳证明如果 $a\text{ nat}$ 则 $P(a)$ 成立：
 
-    1. $P(\text{zero}) \Leftrightarrow sum(\text{zero};b;c)$，则显然存在 $c \text{ is } b$；
-    2. $\cfrac{P(a)}{P(\text{succ}(a))} \Leftrightarrow \cfrac{sum(a; b; c_1)}{sum(\text{succ}(a); b; c)}$，则显然存在 $c \text{ is } \text{succ}(c_1)$。
+    1. $P(\text{zero}) \Leftrightarrow \text{sum}(\text{zero};b;c)$，则显然存在 $c \text{ is } b$；
+    2. $\cfrac{P(a)}{P(\text{succ}(a))} \Leftrightarrow \cfrac{\text{sum}(a; b; c_1)}{\text{sum}(\text{succ}(a); b; c)}$，则显然存在 $c \text{ is } \text{succ}(c_1)$。
 
-    再证唯一性，即如果 $sum(a; b; c)$ 且 $sum(a; b; c')$，则 $c\text{ is }c'$。亦即：
+    再证唯一性，即如果 $\text{sum}(a; b; c)$ 且 $\text{sum}(a; b; c')$，则 $c\text{ is }c'$。亦即：
     
     $$\begin{array}{rl}
-    &\forall a, b, c, c',\ (sum(a; b; c) \land sum(a; b; c')) \to c\text{ is }c' \\
-    \Leftrightarrow &\forall a, b, c, c',\ sum(a; b; c) \to (sum(a; b; c') \to c\text{ is }c') \\
-    \Leftrightarrow &\forall a, b, c, \ sum(a; b; c) \to (\forall c',\ sum(a; b; c') \to c\text{ is }c')
+    &\forall a, b, c, c',\ (\text{sum}(a; b; c) \land \text{sum}(a; b; c')) \to c\text{ is }c' \\
+    \Leftrightarrow &\forall a, b, c, c',\ \text{sum}(a; b; c) \to (\text{sum}(a; b; c') \to c\text{ is }c') \\
+    \Leftrightarrow &\forall a, b, c, \ \text{sum}(a; b; c) \to (\forall c',\ \text{sum}(a; b; c') \to c\text{ is }c')
     \end{array}
     $$
 
     （这里使用了 **引理 3.2** 证明中提到的技巧。）
 
-    设 $P(a; b; c)$ 为：$\forall c',\ sum(a; b; c') \to c\text{ is }c'$。用规则归纳证明 $\forall a, b, c, \ sum(a; b; c) \to P(a; b; c)$：
+    设 $P(a; b; c)$ 为：$\forall c',\ \text{sum}(a; b; c') \to c\text{ is }c'$。用规则归纳证明 $\forall a, b, c, \ \text{sum}(a; b; c) \to P(a; b; c)$：
 
-    1. 根据 $sum$ 的第一条定义 $\cfrac{b\text{ nat}}{sum(\text{zero};b;b)}$，我们需要证明 $\cfrac{b\text{ nat}}{P(\text{zero};b;b)}$；也就是要证 $\forall c',\ (b\text{ nat} \land sum(\text{zero};b;c'))\to b\text{ is }c'$。这不是显然的，因此我们仍然要通过规则归纳证明之：
-        - 我们将其改写为：$\forall a', b', c', \ (b\text{ nat} \land sum(a';b';c') \land a' = \text{zero} \land b' = b) \to b \text{ is } c$，亦即 $\forall a', b', c', \ (b\text{ nat} \land sum(a';b';c')) \to (a' = \text{zero} \to (b' = b \to b \text{ is } c))$。
-        - 我们记 $Q(a';b';c')$ 为 $a' = \text{zero} \to (b' = b \to b\text{ is }c)$，即我们需要证明 $\forall a', b', c', \ (b\text{ nat} \land sum(a';b';c')) \to Q(a';b';c')$。可以看到，这里我们仍然使用了前述技巧来将待证的问题转化为规则归纳的形式。我们用规则归纳证明之（这就是课本提到的「内层归纳」）：
+    1. 根据 $\text{sum}$ 的第一条定义 $\cfrac{b\text{ nat}}{\text{sum}(\text{zero};b;b)}$，我们需要证明 $\cfrac{b\text{ nat}}{P(\text{zero};b;b)}$；也就是要证 $\forall c',\ (b\text{ nat} \land \text{sum}(\text{zero};b;c'))\to b\text{ is }c'$。这不是显然的，因此我们仍然要通过规则归纳证明之：
+        - 我们将其改写为：$\forall a', b', c', \ (b\text{ nat} \land \text{sum}(a';b';c') \land a' = \text{zero} \land b' = b) \to b \text{ is } c$，亦即 $\forall a', b', c', \ (b\text{ nat} \land \text{sum}(a';b';c')) \to (a' = \text{zero} \to (b' = b \to b \text{ is } c))$。
+        - 我们记 $Q(a';b';c')$ 为 $a' = \text{zero} \to (b' = b \to b\text{ is }c)$，即我们需要证明 $\forall a', b', c', \ (b\text{ nat} \land \text{sum}(a';b';c')) \to Q(a';b';c')$。可以看到，这里我们仍然使用了前述技巧来将待证的问题转化为规则归纳的形式。我们用规则归纳证明之（这就是课本提到的「内层归纳」）：
             1. 首先要证 $\cfrac{b'\text{ nat}}{Q(\text{zero};b';b')}$，这里 $Q(\text{zero};b';b') \Leftrightarrow \text{zero} = \text{zero} \to (b' = b \to b \text{ is } b')$。根据 **引理 3.3**，该式为真。
-            2. 然后证 $\cfrac{Q(a';b';c')\quad sum(a';b';c')}{Q(\text{succ}(a'); b'; \text{succ}(c'))}$。这里 $Q(\text{succ}(a'); b'; \text{succ}(c')) \Leftrightarrow \text{succ}(a') = \text{zero} \to (b' = b \to b \text{ is } \text{succ}(c'))$。由于不存在 $a'$ 使得 $\text{succ}(a') = \text{zero}$，因此该式为真。
-    2. 根据 $sum$ 的第二条定义 $\cfrac{sum(a;b;c)}{sum(\text{succ}(a);b;\text{succ}(c))}$，我们需要证明 $\cfrac{P(a;b;c)\quad sum(a;b;c)}{P(\text{succ}(a);b;\text{succ}(c))}$；也就是要证 $\forall c',\ (P(a;b;c)\land sum(a;b;c))\to (sum(\text{succ}(a);b;c') \to \text{succ}(c)\text{ is } c')$。这也不是显然的，因此我们也要通过规则归纳证明之：
-        - 我们将其改写为：$\forall a', b', c',\ (P(a;b;c)\land sum(a;b;c) \land sum(a';b';c')) \to (a' = \text{succ}(a) \to (b' = b \to \text{succ}(c)\text{ is } c')))$
-        - 记 $Q(a';b';c')$ 为 $a' = \text{succ}(a) \to (b' = b \to \text{succ}(c)\text{ is } c')$，我们用规则归纳证明 $\forall a', b', c',\ (P(a;b;c)\land sum(a;b;c) \land sum(a';b';c')) \to Q(a';b';c')$：
+            2. 然后证 $\cfrac{Q(a';b';c')\quad \text{sum}(a';b';c')}{Q(\text{succ}(a'); b'; \text{succ}(c'))}$。这里 $Q(\text{succ}(a'); b'; \text{succ}(c')) \Leftrightarrow \text{succ}(a') = \text{zero} \to (b' = b \to b \text{ is } \text{succ}(c'))$。由于不存在 $a'$ 使得 $\text{succ}(a') = \text{zero}$，因此该式为真。
+    2. 根据 $\text{sum}$ 的第二条定义 $\cfrac{\text{sum}(a;b;c)}{\text{sum}(\text{succ}(a);b;\text{succ}(c))}$，我们需要证明 $\cfrac{P(a;b;c)\quad \text{sum}(a;b;c)}{P(\text{succ}(a);b;\text{succ}(c))}$；也就是要证 $\forall c',\ (P(a;b;c)\land \text{sum}(a;b;c))\to (\text{sum}(\text{succ}(a);b;c') \to \text{succ}(c)\text{ is } c')$。这也不是显然的，因此我们也要通过规则归纳证明之：
+        - 我们将其改写为：$\forall a', b', c',\ (P(a;b;c)\land \text{sum}(a;b;c) \land \text{sum}(a';b';c')) \to (a' = \text{succ}(a) \to (b' = b \to \text{succ}(c)\text{ is } c')))$
+        - 记 $Q(a';b';c')$ 为 $a' = \text{succ}(a) \to (b' = b \to \text{succ}(c)\text{ is } c')$，我们用规则归纳证明 $\forall a', b', c',\ (P(a;b;c)\land \text{sum}(a;b;c) \land \text{sum}(a';b';c')) \to Q(a';b';c')$：
             1. 首先要证 $\cfrac{b'\text{ nat}}{Q(\text{zero};b';b')}$，类似上述 2.b 的证明，不存在 $a'$ 使得 $\text{succ}(a') = \text{zero}$，因此该式为真。
-            2. 然后证 $\cfrac{Q(a';b';c')\quad sum(a';b';c')\quad P(a;b;c)}{Q(\text{succ}(a'); b'; \text{succ}(c'))}$：
+            2. 然后证 $\cfrac{Q(a';b';c')\quad \text{sum}(a';b';c')\quad P(a;b;c)}{Q(\text{succ}(a'); b'; \text{succ}(c'))}$：
                 - 其中，结论 $Q(\text{succ}(a'); b'; \text{succ}(c'))$ 等价于 $\text{succ}(a') = \text{succ}(a) \to (b' = b \to \text{succ}(c)\text{ is } \text{succ}(c'))$
                 - 根据 ABT 的相等关系以及 **引理 3.4**，该式等价于 $a' = a \to (b' = b \to c\text{ is } c')$
-                - 要证的规则即为 $\cfrac{Q(a';b';c')\quad sum(a';b';c')\quad P(a;b;c)}{a' = a \to (b' = b \to c\text{ is } c')}$
-                - 亦即 $\cfrac{Q(a';b';c')\quad sum(a';b';c')\quad P(a;b;c)\quad a' = a\quad b' = b}{c\text{ is } c'}$
-                - 而由 $sum(a';b';c')\land a' = a\land b' = b$ 有前提 $sum(a; b; c')$，又 $P(a;b;c) \Leftrightarrow \forall c',\ sum(a; b; c') \to c\text{ is }c'$，因此结论得证。
+                - 要证的规则即为 $\cfrac{Q(a';b';c')\quad \text{sum}(a';b';c')\quad P(a;b;c)}{a' = a \to (b' = b \to c\text{ is } c')}$
+                - 亦即 $\cfrac{Q(a';b';c')\quad \text{sum}(a';b';c')\quad P(a;b;c)\quad a' = a\quad b' = b}{c\text{ is } c'}$
+                - 而由 $\text{sum}(a';b';c')\land a' = a\land b' = b$ 有前提 $\text{sum}(a; b; c')$，又 $P(a;b;c) \Leftrightarrow \forall c',\ \text{sum}(a; b; c') \to c\text{ is }c'$，因此结论得证。
 
     证毕。
 
