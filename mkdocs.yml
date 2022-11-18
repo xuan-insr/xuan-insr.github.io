@@ -16,6 +16,11 @@ nav:
       - 3 归纳定义: pl/ppl_notes/Inductive_Definition.md
   - 核心知识: 
     - 核心知识/index.md
+    - 操作系统:
+      # - Part.1 概述:
+      # - Part.2 进程管理:
+      - Part.3 进程同步:
+        - 7 经典同步问题: 核心知识/os/7_sync_examples.md
     - 数学、数据结构和算法: 
       - 数学和算法/index.md
   - 安全: 安全/index.md
