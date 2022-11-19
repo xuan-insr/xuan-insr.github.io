@@ -1,7 +1,7 @@
 nav:
   - 主页: # 主页/
     - index.md
-    - 最近更新: 主页/recent.md
+    - 最近更新: recent.md
     - 主题: 主页/theme.md
   - C++:
     - cpp/index.md
@@ -20,7 +20,7 @@ nav:
       # - Part.1 概述:
       # - Part.2 进程管理:
       - Part.3 进程同步:
-        - 7 经典同步问题: 核心知识/os/7_sync_examples.md
+        - 7 经典同步问题: 核心知识/os/7_temp.md #_sync_examples.md
         - 8 死锁: 核心知识/os/8_deadlocks.md
     - 数学、数据结构和算法: 
       - 数学和算法/index.md
