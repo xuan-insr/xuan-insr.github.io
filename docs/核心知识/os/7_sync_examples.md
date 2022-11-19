@@ -1,10 +1,10 @@
-## 7 Synchronization Examples
+# 7 Synchronization Examples
 
-### 7.1 经典同步问题
+## 7.1 经典同步问题
 
 一般我们用信号量解决问题，因为信号量相对来说功能更多。
 
-#### 7.1.1 Bounded-Buffer Problem
+### 7.1.1 Bounded-Buffer Problem
 
 !!! info "Bounded-Buffer Problem"
     给定两个进程：producer 和 consumer，它们共用大小为 $n$ 的 buffer。Producer 生产数据放入 buffer，consumer 从 buffer 取出数据从而使用之。
@@ -196,16 +196,14 @@ consumer() {
 
 需要特别注意的是 `wait` 之间的顺序。例如如果将 `wait(lock)` 和 `wait(fslot)` 的顺序调转过来，就会发生和前面提到的情况一样的死锁。
 
-#### 7.1.2 Readers-Writers Problem
+### 7.1.2 Readers-Writers Problem
 
 !!! info "Readers-Writers Problem"
-    对一些数据，readers 只能读，而 writers 可以读和写。
+    对一个数据，readers 只能读，writers 只能写。
     
     设计方案保证：多个 readers 可以同时读取，但是 writer 进行写时不能有其他 writers 和 readers。
 
-不考虑部分原子性的情况下，
-
-我们希望的方案大概如下：
+不考虑部分原子性的情况下，我们希望的方案大概如下：
 
 ```C linenums="1"
 semaphore write_lock = 1;
@@ -346,10 +344,65 @@ do {
 ```
 
 
-#### 7.1.3 Dining-Philosophers Problem
+### 7.1.3 Dining-Philosophers Problem
 
 !!! info "Dining-Philosophers Problem"
-    每两个哲学家之间有一根筷子，每个人一次可以拿起来一根筷子，拿到两根筷子的就可以吃一段时间。吃完思考一段时间。
+    5 个哲学家一起吃饭！每两个哲学家之间有一根筷子，每个人一次可以拿起来一根筷子，拿到两根筷子的就可以吃一段时间。吃完思考一段时间。
 
     <center>![](2022-11-19-00-17-19.png)</center>
 
+一个朴素的解法是这样的：
+
+```C linenums="1"
+vector<semaphore> chopstick(5, 1);  // initialize semaphores to all 1
+
+philosopher(int index) {
+    while (true) {
+        wait(chopstick[i]);
+        wait(chopstick[(i + 1) % 5]);
+        eat();
+        signal(chopstick[i]);
+        signal(chopstick[(i + 1) % 5]);
+        think();
+    }
+}
+```
+
+问题是，可能某时刻每个人同时拿起左边的筷子，这样会导致死锁。
+
+解决方案之一是，只允许同时拿起两根筷子；这种方案的实现是，轮流询问每个人是否能够拿起两根筷子，如果能则拿起，如果不能则需要等待那些筷子放下：
+
+```C linenums="1"  hl_lines="2 6 9"
+vector<semaphore> chopstick(5, 1);  // initialize semaphores to all 1
+semaphore lock = 1;
+
+philosopher(int index) {
+    while (true) {
+        wait(lock);
+        wait(chopstick[i]);
+        wait(chopstick[(i + 1) % 5]);
+        signal(lock);
+
+        eat();
+        
+        signal(chopstick[i]);
+        signal(chopstick[(i + 1) % 5]);
+        think();
+    }
+}
+```
+
+另一种解决方案是，奇数号人先拿左边筷子，偶数号人先拿右边筷子，这样也能避免死锁。
+
+## 7.2 Linux Sync
+
+2.6 以前的版本的 kernel 中通过禁用中断来实现一些短的 critical section；2.6 及之后的版本的 kernel 是抢占式的。
+
+Linux 提供：
+
+- Atomic integers
+- Spinlocks
+- Semaphores
+- Reader-writer locks
+
+## 7.3 POSIX Sync
