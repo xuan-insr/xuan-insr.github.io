@@ -1,11 +1,11 @@
-## 2 Abstract Syntax | 抽象语法
+## 1 Abstract Syntax | 抽象语法
 
 语法 (syntax) 规定了如何将各种 phrases(expr, commands / statements, decl, etc.) 组合成程序。
 
 - 表层语法树 / 具体语法树 (surface syntax tree / concrete syntax tree): 表示 parse 出的结果，和语法规则对应；
 - 抽象语法树 / 结构语法树 (abstract syntax tree / structural syntax tree): 排除了一些无用的组分，例如 factor, term 之类的内容；这些内容只为了 parse 的正常执行，但是对 semantic 帮助不大。
 
-### 2.1 Abstract Syntax Tree, AST | 抽象语法树
+### 1.1 Abstract Syntax Tree, AST | 抽象语法树
 
 抽象语法树是一棵有序树，其叶子结点为 **变量 (variable)** 或者没有 **参数 (argument)** 的 **运算符(operator)**，其内部节点是 operators。
 
@@ -13,7 +13,7 @@
     需要注意的是，这里的 variable 和 operator 不能简单地理解为编程语言中的相关概念。例如，下面这棵语法树里，诸如「函数定义」(`FUNCTION_DECL`) 之类的中间节点也是 operator；而「整型」(`INTEGER`) 之类的叶子结点也是 variable。
     ![](2022-11-15-23-52-03.png)
 
-    另外，严格地说，上面这张图并不是一棵 AST (这张图来自我编译原理大作业对一个例程生成的语法树)。首先，图中仍然保留了一些形如 `STMT_LIST` 的节点，这些节点仍属于 concrete syntax 的范畴；另外，图中的 `ID` 之类的 variable 注明了其名字，例如 `ANS`, `GCD` 等，所以它有我们在 2.2 会讲到的 ABT 的性质。
+    另外，严格地说，上面这张图并不是一棵 AST (这张图来自我编译原理大作业对一个例程生成的语法树)。首先，图中仍然保留了一些形如 `STMT_LIST` 的节点，这些节点仍属于 concrete syntax 的范畴；另外，图中的 `ID` 之类的 variable 注明了其名字，例如 `ANS`, `GCD` 等，所以它有我们在 1.2 会讲到的 ABT 的性质。
 
 AST 按语法的不同形式分为不同的 **类别 (sort)**，记作 $s$。类别的集合记作 $S$。  
 
@@ -73,7 +73,7 @@ Variables 用 $x$ 来表示；sort $s$ 上的变量集合记为 $X_s$；sort 集
     - 如果 $a = y \neq x$，那么根据定义有 $c = y$；
     - 如果 $a = o(a_1; \dots; a_n)$，根据归纳假设，有唯一的 $c_1, \dots, c_n$ 满足 $c_1 = [b / x]a_1, \dots, c_n = [b / x]a_n$，因此 $c = o(c_1; \dots; c_n)$。
 
-### 2.2 Abstract Binding Tree, ABT | 抽象绑定树
+### 1.2 Abstract Binding Tree, ABT | 抽象绑定树
 
 > 『如果你去网上搜，你可以发现除了这本书以外没有人说 ABT 这个概念。』
 
@@ -103,7 +103,7 @@ Variables 用 $x$ 来表示；sort $s$ 上的变量集合记为 $X_s$；sort 集
 我们称变量序列 $\vec{x}$ 属于 $\vec{s}$，如果它们有相同的长度 $k$，且对每一个 $1 \le i \le k$ 都有 $x_i$ 的类别是 $s_i$。
 
 !!! example
-    前例中 `let` 运算符的元数（泛化元数，但「泛化」根据上下文可以推断，因此可以简称为元数，后同）为 $(s_1, s_1.s_1)s_1$。这表示 `let` 运算符的类别是 $s_1$（即表达式，参见 2.1 例子中的定义），第一个参数为不绑定任何变量的表达式；第二个参数为含有一个约束变量的表达式，约束变量是一个表达式。
+    前例中 `let` 运算符的元数（泛化元数，但「泛化」根据上下文可以推断，因此可以简称为元数，后同）为 $(s_1, s_1.s_1)s_1$。这表示 `let` 运算符的类别是 $s_1$（即表达式，参见 1.1 例子中的定义），第一个参数为不绑定任何变量的表达式；第二个参数为含有一个约束变量的表达式，约束变量是一个表达式。
 
 我们形式化地给出 ABT 的定义。ABT 的族 $B[X]$ 的定义与 AST 的族 $A[X]$ 的定义类似，但是 $X$ 在进入抽象子的作用域时会发生变化。
 

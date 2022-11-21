@@ -1,6 +1,6 @@
-## 3 Inductive Definition | 归纳定义
+## 2 Inductive Definition | 归纳定义
 
-### 3.1 Judgments | 判断
+### 2.1 Judgments | 判断
 
 **判断 (judgment)** 是关于某种类别的一棵或者多棵 ABT 的陈述，表明一棵或多棵 ABT 有某种性质或者彼此之间有某种联系。
 
@@ -17,7 +17,7 @@
 
 我们将判断「ABT $a$ 具有 $J$ 性质」记为 $a\ J$ 或者 $J\ a$；相应地，我们也可以将判断形式 $J$ 记为 $-\ J$ 或者 $J\ -$，其中 $-$ 代表 $J$ 缺少的参数，从而强调判断的主语。
 
-### 3.2 Rules | 规则
+### 2.2 Rules | 规则
 
 **规则 (rule)** 规定一个 judgment 有效的充要条件。因而完全决定了这个 judgment 的含义。
 
@@ -60,7 +60,7 @@
 在下面两节中，我们将讨论「推导」和「规则归纳」的细节。
 
 
-### 3.3 Derivations | 推导
+### 2.3 Derivations | 推导
 
 一个 judgment 的推导过程是规则的有限组合，从公理开始，以判断结束。
 
@@ -74,7 +74,7 @@ $$\cfrac{\cfrac{\cfrac{}{\text{empty tree}}\quad \cfrac{}{\text{empty tree}}}{\t
 
 从结论开始的推导称为 **反向链接 (backwarding chainning)** 或 **自顶向下构造 (top-down construction)**。它维护一个队列，这个队列刚开始只有目标判断，每次从队头取出一条判断，并将其所有前提加入队列。当队列为空时，说明我们已经达到了所有目标。但同样的，反向链接也没有通用的算法来判定当前目标是否可推导。
 
-### 3.4 Rule Induction | 规则归纳
+### 2.4 Rule Induction | 规则归纳
 
 我们说，「**一组规则被看作能够定义封闭于这些规则的最强判断形式**」。也就是说，如果给定一组规则，它定义的「封闭于这些规则的最强判断形式」是 $J$；而我们证明了另一个判断形式 $P$ 也封闭于这些规则，那么由于 $J$ 是封闭于这些规则的判断形式中最强的，那么就可以证明「只要 $a\ J$ 可推导，那么 $a\ P$ 成立」。这就是 **规则归纳 (rule induction)** 的原理。
 
@@ -85,18 +85,18 @@ $$\cfrac{\cfrac{\cfrac{}{\text{empty tree}}\quad \cfrac{}{\text{empty tree}}}{\t
 1. $P(\text{zero})$
 2. $\forall a,\  P(a) \to P(\text{succ}(a))$
 
-!!! info "引理 3.1"
+!!! info "引理 2.1"
     !!! info ""
-        **引理 3.1** 要证明当 $a\text{ nat}$ 时 $P(a)$ 成立，只需要证明：
+        **引理 2.1** 要证明当 $a\text{ nat}$ 时 $P(a)$ 成立，只需要证明：
 
        1. $P(\text{zero})$
        2. $\forall a,\  P(a) \land a\text{ nat} \to P(\text{succ}(a))$
 
     _Proof_. 定义 $Q(a) = P(a) \land a\text{ nat}$，显然 $Q(a)\to P(a)$。
 
-!!! info "引理 3.2"
+!!! info "引理 2.2"
     !!! info ""
-        **引理 3.2** 如果 $\text{succ}(a) \text{ nat}$ 成立，那么 $a\text{ nat}$ 成立。
+        **引理 2.2** 如果 $\text{succ}(a) \text{ nat}$ 成立，那么 $a\text{ nat}$ 成立。
 
     _Proof_. 即证明，$\forall a,b,\ (b = \text{succ}(a) \land b\text{ nat}) \to a\text{ nat}$。
 
@@ -124,19 +124,19 @@ $$\cfrac{\cfrac{\cfrac{}{\text{empty tree}}\quad \cfrac{}{\text{empty tree}}}{\t
 
     （所以可以看到，归纳假设是有可能用不到的。）
 
-!!! info "引理 3.3"
+!!! info "引理 2.3"
     !!! info ""
-        **引理 3.3** $\forall a, a\text{ nat}\to a \text{ is }a$。
+        **引理 2.3** $\forall a, a\text{ nat}\to a \text{ is }a$。
 
     证明暂略。
 
-!!! info "引理 3.4"
+!!! info "引理 2.4"
     !!! info ""
-        **引理 3.4** $\text{succ}(a_1)\text{ is succ}(a_2) \to a_1\text{ is }a_2$。
+        **引理 2.4** $\text{succ}(a_1)\text{ is succ}(a_2) \to a_1\text{ is }a_2$。
 
-    证明与 **引理 3.2** 类似，暂略。
+    证明与 **引理 2.2** 类似，暂略。
 
-### 3.5 Iterated and Simultaneous Inductive Definitions | 迭代和联立归纳定义
+### 2.5 Iterated and Simultaneous Inductive Definitions | 迭代和联立归纳定义
 
 之前展示的归纳定义都是 **迭代的 (iterated)**，即一个归纳定义建立在另一个归纳定义之上；而一个 **联立归纳定义 (simultaneous inductive definitions)** 由一个规则集组成，这些规则能导出多个不同判断形式的实例。
 
@@ -155,7 +155,7 @@ $$\cfrac{\cfrac{\cfrac{}{\text{empty tree}}\quad \cfrac{}{\text{empty tree}}}{\t
 2. $\forall b,\ Q(b)\to P(\text{succ}(b))$
 3. $\forall a,\ P(a)\to Q(\text{succ}(a))$
 
-### 3.6 Defining Functions by Rules | 用规则定义函数
+### 2.6 Defining Functions by Rules | 用规则定义函数
 
 例如，我们可以定义自然数的加法函数 $\text{sum}(a; b; c)$，表示 $c$ 是 $a$ 与 $b$ 的和：
 
@@ -163,9 +163,9 @@ $$\frac{b\text{ nat}}{\text{sum}(\text{zero};b;b)}$$
 
 $$\frac{\text{sum}(a;b;c)}{\text{sum}(\text{succ}(a);b;\text{succ}(c))}$$
 
-!!! info "定理 3.5"
+!!! info "定理 2.5"
     !!! info ""
-        **定理 3.5** 对于每个 $a\text{ nat}$ 和 $b\text{ nat}$，存在唯一的 $c\text{ nat}$ 使得 $\text{sum}(a; b; c)$。
+        **定理 2.5** 对于每个 $a\text{ nat}$ 和 $b\text{ nat}$，存在唯一的 $c\text{ nat}$ 使得 $\text{sum}(a; b; c)$。
 
     先证存在性，即如果 $a\text{ nat}$ 且 $b\text{ nat}$，存在 $c\text{ nat}$ 使得 $\text{sum}(a; b; c)$。
 
@@ -183,14 +183,14 @@ $$\frac{\text{sum}(a;b;c)}{\text{sum}(\text{succ}(a);b;\text{succ}(c))}$$
     \end{array}
     $$
 
-    （这里使用了 **引理 3.2** 证明中提到的技巧。）
+    （这里使用了 **引理 2.2** 证明中提到的技巧。）
 
     设 $P(a; b; c)$ 为：$\forall c',\ \text{sum}(a; b; c') \to c\text{ is }c'$。用规则归纳证明 $\forall a, b, c, \ \text{sum}(a; b; c) \to P(a; b; c)$：
 
     1. 根据 $\text{sum}$ 的第一条定义 $\cfrac{b\text{ nat}}{\text{sum}(\text{zero};b;b)}$，我们需要证明 $\cfrac{b\text{ nat}}{P(\text{zero};b;b)}$；也就是要证 $\forall c',\ (b\text{ nat} \land \text{sum}(\text{zero};b;c'))\to b\text{ is }c'$。这不是显然的，因此我们仍然要通过规则归纳证明之：
         - 我们将其改写为：$\forall a', b', c', \ (b\text{ nat} \land \text{sum}(a';b';c') \land a' = \text{zero} \land b' = b) \to b \text{ is } c$，亦即 $\forall a', b', c', \ (b\text{ nat} \land \text{sum}(a';b';c')) \to (a' = \text{zero} \to (b' = b \to b \text{ is } c))$。
         - 我们记 $Q(a';b';c')$ 为 $a' = \text{zero} \to (b' = b \to b\text{ is }c)$，即我们需要证明 $\forall a', b', c', \ (b\text{ nat} \land \text{sum}(a';b';c')) \to Q(a';b';c')$。可以看到，这里我们仍然使用了前述技巧来将待证的问题转化为规则归纳的形式。我们用规则归纳证明之（这就是课本提到的「内层归纳」）：
-            1. 首先要证 $\cfrac{b'\text{ nat}}{Q(\text{zero};b';b')}$，这里 $Q(\text{zero};b';b') \Leftrightarrow \text{zero} = \text{zero} \to (b' = b \to b \text{ is } b')$。根据 **引理 3.3**，该式为真。
+            1. 首先要证 $\cfrac{b'\text{ nat}}{Q(\text{zero};b';b')}$，这里 $Q(\text{zero};b';b') \Leftrightarrow \text{zero} = \text{zero} \to (b' = b \to b \text{ is } b')$。根据 **引理 2.3**，该式为真。
             2. 然后证 $\cfrac{Q(a';b';c')\quad \text{sum}(a';b';c')}{Q(\text{succ}(a'); b'; \text{succ}(c'))}$。这里 $Q(\text{succ}(a'); b'; \text{succ}(c')) \Leftrightarrow \text{succ}(a') = \text{zero} \to (b' = b \to b \text{ is } \text{succ}(c'))$。由于不存在 $a'$ 使得 $\text{succ}(a') = \text{zero}$，因此该式为真。
     2. 根据 $\text{sum}$ 的第二条定义 $\cfrac{\text{sum}(a;b;c)}{\text{sum}(\text{succ}(a);b;\text{succ}(c))}$，我们需要证明 $\cfrac{P(a;b;c)\quad \text{sum}(a;b;c)}{P(\text{succ}(a);b;\text{succ}(c))}$；也就是要证 $\forall c',\ (P(a;b;c)\land \text{sum}(a;b;c))\to (\text{sum}(\text{succ}(a);b;c') \to \text{succ}(c)\text{ is } c')$。这也不是显然的，因此我们也要通过规则归纳证明之：
         - 我们将其改写为：$\forall a', b', c',\ (P(a;b;c)\land \text{sum}(a;b;c) \land \text{sum}(a';b';c')) \to (a' = \text{succ}(a) \to (b' = b \to \text{succ}(c)\text{ is } c')))$
@@ -198,7 +198,7 @@ $$\frac{\text{sum}(a;b;c)}{\text{sum}(\text{succ}(a);b;\text{succ}(c))}$$
             1. 首先要证 $\cfrac{b'\text{ nat}}{Q(\text{zero};b';b')}$，类似上述 2.b 的证明，不存在 $a'$ 使得 $\text{succ}(a') = \text{zero}$，因此该式为真。
             2. 然后证 $\cfrac{Q(a';b';c')\quad \text{sum}(a';b';c')\quad P(a;b;c)}{Q(\text{succ}(a'); b'; \text{succ}(c'))}$：
                 - 其中，结论 $Q(\text{succ}(a'); b'; \text{succ}(c'))$ 等价于 $\text{succ}(a') = \text{succ}(a) \to (b' = b \to \text{succ}(c)\text{ is } \text{succ}(c'))$
-                - 根据 ABT 的相等关系以及 **引理 3.4**，该式等价于 $a' = a \to (b' = b \to c\text{ is } c')$
+                - 根据 ABT 的相等关系以及 **引理 2.4**，该式等价于 $a' = a \to (b' = b \to c\text{ is } c')$
                 - 要证的规则即为 $\cfrac{Q(a';b';c')\quad \text{sum}(a';b';c')\quad P(a;b;c)}{a' = a \to (b' = b \to c\text{ is } c')}$
                 - 亦即 $\cfrac{Q(a';b';c')\quad \text{sum}(a';b';c')\quad P(a;b;c)\quad a' = a\quad b' = b}{c\text{ is } c'}$
                 - 而由 $\text{sum}(a';b';c')\land a' = a\land b' = b$ 有前提 $\text{sum}(a; b; c')$，又 $P(a;b;c) \Leftrightarrow \forall c',\ \text{sum}(a; b; c') \to c\text{ is }c'$，因此结论得证。

@@ -1,6 +1,6 @@
 - [OS] [8 死锁](../核心知识/os/8_deadlocks/)
-- [PL] [3 归纳定义](../pl/ppl_notes/Inductive_Definition)
-- [PL] [2 抽象语法](../pl/ppl_notes/Abstract_Syntax)
+- [PL] [2 归纳定义](../pl/ppl_notes/2_Inductive_Definition)
+- [PL] [1 抽象语法](../pl/ppl_notes/1_Abstract_Syntax)
 - [生活] [关于亲密关系的碎碎念](../生活/亲密关系/)
 - [C++] [快速入门 C++ 写题！](../cpp/cpp_for_contests/)
 - [C++] [理解 STL —— 迭代器与函数对象](../cpp/理解%20STL%20-%20迭代器与函数对象/)
