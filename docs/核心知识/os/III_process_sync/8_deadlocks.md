@@ -143,13 +143,13 @@
 
 我们在资源分配图的基础上增加一种边，叫 claim edge，表示某个进程未来 **可能** 会需求某种资源，用虚线表示。
 
+<center>![](2022-11-19-18-14-09.png){width="400"}</center>
+
+<center>![](2022-11-19-18-13-46.png){width="400"}</center>
+
 当这个需求真的出现的时候，claim edge 转为 request edge；当需求被满足的时候，request edge 转为 assignment edge；当该进程释放该资源时，assignment edge 转为 claim edge。
 
 当一个需求来了的时候，如果 request edge 转为 assignment edge 不会导致图中有一个 cycle，则该要求可以被满足；否则该请求应当等待。
-
-<center>![](2022-11-19-18-14-09.png){width="300"}</center>
-
-<center>![](2022-11-19-18-13-46.png){width="300"}</center>
 
 #### 8.4.2.2 安全状态 | Safe State
 

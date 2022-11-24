@@ -1,4 +1,4 @@
-- [OS] [8 死锁](../核心知识/os/8_deadlocks/)
+- [OS] [8 死锁](../核心知识/os/III_process_sync/8_deadlocks/)
 - [PL] [2 归纳定义](../pl/ppl_notes/2_Inductive_Definition)
 - [PL] [1 抽象语法](../pl/ppl_notes/1_Abstract_Syntax)
 - [生活] [关于亲密关系的碎碎念](../生活/亲密关系/)
