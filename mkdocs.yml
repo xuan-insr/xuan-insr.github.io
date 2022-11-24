@@ -22,6 +22,7 @@ nav:
       # - Part.1 概述:
       # - Part.2 进程管理:
       - Part.3 进程同步:
+        - 6 同步及其工具: 核心知识/os/6_sync_tools.md
         - 7 经典同步问题: 核心知识/os/7_sync_examples.md
         - 8 死锁: 核心知识/os/8_deadlocks.md
     - 数学、数据结构和算法: 
