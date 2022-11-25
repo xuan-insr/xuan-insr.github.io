@@ -132,7 +132,7 @@ extra_css:
   - 'from_oi_wiki/css/extra.css?v=13'
 
 extra_javascript:
-  - 'from_oi_wiki/js/extra.js?v=16'
+  - 'from_oi_wiki/js/extra.js'
   - js/mathjax.js # 支持数学公式，ref : https://squidfunk.github.io/mkdocs-material/reference/mathjax
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

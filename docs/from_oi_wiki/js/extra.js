@@ -23,5 +23,5 @@ window.addEventListener('load', updateScheme, false);
         localStorage.setItem("data-md-color-scheme", a);
     }
     document.body.setAttribute('data-md-color-scheme', a);
-    updateScheme();
+    // updateScheme();
 })()
