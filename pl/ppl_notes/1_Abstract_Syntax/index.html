@@ -1,0 +1,1593 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://xuan-insr.github.io/pl/ppl_notes/1_Abstract_Syntax/">
+      
+      <link rel="icon" href="../../../logo.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>1 抽象语法 - 咸鱼暄的代码空间</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.08040f6c.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#00bdd6">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../../from_oi_wiki/css/extra.css?v=13">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-abstract-syntax--抽象语法" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="咸鱼暄的代码空间" class="md-header__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../../logo.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            咸鱼暄的代码空间
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1 抽象语法
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        主页
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cpp/" class="md-tabs__link">
+        C++
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        PL & 编译
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
+        核心知识
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../%E5%AE%89%E5%85%A8/" class="md-tabs__link">
+      安全
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-tabs__link">
+      语言基础
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-tabs__link">
+      其他课程
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../%E6%9D%82%E9%A1%B9/" class="md-tabs__link">
+        杂项
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../%E7%94%9F%E6%B4%BB/" class="md-tabs__link">
+        生活
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="咸鱼暄的代码空间" class="md-nav__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../../logo.ico" alt="logo">
+
+    </a>
+    咸鱼暄的代码空间
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../..">主页</a>
+          
+            <label for="__nav_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="主页" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          主页
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../recent/" class="md-nav__link">
+        最近更新
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%B8%BB%E9%A1%B5/theme/" class="md-nav__link">
+        主题
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../cpp/">C++</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="C++" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          C++
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/cpp_for_contests/" class="md-nav__link">
+        快速入门 C++ 写题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" checked>
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          C++ 知识补充
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="C++ 知识补充" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          C++ 知识补充
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1/" class="md-nav__link">
+        理解 STL —— 迭代器与函数对象
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../">PL & 编译</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="PL & 编译" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          PL & 编译
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          编程语言原理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="编程语言原理" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          编程语言原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_1" type="checkbox" id="__nav_3_2_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_1">
+          Part I - Judgments and Rules | 判断与规则
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part I - Judgments and Rules | 判断与规则" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Part I - Judgments and Rules | 判断与规则
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          1 抽象语法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        1 抽象语法
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-abstract-syntax--抽象语法" class="md-nav__link">
+    1 Abstract Syntax | 抽象语法
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Abstract Syntax | 抽象语法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-abstract-syntax-tree-ast--抽象语法树" class="md-nav__link">
+    1.1 Abstract Syntax Tree, AST | 抽象语法树
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-abstract-binding-tree-abt--抽象绑定树" class="md-nav__link">
+    1.2 Abstract Binding Tree, ABT | 抽象绑定树
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_Inductive_Definition/" class="md-nav__link">
+        2 归纳定义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_Hypothetical_and_General_Judgments/" class="md-nav__link">
+        3 假言判断与一般性判断
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/">核心知识</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="核心知识" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          核心知识
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          操作系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="操作系统" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          操作系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2_1" type="checkbox" id="__nav_4_2_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_1">
+          Part.3 进程同步
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.3 进程同步" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Part.3 进程同步
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/6_sync_tools/" class="md-nav__link">
+        6 同步及其工具
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/7_sync_examples/" class="md-nav__link">
+        7 经典同步问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/8_deadlocks/" class="md-nav__link">
+        8 死锁
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2_2" type="checkbox" id="__nav_4_2_2" checked>
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_2">
+          Part.4 内存管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.4 内存管理" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Part.4 内存管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/9_main_memory/" class="md-nav__link">
+        9 主存
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../%E6%95%B0%E5%AD%A6%E5%92%8C%E7%AE%97%E6%B3%95/">数学、数据结构和算法</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="数学、数据结构和算法" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          数学、数据结构和算法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%AE%89%E5%85%A8/" class="md-nav__link">
+        安全
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        语言基础
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-nav__link">
+        其他课程
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../%E6%9D%82%E9%A1%B9/">杂项</a>
+          
+            <label for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="杂项" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          杂项
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9D%82%E9%A1%B9/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        博客搭建记录
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../%E7%94%9F%E6%B4%BB/">生活</a>
+          
+            <label for="__nav_9">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="生活" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          生活
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%94%9F%E6%B4%BB/%E5%92%B8%E9%B1%BC%E6%9A%84%E4%BB%8A%E5%A4%A9%E5%90%83%E4%BB%80%E4%B9%88/" class="md-nav__link">
+        咸鱼暄今天吃什么
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%94%9F%E6%B4%BB/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" class="md-nav__link">
+        关于亲密关系的碎碎念
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-abstract-syntax--抽象语法" class="md-nav__link">
+    1 Abstract Syntax | 抽象语法
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Abstract Syntax | 抽象语法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-abstract-syntax-tree-ast--抽象语法树" class="md-nav__link">
+    1.1 Abstract Syntax Tree, AST | 抽象语法树
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-abstract-binding-tree-abt--抽象绑定树" class="md-nav__link">
+    1.2 Abstract Binding Tree, ABT | 抽象绑定树
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>1 抽象语法</h1>
+
+<h2 id="1-abstract-syntax--抽象语法">1 Abstract Syntax | 抽象语法<a class="headerlink" href="#1-abstract-syntax--抽象语法" title="Permanent link">&para;</a></h2>
+<p>语法 (syntax) 规定了如何将各种 phrases(expr, commands / statements, decl, etc.) 组合成程序。</p>
+<ul>
+<li>表层语法树 / 具体语法树 (surface syntax tree / concrete syntax tree): 表示 parse 出的结果，和语法规则对应；</li>
+<li>抽象语法树 / 结构语法树 (abstract syntax tree / structural syntax tree): 排除了一些无用的组分，例如 factor, term 之类的内容；这些内容只为了 parse 的正常执行，但是对 semantic 帮助不大。</li>
+</ul>
+<h3 id="11-abstract-syntax-tree-ast--抽象语法树">1.1 Abstract Syntax Tree, AST | 抽象语法树<a class="headerlink" href="#11-abstract-syntax-tree-ast--抽象语法树" title="Permanent link">&para;</a></h3>
+<p>抽象语法树是一棵有序树，其叶子结点为 <strong>变量 (variable)</strong> 或者没有 <strong>参数 (argument)</strong> 的 <strong>运算符(operator)</strong>，其内部节点是 operators。</p>
+<details class="note" open="open">
+<summary>Note</summary>
+<p>需要注意的是，这里的 variable 和 operator 不能简单地理解为编程语言中的相关概念。例如，下面这棵语法树里，诸如「函数定义」(<code>FUNCTION_DECL</code>) 之类的中间节点也是 operator；而「整型」(<code>INTEGER</code>) 之类的叶子结点也是 variable。
+<img alt="" src="../2022-11-15-23-52-03.png" /></p>
+<p>另外，严格地说，上面这张图并不是一棵 AST (这张图来自我编译原理大作业对一个例程生成的语法树)。首先，图中仍然保留了一些形如 <code>STMT_LIST</code> 的节点，这些节点仍属于 concrete syntax 的范畴；另外，图中的 <code>ID</code> 之类的 variable 注明了其名字，例如 <code>ANS</code>, <code>GCD</code> 等，所以它有我们在 1.2 会讲到的 ABT 的性质。</p>
+</details>
+<p>AST 按语法的不同形式分为不同的 <strong>类别 (sort)</strong>，记作 <span class="arithmatex">\(s\)</span>。类别的集合记作 <span class="arithmatex">\(S\)</span>。  </p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>例如，常见的编程语言区分 expression 和 statement，这就是两个不同的 sort，分别记为 <span class="arithmatex">\(s_1\)</span> 和 <span class="arithmatex">\(s_2\)</span>。</p>
+</div>
+<p>多个 AST 通过 operator 进行组合。我们通过运算符的 <strong>元数 (arity)</strong> 规定运算符的 sort <span class="arithmatex">\(s\)</span> 及其参数的数目 <span class="arithmatex">\(n\)</span> 和 sort <span class="arithmatex">\(s_i\)</span>，记作 <span class="arithmatex">\((s_1, \dots, s_n)s\)</span>。<br />
+用 <span class="arithmatex">\(o\)</span> 表示运算符，具有 arity <span class="arithmatex">\(\alpha\)</span> 的运算符的集合记作 <span class="arithmatex">\(O_\alpha\)</span>；记 <span class="arithmatex">\(O = \{O\alpha\}\)</span> 为一个按 arity 索引的、由互不相交的 <span class="arithmatex">\(O_\alpha\)</span> 构成的集族。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>承上例，假设 <span class="arithmatex">\(s_1\)</span> 中存在运算符 <code>plus</code>, <code>times</code> 和 <code>num</code>，它们的结构分别类似于 <code>plus(expr1; expr2)</code>, <code>times(expr1; expr2)</code> 和 <code>num[n]</code> ( 其中 <span class="arithmatex">\(n\in \mathbb{N}\)</span> )；<span class="arithmatex">\(s_2\)</span> 中存在运算符 <code>if</code> ，它的结构类似于 <code>if (expr) then stmt1 else stmt2</code>。那么 <code>plus</code> 和 <code>times</code> 的 arity 均记作 <span class="arithmatex">\((s_1, s_1)s_1\)</span>，而 <code>num</code> 的 arity 记作 <span class="arithmatex">\((\mathbb{N})s_1\)</span>， <code>if</code> 的 arity 记作 <span class="arithmatex">\((s_1, s_2, s_2)s_2\)</span>。</p>
+</div>
+<p>Variables 用 <span class="arithmatex">\(x\)</span> 来表示；sort <span class="arithmatex">\(s\)</span> 上的变量集合记为 <span class="arithmatex">\(X_s\)</span>；sort 集合 <span class="arithmatex">\(S\)</span> 上的 <strong>变量族</strong> 定义为 <span class="arithmatex">\(X = \{X_s\}_{s \in S}\)</span>。<br />
+变量是某个领域内的未知的对象，用特定对象 <strong>代换 (substitution)</strong> 某个表达中的全部同个变量，则变量成为已知。<br />
+变量是一个未知的对象或者占位符，其含义由代换赋予。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>承上例，<span class="arithmatex">\(2 + (3 \times x)\)</span> 可以表达为 <code>plus(num[2]; times(num[3]; x))</code>。这里 <span class="arithmatex">\(x\)</span> 是一个变量。<br />
+由于 <code>num[4]</code> 也是 <span class="arithmatex">\(s_1\)</span> 类型的 AST，因此可以用它 <strong>代换</strong> 上面 AST 中的 <span class="arithmatex">\(x\)</span>，得到  <code>plus(num[2]; times(num[3]; num[4]))</code>。<br />
+同时，由于 <code>plus(num[1]; num[2])</code> 也是 <span class="arithmatex">\(s_1\)</span> 类型的 AST，因此也可以用它代换上面 AST 中的 <span class="arithmatex">\(x\)</span>，得到  <code>plus(num[2]; times(num[3]; plus(num[1]; num[2])))</code>。</p>
+</div>
+<p>给定一个 sort 集合 <span class="arithmatex">\(S\)</span> 和一个 operator 集族 <span class="arithmatex">\(O\)</span>，variable 集族 <span class="arithmatex">\(X = \{X_s\}_{s \in S}\)</span> 定义同前。那么：</p>
+<ul>
+<li>当 <span class="arithmatex">\(X\)</span> <strong>上下文无关 (context-free)</strong> 时，如果 <span class="arithmatex">\(x \in X_s\)</span>，那么称 <span class="arithmatex">\(x\)</span> 的类别为 <span class="arithmatex">\(s\)</span>；</li>
+<li>如果对于任意 <span class="arithmatex">\(s\in S\)</span> 都有 <span class="arithmatex">\(x \not \in X_s\)</span>，那么称 <span class="arithmatex">\(x\)</span> 对 <span class="arithmatex">\(X\)</span> 是 <strong>新</strong> 的 ( <span class="arithmatex">\(x\)</span> is <strong>fresh</strong> to <span class="arithmatex">\(X\)</span> )；</li>
+<li>如果 <span class="arithmatex">\(x\)</span> is fresh to <span class="arithmatex">\(X\)</span>，且 <span class="arithmatex">\(s\)</span> 是一个 sort，那么称 <span class="arithmatex">\(X, x\)</span> 是通过增加 <span class="arithmatex">\(x\)</span> 到 <span class="arithmatex">\(X_s\)</span> 所得的变量集族；</li>
+<li>如果 <span class="arithmatex">\(s\)</span> 由上下文决定而不是显式声明时，这个记法是有歧义 (ambiguous) 的。</li>
+</ul>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>上面这段还没看懂，之后回来补</p>
+</div>
+<p>我们形式化地给出 AST 的定义。AST 的族 <span class="arithmatex">\(A[X] = \{A[X]_s\}_{s\in S}\)</span> 是满足以下条件的最小族：</p>
+<ul>
+<li>如果 <span class="arithmatex">\(x \in X_s\)</span>，那么 <span class="arithmatex">\(x\in A[X]_s\)</span>。即，一个类别是 <span class="arithmatex">\(s\)</span> 的变量是一棵类别为 <span class="arithmatex">\(s\)</span> 的 AST；</li>
+<li>如果 <span class="arithmatex">\(o\)</span> 的元数为 <span class="arithmatex">\((s_1, \dots, s_n)s\)</span>，且 <span class="arithmatex">\(a_1 \in A[X]_{s_1}, \dots, a_n \in A[X]_{s_n}\)</span>，那么 <span class="arithmatex">\(o(a_1;\dots ;a_n) \in A[X]_s\)</span>。即，用运算符可以组合 AST。</li>
+</ul>
+<p><strong>Structural Induction | 结构归纳法</strong><br />
+根据上面的定义，由于 AST 的树形结构，如果我们希望证明所有 AST <span class="arithmatex">\(a\)</span> 都具有性质 <span class="arithmatex">\(P(a)\)</span>，那么我们只需要对于所有生成 <span class="arithmatex">\(a\)</span> 的方式，都证明：「如果其子 AST 都具有该性质，那么生成的 <span class="arithmatex">\(a\)</span> 也具有该性质」即可。即证明：</p>
+<ul>
+<li>如果 <span class="arithmatex">\(x\in X_s\)</span>，则 <span class="arithmatex">\(P_s(x)\)</span>；</li>
+<li>如果 <span class="arithmatex">\((s_1, \dots, s_n)s\)</span>，且 <span class="arithmatex">\(P_{s_1}(a_1), \dots, P_{s_n}(a_n)\)</span> 都成立，那么 <span class="arithmatex">\(P_s(o(a_1;\dots ;a_n))\)</span> 也成立</li>
+</ul>
+<p>即可。</p>
+<p>我们进一步形式化地给出变量代换的定义。如果 <span class="arithmatex">\(a\in A[X, x]_s, b\in A[X]_s\)</span>，则用 <span class="arithmatex">\(b\)</span> 代换 <span class="arithmatex">\(a\)</span> 中所有 <span class="arithmatex">\(x\)</span> 得到的结果是 <span class="arithmatex">\([b / x]a\in A[X]_s\)</span>，定义为：</p>
+<ul>
+<li><span class="arithmatex">\([b / x]x = b\)</span></li>
+<li><span class="arithmatex">\([b / x]y = y\)</span></li>
+<li><span class="arithmatex">\([b / x]o(a_1; \dots; a_n) = o([b / x]a_1; \dots; [b / x]a_n)\)</span></li>
+</ul>
+<p>可以证明，如果 <span class="arithmatex">\(a\in A[X, x]_s\)</span>，那么对于任意 <span class="arithmatex">\(b\in A[X]\)</span> 都存在唯一的 <span class="arithmatex">\(c\in A[X]\)</span> 满足 <span class="arithmatex">\([b / x]a = c\)</span>。</p>
+<details class="note">
+<summary>证明 (课堂上「让大家回去思考」)</summary>
+<p>对 <span class="arithmatex">\(a\)</span> 使用结构归纳法：</p>
+<ul>
+<li>如果 <span class="arithmatex">\(a = x\)</span>，那么根据定义有 <span class="arithmatex">\(c = b\)</span>；</li>
+<li>如果 <span class="arithmatex">\(a = y \neq x\)</span>，那么根据定义有 <span class="arithmatex">\(c = y\)</span>；</li>
+<li>如果 <span class="arithmatex">\(a = o(a_1; \dots; a_n)\)</span>，根据归纳假设，有唯一的 <span class="arithmatex">\(c_1, \dots, c_n\)</span> 满足 <span class="arithmatex">\(c_1 = [b / x]a_1, \dots, c_n = [b / x]a_n\)</span>，因此 <span class="arithmatex">\(c = o(c_1; \dots; c_n)\)</span>。</li>
+</ul>
+</details>
+<h3 id="12-abstract-binding-tree-abt--抽象绑定树">1.2 Abstract Binding Tree, ABT | 抽象绑定树<a class="headerlink" href="#12-abstract-binding-tree-abt--抽象绑定树" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>『如果你去网上搜，你可以发现除了这本书以外没有人说 ABT 这个概念。』</p>
+</blockquote>
+<p>给定一个表达式 <code>let x be expr1 in expr2</code>，表示引入一个变量 <code>x</code>，用于在表达式 <code>expr2</code> 中表示 <code>expr1</code>。  </p>
+<p>变量 <code>x</code> 受 <code>let</code> 表达式的约束，只用在 <code>expr2</code> 中。在 <code>expr1</code> 中如果有任何 <code>x</code> 都只是碰巧名字相同的不同变量；这有些类似于 <span class="arithmatex">\((\lambda\ expr1. expr2)\ x\)</span>。与 <span class="arithmatex">\(\lambda\)</span> 演算一样，约束变量可以换名。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>例如 <code>let x be num[7] in plus(x; x)</code> 就可以得到 <code>plus(num[7]; num[7])</code>。类似于 <span class="arithmatex">\((\lambda\ x.x + x)\ 7 = 7 + 7\)</span>。</p>
+<p>而对于 <code>let x be times(x; x) in plus(x; x)</code>，就类似于 <span class="arithmatex">\((\lambda\ x.x + x)\ (x * x) = x * x + x * x\)</span>。根据 <span class="arithmatex">\(\lambda\)</span> 演算的相关知识容易理解，这里 <code>times</code> 中的 <code>x</code> 和 <code>plus</code> 中的 <code>x</code> 并不是同一个变量。</p>
+<p>容易理解，<code>let y be times(x; x) in plus(y; y)</code> 与上式表达的含义一致；即约束变量可以换名。</p>
+</div>
+<p>我们用 <span class="arithmatex">\(x_1, \dots, x_k.a\)</span> 的形式表示将变量序列 <span class="arithmatex">\(x_1, \dots, x_k\)</span> <strong>绑定 (bind)</strong> 到运算符 <span class="arithmatex">\(a\)</span> 的参数上，从而将以 <span class="arithmatex">\(a\)</span> 为根的 AST 泛化为一棵 <strong>抽象绑定树 (Abstract Binding Tree, ABT)</strong>。<span class="arithmatex">\(x_1, \dots, x_k.a\)</span> 称为 <strong>抽象子 (abstractor)</strong>；这表示变量序列 <span class="arithmatex">\(x_1, \dots, x_k\)</span> 在 ABT <span class="arithmatex">\(a\)</span> 中是约束的 (bound)。在 <span class="arithmatex">\(k = 0\)</span> 时，<span class="arithmatex">\(.a\)</span> 可以简写为 <span class="arithmatex">\(a\)</span>。通常我们将 <span class="arithmatex">\(x_1, \dots, x_k\)</span> 记为 <span class="arithmatex">\(\vec{x}\)</span>，从而用 <span class="arithmatex">\(\vec{x}.a\)</span> 表示 <span class="arithmatex">\(x_1, \dots, x_k.a\)</span>。</p>
+<p>这种绑定决定了 <span class="arithmatex">\(\vec{x}\)</span> 的 <strong>作用域 (scope)</strong> 是 ABT <span class="arithmatex">\(a\)</span>。</p>
+<p>前面的 <code>let x be expr1 in expr2</code> 就是 <code>let(expr1; x.expr2)</code>。这个形式表示 <code>x</code> 在 <code>expr2</code> 中是约束的，或者说 <code>x</code> 的作用域是 <code>expr2</code>。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>前例中 <code>let x be num[7] in plus(x; x)</code> 表示为 <code>let(num[7]; x.plus(x; x))</code>；<code>let x be times(x; x) in plus(x; x)</code> 可以表示为 <code>let(times(x; x); x.plus(x; x))</code>。后者表示的 ABT 形如：
+<center><img alt="" src="../2022-11-16-22-22-42.png" /></center></p>
+</div>
+<p>绑定使得 operator 的 arity 得到了泛化。元数形如 <span class="arithmatex">\((s_1, \dots, s_n)s\)</span>，而 <strong>泛化元数 (generalized arity)</strong> 形如 <span class="arithmatex">\((v_1, \dots, v_n)s\)</span>；其中每一个 <span class="arithmatex">\(v\)</span> 称为一个 <strong>价 (valence)</strong>，具有 <span class="arithmatex">\(s_1, \dots, s_k.s\)</span> 即 <span class="arithmatex">\(\vec{s}.s\)</span> 的形式，指定了参数的类别以及所绑定的变量的数量和类别。</p>
+<p>我们称变量序列 <span class="arithmatex">\(\vec{x}\)</span> 属于 <span class="arithmatex">\(\vec{s}\)</span>，如果它们有相同的长度 <span class="arithmatex">\(k\)</span>，且对每一个 <span class="arithmatex">\(1 \le i \le k\)</span> 都有 <span class="arithmatex">\(x_i\)</span> 的类别是 <span class="arithmatex">\(s_i\)</span>。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>前例中 <code>let</code> 运算符的元数（泛化元数，但「泛化」根据上下文可以推断，因此可以简称为元数，后同）为 <span class="arithmatex">\((s_1, s_1.s_1)s_1\)</span>。这表示 <code>let</code> 运算符的类别是 <span class="arithmatex">\(s_1\)</span>（即表达式，参见 1.1 例子中的定义），第一个参数为不绑定任何变量的表达式；第二个参数为含有一个约束变量的表达式，约束变量是一个表达式。</p>
+</div>
+<p>我们形式化地给出 ABT 的定义。ABT 的族 <span class="arithmatex">\(B[X]\)</span> 的定义与 AST 的族 <span class="arithmatex">\(A[X]\)</span> 的定义类似，但是 <span class="arithmatex">\(X\)</span> 在进入抽象子的作用域时会发生变化。</p>
+<p>我们尝试这样定义 ABT：ABT 的族 <span class="arithmatex">\(B[X] = \{B[X]_s\}_{s\in S}\)</span> 是满足以下条件的最小族：</p>
+<ul>
+<li>如果 <span class="arithmatex">\(x \in X_s\)</span>，那么 <span class="arithmatex">\(x\in B[X]_s\)</span>。即，一个类别是 <span class="arithmatex">\(s\)</span> 的变量是一棵类别为 <span class="arithmatex">\(s\)</span> 的 ABT；</li>
+<li>如果 <span class="arithmatex">\(o\)</span> 的元数为 <span class="arithmatex">\((\vec{s_1}.s_1, \dots, \vec{s_n}.s_n)s\)</span>，且 <span class="arithmatex">\(a_1 \in B[X, \vec{x_1}]_{s_1}, \dots, a_n \in B[X, \vec{x_n}]_{s_n}\)</span>，那么 <span class="arithmatex">\(o(\vec{x_1}.a_1;\dots ;\vec{x_n}.a_n) \in B[X]_s\)</span>。即，用运算符可以组合 ABT。</li>
+</ul>
+<p>这种定义的问题是，形如 <code>let(expr1; x.let(expr2; x.expr3))</code> 的 ABT 是 ill-formed 的，因为第一个绑定将 <span class="arithmatex">\(x\)</span> 添加到 <span class="arithmatex">\(X\)</span> 得到 <span class="arithmatex">\(x.X\)</span>，这使得第二个绑定不能再将 <span class="arithmatex">\(x\)</span> 添加到 <span class="arithmatex">\(X.x\)</span> 中，因为 <span class="arithmatex">\(x\)</span> 对于 <span class="arithmatex">\(X.x\)</span> 来说不是新的。也就是说，<strong>这种定义没有正确解释约束变量的换名</strong>。</p>
+<p>我们可以通过 <strong>fresh renaming</strong> 解决上述问题。具体而言，给定变量族 <span class="arithmatex">\(X\)</span>，<span class="arithmatex">\(\vec{x}\)</span> 的 fresh renaming 定义为一个 <span class="arithmatex">\(\vec{x}\)</span> 到 <span class="arithmatex">\(\vec{x}'\)</span> 的一个双射 <span class="arithmatex">\(\rho : \vec{x} \leftrightarrow \vec{x}'\)</span>，其中 <span class="arithmatex">\(\vec{x}'\)</span> 对于 <span class="arithmatex">\(X\)</span> 而言是新的。我们用 <span class="arithmatex">\(\hat\rho (a)\)</span> 表示将 <span class="arithmatex">\(a\)</span> 中的每个 <span class="arithmatex">\(x_i\)</span> 的出现替换为 <span class="arithmatex">\(\rho(x_i)\)</span> 后的结果。</p>
+<p>因此，我们给出 ABT 的族 <span class="arithmatex">\(B[X] = \{B[X]_s\}_{s\in S}\)</span> 的正确定义：</p>
+<ul>
+<li>如果 <span class="arithmatex">\(x \in X_s\)</span>，那么 <span class="arithmatex">\(x\in B[X]_s\)</span>。</li>
+<li>如果 <span class="arithmatex">\(o\)</span> 的元数为 <span class="arithmatex">\((\vec{s_1}.s_1, \dots, \vec{s_n}.s_n)s\)</span>，且对于每个 <span class="arithmatex">\(1 \le i \le n\)</span> 和对应的 fresh renaming <span class="arithmatex">\(\rho_i : \vec{x}_i \leftrightarrow \vec{x}_i'\)</span> ，都有 <span class="arithmatex">\(\hat\rho_i(a_i) \in B[X, \vec{x_i}']\)</span>，那么 <span class="arithmatex">\(o(\vec{x_1}.a_1;\dots ;\vec{x_n}.a_n) \in B[X]_s\)</span>。</li>
+</ul>
+<p>定义这种意义下的结构归纳法：<strong>structural induction modulo fresh renaming</strong>。（没讲，且懒得看）</p>
+<p>定义 <span class="arithmatex">\(\alpha\)</span>-等价 (<span class="arithmatex">\(\alpha\)</span>-equivalence)。（讲了，但懒得看）</p>
+<p>ABT 根据是否 <span class="arithmatex">\(\alpha\)</span>-等价判定是否相同。</p>
+<p>定义 ABT 上的代换。（也讲了，也懒得看）</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-25T16:25:14+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-25</span>
+      
+        <br>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-25T16:25:14+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-25</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+<h2 id="__comments">评论</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="xuan-insr/discussion"
+        data-repo-id="R_kgDOIUW7XA"
+        data-category="General"
+        data-category-id="DIC_kwDOIUW7XM4CSOC3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!-- Synchronize Giscus theme with palette -->
+<script>
+var giscus = document.querySelector("script[src*=giscus]")
+
+/* Set palette on initial load */
+var palette = __md_get("__palette")
+if (palette && typeof palette.color === "object") {
+    var theme = palette.color.scheme === "slate" ? "dark" : "light"
+    giscus.setAttribute("data-theme", theme) 
+}
+
+/* Register event handlers after documented loaded */
+document.addEventListener("DOMContentLoaded", function() {
+    var ref = document.querySelector("[data-md-component=palette]")
+    ref.addEventListener("change", function() {
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+        var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+        /* Instruct Giscus to change theme */
+        var frame = document.querySelector(".giscus-frame")
+        frame.contentWindow.postMessage(
+        { giscus: { setConfig: { theme } } },
+        "https://giscus.app"
+        )
+    }
+    })
+})
+</script>
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      
+        
+        <a href="../../" class="md-footer__link md-footer__link--prev" aria-label="上一页: Index" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              Index
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../2_Inductive_Definition/" class="md-footer__link md-footer__link--next" aria-label="下一页: 2 归纳定义" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              2 归纳定义
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      本页面的全部内容在 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a> 协议之条款下提供，附加条款亦可能应用
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "navigation.sections", "navigation.expand", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../from_oi_wiki/js/extra.js?v=16"></script>
+      
+        <script src="../../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

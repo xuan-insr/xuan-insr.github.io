@@ -1,0 +1,2125 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://xuan-insr.github.io/cpp/cpp_for_contests/">
+      
+      <link rel="icon" href="../../logo.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>快速入门 C++ 写题 - 咸鱼暄的代码空间</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.08040f6c.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#00bdd6">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../from_oi_wiki/css/extra.css?v=13">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-基础" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="咸鱼暄的代码空间" class="md-header__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../logo.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            咸鱼暄的代码空间
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              快速入门 C++ 写题
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        主页
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        C++
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../pl/" class="md-tabs__link">
+        PL & 编译
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
+        核心知识
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E5%AE%89%E5%85%A8/" class="md-tabs__link">
+      安全
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-tabs__link">
+      语言基础
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-tabs__link">
+      其他课程
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%9D%82%E9%A1%B9/" class="md-tabs__link">
+        杂项
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/" class="md-tabs__link">
+        生活
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="咸鱼暄的代码空间" class="md-nav__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../logo.ico" alt="logo">
+
+    </a>
+    咸鱼暄的代码空间
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../..">主页</a>
+          
+            <label for="__nav_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="主页" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          主页
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recent/" class="md-nav__link">
+        最近更新
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%B8%BB%E9%A1%B5/theme/" class="md-nav__link">
+        主题
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../">C++</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="C++" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          C++
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          快速入门 C++ 写题
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        快速入门 C++ 写题
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-基础" class="md-nav__link">
+    1 基础
+  </a>
+  
+    <nav class="md-nav" aria-label="1 基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-引用" class="md-nav__link">
+    1.1 引用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-vector" class="md-nav__link">
+    1.2 vector
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-string" class="md-nav__link">
+    1.3 string
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-pair" class="md-nav__link">
+    1.4 pair
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-不那么基础" class="md-nav__link">
+    2 不那么基础
+  </a>
+  
+    <nav class="md-nav" aria-label="2 不那么基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21--sort" class="md-nav__link">
+    2.1 ☆☆☆ sort
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22--upper_bound--lower_bound--binary_search--equal_range" class="md-nav__link">
+    2.2 ☆ upper_bound &amp; lower_bound &amp; binary_search &amp; equal_range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-gcd--lcm-c17" class="md-nav__link">
+    2.3 gcd &amp; lcm C++17
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-unique" class="md-nav__link">
+    2.4 unique
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-algorithm-库里其他看起来有用的东西" class="md-nav__link">
+    2.5 Algorithm 库里其他看起来有用的东西
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-其他" class="md-nav__link">
+    2.6 其他
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-数据结构之类的东西" class="md-nav__link">
+    3 数据结构之类的东西
+  </a>
+  
+    <nav class="md-nav" aria-label="3 数据结构之类的东西">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-stack--queue--priority_queue--container-adaptors" class="md-nav__link">
+    3.1 stack &amp; queue &amp; priority_queue | Container adaptors
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 stack &amp; queue &amp; priority_queue | Container adaptors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#311--stack--queue" class="md-nav__link">
+    3.1.1 ☆ stack &amp; queue
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312--priority_queue" class="md-nav__link">
+    3.1.2 ☆☆ priority_queue
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32--set--map--multiset--multimap--associative-containers" class="md-nav__link">
+    3.2 ☆ set &amp; map &amp; multiset &amp; multimap | Associative containers
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 ☆ set &amp; map &amp; multiset &amp; multimap | Associative containers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-set--multiset" class="md-nav__link">
+    3.2.1 set &amp; multiset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-map" class="md-nav__link">
+    3.2.2 map
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323-multimap" class="md-nav__link">
+    3.2.3 multimap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33--unordered_set--unordered_map--unordered-associative-containers" class="md-nav__link">
+    3.3 ☆☆ unordered_set &amp; unordered_map | Unordered associative containers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-结语" class="md-nav__link">
+    4 结语
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" checked>
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          C++ 知识补充
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="C++ 知识补充" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          C++ 知识补充
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1/" class="md-nav__link">
+        理解 STL —— 迭代器与函数对象
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../pl/">PL & 编译</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="PL & 编译" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          PL & 编译
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          编程语言原理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="编程语言原理" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          编程语言原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_2_1" type="checkbox" id="__nav_3_2_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_1">
+          Part I - Judgments and Rules | 判断与规则
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part I - Judgments and Rules | 判断与规则" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Part I - Judgments and Rules | 判断与规则
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/1_Abstract_Syntax/" class="md-nav__link">
+        1 抽象语法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/2_Inductive_Definition/" class="md-nav__link">
+        2 归纳定义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/3_Hypothetical_and_General_Judgments/" class="md-nav__link">
+        3 假言判断与一般性判断
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/">核心知识</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="核心知识" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          核心知识
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          操作系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="操作系统" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          操作系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2_1" type="checkbox" id="__nav_4_2_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_1">
+          Part.3 进程同步
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.3 进程同步" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Part.3 进程同步
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/6_sync_tools/" class="md-nav__link">
+        6 同步及其工具
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/7_sync_examples/" class="md-nav__link">
+        7 经典同步问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/8_deadlocks/" class="md-nav__link">
+        8 死锁
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2_2" type="checkbox" id="__nav_4_2_2" checked>
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_2">
+          Part.4 内存管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.4 内存管理" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Part.4 内存管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/9_main_memory/" class="md-nav__link">
+        9 主存
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%95%B0%E5%AD%A6%E5%92%8C%E7%AE%97%E6%B3%95/">数学、数据结构和算法</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="数学、数据结构和算法" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          数学、数据结构和算法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8/" class="md-nav__link">
+        安全
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        语言基础
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-nav__link">
+        其他课程
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%9D%82%E9%A1%B9/">杂项</a>
+          
+            <label for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="杂项" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          杂项
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%9D%82%E9%A1%B9/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        博客搭建记录
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E7%94%9F%E6%B4%BB/">生活</a>
+          
+            <label for="__nav_9">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="生活" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          生活
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%E5%92%B8%E9%B1%BC%E6%9A%84%E4%BB%8A%E5%A4%A9%E5%90%83%E4%BB%80%E4%B9%88/" class="md-nav__link">
+        咸鱼暄今天吃什么
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" class="md-nav__link">
+        关于亲密关系的碎碎念
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-基础" class="md-nav__link">
+    1 基础
+  </a>
+  
+    <nav class="md-nav" aria-label="1 基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-引用" class="md-nav__link">
+    1.1 引用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-vector" class="md-nav__link">
+    1.2 vector
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-string" class="md-nav__link">
+    1.3 string
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-pair" class="md-nav__link">
+    1.4 pair
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-不那么基础" class="md-nav__link">
+    2 不那么基础
+  </a>
+  
+    <nav class="md-nav" aria-label="2 不那么基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21--sort" class="md-nav__link">
+    2.1 ☆☆☆ sort
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22--upper_bound--lower_bound--binary_search--equal_range" class="md-nav__link">
+    2.2 ☆ upper_bound &amp; lower_bound &amp; binary_search &amp; equal_range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-gcd--lcm-c17" class="md-nav__link">
+    2.3 gcd &amp; lcm C++17
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-unique" class="md-nav__link">
+    2.4 unique
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-algorithm-库里其他看起来有用的东西" class="md-nav__link">
+    2.5 Algorithm 库里其他看起来有用的东西
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-其他" class="md-nav__link">
+    2.6 其他
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-数据结构之类的东西" class="md-nav__link">
+    3 数据结构之类的东西
+  </a>
+  
+    <nav class="md-nav" aria-label="3 数据结构之类的东西">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-stack--queue--priority_queue--container-adaptors" class="md-nav__link">
+    3.1 stack &amp; queue &amp; priority_queue | Container adaptors
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 stack &amp; queue &amp; priority_queue | Container adaptors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#311--stack--queue" class="md-nav__link">
+    3.1.1 ☆ stack &amp; queue
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312--priority_queue" class="md-nav__link">
+    3.1.2 ☆☆ priority_queue
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32--set--map--multiset--multimap--associative-containers" class="md-nav__link">
+    3.2 ☆ set &amp; map &amp; multiset &amp; multimap | Associative containers
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 ☆ set &amp; map &amp; multiset &amp; multimap | Associative containers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-set--multiset" class="md-nav__link">
+    3.2.1 set &amp; multiset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-map" class="md-nav__link">
+    3.2.2 map
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323-multimap" class="md-nav__link">
+    3.2.3 multimap
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33--unordered_set--unordered_map--unordered-associative-containers" class="md-nav__link">
+    3.3 ☆☆ unordered_set &amp; unordered_map | Unordered associative containers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-结语" class="md-nav__link">
+    4 结语
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>快速入门 C++ 写题</h1>
+
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p><strong>本文所需预备知识：</strong> C / C++ 基础</p>
+<p><strong>本文面向对象：</strong> 需要做算法题的萌新!</p>
+<p>在做 LeetCode 或者各种笔试的算法题的时候，避免造轮子可以为我们节省很多写代码和调试的时间；而 C++ 在不断的发展中为我们实现了许多好用的特性。很多小朋友只在基础课程中学过 C 语言，学校开设的 C++ 相关课程可能也没有涵盖很多这方面内容。因此，本周我们试图发现那些在写题中常用的技巧，并加以分析和总结。</p>
+<p>本文准备仓促，可能有很多遗漏和不严谨之处，欢迎批评指正 QWQ</p>
+</div>
+<details class="tip" open="open">
+<summary>推荐阅读</summary>
+<p>和本文无关，但是推荐阅读：<a href="https://leetcode.cn/circle/discuss/WMD02i/view/cpLrhM/">如何从两题选手变成稳定三题选手以及 ak 周赛？</a></p>
+</details>
+<p>注意：这里的介绍只为满足最基本的使用；在搜索引擎搜索，可以找到更多的用法。当自己编程而不是在 LeetCode 之类的地方做函数题时，请自行搜索它们所需的头文件等信息。</p>
+<blockquote>
+<p>如未特殊说明，本文讨论的内容都在 <code>namespace std</code> 里；本文的例子大多来源于 <a href="https://en.cppreference.com/">cppreference.com</a>。</p>
+</blockquote>
+<h2 id="1-基础">1 基础<a class="headerlink" href="#1-基础" title="Permanent link">&para;</a></h2>
+<p>使用 C++ 答题时，有一些非常基础和常用的内容，我们简单介绍它们！</p>
+<h3 id="11-引用">1.1 引用<a class="headerlink" href="#11-引用" title="Permanent link">&para;</a></h3>
+<p>在 C 语言中，符号 <code>&amp;</code> 是 <strong>取地址符</strong> 。而在 C++ 中，<code>&amp;</code> 有一个新的作用：定义引用变量。引用就是某一个变量的别名， <strong>对引用的操作和对变量直接操作完全一样</strong> 。定义语法为： <code>Type &amp;refVarName = varName;</code> 。</p>
+<p>引用与指针类似，但需要注意的有：</p>
+<ul>
+<li>不存在空引用。引用必须连接到一块合法的内存，因此 <strong>声明引用时，必须同时进行初始化</strong> 。</li>
+<li>引用变量声明完毕后， 相当于原变量有了2个名称，即引用名和原名。 <strong>引用不占存储单元，对引用和原变量取址的结果是一样的</strong> 。</li>
+<li>一旦引用被初始化为一个对象，就不能被指向到另一个对象。即 <strong>不能将一个引用名重新作为其他变量名的别名</strong> 。</li>
+<li>不能建立数组的引用。</li>
+</ul>
+<p>指针解决了我们在传递参数时复制带来的效率和空间消耗等问题。而引用相比于指针更加安全（避免对内存的非法引用）、可读性更高，同时不需要额外分配内存单元。</p>
+<p>和指针类似，<code>int &amp;a = b, c = d</code> 中，<code>a</code> 的类型是 <code>int &amp;</code>，而 <code>c</code> 的类型是 <code>int</code>。</p>
+<p>引用其实就是指针包装了一下。</p>
+<p>通过引用取一个别名是没有意义的。引用的目的主要用于函数的参数传递。例如：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">swap</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">b</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">var1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">var2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">swap</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span><span class="w"> </span><span class="n">var2</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">var1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">var2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>输出是： <code>2 1</code> 。</p>
+<p>关于引用的其他用法，在此不再赘述。</p>
+<h3 id="12-vector">1.2 vector<a class="headerlink" href="#12-vector" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>#include &lt;vector&gt;</code> </p>
+</blockquote>
+<p>vector 可以理解为一种自动扩展长度的数组。</p>
+<p><strong>构造</strong>：</p>
+<ul>
+<li>我们可以通过  <code>vector&lt;int&gt; v;</code> 的方式构造一个空的、每个元素的类型均为 <code>int</code> 的 vector，其名字为 <code>v</code> 。可以用其他类型，包括自定义的结构体替换这里的 <code>int</code> 。</li>
+<li>也可以通过类似 <code>vector&lt;int&gt; v = {1, 2, 3};</code> 的方式初始化。</li>
+<li>同时，可以通过 <code>vector&lt;int&gt; v(n);</code> 的方式构造一个包含 <code>n</code> 个元素的 vector。</li>
+<li>可以通过 <code>vector&lt;int&gt; v(n, 1);</code> 的方式构造一个大小为 <code>n</code> 且每个元素的值都为 <code>1</code> 的 vector。 </li>
+</ul>
+<p><strong>获取长度</strong>。可以通过 <code>v.size()</code> 获取 vector  <code>v</code> 中的元素个数。</p>
+<p><strong>在末尾插入元素</strong>。可以通过 <code>v.push_back(x)</code> 的方式将 <code>x</code> 插入到 vector  <code>v</code> 的末尾。这里的插入是使用拷贝构造的，而使用 <code>v.emplace_back(...)</code> 则可以在 <code>vector</code> 中进行“原地构造”，对于一些特定的数据类型效率更好，写起来也更简单。</p>
+<p><strong>访问（读取 / 修改）元素</strong>。和数组一样，可以通过 <code>v[i]</code> 的方式访问 vector  <code>v</code> 的第 <code>i</code> 个元素，下标从 0 开始。注意，当 <code>i &gt;= v.size()</code> 的时候，程序可能发生运行时错误。</p>
+<p><strong>遍历</strong>。<code>C++11</code> 除了使用  <code>for (int i = 0; i &lt; v.size(); i++) sum += v[i];</code> 的方式遍历以外，还可以这样写： <code>for (auto a : v) sum += a;</code> 。这种写法叫做 range-based for loop。<code>C++11</code> 这里的 <code>auto</code> 会自动推断出 <code>a</code> 的数据类型，也就是 vector <code>v</code> 中元素的类型，官方称呼是 Placeholder type specifiers。在做 LeetCode 的绝大多数场景下，我们可以使用 <code>for (auto &amp;a : v)</code> ，加上一个引用。加上这个引用后就不会在遍历的过程中每次循环都构造一个临时变量，在遍历二维 <code>vector</code> 的时候尤为有意义。当然加上引用后对这个变量 <code>a</code> 做的改动会真实地影响到 <code>vector v</code> 。</p>
+<details class="tips">
+<summary>预留大小</summary>
+<p>可以通过 <code>v.reserve(n)</code> 来将 vector 的 capacity（而非 size）预留为 <code>n</code>。如果理解 vector 的实现逻辑，就可以知道这个函数的意义（可以看 <a href="https://en.cppreference.com/w/cpp/container/vector/reserve#Example">cppref</a> 里的例子）。如果不理解的话可以暂时当做没看见这一条。</p>
+</details>
+<h3 id="13-string">1.3 string<a class="headerlink" href="#13-string" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>#include &lt;string&gt;</code></p>
+</blockquote>
+<p>string 是 C++ 中的字符串类型。其实现和 C 中的字符数组一致，也是以 <code>'\0'</code> 标识结束。</p>
+<p><strong>构造</strong>。可以通过 <code>string s;</code> 或者 <code>string s = "123";</code> 的方式构造一个字符串。</p>
+<p><strong>获取长度</strong>。可以通过 <code>s.length()</code> 或者 <code>s.size()</code> 的方式获取其长度，该长度不含末尾的 <code>'\0'</code> 。</p>
+<p><strong>拼接</strong>。可以通过 <code>s1 + s2</code> 或者 <code>s + 'a'</code> 的方式将字符串与另一个字符串或字符（均可以是字面量）拼接。</p>
+<p><strong>访问字符</strong>。和数组、vector 一样，可以通过 <code>s[i]</code> 的方式访问字符串的第 i 个字符。</p>
+<p><strong>遍历</strong>。<code>C++11</code> 类似 vector，可以通过 <code>for (auto c : s)</code> 的方式遍历字符串中的每一个字符。</p>
+<p><strong>比较</strong>。可以通过 <code>==</code> ,  <code>!=</code> ,  <code>&gt;</code> 等比较运算符按字典序比较两个字符串。</p>
+<h3 id="14-pair">1.4 pair<a class="headerlink" href="#14-pair" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>#include &lt;utility&gt;</code></p>
+</blockquote>
+<p>pair 可以将两个不必相同的类型攒起来，例如 <code>pair&lt;int, int&gt; p1;</code> 或者 <code>pair&lt;int, string&gt; p2;</code> 。</p>
+<p>可以用  <code>pair&lt;int, double&gt; p{1, 1.3};</code> 的方式构造，也可以通过  <code>p = make_pair(0, -3.1)</code> 的方式赋值。pair 之间也可以直接赋值。</p>
+<p>可以用 <code>p1.first</code> 、 <code>p1.second</code> 的方式访问其成员。</p>
+<p>pair 默认的比较方法是先按第一个字段比较，相同再按第二个字段比较。</p>
+<h2 id="2-不那么基础">2 不那么基础<a class="headerlink" href="#2-不那么基础" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>后面的部分基本是想到哪写到哪，所以不完全有逻辑和难度的顺序）））</p>
+<p>用 ☆ 标明个人认为比较常用的内容！</p>
+</div>
+<h3 id="21--sort">2.1 ☆☆☆ sort<a class="headerlink" href="#21--sort" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>#include &lt;algorithm&gt;</code></p>
+</blockquote>
+<p><code>sort</code> 用于对数组或 vector 等可以随机访问且元素可比较的数据结构进行排序。复杂度是 <span class="arithmatex">\(O(n\log n)\)</span>。</p>
+<p>例如：
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span><span class="w"></span>
+<span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+此时 <code>a</code> 中的值为 -2 1 3 3 4 5，即升序排列。</p>
+<p>这里 <code>a</code> 和 <code>a + 6</code> 是左闭右开的排序区间，也可以用类似 <code>sort(a + 1, a + 4)</code>  的方式对部分进行排序。</p>
+<p>对于 vector，也可以类似使用：
+<div class="highlight"><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span><span class="w"></span>
+<span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="w"></span>
+</code></pre></div></p>
+<p>如果想要降序怎么办呢？方法之一是：
+<div class="highlight"><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span><span class="w"></span>
+<span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span><span class="w"></span>
+</code></pre></div>
+此时 <code>v</code> 中的值是 5 4 3 3 1 -2。</p>
+<p>另一种方法，我们可以自定义比较函数。比较函数接收两个元素的引用，返回一个 bool 值表示前者是否应当在后者之前：
+<div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nf">cmp</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span><span class="w"></span>
+<span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+注意，比较函数逻辑上相当于 <code>a &lt; b</code> 。因此当两个元素相等时，比较函数总是应当返回 false。</p>
+<p><code>C++11</code> 也可以使用 lambda 表达式（其实就是匿名函数，这里不展开了，有缘再聊 XD）简化写法：
+<div class="highlight"><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span><span class="w"></span>
+<span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
+</code></pre></div></p>
+<p>自定义比较函数可以适用更复杂的排序，例如需要比较的元素本身并没有内置的比较运算符的时候。例如：
+<div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nf">cmp</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+这个比较函数可以用于 <code>vector&lt;vector&lt;int&gt;&gt;</code> 类型的排序。</p>
+<p>常用的标准库（如 libgc++）中对于 <code>std::sort</code> 的实现保证复杂度是 <span class="arithmatex">\(O(n\log n)\)</span>，而不会退化成快排的 <span class="arithmatex">\(O(n^2)\)</span>。因为它使用的是一种快排、堆排以及插入排序的结合体。</p>
+<p>（还有更多比较器的写法，这里暂时不展开啦）</p>
+<h3 id="22--upper_bound--lower_bound--binary_search--equal_range">2.2 ☆ upper_bound &amp; lower_bound &amp; binary_search &amp; equal_range<a class="headerlink" href="#22--upper_bound--lower_bound--binary_search--equal_range" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>#include &lt;algorithm&gt;</code></p>
+</blockquote>
+<p>用于有序的数组！ 可以像 <code>sort</code> 一样指定比较函数。</p>
+<ul>
+<li><code>auto u = upper_bound(data.begin(), data.end(), i)</code> 返回第一个 <strong>严格大于</strong>  <code>i</code> 的元素的迭代器（和指针差不多，可以用 <code>*u</code> 获取其值）；如果没有找到，返回第二个参数，即 <code>data.end()</code> 。</li>
+<li>
+<p><code>lower_bound</code> 返回第一个 <strong>大于等于</strong>  <code>i</code> 的元素的迭代器；如果没有找到，返回第二个参数。这里演示的是一个自定义比较函数的例子（可以看到，传入的待查找参数并不一定需要和容器内元素的类型一致，只要和自定义比较函数吻合即可）：
+<div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">prc_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lower_bound</span><span class="p">(</span><span class="n">prices</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">prices</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">PriceInfo</span><span class="o">&amp;</span><span class="w"> </span><span class="n">info</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="p">){</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">info</span><span class="p">.</span><span class="n">price</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"> </span><span class="p">});</span><span class="w"></span>
+</code></pre></div></p>
+</li>
+<li>
+<p><code>binary_search(v.begin(), v.end(), i)</code> 返回一个 bool，表示 <code>i</code> 是否在 <code>v</code> 中。</p>
+</li>
+</ul>
+<p>注意：这 3 个函数均使用二分查找，因此如果原数组不是有序的，结果就可能是错误的。复杂度均为 <span class="arithmatex">\(O(\log n)\)</span></p>
+<h3 id="23-gcd--lcm-c17">2.3 gcd &amp; lcm <code>C++17</code><a class="headerlink" href="#23-gcd--lcm-c17" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>#include &lt;numeric&gt;</code></p>
+</blockquote>
+<p>经常记不住辗转相除法怎么写……这下不用记了！</p>
+<p><code>cout &lt;&lt; gcd(18, 12) &lt;&lt; " " &lt;&lt; lcm(18, 12) &lt;&lt; endl;</code> ，输出为  <code>6 36</code> 。</p>
+<h3 id="24-unique">2.4 unique<a class="headerlink" href="#24-unique" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>#include &lt;algorithm&gt;</code></p>
+</blockquote>
+<p>用来去除连续的重复元素。例如 <code>std::vector&lt;int&gt; v{1, 2, 1, 1, 3, 3, 3, 4, 5, 4};</code>, 经过 <code>auto last = std::unique(v.begin(), v.end());</code> 后 <code>v</code> now holds <code>{1 2 1 3 4 5 4 x x x}</code>, where <code>x</code> is indeterminate；可以用 <code>v.erase(last, v.end());</code> 删除后面的多余位置。</p>
+<p>当然，sort 后 unique 则可以排序并完全去重。</p>
+<h3 id="25-algorithm-库里其他看起来有用的东西">2.5 Algorithm 库里其他看起来有用的东西<a class="headerlink" href="#25-algorithm-库里其他看起来有用的东西" title="Permanent link">&para;</a></h3>
+<p>（下面的“数组”不仅可以是数组，也可以是其他一些满足相关条件的数据结构，且条件可能各不相同；在此暂不展开）</p>
+<ul>
+<li><code>C++17</code>返回数组中最大的元素的迭代器，可以和 sort 一样自定义比较函数： <code>std::max_element</code> ，也有 min <a href="https://en.cppreference.com/w/cpp/algorithm/max_element">https://en.cppreference.com/w/cpp/algorithm/max_element</a> </li>
+<li><code>C++17</code>合并两个有序数组： <code>std::merge</code> <a href="https://en.cppreference.com/w/cpp/algorithm/merge">https://en.cppreference.com/w/cpp/algorithm/merge</a></li>
+<li><code>C++17</code>逆转一个数组： <code>std::reverse</code> <a href="https://en.cppreference.com/w/cpp/algorithm/reverse">https://en.cppreference.com/w/cpp/algorithm/reverse</a></li>
+</ul>
+<h3 id="26-其他">2.6 其他<a class="headerlink" href="#26-其他" title="Permanent link">&para;</a></h3>
+<ul>
+<li>内置类型的最大 / 最小值：<ul>
+<li><code>#include &lt;limits&gt;</code></li>
+<li><code>std::numeric_limits&lt;int&gt;::max()</code> 、 <code>std::numeric_limits&lt;char&gt;::min()</code> 之类的</li>
+</ul>
+</li>
+<li>可以用  <code>x &amp; (x - 1) == 0</code> 检验 <code>x</code> 是不是 2 的整数次幂</li>
+<li>可以用  <code>x &amp; (-x)</code> 计算 <code>x</code> 最大的 2 的整数次幂因子 (the greatest power of 2 that divides X)</li>
+<li>可以用  <code>__builtin_popcount(x)</code> 计算 int  <code>x</code> 在二进制表示中 1 的个数； <code>__builtin_popcountll</code> 可以用于 long long。</li>
+</ul>
+<h2 id="3-数据结构之类的东西">3 数据结构之类的东西<a class="headerlink" href="#3-数据结构之类的东西" title="Permanent link">&para;</a></h2>
+<details class="note" open="open">
+<summary>Note</summary>
+<p>这部分其实不太清楚该怎么写QWQ，所以我尝试大概描述每种数据结构是干什么的以及它的用法；关于具体的实现相关的知识我尽量贴上链接~</p>
+<p>它们都可以通过 <code>a.size()</code> 获取元素个数、 <code>a.empty()</code> 判断是否为空（返回 bool），就不在每个里面写一遍了！</p>
+<p>未特殊说明的操作，复杂度均为 <span class="arithmatex">\(O(1)\)</span>。</p>
+</details>
+<p>下面均以元素类型为 <code>int</code> 为例，但是这个类型也可以是其他任意类型，比如 <code>stack&lt;map&lt;string, Foo&gt;&gt;</code> 之类的也都可以！</p>
+<h3 id="31-stack--queue--priority_queue--container-adaptors">3.1 stack &amp; queue &amp; priority_queue | Container adaptors<a class="headerlink" href="#31-stack--queue--priority_queue--container-adaptors" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>这三种数据结构是不能遍历的。“如果你需要遍历它们，那么你就不应当选择它们。”</p>
+</div>
+<h4 id="311--stack--queue">3.1.1 ☆ stack &amp; queue<a class="headerlink" href="#311--stack--queue" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">栈</p>
+<p><strong>栈</strong>（stack）是一个后进先出（LIFO）表，限制了插入和删除只能在表的末端（成为栈顶，top）进行。典型的操作是 Push, Pop 和 Top（读取栈顶元素的值）。</p>
+</div>
+<blockquote>
+<p><code>#include &lt;stack&gt;</code></p>
+</blockquote>
+<ul>
+<li>构造： <code>stack&lt;int&gt; s;</code> </li>
+<li>压栈： <code>s.push(1)</code> </li>
+<li>出栈： <code>s.pop()</code> </li>
+<li>访问栈顶： <code>s.top()</code> </li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">队列</p>
+<p><strong>队列</strong>（queue）是一个先进先出（FIFO）表。入队（Enqueue）在队尾（rear）插入一个元素，出队（Dequeue）则删除队头（front）的一个元素。</p>
+</div>
+<blockquote>
+<p><code>#include &lt;queue&gt;</code></p>
+</blockquote>
+<ul>
+<li>构造： <code>queue&lt;int&gt; q;</code> </li>
+<li>入队： <code>q.push(2)</code> </li>
+<li>出队： <code>q.pop()</code> </li>
+<li>访问队首 / 队尾元素： <code>q.front()</code> ,  <code>q.back()</code> </li>
+</ul>
+<p>（另外还有 <code>deque</code> ，双端队列，省略）</p>
+<blockquote>
+<p>See Also：
+- <a href="https://www.yuque.com/xianyuxuan/coding/evgh6g?view=doc_embed">表、栈和队列 | Lists, Stacks and Queues</a></p>
+</blockquote>
+<h4 id="312--priority_queue">3.1.2 ☆☆ priority_queue<a class="headerlink" href="#312--priority_queue" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">优先队列</p>
+<p><strong>优先队列</strong>（priority queue）是始终保证队头元素是队列中最小的一种数据结构，这里用堆实现。支持的主要操作有：插入（入队），查询和删除最小值（出队）。</p>
+</div>
+<blockquote>
+<p><code>#include &lt;queue&gt;</code></p>
+</blockquote>
+<ul>
+<li>
+<p>构造</p>
+<ul>
+<li><code>priority_queue&lt;int&gt; q1</code> ：队首始终是最小值</li>
+<li><code>priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; q2</code> ：队首始终是最大值</li>
+<li>
+<p>自定义比较函数：
+    <div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">cmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">;};</span><span class="w"></span>
+<span class="n">priority_queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span><span class="n">cmp</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">q3</span><span class="p">(</span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
+</code></pre></div></p>
+</li>
+<li>
+<p>还可以用已有的数组初始化优先队列：</p>
+<ul>
+<li><code>priority_queue&lt;int&gt; q1(v.begin(), v.end());</code> </li>
+<li><code>priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; q2(v.begin(), v.end());</code> </li>
+<li><code>priority_queue&lt;int, vector&lt;int&gt;, decltype(cmp)&gt; q3(v.begin(), v.end(), cmp);</code> </li>
+<li>这样初始化的复杂度是 <span class="arithmatex">\(O(N)\)</span> 的。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>入队： <code>q.push(2)</code> </p>
+</li>
+<li>出队： <code>q.pop()</code> </li>
+<li>
+<p>入队和出队的复杂度是 <span class="arithmatex">\(O(\log N)\)</span> 的。</p>
+</li>
+<li>
+<p>访问队首（最小）元素： <code>q.top()</code> </p>
+</li>
+</ul>
+<blockquote>
+<p>See Also：
+- 优先队列的实现：<a href="https://www.yuque.com/xianyuxuan/coding/fpxegv?view=doc_embed">堆 | Heaps</a></p>
+</blockquote>
+<h3 id="32--set--map--multiset--multimap--associative-containers">3.2 ☆ set &amp; map &amp; multiset &amp; multimap | Associative containers<a class="headerlink" href="#32--set--map--multiset--multimap--associative-containers" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>std::set</code> 是唯一、有序元素的集合，这里用红黑树实现。</p>
+<p><code>std::map</code> 是键值对的集合，键唯一、有序，这里用红黑树实现。</p>
+<p><code>std::multiset</code> 和 <code>std::multimap</code> 分别是它们的可重版本，即键不唯一。</p>
+</div>
+<p>这四种数据结构是可以遍历的，且遍历时也是有序的。</p>
+<h4 id="321-set--multiset">3.2.1 set &amp; multiset<a class="headerlink" href="#321-set--multiset" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><code>#include &lt;set&gt;</code></p>
+</blockquote>
+<ul>
+<li>构造： <code>set&lt;int&gt; s;</code>  或  <code>multiset&lt;int&gt; s;</code> <ul>
+<li>也可以类似 priority_queue 用数组等构造，复杂度是 <span class="arithmatex">\(O(N\log N)\)</span> 的</li>
+<li>也可以自定义比较函数： <code>auto cmp = [](int a, int b) { return ... };  std::set&lt;int, decltype(cmp)&gt; s(cmp);</code> </li>
+</ul>
+</li>
+<li>插入： <code>s.insert(3);</code> ，复杂度是 <span class="arithmatex">\(O(\log N)\)</span> 的</li>
+<li>删除： <code>s.erase(2)</code> ，返回删除了多少个，复杂度是 <span class="arithmatex">\(O(\log N + k)\)</span> 的，<span class="arithmatex">\(k\)</span> 是找到的个数</li>
+<li>计数： <code>s.count(3)</code> ，返回有多少个对应元素，复杂度是 <span class="arithmatex">\(O(\log N + k)\)</span> 的，<span class="arithmatex">\(k\)</span> 是找到的个数</li>
+<li>查找： <code>s.find(2)</code> ，返回一个值相等的元素的迭代器，如果没找到，返回 <code>s.end()</code> 。复杂度是 <span class="arithmatex">\(O(\log N)\)</span> 的</li>
+<li>也有  <code>s.lower_bound(2)</code> 、 <code>s.upper_bound(3)</code> 函数。复杂度是 <span class="arithmatex">\(O(\log N)\)</span> 的</li>
+</ul>
+<h4 id="322-map">3.2.2 map<a class="headerlink" href="#322-map" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><code>#include &lt;map&gt;</code></p>
+</blockquote>
+<ul>
+<li>构造： <code>map&lt;int, string&gt; s;</code> <ul>
+<li>附注同 set &amp; multiset</li>
+<li>也就是说，可以直接用  <code>s[1] = "123"</code> 的方式新建键值对或者覆盖已有的，无论 key  <code>1</code> 之前是否存在。</li>
+<li>下面两个并不常用：</li>
+<li>插入： <code>s.insert({1, "123"});</code> ，如果 key  <code>1</code> 已经存在则不会覆盖。复杂度是 <span class="arithmatex">\(O(\log N)\)</span> 的</li>
+<li>访问： <code>s.at(1)</code> ，如果 key <code>1</code> 存在则返回对应 value 的引用，否则抛出异常。复杂度是 <span class="arithmatex">\(O(\log N)\)</span> 的</li>
+</ul>
+</li>
+<li>删除： <code>s.erase(2)</code> ，返回删除了多少个，复杂度是 <span class="arithmatex">\(O(\log N)\)</span> 的</li>
+<li>计数： <code>s.count(3)</code> ，返回有多少个 key 相等的元素，复杂度是 <span class="arithmatex">\(O(\log N)\)</span> </li>
+<li>查找： <code>s.find(2)</code> ，返回 key 相等的元素的迭代器，如果没找到，返回 <code>s.end()</code> 。复杂度是 <span class="arithmatex">\(O(\log N)\)</span> 的</li>
+<li>也有  <code>s.lower_bound(2)</code> 、 <code>s.upper_bound(3)</code> 函数。复杂度是 <span class="arithmatex">\(O(\log N)\)</span> 的</li>
+</ul>
+<h3 id="323-multimap">3.2.3 multimap<a class="headerlink" href="#323-multimap" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>#include &lt;map&gt;</code></p>
+</blockquote>
+<p>不太常用，暂略</p>
+<blockquote>
+<p>See Also：
+- 红黑树：<a href="https://www.yuque.com/xianyuxuan/coding/bgc8rm?view=doc_embed">平衡搜索树 | Balanced Search Tree</a></p>
+</blockquote>
+<h3 id="33--unordered_set--unordered_map--unordered-associative-containers">3.3 ☆☆ unordered_set &amp; unordered_map | Unordered associative containers<a class="headerlink" href="#33--unordered_set--unordered_map--unordered-associative-containers" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>std::unordered_set</code> 和 <code>std::unordered_map</code> 分别是 <code>std::set</code> 和 <code>std::map</code> 的无序版本，即键不经过排序。这里用哈希实现。</p>
+</div>
+<p>这两种数据结构也是可以遍历的。</p>
+<blockquote>
+<p><code>#include &lt;unordered_set&gt;</code>
+<code>#include &lt;unordered_map&gt;</code></p>
+</blockquote>
+<p>成员函数与 set 和 map 类似，但是因为无序所以没有 <code>lower_bound</code> 和 <code>upper_bound</code> 。</p>
+<p>同时由于是使用哈希实现的，因此插入、删除、访问、查找的平均复杂度均为 <span class="arithmatex">\(O(1)\)</span>。因此，在没有排序需求时可以首选这两个容器。</p>
+<blockquote>
+<p>See Also：
+- 哈希（乌乌我没有笔记）</p>
+</blockquote>
+<p>（也有 unordered_multiset 和 unordered_multimap，但是好像不怎么常用）</p>
+<h2 id="4-结语">4 结语<a class="headerlink" href="#4-结语" title="Permanent link">&para;</a></h2>
+<p>事实上，在做力扣周赛和各种笔面试的算法题的过程中，我自己会用到的 C++ 层面上能提供的帮助大概也就上面这些；其中还有相当一部分是可以自己简单实现的。而做出题目的关键更多还是靠算法的设计。我本身也没有做过多少题，目前的水平也是在尝试在周赛中能稳定做出三题，感觉基础算法、思路和见识方面还有很多欠缺。整理上面这些内容，也希望能给自己和读者（如果有）带来一点点帮助！</p>
+<p>也欢迎大家互相交流、互相 push 做题预防老年痴呆，同时也请力所能及的大小朋友们来鱼肆周报写写东西QWQ！感谢大家~</p>
+<p>P.S.  如果有其他好用的东西可以在评论区分享 ~</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-25T16:25:14+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-25</span>
+      
+        <br>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-25T16:25:14+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-25</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+<h2 id="__comments">评论</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="xuan-insr/discussion"
+        data-repo-id="R_kgDOIUW7XA"
+        data-category="General"
+        data-category-id="DIC_kwDOIUW7XM4CSOC3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!-- Synchronize Giscus theme with palette -->
+<script>
+var giscus = document.querySelector("script[src*=giscus]")
+
+/* Set palette on initial load */
+var palette = __md_get("__palette")
+if (palette && typeof palette.color === "object") {
+    var theme = palette.color.scheme === "slate" ? "dark" : "light"
+    giscus.setAttribute("data-theme", theme) 
+}
+
+/* Register event handlers after documented loaded */
+document.addEventListener("DOMContentLoaded", function() {
+    var ref = document.querySelector("[data-md-component=palette]")
+    ref.addEventListener("change", function() {
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+        var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+        /* Instruct Giscus to change theme */
+        var frame = document.querySelector(".giscus-frame")
+        frame.contentWindow.postMessage(
+        { giscus: { setConfig: { theme } } },
+        "https://giscus.app"
+        )
+    }
+    })
+})
+</script>
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      
+        
+        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="上一页: C++ 学习" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              C++ 学习
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1/" class="md-footer__link md-footer__link--next" aria-label="下一页: 理解 STL —— 迭代器与函数对象" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              理解 STL —— 迭代器与函数对象
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      本页面的全部内容在 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a> 协议之条款下提供，附加条款亦可能应用
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "navigation.sections", "navigation.expand", "toc.follow"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../from_oi_wiki/js/extra.js?v=16"></script>
+      
+        <script src="../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

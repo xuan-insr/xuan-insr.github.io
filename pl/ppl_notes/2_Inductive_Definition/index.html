@@ -1,0 +1,1716 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://xuan-insr.github.io/pl/ppl_notes/2_Inductive_Definition/">
+      
+      <link rel="icon" href="../../../logo.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>2 归纳定义 - 咸鱼暄的代码空间</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.08040f6c.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#00bdd6">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../../from_oi_wiki/css/extra.css?v=13">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2-inductive-definition--归纳定义" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="咸鱼暄的代码空间" class="md-header__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../../logo.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            咸鱼暄的代码空间
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2 归纳定义
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        主页
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cpp/" class="md-tabs__link">
+        C++
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        PL & 编译
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
+        核心知识
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../%E5%AE%89%E5%85%A8/" class="md-tabs__link">
+      安全
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-tabs__link">
+      语言基础
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-tabs__link">
+      其他课程
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../%E6%9D%82%E9%A1%B9/" class="md-tabs__link">
+        杂项
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../%E7%94%9F%E6%B4%BB/" class="md-tabs__link">
+        生活
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="咸鱼暄的代码空间" class="md-nav__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../../logo.ico" alt="logo">
+
+    </a>
+    咸鱼暄的代码空间
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../..">主页</a>
+          
+            <label for="__nav_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="主页" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          主页
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../recent/" class="md-nav__link">
+        最近更新
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E4%B8%BB%E9%A1%B5/theme/" class="md-nav__link">
+        主题
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../cpp/">C++</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="C++" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          C++
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/cpp_for_contests/" class="md-nav__link">
+        快速入门 C++ 写题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" checked>
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          C++ 知识补充
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="C++ 知识补充" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          C++ 知识补充
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1/" class="md-nav__link">
+        理解 STL —— 迭代器与函数对象
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../">PL & 编译</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="PL & 编译" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          PL & 编译
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          编程语言原理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="编程语言原理" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          编程语言原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_1" type="checkbox" id="__nav_3_2_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_1">
+          Part I - Judgments and Rules | 判断与规则
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part I - Judgments and Rules | 判断与规则" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Part I - Judgments and Rules | 判断与规则
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_Abstract_Syntax/" class="md-nav__link">
+        1 抽象语法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          2 归纳定义
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        2 归纳定义
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2-inductive-definition--归纳定义" class="md-nav__link">
+    2 Inductive Definition | 归纳定义
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Inductive Definition | 归纳定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-judgments--判断" class="md-nav__link">
+    2.1 Judgments | 判断
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-rules--规则" class="md-nav__link">
+    2.2 Rules | 规则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-derivations--推导" class="md-nav__link">
+    2.3 Derivations | 推导
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-rule-induction--规则归纳" class="md-nav__link">
+    2.4 Rule Induction | 规则归纳
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-iterated-and-simultaneous-inductive-definitions--迭代和联立归纳定义" class="md-nav__link">
+    2.5 Iterated and Simultaneous Inductive Definitions | 迭代和联立归纳定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-defining-functions-by-rules--用规则定义函数" class="md-nav__link">
+    2.6 Defining Functions by Rules | 用规则定义函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_Hypothetical_and_General_Judgments/" class="md-nav__link">
+        3 假言判断与一般性判断
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/">核心知识</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="核心知识" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          核心知识
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          操作系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="操作系统" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          操作系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2_1" type="checkbox" id="__nav_4_2_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_1">
+          Part.3 进程同步
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.3 进程同步" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Part.3 进程同步
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/6_sync_tools/" class="md-nav__link">
+        6 同步及其工具
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/7_sync_examples/" class="md-nav__link">
+        7 经典同步问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/8_deadlocks/" class="md-nav__link">
+        8 死锁
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2_2" type="checkbox" id="__nav_4_2_2" checked>
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_2">
+          Part.4 内存管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.4 内存管理" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Part.4 内存管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/9_main_memory/" class="md-nav__link">
+        9 主存
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../%E6%95%B0%E5%AD%A6%E5%92%8C%E7%AE%97%E6%B3%95/">数学、数据结构和算法</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="数学、数据结构和算法" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          数学、数据结构和算法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%AE%89%E5%85%A8/" class="md-nav__link">
+        安全
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        语言基础
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-nav__link">
+        其他课程
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../%E6%9D%82%E9%A1%B9/">杂项</a>
+          
+            <label for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="杂项" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          杂项
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%9D%82%E9%A1%B9/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        博客搭建记录
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../%E7%94%9F%E6%B4%BB/">生活</a>
+          
+            <label for="__nav_9">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="生活" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          生活
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%94%9F%E6%B4%BB/%E5%92%B8%E9%B1%BC%E6%9A%84%E4%BB%8A%E5%A4%A9%E5%90%83%E4%BB%80%E4%B9%88/" class="md-nav__link">
+        咸鱼暄今天吃什么
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%94%9F%E6%B4%BB/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" class="md-nav__link">
+        关于亲密关系的碎碎念
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2-inductive-definition--归纳定义" class="md-nav__link">
+    2 Inductive Definition | 归纳定义
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Inductive Definition | 归纳定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-judgments--判断" class="md-nav__link">
+    2.1 Judgments | 判断
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-rules--规则" class="md-nav__link">
+    2.2 Rules | 规则
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-derivations--推导" class="md-nav__link">
+    2.3 Derivations | 推导
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-rule-induction--规则归纳" class="md-nav__link">
+    2.4 Rule Induction | 规则归纳
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-iterated-and-simultaneous-inductive-definitions--迭代和联立归纳定义" class="md-nav__link">
+    2.5 Iterated and Simultaneous Inductive Definitions | 迭代和联立归纳定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-defining-functions-by-rules--用规则定义函数" class="md-nav__link">
+    2.6 Defining Functions by Rules | 用规则定义函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>2 归纳定义</h1>
+
+<h2 id="2-inductive-definition--归纳定义">2 Inductive Definition | 归纳定义<a class="headerlink" href="#2-inductive-definition--归纳定义" title="Permanent link">&para;</a></h2>
+<h3 id="21-judgments--判断">2.1 Judgments | 判断<a class="headerlink" href="#21-judgments--判断" title="Permanent link">&para;</a></h3>
+<p><strong>判断 (judgment)</strong> 是关于某种类别的一棵或者多棵 ABT 的陈述，表明一棵或多棵 ABT 有某种性质或者彼此之间有某种联系。</p>
+<div class="admonition example">
+<p class="admonition-title">一些 judgment</p>
+<ul>
+<li><span class="arithmatex">\(n \text{ nat}\)</span> ( <span class="arithmatex">\(n\)</span> 是一个自然数 )</li>
+<li><span class="arithmatex">\(n_1 + n_2 = n\)</span></li>
+<li><span class="arithmatex">\(\tau \text{ type}\)</span> ( <span class="arithmatex">\(\tau\)</span> 是一个类型 )</li>
+<li><span class="arithmatex">\(e : \tau\)</span> ( 表达式 <span class="arithmatex">\(e\)</span> 具有 <span class="arithmatex">\(\tau\)</span> 类型 )</li>
+<li><span class="arithmatex">\(e \Downarrow v\)</span> ( 表达式 <span class="arithmatex">\(e\)</span> 的值为 <span class="arithmatex">\(v\)</span> )</li>
+</ul>
+</div>
+<p>这些「性质或联系」本身称为 <strong>判断形式 (judgment form)</strong>，而「一个或多个 ABT 具有这种性质或联系」称为判断形式的 <strong>实例 (instance)</strong>。</p>
+<p>判断形式也称为 <strong>谓词 (predicate)</strong>，而构成实例的 ABT 称为实例的 <strong>主语 / 主词 (subject)</strong>。</p>
+<p>我们将判断「ABT <span class="arithmatex">\(a\)</span> 具有 <span class="arithmatex">\(J\)</span> 性质」记为 <span class="arithmatex">\(a\ J\)</span> 或者 <span class="arithmatex">\(J\ a\)</span>；相应地，我们也可以将判断形式 <span class="arithmatex">\(J\)</span> 记为 <span class="arithmatex">\(-\ J\)</span> 或者 <span class="arithmatex">\(J\ -\)</span>，其中 <span class="arithmatex">\(-\)</span> 代表 <span class="arithmatex">\(J\)</span> 缺少的参数，从而强调判断的主语。</p>
+<h3 id="22-rules--规则">2.2 Rules | 规则<a class="headerlink" href="#22-rules--规则" title="Permanent link">&para;</a></h3>
+<p><strong>规则 (rule)</strong> 规定一个 judgment 有效的充要条件。因而完全决定了这个 judgment 的含义。</p>
+<p>一个 judgment form 的 <strong>归纳定义 (inductive definition)</strong> 由一组形如 <span class="arithmatex">\(\cfrac{J_1\cdots J_k}{J}\)</span> 的 rules 组成，表明当 <strong>前提 (premise)</strong> <span class="arithmatex">\(J_1, \cdots, J_k\)</span> 都成立时，足以让 <strong>结论 (conclusion)</strong> <span class="arithmatex">\(J\)</span> 成立，反之不一定成立。</p>
+<p>如果一个规则没有任何前提，即 <span class="arithmatex">\(k = 0\)</span>，则称该规则为 <strong>公理 (axiom)</strong>，否则称为 <strong>正常规则 (proper rule)</strong>。</p>
+<blockquote>
+<p>我们早上去食堂，可能会想「如果有油条，我就吃油条；如果有拌面，我就吃拌面」；但是我们一般不会给判断中加上「否则」，变成：「如果有油条，我就吃油条；否则，如果有拌面，我就吃拌面」；除非作为一个 "default" 条款时才会用「否则」。但是我们在编程中可能会更加频繁地使用 "else"。</p>
+</blockquote>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Judgment form 「<span class="arithmatex">\(- \text{ nat}\)</span>」的归纳定义可以是：</p>
+<div class="arithmatex">\[\frac{}{\text{zero nat}}\]</div>
+<div class="arithmatex">\[\frac{a \text{ nat}}{\text{succ}(a)\text{ nat}}\]</div>
+<p>类似地，判定两个自然数相同的 judgment form 「<span class="arithmatex">\(- \text{ is } -\)</span>」的归纳定义可以是：</p>
+<div class="arithmatex">\[\frac{}{\text{zero is zero}}\]</div>
+<div class="arithmatex">\[\frac{a \text{ is } b}{\text{succ}(a)\text{ is succ}(b)}\]</div>
+<p>定义二叉树的 judgment form 「<span class="arithmatex">\(- \text{ tree}\)</span>」的归纳定义可以是：</p>
+<div class="arithmatex">\[\frac{}{\text{empty tree}}\]</div>
+<div class="arithmatex">\[\frac{a_1\text{ tree  }a_2\text{ tree}}{\text{node}(a_1; a_2)\text{ tree}}\]</div>
+</div>
+<p>在上面的例子中，我们通过有限数量的 <strong>规则模式 (rule scheme)</strong>，指定了无限的规则族。</p>
+<p><br/></p>
+<p><strong>一组规则被看作能够定义封闭于这些规则的最强判断形式。</strong><br />
+<strong>A collection of rules is considered to define the strongest judgment form that is closed under these rules.</strong></p>
+<p>「封闭于这些规则 (closed under these rules)」说明这些规则足以证明一个判断的有效性。即，如果利用给定的规则能够得到判断 <span class="arithmatex">\(J\)</span>，则 <span class="arithmatex">\(J\)</span> 一定成立。这意味着我们能够通过组合这些规则 <strong>推导 (derive)</strong> 出 <span class="arithmatex">\(J\)</span> 来证明 <span class="arithmatex">\(J\)</span> 成立。</p>
+<p>「封闭于这些规则的最强判断形式 (the strongest judgment form that is closed under these rules)」说明所有的规则都是必要的。即，只有通过这些规则得出 <span class="arithmatex">\(J\)</span> 时，<span class="arithmatex">\(J\)</span> 才成立。这意味着我们可以通过 <strong>规则归纳 (rule induction)</strong> 来证明 <span class="arithmatex">\(J\)</span> 成立。</p>
+<p>在下面两节中，我们将讨论「推导」和「规则归纳」的细节。</p>
+<h3 id="23-derivations--推导">2.3 Derivations | 推导<a class="headerlink" href="#23-derivations--推导" title="Permanent link">&para;</a></h3>
+<p>一个 judgment 的推导过程是规则的有限组合，从公理开始，以判断结束。</p>
+<p>例如，<span class="arithmatex">\(\text{node(node(empty; empty); empty) tree}\)</span> 的推导过程如下：</p>
+<div class="arithmatex">\[\cfrac{\cfrac{\cfrac{}{\text{empty tree}}\quad \cfrac{}{\text{empty tree}}}{\text{node(empty; empty) tree}}\quad \cfrac{}{\text{empty tree}}}{\text{node(node(empty; empty); empty) tree}}\]</div>
+<p>要说明一个 judgment 是 <strong>可推导的 (derivable)</strong>，只需要找到一个推导过程。</p>
+<p>从公理开始的推导称为 <strong>前向连接 (forwarding chainning)</strong> 或 <strong>自底向上构造 (bottom-up construction)</strong>。它类似 BFS，维护一个可推导的判断集，并扩展这个集合，直到目标判断出现在集合中时终止这个过程。但是它在算法上通常无法决定何时终止推导并得出目标判断不可推导的结论。</p>
+<p>从结论开始的推导称为 <strong>反向链接 (backwarding chainning)</strong> 或 <strong>自顶向下构造 (top-down construction)</strong>。它维护一个队列，这个队列刚开始只有目标判断，每次从队头取出一条判断，并将其所有前提加入队列。当队列为空时，说明我们已经达到了所有目标。但同样的，反向链接也没有通用的算法来判定当前目标是否可推导。</p>
+<h3 id="24-rule-induction--规则归纳">2.4 Rule Induction | 规则归纳<a class="headerlink" href="#24-rule-induction--规则归纳" title="Permanent link">&para;</a></h3>
+<p>我们说，「<strong>一组规则被看作能够定义封闭于这些规则的最强判断形式</strong>」。也就是说，如果给定一组规则，它定义的「封闭于这些规则的最强判断形式」是 <span class="arithmatex">\(J\)</span>；而我们证明了另一个判断形式 <span class="arithmatex">\(P\)</span> 也封闭于这些规则，那么由于 <span class="arithmatex">\(J\)</span> 是封闭于这些规则的判断形式中最强的，那么就可以证明「只要 <span class="arithmatex">\(a\ J\)</span> 可推导，那么 <span class="arithmatex">\(a\ P\)</span> 成立」。这就是 <strong>规则归纳 (rule induction)</strong> 的原理。</p>
+<p>更准确地说，如果我们要证明当 <strong>归纳假设 (inductive hypotheses)</strong> <span class="arithmatex">\(P(a_1), \cdots, P(a_n)\)</span> 成立时 <strong>归纳结论 (inductive conclusion)</strong> <span class="arithmatex">\(P(a)\)</span> 成立，则需要证明性质 <span class="arithmatex">\(P\)</span> 封闭于规则 <span class="arithmatex">\(\cfrac{a_1\ J\cdots a_k\ J}{a\ J}\)</span>。</p>
+<p>例如，要证明当 <span class="arithmatex">\(a\text{ nat}\)</span> 时 <span class="arithmatex">\(P(a)\)</span> 成立，只需要证明：</p>
+<ol>
+<li><span class="arithmatex">\(P(\text{zero})\)</span></li>
+<li><span class="arithmatex">\(\forall a,\  P(a) \to P(\text{succ}(a))\)</span></li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">引理 2.1</p>
+<div class="admonition info">
+<p><strong>引理 2.1</strong> 要证明当 <span class="arithmatex">\(a\text{ nat}\)</span> 时 <span class="arithmatex">\(P(a)\)</span> 成立，只需要证明：</p>
+</div>
+<ol>
+<li><span class="arithmatex">\(P(\text{zero})\)</span></li>
+<li><span class="arithmatex">\(\forall a,\  P(a) \land a\text{ nat} \to P(\text{succ}(a))\)</span></li>
+</ol>
+<p><em>Proof</em>. 定义 <span class="arithmatex">\(Q(a) = P(a) \land a\text{ nat}\)</span>，显然 <span class="arithmatex">\(Q(a)\to P(a)\)</span>。</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">引理 2.2</p>
+<div class="admonition info">
+<p><strong>引理 2.2</strong> 如果 <span class="arithmatex">\(\text{succ}(a) \text{ nat}\)</span> 成立，那么 <span class="arithmatex">\(a\text{ nat}\)</span> 成立。</p>
+</div>
+<p><em>Proof</em>. 即证明，<span class="arithmatex">\(\forall a,b,\ (b = \text{succ}(a) \land b\text{ nat}) \to a\text{ nat}\)</span>。</p>
+<div class="arithmatex">\[\begin{array}{rl} \\
+&amp;\forall a,b,\  (b = \text{succ}(a) \land b\text{ nat}) \to a\text{ nat}\\
+\Leftrightarrow &amp; \forall a,b,\  b = \text{succ}(a) \to (b\text{ nat} \to a\text{ nat})\\
+\Leftrightarrow &amp; \forall a,b,\  b\text{ nat} \to (b = \text{succ}(a) \to a\text{ nat})\\
+\Leftrightarrow &amp; \forall b,\  b\text{ nat} \to (\forall a,\  b = \text{succ}(a) \to a\text{ nat})\\
+\end{array}
+\]</div>
+<p>记 <span class="arithmatex">\(P(b) = (\forall a,\  b = \text{succ}(a) \to a\text{ nat})\)</span>，我们要证明当 <span class="arithmatex">\(b\text{ nat}\)</span> 时 <span class="arithmatex">\(P(b)\)</span> 成立。</p>
+<div class="admonition tips">
+<p class="admonition-title">Tips</p>
+<p>这是这里的技巧所在，即当要证的形式不能直接使用规则归纳时，借用新的变量来构造规则归纳的形式。</p>
+<p>同时请注意，这里的 <span class="arithmatex">\(b = \text{succ}(a)\)</span> 和 <span class="arithmatex">\(b \text{ is succ}(a)\)</span> 有一点不同：后者来自于我们对 <span class="arithmatex">\(\text{is}\)</span> 这个 judgment form 的定义，而前者则来自 ABT 的相等关系。</p>
+</div>
+<p>进行规则归纳：</p>
+<ol>
+<li><span class="arithmatex">\(P(\text{zero}) \Leftrightarrow \forall a,\  \text{zero} = \text{succ}(a) \to a\text{ nat}\)</span>。而由于满足 <span class="arithmatex">\(\text{zero} = \text{succ}(a)\)</span> 的 <span class="arithmatex">\(a\)</span> 不存在，该式成立。</li>
+<li><span class="arithmatex">\(\cfrac{\forall a,\  b = \text{succ}(a) \to a\text{ nat}\quad b\text{ nat}}{\forall a,\  \text{succ}(b) = \text{succ}(a) \to a\text{ nat}}\)</span>。而 <span class="arithmatex">\(\text{succ}(b) = \text{succ}(a) \to b = a\)</span>，又 <span class="arithmatex">\(b \text{ nat}\)</span>，因此 <span class="arithmatex">\(a \text{ nat}\)</span>，该式成立。</li>
+</ol>
+<p>证毕。</p>
+<p>（所以可以看到，归纳假设是有可能用不到的。）</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">引理 2.3</p>
+<div class="admonition info">
+<p><strong>引理 2.3</strong> <span class="arithmatex">\(\forall a, a\text{ nat}\to a \text{ is }a\)</span>。</p>
+</div>
+<p>证明暂略。</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">引理 2.4</p>
+<div class="admonition info">
+<p><strong>引理 2.4</strong> <span class="arithmatex">\(\text{succ}(a_1)\text{ is succ}(a_2) \to a_1\text{ is }a_2\)</span>。</p>
+</div>
+<p>证明与 <strong>引理 2.2</strong> 类似，暂略。</p>
+</div>
+<h3 id="25-iterated-and-simultaneous-inductive-definitions--迭代和联立归纳定义">2.5 Iterated and Simultaneous Inductive Definitions | 迭代和联立归纳定义<a class="headerlink" href="#25-iterated-and-simultaneous-inductive-definitions--迭代和联立归纳定义" title="Permanent link">&para;</a></h3>
+<p>之前展示的归纳定义都是 <strong>迭代的 (iterated)</strong>，即一个归纳定义建立在另一个归纳定义之上；而一个 <strong>联立归纳定义 (simultaneous inductive definitions)</strong> 由一个规则集组成，这些规则能导出多个不同判断形式的实例。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>下面这些规则构造了对奇自然数和偶自然数的联立归纳定义：</p>
+<div class="arithmatex">\[\cfrac{}{\text{zero even}}\]</div>
+<div class="arithmatex">\[\cfrac{b \text{ odd}}{\text{succ}(b)\text{ even}}\]</div>
+<div class="arithmatex">\[\cfrac{a \text{ even}}{\text{succ}(a)\text{ odd}}\]</div>
+</div>
+<p>针对上例中的规则，其规则归纳原理表明，要证明 <span class="arithmatex">\(a\text{ even}\)</span> 时有 <span class="arithmatex">\(P(a)\)</span> 且 <span class="arithmatex">\(b\text{ odd}\)</span> 时有 <span class="arithmatex">\(Q(b)\)</span>，只需要证明：</p>
+<ol>
+<li><span class="arithmatex">\(P(\text{zero})\)</span></li>
+<li><span class="arithmatex">\(\forall b,\ Q(b)\to P(\text{succ}(b))\)</span></li>
+<li><span class="arithmatex">\(\forall a,\ P(a)\to Q(\text{succ}(a))\)</span></li>
+</ol>
+<h3 id="26-defining-functions-by-rules--用规则定义函数">2.6 Defining Functions by Rules | 用规则定义函数<a class="headerlink" href="#26-defining-functions-by-rules--用规则定义函数" title="Permanent link">&para;</a></h3>
+<p>例如，我们可以定义自然数的加法函数 <span class="arithmatex">\(\text{sum}(a; b; c)\)</span>，表示 <span class="arithmatex">\(c\)</span> 是 <span class="arithmatex">\(a\)</span> 与 <span class="arithmatex">\(b\)</span> 的和：</p>
+<div class="arithmatex">\[\frac{b\text{ nat}}{\text{sum}(\text{zero};b;b)}\]</div>
+<div class="arithmatex">\[\frac{\text{sum}(a;b;c)}{\text{sum}(\text{succ}(a);b;\text{succ}(c))}\]</div>
+<div class="admonition info">
+<p class="admonition-title">定理 2.5</p>
+<div class="admonition info">
+<p><strong>定理 2.5</strong> 对于每个 <span class="arithmatex">\(a\text{ nat}\)</span> 和 <span class="arithmatex">\(b\text{ nat}\)</span>，存在唯一的 <span class="arithmatex">\(c\text{ nat}\)</span> 使得 <span class="arithmatex">\(\text{sum}(a; b; c)\)</span>。</p>
+</div>
+<p>先证存在性，即如果 <span class="arithmatex">\(a\text{ nat}\)</span> 且 <span class="arithmatex">\(b\text{ nat}\)</span>，存在 <span class="arithmatex">\(c\text{ nat}\)</span> 使得 <span class="arithmatex">\(\text{sum}(a; b; c)\)</span>。</p>
+<p>设 <span class="arithmatex">\(P(a)\)</span> 为：如果 <span class="arithmatex">\(b\text{ nat}\)</span>，存在 <span class="arithmatex">\(c\text{ nat}\)</span> 使得 <span class="arithmatex">\(\text{sum}(a; b; c)\)</span>。用规则归纳证明如果 <span class="arithmatex">\(a\text{ nat}\)</span> 则 <span class="arithmatex">\(P(a)\)</span> 成立：</p>
+<ol>
+<li><span class="arithmatex">\(P(\text{zero}) \Leftrightarrow \text{sum}(\text{zero};b;c)\)</span>，则显然存在 <span class="arithmatex">\(c \text{ is } b\)</span>；</li>
+<li><span class="arithmatex">\(\cfrac{P(a)}{P(\text{succ}(a))} \Leftrightarrow \cfrac{\text{sum}(a; b; c_1)}{\text{sum}(\text{succ}(a); b; c)}\)</span>，则显然存在 <span class="arithmatex">\(c \text{ is } \text{succ}(c_1)\)</span>。</li>
+</ol>
+<p>再证唯一性，即如果 <span class="arithmatex">\(\text{sum}(a; b; c)\)</span> 且 <span class="arithmatex">\(\text{sum}(a; b; c')\)</span>，则 <span class="arithmatex">\(c\text{ is }c'\)</span>。亦即：</p>
+<div class="arithmatex">\[\begin{array}{rl}
+&amp;\forall a, b, c, c',\ (\text{sum}(a; b; c) \land \text{sum}(a; b; c')) \to c\text{ is }c' \\
+\Leftrightarrow &amp;\forall a, b, c, c',\ \text{sum}(a; b; c) \to (\text{sum}(a; b; c') \to c\text{ is }c') \\
+\Leftrightarrow &amp;\forall a, b, c, \ \text{sum}(a; b; c) \to (\forall c',\ \text{sum}(a; b; c') \to c\text{ is }c')
+\end{array}
+\]</div>
+<p>（这里使用了 <strong>引理 2.2</strong> 证明中提到的技巧。）</p>
+<p>设 <span class="arithmatex">\(P(a; b; c)\)</span> 为：<span class="arithmatex">\(\forall c',\ \text{sum}(a; b; c') \to c\text{ is }c'\)</span>。用规则归纳证明 <span class="arithmatex">\(\forall a, b, c, \ \text{sum}(a; b; c) \to P(a; b; c)\)</span>：</p>
+<ol>
+<li>根据 <span class="arithmatex">\(\text{sum}\)</span> 的第一条定义 <span class="arithmatex">\(\cfrac{b\text{ nat}}{\text{sum}(\text{zero};b;b)}\)</span>，我们需要证明 <span class="arithmatex">\(\cfrac{b\text{ nat}}{P(\text{zero};b;b)}\)</span>；也就是要证 <span class="arithmatex">\(\forall c',\ (b\text{ nat} \land \text{sum}(\text{zero};b;c'))\to b\text{ is }c'\)</span>。这不是显然的，因此我们仍然要通过规则归纳证明之：<ul>
+<li>我们将其改写为：<span class="arithmatex">\(\forall a', b', c', \ (b\text{ nat} \land \text{sum}(a';b';c') \land a' = \text{zero} \land b' = b) \to b \text{ is } c\)</span>，亦即 <span class="arithmatex">\(\forall a', b', c', \ (b\text{ nat} \land \text{sum}(a';b';c')) \to (a' = \text{zero} \to (b' = b \to b \text{ is } c))\)</span>。</li>
+<li>我们记 <span class="arithmatex">\(Q(a';b';c')\)</span> 为 <span class="arithmatex">\(a' = \text{zero} \to (b' = b \to b\text{ is }c)\)</span>，即我们需要证明 <span class="arithmatex">\(\forall a', b', c', \ (b\text{ nat} \land \text{sum}(a';b';c')) \to Q(a';b';c')\)</span>。可以看到，这里我们仍然使用了前述技巧来将待证的问题转化为规则归纳的形式。我们用规则归纳证明之（这就是课本提到的「内层归纳」）：<ol>
+<li>首先要证 <span class="arithmatex">\(\cfrac{b'\text{ nat}}{Q(\text{zero};b';b')}\)</span>，这里 <span class="arithmatex">\(Q(\text{zero};b';b') \Leftrightarrow \text{zero} = \text{zero} \to (b' = b \to b \text{ is } b')\)</span>。根据 <strong>引理 2.3</strong>，该式为真。</li>
+<li>然后证 <span class="arithmatex">\(\cfrac{Q(a';b';c')\quad \text{sum}(a';b';c')}{Q(\text{succ}(a'); b'; \text{succ}(c'))}\)</span>。这里 <span class="arithmatex">\(Q(\text{succ}(a'); b'; \text{succ}(c')) \Leftrightarrow \text{succ}(a') = \text{zero} \to (b' = b \to b \text{ is } \text{succ}(c'))\)</span>。由于不存在 <span class="arithmatex">\(a'\)</span> 使得 <span class="arithmatex">\(\text{succ}(a') = \text{zero}\)</span>，因此该式为真。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>根据 <span class="arithmatex">\(\text{sum}\)</span> 的第二条定义 <span class="arithmatex">\(\cfrac{\text{sum}(a;b;c)}{\text{sum}(\text{succ}(a);b;\text{succ}(c))}\)</span>，我们需要证明 <span class="arithmatex">\(\cfrac{P(a;b;c)\quad \text{sum}(a;b;c)}{P(\text{succ}(a);b;\text{succ}(c))}\)</span>；也就是要证 <span class="arithmatex">\(\forall c',\ (P(a;b;c)\land \text{sum}(a;b;c))\to (\text{sum}(\text{succ}(a);b;c') \to \text{succ}(c)\text{ is } c')\)</span>。这也不是显然的，因此我们也要通过规则归纳证明之：<ul>
+<li>我们将其改写为：<span class="arithmatex">\(\forall a', b', c',\ (P(a;b;c)\land \text{sum}(a;b;c) \land \text{sum}(a';b';c')) \to (a' = \text{succ}(a) \to (b' = b \to \text{succ}(c)\text{ is } c')))\)</span></li>
+<li>记 <span class="arithmatex">\(Q(a';b';c')\)</span> 为 <span class="arithmatex">\(a' = \text{succ}(a) \to (b' = b \to \text{succ}(c)\text{ is } c')\)</span>，我们用规则归纳证明 <span class="arithmatex">\(\forall a', b', c',\ (P(a;b;c)\land \text{sum}(a;b;c) \land \text{sum}(a';b';c')) \to Q(a';b';c')\)</span>：<ol>
+<li>首先要证 <span class="arithmatex">\(\cfrac{b'\text{ nat}}{Q(\text{zero};b';b')}\)</span>，类似上述 2.b 的证明，不存在 <span class="arithmatex">\(a'\)</span> 使得 <span class="arithmatex">\(\text{succ}(a') = \text{zero}\)</span>，因此该式为真。</li>
+<li>然后证 <span class="arithmatex">\(\cfrac{Q(a';b';c')\quad \text{sum}(a';b';c')\quad P(a;b;c)}{Q(\text{succ}(a'); b'; \text{succ}(c'))}\)</span>：<ul>
+<li>其中，结论 <span class="arithmatex">\(Q(\text{succ}(a'); b'; \text{succ}(c'))\)</span> 等价于 <span class="arithmatex">\(\text{succ}(a') = \text{succ}(a) \to (b' = b \to \text{succ}(c)\text{ is } \text{succ}(c'))\)</span></li>
+<li>根据 ABT 的相等关系以及 <strong>引理 2.4</strong>，该式等价于 <span class="arithmatex">\(a' = a \to (b' = b \to c\text{ is } c')\)</span></li>
+<li>要证的规则即为 <span class="arithmatex">\(\cfrac{Q(a';b';c')\quad \text{sum}(a';b';c')\quad P(a;b;c)}{a' = a \to (b' = b \to c\text{ is } c')}\)</span></li>
+<li>亦即 <span class="arithmatex">\(\cfrac{Q(a';b';c')\quad \text{sum}(a';b';c')\quad P(a;b;c)\quad a' = a\quad b' = b}{c\text{ is } c'}\)</span></li>
+<li>而由 <span class="arithmatex">\(\text{sum}(a';b';c')\land a' = a\land b' = b\)</span> 有前提 <span class="arithmatex">\(\text{sum}(a; b; c')\)</span>，又 <span class="arithmatex">\(P(a;b;c) \Leftrightarrow \forall c',\ \text{sum}(a; b; c') \to c\text{ is }c'\)</span>，因此结论得证。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<p>证毕。</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">习题 1</p>
+<div class="admonition example">
+<p>给定判断 <span class="arithmatex">\(max(m;n;p)\)</span> 的一个归纳定义，其中 <span class="arithmatex">\(m\text{ nat}, n\text{ nat}, p\text{ nat}\)</span>，且 <span class="arithmatex">\(p\)</span> 是 <span class="arithmatex">\(m\)</span> 和 <span class="arithmatex">\(n\)</span> 中的较大者。证明：通过这个判断，每个 <span class="arithmatex">\(m\)</span> 和 <span class="arithmatex">\(n\)</span> 都与唯一的 <span class="arithmatex">\(p\)</span> 相关。</p>
+</div>
+</div>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-25T16:25:14+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-25</span>
+      
+        <br>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-25T16:25:14+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-25</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+<h2 id="__comments">评论</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="xuan-insr/discussion"
+        data-repo-id="R_kgDOIUW7XA"
+        data-category="General"
+        data-category-id="DIC_kwDOIUW7XM4CSOC3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!-- Synchronize Giscus theme with palette -->
+<script>
+var giscus = document.querySelector("script[src*=giscus]")
+
+/* Set palette on initial load */
+var palette = __md_get("__palette")
+if (palette && typeof palette.color === "object") {
+    var theme = palette.color.scheme === "slate" ? "dark" : "light"
+    giscus.setAttribute("data-theme", theme) 
+}
+
+/* Register event handlers after documented loaded */
+document.addEventListener("DOMContentLoaded", function() {
+    var ref = document.querySelector("[data-md-component=palette]")
+    ref.addEventListener("change", function() {
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+        var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+        /* Instruct Giscus to change theme */
+        var frame = document.querySelector(".giscus-frame")
+        frame.contentWindow.postMessage(
+        { giscus: { setConfig: { theme } } },
+        "https://giscus.app"
+        )
+    }
+    })
+})
+</script>
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      
+        
+        <a href="../1_Abstract_Syntax/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 1 抽象语法" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              1 抽象语法
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../3_Hypothetical_and_General_Judgments/" class="md-footer__link md-footer__link--next" aria-label="下一页: 3 假言判断与一般性判断" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              3 假言判断与一般性判断
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      本页面的全部内容在 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a> 协议之条款下提供，附加条款亦可能应用
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "navigation.sections", "navigation.expand", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../from_oi_wiki/js/extra.js?v=16"></script>
+      
+        <script src="../../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

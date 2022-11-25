@@ -1,0 +1,1953 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/8_deadlocks/">
+      
+      <link rel="icon" href="../../../../logo.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>8 死锁 - 咸鱼暄的代码空间</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.08040f6c.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#00bdd6">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../../../from_oi_wiki/css/extra.css?v=13">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#8-deadlocks" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="咸鱼暄的代码空间" class="md-header__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../../../logo.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            咸鱼暄的代码空间
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              8 死锁
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        主页
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../cpp/" class="md-tabs__link">
+        C++
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../pl/" class="md-tabs__link">
+        PL & 编译
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../" class="md-tabs__link md-tabs__link--active">
+        核心知识
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../../%E5%AE%89%E5%85%A8/" class="md-tabs__link">
+      安全
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-tabs__link">
+      语言基础
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-tabs__link">
+      其他课程
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../%E6%9D%82%E9%A1%B9/" class="md-tabs__link">
+        杂项
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../%E7%94%9F%E6%B4%BB/" class="md-tabs__link">
+        生活
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="咸鱼暄的代码空间" class="md-nav__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../../../logo.ico" alt="logo">
+
+    </a>
+    咸鱼暄的代码空间
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../..">主页</a>
+          
+            <label for="__nav_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="主页" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          主页
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../recent/" class="md-nav__link">
+        最近更新
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E4%B8%BB%E9%A1%B5/theme/" class="md-nav__link">
+        主题
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../../cpp/">C++</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="C++" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          C++
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cpp/cpp_for_contests/" class="md-nav__link">
+        快速入门 C++ 写题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" checked>
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          C++ 知识补充
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="C++ 知识补充" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          C++ 知识补充
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cpp/%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1/" class="md-nav__link">
+        理解 STL —— 迭代器与函数对象
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../../pl/">PL & 编译</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="PL & 编译" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          PL & 编译
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          编程语言原理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="编程语言原理" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          编程语言原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_2_1" type="checkbox" id="__nav_3_2_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_1">
+          Part I - Judgments and Rules | 判断与规则
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part I - Judgments and Rules | 判断与规则" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Part I - Judgments and Rules | 判断与规则
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pl/ppl_notes/1_Abstract_Syntax/" class="md-nav__link">
+        1 抽象语法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pl/ppl_notes/2_Inductive_Definition/" class="md-nav__link">
+        2 归纳定义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../pl/ppl_notes/3_Hypothetical_and_General_Judgments/" class="md-nav__link">
+        3 假言判断与一般性判断
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../">核心知识</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="核心知识" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          核心知识
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          操作系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="操作系统" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          操作系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_1" type="checkbox" id="__nav_4_2_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_1">
+          Part.3 进程同步
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.3 进程同步" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Part.3 进程同步
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_sync_tools/" class="md-nav__link">
+        6 同步及其工具
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7_sync_examples/" class="md-nav__link">
+        7 经典同步问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          8 死锁
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        8 死锁
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#81-死锁的定义和例子" class="md-nav__link">
+    8.1 死锁的定义和例子
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#82-系统资源分配图" class="md-nav__link">
+    8.2 系统资源分配图
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#83-死锁的必要条件" class="md-nav__link">
+    8.3 死锁的必要条件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#84-死锁的处理策略" class="md-nav__link">
+    8.4 死锁的处理策略
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4 死锁的处理策略">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#841-死锁预防" class="md-nav__link">
+    8.4.1 死锁预防
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4.1 死锁预防">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8411-mutual-exclusion" class="md-nav__link">
+    8.4.1.1 Mutual Exclusion
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8412-hold-and-wait" class="md-nav__link">
+    8.4.1.2 Hold and Wait
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8413-no-preemption" class="md-nav__link">
+    8.4.1.3 No Preemption
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8414-circular-wait" class="md-nav__link">
+    8.4.1.4 Circular Wait
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#842-死锁避免" class="md-nav__link">
+    8.4.2 死锁避免
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4.2 死锁避免">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8421-资源分配图算法" class="md-nav__link">
+    8.4.2.1 资源分配图算法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8422-安全状态--safe-state" class="md-nav__link">
+    8.4.2.2 安全状态 | Safe State
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8423-银行家算法--bankers-algorithm" class="md-nav__link">
+    8.4.2.3 银行家算法 | Banker's Algorithm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#843-死锁检测" class="md-nav__link">
+    8.4.3 死锁检测
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4.3 死锁检测">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8431-single-instance-resources" class="md-nav__link">
+    8.4.3.1 Single Instance Resources
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8432-multi-instance-resources" class="md-nav__link">
+    8.4.3.2 Multi-Instance Resources
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#844-死锁恢复" class="md-nav__link">
+    8.4.4 死锁恢复
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4.4 死锁恢复">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8441-进程终止-treminate-deadlocked-processes" class="md-nav__link">
+    8.4.4.1 进程终止 Treminate deadlocked processes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8442-资源抢占-resource-preemption" class="md-nav__link">
+    8.4.4.2 资源抢占 Resource preemption
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_2_2" type="checkbox" id="__nav_4_2_2" checked>
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_2">
+          Part.4 内存管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.4 内存管理" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Part.4 内存管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../IV_memory_management/9_main_memory/" class="md-nav__link">
+        9 主存
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../../%E6%95%B0%E5%AD%A6%E5%92%8C%E7%AE%97%E6%B3%95/">数学、数据结构和算法</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="数学、数据结构和算法" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          数学、数据结构和算法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E5%AE%89%E5%85%A8/" class="md-nav__link">
+        安全
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        语言基础
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-nav__link">
+        其他课程
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../../%E6%9D%82%E9%A1%B9/">杂项</a>
+          
+            <label for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="杂项" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          杂项
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E6%9D%82%E9%A1%B9/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        博客搭建记录
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../../%E7%94%9F%E6%B4%BB/">生活</a>
+          
+            <label for="__nav_9">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="生活" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          生活
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E7%94%9F%E6%B4%BB/%E5%92%B8%E9%B1%BC%E6%9A%84%E4%BB%8A%E5%A4%A9%E5%90%83%E4%BB%80%E4%B9%88/" class="md-nav__link">
+        咸鱼暄今天吃什么
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E7%94%9F%E6%B4%BB/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" class="md-nav__link">
+        关于亲密关系的碎碎念
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#81-死锁的定义和例子" class="md-nav__link">
+    8.1 死锁的定义和例子
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#82-系统资源分配图" class="md-nav__link">
+    8.2 系统资源分配图
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#83-死锁的必要条件" class="md-nav__link">
+    8.3 死锁的必要条件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#84-死锁的处理策略" class="md-nav__link">
+    8.4 死锁的处理策略
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4 死锁的处理策略">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#841-死锁预防" class="md-nav__link">
+    8.4.1 死锁预防
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4.1 死锁预防">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8411-mutual-exclusion" class="md-nav__link">
+    8.4.1.1 Mutual Exclusion
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8412-hold-and-wait" class="md-nav__link">
+    8.4.1.2 Hold and Wait
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8413-no-preemption" class="md-nav__link">
+    8.4.1.3 No Preemption
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8414-circular-wait" class="md-nav__link">
+    8.4.1.4 Circular Wait
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#842-死锁避免" class="md-nav__link">
+    8.4.2 死锁避免
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4.2 死锁避免">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8421-资源分配图算法" class="md-nav__link">
+    8.4.2.1 资源分配图算法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8422-安全状态--safe-state" class="md-nav__link">
+    8.4.2.2 安全状态 | Safe State
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8423-银行家算法--bankers-algorithm" class="md-nav__link">
+    8.4.2.3 银行家算法 | Banker's Algorithm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#843-死锁检测" class="md-nav__link">
+    8.4.3 死锁检测
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4.3 死锁检测">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8431-single-instance-resources" class="md-nav__link">
+    8.4.3.1 Single Instance Resources
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8432-multi-instance-resources" class="md-nav__link">
+    8.4.3.2 Multi-Instance Resources
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#844-死锁恢复" class="md-nav__link">
+    8.4.4 死锁恢复
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4.4 死锁恢复">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#8441-进程终止-treminate-deadlocked-processes" class="md-nav__link">
+    8.4.4.1 进程终止 Treminate deadlocked processes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8442-资源抢占-resource-preemption" class="md-nav__link">
+    8.4.4.2 资源抢占 Resource preemption
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="8-deadlocks">8 Deadlocks<a class="headerlink" href="#8-deadlocks" title="Permanent link">&para;</a></h1>
+<h2 id="81-死锁的定义和例子">8.1 死锁的定义和例子<a class="headerlink" href="#81-死锁的定义和例子" title="Permanent link">&para;</a></h2>
+<p><strong>死锁 (Deadlock)</strong> 是指，多个进程因竞争资源导致的一种僵局，即若干进程各自持有一些资源，同时等待获取另一个进程持有的资源，形成的互相等待的局面。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>一个例子是，一个系统里有两个进程 <span class="arithmatex">\(P_1\)</span> 和 <span class="arithmatex">\(P_2\)</span>，分别完成从一个磁盘驱动器拷贝内容到另一个磁盘驱动器的操作，即各自需要两个磁盘驱动器。系统里两个磁盘驱动器 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span>。当前，<span class="arithmatex">\(P_1\)</span> 持有 <span class="arithmatex">\(A\)</span> 并希望获取 <span class="arithmatex">\(B\)</span>，同时 <span class="arithmatex">\(P_2\)</span> 持有 <span class="arithmatex">\(B\)</span> 并希望获取 <span class="arithmatex">\(A\)</span>，这两个进程就会相互等待，陷入死锁。</p>
+<p>即：</p>
+<div class="highlight"><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">first_mutex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="n">semaphore</span><span class="w"> </span><span class="n">second_mutex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">thread_one</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">first_mutex</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">second_mutex</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ......</span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">thread_two</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">second_mutex</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">first_mutex</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ......</span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Bridge Crossing Example</p>
+<p><center><img alt="" src="../2022-11-19-00-59-35.png" /></center></p>
+<p>上图所示的情形也展示了一种死锁。</p>
+<p>可以看到，如果桥上的任一辆车愿意倒车回去，就能够解决死锁。我们可以通过分配优先级的方式要求哪辆车倒车。</p>
+<p>优先级可能导致 starvation。</p>
+</div>
+<h2 id="82-系统资源分配图">8.2 系统资源分配图<a class="headerlink" href="#82-系统资源分配图" title="Permanent link">&para;</a></h2>
+<p>我们对系统进行建模。假设有 <span class="arithmatex">\(m\)</span> 种不同类型的 <strong>资源 (resources)</strong> <span class="arithmatex">\(R_1, \dots, R_m\)</span>，每种资源类型 <span class="arithmatex">\(R_i\)</span> 有 <span class="arithmatex">\(W_i\)</span> 个 <strong>实例 (instance)</strong>。各个活动进程 <span class="arithmatex">\(P_1, \dots, P_n\)</span> 会利用这些资源实例，每个资源的利用由 request, use, release 三步组成。</p>
+<p>我们可以通过 <strong>系统资源分配图</strong> (<strong>system resource-allocation graph</strong>, 简称为 <strong>资源分配图</strong> 或 <strong>分配图</strong>) 刻画系统资源的情况。资源分配图是一个有向图。点集 <span class="arithmatex">\(V = P \cup R\)</span>，其中 <span class="arithmatex">\(P = \{P_1, \dots, P_n\}\)</span> 是所有活动进程的集合，<span class="arithmatex">\(R = \{R_1, \dots, R_m\}\)</span> 是所有资源类型的集合。边集 <span class="arithmatex">\(E\)</span> 中包含 <strong>申请边 (request edge)</strong>，即形如 <span class="arithmatex">\(P_i\to R_j\)</span> 的边，表示进程 <span class="arithmatex">\(P_i\)</span> 已经申请了资源类型 <span class="arithmatex">\(R_j\)</span> 的一个实例，并正在等待这个资源；以及 <strong>分配边 (assignment edge)</strong>，即形如 <span class="arithmatex">\(R_j\to P_i\)</span> 的边，表示资源类型 <span class="arithmatex">\(R_j\)</span> 的一个实例已经分配给了进程 <span class="arithmatex">\(P_i\)</span>。</p>
+<p>在图形上，我们用圆表示进程，用矩形表示资源类型。由于资源类型可能有多个实例，我们在矩形内用数量等同于实例数量的圆点表示各个实例。每条申请边由一个圆指向一个矩形，而每条分配边由矩形中的一个圆点指向一个矩形。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><img alt="" src="../2022-11-19-01-19-51.png" /></p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>本节第一个例子的情况，可以用如下的资源分配图刻画：</p>
+<p><center><img alt="" src="../2022-11-19-01-16-49.png" width="400" /></center></p>
+</div>
+<p>当进程申请一个资源时，应当添加一条申请边；当该申请可以得到满足时，这条申请边应当 <strong>立即</strong> 转换为分配边；当进程不再需要某个资源时，就删除对应分配边。</p>
+<p>根据资源分配图的定义我们可以知道，如果资源分配图当前没有环，那么系统当前 <strong>一定</strong> 没有死锁；如果分配图有环，那么系统当前 <strong>可能</strong> 存在死锁。但是，如果分配图有环，且每个资源类型只有 1 个实例，那么 <strong>必定</strong> 存在死锁。</p>
+<details class="example">
+<summary>分配图有环不一定存在死锁</summary>
+<p><center><img alt="" src="../2022-11-19-01-24-14.png" width="400" /></center></p>
+<p><center><img alt="" src="../2022-11-19-01-24-27.png" width="400" /></center></p>
+</details>
+<h2 id="83-死锁的必要条件">8.3 死锁的必要条件<a class="headerlink" href="#83-死锁的必要条件" title="Permanent link">&para;</a></h2>
+<p>事实上，当下面四个条件 <strong>同时</strong> 成立时，系统才会出现死锁：</p>
+<ol>
+<li><strong>Mutual exclusion</strong> : 至少一个资源处于非共享模式；</li>
+<li><strong>Hold and wait</strong> : 一个进程应 <strong>占有</strong> 至少一个资源，并 <strong>等待</strong> 另一个为其他进程占有的资源；</li>
+<li><strong>No preemption</strong> : 资源不能被抢占，只能在进程结束后主动释放；</li>
+<li><strong>Circular wait</strong> : 有一组等待进程 {T0, T1, ..., Tn}，T0 is waiting for a resource held by T1, T1 is waiting for a resource held by T2, ..., Tn−1 is waiting for a resource held by Tn, and Tn is waiting for a resource held by T0.</li>
+</ol>
+<p>这四个条件并不完全独立。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>下图中描述了一个死锁状态：</p>
+<p><center><img alt="" src="../2022-11-19-01-35-51.png" width="400" /></center></p>
+<p>我们验证它符合上述四个条件：</p>
+<ul>
+<li>mutual exclusive：每个路口（资源） 1 ~ 4 同时只能有一辆车等待或通行</li>
+<li>hold and wait：位于 1, 2, 3, 4 路口的车分别持有当前路口，并且等待 2, 3, 4, 1路口的车经过</li>
+<li>no preemption：显然，任何一个路口边等待的车不能先于当前在路口等待的车经过路口</li>
+<li>circular wait：位于 1, 2, 3, 4 路口的车分别等待 2, 3, 4, 1路口的车经过</li>
+</ul>
+</div>
+<h2 id="84-死锁的处理策略">8.4 死锁的处理策略<a class="headerlink" href="#84-死锁的处理策略" title="Permanent link">&para;</a></h2>
+<p>如何处理死锁呢？有四种方法：</p>
+<ul>
+<li>保证系统不会进入死锁状态<ul>
+<li><strong>死锁预防 (deadlock prevention)</strong></li>
+<li><strong>死锁避免 (deadlock avoidance)</strong></li>
+</ul>
+</li>
+<li>在系统进入死锁状态后恢复<ul>
+<li><strong>死锁检测和恢复 (deadlock detection and recovery)</strong>：例如数据库</li>
+</ul>
+</li>
+<li>假装系统不会发生死锁，真的发生了就寄</li>
+</ul>
+<p>事实上，大多数操作系统（包括 Linux 和 Windows）选择的是最后一种方案。因此，程序员需要自己编写程序来处理死锁。</p>
+<p>但是前面三种还是要学👉👈</p>
+<h3 id="841-死锁预防">8.4.1 死锁预防<a class="headerlink" href="#841-死锁预防" title="Permanent link">&para;</a></h3>
+<p>死锁预防的核心思路是，确保 8.3 节中至少一个必要条件永不成立，来保证系统不会出现死锁。我们分别讨论四个条件如何破坏。</p>
+<h4 id="8411-mutual-exclusion">8.4.1.1 Mutual Exclusion<a class="headerlink" href="#8411-mutual-exclusion" title="Permanent link">&para;</a></h4>
+<p>如果保证系统资源都能共享，则该条件用不成立。</p>
+<p>但是这只是个美好的愿望，因为有很多资源天生就不能共享，比如信号量。</p>
+<h4 id="8412-hold-and-wait">8.4.1.2 Hold and Wait<a class="headerlink" href="#8412-hold-and-wait" title="Permanent link">&para;</a></h4>
+<p>保证每个进程在申请资源时不能占有其他资源。</p>
+<p>实现方式之一是，在开始执行前申请并获得所有资源。或者，只允许进程在没有资源时才能申请资源。</p>
+<p>这种方式的问题是，资源利用率较低，而且需要资源较多的进程可能发生 starvation。</p>
+<h4 id="8413-no-preemption">8.4.1.3 No Preemption<a class="headerlink" href="#8413-no-preemption" title="Permanent link">&para;</a></h4>
+<p>当一个进程请求一个资源但是没有立刻得到满足时，它必须释放已经持有的所有资源；直到它需求的所有资源（包括刚才释放的那些资源）都可用时才能一并获取它们并继续执行。</p>
+<p>但是信号量之类的资源也不能这样用；同时也会降低资源利用率。</p>
+<h4 id="8414-circular-wait">8.4.1.4 Circular Wait<a class="headerlink" href="#8414-circular-wait" title="Permanent link">&para;</a></h4>
+<p>对所有资源类型进行排序，要求每个进程按照递增顺序申请资源。</p>
+<p>程序员需要保证按照这个顺序申请资源，也就是说如果程序员不听话，还是会发生死锁。这种方法也可能影响资源利用率。</p>
+<h3 id="842-死锁避免">8.4.2 死锁避免<a class="headerlink" href="#842-死锁避免" title="Permanent link">&para;</a></h3>
+<p>避免死锁需要一些额外信息，例如进程未来需要使用哪些资源、资源的使用顺序等。在每次请求到来时，即使对应资源可用，系统也应该结合现有可用资源、现有已分配资源以及各个进程未来申请和释放的资源，考虑是否让这个请求等待从而避免未来可能的死锁。</p>
+<p>不同模型可能对上述额外信息有不同的需求。最简单且最有用的模型维护这样的 <strong>资源分配状态 (resource allocation state):</strong></p>
+<ul>
+<li>每个进程声明可能对每种资源类型的 <strong>最大需求 (maximum demands)</strong></li>
+<li>当前系统的 available 和 allocated 的资源数目。</li>
+</ul>
+<h4 id="8421-资源分配图算法">8.4.2.1 资源分配图算法<a class="headerlink" href="#8421-资源分配图算法" title="Permanent link">&para;</a></h4>
+<p>这种算法适用于每种资源类型只有 1 个实例的情况。</p>
+<p>我们在资源分配图的基础上增加一种边，叫 claim edge，表示某个进程未来 <strong>可能</strong> 会需求某种资源，用虚线表示。</p>
+<p><center><img alt="" src="../2022-11-19-18-14-09.png" width="400" /></center></p>
+<p><center><img alt="" src="../2022-11-19-18-13-46.png" width="400" /></center></p>
+<p>当这个需求真的出现的时候，claim edge 转为 request edge；当需求被满足的时候，request edge 转为 assignment edge；当该进程释放该资源时，assignment edge 转为 claim edge。</p>
+<p>当一个需求来了的时候，如果 request edge 转为 assignment edge 不会导致图中有一个 cycle，则该要求可以被满足；否则该请求应当等待。</p>
+<h4 id="8422-安全状态--safe-state">8.4.2.2 安全状态 | Safe State<a class="headerlink" href="#8422-安全状态--safe-state" title="Permanent link">&para;</a></h4>
+<p>如果系统能够按照一定顺序为每个进程分配资源，同时避免死锁，那么系统就处在 <strong>安全状态 (safe state)</strong>。</p>
+<p>具体而言，如果某个资源当前有 <span class="arithmatex">\(A\)</span> 个空闲，对于每个活动进程 <span class="arithmatex">\(P_i\)</span>，它们各自持有 <span class="arithmatex">\(C_i\)</span> 个该资源，并仍然需要 <span class="arithmatex">\(D_i\)</span> 个该资源。如果存在一个序列 <span class="arithmatex">\(&lt;P_1, \dots, P_n&gt;\)</span> 使得对于任一 <span class="arithmatex">\(P_i\)</span>，都有 <span class="arithmatex">\(A + \sum_{j = 1}^{j &lt; i} C_i \ge D_i\)</span>，则系统处于安全状态。</p>
+<p>安全状态保证不发生死锁。</p>
+<details class="info">
+<summary>Proof</summary>
+<p>用归纳法。如果 <span class="arithmatex">\(P_i\)</span> 的需求不能立刻满足，它只需要等到 <span class="arithmatex">\(\{P_j\ |\ j &lt; i\}\)</span> 全部完成，<span class="arithmatex">\(P_i\)</span> 就能获取所需资源。</p>
+</details>
+<p><center><img alt="" src="../2022-11-19-17-53-11.png" width="300" /></center></p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><center><img alt="" src="../2022-11-19-17-54-30.png" width="400" /></center></p>
+<p><span class="arithmatex">\(&lt;P1, P0, P2&gt;\)</span> 是一个 safe sequence。因此系统处在安全状态。</p>
+</div>
+<p>根据这一概念，我们可以这样定义死锁避免的算法：起初，系统处于安全状态。当有进程申请一个可用资源时，系统应确定，如果立刻进行这一分配后系统仍处于安全状态则可以分配，否则应当让进程等待。</p>
+<h4 id="8423-银行家算法--bankers-algorithm">8.4.2.3 银行家算法 | Banker's Algorithm<a class="headerlink" href="#8423-银行家算法--bankers-algorithm" title="Permanent link">&para;</a></h4>
+<p>我们通过 available, max, allocation, need 这四个矩阵刻画一个时间内各个进程对各种资源的持有和需求情况，以及当前系统的资源情况；操作系统根据这些数据保持系统处于安全状态，从而决定一个需求是否应当被立即满足。</p>
+<p>参考下面的例子中问题 1 理解，找一个安全序列的基本思路就是：选取一个 need（的每一项都对应地）小于 available（的对应项）的进程，其运行完后会将 allocation 释放回 available，以此类推。</p>
+<p>而决定一个需求是否应当被立即满足的方案是，<strong>假设</strong> 这个需求被接受了，根据该需求更新对应的 need, available, allocation，在此状态下推演是否有合法的安全序列。如果有，则可以立即满足，否则应等待。参考下面例子中的问题 2~4。</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>8.28 Consider the following snapshot of a system:</p>
+<p><center><img alt="" src="../2022-11-19-18-00-32.png" width="400" /></center></p>
+<p>Answer the following questions using the banker’s algorithm: </p>
+<ol>
+<li>Illustrate that the system is in a safe state by demonstrating an order in which the threads may complete. </li>
+<li>If a request from thread T4 arrives for (2, 2, 2, 4), can the request be granted immediately? </li>
+<li>If a request from thread T2 arrives for (0, 1, 1, 0), can the request be granted immediately? </li>
+<li>If a request from thread T3 arrives for (2, 2, 1, 2), can the request be granted immediately?</li>
+</ol>
+<details class="success">
+<summary>答案</summary>
+<ol>
+<li>如图：<br />
+<center><img alt="" src="../2022-11-19-18-02-55.png" width="400" /></center><br />
+我们可以先让 T2 运行（也可以是 T3），此后变成：<br />
+<center><img alt="" src="../2022-11-19-18-03-07.png" width="400" /></center><br />
+现在可以让每个 thread 运行，因此之后任何一种运行方式都可以完成，如 T2-&gt;T4-&gt;T0-&gt;T1-&gt;T3。因此当前系统是安全的。</li>
+<li>如果满足这一要求，之后的状态为：<br />
+<center><img alt="" src="../image-20201129221759272.png" width="400" /></center><br />
+可见，此时任一线程都无法执行。因此此要求不能立即满足。  </li>
+<li>如果满足这一要求，之后的状态为：<br />
+<center><img alt="" src="../image-20201129221920263.png" width="400" /></center><br />
+这不影响我们如 1) 那样完成全部线程的运行，即系统是安全的。因此此要求可以立即满足。  </li>
+<li>如果满足这一要求，之后的状态为：<br />
+<center><img alt="" src="../image-20201129222127198.png" width="400" /></center><br />
+我们可以按 T3-&gt;T2-&gt;T4-&gt;T1-&gt;T0 等顺序完成全部线程的运行，即系统是安全的。因此此要求可以立即满足。</li>
+</ol>
+</details>
+</div>
+<h3 id="843-死锁检测">8.4.3 死锁检测<a class="headerlink" href="#843-死锁检测" title="Permanent link">&para;</a></h3>
+<h4 id="8431-single-instance-resources">8.4.3.1 Single Instance Resources<a class="headerlink" href="#8431-single-instance-resources" title="Permanent link">&para;</a></h4>
+<p>可以通过资源分配图的变体 <strong>wait-for graph</strong> 来解决：</p>
+<p><center><img alt="" src="../2022-11-19-13-54-31.png" width="500" /></center></p>
+<p>在这个图里找环，用拓扑排序的话时间复杂度是 <span class="arithmatex">\(O(V + E)\)</span> 的，这最差情况下是 <span class="arithmatex">\(O(n^2)\)</span> 的。</p>
+<h4 id="8432-multi-instance-resources">8.4.3.2 Multi-Instance Resources<a class="headerlink" href="#8432-multi-instance-resources" title="Permanent link">&para;</a></h4>
+<p>类似银行家算法。如果找不到任何安全序列，则说明系统处于死锁状态。</p>
+<h3 id="844-死锁恢复">8.4.4 死锁恢复<a class="headerlink" href="#844-死锁恢复" title="Permanent link">&para;</a></h3>
+<p>死锁恢复有两个选择：</p>
+<h4 id="8441-进程终止-treminate-deadlocked-processes">8.4.4.1 进程终止 Treminate deadlocked processes<a class="headerlink" href="#8441-进程终止-treminate-deadlocked-processes" title="Permanent link">&para;</a></h4>
+<p>终止进程并不简单，它需要维护终止时的状态，并且有可能需要重新计算一些内容，同时还需要避免产生重复的副作用（如输出）；这需要花费很多时间。</p>
+<p>Options:</p>
+<ul>
+<li>放弃所有死锁进程。这样的花费会很大！</li>
+<li>每次放弃一个进程，直到死锁环解除。这样的花费也很大，因为每次放弃一个进程之后都需要调用死锁检测算法。</li>
+</ul>
+<p>同时后者需要考虑的是，如何选择放弃的进程？应当根据具体情况，参考如下指标选择造成的代价最小的进程来终止：</p>
+<ul>
+<li>进程的优先级</li>
+<li>已经算了多久，还要算多久</li>
+<li>用了哪些、多少资源，是否容易抢占</li>
+<li>还需要多少资源</li>
+<li>终止这一进程的话还需要终止多少进程</li>
+<li>进程是交互的还是批处理的</li>
+</ul>
+<h4 id="8442-资源抢占-resource-preemption">8.4.4.2 资源抢占 Resource preemption<a class="headerlink" href="#8442-资源抢占-resource-preemption" title="Permanent link">&para;</a></h4>
+<p>不断抢占资源给其他进程用，直到消除死锁环为止。</p>
+<p>需要考虑三个问题：</p>
+<ol>
+<li><strong>选择牺牲进程 (Select a victim)</strong>。抢占哪些进程的哪些资源？这和前一节的讨论差不多。</li>
+<li><strong>回滚 (Rollback)</strong>。当一个进程的若干资源被抢占，我们需要将这个进程 <strong>回滚</strong> 到某个安全状态，即回滚到申请那些被抢占的资源之前。<br />
+不过一般来说，很难确定什么是安全状态，最简单的方案就是完全回滚，也就是终止进程并重新执行。回滚到足够打断死锁的状态更加经济，但是需要系统保存更多资源。</li>
+<li><strong>饥饿 (Starvation)</strong>。如何保证不会永远从一个进程中抢占资源？在代价评价中增加回滚次数，也类似于 priority aging。</li>
+</ol>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-25T16:25:14+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-25</span>
+      
+        <br>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-25T16:25:14+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-25</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+<h2 id="__comments">评论</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="xuan-insr/discussion"
+        data-repo-id="R_kgDOIUW7XA"
+        data-category="General"
+        data-category-id="DIC_kwDOIUW7XM4CSOC3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!-- Synchronize Giscus theme with palette -->
+<script>
+var giscus = document.querySelector("script[src*=giscus]")
+
+/* Set palette on initial load */
+var palette = __md_get("__palette")
+if (palette && typeof palette.color === "object") {
+    var theme = palette.color.scheme === "slate" ? "dark" : "light"
+    giscus.setAttribute("data-theme", theme) 
+}
+
+/* Register event handlers after documented loaded */
+document.addEventListener("DOMContentLoaded", function() {
+    var ref = document.querySelector("[data-md-component=palette]")
+    ref.addEventListener("change", function() {
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+        var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+        /* Instruct Giscus to change theme */
+        var frame = document.querySelector(".giscus-frame")
+        frame.contentWindow.postMessage(
+        { giscus: { setConfig: { theme } } },
+        "https://giscus.app"
+        )
+    }
+    })
+})
+</script>
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      
+        
+        <a href="../7_sync_examples/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 7 经典同步问题" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              7 经典同步问题
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../IV_memory_management/9_main_memory/" class="md-footer__link md-footer__link--next" aria-label="下一页: 9 主存" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              9 主存
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      本页面的全部内容在 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a> 协议之条款下提供，附加条款亦可能应用
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "navigation.sections", "navigation.expand", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+        <script src="../../../../js/timeago.min.js"></script>
+      
+        <script src="../../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../../from_oi_wiki/js/extra.js?v=16"></script>
+      
+        <script src="../../../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
