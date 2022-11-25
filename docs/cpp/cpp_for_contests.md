@@ -62,7 +62,12 @@ int main(){
 
 vector 可以理解为一种自动扩展长度的数组。
 
-**构造**。我们可以通过  `vector<int> v;` 的方式构造一个空的、每个元素的类型均为 `int` 的 vector，其名字为 `v` 。可以用其他类型，包括自定义的结构体替换这里的 `int` 。也可以通过类似 `vector<int> v = {1, 2, 3};` 的方式初始化。
+**构造**：
+
+- 我们可以通过  `vector<int> v;` 的方式构造一个空的、每个元素的类型均为 `int` 的 vector，其名字为 `v` 。可以用其他类型，包括自定义的结构体替换这里的 `int` 。
+- 也可以通过类似 `vector<int> v = {1, 2, 3};` 的方式初始化。
+- 同时，可以通过 `vector<int> v(n);` 的方式构造一个包含 `n` 个元素的 vector。
+- 可以通过 `vector<int> v(n, 1);` 的方式构造一个大小为 `n` 且每个元素的值都为 `1` 的 vector。 
 
 **获取长度**。可以通过 `v.size()` 获取 vector  `v` 中的元素个数。
 
@@ -71,6 +76,9 @@ vector 可以理解为一种自动扩展长度的数组。
 **访问（读取 / 修改）元素**。和数组一样，可以通过 `v[i]` 的方式访问 vector  `v` 的第 `i` 个元素，下标从 0 开始。注意，当 `i >= v.size()` 的时候，程序可能发生运行时错误。
 
 **遍历**。`C++11` 除了使用  `for (int i = 0; i < v.size(); i++) sum += v[i];` 的方式遍历以外，还可以这样写： `for (auto a : v) sum += a;` 。这种写法叫做 range-based for loop。`C++11` 这里的 `auto` 会自动推断出 `a` 的数据类型，也就是 vector `v` 中元素的类型，官方称呼是 Placeholder type specifiers。在做 LeetCode 的绝大多数场景下，我们可以使用 `for (auto &a : v)` ，加上一个引用。加上这个引用后就不会在遍历的过程中每次循环都构造一个临时变量，在遍历二维 `vector` 的时候尤为有意义。当然加上引用后对这个变量 `a` 做的改动会真实地影响到 `vector v` 。
+
+??? tips "预留大小"
+    可以通过 `v.reserve(n)` 来将 vector 的 capacity（而非 size）预留为 `n`。如果理解 vector 的实现逻辑，就可以知道这个函数的意义（可以看 [cppref](https://en.cppreference.com/w/cpp/container/vector/reserve#Example) 里的例子）。如果不理解的话可以暂时当做没看见这一条。
 
 ### 1.3 string
 > `#include <string>`
@@ -186,16 +194,22 @@ auto prc_info = lower_bound(prices.begin(), prices.end(), i,
 
  `cout << gcd(18, 12) << " " << lcm(18, 12) << endl;` ，输出为  `6 36` 。
 
+### 2.4 unique
+> `#include <algorithm>`
 
-### 2.4 Algorithm 库里其他看起来有用的东西
+用来去除连续的重复元素。例如 `std::vector<int> v{1, 2, 1, 1, 3, 3, 3, 4, 5, 4};`, 经过 `auto last = std::unique(v.begin(), v.end());` 后 `v` now holds `{1 2 1 3 4 5 4 x x x}`, where `x` is indeterminate；可以用 `v.erase(last, v.end());` 删除后面的多余位置。
+
+当然，sort 后 unique 则可以排序并完全去重。
+
+
+### 2.5 Algorithm 库里其他看起来有用的东西
 （下面的“数组”不仅可以是数组，也可以是其他一些满足相关条件的数据结构，且条件可能各不相同；在此暂不展开）
 
 - `C++17`返回数组中最大的元素的迭代器，可以和 sort 一样自定义比较函数： `std::max_element` ，也有 min [https://en.cppreference.com/w/cpp/algorithm/max_element](https://en.cppreference.com/w/cpp/algorithm/max_element) 
 - `C++17`合并两个有序数组： `std::merge` [https://en.cppreference.com/w/cpp/algorithm/merge](https://en.cppreference.com/w/cpp/algorithm/merge)
 - `C++17`逆转一个数组： `std::reverse` [https://en.cppreference.com/w/cpp/algorithm/reverse](https://en.cppreference.com/w/cpp/algorithm/reverse)
 
-
-### 2.5 其他
+### 2.6 其他
 
 - 内置类型的最大 / 最小值：
     - `#include <limits>`
