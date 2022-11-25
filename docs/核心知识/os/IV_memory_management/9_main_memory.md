@@ -10,7 +10,7 @@ CPU 可以直接访问的通用存储只有 main memory 和 registers。对 regi
 同时，我们需要保护内存空间，防止用户程序修改操作系统或其他用户程序的代码或者数据。
 
 ### 9.1.2 Address Binding
-如我们前面所说，执行程序必须将其调入内存并放图进程中。源程序中的地址通常是用符号表示（**symbolic**, 例如各种变量、函数名；汇编中的 label 等）；编译器会将其绑定到 **relocatable addresses**，即相对于某一个段/模块等的偏移；链接器或加载器（linker / loader）会将 **relocatable addresses** 绑定到 **absolute addresses**。当然，如果编译器在编译时就知道程序所处的内存地址，则会生成 **absolute code**。
+如我们前面所说，执行程序必须将其调入内存以供进程使用。源程序中的地址通常是用符号表示（**symbolic**, 例如各种变量、函数名；汇编中的 label 等）；编译器会将其绑定到 **relocatable addresses**，即相对于某一个段/模块等的偏移，例如 `sp - 8`, `ds:[0]`；链接器或加载器（linker / loader）会将 **relocatable addresses** 绑定到 **absolute addresses**。当然，如果编译器在编译时就知道程序所处的内存地址，则会生成 **absolute code**。
 
 <center>![image.png](9_main_memory.assets/1607176454869-3d761c55-5e1d-4165-867f-7177626b475e.png)</center>
 
@@ -49,6 +49,7 @@ CPU 可以直接访问的通用存储只有 main memory 和 registers。对 regi
    - **first-fit** - 分配首个足够大的 hole。这种方法会使得分配集中在低地址区，并在此处产生大量的碎片，在每次尝试分配的时候都会遍历到，增大查找的开销。
    - **best-fit** - 分配最小的足够大的 hole。除非空闲列表按大小排序，否则这种方法需要对整个列表进行遍历。这种方法同样会留下许多碎片。
    - **worst-fit** - 分配最大的 hole。同样，除非列表有序，否则我们需要遍历整个列表。这种方法的好处是每次分配后通常不会使剩下的空闲块太小，这在中小进程较多的情况下性能较好，并且产生碎片的几率更小。
+
 > Simulations have shown that both first fit and best fit are better than worst fit in terms of decreasing time and storage utilization. Neither first fit nor best fit is clearly better than the other in terms of storage utilization, but first fit is generally faster.
 
 
