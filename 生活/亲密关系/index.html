@@ -1559,7 +1559,7 @@ c. 没有因为足够多或者严重的问题，使得这个社交关系在至�
 
 
 
-<h2 id="__comments">评论</h2>
+<h2 id="__comments"><!-- 评论 -->评论区！</h2>
 <script src="https://giscus.app/client.js"
         data-repo="xuan-insr/discussion"
         data-repo-id="R_kgDOIUW7XA"
@@ -1574,6 +1574,9 @@ c. 没有因为足够多或者严重的问题，使得这个社交关系在至�
         data-lang="zh-CN"
         crossorigin="anonymous"
         async>
+
+updateScheme();
+
 </script>
 
 <!-- Synchronize Giscus theme with palette -->
@@ -1581,29 +1584,29 @@ c. 没有因为足够多或者严重的问题，使得这个社交关系在至�
 var giscus = document.querySelector("script[src*=giscus]")
 
 /* Set palette on initial load */
-var palette = __md_get("__palette")
-if (palette && typeof palette.color === "object") {
-    var theme = palette.color.scheme === "slate" ? "dark" : "light"
-    giscus.setAttribute("data-theme", theme) 
-}
+// var palette = __md_get("__palette")
+// if (palette && typeof palette.color === "object") {
+//     var theme = palette.color.scheme === "slate" ? "dark" : "light"
+//     giscus.setAttribute("data-theme", theme) 
+// }
 
 /* Register event handlers after documented loaded */
-document.addEventListener("DOMContentLoaded", function() {
-    var ref = document.querySelector("[data-md-component=palette]")
-    ref.addEventListener("change", function() {
-    var palette = __md_get("__palette")
-    if (palette && typeof palette.color === "object") {
-        var theme = palette.color.scheme === "slate" ? "dark" : "light"
+// document.addEventListener("DOMContentLoaded", function() {
+//     var ref = document.querySelector("[data-md-component=palette]")
+//     ref.addEventListener("change", function() {
+//     var palette = __md_get("__palette")
+//     if (palette && typeof palette.color === "object") {
+//         var theme = palette.color.scheme === "slate" ? "dark" : "light"
 
-        /* Instruct Giscus to change theme */
-        var frame = document.querySelector(".giscus-frame")
-        frame.contentWindow.postMessage(
-        { giscus: { setConfig: { theme } } },
-        "https://giscus.app"
-        )
-    }
-    })
-})
+//         /* Instruct Giscus to change theme */
+//         var frame = document.querySelector(".giscus-frame")
+//         frame.contentWindow.postMessage(
+//         { giscus: { setConfig: { theme } } },
+//         "https://giscus.app"
+//         )
+//     }
+//     })
+// })
 </script>
                 
               </article>
@@ -1676,7 +1679,7 @@ document.addEventListener("DOMContentLoaded", function() {
       
         <script src="../../js/timeago_mkdocs_material.js"></script>
       
-        <script src="../../from_oi_wiki/js/extra.js?v=16"></script>
+        <script src="../../from_oi_wiki/js/extra.js"></script>
       
         <script src="../../js/mathjax.js"></script>
       

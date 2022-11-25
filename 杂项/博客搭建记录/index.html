@@ -71,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#为什么使用-mkdocs-material" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1092,9 +1097,73 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          博客搭建记录
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         博客搭建记录
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#为什么使用-mkdocs-material" class="md-nav__link">
+    为什么使用 mkdocs-material？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#入门教程" class="md-nav__link">
+    入门教程
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#主题颜色--夜间模式" class="md-nav__link">
+    主题颜色 / 夜间模式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#评论系统" class="md-nav__link">
+    评论系统
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#解决公式带纵向滚动条的问题" class="md-nav__link">
+    解决公式带纵向滚动条的问题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#显示创建时间和更新时间" class="md-nav__link">
+    显示创建时间和更新时间
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1205,6 +1274,56 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#为什么使用-mkdocs-material" class="md-nav__link">
+    为什么使用 mkdocs-material？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#入门教程" class="md-nav__link">
+    入门教程
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#主题颜色--夜间模式" class="md-nav__link">
+    主题颜色 / 夜间模式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#评论系统" class="md-nav__link">
+    评论系统
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#解决公式带纵向滚动条的问题" class="md-nav__link">
+    解决公式带纵向滚动条的问题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#显示创建时间和更新时间" class="md-nav__link">
+    显示创建时间和更新时间
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1224,13 +1343,284 @@
 <p class="admonition-title">Abstract</p>
 <p>记录搭个人主页 / 咸鱼肆过程中的思考、问题和解决方案！</p>
 </div>
+<hr />
+<h3 id="为什么使用-mkdocs-material">为什么使用 mkdocs-material？<a class="headerlink" href="#为什么使用-mkdocs-material" title="Permanent link">&para;</a></h3>
+<p>因为我的笔记长得更像书一样的东西而不是比较零散的博客；看 OIWiki 之类的东西就一直很心动！！</p>
+<hr />
+<h3 id="入门教程">入门教程<a class="headerlink" href="#入门教程" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>：官方文档，是洋文。</li>
+<li><a href="https://mkdocs-material.zimoapps.com/">Material for MkDocs 中文文档</a><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>：官方文档的翻译；但是仍然建议尽可能看上面那个，因为这个有些东西过时了QWQ</li>
+</ul>
+<p>另外，由于 mkdocs 对应的仓库里能看到文档的 md 源码，因此其实可以在这两个文档，或者其他用 mkdocs 做的博客（例如 <a href="https://oi-wiki.org/">OI Wiki</a>, <a href="https://ctf-wiki.org/">CTF Wiki</a> 等）里面看有哪些想用的写法，然后从对应的仓库里直接拿进来！</p>
+<hr />
+<h3 id="主题颜色--夜间模式">主题颜色 / 夜间模式<a class="headerlink" href="#主题颜色--夜间模式" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>我并不熟悉 HTML/CSS/JS，因此这里的很多做法可能比较蠢QWQ，如果有好的做法请务必告诉我！</p>
+</div>
+<p>是从 OI Wiki 抄的！</p>
+<p>修改主题颜色的界面代码长这样：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code>### 日间 / 夜间
+
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tx-switch&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">data-md-color-scheme</span><span class="o">=</span><span class="s">&quot;default&quot;</span><span class="p">&gt;&lt;</span><span class="nt">code</span><span class="p">&gt;</span>default<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">data-md-color-scheme</span><span class="o">=</span><span class="s">&quot;slate&quot;</span><span class="p">&gt;&lt;</span><span class="nt">code</span><span class="p">&gt;</span>slate<span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">buttons</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;button[data-md-color-scheme]&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="nx">buttons</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">button</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kd">var</span><span class="w"> </span><span class="nx">attr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s2">&quot;data-md-color-scheme&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">&quot;data-md-color-scheme&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">attr</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">&quot;data-md-color-scheme&quot;</span><span class="p">,</span><span class="nx">attr</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="nx">updateScheme</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">})</span><span class="w"></span>
+<span class="w">  </span><span class="p">})</span><span class="w"></span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+### 主色
+
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tx-switch&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;button1&quot;</span> <span class="na">data-md-color-primary</span><span class="o">=</span><span class="s">&quot;red&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color:red&quot;</span><span class="p">&gt;</span>red<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;button1&quot;</span> <span class="na">data-md-color-primary</span><span class="o">=</span><span class="s">&quot;pink&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color:pink;color:black&quot;</span><span class="p">&gt;</span>pink<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;button1&quot;</span> <span class="na">data-md-color-primary</span><span class="o">=</span><span class="s">&quot;purple&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color:purple&quot;</span><span class="p">&gt;</span>purple<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;button1&quot;</span> <span class="na">data-md-color-primary</span><span class="o">=</span><span class="s">&quot;indigo&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color:indigo&quot;</span><span class="p">&gt;</span>indigo<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;button1&quot;</span> <span class="na">data-md-color-primary</span><span class="o">=</span><span class="s">&quot;blue&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color:blue&quot;</span><span class="p">&gt;</span>blue<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;button1&quot;</span> <span class="na">data-md-color-primary</span><span class="o">=</span><span class="s">&quot;cyan&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color:cyan;color:black&quot;</span><span class="p">&gt;</span>cyan<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;button1&quot;</span> <span class="na">data-md-color-primary</span><span class="o">=</span><span class="s">&quot;teal&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color:teal&quot;</span><span class="p">&gt;</span>teal<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;button1&quot;</span> <span class="na">data-md-color-primary</span><span class="o">=</span><span class="s">&quot;green&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color:green&quot;</span><span class="p">&gt;</span>green<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;button1&quot;</span> <span class="na">data-md-color-primary</span><span class="o">=</span><span class="s">&quot;lime&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color:lime;color:black&quot;</span><span class="p">&gt;</span>lime<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;button1&quot;</span> <span class="na">data-md-color-primary</span><span class="o">=</span><span class="s">&quot;orange&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color:orange;color:black&quot;</span><span class="p">&gt;</span>orange<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;button1&quot;</span> <span class="na">data-md-color-primary</span><span class="o">=</span><span class="s">&quot;brown&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color:brown;border-radius=3px&quot;</span><span class="p">&gt;</span>brown<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;button1&quot;</span> <span class="na">data-md-color-primary</span><span class="o">=</span><span class="s">&quot;grey&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color:grey&quot;</span><span class="p">&gt;</span>grey<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;button1&quot;</span> <span class="na">data-md-color-primary</span><span class="o">=</span><span class="s">&quot;black&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color:black&quot;</span><span class="p">&gt;</span>black<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;button1&quot;</span> <span class="na">data-md-color-primary</span><span class="o">=</span><span class="s">&quot;white&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;background-color:white;color:black&quot;</span><span class="p">&gt;</span>white<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">buttons</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;button[data-md-color-primary]&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="nx">buttons</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">button</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kd">var</span><span class="w"> </span><span class="nx">attr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s2">&quot;data-md-color-primary&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">&quot;data-md-color-primary&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">attr</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">&quot;data-md-color-primary&quot;</span><span class="p">,</span><span class="nx">attr</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">})</span><span class="w"></span>
+<span class="w">  </span><span class="p">})</span><span class="w"></span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p>两段 script 给这些按钮绑定了响应函数，将对应的颜色存入 <code>localStorage</code>。</p>
+<p>其中 <code>button1</code> 的 css 我放在了一个文件 extra.css 里：</p>
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="nc">button1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">text-decoration</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">inline-block</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">px</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">cursor</span><span class="p">:</span><span class="w"> </span><span class="kc">pointer</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>然后，我们在一个文件 extra.js 里面包含了如下代码：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s2">&quot;data-md-color-primary&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;data-md-color-primary&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">p</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;data-md-color-scheme&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;slate&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">&quot;data-md-color-scheme&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">a</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;data-md-color-scheme&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">a</span><span class="p">);</span><span class="w"></span>
+<span class="p">})()</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>这段代码就是从 <code>localStorage</code> 里把存了的那些东西拿出来，然后设置到文档的对应位置里去。</p>
+<p>我们在 mkdocs.yml 里增加这样的条目，使得每个页面都会包含这段 js，从而每个页面加载时都会运行上面这段代码，进而维持主题的设置：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">extra_javascript</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;path/extra.js&#39;</span><span class="w"></span>
+</code></pre></div>
+<p>类似地，我们把 extra.css 包含进来：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">extra_css</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;path/extra.css&#39;</span><span class="w"></span>
+</code></pre></div>
+<hr />
+<h3 id="评论系统">评论系统<a class="headerlink" href="#评论系统" title="Permanent link">&para;</a></h3>
+<p>基本的教程参考了 <a href="https://squidfunk.github.io/mkdocs-material/setup/adding-a-comment-system/">https://squidfunk.github.io/mkdocs-material/setup/adding-a-comment-system/</a> 。</p>
+<p>同时，一个问题是，如何保持评论系统的主题（日间 / 夜间模式）和前面设置的一致呢？在前一节第一段的 md/html 代码的第 15 行有一个 <code>updateScheme();</code>，这个函数也在 extra.js 里，用来在更改主题时通知评论系统同步（其实评论系统的 <code>comment.html</code> 里有 <code>/* Register event handlers after documented loaded */</code> 的片段，但是响应的和上面抄的 OI Wiki 改的好像并不对应，所以我注释掉了QWQ）：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">updateScheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">giscus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;.giscus-frame&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;data-md-color-scheme&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">theme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;light&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;dark&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot; -&gt; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">theme</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="nx">giscus</span><span class="p">.</span><span class="nx">contentWindow</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="nx">giscus</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">setConfig</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">theme</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;https://giscus.app&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>同时，我们在评论系统的 <code>comment.html</code> 中，本来也有一段注释了 <code>/* Set palette on initial load */</code> 的代码，我们也将其改为 <code>updateScheme();</code>！</p>
+<hr />
+<h3 id="解决公式带纵向滚动条的问题">解决公式带纵向滚动条的问题<a class="headerlink" href="#解决公式带纵向滚动条的问题" title="Permanent link">&para;</a></h3>
+<details class="note" open="open">
+<summary>前置要求</summary>
+<p>在 mkdocs.yml 里引入一个 css 文件，比如叫 extra.css</p>
+<div class="highlight"><pre><span></span><code><span class="nt">extra_css</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;path/extra.css&#39;</span><span class="w"></span>
+</code></pre></div>
+</details>
+<p>在 extra.css 里增加这样的东西：</p>
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="nc">md-typeset</span><span class="w"> </span><span class="nt">div</span><span class="p">.</span><span class="nc">arithmatex</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">overflow-y</span><span class="p">:</span><span class="w"> </span><span class="kc">hidden</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<hr />
+<h3 id="显示创建时间和更新时间">显示创建时间和更新时间<a class="headerlink" href="#显示创建时间和更新时间" title="Permanent link">&para;</a></h3>
+<p>在 mkdocs.yml 中增加这样的内容：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">plugins</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">git-revision-date-localized</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">enable_creation_date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</code></pre></div>
+<p>这个插件需要通过 <code>pip3 install mkdocs-git-revision-date-localized-plugin</code> 来安装。</p>
+<p>对应地，如果我们使用 Github Action 之类的 CI 来自动部署博客，我们也需要在其中引入这个插件（见第 18 行高亮处）：</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">.github/workflows/autoBuild.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">autoBuild</span><span class="w"></span>
+<span class="nt">on</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">master</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span><span class="w"></span>
+<span class="nt">jobs</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w"></span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w"></span>
+<span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span><span class="w"></span>
+</span><span class="hll"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+</span><span class="hll"><span class="w">          </span><span class="nt">fetch-depth</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
+</span><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span><span class="w"></span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.x</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install mkdocs-material</span><span class="w"></span>
+<span class="hll"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install mkdocs-git-revision-date-localized-plugin</span><span class="w"></span>
+</span><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mkdocs gh-deploy --force</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>同时，如果使用了 CI 来自动部署博客，需要进一步设置，参见 <a href="https://github.com/timvink/mkdocs-git-revision-date-localized-plugin#note-when-using-build-environments">Note when using build environments</a>；对于 Github Actions，我们需要用上面代码中 11-13 行高亮处的 <code>uses</code> 来代替原先的 <code>- uses: actions/checkout@v2</code>。</p>
+<p>这里的 <code>enable_creation_date</code> 之类的选项可以在 <a href="https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#document-dates">官方文档</a> 或者 <a href="https://github.com/timvink/mkdocs-git-revision-date-localized-plugin">这个插件的文档</a> 里看，我用的是：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">plugins</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">git-revision-date-localized</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">enable_creation_date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">timeago</span><span class="w"></span>
+</code></pre></div>
+<p>效果参见本页最下面））</p>
+<details class="tips" open="open">
+<summary>Tips</summary>
+<p>如果 mkdocs.yml 里没有</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">plugins</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">search</span><span class="w"></span>
+</code></pre></div>
+<p>那要记得加上，因为 MkDocs enables it by default if there is no <code>plugins</code> entry set<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.</p>
+</details>
+<hr />
+<p>未完待续！</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Material for MkDocs <a href="https://github.com/squidfunk/mkdocs-material">repo</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Material for MkDocs 中文文档 <a href="https://github.com/zimocode/mkdocs-material-zh">repo</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://github.com/timvink/mkdocs-git-revision-date-localized-plugin#setup">https://github.com/timvink/mkdocs-git-revision-date-localized-plugin#setup</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-11T09:39:42+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-11</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-25T17:44:16+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-25</span>
       
         <br>
         创建日期:
@@ -1243,7 +1633,7 @@
 
 
 
-<h2 id="__comments">评论</h2>
+<h2 id="__comments"><!-- 评论 -->评论区！</h2>
 <script src="https://giscus.app/client.js"
         data-repo="xuan-insr/discussion"
         data-repo-id="R_kgDOIUW7XA"
@@ -1258,6 +1648,9 @@
         data-lang="zh-CN"
         crossorigin="anonymous"
         async>
+
+updateScheme();
+
 </script>
 
 <!-- Synchronize Giscus theme with palette -->
@@ -1265,29 +1658,29 @@
 var giscus = document.querySelector("script[src*=giscus]")
 
 /* Set palette on initial load */
-var palette = __md_get("__palette")
-if (palette && typeof palette.color === "object") {
-    var theme = palette.color.scheme === "slate" ? "dark" : "light"
-    giscus.setAttribute("data-theme", theme) 
-}
+// var palette = __md_get("__palette")
+// if (palette && typeof palette.color === "object") {
+//     var theme = palette.color.scheme === "slate" ? "dark" : "light"
+//     giscus.setAttribute("data-theme", theme) 
+// }
 
 /* Register event handlers after documented loaded */
-document.addEventListener("DOMContentLoaded", function() {
-    var ref = document.querySelector("[data-md-component=palette]")
-    ref.addEventListener("change", function() {
-    var palette = __md_get("__palette")
-    if (palette && typeof palette.color === "object") {
-        var theme = palette.color.scheme === "slate" ? "dark" : "light"
+// document.addEventListener("DOMContentLoaded", function() {
+//     var ref = document.querySelector("[data-md-component=palette]")
+//     ref.addEventListener("change", function() {
+//     var palette = __md_get("__palette")
+//     if (palette && typeof palette.color === "object") {
+//         var theme = palette.color.scheme === "slate" ? "dark" : "light"
 
-        /* Instruct Giscus to change theme */
-        var frame = document.querySelector(".giscus-frame")
-        frame.contentWindow.postMessage(
-        { giscus: { setConfig: { theme } } },
-        "https://giscus.app"
-        )
-    }
-    })
-})
+//         /* Instruct Giscus to change theme */
+//         var frame = document.querySelector(".giscus-frame")
+//         frame.contentWindow.postMessage(
+//         { giscus: { setConfig: { theme } } },
+//         "https://giscus.app"
+//         )
+//     }
+//     })
+// })
 </script>
                 
               </article>
@@ -1375,7 +1768,7 @@ document.addEventListener("DOMContentLoaded", function() {
       
         <script src="../../js/timeago_mkdocs_material.js"></script>
       
-        <script src="../../from_oi_wiki/js/extra.js?v=16"></script>
+        <script src="../../from_oi_wiki/js/extra.js"></script>
       
         <script src="../../js/mathjax.js"></script>
       
