@@ -138,5 +138,6 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 plugins:
+  - search
   - git-revision-date-localized:
       enable_creation_date: true
