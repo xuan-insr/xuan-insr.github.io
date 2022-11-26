@@ -2,7 +2,7 @@ nav:
   - 主页: # 主页/
     - index.md
     - 最近更新: recent.md
-    - 主题: 主页/theme.md
+    - 颜色主题 & 夜间模式: 主页/theme.md
   - C++:
     - cpp/index.md
     - 快速入门 C++ 写题: cpp/cpp_for_contests.md
@@ -121,15 +121,16 @@ extra:
     provider: google
     property: G-JT9BRCXKJJ
 
-extra:
-  search:
-    language: 'jp'
-  pagetime: 'on'
+# extra:
+#   search:
+#     language: 'jp'
+#   pagetime: 'on'
   
 copyright: '本页面的全部内容在 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a> 协议之条款下提供，附加条款亦可能应用'
 
 extra_css:
   - 'from_oi_wiki/css/extra.css?v=13'
+  - css/status.css
 
 extra_javascript:
   - 'from_oi_wiki/js/extra.js'
@@ -138,7 +139,8 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 plugins:
-  - search
+  - search:
+      separator: '[\s\u200b\-]'
   - git-revision-date-localized:
       enable_creation_date: true
       type: timeago
