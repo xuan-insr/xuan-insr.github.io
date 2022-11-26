@@ -47,9 +47,23 @@
     
       <link rel="stylesheet" href="../../from_oi_wiki/css/extra.css?v=13">
     
+      <link rel="stylesheet" href="../../css/status.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-JT9BRCXKJJ"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-JT9BRCXKJJ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-JT9BRCXKJJ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -417,7 +431,7 @@
   
     <li class="md-nav__item">
       <a href="../../%E4%B8%BB%E9%A1%B5/theme/" class="md-nav__link">
-        主题
+        颜色主题 & 夜间模式
       </a>
     </li>
   
@@ -1161,6 +1175,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#status-小方块" class="md-nav__link">
+    status 小方块！
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1318,6 +1339,13 @@
         <li class="md-nav__item">
   <a href="#显示创建时间和更新时间" class="md-nav__link">
     显示创建时间和更新时间
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status-小方块" class="md-nav__link">
+    status 小方块！
   </a>
   
 </li>
@@ -1599,6 +1627,47 @@
 <p>那要记得加上，因为 MkDocs enables it by default if there is no <code>plugins</code> entry set<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.</p>
 </details>
 <hr />
+<h3 id="status-小方块">status 小方块！<a class="headerlink" href="#status-小方块" title="Permanent link">&para;</a></h3>
+<p>效果展示：</p>
+<p><span class="box box-blue">blue</span>
+<span class="box box-green">green</span>
+<span class="box box-red">red</span>
+<span class="box box-yellow">yellow</span>
+<span class="box box-gray">gray</span></p>
+<p>（偷懒，夜间模式下全都弄成白色字体了）</p>
+<p>从 <a href="http://jyywiki.cn/OS/2022/">蒋炎岩老师的网站</a> 里偷来了如下 css，放在了 status.css：</p>
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="nc">box</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c">/* font-family: &#39;Lato&#39;, &#39;SimHei&#39;, &#39;STHeiti&#39;, &#39;SimHei&#39;, &#39;Serif&#39;; */</span><span class="w"></span>
+<span class="w">    </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="kt">%</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="p">.</span><span class="nc">box-blue</span><span class="o">,</span><span class="w">  </span><span class="p">.</span><span class="nc">badge-primary</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">66</span><span class="p">,</span><span class="w"> </span><span class="mi">139</span><span class="p">,</span><span class="w"> </span><span class="mi">202</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span><span class="w"> </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#1d4ed8</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="p">.</span><span class="nc">box-green</span><span class="o">,</span><span class="w"> </span><span class="p">.</span><span class="nc">badge-success</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">92</span><span class="p">,</span><span class="w"> </span><span class="mi">184</span><span class="p">,</span><span class="w"> </span><span class="mi">92</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span><span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#15803d</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="p">.</span><span class="nc">box-red</span><span class="o">,</span><span class="w">   </span><span class="p">.</span><span class="nc">badge-danger</span><span class="w">   </span><span class="p">{</span><span class="w"> </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">217</span><span class="p">,</span><span class="w"> </span><span class="mi">83</span><span class="p">,</span><span class="w"> </span><span class="mi">79</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span><span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#b91c1c</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="p">.</span><span class="nc">box-yellow</span><span class="o">,</span><span class="p">.</span><span class="nc">badge-warning</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">240</span><span class="p">,</span><span class="w"> </span><span class="mi">173</span><span class="p">,</span><span class="w"> </span><span class="mi">78</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span><span class="w"> </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#a16207</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="p">.</span><span class="nc">box-gray</span><span class="w">   </span><span class="p">{</span><span class="w"> </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#a0a0a0</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>使用方法如：</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;box box-blue&quot;</span><span class="p">&gt;</span>blue<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;box box-green&quot;</span><span class="p">&gt;</span>green<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;box box-red&quot;</span><span class="p">&gt;</span>red<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;box box-yellow&quot;</span><span class="p">&gt;</span>yellow<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;box box-gray&quot;</span><span class="p">&gt;</span>gray<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>另外，如果在暗黑模式，上面的 CSS 设置会看不清。于是偷懒，在暗黑模式把字体全都改成白色；</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">updateBoxFontColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">e</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s1">&#39;data-md-color-scheme&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">elements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s1">&#39;box&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nx">elements</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// alert(elements[i].style.color);</span><span class="w"></span>
+<span class="w">            </span><span class="nx">elements</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;white&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>在 extra.js 里把这个函数的调用加到 <code>(()=&gt;{})</code> 那个函数的最后去，让它每次自动跑。</p>
+<hr />
 <p>未完待续！</p>
 <div class="footnote">
 <hr />
@@ -1620,7 +1689,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-25T17:44:16+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-25</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-26T17:09:46+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-26</span>
       
         <br>
         创建日期:
@@ -1630,6 +1699,8 @@
   </small>
 </div>
 
+
+  
 
 
 

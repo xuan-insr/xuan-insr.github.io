@@ -1,0 +1,10 @@
+.box {
+    border-radius: 2px; padding: 4px 4px 4px 4px;
+    /* font-family: 'Lato', 'SimHei', 'STHeiti', 'SimHei', 'Serif'; */
+    font-size: 90%;
+}
+.box-blue,  .badge-primary  { background-color: rgba(66, 139, 202, 0.5); color: #1d4ed8; }
+.box-green, .badge-success  { background-color: rgba(92, 184, 92, 0.5);  color: #15803d; }
+.box-red,   .badge-danger   { background-color: rgba(217, 83, 79, 0.5);  color: #b91c1c; }
+.box-yellow,.badge-warning  { background-color: rgba(240, 173, 78, 0.5); color: #a16207; }
+.box-gray   { background-color: #a0a0a0; }
