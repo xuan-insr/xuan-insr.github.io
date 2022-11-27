@@ -16,6 +16,8 @@ nav:
         - 1 抽象语法: pl/ppl_notes/1_Abstract_Syntax.md
         - 2 归纳定义: pl/ppl_notes/2_Inductive_Definition.md
         - 3 假言判断与一般性判断: pl/ppl_notes/3_Hypothetical_and_General_Judgments.md
+      - Part II - Statics and Dynamics | 静态语义和动态语义:
+        - 4 静态语义: pl/ppl_notes/4_Statics.md
   - 核心知识: 
     - 核心知识/index.md
     - 操作系统:
