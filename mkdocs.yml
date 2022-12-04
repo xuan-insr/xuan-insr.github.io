@@ -18,6 +18,7 @@ nav:
         - 3 假言判断与一般性判断: pl/ppl_notes/3_Hypothetical_and_General_Judgments.md
       - Part II - Statics and Dynamics | 静态语义和动态语义:
         - 4 静态语义: pl/ppl_notes/4_Statics.md
+        - 5 动态语义: pl/ppl_notes/5_Dynamics.md
   - 核心知识: 
     - 核心知识/index.md
     - 操作系统:

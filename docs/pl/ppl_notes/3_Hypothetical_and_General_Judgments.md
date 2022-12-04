@@ -98,7 +98,11 @@ $\vdash_R J$ 表示 $J$ 可以直接由 $R$ 推导而出。
 
 ## 3.3 General Judgments | 一般性判断
 
-没看懂，暂略。
+简单来说，相对于 $\Gamma\vdash_R J$ 而言，我们用 $\Gamma \vdash_R^X J$ 表示 $\Gamma$ 中用到了一些 variable，这些 variable 的集合为 $X$。
+
+进一步地，我们把 $X$ 分为两个部分 $XY$，其中 $Y$ 是 $\Gamma$ 中用到的所有自由变量，也就是说它们可以被任意命名和替换；$X$ 是剩余的变量，$X\cap Y = \varnothing$，即 $\Gamma \vdash_R^{XY} J$。我们记 $Y\ |\ \Gamma \vdash_R^X J$ 与之等价。
+
+参考课本中该节的例子以及习题 3.6 可以有更明确的例子。
 
 ## 3.4 Generic Inductive Definitions | 泛型归纳定义
 

@@ -112,7 +112,7 @@ Variables 用 $x$ 来表示；sort $s$ 上的变量集合记为 $X_s$；sort 集
 - 如果 $x \in X_s$，那么 $x\in B[X]_s$。即，一个类别是 $s$ 的变量是一棵类别为 $s$ 的 ABT；
 - 如果 $o$ 的元数为 $(\vec{s_1}.s_1, \dots, \vec{s_n}.s_n)s$，且 $a_1 \in B[X, \vec{x_1}]_{s_1}, \dots, a_n \in B[X, \vec{x_n}]_{s_n}$，那么 $o(\vec{x_1}.a_1;\dots ;\vec{x_n}.a_n) \in B[X]_s$。即，用运算符可以组合 ABT。
 
-这种定义的问题是，形如 `let(expr1; x.let(expr2; x.expr3))` 的 ABT 是 ill-formed 的，因为第一个绑定将 $x$ 添加到 $X$ 得到 $x.X$，这使得第二个绑定不能再将 $x$ 添加到 $X.x$ 中，因为 $x$ 对于 $X.x$ 来说不是新的。也就是说，**这种定义没有正确解释约束变量的换名**。
+这种定义的问题是，形如 `let(expr1; x.let(expr2; x.expr3))` 的 ABT 是 ill-formed 的，因为第一个绑定将 $x$ 添加到 $X$ 得到 $X,x$，这使得第二个绑定不能再将 $x$ 添加到 $X,x$ 中，因为 $x$ 对于 $X,x$ 来说不是新的。也就是说，**这种定义没有正确解释约束变量的换名**。
 
 我们可以通过 **fresh renaming** 解决上述问题。具体而言，给定变量族 $X$，$\vec{x}$ 的 fresh renaming 定义为一个 $\vec{x}$ 到 $\vec{x}'$ 的一个双射 $\rho : \vec{x} \leftrightarrow \vec{x}'$，其中 $\vec{x}'$ 对于 $X$ 而言是新的。我们用 $\hat\rho (a)$ 表示将 $a$ 中的每个 $x_i$ 的出现替换为 $\rho(x_i)$ 后的结果。
 
