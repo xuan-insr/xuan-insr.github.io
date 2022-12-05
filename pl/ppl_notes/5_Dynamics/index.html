@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#5-dynamics" class="md-skip">
+        <a href="#5-dynamics--动态语义" class="md-skip">
           跳转至
         </a>
       
@@ -631,6 +631,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_3_2">
@@ -748,6 +750,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_3_2_2">
@@ -791,10 +795,143 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          5 动态语义
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         5 动态语义
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#51-transition-systems--转换系统" class="md-nav__link">
+    5.1 Transition Systems | 转换系统
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-structural-dynamics--结构化动态语义" class="md-nav__link">
+    5.2 Structural Dynamics | 结构化动态语义
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-contextual-dynamics--上下文动态语义" class="md-nav__link">
+    5.3 Contextual Dynamics | 上下文动态语义
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-equational-dynamics--等式动态语义" class="md-nav__link">
+    5.4 Equational Dynamics | 等式动态语义
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_Type_Safety/" class="md-nav__link">
+        6 类型安全
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_2_3" type="checkbox" id="__nav_3_2_3" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_3">
+          Part III - Total Functions | 全函数
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part III - Total Functions | 全函数" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Part III - Total Functions | 全函数
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8_Func_Def_and_Val/" class="md-nav__link">
+        8 函数定义和值
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9_Sys_T_of_Higher_Order_Recursion/" class="md-nav__link">
+        9 高阶递归的系统 T
+      </a>
     </li>
   
 
@@ -1301,6 +1438,42 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#51-transition-systems--转换系统" class="md-nav__link">
+    5.1 Transition Systems | 转换系统
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-structural-dynamics--结构化动态语义" class="md-nav__link">
+    5.2 Structural Dynamics | 结构化动态语义
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-contextual-dynamics--上下文动态语义" class="md-nav__link">
+    5.3 Contextual Dynamics | 上下文动态语义
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-equational-dynamics--等式动态语义" class="md-nav__link">
+    5.4 Equational Dynamics | 等式动态语义
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1314,14 +1487,59 @@
                   
 
 
-<h1 id="5-dynamics">5 Dynamics<a class="headerlink" href="#5-dynamics" title="Permanent link">&para;</a></h1>
+<h1 id="5-dynamics--动态语义">5 Dynamics | 动态语义<a class="headerlink" href="#5-dynamics--动态语义" title="Permanent link">&para;</a></h1>
+<h2 id="51-transition-systems--转换系统">5.1 Transition Systems | 转换系统<a class="headerlink" href="#51-transition-systems--转换系统" title="Permanent link">&para;</a></h2>
+<p>我们用下面 4 中形式的判断来描述 <strong>转换系统 (transition system)</strong>。转换系统用于归纳地指明程序执行的一步步过程：</p>
+<ol>
+<li><span class="arithmatex">\(s\)</span> state（<span class="arithmatex">\(s\)</span> 是转换系统的一个状态）</li>
+<li><span class="arithmatex">\(s\)</span> final（在 <span class="arithmatex">\(s\)</span> state 的前提下，<span class="arithmatex">\(s\)</span> 是一个终结状态）</li>
+<li><span class="arithmatex">\(s\)</span> initial（在 <span class="arithmatex">\(s\)</span> state 的前提下，<span class="arithmatex">\(s\)</span> 是一个初始状态）</li>
+<li><span class="arithmatex">\(s \mapsto s'\)</span>（在 <span class="arithmatex">\(s\)</span> state 和 <span class="arithmatex">\(s'\)</span> state 的前提下，<span class="arithmatex">\(s\)</span> 可以转换到 <span class="arithmatex">\(s'\)</span>）</li>
+</ol>
+<p>我们称一个无法转换的状态是 <strong>卡住的 (stuck)</strong>。我们约定，所有终结状态都是 stuck 的；但是转换系统中也可能存在 stuck 的非终结状态。</p>
+<p>我们称一个转换系统是 <strong>确定性的 (deterministic)</strong>，当且仅当对每个状态 <span class="arithmatex">\(s\)</span>，有至多一个 <span class="arithmatex">\(s'\)</span> 使得 <span class="arithmatex">\(s\mapsto s'\)</span>。否则，称之为 <strong>非确定性的 (non-deterministic)</strong>。</p>
+<p>如果一系列状态 <span class="arithmatex">\(s_0, \cdots, s_n\)</span> 满足 <span class="arithmatex">\(s_0\)</span> initial，且 <span class="arithmatex">\(s_i\mapsto s_{i+1}, 0\le i &lt; n\)</span>，则称之为一个 <strong>转换序列 (transition sequence)</strong>。称一个转换序列为 <strong>最大的 (maximal)</strong>，当且仅当 <span class="arithmatex">\(s_n\)</span> 是 stuck 的。称一个转换序列为 <strong>完备的 (complete)</strong>，当且仅当（它是 maximal 的，而且）<span class="arithmatex">\(s_n\)</span> final。</p>
+<p>判断 <span class="arithmatex">\(s\downarrow\)</span> 表示有一个从 <span class="arithmatex">\(s\)</span> 开始的 complete transition sequence，即 <span class="arithmatex">\(s\)</span> initial 且存在 <span class="arithmatex">\(s'\)</span> final s.t. <span class="arithmatex">\(s\mapsto^*s'\)</span>。其中 <strong>转换判断的迭代 (iteration)</strong> <span class="arithmatex">\(s\mapsto^*s'\)</span> 定义如下：</p>
+<div class="arithmatex">\[\frac{}{s\mapsto^* s}\]</div>
+<div class="arithmatex">\[\frac{s\mapsto s'\quad s'\mapsto^* s''}{s\mapsto^* s''}\]</div>
+<p>类似地，我们定义 <strong>转换判断的 n 次迭代 (n-times iteration)</strong> <span class="arithmatex">\(s\mapsto^n s'\)</span> 如下：</p>
+<div class="arithmatex">\[\frac{}{s\mapsto^0 s}\]</div>
+<div class="arithmatex">\[\frac{s\mapsto s'\quad s'\mapsto^n s''}{s\mapsto^{n+1}s''}\]</div>
+<p><strong>定理 5.1</strong> 对所有状态 <span class="arithmatex">\(s\)</span> 和 <span class="arithmatex">\(s'\)</span>，<span class="arithmatex">\(s\mapsto^*s'\)</span> 当且仅当 <span class="arithmatex">\(\exists k \ge 0, s\mapsto^ks'\)</span>。</p>
+<h2 id="52-structural-dynamics--结构化动态语义">5.2 Structural Dynamics | 结构化动态语义<a class="headerlink" href="#52-structural-dynamics--结构化动态语义" title="Permanent link">&para;</a></h2>
+<p>结构化动态语义通过转换系统来归纳地指明程序执行的一步步过程。<strong>E</strong> 语言的结构化动态语义定义如下：</p>
+<p>所有状态都是初始状态。</p>
+<p>判断 <span class="arithmatex">\(e\)</span> val 表示 <span class="arithmatex">\(e\)</span> 是一个（封闭的）值，代表已完成的计算，是封闭状态。其归纳定义由如下规则给出：</p>
+<p><center><img alt="" src="../2022-12-05-14-22-26.png" width="150" /></center></p>
+<p>状态之间的转换判断 <span class="arithmatex">\(e\mapsto e'\)</span> 由以下规则归纳定义：</p>
+<p><center><img alt="" src="../2022-12-05-14-28-41.png" /></center></p>
+<p><center><img alt="" src="../2022-12-05-14-28-20.png" /></center></p>
+<p>（<code>times</code> 和 <code>len</code> 类似，略）</p>
+<p>在上述定义中，5.4a, 5.4d, 5.4h 是基本的求值步骤，称为 <strong>指令转换 (instruction transition)</strong>；而其他规则用于确定执行顺序，称为 <strong>搜索转换 (search transition)</strong>。</p>
+<p>例如，5.4b 和 5.4c 就表示，如果 <span class="arithmatex">\(\text{plus}(e_1;e_2)\)</span> 中 <span class="arithmatex">\(e_1\)</span> 不在终结状态，就应当先做转换；如果 <span class="arithmatex">\(e_1\)</span> final，那么在考虑 <span class="arithmatex">\(e_2\)</span> 能否转换，如果能转换则优先转换。直到所有转换都完成，即 <span class="arithmatex">\(e_1\)</span> final 且 <span class="arithmatex">\(e_2\)</span> final，再根据 5.4a 进行求值。</p>
+<p>上述定义的 5.4g 和 5.4h 有被方括号括起的部分，这其实是针对 <code>let</code> 的两种不同理解提出的。一种是 <strong>按值解释 (by-value interpretation)</strong>，即在绑定到已定义的变量之前先对表达式进行求值，如果采取这种理解，则方括号括起的部分应当被保留；而另一种是 <strong>按名解释 (by-name interpretation)</strong>，即在没有求值的情况下直接进行绑定。<br />
+容易理解，已定义变量被多次使用时，按值解释效率较高；而已定义变量不被使用时，按名解释效率较高。</p>
+<details class="example" open="open">
+<summary>Example</summary>
+<p>下面的求值序列是一个例子；</p>
+<p><center><img alt="" src="../2022-12-05-14-50-16.png" width="600" /></center></p>
+<p>其中的每一步都可以通过前述规则推导证明：</p>
+<p><center><img alt="" src="../2022-12-05-14-50-49.png" width="600" /></center></p>
+</details>
+<p>上述对 <strong>E</strong> 的结构化动态语义可以引出一下两个引理：</p>
+<p><strong>引理 5.2（值的终结性，finality of value）</strong> （在 <strong>E</strong> 语言中，）不存在表达式 <span class="arithmatex">\(e\)</span>，使得对于某个 <span class="arithmatex">\(e'\)</span>，<span class="arithmatex">\(e\)</span> val 和 <span class="arithmatex">\(e\mapsto e'\)</span> 同时成立。</p>
+<p><strong>引理 5.3（确定性，determinacy）</strong> （在 <strong>E</strong> 语言中，）如果 <span class="arithmatex">\(e\mapsto e'\)</span> 且 <span class="arithmatex">\(e\mapsto e''\)</span>，那么 <span class="arithmatex">\(e'\)</span> 和 <span class="arithmatex">\(e''\)</span> 是 <span class="arithmatex">\(\alpha\)</span>-equivalent 的。</p>
+<h2 id="53-contextual-dynamics--上下文动态语义">5.3 Contextual Dynamics | 上下文动态语义<a class="headerlink" href="#53-contextual-dynamics--上下文动态语义" title="Permanent link">&para;</a></h2>
+<p>没看懂，暂略、</p>
+<h2 id="54-equational-dynamics--等式动态语义">5.4 Equational Dynamics | 等式动态语义<a class="headerlink" href="#54-equational-dynamics--等式动态语义" title="Permanent link">&para;</a></h2>
+<p>没讲，暂略。</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-04T15:13:28+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-04</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-05T07:28:15+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-05</span>
       
         <br>
         创建日期:
@@ -1421,13 +1639,13 @@ var giscus = document.querySelector("script[src*=giscus]")
       
       
         
-        <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/" class="md-footer__link md-footer__link--next" aria-label="下一页: 核心知识" rel="next">
+        <a href="../6_Type_Safety/" class="md-footer__link md-footer__link--next" aria-label="下一页: 6 类型安全" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 下一页
               </span>
-              核心知识
+              6 类型安全
             </div>
           </div>
           <div class="md-footer__button md-icon">

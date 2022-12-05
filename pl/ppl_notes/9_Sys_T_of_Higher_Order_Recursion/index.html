@@ -8,21 +8,21 @@
       
       
       
-        <link rel="canonical" href="https://xuan-insr.github.io/%E4%B8%BB%E9%A1%B5/theme/">
+        <link rel="canonical" href="https://xuan-insr.github.io/pl/ppl_notes/9_Sys_T_of_Higher_Order_Recursion/">
       
-      <link rel="icon" href="../../logo.ico">
+      <link rel="icon" href="../../../logo.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
-        <title>颜色主题 & 夜间模式 - 咸鱼暄的代码空间</title>
+        <title>9 高阶递归的系统 T - 咸鱼暄的代码空间</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.975780f9.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
         
           
           
@@ -43,13 +43,13 @@
       
     
     
-      <link rel="stylesheet" href="../../css/timeago.css">
+      <link rel="stylesheet" href="../../../css/timeago.css">
     
-      <link rel="stylesheet" href="../../from_oi_wiki/css/extra.css?v=13">
+      <link rel="stylesheet" href="../../../from_oi_wiki/css/extra.css?v=13">
     
-      <link rel="stylesheet" href="../../css/status.css">
+      <link rel="stylesheet" href="../../../css/status.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#颜色主题" class="md-skip">
+        <a href="#9-system-t-of-higher-order-recursion" class="md-skip">
           跳转至
         </a>
       
@@ -100,9 +100,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="咸鱼暄的代码空间" class="md-header__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+    <a href="../../.." title="咸鱼暄的代码空间" class="md-header__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
       
-  <img src="../../logo.ico" alt="logo">
+  <img src="../../../logo.ico" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              颜色主题 & 夜间模式
+              9 高阶递归的系统 T
             
           </span>
         </div>
@@ -190,15 +190,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link md-tabs__link--active">
+      <a href="../../.." class="md-tabs__link">
         主页
       </a>
     </li>
@@ -214,7 +212,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../cpp/" class="md-tabs__link">
+      <a href="../../../cpp/" class="md-tabs__link">
         C++
       </a>
     </li>
@@ -224,13 +222,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../pl/" class="md-tabs__link">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
         PL & 编译
       </a>
     </li>
@@ -246,7 +246,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
+      <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
         核心知识
       </a>
     </li>
@@ -259,7 +259,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../%E5%AE%89%E5%85%A8/" class="md-tabs__link">
+    <a href="../../../%E5%AE%89%E5%85%A8/" class="md-tabs__link">
       安全
     </a>
   </li>
@@ -271,7 +271,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-tabs__link">
+    <a href="../../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-tabs__link">
       语言基础
     </a>
   </li>
@@ -283,7 +283,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-tabs__link">
+    <a href="../../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-tabs__link">
       其他课程
     </a>
   </li>
@@ -298,7 +298,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../%E6%9D%82%E9%A1%B9/" class="md-tabs__link">
+      <a href="../../../%E6%9D%82%E9%A1%B9/" class="md-tabs__link">
         杂项
       </a>
     </li>
@@ -314,7 +314,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../%E7%94%9F%E6%B4%BB/" class="md-tabs__link">
+      <a href="../../../%E7%94%9F%E6%B4%BB/" class="md-tabs__link">
         生活
       </a>
     </li>
@@ -342,9 +342,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="咸鱼暄的代码空间" class="md-nav__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+    <a href="../../.." title="咸鱼暄的代码空间" class="md-nav__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
       
-  <img src="../../logo.ico" alt="logo">
+  <img src="../../../logo.ico" alt="logo">
 
     </a>
     咸鱼暄的代码空间
@@ -370,14 +370,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
       
       
       
@@ -395,7 +393,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../..">主页</a>
+          <a href="../../..">主页</a>
           
             <label for="__nav_1">
               <span class="md-nav__icon md-icon"></span>
@@ -418,7 +416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../recent/" class="md-nav__link">
+      <a href="../../../recent/" class="md-nav__link">
         最近更新
       </a>
     </li>
@@ -430,68 +428,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          颜色主题 & 夜间模式
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../%E4%B8%BB%E9%A1%B5/theme/" class="md-nav__link">
         颜色主题 & 夜间模式
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#颜色主题" class="md-nav__link">
-    颜色主题
-  </a>
-  
-    <nav class="md-nav" aria-label="颜色主题">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#日间--夜间" class="md-nav__link">
-    日间 / 夜间
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#主色" class="md-nav__link">
-    主色
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -532,7 +473,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../cpp/">C++</a>
+          <a href="../../../cpp/">C++</a>
           
             <label for="__nav_2">
               <span class="md-nav__icon md-icon"></span>
@@ -555,7 +496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cpp/cpp_for_contests/" class="md-nav__link">
+      <a href="../../../cpp/cpp_for_contests/" class="md-nav__link">
         快速入门 C++ 写题
       </a>
     </li>
@@ -601,7 +542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../cpp/%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1/" class="md-nav__link">
+      <a href="../../../cpp/%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1/" class="md-nav__link">
         理解 STL —— 迭代器与函数对象
       </a>
     </li>
@@ -628,12 +569,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
       
       
@@ -649,7 +592,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../pl/">PL & 编译</a>
+          <a href="../../">PL & 编译</a>
           
             <label for="__nav_3">
               <span class="md-nav__icon md-icon"></span>
@@ -670,14 +613,16 @@
               
   
   
+    
+  
   
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
       
       
       
@@ -742,7 +687,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pl/ppl_notes/1_Abstract_Syntax/" class="md-nav__link">
+      <a href="../1_Abstract_Syntax/" class="md-nav__link">
         1 抽象语法
       </a>
     </li>
@@ -756,7 +701,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pl/ppl_notes/2_Inductive_Definition/" class="md-nav__link">
+      <a href="../2_Inductive_Definition/" class="md-nav__link">
         2 归纳定义
       </a>
     </li>
@@ -770,7 +715,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pl/ppl_notes/3_Hypothetical_and_General_Judgments/" class="md-nav__link">
+      <a href="../3_Hypothetical_and_General_Judgments/" class="md-nav__link">
         3 假言判断与一般性判断
       </a>
     </li>
@@ -825,7 +770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pl/ppl_notes/4_Statics/" class="md-nav__link">
+      <a href="../4_Statics/" class="md-nav__link">
         4 静态语义
       </a>
     </li>
@@ -839,7 +784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pl/ppl_notes/5_Dynamics/" class="md-nav__link">
+      <a href="../5_Dynamics/" class="md-nav__link">
         5 动态语义
       </a>
     </li>
@@ -853,7 +798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pl/ppl_notes/6_Type_Safety/" class="md-nav__link">
+      <a href="../6_Type_Safety/" class="md-nav__link">
         6 类型安全
       </a>
     </li>
@@ -872,12 +817,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_2_3" type="checkbox" id="__nav_3_2_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_3" type="checkbox" id="__nav_3_2_3" checked>
       
       
       
@@ -906,7 +853,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pl/ppl_notes/8_Func_Def_and_Val/" class="md-nav__link">
+      <a href="../8_Func_Def_and_Val/" class="md-nav__link">
         8 函数定义和值
       </a>
     </li>
@@ -918,11 +865,21 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../pl/ppl_notes/9_Sys_T_of_Higher_Order_Recursion/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         9 高阶递归的系统 T
       </a>
+      
     </li>
   
 
@@ -977,7 +934,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/">核心知识</a>
+          <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/">核心知识</a>
           
             <label for="__nav_4">
               <span class="md-nav__icon md-icon"></span>
@@ -1068,7 +1025,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/6_sync_tools/" class="md-nav__link">
+      <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/6_sync_tools/" class="md-nav__link">
         6 同步及其工具
       </a>
     </li>
@@ -1082,7 +1039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/7_sync_examples/" class="md-nav__link">
+      <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/7_sync_examples/" class="md-nav__link">
         7 经典同步问题
       </a>
     </li>
@@ -1096,7 +1053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/8_deadlocks/" class="md-nav__link">
+      <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/8_deadlocks/" class="md-nav__link">
         8 死锁
       </a>
     </li>
@@ -1147,7 +1104,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/9_main_memory/" class="md-nav__link">
+      <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/9_main_memory/" class="md-nav__link">
         9 主存
       </a>
     </li>
@@ -1194,7 +1151,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../%E6%95%B0%E5%AD%A6%E5%92%8C%E7%AE%97%E6%B3%95/">数学、数据结构和算法</a>
+          <a href="../../../%E6%95%B0%E5%AD%A6%E5%92%8C%E7%AE%97%E6%B3%95/">数学、数据结构和算法</a>
           
         </div>
       
@@ -1228,7 +1185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E5%AE%89%E5%85%A8/" class="md-nav__link">
+      <a href="../../../%E5%AE%89%E5%85%A8/" class="md-nav__link">
         安全
       </a>
     </li>
@@ -1243,7 +1200,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+      <a href="../../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-nav__link">
         语言基础
       </a>
     </li>
@@ -1258,7 +1215,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-nav__link">
+      <a href="../../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-nav__link">
         其他课程
       </a>
     </li>
@@ -1292,7 +1249,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../%E6%9D%82%E9%A1%B9/">杂项</a>
+          <a href="../../../%E6%9D%82%E9%A1%B9/">杂项</a>
           
             <label for="__nav_8">
               <span class="md-nav__icon md-icon"></span>
@@ -1315,7 +1272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E6%9D%82%E9%A1%B9/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+      <a href="../../../%E6%9D%82%E9%A1%B9/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" class="md-nav__link">
         博客搭建记录
       </a>
     </li>
@@ -1358,7 +1315,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../%E7%94%9F%E6%B4%BB/">生活</a>
+          <a href="../../../%E7%94%9F%E6%B4%BB/">生活</a>
           
             <label for="__nav_9">
               <span class="md-nav__icon md-icon"></span>
@@ -1381,7 +1338,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%94%9F%E6%B4%BB/%E5%92%B8%E9%B1%BC%E6%9A%84%E4%BB%8A%E5%A4%A9%E5%90%83%E4%BB%80%E4%B9%88/" class="md-nav__link">
+      <a href="../../../%E7%94%9F%E6%B4%BB/%E5%92%B8%E9%B1%BC%E6%9A%84%E4%BB%8A%E5%A4%A9%E5%90%83%E4%BB%80%E4%B9%88/" class="md-nav__link">
         咸鱼暄今天吃什么
       </a>
     </li>
@@ -1395,7 +1352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../%E7%94%9F%E6%B4%BB/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" class="md-nav__link">
+      <a href="../../../%E7%94%9F%E6%B4%BB/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" class="md-nav__link">
         关于亲密关系的碎碎念
       </a>
     </li>
@@ -1426,41 +1383,8 @@
   
   
   
+    
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#颜色主题" class="md-nav__link">
-    颜色主题
-  </a>
-  
-    <nav class="md-nav" aria-label="颜色主题">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#日间--夜间" class="md-nav__link">
-    日间 / 夜间
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#主色" class="md-nav__link">
-    主色
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -1475,66 +1399,18 @@
                   
 
 
-  <h1>颜色主题 & 夜间模式</h1>
-
-<h2 id="颜色主题">颜色主题<a class="headerlink" href="#颜色主题" title="Permanent link">&para;</a></h2>
-<h3 id="日间--夜间">日间 / 夜间<a class="headerlink" href="#日间--夜间" title="Permanent link">&para;</a></h3>
-<div class="tx-switch">
-  <button data-md-color-scheme="default"><code>default</code></button>
-  <button data-md-color-scheme="slate"><code>slate</code></button>
-</div>
-
-<script>
-  var buttons = document.querySelectorAll("button[data-md-color-scheme]")
-  buttons.forEach(function(button) {
-    button.addEventListener("click", function() {
-      var attr = this.getAttribute("data-md-color-scheme")
-      document.body.setAttribute("data-md-color-scheme", attr)
-      localStorage.setItem("data-md-color-scheme",attr);
-      updateScheme();
-    })
-  })
-</script>
-
-<h3 id="主色">主色<a class="headerlink" href="#主色" title="Permanent link">&para;</a></h3>
-<div class="tx-switch">
-  <button class="button1" data-md-color-primary="red" style="background-color:red">red</button>
-  <button class="button1" data-md-color-primary="pink" style="background-color:pink;color:black">pink</button>
-  <button class="button1" data-md-color-primary="purple" style="background-color:purple">purple</button>
-  <button class="button1" data-md-color-primary="indigo" style="background-color:indigo">indigo</button>
-  <button class="button1" data-md-color-primary="blue" style="background-color:blue">blue</button>
-  <button class="button1" data-md-color-primary="cyan" style="background-color:cyan;color:black">cyan</button>
-  <button class="button1" data-md-color-primary="teal" style="background-color:teal">teal</button>
-  <button class="button1" data-md-color-primary="green" style="background-color:green">green</button>
-  <button class="button1" data-md-color-primary="lime" style="background-color:lime;color:black">lime</button>
-  <button class="button1" data-md-color-primary="orange" style="background-color:orange;color:black">orange</button>
-  <button class="button1" data-md-color-primary="brown" style="background-color:brown;border-radius=3px">brown</button>
-  <button class="button1" data-md-color-primary="grey" style="background-color:grey">grey</button>
-  <button class="button1" data-md-color-primary="black" style="background-color:black">black</button>
-  <button class="button1" data-md-color-primary="white" style="background-color:white;color:black">white</button>
-</div>
-
-<script>
-  var buttons = document.querySelectorAll("button[data-md-color-primary]")
-  buttons.forEach(function(button) {
-    button.addEventListener("click", function() {
-      var attr = this.getAttribute("data-md-color-primary")
-      document.body.setAttribute("data-md-color-primary", attr)
-      localStorage.setItem("data-md-color-primary",attr);
-    })
-  })
-</script>
+<h1 id="9-system-t-of-higher-order-recursion">9 System T of Higher-Order Recursion<a class="headerlink" href="#9-system-t-of-higher-order-recursion" title="Permanent link">&para;</a></h1>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-11T09:39:42+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-11</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-05T07:28:15+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-05</span>
       
         <br>
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-10-26T08:01:32+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-10-26</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-05T07:28:15+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-05</span>
       
     
   </small>
@@ -1614,7 +1490,7 @@ var giscus = document.querySelector("script[src*=giscus]")
     <nav class="md-footer__inner md-grid" aria-label="页脚" >
       
         
-        <a href="../../recent/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 最近更新" rel="prev">
+        <a href="../8_Func_Def_and_Val/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 8 函数定义和值" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -1623,20 +1499,20 @@ var giscus = document.querySelector("script[src*=giscus]")
               <span class="md-footer__direction">
                 上一页
               </span>
-              最近更新
+              8 函数定义和值
             </div>
           </div>
         </a>
       
       
         
-        <a href="../../cpp/" class="md-footer__link md-footer__link--next" aria-label="下一页: C++ 学习" rel="next">
+        <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/" class="md-footer__link md-footer__link--next" aria-label="下一页: 核心知识" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 下一页
               </span>
-              C++ 学习
+              核心知识
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -1671,18 +1547,18 @@ var giscus = document.querySelector("script[src*=giscus]")
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "navigation.sections", "navigation.expand", "toc.follow"], "search": "../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "navigation.sections", "navigation.expand", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
       
-        <script src="../../js/timeago.min.js"></script>
+        <script src="../../../js/timeago.min.js"></script>
       
-        <script src="../../js/timeago_mkdocs_material.js"></script>
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
       
-        <script src="../../from_oi_wiki/js/extra.js"></script>
+        <script src="../../../from_oi_wiki/js/extra.js"></script>
       
-        <script src="../../js/mathjax.js"></script>
+        <script src="../../../js/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
