@@ -19,6 +19,10 @@ nav:
       - Part II - Statics and Dynamics | 静态语义和动态语义:
         - 4 静态语义: pl/ppl_notes/4_Statics.md
         - 5 动态语义: pl/ppl_notes/5_Dynamics.md
+        - 6 类型安全: pl/ppl_notes/6_Type_Safety.md
+      - Part III - Total Functions | 全函数:
+        - 8 函数定义和值: pl/ppl_notes/8_Func_Def_and_Val.md
+        - 9 高阶递归的系统 T: pl/ppl_notes/9_Sys_T_of_Higher_Order_Recursion.md
   - 核心知识: 
     - 核心知识/index.md
     - 操作系统:
