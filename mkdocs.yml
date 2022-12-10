@@ -26,18 +26,19 @@ nav:
   - 核心知识: 
     - 核心知识/index.md
     - 操作系统:
-      # - Part.1 概述:
-      # - Part.2 进程管理:
-        # - 3 进程
-        # - 4 调度
-        # - 5 线程
+      - 1 写在前面: 核心知识/os/I_overview/1_intro.md
+      - Part.1 概述: 核心知识/os/I_overview/2_overview.md
+      - Part.2 进程管理:
+        - 3 进程: 核心知识/os/II_process_management/3_process.md
+        - 4 调度: 核心知识/os/II_process_management/4_sched.md
+        - 5 线程: 核心知识/os/II_process_management/5_thread.md
       - Part.3 进程同步:
         - 6 同步及其工具: 核心知识/os/III_process_sync/6_sync_tools.md
         - 7 经典同步问题: 核心知识/os/III_process_sync/7_sync_examples.md
         - 8 死锁: 核心知识/os/III_process_sync/8_deadlocks.md
       - Part.4 内存管理:
         - 9 主存: 核心知识/os/IV_memory_management/9_main_memory.md
-        # - 10 虚拟内存
+        - 10 虚拟内存: 核心知识/os/IV_memory_management/10_virtual_memory.md
       # - Part.5 存储管理:
       # - Part.6 文件系统:
     - 数学、数据结构和算法: 
