@@ -1,0 +1,1 @@
+没啥意思。。不太想写。。<br />问了个问题也没人理我。。不过我的问题确实有点脑瘫，要不就是沟通技巧没学好 [https://stackoverflow.com/questions/66649307/why-five-word-sequences-in-google-search-engine](https://stackoverflow.com/questions/66649307/why-five-word-sequences-in-google-search-engine)
