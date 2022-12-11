@@ -39,8 +39,13 @@ nav:
       - Part.4 内存管理:
         - 9 主存: 核心知识/os/IV_memory_management/9_main_memory.md
         - 10 虚拟内存: 核心知识/os/IV_memory_management/10_virtual_memory.md
-      # - Part.5 存储管理:
-      # - Part.6 文件系统:
+      - Part.5 存储管理:
+        - 11 大容量存储: 核心知识/os/V_storage_management/11_mass_storage.md
+        - 12 IO 系统: 核心知识/os/V_storage_management/12_io_systems.md
+      - Part.6 文件系统:
+        - 13 文件系统: 核心知识/os/VI_file_system/13_fs_interface.md
+        - 14 文件系统实现: 核心知识/os/VI_file_system/14_fs_impl.md
+      - 15 复习与题目选讲: 核心知识/os/15_review.md
     - 数学、数据结构和算法: 
       - 数学和算法/index.md
   - 安全: 安全/index.md
