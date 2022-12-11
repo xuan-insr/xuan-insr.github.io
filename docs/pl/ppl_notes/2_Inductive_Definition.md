@@ -1,6 +1,6 @@
-## 2 Inductive Definition | 归纳定义
+# 2 Inductive Definition | 归纳定义
 
-### 2.1 Judgments | 判断
+## 2.1 Judgments | 判断
 
 **判断 (judgment)** 是关于某种类别的一棵或者多棵 ABT 的陈述，表明一棵或多棵 ABT 有某种性质或者彼此之间有某种联系。
 
@@ -17,7 +17,7 @@
 
 我们将判断「ABT $a$ 具有 $J$ 性质」记为 $a\ J$ 或者 $J\ a$；相应地，我们也可以将判断形式 $J$ 记为 $-\ J$ 或者 $J\ -$，其中 $-$ 代表 $J$ 缺少的参数，从而强调判断的主语。
 
-### 2.2 Rules | 规则
+## 2.2 Rules | 规则
 
 **规则 (rule)** 规定一个 judgment 有效的充要条件。因而完全决定了这个 judgment 的含义。
 
@@ -60,7 +60,7 @@
 在下面两节中，我们将讨论「推导」和「规则归纳」的细节。
 
 
-### 2.3 Derivations | 推导
+## 2.3 Derivations | 推导
 
 一个 judgment 的推导过程是规则的有限组合，从公理开始，以判断结束。
 
@@ -74,7 +74,7 @@ $$\cfrac{\cfrac{\cfrac{}{\text{empty tree}}\quad \cfrac{}{\text{empty tree}}}{\t
 
 从结论开始的推导称为 **反向链接 (backwarding chainning)** 或 **自顶向下构造 (top-down construction)**。它维护一个队列，这个队列刚开始只有目标判断，每次从队头取出一条判断，并将其所有前提加入队列。当队列为空时，说明我们已经达到了所有目标。但同样的，反向链接也没有通用的算法来判定当前目标是否可推导。
 
-### 2.4 Rule Induction | 规则归纳
+## 2.4 Rule Induction | 规则归纳
 
 我们说，「**一组规则被看作能够定义封闭于这些规则的最强判断形式**」。也就是说，如果给定一组规则，它定义的「封闭于这些规则的最强判断形式」是 $J$；而我们证明了另一个判断形式 $P$ 也封闭于这些规则，那么由于 $J$ 是封闭于这些规则的判断形式中最强的，那么就可以证明「只要 $a\ J$ 可推导，那么 $a\ P$ 成立」。这就是 **规则归纳 (rule induction)** 的原理。
 
@@ -136,7 +136,7 @@ $$\cfrac{\cfrac{\cfrac{}{\text{empty tree}}\quad \cfrac{}{\text{empty tree}}}{\t
 
     证明与 **引理 2.2** 类似，暂略。
 
-### 2.5 Iterated and Simultaneous Inductive Definitions | 迭代和联立归纳定义
+## 2.5 Iterated and Simultaneous Inductive Definitions | 迭代和联立归纳定义
 
 之前展示的归纳定义都是 **迭代的 (iterated)**，即一个归纳定义建立在另一个归纳定义之上；而一个 **联立归纳定义 (simultaneous inductive definitions)** 由一个规则集组成，这些规则能导出多个不同判断形式的实例。
 
@@ -155,7 +155,7 @@ $$\cfrac{\cfrac{\cfrac{}{\text{empty tree}}\quad \cfrac{}{\text{empty tree}}}{\t
 2. $\forall b,\ Q(b)\to P(\text{succ}(b))$
 3. $\forall a,\ P(a)\to Q(\text{succ}(a))$
 
-### 2.6 Defining Functions by Rules | 用规则定义函数
+## 2.6 Defining Functions by Rules | 用规则定义函数
 
 例如，我们可以定义自然数的加法函数 $\text{sum}(a; b; c)$，表示 $c$ 是 $a$ 与 $b$ 的和：
 

@@ -1,11 +1,11 @@
-## 1 Abstract Syntax | 抽象语法
+# 1 Abstract Syntax | 抽象语法
 
 语法 (syntax) 规定了如何将各种 phrases(expr, commands / statements, decl, etc.) 组合成程序。
 
 - 表层语法树 / 具体语法树 (surface syntax tree / concrete syntax tree): 表示 parse 出的结果，和语法规则对应；
 - 抽象语法树 / 结构语法树 (abstract syntax tree / structural syntax tree): 排除了一些无用的组分，例如 factor, term 之类的内容；这些内容只为了 parse 的正常执行，但是对 semantic 帮助不大。
 
-### 1.1 Abstract Syntax Tree, AST | 抽象语法树
+## 1.1 Abstract Syntax Tree, AST | 抽象语法树
 
 抽象语法树是一棵有序树，其叶子结点为 **变量 (variable)** 或者没有 **参数 (argument)** 的 **运算符(operator)**，其内部节点是 operators。
 
@@ -73,7 +73,7 @@ Variables 用 $x$ 来表示；sort $s$ 上的变量集合记为 $X_s$；sort 集
     - 如果 $a = y \neq x$，那么根据定义有 $c = y$；
     - 如果 $a = o(a_1; \dots; a_n)$，根据归纳假设，有唯一的 $c_1, \dots, c_n$ 满足 $c_1 = [b / x]a_1, \dots, c_n = [b / x]a_n$，因此 $c = o(c_1; \dots; c_n)$。
 
-### 1.2 Abstract Binding Tree, ABT | 抽象绑定树
+## 1.2 Abstract Binding Tree, ABT | 抽象绑定树
 
 > 『如果你去网上搜，你可以发现除了这本书以外没有人说 ABT 这个概念。』
 
