@@ -26,6 +26,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://xuan-insr.github.io/math_ds_algo/</loc>
+         <lastmod>2022-12-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xuan-insr.github.io/math_ds_algo/getting_started/</loc>
+         <lastmod>2022-12-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://xuan-insr.github.io/pl/</loc>
          <lastmod>2022-12-11</lastmod>
          <changefreq>daily</changefreq>
@@ -82,11 +92,6 @@
     </url>
     <url>
          <loc>https://xuan-insr.github.io/%E5%AE%89%E5%85%A8/</loc>
-         <lastmod>2022-12-11</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://xuan-insr.github.io/%E6%95%B0%E5%AD%A6%E5%92%8C%E7%AE%97%E6%B3%95/</loc>
          <lastmod>2022-12-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
