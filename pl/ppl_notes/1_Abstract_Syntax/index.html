@@ -695,6 +695,8 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           1 抽象语法
@@ -711,6 +713,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -719,29 +723,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-abstract-syntax--抽象语法" class="md-nav__link">
-    1 Abstract Syntax | 抽象语法
-  </a>
-  
-    <nav class="md-nav" aria-label="1 Abstract Syntax | 抽象语法">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#11-abstract-syntax-tree-ast--抽象语法树" class="md-nav__link">
     1.1 Abstract Syntax Tree, AST | 抽象语法树
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#12-abstract-binding-tree-abt--抽象绑定树" class="md-nav__link">
     1.2 Abstract Binding Tree, ABT | 抽象绑定树
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1737,6 +1728,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1745,29 +1738,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-abstract-syntax--抽象语法" class="md-nav__link">
-    1 Abstract Syntax | 抽象语法
-  </a>
-  
-    <nav class="md-nav" aria-label="1 Abstract Syntax | 抽象语法">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#11-abstract-syntax-tree-ast--抽象语法树" class="md-nav__link">
     1.1 Abstract Syntax Tree, AST | 抽象语法树
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#12-abstract-binding-tree-abt--抽象绑定树" class="md-nav__link">
     1.2 Abstract Binding Tree, ABT | 抽象绑定树
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1786,15 +1766,13 @@
                   
 
 
-  <h1>1 抽象语法</h1>
-
-<h2 id="1-abstract-syntax--抽象语法">1 Abstract Syntax | 抽象语法<a class="headerlink" href="#1-abstract-syntax--抽象语法" title="Permanent link">&para;</a></h2>
+<h1 id="1-abstract-syntax--抽象语法">1 Abstract Syntax | 抽象语法<a class="headerlink" href="#1-abstract-syntax--抽象语法" title="Permanent link">&para;</a></h1>
 <p>语法 (syntax) 规定了如何将各种 phrases(expr, commands / statements, decl, etc.) 组合成程序。</p>
 <ul>
 <li>表层语法树 / 具体语法树 (surface syntax tree / concrete syntax tree): 表示 parse 出的结果，和语法规则对应；</li>
 <li>抽象语法树 / 结构语法树 (abstract syntax tree / structural syntax tree): 排除了一些无用的组分，例如 factor, term 之类的内容；这些内容只为了 parse 的正常执行，但是对 semantic 帮助不大。</li>
 </ul>
-<h3 id="11-abstract-syntax-tree-ast--抽象语法树">1.1 Abstract Syntax Tree, AST | 抽象语法树<a class="headerlink" href="#11-abstract-syntax-tree-ast--抽象语法树" title="Permanent link">&para;</a></h3>
+<h2 id="11-abstract-syntax-tree-ast--抽象语法树">1.1 Abstract Syntax Tree, AST | 抽象语法树<a class="headerlink" href="#11-abstract-syntax-tree-ast--抽象语法树" title="Permanent link">&para;</a></h2>
 <p>抽象语法树是一棵有序树，其叶子结点为 <strong>变量 (variable)</strong> 或者没有 <strong>参数 (argument)</strong> 的 <strong>运算符(operator)</strong>，其内部节点是 operators。</p>
 <details class="note" open="open">
 <summary>Note</summary>
@@ -1861,7 +1839,7 @@
 <li>如果 <span class="arithmatex">\(a = o(a_1; \dots; a_n)\)</span>，根据归纳假设，有唯一的 <span class="arithmatex">\(c_1, \dots, c_n\)</span> 满足 <span class="arithmatex">\(c_1 = [b / x]a_1, \dots, c_n = [b / x]a_n\)</span>，因此 <span class="arithmatex">\(c = o(c_1; \dots; c_n)\)</span>。</li>
 </ul>
 </details>
-<h3 id="12-abstract-binding-tree-abt--抽象绑定树">1.2 Abstract Binding Tree, ABT | 抽象绑定树<a class="headerlink" href="#12-abstract-binding-tree-abt--抽象绑定树" title="Permanent link">&para;</a></h3>
+<h2 id="12-abstract-binding-tree-abt--抽象绑定树">1.2 Abstract Binding Tree, ABT | 抽象绑定树<a class="headerlink" href="#12-abstract-binding-tree-abt--抽象绑定树" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>『如果你去网上搜，你可以发现除了这本书以外没有人说 ABT 这个概念。』</p>
 </blockquote>
@@ -1910,7 +1888,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-04T15:13:28+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-04</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-11T09:00:15+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-11</span>
       
         <br>
         创建日期:
