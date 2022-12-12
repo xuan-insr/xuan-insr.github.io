@@ -15,7 +15,7 @@
     
     
       
-        <title>12 IO 系统 - 咸鱼暄的代码空间</title>
+        <title>12 I/O 系统 - 咸鱼暄的代码空间</title>
       
     
     
@@ -85,6 +85,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#12-io-systems" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -113,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              12 IO 系统
+              12 I/O 系统
             
           </span>
         </div>
@@ -1301,10 +1306,50 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          12 I/O 系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        12 IO 系统
+        12 I/O 系统
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#121-io-方式" class="md-nav__link">
+    12.1 I/O 方式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#122-application-io-interface--应用程序-io-接口" class="md-nav__link">
+    12.2 Application I/O Interface | 应用程序 I/O 接口
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1683,6 +1728,30 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#121-io-方式" class="md-nav__link">
+    12.1 I/O 方式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#122-application-io-interface--应用程序-io-接口" class="md-nav__link">
+    12.2 Application I/O Interface | 应用程序 I/O 接口
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1697,16 +1766,47 @@
                   
 
 
-  <h1>12 IO 系统</h1>
-
-
+<h1 id="12-io-systems">12 I/O Systems<a class="headerlink" href="#12-io-systems" title="Permanent link">&para;</a></h1>
+<p><center><img alt="" src="../2022-12-12-21-45-27.png" width="400" /></center></p>
+<h2 id="121-io-方式">12.1 I/O 方式<a class="headerlink" href="#121-io-方式" title="Permanent link">&para;</a></h2>
+<p>I/O 实现的一种方案是 <strong>轮询 (polling)</strong>：当 PC 需要和某个 I/O 设备交互时，它查询该设备对应的 I/O 控制器 (controller) 中状态寄存器的相关位，当该位表示事件（如写入或读取）可以进行时 PC 进行相关操作并通过状态寄存器通知控制器。</p>
+<p>另外，<strong>中断</strong> 是更高效和常用的 I/O 手段，它通过在 interrupt-request line 上发出信号来通知 CPU 响应设备的 I/O 事件。</p>
+<p>对于需要大量传输的设备，上面两种操作会过多占用 CPU 资源，因此很多计算机提出了 <strong>直接内存访问 (DMA, Direct Memory Access)</strong>。这一技术将相关的 I/O 任务交给一个专用的处理器（DMA 控制器）来完成，设备直接与内存交互。</p>
+<p>有的计算机架构的 DMA 采用物理地址，也有采用虚拟地址的技术，称为 <strong>DVMA, Direct Virtual-Memory Access)</strong>。</p>
+<h2 id="122-application-io-interface--应用程序-io-接口">12.2 Application I/O Interface | 应用程序 I/O 接口<a class="headerlink" href="#122-application-io-interface--应用程序-io-接口" title="Permanent link">&para;</a></h2>
+<p>I/O 系统相关的系统调用将不同的 I/O 设备的工作方式封装到一些类中，从而形成较少的通用类型，从而为应用程序隐藏硬件的具体差异。</p>
+<ul>
+<li>Data transfer mode<ul>
+<li>character：逐个字节传输（如 terminal）</li>
+<li>block：以块为单位传输（如 disk）</li>
+</ul>
+</li>
+<li>Access method<ul>
+<li>sequential（如 modem）</li>
+<li>random（如 CD-ROM）</li>
+</ul>
+</li>
+<li>Transfer method<ul>
+<li>synchronous：需要按预计的响应时间进行传输并和系统的其他方面相协调（如 keyboard）</li>
+<li>asynchronous：响应时间不需要规则或者可预测，不需要与其他计算机事件协调（如网络 I/O）</li>
+</ul>
+</li>
+<li>Sharing<ul>
+<li>sharable：可以被多个进程或线程并发使用（如 keyboard）</li>
+<li>dedicated：不能（如 tape）</li>
+</ul>
+</li>
+<li>Device speed</li>
+<li>I/O direction：R- (CD-ROM) / -W (graphics controller) / RW (disk)</li>
+</ul>
+<p>同时，大多操作系统也支持应用程序透明地向一个设备驱动器传输任意数据。在 UNIX 中，<code>ioctl()</code> 系统调用实现这一功能。这一系统调用通过 <strong>文件描述符 (file descriptor)</strong> 来确定一个设备，因为 UNIX 中设备可以通过文件的方式访问。</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-11T05:34:16+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-11</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-12T14:17:31+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-12</span>
       
         <br>
         创建日期:
