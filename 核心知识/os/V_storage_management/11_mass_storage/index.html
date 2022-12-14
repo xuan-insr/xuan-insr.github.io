@@ -2083,7 +2083,8 @@ Advantage:</p>
 <p>一个新的磁盘是一个空白盘，它需要经过 <strong>低级格式化 (low-level formatting, a.k.a 物理格式化, physical formatting)</strong> 来分成扇区以便磁盘控制器读写。</p>
 <p>这一过程中，每个扇区都会放一些特殊的数据供磁盘控制器使用，例如 header information, ECC (Error-Correcting Code) 等。</p>
 <p>接下来，操作系统会在磁盘上记录一些自己的数据结构，例如将磁盘分为若干个 <strong>分区 (partition)</strong>，每个分区由若干个 cylinders 组成，每个被视为一个 logical disk。</p>
-<p>然后，操作系统将初始的文件系统数据结构存储到磁盘上，以创建一个文件系统。这一步称为 <strong>逻辑格式化 (logical formatting)</strong>。例如，一些文件系统可能预留出一些 blocks 用来 handle bad blocks；一些文件系统也可能将若干 blocks 聚合成一个 cluster，让磁盘 IO 以 block 为单位完成，文件系统 IO 以 cluster 为单位完成，以减少 random access 从而提高表现。</p>
+<p>然后，操作系统将初始的文件系统数据结构存储到磁盘上，以创建一个文件系统。这一步称为 <strong>逻辑格式化 (logical formatting)</strong>。例如，一些文件系统可能预留出一些 blocks 用来 handle bad blocks；一些文件系统也可能将若干 blocks 聚合成一个 cluster，让磁盘 I/O 以 block 为单位完成，文件系统 I/O 以 cluster 为单位完成，以减少 random access 从而提高表现。</p>
+<p>包含文件系统的分区通常称为 <strong>卷 (volume)</strong>。</p>
 <h3 id="boot-block">Boot Block<a class="headerlink" href="#boot-block" title="Permanent link">&para;</a></h3>
 <p>在刚打开电源或者重启时，计算机需要有一个初始程序来运行；这个程序称为 <strong>自举 (bootstrap)</strong> 程序。这个程序初始化系统的各个部分，例如 CPU 寄存器、设备控制器、内存，然后在磁盘上找到操作系统内核，加载到内存，转到起始地址从而运行操作系统。</p>
 <p>对于大多数计算机，bootstrap 程序存在 <strong>ROM (Read-Only Memory)</strong> 中，因为它不需要初始化而且处于固定位置。ROM 是只读的，因此不会受到病毒的影响。</p>
@@ -2096,7 +2097,7 @@ Advantage:</p>
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-12T14:17:31+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-12</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-14T18:31:00+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-14</span>
       
         <br>
         创建日期:

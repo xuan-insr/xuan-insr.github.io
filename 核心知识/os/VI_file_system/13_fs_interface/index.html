@@ -85,6 +85,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#13-file-system-interface--文件系统接口" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1354,10 +1359,166 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          13 文件系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         13 文件系统
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#131-files--文件" class="md-nav__link">
+    13.1 Files | 文件
+  </a>
+  
+    <nav class="md-nav" aria-label="13.1 Files | 文件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1311-文件属性" class="md-nav__link">
+    13.1.1 文件属性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1312-文件操作" class="md-nav__link">
+    13.1.2 文件操作
+  </a>
+  
+    <nav class="md-nav" aria-label="13.1.2 文件操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#文件打开" class="md-nav__link">
+    文件打开
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#文件锁" class="md-nav__link">
+    文件锁
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1313-文件类型" class="md-nav__link">
+    13.1.3 文件类型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1314-文件结构" class="md-nav__link">
+    13.1.4 文件结构
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#132-access-methods--访问方式" class="md-nav__link">
+    13.2 Access Methods | 访问方式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#133-directory-structure--目录结构" class="md-nav__link">
+    13.3 Directory Structure | 目录结构
+  </a>
+  
+    <nav class="md-nav" aria-label="13.3 Directory Structure | 目录结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1331-单级目录" class="md-nav__link">
+    13.3.1 单级目录
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1332-两级目录" class="md-nav__link">
+    13.3.2 两级目录
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1333-树形目录" class="md-nav__link">
+    13.3.3 树形目录
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1334-无环图目录" class="md-nav__link">
+    13.3.4 无环图目录
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1335-通用图目录" class="md-nav__link">
+    13.3.5 通用图目录
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#134-fs-mounting--文件系统挂载" class="md-nav__link">
+    13.4 FS Mounting | 文件系统挂载
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#135-protection" class="md-nav__link">
+    13.5 Protection
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1683,6 +1844,146 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#131-files--文件" class="md-nav__link">
+    13.1 Files | 文件
+  </a>
+  
+    <nav class="md-nav" aria-label="13.1 Files | 文件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1311-文件属性" class="md-nav__link">
+    13.1.1 文件属性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1312-文件操作" class="md-nav__link">
+    13.1.2 文件操作
+  </a>
+  
+    <nav class="md-nav" aria-label="13.1.2 文件操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#文件打开" class="md-nav__link">
+    文件打开
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#文件锁" class="md-nav__link">
+    文件锁
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1313-文件类型" class="md-nav__link">
+    13.1.3 文件类型
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1314-文件结构" class="md-nav__link">
+    13.1.4 文件结构
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#132-access-methods--访问方式" class="md-nav__link">
+    13.2 Access Methods | 访问方式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#133-directory-structure--目录结构" class="md-nav__link">
+    13.3 Directory Structure | 目录结构
+  </a>
+  
+    <nav class="md-nav" aria-label="13.3 Directory Structure | 目录结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1331-单级目录" class="md-nav__link">
+    13.3.1 单级目录
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1332-两级目录" class="md-nav__link">
+    13.3.2 两级目录
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1333-树形目录" class="md-nav__link">
+    13.3.3 树形目录
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1334-无环图目录" class="md-nav__link">
+    13.3.4 无环图目录
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1335-通用图目录" class="md-nav__link">
+    13.3.5 通用图目录
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#134-fs-mounting--文件系统挂载" class="md-nav__link">
+    13.4 FS Mounting | 文件系统挂载
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#135-protection" class="md-nav__link">
+    13.5 Protection
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1697,16 +1998,121 @@
                   
 
 
-  <h1>13 文件系统</h1>
-
-
+<h1 id="13-file-system-interface--文件系统接口">13 File System Interface | 文件系统接口<a class="headerlink" href="#13-file-system-interface--文件系统接口" title="Permanent link">&para;</a></h1>
+<p>在 V 存储管理 中，我们讨论了大容量存储和 I/O；这一部分中，我们讨论如何使用这些存储。</p>
+<p>在本章中，我们主要讨论文件系统提供的功能；在下一章中，我们具体讨论文件系统的实现。</p>
+<p><strong>文件系统 (file system)</strong> 提供了 disk 的抽象，给用户提供存储的逻辑视图。文件系统由两个部分组成：<strong>文件 (file)</strong> 的集合，每个文件存储一些数据，是存储的逻辑单位；以及 <strong>目录结构 (directory structure)</strong>，用于组织系统内的文件并提供相关信息，例如提供权限信息以实现一些保护。</p>
+<h2 id="131-files--文件">13.1 Files | 文件<a class="headerlink" href="#131-files--文件" title="Permanent link">&para;</a></h2>
+<p>文件由操作系统映射到物理存储设备上；在 Unix 中就是一块连续的字节。由于前述存储设备通常是非易失性的，因此文件内容在断电后也能保持。</p>
+<p>文件是用户和程序用来存储和获取信息的途径。从用户角度来看，文件是逻辑外存的最小分配单元；也就是说，数据只有通过文件才能写到外存。</p>
+<p>文件有不同的类型，例如数据文件、可执行文件等。数据文件又可能是 numeric, alphabetic, alphanumeric, binary 的。</p>
+<h3 id="1311-文件属性">13.1.1 文件属性<a class="headerlink" href="#1311-文件属性" title="Permanent link">&para;</a></h3>
+<p>不同的操作系统可能会保存不同的文件属性 (attributes)，但是通常包括：</p>
+<ul>
+<li><strong>Name</strong>。这是唯一的以 human-readable 形式保存的信息。</li>
+<li><strong>Identifier</strong>。一个在当前文件系统中唯一的 tag（通常为 number），文件系统用它来标识文件。</li>
+<li><strong>Type</strong>。一些文件系统支持不同的文件类型。</li>
+<li><strong>Location</strong>。标识文件在哪个设备的哪个位置。</li>
+<li><strong>Size</strong>。当前文件大小，也可能包含文件允许的最大大小。</li>
+<li><strong>Protection</strong>。Access-control information。</li>
+<li><strong>Timestamp</strong>。保存创建时间、上次修改时间、上次使用时间等。</li>
+<li><strong>User indentification</strong>。创建者、上次修改者、上次访问者等。</li>
+</ul>
+<p>一些文件系统还支持 <strong>extended file attribute</strong>，例如 file checksum。</p>
+<p>这些信息是前述 目录结构 (directory structure) 的一部分。</p>
+<h3 id="1312-文件操作">13.1.2 文件操作<a class="headerlink" href="#1312-文件操作" title="Permanent link">&para;</a></h3>
+<p>操作系统可以提供相关的系统调用来完成一些基本的文件操作，例如：</p>
+<ul>
+<li><strong>Create</strong>。在 FS 中为文件找到空间，然后在 directory 中创建条目。</li>
+<li><strong>Read / Write</strong>。维护一个 <strong>current-file-position pointer</strong> 表示当前读写的位置，在对应位置上做读写操作（从磁盘读到内存或者相反）。</li>
+<li><strong>Repositioning within a file (a.k.a. Seek)</strong>。将 current-file-position pointer 的位置重新定位到给定值，例如文件开头或结尾。</li>
+<li><strong>Delete</strong>。在 directory 中找到对应条目，释放文件空间，删除对应条目。</li>
+<li><strong>Truncate</strong>。清空文件内容，但保留文件属性。</li>
+</ul>
+<h4 id="文件打开">文件打开<a class="headerlink" href="#文件打开" title="Permanent link">&para;</a></h4>
+<p><strong>Open</strong>。返回一个 handler 用来执行其他操作。</p>
+<p>可能会把文件放在 <strong>打开文件表 (open-file table)</strong> 中以便索引，直到 <strong>Close</strong>。</p>
+<p>可能允许一个文件被打开多次，因此在打开文件表中可以维护一个 <strong>file-open count</strong>。</p>
+<h4 id="文件锁">文件锁<a class="headerlink" href="#文件锁" title="Permanent link">&para;</a></h4>
+<p>一些 FS 也会提供 <strong>文件锁 (file lock)</strong> 来协调文件访问，例如允许一个进程锁定文件来避免其他文件访问它。</p>
+<p>文件锁类似于第 7 节中讨论的 reader-writer lock。有的 FS 提供两种锁：<strong>共享锁 (shared lock)</strong> 类似于 reader lock，<strong>独占锁 (exclusive lock)</strong> 类似于 writer lock。有的 FS 只提供独占锁。</p>
+<p>同时，文件锁也有两种可能的机制，由操作系统决定。一种是 <strong>强制锁定 (mandatory lock)</strong>，即一旦进程获取了独占锁，操作系统就阻止任何其他进程访问对应文件，即操作系统本身确保了完整性；另一种是 <strong>建议锁定 (advisory lock)</strong>，即进程可以自己得知锁的状态然后决定要不要坚持访问。Windows 使用前者，而 UNIX 使用后者。</p>
+<p>也应当采取措施，来确保不会出现死锁。</p>
+<h3 id="1313-文件类型">13.1.3 文件类型<a class="headerlink" href="#1313-文件类型" title="Permanent link">&para;</a></h3>
+<p>文件有不同的类型。操作系统可以选择是否需要识别不同的文件类型。</p>
+<p>识别不同文件类型的方式之一是 <strong>文件扩展名 (file extension)</strong>；例如规定只有扩展名是 <code>.com</code>, <code>.exe</code>, <code>.sh</code> 的文件才能执行。</p>
+<p>另外，也可以通过在文件开始部分放一些 magic number 来表明文件类型；但是由于不是所有文件都有 magic number，因此系统不能只基于这种方式判断文件的类型。</p>
+<p>也可以采用的一种方式是，操作系统不试图识别文件的类型；当用户尝试运行一个文本文件，或者试图用文本编辑器打开一个二进制文件时，会照常按照预期的编码方式解析；但操作系统以及打开这个文件的应用程序本身的安全设计使得这样的操作不会带来太坏的后果。</p>
+<p>UNIX 允许文件扩展名的提示，但是扩展名主要是帮助用户来确定内容类型；操作系统本身并不强制文件扩展名，也并不依赖这些扩展名。应用程序的开发者可以选择是否忽略文件扩展名。</p>
+<h3 id="1314-文件结构">13.1.4 文件结构<a class="headerlink" href="#1314-文件结构" title="Permanent link">&para;</a></h3>
+<p>文件可以有不同的结构，由操作系统或者用户程序定义。</p>
+<p>最简单的是 <strong>无结构 (no structure)</strong> 文件，它只是 a stream of bytes or words。例如 UNIX operating system defines all files to be simply
+streams of bytes。</p>
+<p>另外也有 <strong>simple record structure</strong> 文件，以 record 为单位，每个 record 可以是定长或者变长的，例如数据库。</p>
+<p>还有 <strong>complex structures</strong> 文件。例如 Microsoft Word 文档。</p>
+<h2 id="132-access-methods--访问方式">13.2 Access Methods | 访问方式<a class="headerlink" href="#132-access-methods--访问方式" title="Permanent link">&para;</a></h2>
+<p>我们讨论有哪些访问文件信息的方式。</p>
+<p>最简单也最常见的访问方式是 <strong>顺序访问 (sequential access)</strong>。就像磁带那样，逐字节或者逐 record 地访问。</p>
+<p>另一种方法是 <strong>直接访问 (direct access)</strong> 或称 <strong>相对访问 (relative access)</strong> 或称 <strong>随机访问 (random access)</strong>。即支持以几乎相同的时间访问任意位置。</p>
+<p>在直接访问的方法之上，还有可能提供索引，即先在索引中得知所需访问的内容在哪里，然后去访问。也有可能使用多层索引表。</p>
+<p>为了防止索引表过大，也可能引入 <strong>索引顺序访问 (Indexed Sequential-Access)</strong>，即像字典那样确定所需访问的内容在哪一块，再在对应块中顺序寻找。</p>
+<h2 id="133-directory-structure--目录结构">13.3 Directory Structure | 目录结构<a class="headerlink" href="#133-directory-structure--目录结构" title="Permanent link">&para;</a></h2>
+<p>如我们之前所说，directory 中包含了文件的很多信息；directory structure 应当实现新建、删除、查找、遍历、列出目录中的文件等基本操作。同时，设计也应当兼顾效率、便于使用、便于按一些属性聚合等要求。</p>
+<h3 id="1331-单级目录">13.3.1 单级目录<a class="headerlink" href="#1331-单级目录" title="Permanent link">&para;</a></h3>
+<p>最简单的目录结构是 <strong>single-level directory</strong>，即将所有文件都包含在同一目录中：</p>
+<p><center><img alt="" src="../2022-12-14-21-33-07.png" width="300" /></center></p>
+<p>这种实现方式的问题是，当文件数量增加时，并没有有效的方法来查找或者给文件分组（例如找出所有的 Java 程序）。</p>
+<p>同时，由于所有文件位于同一目录下，因此它们的名称必须是唯一的。在有多个用户时，这种需求是不太合理的。</p>
+<h3 id="1332-两级目录">13.3.2 两级目录<a class="headerlink" href="#1332-两级目录" title="Permanent link">&para;</a></h3>
+<p><strong>Two-level directory</strong> 为每个用户创建自己的 <strong>用户文件目录 (User File Directory, UFD)</strong>；这些 UFD 聚合成为 <strong>主文件目录 (Master File Directory, MFD)</strong>，当用户登录时，操作系统从 MFD 中找到用户的 UFD。</p>
+<p>这种实现方式一定程度上减少了文件数量多的问题，同时不同用户也可以分别创建同名的文件了。但是分组仍然没有支持。</p>
+<p><center><img alt="" src="../2022-12-14-21-49-05.png" width="300" /></center></p>
+<p>用户 1 访问自己的文件，可以直接通过 <code>test</code> 的方式访问；为了访问其他用户的文件，需要通过 <code>user2/data</code> 的方式访问。这样的实现方法其实是把二级目录视作一棵高度为 2 的树。</p>
+<h3 id="1333-树形目录">13.3.3 树形目录<a class="headerlink" href="#1333-树形目录" title="Permanent link">&para;</a></h3>
+<p><strong>Tree-Structured Directories</strong> 是上面方案的自然推广。在这种实现方案中，目录本身也被放在父目录的一个条目中；每个条目有一个 bit 来表示这个条目表示的是一个文件还是一个子目录。目录也被认为是一种特殊的文件。</p>
+<p><center><img alt="" src="../2022-12-14-21-50-56.png" width="400" /></center></p>
+<p>在正常使用时，每个进程有一个 <strong>当前目录 (current directory)</strong>；当用户指定一个文件名时，就在当前目录中寻找。用户也可以通过系统调用 <code>change_directory()</code> 来更改当前目录。</p>
+<p>如果所需目录不在当前目录，那么用户就必须提供一个 <strong>路径名 (path name)</strong>，表示在这棵树上如何走可以找到所需的文件。路径名分为两种：</p>
+<ul>
+<li><strong>绝对路径名 (absolute path name)</strong>，表示从根开始到指定文件的路径，例如 <code>/bin/count</code>, <code>programs/p/list</code>；</li>
+<li><strong>相对路径名 (relative path name)</strong>，表示从当前目录开始的路径。</li>
+</ul>
+<p>当删除一个目录时，一种设计思路是不允许删除非空的目录；另一种是，删除目录下的所有文件（包括子目录）。</p>
+<h3 id="1334-无环图目录">13.3.4 无环图目录<a class="headerlink" href="#1334-无环图目录" title="Permanent link">&para;</a></h3>
+<p><strong>Acyclic Graph Directories</strong> 在上面的方案的基础上支持了目录共享子目录或者文件：</p>
+<p><center><img alt="" src="../2022-12-14-22-07-18.png" width="300" /></center></p>
+<p>一种实现方式是，引入一个名为 <strong>链接 (link)</strong> 的新的目录条目类型，表示另一个文件或者子目录的指针。在遍历目录树时，操作系统忽略链接以维护系统的无环结构。</p>
+<p>这个指针的实现方式之一是用链接文件来记录指向文件的绝对或相对路径，这种方式称为 <strong>符号链接 (symbolic link)</strong> 或者 <strong>软链接 (soft link)</strong>。当访问这种文件时，操作系统通过该路径名来 resolve 链接，从而定位真实文件。</p>
+<p>这种方式存在的一个问题是，如果删除一个被某个 soft link 所引用的文件，则会留下 <strong>dangling pointer</strong>，即那些 link 现在指向并不存在的文件。UNIX 和 Windows 采用的方式是，当真实文件被删除时，并不试图处理这些 link；用户在试图访问这些 link 时会发现真实文件已经被删除。</p>
+<p>另一种实现方式是复制被引用文件的所有信息，放在当前目录中。由于这里的「信息」中也包含文件存储在外存中的哪个部分，因此事实上这个新的条目和被引用的条目指向的是同一个文件。这种方式称为 <strong>硬链接 (hard link)</strong>。这个链接和原文件本身相同且相等，因此可能没有办法区分它们。这种实现的主要问题是，在修改文件时要维护一致性，即需要在所有包含这个文件的目录中更新对应的信息。</p>
+<p>这种实现给每个文件引入了一个 <strong>引用计数 (reference counter)</strong>；在每个文件被创建一个新的硬链接时，该计数 +1；而删除一个硬链接或原文件本身时，该计数 -1。当计数为 0 时，文件可以删除。</p>
+<p>UNIX 同时支持上述两种链接。为了维护无环图结构，hard link 不允许引用目录，而 soft link 可以。</p>
+<h3 id="1335-通用图目录">13.3.5 通用图目录<a class="headerlink" href="#1335-通用图目录" title="Permanent link">&para;</a></h3>
+<p><strong>General Graph Directory</strong> 允许目录中有环。这会使得遍历图的算法更加复杂，因为需要避免重复遍历一些部分。同时也会给确定何时可以删除某个文件或者目录带来麻烦，因为可能存在的相互引用或者自我引用会使得在没有可能引用一个目录或文件时引用计数也不为 0。</p>
+<p>为了解决这种问题，通常需要使用 <strong>垃圾回收 (garbage collection)</strong> 方案来确定哪些文件可以删除。这是非常费时的。</p>
+<h2 id="134-fs-mounting--文件系统挂载">13.4 FS Mounting | 文件系统挂载<a class="headerlink" href="#134-fs-mounting--文件系统挂载" title="Permanent link">&para;</a></h2>
+<p>Directory Structure 可以构建在多个 volume 上，这些 volume 必须先 <strong>挂载 (mount)</strong> 到文件系统的某个位置，这个位置称为 <strong>挂载点 (mount point)</strong>。</p>
+<p>例如，下面右图展示了左图的 volume 被挂载到 <code>/users</code> 下的结果：</p>
+<p><center><img alt="" src="../2022-12-15-01-58-12.png" width="300" /></center></p>
+<h2 id="135-protection">13.5 Protection<a class="headerlink" href="#135-protection" title="Permanent link">&para;</a></h2>
+<p>文件的所有者或者创建者应该有权限决定哪些用户有权限做哪些事情。</p>
+<p>给每个文件和目录维护一个 <strong>Access Control List (ACL)</strong>，指定每个用户及其允许的访问类型。为了精简 ACL，可以将用户分为不同的类型。</p>
+<p>UNIX 将用户分为了三类（owner, group, others)，并将文件访问也分为了三类 (read, write, execute)：</p>
+<p><center><img alt="" src="../2022-12-15-02-18-03.png" width="300" /></center></p>
+<details class="info">
+<summary>root 的权限</summary>
+<p>当一个文件的 read 或 write bit not set 时，root 用户仍然能够读或写它。</p>
+<p>当一个目录的 execute bit 对于一个用户所在的分类 not set 时，该用户不能进入该目录；但是 root 用户可以。</p>
+<p>但是，如果一个文件对三类用户的 execute bit 均 not set 时，这个文件被认为不是可执行的，因此 root 用户也不能执行这个文件。[^1]</p>
+<p>[^1] <a href="https://unix.stackexchange.com/questions/43263/why-cant-root-execute-when-executable-bits-are-not-set">https://unix.stackexchange.com/questions/43263/why-cant-root-execute-when-executable-bits-are-not-set</a></p>
+</details>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-11T05:34:16+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-11</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-14T18:31:00+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-14</span>
       
         <br>
         创建日期:
