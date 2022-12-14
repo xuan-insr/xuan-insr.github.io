@@ -138,7 +138,9 @@ SSD 没有 seek time 就都可以用 SSTF 了。
 
 接下来，操作系统会在磁盘上记录一些自己的数据结构，例如将磁盘分为若干个 **分区 (partition)**，每个分区由若干个 cylinders 组成，每个被视为一个 logical disk。
 
-然后，操作系统将初始的文件系统数据结构存储到磁盘上，以创建一个文件系统。这一步称为 **逻辑格式化 (logical formatting)**。例如，一些文件系统可能预留出一些 blocks 用来 handle bad blocks；一些文件系统也可能将若干 blocks 聚合成一个 cluster，让磁盘 IO 以 block 为单位完成，文件系统 IO 以 cluster 为单位完成，以减少 random access 从而提高表现。
+然后，操作系统将初始的文件系统数据结构存储到磁盘上，以创建一个文件系统。这一步称为 **逻辑格式化 (logical formatting)**。例如，一些文件系统可能预留出一些 blocks 用来 handle bad blocks；一些文件系统也可能将若干 blocks 聚合成一个 cluster，让磁盘 I/O 以 block 为单位完成，文件系统 I/O 以 cluster 为单位完成，以减少 random access 从而提高表现。
+
+包含文件系统的分区通常称为 **卷 (volume)**。
 
 ### Boot Block
 

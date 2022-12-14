@@ -6,6 +6,7 @@
     <center>正在从 [语雀](https://www.yuque.com/xianyuxuan/coding) 逐步迁移！内容还非常不完整——</center>
 
 !!! success "朋友们！"
+    - [鹤翔万里的笔记本！](https://note.tonycrane.cc/) （这个好厉害！）
     - [旭宝的博客！](https://zicx.top/home/)
     - [修勾的全新笔记本——](https://note.isshikih.top/link/)
     - [搜拉宅！](https://wjn233.fun/)
