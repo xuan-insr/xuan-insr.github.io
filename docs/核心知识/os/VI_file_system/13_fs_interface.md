@@ -151,6 +151,18 @@ streams of bytes。
 
 UNIX 同时支持上述两种链接。为了维护无环图结构，hard link 不允许引用目录，而 soft link 可以。
 
+!!! info "Hard link & soft link"
+    Hard link 是一个 directory entry，而 soft link 是一个 file。
+
+    Hard link 不能引用 directory，因为这会带来很多问题[^1]，但是 soft link 可以。
+
+    !!! info ""
+        一个例外是，每个目录中的 file name `.` 是指向自己的 hard link，而 `..` 是指向父目录的 hard link。
+
+    Hard link 不能跨越 file-system boundaries，但是 soft link 可以。这是因为，在多个 file-system 之间，FCB 的标识号不再一定是唯一的。
+
+    [^1]: https://askubuntu.com/a/525129/1639684
+
 ### 13.3.5 通用图目录
 
 **General Graph Directory** 允许目录中有环。这会使得遍历图的算法更加复杂，因为需要避免重复遍历一些部分。同时也会给确定何时可以删除某个文件或者目录带来麻烦，因为可能存在的相互引用或者自我引用会使得在没有可能引用一个目录或文件时引用计数也不为 0。
@@ -180,6 +192,6 @@ UNIX 将用户分为了三类（owner, group, others)，并将文件访问也分
 
     当一个目录的 execute bit 对于一个用户所在的分类 not set 时，该用户不能进入该目录；但是 root 用户可以。
 
-    但是，如果一个文件对三类用户的 execute bit 均 not set 时，这个文件被认为不是可执行的，因此 root 用户也不能执行这个文件。[^1]
+    但是，如果一个文件对三类用户的 execute bit 均 not set 时，这个文件被认为不是可执行的，因此 root 用户也不能执行这个文件。[^2]
 
-    [^1] https://unix.stackexchange.com/questions/43263/why-cant-root-execute-when-executable-bits-are-not-set
+    [^2]: https://unix.stackexchange.com/questions/43263/why-cant-root-execute-when-executable-bits-are-not-set
