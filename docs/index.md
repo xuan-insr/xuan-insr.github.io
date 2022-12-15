@@ -1,3 +1,7 @@
+---
+statistics: true
+---
+
 # 咸鱼暄的代码空间！
 
 !!! Warning "施工中！"
@@ -13,5 +17,10 @@
     - [Frank!](https://frankgu.top/)
     - [小角龙！](https://zhang-each.github.io/)
     - [娃娃机！](https://lhmd.github.io/)
+
+!!! info "统计！"
+    页面数：{{pages}}  
+    总字数：{{words}}
+
 
 <center><img src="index.assets/image.png" alt="image" style="zoom: 67%;" /></center>
