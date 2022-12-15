@@ -2087,6 +2087,15 @@ streams of bytes。</p>
 <p>另一种实现方式是复制被引用文件的所有信息，放在当前目录中。由于这里的「信息」中也包含文件存储在外存中的哪个部分，因此事实上这个新的条目和被引用的条目指向的是同一个文件。这种方式称为 <strong>硬链接 (hard link)</strong>。这个链接和原文件本身相同且相等，因此可能没有办法区分它们。这种实现的主要问题是，在修改文件时要维护一致性，即需要在所有包含这个文件的目录中更新对应的信息。</p>
 <p>这种实现给每个文件引入了一个 <strong>引用计数 (reference counter)</strong>；在每个文件被创建一个新的硬链接时，该计数 +1；而删除一个硬链接或原文件本身时，该计数 -1。当计数为 0 时，文件可以删除。</p>
 <p>UNIX 同时支持上述两种链接。为了维护无环图结构，hard link 不允许引用目录，而 soft link 可以。</p>
+<div class="admonition info">
+<p class="admonition-title">Hard link &amp; soft link</p>
+<p>Hard link 是一个 directory entry，而 soft link 是一个 file。</p>
+<p>Hard link 不能引用 directory，因为这会带来很多问题<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>，但是 soft link 可以。</p>
+<div class="admonition info">
+<p>一个例外是，每个目录中的 file name <code>.</code> 是指向自己的 hard link，而 <code>..</code> 是指向父目录的 hard link。</p>
+</div>
+<p>Hard link 不能跨越 file-system boundaries，但是 soft link 可以。这是因为，在多个 file-system 之间，FCB 的标识号不再一定是唯一的。</p>
+</div>
 <h3 id="1335-通用图目录">13.3.5 通用图目录<a class="headerlink" href="#1335-通用图目录" title="Permanent link">&para;</a></h3>
 <p><strong>General Graph Directory</strong> 允许目录中有环。这会使得遍历图的算法更加复杂，因为需要避免重复遍历一些部分。同时也会给确定何时可以删除某个文件或者目录带来麻烦，因为可能存在的相互引用或者自我引用会使得在没有可能引用一个目录或文件时引用计数也不为 0。</p>
 <p>为了解决这种问题，通常需要使用 <strong>垃圾回收 (garbage collection)</strong> 方案来确定哪些文件可以删除。这是非常费时的。</p>
@@ -2103,16 +2112,26 @@ streams of bytes。</p>
 <summary>root 的权限</summary>
 <p>当一个文件的 read 或 write bit not set 时，root 用户仍然能够读或写它。</p>
 <p>当一个目录的 execute bit 对于一个用户所在的分类 not set 时，该用户不能进入该目录；但是 root 用户可以。</p>
-<p>但是，如果一个文件对三类用户的 execute bit 均 not set 时，这个文件被认为不是可执行的，因此 root 用户也不能执行这个文件。[^1]</p>
-<p>[^1] <a href="https://unix.stackexchange.com/questions/43263/why-cant-root-execute-when-executable-bits-are-not-set">https://unix.stackexchange.com/questions/43263/why-cant-root-execute-when-executable-bits-are-not-set</a></p>
+<p>但是，如果一个文件对三类用户的 execute bit 均 not set 时，这个文件被认为不是可执行的，因此 root 用户也不能执行这个文件。<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
 </details>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://askubuntu.com/a/525129/1639684">https://askubuntu.com/a/525129/1639684</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://unix.stackexchange.com/questions/43263/why-cant-root-execute-when-executable-bits-are-not-set">https://unix.stackexchange.com/questions/43263/why-cant-root-execute-when-executable-bits-are-not-set</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-14T18:31:00+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-14</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-15T15:24:45+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-15</span>
       
         <br>
         创建日期:
