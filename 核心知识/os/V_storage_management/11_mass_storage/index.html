@@ -1990,11 +1990,11 @@
 <p>HDD 就是硬盘驱动器。NVM 设备根据定义是断电后存储的数据还能保持的设备，按定义来说硬盘也是 NVM，但是课本里的 NVM 主要指的是 electrical 的而非 mechanical 的；因此课本里 NVM 并不包含 HDD。</p>
 <h3 id="hdds">HDDs<a class="headerlink" href="#hdds" title="Permanent link">&para;</a></h3>
 <p>HDD 的结构相对简单。</p>
-<p><center><img alt="image.png" src="../../../assets/1610818263655-7b382fd9-b22a-4bec-ae9a-12e68f238748.png" width="300" /></center></p>
+<p><center><img alt="image.png" src="../../../../assets/1610818263655-7b382fd9-b22a-4bec-ae9a-12e68f238748.png" width="300" /></center></p>
 <p>如上图，每个 disk platter（盘片）长得像 CD，直径一般 1.8~3.5 inches。Disk platter 的两面附着有磁性材料，我们通过磁性记录在其上保存信息，并通过检测其上的磁性模式来读取信息。</p>
 <p>每个 platter 附近有一个 read-write head，read-write head 附着在 disk arm 上，arm 会使所有 head 形成整体共同移动。</p>
 <p>Platter 表面被分成了很多环形 track（磁道），再细分为 sector（扇区）。在一个 arm position 下的 track 组成一个 cylinder（柱面）。</p>
-<p><center><img alt="image.png" src="../../../assets/1610819081925-65262149-6877-41ee-ad2e-f327aee33ca6.png" width="300" /></center></p>
+<p><center><img alt="image.png" src="../../../../assets/1610819081925-65262149-6877-41ee-ad2e-f327aee33ca6.png" width="300" /></center></p>
 <p>Sector 被编号，是 logical block address 在 disk drive 上的映射。编号的原则如下：以最外 cylinder 的第一个 track 的第一个 sector 为 0，然后该 track 上的 sector 依次编号，然后是 cylinder 中的其他 track，然后是内部的 cylinder。</p>
 <p>使用磁盘时，电机高速旋转磁盘。参数 <strong>Rotation Per Minute (RPM)</strong> 是每分钟旋转的次数，普通的 HDD 通常为 5400, 7200, 10000, 15000RPM。</p>
 <p><strong>Transfer Rate</strong>：在 HDD 和计算机之间数据流的速率（理论 6Gb/sec，实际 1Gb/sec）</p>
@@ -2031,10 +2031,10 @@
 <li>Does not try to optimize seek time </li>
 <li>May not provide the best possible service</li>
 </ul>
-<p><center><img alt="image.png" src="../../../assets/1610823094099-0279425e-0a8b-4f69-833b-b1dbc142fd61.png" width="300" /></center></p>
+<p><center><img alt="image.png" src="../../../../assets/1610823094099-0279425e-0a8b-4f69-833b-b1dbc142fd61.png" width="300" /></center></p>
 <h3 id="1122-shortest-seek-time-first-sstf">11.2.2 Shortest Seek Time First (SSTF)<a class="headerlink" href="#1122-shortest-seek-time-first-sstf" title="Permanent link">&para;</a></h3>
 <p>类似 SJF，选择离现在 head position 最近的 request。但是 SSTF 不一定最好。
-<center><img alt="image.png" src="../../../assets/1610823400263-fa316129-4c39-45b9-beb9-b52f8addde7e.png" width="300" /></center>
+<center><img alt="image.png" src="../../../../assets/1610823400263-fa316129-4c39-45b9-beb9-b52f8addde7e.png" width="300" /></center>
 Advantages: </p>
 <ul>
 <li>Average Response Time decreases</li>
@@ -2048,7 +2048,7 @@ Advantages: </p>
 </ul>
 <h3 id="1123-scan--elevator-algorithm">11.2.3 SCAN / Elevator algorithm<a class="headerlink" href="#1123-scan--elevator-algorithm" title="Permanent link">&para;</a></h3>
 <p>从一边往另一边走，选择路上的 request 不回头，直到到达另一端反向。
-<center><img alt="image.png" src="../../../assets/1610824004349-94e8fe81-ce9b-4673-8a58-428753d0f35d.png" width="300" /></center>
+<center><img alt="image.png" src="../../../../assets/1610824004349-94e8fe81-ce9b-4673-8a58-428753d0f35d.png" width="300" /></center>
 Advantages: </p>
 <ul>
 <li>Average Response Time</li>
@@ -2061,14 +2061,14 @@ Advantages: </p>
 </ul>
 <h3 id="1124-c-scan">11.2.4 C-SCAN<a class="headerlink" href="#1124-c-scan" title="Permanent link">&para;</a></h3>
 <p>Circular-Scan：到达一端时立刻回到开头。
-<center><img alt="image.png" src="../../../assets/1610824200602-97701733-8ea4-4490-9123-38f7aa42c4e0.png" width="300" /></center>
+<center><img alt="image.png" src="../../../../assets/1610824200602-97701733-8ea4-4490-9123-38f7aa42c4e0.png" width="300" /></center>
 Advantage:</p>
 <ul>
 <li>Provides more uniform wait time compared to SCAN</li>
 </ul>
 <h3 id="1125-look--c-look">11.2.5 LOOK / C-LOOK<a class="headerlink" href="#1125-look--c-look" title="Permanent link">&para;</a></h3>
 <p>在 SCAN / C-SCAN 的基础上，只走到一端最后一个任务（look 是否有请求）而不走到头。
-<center><img alt="image.png" src="../../../assets/1610824434537-3ba07ffe-c147-462f-a2ba-0e9c401eee3b.png" width="300" /></center>
+<center><img alt="image.png" src="../../../../assets/1610824434537-3ba07ffe-c147-462f-a2ba-0e9c401eee3b.png" width="300" /></center>
 Advantage:</p>
 <ul>
 <li>Prevents the extra delay which occurred due to unnecessary traversal to the end of the disk.</li>
