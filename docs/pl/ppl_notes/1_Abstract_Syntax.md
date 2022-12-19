@@ -88,6 +88,8 @@ Variables 用 $x$ 来表示；sort $s$ 上的变量集合记为 $X_s$；sort 集
 
     容易理解，`let y be times(x; x) in plus(y; y)` 与上式表达的含义一致；即约束变量可以换名。
 
+可以看到，我们在 AST 中引入了 variables 的概念，但是没有说明其含义。事实上，variable 的含义是通过 binding 给定的：
+
 我们用 $x_1, \dots, x_k.a$ 的形式表示将变量序列 $x_1, \dots, x_k$ **绑定 (bind)** 到运算符 $a$ 的参数上，从而将以 $a$ 为根的 AST 泛化为一棵 **抽象绑定树 (Abstract Binding Tree, ABT)**。$x_1, \dots, x_k.a$ 称为 **抽象子 (abstractor)**；这表示变量序列 $x_1, \dots, x_k$ 在 ABT $a$ 中是约束的 (bound)。在 $k = 0$ 时，$.a$ 可以简写为 $a$。通常我们将 $x_1, \dots, x_k$ 记为 $\vec{x}$，从而用 $\vec{x}.a$ 表示 $x_1, \dots, x_k.a$。
 
 这种绑定决定了 $\vec{x}$ 的 **作用域 (scope)** 是 ABT $a$。
