@@ -74,22 +74,22 @@ System T 是函数类型和自然数类型的结合，同时引入了原始递�
 
 <center>![](2022-12-19-16-31-24.png){width=150}</center>
 
-我们把 $\text{s(}\cdots \text{s(z))}$ 简写为 $\bar{n}$，表示后继被作用到 0 上 $n \ge 0$ 次。
+我们把 $\text{s(}\cdots \text{s(z))}$ 简写为 $\overline{n}$，表示后继被作用到 0 上 $n \ge 0$ 次。
 
 ### 9.2.3 Recursion
 
 与 **E** 不同，**T** 中对于自然数的操作只有原始递归。但事实上，这种操作更加通用，因此实际上可以实现 **E** 中的所有算术操作，甚至更多。
 
-我们下面来讨论 **T** 语言中的递归操作。**递归式 (recursor)** 的抽象语法是 $\text{rec}\{e_0;x.y.e_1\}(e)$；具体语法是 $\text{rec }e\{z\hookrightarrow e_0 | s(x) \text{ with } y \hookrightarrow e_1\}$，或者写作 $\text{rec}\{z\hookrightarrow e_0 | s(x) \text{ with } y \hookrightarrow e_1\}(e)$。
+我们下面来讨论 **T** 语言中的递归操作。**递归式 (recursor)** 的抽象语法是 $\text{rec}\{e_0;x.y.e_1\}(e)$；具体语法是 $\text{rec }e\{\text{z}\hookrightarrow e_0 | \text{s}(x) \text{ with } y \hookrightarrow e_1\}$，或者写作 $\text{rec}\{\text{z}\hookrightarrow e_0 | \text{s}(x) \text{ with } y \hookrightarrow e_1\}(e)$。
 
-它表示的含义其实就是：如果 $e$ 满足 $z$ 的形式，则表达式的值为 $e_0$；否则 $e$ 可以表示为 $s(e')$ 的形式，此时表达式的值为 $e_1$，$e_1$ 有绑定变量 $x$ 和 $y$，$e'$ 被绑定到 $x$ 上，以 $e'$ 为操作数递归，将递归的结果绑定到 $y$ 上。
+它表示的含义其实就是：如果 $e$ 满足 $\text{z}$ 的形式，则表达式的值为 $e_0$；否则 $e$ 可以表示为 $\text{s}(e')$ 的形式，此时表达式的值为 $e_1$，$e_1$ 有绑定变量 $x$ 和 $y$，$e'$ 被绑定到 $x$ 上，以 $e'$ 为操作数递归，将递归的结果绑定到 $y$ 上。
 
 用 9.1 节中「原始递归」的方法表示，其实就是：
 
 $$
 \begin{array}{rl}
-h(\vec{x}, z) &= &\vec{x}.e_0 \\
-h(\vec{x}, s(e')) &= &\vec{x}.e_1(e', h(\vec{x}, e')) 
+h(\vec{x}, \text{z}) &= &\vec{x}.e_0 \\
+h(\vec{x}, \text{s}(e')) &= &\vec{x}.e_1(e', h(\vec{x}, e')) 
 \end{array}
 $$
 
@@ -129,16 +129,16 @@ let rec double a =
 
 因此，我们可以容易地写出 `double` 对应的递归式：
 
-$$\lambda(e:\text{nat})\text{rec}\{z\hookrightarrow z | s(x) \text{ with } y \hookrightarrow s(s(y))\}(e)$$
+$$\lambda(e:\text{nat})\text{rec}\{\text{z}\hookrightarrow \text{z} | \text{s}(x) \text{ with } y \hookrightarrow \text{s}(\text{s}(y))\}(e)$$
 
 即
 
-$$\lambda\{\text{nat}\}(e.\text{rec}\{z; x.y.s(s(y))\}(e))$$
+$$\lambda\{\text{nat}\}(e.\text{rec}\{\text{z}; x.y.\text{s}(\text{s}(y))\}(e))$$
 
 !!! info "迭代式"
-    可以看到，这里在 $s(s(y))$ 中虽然 $x$ 被绑定了，但是并没有被使用。这种情况下，我们可以用 **迭代式 (iterator)** $\text{iter}\{e_0;y.e_1\}(e)$ 替代递归式。这是递归式的一种特例。
+    可以看到，这里在 $\text{s}(\text{s}(y))$ 中虽然 $x$ 被绑定了，但是并没有被使用。这种情况下，我们可以用 **迭代式 (iterator)** $\text{iter}\{e_0;y.e_1\}(e)$ 替代递归式。这是递归式的一种特例。
 
-这样，我们其实就容易理解课本中说「递归式 $\text{rec}\{e_0;x.y.e_1\}(e)$ 表示从 $e_0$ 开始，对变换 $x.y.e_1$ 的 $e$ 轮折叠」是什么意思了。例如调用 $\text{rec}\{e_0;x.y.e_1\}(\bar{n})$，如果从参数为 $\bar{n}\to 0$ 的方向看，其实就是正常递归调用的路径；如果从参数为 $0\to \bar{n}$ 的方向看，其实就是将 $z$ 作为 $x$、$e_0$ 作为 $y$ 计算 $e_1$，然后将结果作为 $y$、$s(x)$ 作为 $x$ 再计算 $e_1$，重复 $n$ 次，得到该递归式的值。
+这样，我们其实就容易理解课本中说「递归式 $\text{rec}\{e_0;x.y.e_1\}(e)$ 表示从 $e_0$ 开始，对变换 $x.y.e_1$ 的 $e$ 轮折叠」是什么意思了。例如调用 $\text{rec}\{e_0;x.y.e_1\}(\overline{n})$，如果从参数为 $\overline{n}\to 0$ 的方向看，其实就是正常递归调用的路径；如果从参数为 $0\to \overline{n}$ 的方向看，其实就是将 $\text{z}$ 作为 $x$、$e_0$ 作为 $y$ 计算 $e_1$，然后将结果作为 $y$、$\text{s}(x)$ 作为 $x$ 再计算 $e_1$，重复 $n$ 次，得到该递归式的值。
 
 因此，我们就可以给出递归的静态和动态语义了。
 
@@ -152,4 +152,4 @@ $$\lambda\{\text{nat}\}(e.\text{rec}\{z; x.y.s(s(y))\}(e))$$
 
 ### 9.2.4 Definability
 
-自然数上的一个数学函数 $f : \mathbb{N}\to\mathbb{N}$ 是 **可定义 (definable)** 的，当且仅当存在一个 $\text{nat}\to\text{nat}$ 类型的表达式 $e_f$，使得 $\forall n \in \mathbb{N}, e_f(\bar{n})\equiv \bar{f(n)} : \text{ nat}$。
+自然数上的一个数学函数 $f : \mathbb{N}\to\mathbb{N}$ 是 **可定义 (definable)** 的，当且仅当存在一个 $\text{nat}\to\text{nat}$ 类型的表达式 $e_f$，使得 $\forall n \in \mathbb{N}, e_f(\overline{n})\equiv \overline{f(n)} : \text{ nat}$。

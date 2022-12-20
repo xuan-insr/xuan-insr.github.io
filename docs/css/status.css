@@ -8,3 +8,8 @@
 .box-red,   .badge-danger   { background-color: rgba(217, 83, 79, 0.5);  color: #b91c1c; }
 .box-yellow,.badge-warning  { background-color: rgba(240, 173, 78, 0.5); color: #a16207; }
 .box-gray   { background-color: #a0a0a0; }
+
+/* 修复 \overline 不显示的问题（非最优解）, src: https://github.com/mathjax/MathJax/issues/2701#issuecomment-1209302827 */
+mjx-stretchy-h.mjx-c2013 {
+    border-top: 1px solid;
+}
