@@ -912,7 +912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../pl/ppl_notes/10_product_types.md" class="md-nav__link">
+      <a href="../../../../pl/ppl_notes/10_product_types/" class="md-nav__link">
         10 积类型
       </a>
     </li>
@@ -926,7 +926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../pl/ppl_notes/11_sum_types.md" class="md-nav__link">
+      <a href="../../../../pl/ppl_notes/11_sum_types/" class="md-nav__link">
         11 和类型
       </a>
     </li>
@@ -2056,7 +2056,7 @@
 <p>具体的分配方案也可以参考 <a href="../../IV_memory_management/9_main_memory/#923-dynamic-storage-allocation-problem">Dynamic Storage-Allocation Problem</a> 的 first-fit, best-fit 等。</p>
 <p>这也会带来外部碎片，但是 disk 通常够大，我们可能并不在意这些碎片。也可以使用压缩 (compaction) 或者说是清除碎片 (defrag) 操作，虽然它们开销较大。</p>
 <p>这种方案的一个重要问题是，如何确定一个文件需要多少空间；这个问题的核心在于，文件本身可能是会扩展的。</p>
-<p>解决方案之一是，当出现这种情况时将文件复制到一个新的勾搭的空闲空间里去。这种方案会带来比较大的 overhead，尤其是文件可能很大。</p>
+<p>解决方案之一是，当出现这种情况时将文件复制到一个新的足够大的空闲空间里去。这种方案会带来比较大的 overhead，尤其是文件可能很大。</p>
 <p>另一种解决方案是，让用户确定每个文件的最大大小。这种方案会带来比较大的不便，而且用户可能高估所需空间，导致较大的内部碎片。</p>
 <p>还有一种解决方案创建了连续空间的链表来保存一个文件。当空间不够时，添加一块连续空间（称为 <strong>extent</strong>）。FCB 记录的信息除了起始和长度外，还额外维护下一个 extent 的信息。</p>
 <h3 id="1452-linked-allocation">14.5.2 Linked Allocation<a class="headerlink" href="#1452-linked-allocation" title="Permanent link">&para;</a></h3>
@@ -2105,7 +2105,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-15T15:24:45+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-15</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-21T05:35:16+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-21</span>
       
         <br>
         创建日期:

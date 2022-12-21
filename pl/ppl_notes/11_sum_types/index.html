@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://xuan-insr.github.io/pl/ppl_notes/3_Hypothetical_and_General_Judgments/">
+        <link rel="canonical" href="https://xuan-insr.github.io/pl/ppl_notes/11_sum_types/">
       
       <link rel="icon" href="../../../logo.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
-        <title>3 假言判断与一般性判断 - 咸鱼暄的代码空间</title>
+        <title>11 和类型 - 咸鱼暄的代码空间</title>
       
     
     
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#3-hypothetical-and-general-judgments--假言判断与一般性判断" class="md-skip">
+        <a href="#11-sum-types--和类型" class="md-skip">
           跳转至
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3 假言判断与一般性判断
+              11 和类型
             
           </span>
         </div>
@@ -649,14 +649,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_1" type="checkbox" id="__nav_3_2_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_1" type="checkbox" id="__nav_3_2_1" >
       
       
       
@@ -713,93 +711,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          3 假言判断与一般性判断
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../3_Hypothetical_and_General_Judgments/" class="md-nav__link">
         3 假言判断与一般性判断
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#31-hypothetical-judgments--假言判断" class="md-nav__link">
-    3.1 Hypothetical Judgments | 假言判断
-  </a>
-  
-    <nav class="md-nav" aria-label="3.1 Hypothetical Judgments | 假言判断">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#311-derivability--可导性" class="md-nav__link">
-    3.1.1 Derivability | 可导性
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#312-admissibility--可纳性" class="md-nav__link">
-    3.1.2 Admissibility | 可纳性
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#32-hypothetical-inductive-definitions--假言归纳定义" class="md-nav__link">
-    3.2 Hypothetical Inductive Definitions | 假言归纳定义
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#33-general-judgments--一般性判断" class="md-nav__link">
-    3.3 General Judgments | 一般性判断
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#34-generic-inductive-definitions--泛型归纳定义" class="md-nav__link">
-    3.4 Generic Inductive Definitions | 泛型归纳定义
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -966,12 +882,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_4" type="checkbox" id="__nav_3_2_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_4" type="checkbox" id="__nav_3_2_4" checked>
       
       
       
@@ -1012,11 +930,21 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../11_sum_types/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         11 和类型
       </a>
+      
     </li>
   
 
@@ -1826,62 +1754,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#31-hypothetical-judgments--假言判断" class="md-nav__link">
-    3.1 Hypothetical Judgments | 假言判断
-  </a>
-  
-    <nav class="md-nav" aria-label="3.1 Hypothetical Judgments | 假言判断">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#311-derivability--可导性" class="md-nav__link">
-    3.1.1 Derivability | 可导性
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#312-admissibility--可纳性" class="md-nav__link">
-    3.1.2 Admissibility | 可纳性
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#32-hypothetical-inductive-definitions--假言归纳定义" class="md-nav__link">
-    3.2 Hypothetical Inductive Definitions | 假言归纳定义
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#33-general-judgments--一般性判断" class="md-nav__link">
-    3.3 General Judgments | 一般性判断
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#34-generic-inductive-definitions--泛型归纳定义" class="md-nav__link">
-    3.4 Generic Inductive Definitions | 泛型归纳定义
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1895,93 +1767,18 @@
                   
 
 
-<h1 id="3-hypothetical-and-general-judgments--假言判断与一般性判断">3 Hypothetical and General Judgments | 假言判断与一般性判断<a class="headerlink" href="#3-hypothetical-and-general-judgments--假言判断与一般性判断" title="Permanent link">&para;</a></h1>
-<h2 id="31-hypothetical-judgments--假言判断">3.1 Hypothetical Judgments | 假言判断<a class="headerlink" href="#31-hypothetical-judgments--假言判断" title="Permanent link">&para;</a></h2>
-<p>2.1 中我们定义了基本判断 (basic judgments)，例如 <span class="arithmatex">\(a \text{ nat}\)</span> 等，它们用来表明一棵或多棵 ABT 有某种性质或者彼此之间有某种联系。<strong>假言判断 (hypothetical judgment)</strong> 则表示一个或多个 <strong>假设 (hypothesis)</strong> 和一个 <strong>结论 (conclusion)</strong> 之间的 <strong>蕴含关系 (entailment)</strong>。我们首先介绍两种蕴含概念。</p>
-<h3 id="311-derivability--可导性">3.1.1 Derivability | 可导性<a class="headerlink" href="#311-derivability--可导性" title="Permanent link">&para;</a></h3>
-<p>给定一个规则集合 <span class="arithmatex">\(R\)</span>，我们用 <span class="arithmatex">\(R \cup \{J_1, \dots, J_k\}\)</span> 表示利用公理 <span class="arithmatex">\(\overline{J_1}, \dots, \overline{J_k}\)</span> 对 <span class="arithmatex">\(R\)</span> 的 <strong>扩展 (expansion)</strong>；这里的 <span class="arithmatex">\(J_i\)</span> 均为基本判断，这个扩展也就是将这些基本判断对应的公理加入规则集合得到的新的规则集合。</p>
-<div class="admonition tips">
-<p class="admonition-title">Tips</p>
-<p>我们通常用大写希腊字母 <span class="arithmatex">\(\Gamma\)</span>, <span class="arithmatex">\(\Delta\)</span> 等表示 a finite set of basic judgments。</p>
-</div>
-<p>一个 <strong>可导性判断 (derivability judgment)</strong> <span class="arithmatex">\(\Gamma \vdash_R K\)</span> 表示：给定一个规则集合 <span class="arithmatex">\(R\)</span> 和若干基本判断的集合 <span class="arithmatex">\(\Gamma = \{J_1, \dots, J_k\}\)</span>，<span class="arithmatex">\(R \cup \Gamma\)</span> 能够推导出 <span class="arithmatex">\(K\)</span>。也就是说，我们把该判断的 <strong>假设 (hypothesis)</strong> 或称 <strong>前件 (antecedent)</strong> <span class="arithmatex">\(J_1, \dots, J_k\)</span> 视为临时公理，和 <span class="arithmatex">\(R\)</span> 中的规则一同推导出 <strong>结论 (conclusion)</strong> 或称 <strong>后件 (consequent)</strong> <span class="arithmatex">\(K\)</span>。这里的 <span class="arithmatex">\(J_i\)</span> 和 <span class="arithmatex">\(K\)</span> 均为基本判断。</p>
-<p><span class="arithmatex">\(\Gamma \vdash_R K\)</span> 等价于称「规则 <span class="arithmatex">\(\cfrac{J_1, \dots, J_k}{J}\)</span> 可以从 <span class="arithmatex">\(R\)</span> 中推导」。说人话就是：根据 <span class="arithmatex">\(R\)</span>，如果 <span class="arithmatex">\(\Gamma\)</span> 成立，那么可以推导出 <span class="arithmatex">\(K\)</span> 成立。</p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>例如，记 <span class="arithmatex">\(R\)</span> 为 2.2 中对 <span class="arithmatex">\(-\text{ nat}\)</span> 的归纳定义，即：</p>
-<div class="arithmatex">\[\frac{}{\text{zero nat}}\]</div>
-<div class="arithmatex">\[\frac{a \text{ nat}}{\text{succ}(a)\text{ nat}}\]</div>
-<p>那么可导性判断的一个例子是：</p>
-<div class="arithmatex">\[a\text{ nat}\vdash_R \text{succ}(\text{succ}(a))\text{ nat}\]</div>
-<p>也可以表达为，<span class="arithmatex">\(\cfrac{a \text{ nat}}{\text{succ}(\text{succ}(a))\text{ nat}}\)</span> 可以从规则 <span class="arithmatex">\(R\)</span> 中推导得出。</p>
-<p>说人话就是：根据 <span class="arithmatex">\(R\)</span> 可知，对于任意 <span class="arithmatex">\(a\)</span>，如果 <span class="arithmatex">\(a \text{ nat}\)</span>，那么 <span class="arithmatex">\(\text{succ}(\text{succ}(a))\text{ nat}\)</span>。</p>
-<p>可导性判断也是一个判断，也需要通过推导来证明其正确性。事实上，这个判断对于任意 <span class="arithmatex">\(a\)</span> 的选取都是合法的，其对应的推导是：</p>
-<div class="arithmatex">\[\cfrac{\cfrac{a \text{ nat}}{\text{succ}(a))\text{ nat}}}{\text{succ}(\text{succ}(a))\text{ nat}}\]</div>
-</div>
-<p>进一步地，<span class="arithmatex">\(\Gamma_1 \vdash_R \Gamma_2\)</span> 表示对于 <span class="arithmatex">\(\Gamma_2\)</span> 中的每个 <span class="arithmatex">\(J\)</span> 都有 <span class="arithmatex">\(\Gamma_1 \vdash_R J\)</span>。</p>
-<p><span class="arithmatex">\(\vdash_R J\)</span> 表示 <span class="arithmatex">\(J\)</span> 可以直接由 <span class="arithmatex">\(R\)</span> 推导而出。</p>
-<p><br/></p>
-<p>由可导性的定义可得，可导性在扩展新规则时是 <strong>稳定的 (stable)</strong>：</p>
-<div class="admonition info">
-<p class="admonition-title">定理 3.1 - 稳定性</p>
-<p><strong>(稳定性 Stability)</strong> <span class="arithmatex">\(\quad\)</span> 如果 <span class="arithmatex">\(\Gamma \vdash_R J\)</span>，那么 <span class="arithmatex">\(\Gamma \vdash_{R\ \cup\ R'} J\)</span></p>
-</div>
-<p>可导性有许多源自其定义的 <strong>结构性质 (structural properties)</strong>，这与 <span class="arithmatex">\(R\)</span> 的选取无关：</p>
-<ul>
-<li><strong>自反性 (reflexivity)</strong> <span class="arithmatex">\(\quad\)</span> <span class="arithmatex">\(J, \Gamma \vdash_R J\)</span>，即 each hypothesis justifies itself as conclusion。</li>
-<li><strong>弱化 (weakening)</strong> <span class="arithmatex">\(\quad\)</span> 如果 <span class="arithmatex">\(\Gamma \vdash_R J\)</span>，那么 <span class="arithmatex">\(\Gamma, K \vdash_R J\)</span>，即蕴含不受推导过程中未使用的规则的影响。</li>
-<li><strong>传递性 (transitivity)</strong> <span class="arithmatex">\(\quad\)</span> 如果 <span class="arithmatex">\(\Gamma, K \vdash_R J\)</span> 且 <span class="arithmatex">\(\Gamma \vdash_R K\)</span>，那么 <span class="arithmatex">\(\Gamma \vdash_R J\)</span>。如果我们将一个公理替换为对其的推导，那么就可以得到没有这个假设的情况下对结论的推导。可以在第一个前提下通过规则归纳证明。</li>
-</ul>
-<div class="admonition bug">
-<p class="admonition-title">Bug</p>
-<p>传递性怎么通过规则归纳证明？还没想出来</p>
-</div>
-<h3 id="312-admissibility--可纳性">3.1.2 Admissibility | 可纳性<a class="headerlink" href="#312-admissibility--可纳性" title="Permanent link">&para;</a></h3>
-<p>可纳性判断记作 <span class="arithmatex">\(\Gamma \vDash_R J\)</span>，表示 <span class="arithmatex">\(\vdash_R \Gamma\)</span> 蕴含 <span class="arithmatex">\(\vdash_R J\)</span>；即如果 <span class="arithmatex">\(\Gamma\)</span> 中的规则都能由 <span class="arithmatex">\(R\)</span> 推导，那么 <span class="arithmatex">\(J\)</span> 也能由 <span class="arithmatex">\(R\)</span> 推导。这是一种较弱的假言判断形式。</p>
-<p>可纳性判断 <span class="arithmatex">\(J_1, \dots, J_k \vDash_R J\)</span> 等价于称「规则 <span class="arithmatex">\(\cfrac{J_1, \dots, J_k}{J}\)</span> 相对于 <span class="arithmatex">\(R\)</span> 是 <strong>可纳的 (admissible)</strong>」。</p>
-<p>可纳性判断在对规则扩展时并不稳定。</p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>例如，记 <span class="arithmatex">\(R\)</span> 为 2.5 中对奇自然数和偶自然数的归纳定义，即：</p>
-<div class="arithmatex">\[\cfrac{}{\text{zero even}}\]</div>
-<div class="arithmatex">\[\cfrac{b \text{ odd}}{\text{succ}(b)\text{ even}}\]</div>
-<div class="arithmatex">\[\cfrac{a \text{ even}}{\text{succ}(a)\text{ odd}}\]</div>
-<p>那么可纳性判断 <span class="arithmatex">\(\text{succ}(a) \text{ even} \vDash_R a\text{ odd}\)</span> 是合法的。它等价于称规则 <span class="arithmatex">\(\cfrac{\text{succ}(a) \text{ even}}{a\text{ odd}}\)</span> 相对于 <span class="arithmatex">\(R\)</span> 是可纳的。</p>
-<p>但是，如果用公理 <span class="arithmatex">\(\cfrac{}{\text{succ(zero) even}}\)</span> 扩展 <span class="arithmatex">\(R\)</span>，则上述规则是不可纳的。因为当 <span class="arithmatex">\(a = \text{zero}\)</span> 时，刚刚添加的规则能推导出 <span class="arithmatex">\(\text{succ(zero) even}\)</span>，但是没有任何规则可以推导出 <span class="arithmatex">\(\text{zero odd}\)</span>。</p>
-<p>也就是说，可纳性判断在对规则扩展时并不稳定。</p>
-</div>
-<p>可导性的结构特性确保了可导性比可纳性更强。</p>
-<div class="admonition info">
-<p class="admonition-title">定理 3.2</p>
-<p>如果 <span class="arithmatex">\(\Gamma\vdash_R J\)</span>，那么 <span class="arithmatex">\(\Gamma\vDash_R J\)</span>。</p>
-<p>证明：即要证，如果 <span class="arithmatex">\(\Gamma\vdash_R J\)</span> 且 <span class="arithmatex">\(\vdash_R \Gamma\)</span>，那么 <span class="arithmatex">\(\vdash_R J\)</span>。这可以通过可导性判断的传递性证明。</p>
-<p>逆命题是不成立的。一个反例是，在前例中，<span class="arithmatex">\(\text{succ}(a) \text{ even} \vDash_R a\text{ odd}\)</span> 是合法的，但 <span class="arithmatex">\(\text{succ}(a) \text{ even} \vdash_R a\text{ odd}\)</span> 是不合法的。</p>
-</div>
-<p>可纳性也有与可导性类似的结构性质：</p>
-<ul>
-<li><strong>自反性 (reflexivity)</strong> <span class="arithmatex">\(\quad\)</span> <span class="arithmatex">\(J, \Gamma \vDash_R J\)</span>。</li>
-<li><strong>弱化 (weakening)</strong> <span class="arithmatex">\(\quad\)</span> 如果 <span class="arithmatex">\(\Gamma \vDash_R J\)</span>，那么 <span class="arithmatex">\(\Gamma, K \vDash_R J\)</span>。</li>
-<li><strong>传递性 (transitivity)</strong> <span class="arithmatex">\(\quad\)</span> 如果 <span class="arithmatex">\(\Gamma, K \vDash_R J\)</span> 且 <span class="arithmatex">\(\Gamma \vDash_R K\)</span>，那么 <span class="arithmatex">\(\Gamma \vDash_R J\)</span>。</li>
-</ul>
-<h2 id="32-hypothetical-inductive-definitions--假言归纳定义">3.2 Hypothetical Inductive Definitions | 假言归纳定义<a class="headerlink" href="#32-hypothetical-inductive-definitions--假言归纳定义" title="Permanent link">&para;</a></h2>
-<p>没讲，暂略。</p>
-<h2 id="33-general-judgments--一般性判断">3.3 General Judgments | 一般性判断<a class="headerlink" href="#33-general-judgments--一般性判断" title="Permanent link">&para;</a></h2>
-<p>简单来说，相对于 <span class="arithmatex">\(\Gamma\vdash_R J\)</span> 而言，我们用 <span class="arithmatex">\(\Gamma \vdash_R^X J\)</span> 表示 <span class="arithmatex">\(\Gamma\)</span> 中用到了一些 variable，这些 variable 的集合为 <span class="arithmatex">\(X\)</span>。</p>
-<p>进一步地，我们把 <span class="arithmatex">\(X\)</span> 分为两个部分 <span class="arithmatex">\(XY\)</span>，其中 <span class="arithmatex">\(Y\)</span> 是 <span class="arithmatex">\(\Gamma\)</span> 中用到的所有自由变量，也就是说它们可以被任意命名和替换；<span class="arithmatex">\(X\)</span> 是剩余的变量，<span class="arithmatex">\(X\cap Y = \varnothing\)</span>，即 <span class="arithmatex">\(\Gamma \vdash_R^{XY} J\)</span>。我们记 <span class="arithmatex">\(Y\ |\ \Gamma \vdash_R^X J\)</span> 与之等价。</p>
-<p>参考课本中该节的例子以及习题 3.6 可以有更明确的例子。</p>
-<h2 id="34-generic-inductive-definitions--泛型归纳定义">3.4 Generic Inductive Definitions | 泛型归纳定义<a class="headerlink" href="#34-generic-inductive-definitions--泛型归纳定义" title="Permanent link">&para;</a></h2>
-<p>没讲，暂略。</p>
+<h1 id="11-sum-types--和类型">11 Sum Types | 和类型<a class="headerlink" href="#11-sum-types--和类型" title="Permanent link">&para;</a></h1>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-04T15:13:28+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-04</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-20T14:35:04+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-20</span>
       
         <br>
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-21T13:48:25+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-21</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-20T14:35:04+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-20</span>
       
     
   </small>
@@ -2061,7 +1858,7 @@ var giscus = document.querySelector("script[src*=giscus]")
     <nav class="md-footer__inner md-grid" aria-label="页脚" >
       
         
-        <a href="../2_Inductive_Definition/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 2 归纳定义" rel="prev">
+        <a href="../10_product_types/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 10 积类型" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -2070,20 +1867,20 @@ var giscus = document.querySelector("script[src*=giscus]")
               <span class="md-footer__direction">
                 上一页
               </span>
-              2 归纳定义
+              10 积类型
             </div>
           </div>
         </a>
       
       
         
-        <a href="../4_Statics/" class="md-footer__link md-footer__link--next" aria-label="下一页: 4 静态语义" rel="next">
+        <a href="../../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/" class="md-footer__link md-footer__link--next" aria-label="下一页: 核心知识" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 下一页
               </span>
-              4 静态语义
+              核心知识
             </div>
           </div>
           <div class="md-footer__button md-icon">
