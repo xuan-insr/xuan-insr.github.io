@@ -26,7 +26,7 @@ AST 按语法的不同形式分为不同的 **类别 (sort)**，记作 $s$。类
 !!! example
     承上例，假设 $s_1$ 中存在运算符 `plus`, `times` 和 `num`，它们的结构分别类似于 `plus(expr1; expr2)`, `times(expr1; expr2)` 和 `num[n]` ( 其中 $n\in \mathbb{N}$ )；$s_2$ 中存在运算符 `if` ，它的结构类似于 `if (expr) then stmt1 else stmt2`。那么 `plus` 和 `times` 的 arity 均记作 $(s_1, s_1)s_1$，而 `num` 的 arity 记作 $(\mathbb{N})s_1$， `if` 的 arity 记作 $(s_1, s_2, s_2)s_2$。
 
-Variables 用 $x$ 来表示；sort $s$ 上的变量集合记为 $X_s$；sort 集合 $S$ 上的 **变量族** 定义为 $X = \{X_s\}_{s \in S}$。  
+Variables 用 $x$ 等小写字母来表示；sort $s$ 上的变量集合记为 $X_s$；sort 集合 $S$ 上的 **变量族** 定义为 $X = \{X_s\}_{s \in S}$。  
 变量是某个领域内的未知的对象，用特定对象 **代换 (substitution)** 某个表达中的全部同个变量，则变量成为已知。  
 变量是一个未知的对象或者占位符，其含义由代换赋予。
 
