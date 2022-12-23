@@ -1,7 +1,7 @@
 .box {
     border-radius: 3px; padding: 1px 4px;
     /* font-family: 'Lato', 'SimHei', 'STHeiti', 'SimHei', 'Serif'; */
-    font-size: 90%;
+    font-size: 85%;
 }
 .box-blue,  .badge-primary  { background-color: rgba(66, 139, 202, 0.5); color: #1d4ed8; }
 .box-green, .badge-success  { background-color: rgba(92, 184, 92, 0.5);  color: #15803d; }
