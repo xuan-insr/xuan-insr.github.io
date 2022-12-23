@@ -1,0 +1,82 @@
+# 15 总结
+
+鉴于能带 3 张 A4，且 hjh 学长的 A4 足够丰富，我们主要复习概念题以外的部分。
+
+下面用 <span class="box box-yellow">黄色框</span> 或 [链接]() 标出的内容，是可能考察计算的题型；其中加粗的为经常考察的内容。可以自行进一步复习。
+
+<span class="box box-red">已知不全</span> 标出的内容，表示我对应章节的笔记中缺少的相关内容；如果用我的笔记学习该课程，请尤其注意回顾这些部分的课本或 PPT。
+
+- 2 Overview
+    - 操作系统基本概念
+    - 中断
+    - 用户态与内核态；系统调用
+    - <span class="box box-red">已知不全</span> 操作系统结构的种类
+- 3 进程
+    - 组成
+    - 状态
+    - PCB
+    - 创建 <span class="box box-yellow">fork tree</span>
+    - 终止
+    - IPC
+- 4 调度
+    - 时机
+    - 过程（上下文切换）
+    - 调度算法评价
+    - **[调度算法](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/4_sched/#44-%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95)**
+- 5 线程
+    - 动机和概念
+    - 优缺点
+    - 用户级 / 内核级；多线程模型
+- 6 同步
+    - 引入和 CS Problem
+    - Peterson's Solution
+    - 硬件指令
+    - 信号量
+    - Atomic Vars
+    - Mutex
+    - Priority Inversion
+- 7 **[经典同步问题](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/7_sync_examples/)**
+    - Bounded-Buffer Problem
+    - Readers-Writers Problem
+    - Dining-Philosophers Problem
+- 8 死锁
+    - 资源分配图
+    - 条件
+    - 预防 [银行家算法](http://127.0.0.1:8000/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/8_deadlocks/#8423-%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95--bankers-algorithm)
+    - 避免
+    - 检测
+    - 恢复
+- 9 主存
+    - 连续 [Dynamic Storage-Allocation Problem](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/9_main_memory/#923-dynamic-storage-allocation-problem)
+    - 分段
+    - **[分页](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/9_main_memory/#94-paging)** <span class="box box-yellow">页表</span> <span class="box box-yellow">EAT</span>
+    - <span class="box box-red">已知不全</span> 交换
+- 10 虚拟内存
+    - Lazy Allocation / Demand Paging
+    - Copy-on-Write
+    - **[Page Replacement](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/10_virtual_memory/#104-page-replacement)**
+    - Allocation of Frames
+    - Thrashing
+    - Kernel Memory Allocation
+- 11 Mass Storage
+    - HDD / NVM
+    - [磁盘调度](http://127.0.0.1:8000/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/V_storage_management/11_mass_storage/#112-disk-scheduling)
+    - 磁盘管理
+    - RAID
+- 12 I/O
+    - 方式
+    - 应用程序 I/O 接口
+- 13 文件系统接口
+    - 文件
+    - 访问方式
+    - 目录结构
+    - 文件系统挂载
+    - 保护
+- 14 文件系统实现
+    - 分层设计
+    - 数据结构
+    - VFS
+    - 目录实现
+    - **[Disk Block Allocation](https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/VI_file_system/14_fs_impl/#145-disk-block-allocation)**
+    - 空闲空间管理
+- <span class="box box-red">已知不全</span> Linux 相关 `/dev/hdb6`, `kill -9`, `ln -s`
