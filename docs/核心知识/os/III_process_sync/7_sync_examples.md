@@ -226,136 +226,85 @@ reader() {
 }
 ```
 
-分析这里所需要的信号量，或者说「资源」。当一个 reader 进入 critical section 时，它会拿走 writer 的「资源」，但是当 writer 的「资源」不可用时，reader 并不需要等待；而当一个 writer 进入 critical section 时，它会等待并拿走公共的「资源」。
+我们分类讨论不同的情形下，reader 和 writer 在 entry section 中期望的做法：
 
-也就是说，大概的解决方案类似于：
+对于 reader：
 
-```C linenums="1" hl_lines="16 20"
+- 有 writer：等待
+- 有其他 reader：什么都不做，直接进入 CS
+- 都没有：禁止 writer，然后进入 CS
+
+这样的做法可以保证不会同时有 writer 和 reader 在 critical section。
+
+对于 writer；
+
+- 有其他 reader / writer：等待
+- 都没有：禁止 reader 和其他 writer，然后进入 CS
+
+在 exit section 的操作与之对称。
+
+这两处「禁止」可能对应着两处信号量，我们分别给它们起名为 `R` 和 `W`，初值均为 1；那么 reader 的 entry section 就形如：
+
+```C linenums="1"
+wait for W but not take;    // if there is a writer, wait
+if (no other readers)       // if no other readers, take R
+    wait(R);                // else, do nothing
+```
+
+writer 的 entry section 形如：
+
+```C linenums="1"
+wait for R but not take;    // if there are some readers, wait
+wait(W);                    // if there is another writer, wait; else take W
+```
+
+这里有两个问题没有解决，第一个是「wait but not take」这样的操作是不存在的，第二个是如何判定「no other readers」。我们分别讨论这两个问题。
+
+首先，wait but not take 肯定还是要使用 `wait()` 来解决的，因为我们没有除此之外的用来等待的信号量操作。我们分别考虑两处 wait but not take 如果直接用 `wait()` 实现会带来什么问题。
+
+对于 reader，如果我们直接改为 `wait(W)`，会出现的问题是：这样只有第一个 reader 能够进入 CS 了，后续的都会被阻塞。不过我们可以发现，要解决这个问题，只要把 `wait(W)` 也放到 `if` 里面去就好了，也就是说如果有其他 reader 在的情况下，一定不存在 writer，`W` 也一定被某个（第一个）reader 持有，就不需要再 wait 了。即：
+
+```C linenums="1"
+if (no other readers) {
+    wait(W);
+    wait(R);      
+}         
+```
+
+容易检查，这样的设计符合我们之前分类讨论的要求。
+
+对于 writer，我们可以直接改为 `wait(R)`，因为释放 `W` 之前一定不会有 reader 能够进入 CS，而释放 `W` 时可以一并释放 `R`。即：
+
+```C linenums="1"
+wait(R);      
+wait(W);
+```
+
+这里本来应该检查一下死锁，因为从第 8 节可以看到，这种设计有循环等待的情况，因此有死锁的风险；但是我们可以发现，其实 `R` 和 `W` 总是会同时被获取（对称地，也同时被释放），因此其实我们可以合并为一个信号量，不妨叫做 `write_lock`。其设计为：
+
+```C linenums="1"
 semaphore write_lock = 1;
-semaphore public_lock = 1;
 
 writer() {
     while (true) {
-        wait(write_lock);       // guarantee no readers
-        wait(public_lock);      // guarantee no readers or other writers
+        wait(write_lock);
         read_and_write();
-        signal(public_lock);
         signal(write_lock);
     }
 }
 
 reader() {
     while (true) {
-        if (write_lock available)       // take write_lock but not wait
+        if (no other readers)
             wait(write_lock);
-        wait(public_lock);              // guarantee no writers
         read();
-        if (no other readers reading)   // release write_lock when ...
-            signal(write_lock);         // ... no other readers reading
-        signal(public_lock);
+        if (no other readers)
+            signal(write_lock);
     }
 }
 ```
 
-可以看到，`reader()` 部分有两个用伪代码表示的片段，用高亮表示。这两个片段的难点分别在于：我们暂时没有手段不阻塞地检查某个信号量是否非 0；以及我们如何知道是否存在其他的 readers。
-
-后面这个问题比较好解决，我们引入一个整型 `reader_count` 用来保存有多少个 readers，当其值变为 0 时，代表没有其他 readers 在读了。我们同时增加保证其同步的信号量。即：
-
-```C linenums="1" hl_lines="3-4 22-24 28-32"
-semaphore write_lock = 1;
-semaphore public_lock = 1;
-int reader_count = 0;
-semaphore reader_count_lock = 1;
-
-writer() {
-    while (true) {
-        wait(write_lock);       // guarantee no readers
-        wait(public_lock);      // guarantee no readers or other writers
-        read_and_write();
-        signal(public_lock);
-        signal(write_lock);
-    }
-}
-
-reader() {
-    while (true) {
-        if (write_lock available)   // take write_lock but not wait
-            wait(write_lock);
-        wait(public_lock);          // guarantee no writers
-        
-        wait(reader_count_lock);
-        reader_count++;
-        signal(reader_count_lock);
-
-        read();
-        
-        wait(reader_count_lock);
-        reader_count--;
-        if (reader_count == 0)      // release write_lock when ...
-            signal(write_lock);     // ... no other readers reading
-        signal(reader_count_lock);
-
-        signal(public_lock);
-    }
-}
-```
-
-而对于第一个问题，也就是我们希望「当 `write_lock` 没有被占有时，获取之；但是如果已经被占有，不应当等待」，又该如何解决呢？显然，这个问题的解决方案仍然应该是 `if(cond) wait(write_lock);` 的形式，因为我们并没有其他获取一个锁的方法，因此关键就在于这个条件 `cond` 了。
-
-既然我们没有办法不阻塞地判断这个信号量是否为 0，我们不妨回到什么情况下会让它变为 0 的这个问题上来。很显然，我们的目的是，让 **第一个** reader 在 entry section 中拿走 `write_lock`，而后续的 reader 不应在此阻塞。（注意，当 `write_lock` 被释放后，下一次来的 reader 也是「第一个」。）所以其实我们需要判断的核心可以是「第一个」reader，这其实也可以用之前的 `reader_count` 实现：
-
-```C linenums="1" hl_lines="18-22"
-semaphore write_lock = 1;
-semaphore public_lock = 1;
-int reader_count = 0;
-semaphore reader_count_lock = 1;
-
-writer() {
-    while (true) {
-        wait(write_lock);       // guarantee no readers
-        wait(public_lock);      // guarantee no readers or other writers
-        read_and_write();
-        signal(public_lock);
-        signal(write_lock);
-    }
-}
-
-reader() {
-    while (true) {
-        wait(reader_count_lock);
-        reader_count++;
-        if (reader_count == 1)     // first reader take write_lock
-            wait(write_lock);
-        signal(reader_count_lock);
-
-        wait(public_lock);          // guarantee no writers
-
-        read();
-        
-        wait(reader_count_lock);
-        reader_count--;
-        if (reader_count == 0)      // release write_lock when ...
-            signal(write_lock);     // ... no other readers reading
-        signal(reader_count_lock);
-
-        signal(public_lock);
-    }
-}
-```
-
-我们讨论一下可能出现的情况，证明其能满足要求：
-
-1. 当前有 writer 在 CS：
-    1. 新的 writer 会在 L8 `wait(write_lock)` 被阻塞；
-    1. 接下来的第一个 reader 会在 L21 `wait(write_lock)` 被阻塞，其余 reader 会在 L18 `wait(reader_count_lock)` 被阻塞（当 writer 退出 CS 之后，这些 reader 能够正常运行）；
-1. 当前有 reader 在 CS：
-    1. 新的 writer 会在 L8 `wait(write_lock)` 被阻塞；
-    1. 接下来的 reader 只会在 L18 以及 L28 处被短暂阻塞，但是在 `reader_count` 大于 1 的前提下，这两处对应的 CS 都能在有限时间内完成；
-1. 当前没有进程在 CS，如果有一个 writer 和一个 reader 同时进入，那么必有其中之一被 `wait(write_lock)` 阻塞。
-
-可以看到，上述解法能够满足 Critical-Section Problem 的基本要求，同时能够满足题目要求。
-
-不过，我们会发现一个问题：上述 1.b. 指出，reader 会被 `wait(write_lock)` 阻塞而不是被 `public_lock` 阻塞，这和我们最初的想法不同。事实确实如此：在我们当初的设想中，reader 应当直接取走 `write_lock` 而不应被其阻塞，因而需要一个 `public_lock` 用来阻塞有 writer 情形下的 reader。但是由于信号量取得必须使用原语 `wait`，因此这里的阻塞是不可避免的，反而帮助我们代替了 `public_lock` 的作用。所以，实际上我们可以去掉它，最终得到的代码是：
+「no other readers」这个问题比较好解决，我们引入一个整型 `reader_count` 用来保存有多少个 readers，当其值变为 0 时，代表没有其他 readers 在读了。我们同时增加保证其同步的信号量。即：
 
 ```C linenums="1"
 semaphore write_lock = 1;
