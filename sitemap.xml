@@ -31,7 +31,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://xuan-insr.github.io/interviews/</loc>
+         <loc>https://xuan-insr.github.io/interviews/meituan/</loc>
+         <lastmod>2022-12-31</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xuan-insr.github.io/interviews/overview/</loc>
+         <lastmod>2022-12-31</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xuan-insr.github.io/interviews/pdd/</loc>
          <lastmod>2022-12-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
