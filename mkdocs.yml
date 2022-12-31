@@ -66,7 +66,9 @@ nav:
     - 咸鱼暄今天吃什么: 生活/咸鱼暄今天吃什么.md
     - 关于亲密关系的碎碎念: 生活/亲密关系.md
     - 讨饭历程:
-      - 总览: interviews/index.md
+      - 总览: interviews/overview.md
+      - 拼多多: interviews/pdd.md
+      - 美团: interviews/meituan.md
 
 site_name: 咸鱼暄的代码空间
 site_url: https://xuan-insr.github.io/
@@ -107,6 +109,7 @@ markdown_extensions:
   - attr_list
   - def_list
   - footnotes
+  - tables
   - meta
   - md_in_html
   - pymdownx.arithmatex:
