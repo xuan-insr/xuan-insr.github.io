@@ -6,7 +6,7 @@ statistics: true
 
 ???+ example "比较完整的内容"
     - [操作系统](核心知识/os/I_overview/1_intro/) - 已经整理完了！
-    - [计算机组成](https://www.yuque.com/xianyuxuan/coding/co) - 寒假搬过来！
+    - [计算机组成](computer_organization/1_prelude/) - 已经搬过来了！
     - [编译原理](https://www.yuque.com/xianyuxuan/coding/compiler) - 寒假搬过来！
     - [计算机网络](https://www.yuque.com/xianyuxuan/coding/network) - 寒假整理一下搬过来QWQ （原来是思维导图，所以拿过来比较复杂）
 

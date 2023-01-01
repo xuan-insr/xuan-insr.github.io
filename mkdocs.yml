@@ -52,6 +52,14 @@ nav:
         - 13 文件系统: 核心知识/os/VI_file_system/13_fs_interface.md
         - 14 文件系统实现: 核心知识/os/VI_file_system/14_fs_impl.md
       - 15 总结: 核心知识/os/15_review.md
+    - 计算机组成:
+      - 1 写在前面: computer_organization/1_prelude.md
+      - 2 Instructions: computer_organization/2_instructions.md
+      - 3 Arithmetic: computer_organization/3_arithmetic.md
+      - 4 Processor: computer_organization/4_processor.md
+      - 5 Cache: computer_organization/5_cache.md
+      - 6 I/O: computer_organization/6_IO.md
+      - 2022 回忆卷: computer_organization/历年卷.md
     - 数学、数据结构和算法: 
       - math_ds_algo/index.md
       - 入门路线: math_ds_algo/getting_started.md
