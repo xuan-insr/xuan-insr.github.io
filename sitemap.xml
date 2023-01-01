@@ -11,6 +11,41 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://xuan-insr.github.io/computer_organization/1_prelude/</loc>
+         <lastmod>2023-01-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xuan-insr.github.io/computer_organization/2_instructions/</loc>
+         <lastmod>2023-01-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xuan-insr.github.io/computer_organization/3_arithmetic/</loc>
+         <lastmod>2023-01-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xuan-insr.github.io/computer_organization/4_processor/</loc>
+         <lastmod>2023-01-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xuan-insr.github.io/computer_organization/5_cache/</loc>
+         <lastmod>2023-01-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xuan-insr.github.io/computer_organization/6_IO/</loc>
+         <lastmod>2023-01-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xuan-insr.github.io/computer_organization/%E5%8E%86%E5%B9%B4%E5%8D%B7/</loc>
+         <lastmod>2023-01-01</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://xuan-insr.github.io/cpp/</loc>
          <lastmod>2023-01-01</lastmod>
          <changefreq>daily</changefreq>

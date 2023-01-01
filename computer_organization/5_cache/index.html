@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://xuan-insr.github.io/%E7%94%9F%E6%B4%BB/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/">
+        <link rel="canonical" href="https://xuan-insr.github.io/computer_organization/5_cache/">
       
       <link rel="icon" href="../../logo.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
-        <title>关于亲密关系的碎碎念 - 咸鱼暄的代码空间</title>
+        <title>5 Cache - 咸鱼暄的代码空间</title>
       
     
     
@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#关于亲密关系的碎碎念" class="md-skip">
+        <a href="#5-cache" class="md-skip">
           跳转至
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              关于亲密关系的碎碎念
+              5 Cache
             
           </span>
         </div>
@@ -238,13 +238,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/" class="md-tabs__link md-tabs__link--active">
         核心知识
       </a>
     </li>
@@ -306,15 +308,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../" class="md-tabs__link md-tabs__link--active">
+      <a href="../../%E7%94%9F%E6%B4%BB/" class="md-tabs__link">
         生活
       </a>
     </li>
@@ -1021,12 +1021,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
       
       
@@ -1527,12 +1529,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" checked>
       
       
       
@@ -1571,7 +1575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computer_organization/1_prelude/" class="md-nav__link">
+      <a href="../1_prelude/" class="md-nav__link">
         1 写在前面
       </a>
     </li>
@@ -1585,7 +1589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computer_organization/2_instructions/" class="md-nav__link">
+      <a href="../2_instructions/" class="md-nav__link">
         2 Instructions
       </a>
     </li>
@@ -1599,7 +1603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computer_organization/3_arithmetic/" class="md-nav__link">
+      <a href="../3_arithmetic/" class="md-nav__link">
         3 Arithmetic
       </a>
     </li>
@@ -1613,7 +1617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computer_organization/4_processor/" class="md-nav__link">
+      <a href="../4_processor/" class="md-nav__link">
         4 Processor
       </a>
     </li>
@@ -1625,11 +1629,169 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../computer_organization/5_cache/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          5 Cache
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         5 Cache
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#51-memory-hierarchy-introduction" class="md-nav__link">
+    5.1 Memory Hierarchy Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-the-basics-of-cache" class="md-nav__link">
+    5.2 The basics of Cache
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 The basics of Cache">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#531-direct-mapped-cache" class="md-nav__link">
+    5.3.1 Direct Mapped Cache
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#532-handling-cache-hits--misses" class="md-nav__link">
+    5.3.2 Handling Cache Hits &amp; Misses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#533-其他定位方式" class="md-nav__link">
+    5.3.3 其他定位方式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-measuring-cache-performance" class="md-nav__link">
+    5.3 Measuring Cache Performance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-virtual-machines" class="md-nav__link">
+    5.4 Virtual Machines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#55-virtual-memory" class="md-nav__link">
+    5.5 Virtual Memory
+  </a>
+  
+    <nav class="md-nav" aria-label="5.5 Virtual Memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#551-虚拟内存技术" class="md-nav__link">
+    5.5.1 虚拟内存技术
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#552-如何完成映射呢" class="md-nav__link">
+    5.5.2 如何完成映射呢
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#553-页表" class="md-nav__link">
+    5.5.3 页表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#554-用多级页表解决页表过大的问题" class="md-nav__link">
+    5.5.4 用多级页表解决页表过大的问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#555-使用-tlb-加快地址转换" class="md-nav__link">
+    5.5.5 使用 TLB 加快地址转换
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#556-memory-protection" class="md-nav__link">
+    5.5.6 Memory Protection
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#56-the-three-cs--对-cache-miss-的归类" class="md-nav__link">
+    5.6 The Three Cs | 对 cache miss 的归类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#57-using-fsm-to-control-a-simple-cache" class="md-nav__link">
+    5.7 Using FSM to Control a Simple Cache
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1641,7 +1803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computer_organization/6_IO/" class="md-nav__link">
+      <a href="../6_IO/" class="md-nav__link">
         6 I/O
       </a>
     </li>
@@ -1655,7 +1817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../computer_organization/%E5%8E%86%E5%B9%B4%E5%8D%B7/" class="md-nav__link">
+      <a href="../%E5%8E%86%E5%B9%B4%E5%8D%B7/" class="md-nav__link">
         2022 回忆卷
       </a>
     </li>
@@ -1854,14 +2016,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
       
       
       
@@ -1881,7 +2041,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../">生活</a>
+          <a href="../../%E7%94%9F%E6%B4%BB/">生活</a>
           
             <label for="__nav_9">
               <span class="md-nav__icon md-icon"></span>
@@ -1902,134 +2062,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          关于亲密关系的碎碎念
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" class="md-nav__link">
         关于亲密关系的碎碎念
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-对社交关系的分级" class="md-nav__link">
-    1 对社交关系的分级
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-可依赖" class="md-nav__link">
-    2 「可依赖」
-  </a>
-  
-    <nav class="md-nav" aria-label="2 「可依赖」">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21-恋爱关系" class="md-nav__link">
-    2.1 恋爱关系
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-一些问题和困境" class="md-nav__link">
-    3 一些问题和困境
-  </a>
-  
-    <nav class="md-nav" aria-label="3 一些问题和困境">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31-开始而不只是维持" class="md-nav__link">
-    3.1 开始，而不只是维持
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#32-大多数男女生社交的不同点" class="md-nav__link">
-    3.2 大多数男女生社交的不同点
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#33-泡沫" class="md-nav__link">
-    3.3 「泡沫」
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#34-自我设限" class="md-nav__link">
-    3.4 自我设限
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#35-无意识的冒犯" class="md-nav__link">
-    3.5 无意识的冒犯
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#36-大家对亲密关系的需求相差很大" class="md-nav__link">
-    3.6 大家对亲密关系的需求相差很大
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-写个结尾" class="md-nav__link">
-    4 写个结尾
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2041,7 +2078,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../2022/" class="md-nav__link">
+      <a href="../../%E7%94%9F%E6%B4%BB/2022/" class="md-nav__link">
         2022 年终总结
       </a>
     </li>
@@ -2181,23 +2218,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-对社交关系的分级" class="md-nav__link">
-    1 对社交关系的分级
+  <a href="#51-memory-hierarchy-introduction" class="md-nav__link">
+    5.1 Memory Hierarchy Introduction
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-可依赖" class="md-nav__link">
-    2 「可依赖」
+  <a href="#52-the-basics-of-cache" class="md-nav__link">
+    5.2 The basics of Cache
   </a>
   
-    <nav class="md-nav" aria-label="2 「可依赖」">
+    <nav class="md-nav" aria-label="5.2 The basics of Cache">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-恋爱关系" class="md-nav__link">
-    2.1 恋爱关系
+  <a href="#531-direct-mapped-cache" class="md-nav__link">
+    5.3.1 Direct Mapped Cache
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#532-handling-cache-hits--misses" class="md-nav__link">
+    5.3.2 Handling Cache Hits &amp; Misses
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#533-其他定位方式" class="md-nav__link">
+    5.3.3 其他定位方式
   </a>
   
 </li>
@@ -2208,51 +2259,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-一些问题和困境" class="md-nav__link">
-    3 一些问题和困境
+  <a href="#53-measuring-cache-performance" class="md-nav__link">
+    5.3 Measuring Cache Performance
   </a>
   
-    <nav class="md-nav" aria-label="3 一些问题和困境">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-virtual-machines" class="md-nav__link">
+    5.4 Virtual Machines
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#55-virtual-memory" class="md-nav__link">
+    5.5 Virtual Memory
+  </a>
+  
+    <nav class="md-nav" aria-label="5.5 Virtual Memory">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#31-开始而不只是维持" class="md-nav__link">
-    3.1 开始，而不只是维持
+  <a href="#551-虚拟内存技术" class="md-nav__link">
+    5.5.1 虚拟内存技术
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-大多数男女生社交的不同点" class="md-nav__link">
-    3.2 大多数男女生社交的不同点
+  <a href="#552-如何完成映射呢" class="md-nav__link">
+    5.5.2 如何完成映射呢
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#33-泡沫" class="md-nav__link">
-    3.3 「泡沫」
+  <a href="#553-页表" class="md-nav__link">
+    5.5.3 页表
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#34-自我设限" class="md-nav__link">
-    3.4 自我设限
+  <a href="#554-用多级页表解决页表过大的问题" class="md-nav__link">
+    5.5.4 用多级页表解决页表过大的问题
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#35-无意识的冒犯" class="md-nav__link">
-    3.5 无意识的冒犯
+  <a href="#555-使用-tlb-加快地址转换" class="md-nav__link">
+    5.5.5 使用 TLB 加快地址转换
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#36-大家对亲密关系的需求相差很大" class="md-nav__link">
-    3.6 大家对亲密关系的需求相差很大
+  <a href="#556-memory-protection" class="md-nav__link">
+    5.5.6 Memory Protection
   </a>
   
 </li>
@@ -2263,8 +2328,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-写个结尾" class="md-nav__link">
-    4 写个结尾
+  <a href="#56-the-three-cs--对-cache-miss-的归类" class="md-nav__link">
+    5.6 The Three Cs | 对 cache miss 的归类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#57-using-fsm-to-control-a-simple-cache" class="md-nav__link">
+    5.7 Using FSM to Control a Simple Cache
   </a>
   
 </li>
@@ -2284,125 +2356,237 @@
                   
 
 
-<h1 id="关于亲密关系的碎碎念">关于亲密关系的碎碎念<a class="headerlink" href="#关于亲密关系的碎碎念" title="Permanent link">&para;</a></h1>
-<div class="admonition abstract">
-<p class="admonition-title">Abstract</p>
-<p>我在 20 岁生日的时候整理了一番对于社交关系的思考，前几天陕群集体 emo 的时候又拿出来讨论了。在之前的思考之后，其实还有很多零碎的想法和讨论。我对这方面的需求和想法比较复杂，所以拿出来再整理一下——</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>这篇文章只是对我自己思考的一个总结。我不懂心理学，不懂情感，所以只能抛出各种自己看到的问题，但很难给出什么合理的解决方案。我会尽量提醒自己去注意那些陷阱——但是好像很难QWQ</p>
-</div>
-<h2 id="1-对社交关系的分级">1 对社交关系的分级<a class="headerlink" href="#1-对社交关系的分级" title="Permanent link">&para;</a></h2>
-<div class="admonition note">
-<p class="admonition-title">讨论范围</p>
-<p>以下对于社交关系和亲密关系的讨论，均不包含血亲之类先天自带的关系。因为在我看来，这些人都已经成为了我的世界中的「公理」，是我的价值观的很大一部分，进而是「我自己」的一部分。我并不尝试去评价「自己」。</p>
-</div>
-<p>我们把上述讨论范围内的社交对象统称为「熟人」。他们存在的意义可能包括：</p>
-<ol>
-<li>
-<p>基本的物质或者发展价值，例如互相帮助、提供建议等；</p>
+<h1 id="5-cache">5 Cache<a class="headerlink" href="#5-cache" title="Permanent link">&para;</a></h1>
+<h2 id="51-memory-hierarchy-introduction">5.1 Memory Hierarchy Introduction<a class="headerlink" href="#51-memory-hierarchy-introduction" title="Permanent link">&para;</a></h2>
+<p>众所周知，指令和数据都需要在 memory 里才能访问。而访问 memory 比较慢。</p>
+<p>关注到程序对 memory 的访问有如下特点：</p>
 <ul>
-<li>进一步地，能够自发合作或者探讨学业、工作相关的问题；</li>
+<li><strong>Temporal locality</strong>, 时间局部性，即近期访问的项目很有可能会在短时间内再次被访问。例如循环中的指令、induction variables (循环中用来计数的变量) 等</li>
+<li><strong>Spatial locality</strong>, 空间局部性，即近期访问项目附近的项目也有可能会在短时间内再次被访问。例如连续的指令执行，或者数组变量等</li>
+</ul>
+<p>因此，结构化的 memory 被设计出来。近期访问到的内存单元和它附近的内容被复制一份放在离 CPU 更近、访问更快，但也更小的 <strong>cache</strong> 中，从而利用上述局部性加速访问。</p>
+<p><center><img alt="image.png" src="../../../assets/1652692160527-7606f530-5481-4d42-8ed2-c4df690c9bf4.png" /></center></p>
+<p>我们称复制的单位是 <strong>block</strong> 或者 <strong>line</strong>，它通常是 2 的若干次方个 word 那么大（一个 word 是 4 Byte）。</p>
+<p>如果我们希望访问的内存单元 (即，它所在的 block) 恰好在 cache 中（之前某一次被搬上来了），我们称之为一次 <strong>hit</strong>，这时我们只需要从中读出来就可以了。判断是否 hit，以及读出来的时间称为 <strong>hit time</strong>。</p>
+<p>如果并不存在，称为一次 <strong>miss</strong>。当 cache miss 时，我们需要先将内容所在的 block 从 memory 拿到 cache，然后再将内容读到处理器；这个过程花的时间成为 <strong>miss penalty</strong>。</p>
+<p>对应的有 hit / miss rate (也称 ratio) 的概念，不再赘述。</p>
+<h2 id="52-the-basics-of-cache">5.2 The basics of Cache<a class="headerlink" href="#52-the-basics-of-cache" title="Permanent link">&para;</a></h2>
+<p>下面我们来具体考虑 cache 怎么实现。主要需要讨论的问题是：如何知道一个 block 是否在 cache 里？以及如果知道它在的话，如何找到它？</p>
+<h3 id="531-direct-mapped-cache">5.3.1 Direct Mapped Cache<a class="headerlink" href="#531-direct-mapped-cache" title="Permanent link">&para;</a></h3>
+<p><center><img alt="image.png" src="../../../assets/1652692837568-a910a2a5-d2ff-4251-8dfb-447508ca670c.png" /></center></p>
+<p>如上图所示，内存有 32 个 block，其编号 (block address) 分别为 00000 到 11111；cache 有 8 个 block。Direct mapped cache 这种方式直接按 block address 的后 3 位确定它应该放在 cache 的哪个 block 里。</p>
+<p>即，图上灰色的 block 的编号末 3 位都是 001，所以就应该放在 cache 中编号为 001 的灰色 block 里；橙色同理。</p>
+<p>为什么是三位呢？很简单，因为 cache 有 8 个 block 的话，其对应的就是 3 位二进制数。我们把这个决定映射关系的末几位称为 <strong>index</strong>。同理，如果 cache 有 64 个 block 的话，index 就是 6 位。Cache 的 block 数始终是 2 的幂次方。</p>
+<p>那么我们如何确定放在 cache 中编号为 001 的位置的 block 究竟是 00001，还是 01001，还是其他的哪个 block 呢？我们可以通过在 cache 中额外存放这个 block 的 block address 来知道这个问题。</p>
+<p>当然，实际上我们只需要存放这个 block address 的前若干位，因为后面的几位已经通过 index 来确定了。例如图上的例子中，10001 存在 index 为 001 的 cache block 中，只需要额外存开头的 10 即可。我们把用来判定某个 cache block 中到底存的是哪个 memory block 的这几位称为 <strong>tag</strong>。</p>
+<p>下一个问题是，如何确定 cache 中的这个 block 是否有效呢？也就是说，任何时候这个 block 中总有一个值，但是假设这个值是启动的时候自带的，那么访问它就会发生错误，因为它实际上并不是对应的 memory block 的值。因此，我们引入一个 <strong>valid bit</strong> 来表示这个 block 是否有效；初始值为 0 表示无效，当有一次将 memory 的一个 block 拿进来之后就将其置为 1。</p>
+<p>也就是说，cache hit 当且仅当 valid bit 是 1 而且 tag 是一致的。</p>
+<p>我们在内存中的地址都是以字节为单位的，而上面我们讨论的 block address 都是以 block 为单位的，这两者之间有什么样的关系呢？非常简单，由于一个 block 总是 2 的若干次方个 word 那么大， 而每个 word 是 4 Byte，因此每个 block 的 byte 数也是 2 的若干次方。因此，我们只需要去掉 byte address 的后几位，就可以获得它的 block address 了。这样相邻的 2 的若干次方个 byte 就会聚合成一个 block 了，因为它们的 byte address 的前若干位，即 block address，是相同的。</p>
+<p>也就是说，我们将 byte address 分为 2 个部分：block address 和 byte offset，即所在 block 的编号以及在 block 中的偏移量 (in byte)；而 block address 又分为了两个部分，即 tag 和 index。即：</p>
+<p><center><img alt="image.png" src="../../../assets/1652751935229-d2221dfa-a158-4842-9cb6-7bcb51479bec.png" /></center></p>
+<p>而在 cache 中，我们存储以下信息：</p>
+<p><center><img alt="image.png" src="../../../assets/1652752079856-f08cb589-5068-4524-90b6-23c7a3f1b7df.png" /></center></p>
+<p>即，每个 cache block 有一个 index，当出现一次 miss 后从内存中拿所需内存覆盖到对应的 index 条目上的 data 字段，将 tag 设为 block address 的前几位，将 valid bit 设为 1。</p>
+<details class="example" open="open">
+<summary>例 5.1 Direct Mapped Cache 的填充和替换</summary>
+<p>下面是一个具体的例子：</p>
+<p><center><img alt="image.png" src="../../../assets/1652752776370-d0133a42-a292-4d62-b055-001d5d601a10.png" /></center></p>
+</details>
+<details class="example" open="open">
+<summary>例 5.2 Direct Mapped Cache 的位数计算和连线方式</summary>
+<p>又例如，对于一个 64 位地址的机器，cache 的大小为 1024 个 block，一个 block 有 1 个 word，即 4 个 byte，那么 index 的位数就是 <span class="arithmatex">\(\log_2 1024 = 10\)</span>，byte offset 的位数就是 <span class="arithmatex">\(\log_2 4 = 2\)</span>，因此 tag 的位数就是 <span class="arithmatex">\(64 - 10 - 2 = 52\)</span>；另外一个 block 的大小是 4 个 byte，即 32 位，因此一个 cache 的条目的位数就是 valid bit 1 位 + tag 52 位 + word 32 位 = 85 位。</p>
+<p>（index 并不需要在这里被计算，因为 index 之于 cache 就像 address 之于 main memory 一样，是直接用来访问的）</p>
+<p>亦即：</p>
+<p><center><img alt="image.png" src="../../../assets/1652752904223-cd18cbdd-7d9b-45f6-9dfc-4543a5951094.png" /></center></p>
+<p>当然，如我们之前所说，一个 block 有可能包含多个 word，而每次实际上只会访问出一个 word。因此这时我们还需要在 block 中选择对应的 word，这时候我们就可以将 byte offset 进一步细分成表示 block 中某个 word 的 <strong>block offset</strong>（为什么不叫 word offset 呢？），以及表示 word 中某个 byte 的 <strong>byte offset</strong>：</p>
+<p><center><img alt="image.png" src="../../../assets/1652765206172-56e8e84c-5e9c-41d4-ae02-6a0dfca2399c.png" /></center></p>
+<p>即，对这个图中的情形，地址是 32 位的，一个 block 有 16 个 word，有 256 个 cache entry。因此 byte offset 的位数是 <span class="arithmatex">\(\log_2 4 = 2\)</span>，block offset 的位数是 <span class="arithmatex">\(\log_2 16 = 4\)</span>，index 的位数是 <span class="arithmatex">\(\log_2 256 = 8\)</span>，tag 的位数是 <span class="arithmatex">\(32-8-4-2=18\)</span>，一个 cache entry 的长度是 valid bit 1 位 + tag 18 位 + data 16 word * 4 byte/word * 8 bit/byte = 531 位。</p>
+</details>
+<details class="example" open="open">
+<summary>例 5.3 Direct Mapped Cache 的位数计算</summary>
+<p>再例如：</p>
+<p><center><img alt="image.png" src="../../../assets/1652753397820-7f30a36f-aab7-41b1-bbbf-89c151253a49.png" /></center></p>
+</details>
+<h3 id="532-handling-cache-hits--misses">5.3.2 Handling Cache Hits &amp; Misses<a class="headerlink" href="#532-handling-cache-hits--misses" title="Permanent link">&para;</a></h3>
+<p>显然，读和写的时候发生 cache miss 的处理方式是不一样的；另外读也有读数据和读指令之分（指令 cache 和数据 cache 通常是分离的）。我们分别对其进行讨论：</p>
+<ul>
+<li><strong>Read</strong><ul>
+<li><strong>Hit</strong><ul>
+<li>直接从 cache 里读就好了</li>
 </ul>
 </li>
-<li>
-<p>基本的精神价值，例如和他们交往能够满足自己的精神需求，例如分享欲或成就感；</p>
-<ul>
-<li>进一步地，能够就一些问题交换想法，较为深入地谈心等；</li>
+<li><strong>Miss</strong><ul>
+<li><strong>Data cache miss</strong><ul>
+<li>从 memory 里把对应的 block 拿到 cache，然后读取对应的内容。</li>
 </ul>
 </li>
-<li>
-<p>「可依赖」</p>
+<li><strong>Instruction cache miss</strong><ul>
+<li>暂停 CPU 运行，从 memory 里把对应的 block 拿到 cache，从第一个 step 开始重新运行当前这条指令。</li>
+</ul>
 </li>
-</ol>
-<p>我会在后面分享我对「可依赖」的定义，那是我对社交关系的最高追求。</p>
-<p><br/></p>
-<h2 id="2-可依赖">2 「可依赖」<a class="headerlink" href="#2-可依赖" title="Permanent link">&para;</a></h2>
-<p>首先提出一个问题！</p>
-<p>如果，外星人降临！它们 <strong>指定</strong> 了一个正整数 <span class="arithmatex">\(k\)</span>，要求我们每一个人需要在 <strong>不和其他人沟通</strong> 的情况下选定其他 <span class="arithmatex">\(k\)</span> 个人，不包含血亲。如果你选出的这 <span class="arithmatex">\(k\)</span> 个人中有任何一个人选择了你，你就能活下来，否则你就会被弄死😈。<strong>你的选择需要尽可能让你活下来</strong>，请问：</p>
-<ol>
-<li>当 <span class="arithmatex">\(k = 1, 3, 5\)</span> 的时候，你是否分别有对应的人选？</li>
-<li>在 <span class="arithmatex">\(k\)</span> 不小于多少的时候，你敢笃定地选择某个人？</li>
-<li>在 <span class="arithmatex">\(k\)</span> 不充分大的前提下，你有多少人选？</li>
-</ol>
-<p><br/></p>
-<p>显然，这个问题的关键点在于，在理性的前提下，如果某个人不会选你，那么你选他就毫无意义。也就是说，我们敢选择某个人的前提是：</p>
-<ol>
-<li>对方的言行足以让我相信，我在对方的心里足够重要；</li>
-<li><strong>我确信</strong> 我的言行足以让对方相信，对方在我的心里足够重要。</li>
-</ol>
-<p>我称这样的关系为「<strong>可依赖</strong>」，因为我认为良性的亲密关系需要让双方都对这段关系有充分的信任，同时也都能够将自己对维系关系的意愿 <strong>呈现</strong> 出来，并确保对方能够感受到。</p>
-<p>因此，我称一个人为 「<strong><span class="arithmatex">\(k\)</span> - 可依赖</strong>」的，其中 <span class="arithmatex">\(k\)</span> 是使你敢于笃定地选择这个人的最小 <span class="arithmatex">\(k\)</span>。</p>
-<p>对我个人而言，<strong>持续</strong> 的「可依赖」是我对亲密关系的最高期待；而 <span class="arithmatex">\(k\)</span> 越小，我就认为这段亲密关系的质量越高。</p>
-<p><br/></p>
-<h3 id="21-恋爱关系">2.1 恋爱关系<a class="headerlink" href="#21-恋爱关系" title="Permanent link">&para;</a></h3>
-<div class="admonition abstract">
-<p>恋爱关系是顶级亲密关系的体验卡。</p>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Write</strong><ul>
+<li><strong>Hit</strong> 有两种可以选的方式：<ul>
+<li><strong>write-through</strong>，即每次写数据时，既写在 cache，也写在 main memory。这样的好处是 cache 和 main memory 总是一致的，但是这样很慢。<ul>
+<li>一个改进是引入一个 <strong>write buffer</strong>，即当需要写 main memory 的时候不是立即去写，而是加入到这个队列中，找机会写进去；此时 CPU 就可以继续运行了。当然，当 write buffer 满了的时候，也需要暂停处理器来做写入 main memory 的工作，直到 buffer 中有空闲的 entry。因此，如果 main memory 的写入速率低于 CPU 产生写操作的速率，多大的缓冲都无济于事。</li>
+</ul>
+</li>
+<li><strong>write-back</strong>，只将修改的内容写在 cache 里，等到这个 block 要被覆盖掉的时候将其写回内存。这种情况需要一个额外的 <strong>dirty bit</strong> 来记录这个 cache block 是否被更改过，从而直到被覆盖前是否需要被写回内存。由于对同一个 block 通常会有多次写入，因此这种方式消耗的总带宽是更小的。</li>
+</ul>
+</li>
+<li><strong>Miss</strong> 同样有两种方式：<ul>
+<li><strong>write allocate</strong>，即像 read miss 一样先把 block 拿到 cache 里再写入。</li>
+<li><strong>write around</strong> (or <strong>no write allocate</strong>)，考虑到既然本来就要去一次 main memory，不如直接在里面写了，就不再拿到 cache 里了。</li>
+<li>write-back 只能使用 write allocate；一般来说，write-through 使用 write around，其原因是明显的。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="533-其他定位方式">5.3.3 其他定位方式<a class="headerlink" href="#533-其他定位方式" title="Permanent link">&para;</a></h3>
+<p>在 5.3.1 中，我们讨论了最简单的映射方式，即直接映射：对于任一给定的 block address，有且仅有一个 cache block 可供它存放。实际上，还有一些其他的映射方式。</p>
+<p><strong>Fully associative</strong>，简单来说就是 block can go anywhere in cache。这种方式的好处是可以降低 miss rate，坏处是每次需要跟所有 block 比较是否 hit：</p>
+<p><center><img alt="image.png" src="../../../assets/1652756194622-6e4626af-f977-45b0-86dc-7cbfcef52bfd.png" /></center></p>
+<p>这种情况下，我们需要额外讨论替换时采用什么样的策略；即：替换哪一块。通常有三种策略：</p>
+<ul>
+<li><strong>Random replacement</strong>，随机挑选一个幸运 block 覆盖掉（需要一个随机数生成器）</li>
+<li><strong>LRU, Least Recently Used</strong>，选择上一次使用时间距离现在最远的那个 block 覆盖掉（需要一些额外的位用来记录信息，具体实现没有讲）</li>
+<li><strong>FIFO, First In First Out</strong>，选择进入时间最早的 block 覆盖掉（同样需要一些额外的位记录信息，同样没讲具体实现）</li>
+</ul>
+<p>介于 direct mapping 和 fully associative 之间的是 set associative，即每个 block 仍然会根据其 address 确定其可以存放的 cache block，但是可以放的地方并不是一个，而是一组。即：</p>
+<p><center><img alt="image.png" src="../../../assets/1652756607490-1017df1c-5566-4e2a-a28b-116f0e333638.png" /></center></p>
+<p>最右边是一个 2-way set-associative 的例子，每个地址对应 cache 中的一组，在这里一组有两个 cache block。因此在访问时也需要分别比较这两个 block 是否 hit。在替换时也需要决定替换哪一块，也可以使用前述的三个策略中的一个实现。</p>
+<p>相似地，一个 4-way set-associative 的访问中判断 hit 和获取 data 的连线如下：</p>
+<p><center><img alt="image.png" src="../../../assets/1652757530348-328003df-17fe-47b0-826f-7c7f283d4811.png" /></center></p>
+<p>所以，事实上，direct mapping 和 fully associative 其实都是 set associative 的特例：direct mapping 其实就是 1-way set associative，而 fully associative 就是 n-way set associative，其中 n 是 cache block 的个数；我们称一组的大小为 <strong>associativity</strong>，那么这两种方法的 associativity 就分别是 1 和 n。</p>
+<p>显然，在查看所需 block 是否在 cache 中时，需要访问的 cache block 个数就等于 associativity，即：</p>
+<p><center><img alt="image.png" src="../../../assets/1652757375415-3eaa40f0-fcf9-4005-a401-8892a22d6867.png" /></center></p>
+<details class="example" open="open">
+<summary>例 5.4 Set associative 的位数计算</summary>
+<p>已知 Cache size is 4K Block, Block size is 4 words, Physical address is 32bits，求 direct-mapped, 2-way associative, 4-way associative, fully associative 时 tag 和 index 的位数。</p>
+<p>即求 associativity 为 1, 2, 4 和 4096 时 tag 和 index 的位数。</p>
+<p>我们知道，在 direct-mapped 中 index 是用来确定 memory block 放在哪个 cache block 中的，那么在 set-associative 中，index 就是用来确定放在哪个 set 中的。因此，index 的位数就对应着 set 的个数，即：</p>
+<div class="arithmatex">\[\text{index}_\# = \log_2(\text{set}_\#) = \log_2\frac{\text{cache block}_\#}{\text{associativity}}\]</div>
+<p>因此 associativity 为 1, 2, 4, 4096 时，index 的位数分别是 12, 11, 10, 0。</p>
+<p>由于 block size 为 4 words，即 16 Bytes，因此 byte offset 需要 4 位（或者，具体地说，block offset 2 位，byte offset 2 位）。所以剩下的都是 tag 了，因此 tag 的位数分别是 16, 17, 18, 28。</p>
+</details>
+<details class="example" open="open">
+<summary>18 - 19 Final</summary>
+<p><center><img alt="image.png" src="../../../assets/1655057793599-cf6a859a-8c2d-4ebc-8e7a-97569ae0fa53.png" /></center></p>
+<p><center><img alt="image.png" src="../../../assets/1655057800314-657b2aba-4f32-41f4-829a-507806fc4afd.png" /></center></p>
+<details class="info">
+<summary>答案</summary>
+<p><center><img alt="image.png" src="../../../assets/1655057824454-acd8b498-375e-461d-9c9e-1225e8dae46b.png" /></center></p>
+</details>
+</details>
+<h2 id="53-measuring-cache-performance">5.3 Measuring Cache Performance<a class="headerlink" href="#53-measuring-cache-performance" title="Permanent link">&para;</a></h2>
+<p>再说吧</p>
+<h2 id="54-virtual-machines">5.4 Virtual Machines<a class="headerlink" href="#54-virtual-machines" title="Permanent link">&para;</a></h2>
+<p>先不学了</p>
+<h2 id="55-virtual-memory">5.5 Virtual Memory<a class="headerlink" href="#55-virtual-memory" title="Permanent link">&para;</a></h2>
+<h3 id="551-虚拟内存技术">5.5.1 虚拟内存技术<a class="headerlink" href="#551-虚拟内存技术" title="Permanent link">&para;</a></h3>
+<p>计组把 main memory 描述为 secondary storage (即 disk) 的 "cache"。或者，反过来说，我们把那些在 main memory 里放不下的内容存到 disk 里（这样更能符合我们熟悉的“可执行文件必须加载到内存才能运行”的一贯认知）。这种技术称为 <strong>virtual memory</strong>。</p>
+<p>虚拟内存技术可以让多个程序之间高效、安全地共享内存，同时允许单个程序使用超过内存容量的内存（正如虽然 CPU 取数据时是从 cache 中取的，但是它能访问到的数据的数目比 cache 的容量要大）。在远古时期，很多程序因为需要使用过大的内存而无法被运行；但现在由于虚拟内存技术的广泛使用，这些程序都不成问题了。</p>
+<p>如下图所示，实际上的 main memory（我们称之为 <strong>物理内存, physical memory</strong>）中的地址称为 <strong>物理地址, physical addresses</strong>；而我们给每一个程序内部使用到的内存另外编一套地址，称为 <strong>虚拟地址, virtual addresses</strong>；虚拟内存技术负责了这两个地址之间的转换 (<strong>address translation</strong>，我们稍后再讨论转换的方式)：</p>
+<p><center><img alt="image.png" src="../../../assets/1653214940649-4eef3e3d-058d-4c77-b2e5-82a20bf1ed46.png" /></center></p>
+<p>从这张图中我们也可以很容易地看出“虚拟内存技术可以允许单个程序访问超过物理内存大小限制的内存”的原因，即有一些内存可以被临时地存放在磁盘上，到被访问的时候再被放到 physical memory 中，就像 cache 做的那样。</p>
+<p>从这张图中，我们还可以注意到 physical memory 的存放并没有分组的概念，即用 cache 的术语来说，main memory 是 fully-associative 的。</p>
+<p>虚拟存储的技术和 cache 的原理是一样的，但是一些术语的名字并不相同。对应于 cache 中的 block / line，虚拟存储的内存单元称为 <strong>page</strong>，当我们要访问的 page 不在主存中而是在磁盘里，也就是 miss，我们称之为一次 <strong>page fault</strong>。</p>
+<details class="info">
+<summary>Info</summary>
+<p>在一些地方，virtual page 称为 page，physical page 称为 <strong>帧, frame</strong>；我们的课本并未采用这种称呼。但无论如何，在看到单独出现的 <em>page</em> 时，应当参考上下文判断它是 virtual 还是 physical。</p>
+<p>在一些地方，virtual address 也被称为 logical address。</p>
+</details>
+<h3 id="552-如何完成映射呢">5.5.2 如何完成映射呢<a class="headerlink" href="#552-如何完成映射呢" title="Permanent link">&para;</a></h3>
+<p>首先我们要考虑的一个问题就是，一个 page 应该有多大。我们知道，访问磁盘相比于访问内存是非常慢的（相差大约十万倍），这个主要时延来自于磁盘转到正确的位置上的时间花费；所以我们希望一次读进来多一点从而来分摊这个访问时间。典型的 page 大小从 4KiB ~ 64KiB 不等。</p>
+<p>下面我们考虑映射关系。我们不妨假设一个 page 的大小是 4KiB，那么其页内的偏移 <strong>page offset</strong> 就需要 12 位来表示；那么物理地址中除去后 12 位以外前面的部分就表征着它是属于哪一页的，我们称之为 <strong>physical page number</strong>。</p>
+<details class="info">
+<summary>Info</summary>
+<p>如我们之前所说，memory 作为 disk 的 "cache" 是 fully-associative 的，因此 physical page number 其实就是 cache 中的 "tag"，而 page offset 就是 cache 中的 "byte offset"，fully-associative 的 cache 并没有 index 这一字段。</p>
+</details>
+<p><center><img alt="image.png" src="../../../assets/1653273502100-3bc83b47-f1e3-45c6-93a2-d96a1b080554.png" /></center></p>
+<p>为什么要使用 fully-associative 的存储方式呢？我们在 cache 中讨论过，这种方式的好处是失效率低，坏处是查询难度大。但是我们也讨论到了，page fault 的开销是非常大的，因此比较低的 page fault 的概率相对于额外的查询来说是非常划算的。</p>
+<p>同样，由于读写磁盘是非常慢的，write through 的策略并不合适，因此在 virtual memory 的技术中，我们采取 write back 的方式。</p>
+<p>而 virtual address 的形式与之类似，由若干位 page number 和若干位 page offset 组成。</p>
+<p>我们之前提到，我们有一种方式可以找到 virtual page 对应的 physical page，因此当我们要访问一个虚拟地址时，将其 virtual page number 通过这种 translation 转换为 physical page number（这种 translation 也会负责 page fault 的处理并给出正确的转换），而 page offset 表示的是在一页内的偏移，保持不变即可。这样我们就获得了这个 virtual address 对应的 physical address，也就是它在实际的 main memory 中存储的位置。如下图所示：</p>
+<p><center><img alt="image.png" src="../../../assets/1653274122638-cbffd0c2-1397-4a3a-83a8-67c57004505b.png" /></center></p>
+<p>同时也可以看出，virtual page number 的位数比 physical 的多；这也是显然的，因为我们引入虚拟内存的一个重要原因就是为了使用比 main memory 更大的内存。</p>
+<details class="info">
+<summary>Info</summary>
+<p>如果我们把 translation 看成一个函数（事实上，我们之后可以看到，这种 translation 确实符合函数的定义），那么事实上 virtual page number 到 physical page number 的转换是 direct mapped 的，因为我们从一个 virtual page number 可以确切地找到**一个** physical page number，而不是在一组中再去寻找。因此，virtual page number 实际上对应了 cache 中的 "index"，tag 并不需要。</p>
+<p>所以说，我们认为 virtual address 之于 physical address 是 direct mapped 的，virtual page number 对应 cache 中的 index，page offset 对应 byte offset；而 physical address 之于 secondary storage 是 fully associative 的，physical page number 对应 cache 中的 tag，page offset 对应 byte offset。</p>
+<p>（但是实际上，我个人并不认同把 virtual memory 和 cache 类比起来。）</p>
+</details>
+<h3 id="553-页表">5.5.3 页表<a class="headerlink" href="#553-页表" title="Permanent link">&para;</a></h3>
+<p>我们下面讨论这种 translation 的具体方案。之前也提到，fully-associative 的一个重要问题就是如何去定位某一项；这里我们引入 <strong>page table</strong> 这种结构，它被存放在 main memory 中，每个程序（实际上是进程，但是写课本的人好像现在并不想引入这个概念）都有一个自己的 page table；同时硬件上有一个 <strong>page table register</strong> 保存当前进程这个页表的地址。</p>
+<p>使用页表时，我们根据 virtual page number 找到对应 <strong>page table entry, PTE</strong> 在 page table 中的偏移，然后与 page table register 相加得到对应 entry 的 physical address，从中读取对应的 entry。其实就是说，page table 就是一个数组，<code>page_table[i]</code>表示第<code>i</code>个 virtual page 对应的 physical page number。</p>
+<p>如下图所示，每个 entry 中包含了一个 valid bit 和 physical page number。如果 valid bit = 1，那么转换完成；否则触发了 page fault，handle 之后再进行转换。</p>
+<p><center><img alt="image.png" src="../../../assets/1653274939462-abfe7f29-a821-469c-b76c-df2efb82a791.png" /></center></p>
+<p>Page fault 会引发一个 exception，由操作系统接管控制，处理完之后再将控制交还给进程。操作系统要做的事情是在 secondary storage 中找到这一 page，将其放到 main memory 里（可能需要与当前主存中的某个 page 交换），然后更新 page table。</p>
+<p>操作系统在创建进程时在 disk (或者 flash memory) 上创建一个虚拟地址空间那么大的空间，以便上述的交换；这个空间称为 <strong>交换区, swap space</strong>。下面的问题是操作系统如何在 swap space 中找到需要的 page。</p>
+<p>我们可以看到，如果 page table entry 的 valid bit 为 0，那么后面的 physical page number 是没有用到的。我们可以利用这个字段存储对应 page 被交换到了 disk 的哪个位置；或者另外开辟一个索引结构，在其中记录每个 virtual page number 对应的 disk 位置。作为前者的一个例子，请看下图：</p>
+<p><center><img alt="image.png" src="../../../assets/1653277209068-e7036fd9-6841-400e-96e2-d2f97013a4ba.png" /></center></p>
+<p>操作系统还会跟踪哪些进程和虚拟地址正在使用哪个物理页，因为操作系统需要让交换引发后续 page fault 的次数尽可能少。操作系统会使用我们之前提到的 <strong>LRU, Least Recently Used</strong> 的策略处理交换。</p>
+<p>LRU 的代价有点太大了，毕竟如果使用 LRU 的话需要遍历整个 main memory。因此，很多操作系统引入了 <strong>reference bit</strong> (或者称为 <strong>use bit</strong>) 来近似地实现 LRU。当一个 page 被访问时这个 bit 被置为 1；操作系统定期将 reference bit 清零。因此，在需要交换时，只需要找一个 reference bit 为 0 的就可以说明它在这段时间内没有被访问过。</p>
+<p>如我们之前所说，virtual memory 使用 write back 的策略，因此还需要一个 dirty bit。</p>
+<h3 id="554-用多级页表解决页表过大的问题">5.5.4 用多级页表解决页表过大的问题<a class="headerlink" href="#554-用多级页表解决页表过大的问题" title="Permanent link">&para;</a></h3>
+<p>我们不妨关注一下 page table 有多大。在我们之前的例子中，virtual address 有 48 bit，每个 page 的大小为 4KiB，所以 page table entry 的数目是 
+<span class="arithmatex">\(\cfrac{2^{48} \text{ B}}{4\text{ KiB}} = \cfrac{2^{48}}{4\times 2^{10}} = 2^{36}\)</span>；而 RISC-V 每个表项有 8 Byte，所以 page table 的总大小来到了 <span class="arithmatex">\(2^{39}\text{ B} = 0.5 \text{TiB}\)</span>，这是极其不合理的；尤其是每个进程都有一个 page table 的前提下。</p>
+<p>我们可以通过多级页表的方式解决这个问题。</p>
+<p>如我们之前所述，页表是一个数组， <code>page_table[i]</code> 中存储的是 page number 为 i 的 page 所对应的 frame number。考虑我们的逻辑地址结构：</p>
+<p><center><img alt="image.png" src="../../../assets/1607247135113-1998902c-c1c0-4d78-8d21-99766857be7e.png" /></center></p>
+<p>这样的逻辑地址结构需要一个存储 2p 个元素的 page table，即需要这么大的连续内存，这是非常大的消耗。我们考虑将 p 再分为 p1 和 p2 ：</p>
+<p><center><img alt="image.png" src="../../../assets/1608315590109-e84d3ab8-0a2d-4e6a-becd-d10f57d45f2f.png" /></center></p>
+<p><center><img alt="image.png" src="../../../assets/1608315596044-0e1ba30c-ca5d-4f3a-ae2f-f792f992a1b1.png" /></center></p>
+<p>我们使用一个两级页表， <code>outer_page_table[i]</code> 中存储的是 p1 为 i 的 inner page table，即<code>inner_page_table[i][]</code> 的基地址；而 <code>inner_page_table[i][j]</code> 中存储的就是 p1 为 i，p2 为 j 的 page 对应的 frame number，即 page number 为 p1p2 （没有分割时的 p）对应的 frame number。</p>
+<p>这里，我们称 p1 为 <strong>page directory number</strong> ，p2 为 <strong>page table number</strong>，d 为 <strong>page offset</strong>。</p>
+<p><center><img alt="image.png" src="../../../assets/1608316895578-0d32183b-93b0-44a1-805d-c96b47b0f3b0.png" /></center></p>
+<p>考虑这样做的好处：hierarchical paging 其实就是对页表的分页（page the page table）。因此，它避免了 page table 必须处在连续内存的问题，这一问题在 <em>p</em> 比较大时尤其严重。</p>
+<p>另外，这样做在一般情况下可以节省空间。我们之前提到，页表不一定会全部使用；并且由于逻辑地址是连续的，因此用到的页表项也是连续的，都排在页表的头部。因此如果我们采用了二级页表，那么许多排在后面的 inner page table 将完全为空；此时我们可以直接不给这些 inner page table 分配空间，即我们只分配最大的 p1 那么多个 inner page table。这样我们可以节省很多空间。即使在最差的情况下，所有页表都被使用了，我们的页表所用的总条目数也只有 <span class="arithmatex">\(2^{p_1}+2^{p_1}\cdot 2^{p_2} = 2^{p_1} + 2^{p_1 + p_2}\)</span> 个，只比单级页表结构多了 <span class="arithmatex">\(2^{p_1}\)</span>，是完全可以接受的。</p>
+<p>类似地，我们可以设计更多级的页表。例如，64 位的逻辑地址空间使用二级页表就是不够的，否则它的页表就会长成这样：</p>
+<p><center><img alt="image.png" src="../../../assets/1608317288073-c745144b-ee16-43e2-b38b-56b32797856b.png" /></center></p>
+<p>这样 outer page 就会超级大。我们可以 page the outer page：</p>
+<p><center><img alt="image.png" src="../../../assets/1608360619753-f1b1e4b2-e278-40ba-ab7d-47133aa06989.png" /></center></p>
+<p>这样，我们就建立了一个三级页表。</p>
+<p>实际上，我们不必使用全部的 64 位，即我们不需要一个 64 位那么巨大的 virtual address space。AMD-64 支持 48-bit 的虚拟地址，ARM64 支持 39-bit 和 48-bit 的虚拟地址空间：</p>
+<p><center><img alt="image.png" src="../../../assets/1608360842899-bab5d705-9051-4802-a36e-514d9977a7c5.png" /></center></p>
+<h3 id="555-使用-tlb-加快地址转换">5.5.5 使用 TLB 加快地址转换<a class="headerlink" href="#555-使用-tlb-加快地址转换" title="Permanent link">&para;</a></h3>
+<p>我们之前提到，使用页表时，我们根据 virtual page number 找到对应 page table entry 在 page table 中的偏移，然后与 page table register 相加得到对应 entry 的 physical address，从中读取对应的 entry。但是这种方法的效率存在问题。要访问 virtual address 对应的 physical address，我们首先要根据 page table register 和 page number 来找到页表在内存的位置，并在其中得到 page 对应的 frame number，这需要一次内存访问；然后我们根据 frame number 和 page offset 算出真实的 physical address，并访问对应的字节内容。即，访问一个字节需要两次内存访问，这会加倍原本的内存访问的时间，这是难以接受的。</p>
+<p>这个问题的解决方法用到一个专用的高速查找硬件 cache，这里称它为 <strong>translation look-aside buffer (TLB)</strong>。它实际上就是 page table 的专用 cache（它真的是 cache；page table 并不是 cache，只是像 cache），其 associativity 的设计可以根据实际情况决定。</p>
+<p>下图是一个 fully-associative 的 TLB 的例子；由于是 fully-associative，并不需要 index：</p>
+<p><center><img alt="image.png" src="../../../assets/1653281003134-b3440528-694f-4c30-8289-c05f06bde0a3.png" /></center></p>
+<p>当 TLB miss 的时候，处理器去 page table 查找对应的项；如果发现对应项是 valid 的，那么就把他拿到 TLB 里（此时被替换掉的 TLB entry 的 dirty bit 如果是 1，也要写会 page table）；否则就会触发一个 page fault，然后在做上述的事。</p>
+<p><center><img alt="image.png" src="../../../assets/1653281383373-c6779ed4-1765-4bd5-9be9-f57c2e5ebd3c.png" /></center></p>
+<h3 id="556-memory-protection">5.5.6 Memory Protection<a class="headerlink" href="#556-memory-protection" title="Permanent link">&para;</a></h3>
+<p>暂时不想学QWQ</p>
+<h2 id="56-the-three-cs--对-cache-miss-的归类">5.6 The Three Cs | 对 cache miss 的归类<a class="headerlink" href="#56-the-three-cs--对-cache-miss-的归类" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>此处内容存疑</p>
 </div>
-<p>需要特别说明的是，我并没有把恋爱关系排除在亲密关系之外 —— 从我的角度而言，恋爱关系是「<span class="arithmatex">\(1\)</span> - 可依赖」的「<strong>体验卡</strong>」；也就是说，两个人的共同特质、喜好、共同经历等等因素可能暂时达不到 <span class="arithmatex">\(k = 1\)</span> 的要求，但是恋爱关系作为一个世俗的道德约束，它本身要求我们（或者，让我们有信心）在上述讨论中优先选择自己的对象。</p>
-<p>而在我看来，恋爱关系在开始之后需要做的，就是在这张「体验卡」到期之前，去沟通、磨合、共事，共同经历平常的和特殊的事情，加深了解和羁绊，从而补齐 <span class="arithmatex">\(k = 1\)</span> 所需要的情感基础。</p>
-<p>也正因如此，因为我对性本身没什么需求，所以对于我而言，如果有能够持续的「<span class="arithmatex">\(1\)</span> - 可依赖」关系的朋友，那恋爱对于我来说似乎就不怎么重要了。（不过感觉这比谈一段恋爱还要难好多😕））））</p>
-<p><br/></p>
-<h2 id="3-一些问题和困境">3 一些问题和困境<a class="headerlink" href="#3-一些问题和困境" title="Permanent link">&para;</a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>下面的东西可能更琐碎和没有逻辑了……</p>
-</div>
-<h3 id="31-开始而不只是维持">3.1 开始，而不只是维持<a class="headerlink" href="#31-开始而不只是维持" title="Permanent link">&para;</a></h3>
-<p>我认为一切社交关系的建立和维持需要</p>
-<ol>
-<li>
-<p>前提：一个让两个人认识的理由</p>
-</li>
-<li>
-<p>建立：</p>
-<p>a. 互相吸引，或者<br />
-b. 互相有建立关系的价值，或者 <br />
-c. 前述「前提」的长期持续</p>
-</li>
-<li>
-<p>维持：</p>
-<p>a. 仍然存在满足前述「建立」要求的条件<br />
-b. 基本的维系活动<br />
-c. 没有因为足够多或者严重的问题，使得这个社交关系在至少一方看来不值得维系的</p>
-</li>
-</ol>
-<p>因此，为什么我们上大学以后会感觉朋友少了呢？就是因为第 1 条变得更加稀有了。高中大家都在一个班里上课，交流相当丰富；同桌和部分好友甚至可以满足第 2 条的要求 c，因而不需要我们主观努力就能建立起社交关系。</p>
-<p>也正因为这个原因，很多人，尤其是对社交关系的 <strong>数量</strong> 需求不高的人，在大学之前完全没有主观努力建立社交关系的经验和意识；而到了大学，客观环境替我们满足第 1 条的优势不复存在，我们自然就很难有什么新的朋友了。 </p>
-<h3 id="32-大多数男女生社交的不同点">3.2 大多数男女生社交的不同点<a class="headerlink" href="#32-大多数男女生社交的不同点" title="Permanent link">&para;</a></h3>
-<p>一个观察，不知道对不对 —— 大多数男生形成圈子或者一起出游基本都有一个明确的主题，而女孩子们可以纯粹因为「关系好」形成一个圈子，同时可以没有任何预谋或者目的地一同出游。</p>
-<p>但实际上在我看来，聊天也许更能促进彼此之间的了解，进一步增进彼此的信任感。这也是我认为大多数女孩子在精神层面的社交质量比男孩子好一些的原因。正因如此，我也会在每个假期尽可能和希望维持关系的老朋友一起出来压马路、聊天 —— 我希望在交到新的好朋友越来越难的情况下尽可能维护好现有的关系。（不过还是很困难……）</p>
-<h3 id="33-泡沫">3.3 「泡沫」<a class="headerlink" href="#33-泡沫" title="Permanent link">&para;</a></h3>
-<p>小时候家人和老师曾经因为我表现得有些「自闭」、不愿和别人交往而努力鼓励我交朋友；在此后很长一段时间里我也认为我的社交能力算是可以过关，但仔细想来大概也并非如此。暂且不谈过程，仅从结果来说，我有时确实沉溺于网络上所谓「社交」带来的快感，但那只是 <strong>看似</strong> 自己很受欢迎带来的虚荣。但是正如我们被教导的那样，这种虚荣的深处实际上是对自己的不自信。我为了掩盖自己深层次社交的匮乏，选择了用泡沫包围自己，从而蒙蔽别人，更多的是蒙蔽自己。但是一旦亲自拨开这些泡沫，才发现里面空空如也。</p>
-<p>同时，这些泡沫的存在也会让别人觉得，既然不缺朋友，那么也没必要主动靠近了。大概也因为这种原因，我可能也失去了和一些人交朋友的机会。泡沫的存在是一种隔离，即使它能带来一点点暂时的保护，但是泡沫总会有消散的那一天，而只有泡沫之下的东西，才算是真正拥有。</p>
-<h3 id="34-自我设限">3.4 自我设限<a class="headerlink" href="#34-自我设限" title="Permanent link">&para;</a></h3>
-<p>我似乎经常存在这样的情况：以为对方根本不想或者不会和自己做朋友，因而单方面回避社交；而对方实际上根本没有这样的想法，却因为我们的回避而在和我们建立社交关系的尝试中失败了，因此不再尝试和我们建立关系；甚至认为我们讨厌他们的一些特质，导致恶性循环。</p>
-<p>我至今仍然很难改正这种由于胡思乱想或者担心受挫从而封闭自己、不敢尝试的坏习惯，无论是在社交还是其他方面。我也在努力提醒自己尽可能不要自我设限……任重而道远))))</p>
-<h3 id="35-无意识的冒犯">3.5 无意识的冒犯<a class="headerlink" href="#35-无意识的冒犯" title="Permanent link">&para;</a></h3>
-<p>我们可能并没有判断自己的某些行为是否会打扰别人的意识或能力。这可能会导致有时无意识地打扰或者冒犯到一些人。而出于社交礼仪，或者因为根本不太熟，又或者是为了避免冲突和误解，其他人也许并不会向我们反馈这些冒犯。</p>
-<p><strong>所以其实很希望大家能够告诉我我会在哪些地方让人感觉不适 QWQ 如果不方便直接说的话其实也有很多匿名渠道的……比如 QQ 的匿名问答之类的</strong></p>
-<h3 id="36-大家对亲密关系的需求相差很大">3.6 大家对亲密关系的需求相差很大<a class="headerlink" href="#36-大家对亲密关系的需求相差很大" title="Permanent link">&para;</a></h3>
-<p>精神层面的社交关系，对于一些人来说是刚需；但对于另一些人，在大多数时候也许并不太重要。这种差别的存在也许也会是很多人之间发展社交关系的阻碍，甚至可能会引发彼此之间的误解。</p>
-<p>（我还是挺羡慕那些对亲密关系没有那么大需求的人的 👉👈 我会花费大量时间和精力去尝试维持、发展社交关系，同时也经常因为亲密关系影响到自己的心情。我尝试控制，但是控制不来QAQ）</p>
-<p><br/></p>
-<h2 id="4-写个结尾">4 写个结尾<a class="headerlink" href="#4-写个结尾" title="Permanent link">&para;</a></h2>
-<p>上面聊的那些问题，我也不知道怎么解决……如果大家有解决方案或者建议的话请务必浇浇我）））</p>
-<p>我也不知道怎么能够培养出一个「可依赖」的关系，那个问题本身，我也没能给出什么肯定的答案（但是好像好多人也没有 XD）</p>
-<p>我很缺朋友的……欢迎找我玩耍 👉👈 </p>
-<p>我理想中最美好的未来，除了做喜欢的事、有基本的物质品质和赚钱的能力之外，更重要的是有一个「<span class="arithmatex">\(1\)</span> - 可依赖」的人在身边，同时附近也有很多朋友，能在闲暇时间串串门、做做饭，谈天说地，偶尔一起出去玩。我不知道这样的未来有多大可能，离我又有多远 ——</p>
-<p><font color="white">算了，就当做是个遥远的梦吧QWQ</font></p>
+<ul>
+<li>Compulsory misses / Cold-start misses：对一个块第一次访问时引发的 miss</li>
+<li>Capacity misses：在 fully-associative cache 中，某个块虽然访问过，但是由于容量不够被换出去了，再访问时就 miss 了</li>
+<li>Conflict misses / Collision misses：在 set-associative 或 direct-mapped cache 中，某个块虽然访问过，但是由于这个组里的容量不够被换出去了，再访问时就 miss 了</li>
+</ul>
+<h2 id="57-using-fsm-to-control-a-simple-cache">5.7 Using FSM to Control a Simple Cache<a class="headerlink" href="#57-using-fsm-to-control-a-simple-cache" title="Permanent link">&para;</a></h2>
+<p>FSM，Finite State Machine，有限状态自动机；其实就是根据当前状态和输入转换状态的东西。这里根据当前的状态以及发生的事件转换状态，并给出一些控制信号的输出：</p>
+<p><center><img alt="image.png" src="../../../assets/1653286348338-6817d850-727d-4644-b0ee-b4b0e3f90861.png" /></center></p>
+<p><center><img alt="image.png" src="../../../assets/1653286361901-d528850a-0cfa-42d6-81ec-67f2455d231d.png" /></center></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-11T09:00:15+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-11</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-01T18:46:18+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-01</span>
       
         <br>
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-11T18:49:52+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-11</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-01T18:46:18+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-01</span>
       
     
   </small>
@@ -2482,7 +2666,7 @@ var giscus = document.querySelector("script[src*=giscus]")
     <nav class="md-footer__inner md-grid" aria-label="页脚" >
       
         
-        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="上一页: 生活" rel="prev">
+        <a href="../4_processor/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 4 Processor" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -2491,20 +2675,20 @@ var giscus = document.querySelector("script[src*=giscus]")
               <span class="md-footer__direction">
                 上一页
               </span>
-              生活
+              4 Processor
             </div>
           </div>
         </a>
       
       
         
-        <a href="../2022/" class="md-footer__link md-footer__link--next" aria-label="下一页: 2022 年终总结" rel="next">
+        <a href="../6_IO/" class="md-footer__link md-footer__link--next" aria-label="下一页: 6 I/O" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 下一页
               </span>
-              2022 年终总结
+              6 I/O
             </div>
           </div>
           <div class="md-footer__button md-icon">
