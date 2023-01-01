@@ -197,7 +197,7 @@
   
     <li class="md-tabs__item">
       <a href="../../../.." class="md-tabs__link">
-        主页
+        🏡 主页
       </a>
     </li>
   
@@ -395,7 +395,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../..">主页</a>
+          <a href="../../../..">🏡 主页</a>
           
             <label for="__nav_1">
               <span class="md-nav__icon md-icon"></span>
@@ -403,10 +403,10 @@
           
         </div>
       
-      <nav class="md-nav" aria-label="主页" data-md-level="1">
+      <nav class="md-nav" aria-label="🏡 主页" data-md-level="1">
         <label class="md-nav__title" for="__nav_1">
           <span class="md-nav__icon md-icon"></span>
-          主页
+          🏡 主页
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1813,8 +1813,6 @@
         
           
         
-          
-        
       
       
         
@@ -1835,20 +1833,6 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../%E7%94%9F%E6%B4%BB/%E5%92%B8%E9%B1%BC%E6%9A%84%E4%BB%8A%E5%A4%A9%E5%90%83%E4%BB%80%E4%B9%88/" class="md-nav__link">
-        咸鱼暄今天吃什么
-      </a>
-    </li>
-  
-
             
           
             
@@ -1888,7 +1872,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_5" type="checkbox" id="__nav_9_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_4" type="checkbox" id="__nav_9_4" >
       
       
       
@@ -1899,15 +1883,17 @@
         
           
         
+          
+        
       
       
-        <label class="md-nav__link" for="__nav_9_5">
+        <label class="md-nav__link" for="__nav_9_4">
           讨饭历程
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="讨饭历程" data-md-level="2">
-        <label class="md-nav__title" for="__nav_9_5">
+        <label class="md-nav__title" for="__nav_9_4">
           <span class="md-nav__icon md-icon"></span>
           讨饭历程
         </label>
@@ -1920,7 +1906,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../interviews/overview/" class="md-nav__link">
-        总览
+        🏳️‍🌈 总览
       </a>
     </li>
   
@@ -1934,7 +1920,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../interviews/pdd/" class="md-nav__link">
-        拼多多
+        😕 拼多多
       </a>
     </li>
   
@@ -1948,7 +1934,21 @@
   
     <li class="md-nav__item">
       <a href="../../../../interviews/meituan/" class="md-nav__link">
-        美团
+        🤗 美团
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../interviews/mayi/" class="md-nav__link">
+        🤔 蚂蚁
       </a>
     </li>
   
@@ -2086,25 +2086,25 @@
 <span class="normal">16</span>
 <span class="normal">17</span>
 <span class="normal">18</span>
-<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 
-<span class="n">producer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">producer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// &lt;1&gt; If buffer is full, wait </span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">add_to_buffer</span><span class="p">(</span><span class="n">next_produced</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">add_to_buffer</span><span class="p">(</span><span class="n">next_produced</span><span class="p">);</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="n">consumer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">consumer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// &lt;2&gt; If buffer is empty, wait</span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">next_consumed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">take_from_buffer</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">next_consumed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">take_from_buffer</span><span class="p">();</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>不过，上面两处注释中要求根据 <code>buffer</code> 的容量决定是否需要等待的需求还没有实现。</p>
 <p>我们可以考虑使用一个变量 <code>count</code> 来记录 <code>buffer</code> 中有多少个元素；如果这样实现的话，对 <code>count</code> 的修改也是 critical section，因此也需要锁的控制：</p>
@@ -2129,28 +2129,28 @@
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
-<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="n">producer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">producer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
 <span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">BUFFER_SIZE</span><span class="p">)</span><span class="w"> </span><span class="p">;</span><span class="w">  </span><span class="c1">// If buffer is full, wait </span>
-<span class="w">        </span><span class="n">add_to_buffer</span><span class="p">(</span><span class="n">next_produced</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">count</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">add_to_buffer</span><span class="p">(</span><span class="n">next_produced</span><span class="p">);</span>
+<span class="w">        </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="n">consumer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
+<span class="n">consumer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
 <span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">;</span><span class="w">    </span><span class="c1">// If buffer is empty, wait</span>
-<span class="w">        </span><span class="n">next_consumed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">take_from_buffer</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">count</span><span class="o">--</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">next_consumed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">take_from_buffer</span><span class="p">();</span>
+<span class="w">        </span><span class="n">count</span><span class="o">--</span><span class="p">;</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>这种方式的实现问题是显然的：比如当前 <code>buffer</code> 为空，即 <code>count</code> 为 0，<code>consumer</code> 会在 16 行处等待；但因为此时它持有着 <code>lock</code>，任何 producer 都不能 produce，因此这个等待会永久持续下去。这违反了 <strong>Progress</strong> 和 <strong>Bounded waiting</strong> 的要求。</p>
 <p>我们可以稍作修改，当 <code>count</code> 的要求不满足时，立即释放 <code>lock</code> 并进入下一次循环，即：</p>
@@ -2185,38 +2185,38 @@
 <span class="normal">29</span>
 <span class="normal">30</span>
 <span class="normal">31</span>
-<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="n">producer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">producer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">BUFFER_SIZE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">BUFFER_SIZE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="c1">// If buffer is full, give up</span>
-<span class="w">            </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">add_to_buffer</span><span class="p">(</span><span class="n">next_produced</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="n">count</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">            </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">add_to_buffer</span><span class="p">(</span><span class="n">next_produced</span><span class="p">);</span>
+<span class="w">            </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="n">consumer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">consumer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="c1">// If buffer is empty, give up</span>
-<span class="w">            </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="k">continue</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">next_consumed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">take_from_buffer</span><span class="p">();</span><span class="w"></span>
-<span class="w">            </span><span class="n">count</span><span class="o">--</span><span class="p">;</span><span class="w"></span>
-<span class="w">            </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">            </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">next_consumed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">take_from_buffer</span><span class="p">();</span>
+<span class="w">            </span><span class="n">count</span><span class="o">--</span><span class="p">;</span>
+<span class="w">            </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>也就是：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -2242,30 +2242,30 @@
 <span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
-<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="n">producer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">producer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">BUFFER_SIZE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">add_to_buffer</span><span class="p">(</span><span class="n">next_produced</span><span class="p">);</span><span class="w"></span>
-<span class="w">            </span><span class="n">count</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">BUFFER_SIZE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">add_to_buffer</span><span class="p">(</span><span class="n">next_produced</span><span class="p">);</span>
+<span class="w">            </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="n">consumer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">            </span><span class="n">next_consumed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">take_from_buffer</span><span class="p">();</span><span class="w"></span>
-<span class="w">            </span><span class="n">count</span><span class="o">--</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="n">consumer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">next_consumed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">take_from_buffer</span><span class="p">();</span>
+<span class="w">            </span><span class="n">count</span><span class="o">--</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>但是，这种实现方法强制了 busy waiting。我们在前一节讨论过了 busy waiting 及其利弊；在这里 critical section 的运行时间明显比 context switch 的时间要长，因此这里使用 busy waiting 是浪费时间的。</p>
 <p>而我们之前提到，许多操作系统对信号量做了一些处理，使得其等待不再是 busy waiting，而是类似于第 6 节中讲到的解决方案。因此，我们更倾向于使用信号量来解决问题。</p>
@@ -2291,28 +2291,28 @@
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
-<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="n">semaphore</span><span class="w"> </span><span class="n">eslot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BUFFER_SIZE</span><span class="p">;</span><span class="w"></span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">semaphore</span><span class="w"> </span><span class="n">eslot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BUFFER_SIZE</span><span class="p">;</span>
 
-<span class="n">producer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">producer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">eslot</span><span class="p">);</span><span class="w">    </span><span class="c1">// if buffer is full, i.e. eslot == 0, wait</span>
 <span class="w">                        </span><span class="c1">// else, eslot--</span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">add_to_buffer</span><span class="p">(</span><span class="n">next_produced</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">add_to_buffer</span><span class="p">(</span><span class="n">next_produced</span><span class="p">);</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="n">consumer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">consumer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// &lt;2&gt; If buffer is empty, i.e. eslot == BUFFER_SIZE, wait</span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">next_consumed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">take_from_buffer</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">next_consumed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">take_from_buffer</span><span class="p">();</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
 <span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">eslot</span><span class="p">);</span><span class="w">  </span><span class="c1">// eslot++</span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>由于 <code>eslot</code> 作为一个信号量，我们对它 <code>++</code> 和 <code>--</code> (实际上是 <code>wait</code> 和 <code>signal</code>) 是 atomic 的，不需要考虑同步问题。</p>
 <p>但是，16 行处我们希望让 <code>eslot == BUFFER_SIZE</code> 的时候循环等待，不过信号量本身并没有提供这个功能。怎么办呢？我们需要一个额外的 semaphore <code>fslot</code>  (full slot) 来解决这个问题：</p>
@@ -2340,31 +2340,31 @@
 <span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
-<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="n">semaphore</span><span class="w"> </span><span class="n">eslot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BUFFER_SIZE</span><span class="p">;</span><span class="w"></span>
-<span class="n">semaphore</span><span class="w"> </span><span class="n">fslot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">semaphore</span><span class="w"> </span><span class="n">eslot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BUFFER_SIZE</span><span class="p">;</span>
+<span class="n">semaphore</span><span class="w"> </span><span class="n">fslot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 
-<span class="n">producer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">producer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">eslot</span><span class="p">);</span><span class="w">    </span><span class="c1">// if buffer is full, i.e. eslot == 0, wait</span>
 <span class="w">                        </span><span class="c1">// else, eslot--</span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">add_to_buffer</span><span class="p">(</span><span class="n">next_produced</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">add_to_buffer</span><span class="p">(</span><span class="n">next_produced</span><span class="p">);</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
 <span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">fslot</span><span class="p">);</span><span class="w">  </span><span class="c1">// fslot++</span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="n">consumer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">consumer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">fslot</span><span class="p">);</span><span class="w">    </span><span class="c1">// if buffer is empty, i.e. fslot == 0, wait</span>
 <span class="w">                        </span><span class="c1">// else, fslot--</span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">next_consumed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">take_from_buffer</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">next_consumed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">take_from_buffer</span><span class="p">();</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
 <span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">eslot</span><span class="p">);</span><span class="w">  </span><span class="c1">// eslot++</span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>事实上，如我们之前所说，分析两处需要 wait 的情况（即 producer 在 buffer 满时、consumer 在 buffer 空时）就可以得到使用信号量的提示。也就是说，对于 producer 来说，「空格子」是它需要的资源；而对于 consumer 来说，「有东西的格子」是它需要的资源。我们可以根据这样的提示来设计信号量。</p>
 <p>需要特别注意的是 <code>wait</code> 之间的顺序。例如如果将 <code>wait(lock)</code> 和 <code>wait(fslot)</code> 的顺序调转过来，就会发生和前面提到的情况一样的死锁。</p>
@@ -2387,19 +2387,19 @@
 <span class="normal">10</span>
 <span class="normal">11</span>
 <span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">writer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">writer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// if there is any reader or any other writer, wait</span>
-<span class="w">        </span><span class="n">read_and_write</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">read_and_write</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="n">reader</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="n">reader</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1">// if there is any writer, wait</span>
-<span class="w">        </span><span class="n">read</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">read</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>我们分类讨论不同的情形下，reader 和 writer 在 entry section 中期望的做法：</p>
 <p>对于 reader：</p>
@@ -2433,8 +2433,8 @@
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">no</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">readers</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">W</span><span class="p">);</span><span class="w"></span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">no</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">readers</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">W</span><span class="p">);</span>
 <span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">R</span><span class="p">);</span><span class="w">      </span>
 <span class="p">}</span><span class="w">         </span>
 </code></pre></div></td></tr></table></div>
@@ -2442,7 +2442,7 @@
 <p>对于 writer，我们可以直接改为 <code>wait(R)</code>，因为释放 <code>W</code> 之前一定不会有 reader 能够进入 CS，而释放 <code>W</code> 时可以一并释放 <code>R</code>。即：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">wait</span><span class="p">(</span><span class="n">R</span><span class="p">);</span><span class="w">      </span>
-<span class="n">wait</span><span class="p">(</span><span class="n">W</span><span class="p">);</span><span class="w"></span>
+<span class="n">wait</span><span class="p">(</span><span class="n">W</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
 <p>这里本来应该检查一下死锁，因为从第 8 节可以看到，这种设计有循环等待的情况，因此有死锁的风险；但是我们可以发现，其实 <code>R</code> 和 <code>W</code> 总是会同时被获取（对称地，也同时被释放），因此其实我们可以合并为一个信号量，不妨叫做 <code>write_lock</code>。其设计为：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -2463,25 +2463,25 @@
 <span class="normal">16</span>
 <span class="normal">17</span>
 <span class="normal">18</span>
-<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">write_lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">write_lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 
-<span class="n">writer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">read_and_write</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="n">writer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">read_and_write</span><span class="p">();</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="n">reader</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">no</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">readers</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="n">wait</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">read</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">no</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">readers</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="n">signal</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="n">reader</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">no</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">readers</span><span class="p">)</span>
+<span class="w">            </span><span class="n">wait</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">read</span><span class="p">();</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">no</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">readers</span><span class="p">)</span>
+<span class="w">            </span><span class="n">signal</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>「no other readers」这个问题比较好解决，我们引入一个整型 <code>reader_count</code> 用来保存有多少个 readers，当其值变为 0 时，代表没有其他 readers 在读了。我们同时增加保证其同步的信号量。即：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -2512,35 +2512,35 @@
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
-<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">write_lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="n">reader_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="n">semaphore</span><span class="w"> </span><span class="n">reader_count_lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">write_lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">reader_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">semaphore</span><span class="w"> </span><span class="n">reader_count_lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 
-<span class="n">writer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">read_and_write</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="n">writer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">read_and_write</span><span class="p">();</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="n">reader</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">reader_count_lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">reader_count</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="n">reader</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">reader_count_lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">reader_count</span><span class="o">++</span><span class="p">;</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">reader_count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">     </span><span class="c1">// first reader take write_lock</span>
-<span class="w">            </span><span class="n">wait</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">reader_count_lock</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">wait</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">reader_count_lock</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">read</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">read</span><span class="p">();</span>
 
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">reader_count_lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">reader_count</span><span class="o">--</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">reader_count_lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">reader_count</span><span class="o">--</span><span class="p">;</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">reader_count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">      </span><span class="c1">// release write_lock when ...</span>
 <span class="w">            </span><span class="n">signal</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span><span class="w">     </span><span class="c1">// ... no other readers reading</span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">reader_count_lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">reader_count_lock</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>另外需要注意的是，这种实现的结果是：当存在读进程时，写进程将被延迟。这可能导致写进程发生 <strong>starvation</strong>。</p>
 <p>如果希望写进程优先，我们可以规定，如果写进程 ready，那么其他读进程应当等待，直到写进程结束；即使得写进程尽可能早地开始。我们可以通过新增一个信号量实现：</p>
@@ -2577,40 +2577,40 @@
 <span class="normal">31</span>
 <span class="normal">32</span>
 <span class="normal">33</span>
-<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">write_lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="kt">int</span><span class="w"> </span><span class="n">reader_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
-<span class="hll"><span class="n">semaphore</span><span class="w"> </span><span class="n">reader_count_lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-</span><span class="n">semaphore</span><span class="w"> </span><span class="n">writer_first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">write_lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">reader_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="hll"><span class="n">semaphore</span><span class="w"> </span><span class="n">reader_count_lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span class="n">semaphore</span><span class="w"> </span><span class="n">writer_first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 
-<span class="n">writer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="hll"><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">writer_first</span><span class="p">);</span><span class="w"></span>
-</span><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">read_and_write</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span><span class="w"></span>
-<span class="hll"><span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">writer_first</span><span class="p">);</span><span class="w"></span>
-</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="n">writer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="hll"><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">writer_first</span><span class="p">);</span>
+</span><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">read_and_write</span><span class="p">();</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span>
+<span class="hll"><span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">writer_first</span><span class="p">);</span>
+</span><span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="n">reader</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="hll"><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">writer_first</span><span class="p">);</span><span class="w"></span>
-</span><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">reader_count_lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">reader_count</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">reader_count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="n">wait</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">reader_count_lock</span><span class="p">);</span><span class="w"></span>
-<span class="hll"><span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">writer_first</span><span class="p">);</span><span class="w"></span>
+<span class="n">reader</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="hll"><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">writer_first</span><span class="p">);</span>
+</span><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">reader_count_lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">reader_count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">reader_count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">            </span><span class="n">wait</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">reader_count_lock</span><span class="p">);</span>
+<span class="hll"><span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">writer_first</span><span class="p">);</span>
 </span>
-<span class="w">        </span><span class="n">read</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">read</span><span class="p">();</span>
 
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">reader_count_lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">reader_count</span><span class="o">--</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">reader_count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="n">signal</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">reader_count_lock</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">reader_count_lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">reader_count</span><span class="o">--</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">reader_count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">            </span><span class="n">signal</span><span class="p">(</span><span class="n">write_lock</span><span class="p">);</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">reader_count_lock</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="713-dining-philosophers-problem">7.1.3 Dining-Philosophers Problem<a class="headerlink" href="#713-dining-philosophers-problem" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
@@ -2632,16 +2632,16 @@
 <span class="normal">11</span>
 <span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="n">semaphore</span><span class="o">&gt;</span><span class="w"> </span><span class="n">chopstick</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// initialize semaphores to all 1</span>
 
-<span class="n">philosopher</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span><span class="w"></span>
-<span class="w">        </span><span class="n">eat</span><span class="p">();</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span><span class="w"></span>
-<span class="w">        </span><span class="n">think</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="n">philosopher</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span>
+<span class="w">        </span><span class="n">eat</span><span class="p">();</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span>
+<span class="w">        </span><span class="n">think</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>问题是，可能某时刻每个人同时拿起左边的筷子，这样会导致死锁。</p>
 <p>解决方案之一是，只允许同时拿起两根筷子；这种方案的实现是，轮流询问每个人是否能够拿起两根筷子，如果能则拿起，如果不能则需要等待那些筷子放下：</p>
@@ -2662,22 +2662,22 @@
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="n">semaphore</span><span class="o">&gt;</span><span class="w"> </span><span class="n">chopstick</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// initialize semaphores to all 1</span>
-<span class="hll"><span class="n">semaphore</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="hll"><span class="n">semaphore</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 </span>
-<span class="n">philosopher</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="hll"><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
-</span><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
-<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span><span class="w"></span>
-<span class="hll"><span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
+<span class="n">philosopher</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="hll"><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
+</span><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span>
+<span class="hll"><span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span>
 </span>
-<span class="w">        </span><span class="n">eat</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">eat</span><span class="p">();</span>
 
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w"></span>
-<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span><span class="w"></span>
-<span class="w">        </span><span class="n">think</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span>
+<span class="w">        </span><span class="n">think</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>另一种解决方案是，奇数号人先拿左边筷子，偶数号人先拿右边筷子，这样也能避免死锁。</p>
 <h2 id="72-linux-sync">7.2 Linux Sync<a class="headerlink" href="#72-linux-sync" title="Permanent link">&para;</a></h2>

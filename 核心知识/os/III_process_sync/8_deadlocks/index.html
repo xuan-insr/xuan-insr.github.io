@@ -197,7 +197,7 @@
   
     <li class="md-tabs__item">
       <a href="../../../.." class="md-tabs__link">
-        主页
+        🏡 主页
       </a>
     </li>
   
@@ -395,7 +395,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../..">主页</a>
+          <a href="../../../..">🏡 主页</a>
           
             <label for="__nav_1">
               <span class="md-nav__icon md-icon"></span>
@@ -403,10 +403,10 @@
           
         </div>
       
-      <nav class="md-nav" aria-label="主页" data-md-level="1">
+      <nav class="md-nav" aria-label="🏡 主页" data-md-level="1">
         <label class="md-nav__title" for="__nav_1">
           <span class="md-nav__icon md-icon"></span>
-          主页
+          🏡 主页
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1928,8 +1928,6 @@
         
           
         
-          
-        
       
       
         
@@ -1950,20 +1948,6 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../%E7%94%9F%E6%B4%BB/%E5%92%B8%E9%B1%BC%E6%9A%84%E4%BB%8A%E5%A4%A9%E5%90%83%E4%BB%80%E4%B9%88/" class="md-nav__link">
-        咸鱼暄今天吃什么
-      </a>
-    </li>
-  
-
             
           
             
@@ -2003,7 +1987,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_5" type="checkbox" id="__nav_9_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_4" type="checkbox" id="__nav_9_4" >
       
       
       
@@ -2014,15 +1998,17 @@
         
           
         
+          
+        
       
       
-        <label class="md-nav__link" for="__nav_9_5">
+        <label class="md-nav__link" for="__nav_9_4">
           讨饭历程
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="讨饭历程" data-md-level="2">
-        <label class="md-nav__title" for="__nav_9_5">
+        <label class="md-nav__title" for="__nav_9_4">
           <span class="md-nav__icon md-icon"></span>
           讨饭历程
         </label>
@@ -2035,7 +2021,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../interviews/overview/" class="md-nav__link">
-        总览
+        🏳️‍🌈 总览
       </a>
     </li>
   
@@ -2049,7 +2035,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../interviews/pdd/" class="md-nav__link">
-        拼多多
+        😕 拼多多
       </a>
     </li>
   
@@ -2063,7 +2049,21 @@
   
     <li class="md-nav__item">
       <a href="../../../../interviews/meituan/" class="md-nav__link">
-        美团
+        🤗 美团
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../interviews/mayi/" class="md-nav__link">
+        🤔 蚂蚁
       </a>
     </li>
   
@@ -2294,20 +2294,20 @@
 <p class="admonition-title">Example</p>
 <p>一个例子是，一个系统里有两个进程 <span class="arithmatex">\(P_1\)</span> 和 <span class="arithmatex">\(P_2\)</span>，分别完成从一个磁盘驱动器拷贝内容到另一个磁盘驱动器的操作，即各自需要两个磁盘驱动器。系统里两个磁盘驱动器 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span>。当前，<span class="arithmatex">\(P_1\)</span> 持有 <span class="arithmatex">\(A\)</span> 并希望获取 <span class="arithmatex">\(B\)</span>，同时 <span class="arithmatex">\(P_2\)</span> 持有 <span class="arithmatex">\(B\)</span> 并希望获取 <span class="arithmatex">\(A\)</span>，这两个进程就会相互等待，陷入死锁。</p>
 <p>即：</p>
-<div class="highlight"><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">first_mutex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="n">semaphore</span><span class="w"> </span><span class="n">second_mutex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">semaphore</span><span class="w"> </span><span class="n">first_mutex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">semaphore</span><span class="w"> </span><span class="n">second_mutex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 
-<span class="n">thread_one</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">first_mutex</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">second_mutex</span><span class="p">);</span><span class="w"></span>
+<span class="n">thread_one</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">first_mutex</span><span class="p">);</span>
+<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">second_mutex</span><span class="p">);</span>
 <span class="w">    </span><span class="c1">// ......</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 
-<span class="n">thread_two</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">second_mutex</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">first_mutex</span><span class="p">);</span><span class="w"></span>
+<span class="n">thread_two</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">second_mutex</span><span class="p">);</span>
+<span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">first_mutex</span><span class="p">);</span>
 <span class="w">    </span><span class="c1">// ......</span>
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </code></pre></div>
 </div>
 <div class="admonition example">

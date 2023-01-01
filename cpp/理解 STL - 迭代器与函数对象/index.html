@@ -197,7 +197,7 @@
   
     <li class="md-tabs__item">
       <a href="../.." class="md-tabs__link">
-        主页
+        🏡 主页
       </a>
     </li>
   
@@ -395,7 +395,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../..">主页</a>
+          <a href="../..">🏡 主页</a>
           
             <label for="__nav_1">
               <span class="md-nav__icon md-icon"></span>
@@ -403,10 +403,10 @@
           
         </div>
       
-      <nav class="md-nav" aria-label="主页" data-md-level="1">
+      <nav class="md-nav" aria-label="🏡 主页" data-md-level="1">
         <label class="md-nav__title" for="__nav_1">
           <span class="md-nav__icon md-icon"></span>
-          主页
+          🏡 主页
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1838,8 +1838,6 @@
         
           
         
-          
-        
       
       
         
@@ -1860,20 +1858,6 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../%E7%94%9F%E6%B4%BB/%E5%92%B8%E9%B1%BC%E6%9A%84%E4%BB%8A%E5%A4%A9%E5%90%83%E4%BB%80%E4%B9%88/" class="md-nav__link">
-        咸鱼暄今天吃什么
-      </a>
-    </li>
-  
-
             
           
             
@@ -1913,7 +1897,7 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_5" type="checkbox" id="__nav_9_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_4" type="checkbox" id="__nav_9_4" >
       
       
       
@@ -1924,15 +1908,17 @@
         
           
         
+          
+        
       
       
-        <label class="md-nav__link" for="__nav_9_5">
+        <label class="md-nav__link" for="__nav_9_4">
           讨饭历程
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="讨饭历程" data-md-level="2">
-        <label class="md-nav__title" for="__nav_9_5">
+        <label class="md-nav__title" for="__nav_9_4">
           <span class="md-nav__icon md-icon"></span>
           讨饭历程
         </label>
@@ -1945,7 +1931,7 @@
   
     <li class="md-nav__item">
       <a href="../../interviews/overview/" class="md-nav__link">
-        总览
+        🏳️‍🌈 总览
       </a>
     </li>
   
@@ -1959,7 +1945,7 @@
   
     <li class="md-nav__item">
       <a href="../../interviews/pdd/" class="md-nav__link">
-        拼多多
+        😕 拼多多
       </a>
     </li>
   
@@ -1973,7 +1959,21 @@
   
     <li class="md-nav__item">
       <a href="../../interviews/meituan/" class="md-nav__link">
-        美团
+        🤗 美团
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/mayi/" class="md-nav__link">
+        🤔 蚂蚁
       </a>
     </li>
   
@@ -2301,42 +2301,42 @@ b. 自定义比较函数是怎么实现的？如何适配有和没有自定义�
 </div>
 <p>下面我们来讨论 b 问题，这个问题相对简单。</p>
 <p>首先讨论我们给 sort 传入的是一个自定义函数的指针的情形，我们采用 <a href="../cpp_for_contests/">快速入门 C++ 写题！</a> 中的例子：</p>
-<div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nf">cmp</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span><span class="w"></span>
-<span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nf">cmp</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span>
+<span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span>
 </code></pre></div>
 <p>在 <code>sort</code> 中，我们传入的 <code>cmp</code> 被怎样使用了呢？我们知道一个函数指针 <code>fp</code> 可以通过 <code>fp(args...)</code> 的方式直接调用：</p>
 <p><img alt="image.png" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1665832404328-499a60cb-8928-4af6-9926-c25ef23d5caa.png" /></p>
 <p>那么，其实 <code>sort</code> 中直接调用 <code>cmp(*it1, *it2)</code> 就可以实现对两个元素的比较了！所以， <code>sort</code> 的函数签名可以是：</p>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Iterator</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">CompFuncPtr</span><span class="o">&gt;</span><span class="w"> </span>
-<span class="kt">bool</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="n">begin</span><span class="p">,</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">CompFuncPtr</span><span class="w"> </span><span class="n">cmp</span><span class="p">)</span><span class="w"></span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="n">begin</span><span class="p">,</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">CompFuncPtr</span><span class="w"> </span><span class="n">cmp</span><span class="p">)</span>
 </code></pre></div>
 <p>这里的模板参数 <code>Iterator</code> 用来适配不同的迭代器类型（包括指针）；而 <code>CompFuncPtr</code> 用来适配不同的比较函数指针，因为比较函数指针的类型因其参数类型的不同而不同。</p>
 <p>不过，事情还没结束！（让我们直接进入下一节——）</p>
 <p><br/></p>
 <h3 id="4-函数又何必是函数">4 函数又何必是函数<a class="headerlink" href="#4-函数又何必是函数" title="Permanent link">&para;</a></h3>
 <p><a href="../cpp_for_contests/">快速入门 C++ 写题！</a> 中给出了 <code>sort</code> 的另一种使用示例：</p>
-<div class="highlight"><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span><span class="w"></span>
-<span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span>
+<span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span>
 </code></pre></div>
 <p>这种写法可以实现升序排列。那么这个 <code>greater&lt;int&gt;()</code> 是什么呢？一种可能的实现长这样：</p>
-<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">greater</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">operator</span><span class="w"> </span><span class="p">()(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">lhs</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">rhs</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">greater</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">operator</span><span class="w"> </span><span class="p">()(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">lhs</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">rhs</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div>
 <p>我们可以看到， <code>greater</code> 其实是个结构体，或者说是个类；它里面有一个对运算符 <code>()</code> 的重载。<a href="https://en.cppreference.com/w/cpp/language/operators">标准</a> 中指出，如果 <code>a</code> 是一个对象，那么 <code>a(b...)</code> 其实等同于 <code>(a).operator()(b...)</code> ，其实就是将 <code>b...</code> 作为参数列表，调用了 <code>()</code> 运算符。我们把 <code>()</code> 运算符称为函数调用运算符 (function call operator)，顾名思义，这个运算符表示函数调用。也就是说，如果我们有一个 <code>greater&lt;T&gt;</code> 类的对象 <code>cmp</code> ，那么我们就可以通过 <code>cmp(a, b)</code> 来调用 <code>(cmp).operator()(a, b)</code> ，从而返回比较的结果。</p>
 <p>再回到 <code>sort(v.begin(), v.end(), greater&lt;int&gt;());</code> 中来。聪明的小朋友可以看出， <code>greater&lt;int&gt;()</code> 其实就是调用 <code>greater&lt;int&gt;</code> 的默认构造函数，构造了一个 <code>greater&lt;int&gt;</code> 类型的对象传递给 <code>sort</code> 。不妨设对应形参名为 <code>cmp</code> ，那么在 <code>sort</code> 中，我们就仍然可以通过 <code>cmp(a, b)</code> 来调用 <code>greater&lt;int&gt;</code> 中的 <code>operator ()</code> 来实现比较。</p>
 <p>我们回顾第 3 节中写出的函数签名，我们可以发现，这个函数签名竟仍然适配 <code>greater&lt;int&gt;()</code> 这样的参数！</p>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Iterator</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">CompFuncPtr</span><span class="o">&gt;</span><span class="w"> </span>
-<span class="kt">void</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="n">begin</span><span class="p">,</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">CompFuncPtr</span><span class="w"> </span><span class="n">cmp</span><span class="p">)</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="n">begin</span><span class="p">,</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">CompFuncPtr</span><span class="w"> </span><span class="n">cmp</span><span class="p">)</span>
 </code></pre></div>
 <p>这里的 <code>CompFuncPtr</code> 现在并不是一个 <code>bool (*)(const T &amp;, const T &amp;)</code> 的函数指针了，而是 <code>greater&lt;int&gt;</code> 类型，而 <code>cmp</code> 则是该类型的一个对象。在 <code>sort</code> 的实现中，仍然可以像函数指针一样通过 <code>cmp(a, b)</code> 的方式来实现比较。当然， <code>CompFuncPtr</code> 这个名字就不太妥当了，因为比较器不一定是个函数。我们可以改名为 <code>Comparator</code> 。</p>
 <p>那么，我们也可以直接写 <code>sort(v.begin(), v.end());</code> 来实现升序排序。这又是怎么实现的呢？其实非常简单，只需要一个函数重载即可：</p>
-<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Iterator</span><span class="o">&gt;</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="n">begin</span><span class="p">,</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="n">end</span><span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Iterator</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="n">begin</span><span class="p">,</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="n">end</span><span class="p">)</span>
 </code></pre></div>
 <p>而这个函数的实现其实可以直接使用 <strong>类似</strong> <code>sort(begin, end, less&lt;decltype(*begin)&gt;());</code> 的写法，即使用 <code>less&lt;T&gt;()</code> 来作为比较器。</p>
 <div class="admonition tip">
@@ -2344,11 +2344,11 @@ b. 自定义比较函数是怎么实现的？如何适配有和没有自定义�
 <p>实际的代码中，这里并不是 <code>less&lt;decltype(*begin)&gt;()</code> 这样的写法，而是类似 <code>less&lt;typename iterator_traits&lt;Iterator&gt;::value_type&gt;()</code> 的写法。即，每个迭代器都有一个对应的 traits，其中保存了迭代器对应的值类型。本文并不想引入 traits 的概念，感兴趣的同学可以自行查阅资料。</p>
 </div>
 <p>综上所述，我们可以给出第 3 个问题的答案： <code>sort</code> 的函数签名可以是：</p>
-<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Iterator</span><span class="o">&gt;</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="n">begin</span><span class="p">,</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="n">end</span><span class="p">);</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Iterator</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="n">begin</span><span class="p">,</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="n">end</span><span class="p">);</span>
 
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Iterator</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Comparator</span><span class="o">&gt;</span><span class="w"> </span>
-<span class="kt">bool</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="n">begin</span><span class="p">,</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">Comparator</span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span><span class="w"></span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="n">begin</span><span class="p">,</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">Comparator</span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">补充 4.2</p>
@@ -2398,17 +2398,17 @@ b. 自定义比较函数是怎么实现的？如何适配有和没有自定义�
 <p>下面我们来到最后一个问题啦！</p>
 <p>有一个比较函数 <code>bool cmp(const int&amp; a, const int&amp; b) { return a &gt; b; }</code> ，我们可以写 <code>sort(v.begin(), v.end(), cmp);</code> 来用 <code>cmp</code> 进行排序。那么，如果我们希望用 <code>cmp</code> 作为 priority_queue 等容器的自定义比较函数应该怎么做呢？</p>
 <p>priority_queue 是一个模板类；它和 sort 的最大区别是，传入的比较函数需要作为一个成员变量存在实例当中。关键的定义如下：</p>
-<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Compare</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">less</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Container</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span><span class="w"></span>
-<span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">priority_queue</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">priority_queue</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">priority_queue</span><span class="p">(</span><span class="n">Compare</span><span class="p">(),</span><span class="w"> </span><span class="n">Container</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">priority_queue</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Compare</span><span class="o">&amp;</span><span class="w"> </span><span class="n">compare</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">priority_queue</span><span class="p">(</span><span class="n">compare</span><span class="p">,</span><span class="w"> </span><span class="n">Container</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="n">priority_queue</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Compare</span><span class="o">&amp;</span><span class="w"> </span><span class="n">compare</span><span class="p">,</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">cont</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="cm">/* ... Many Other Constructors and Other Members ... */</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Compare</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">less</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Container</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">priority_queue</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">priority_queue</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">priority_queue</span><span class="p">(</span><span class="n">Compare</span><span class="p">(),</span><span class="w"> </span><span class="n">Container</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">priority_queue</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Compare</span><span class="o">&amp;</span><span class="w"> </span><span class="n">compare</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">priority_queue</span><span class="p">(</span><span class="n">compare</span><span class="p">,</span><span class="w"> </span><span class="n">Container</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">priority_queue</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Compare</span><span class="o">&amp;</span><span class="w"> </span><span class="n">compare</span><span class="p">,</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">cont</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* ... Many Other Constructors and Other Members ... */</span>
+<span class="p">}</span>
 </code></pre></div>
 <p>可以看到，priority_queue 接收 3 个模板参数，分别规定了内部元素类型、底层容器类型和比较器；其中底层容器类型默认为 <code>std::vector&lt;T&gt;</code> ，而比较器可以认为默认为 <code>std::less&lt;T&gt;</code> 。</p>
 <p>第 9 行的构造函数接受一个比较器对象和一个容器对象，它们将会作为构造出的实例的成员。</p>
