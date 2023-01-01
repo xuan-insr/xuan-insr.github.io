@@ -12,7 +12,7 @@ statistics: true
 
 ???+ tip "近期工作"
     - [C++](cpp/cpp_restart/index.md) 重新总结一下 C++ 学习，尝试实现「自举」
-    - [面试复盘](interviews/index.md) 回顾一下找暑期实习和秋招的面试历程~
+    - [面试复盘](interviews/overview.md) 回顾一下找暑期实习和秋招的面试历程~
 
 ???+ Warning "施工中！"
     <center>[![GitHub stars](https://img.shields.io/github/stars/xuan-insr/xuan-insr.github.io.svg?style=social&label=Stars)](https://github.com/xuan-insr/xuan-insr.github.io)</center>

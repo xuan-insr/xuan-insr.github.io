@@ -8,6 +8,9 @@
 
 秋招得到了华为（应该算吧，毕竟聊得比较好） / 天王星 / 乾象的 offer，选择了乾象。
 
+!!! note
+    如无特殊说明，面试一场都是 1h；时长与此不符的会单独注明。
+
 ## 总览
 
 ### 暑期实习
@@ -18,10 +21,10 @@
 | :-: | :------: | :- |
 | **拼多多** 服务端 | <span class="box box-red">挂了</span> | 面试官经常迟到，有些面试官感觉不是很清醒。HR 面挂得莫名其妙。 |
 | **美团** 计算引擎 | <span class="box box-green">过了</span> | 面试官很有礼貌，整体水平也在线。 |
-| **蚂蚁** 大数据 / C++ | | |
-| **华为** 编译器 | | |
-| **字节** 编译构建组 | | |
-| **Intel** 编译相关 | | |
+| **蚂蚁** Java / C++ | <span class="box box-green">过了</span> | 对操作系统比较关注，水平在线。 |
+| **华为** 编译器 | <span class="box box-yellow">不见了</span> | |
+| **字节** 编译构建组 | <span class="box box-green">过了</span> | |
+| **Intel** 编译相关 | <span class="box box-yellow">不见了</span> | |
 
 #### 游戏公司（一个都没面 XD）
 
@@ -36,33 +39,35 @@
 
 | 公司 | 结果 | 一句话总结 |
 | :-: | :-: | :- |
-| **卓识** | | |
-| **乾象** | | |
-| **思勰** | | |
+| **卓识** | <span class="box box-green">过了</span> | |
+| **乾象** | <span class="box box-green">过了</span> | |
+| **思勰** | <span class="box box-green">过了</span> | |
 | **泛态** | <span class="box box-gray">咕了</span> | |
 
 ### 秋招
 
 #### 量化公司
 
+很多是找猎头推的。基本情况是天王星很快出了结果，然后找乾象那边聊了，乾象很快给安排了后续流程并且发了 offer。选择了乾象之后其他的面试就草草结束了，所以很多没有后续相应的也没有主动去下一步联系；有一些也主动说明了情况并且终止了。
+
 | 公司 | 结果 | 一句话总结 |
 | :-: | :-: | :- |
-| **泛态** | | |
-| **华均广汇** | | |
-| **宽德** | | |
-| **量派** | | |
-| **乾象** | | |
-| **天王星** | | |
-| **希格斯** | | |
-| **Akuna** | | |
-| **无涯** | | |
-| **佳期** | | |
+| **泛态** | <span class="box box-red">挂了</span> | |
+| **华均广汇** | <span class="box box-red">挂了</span> | |
+| **宽德** | <span class="box box-yellow">终止</span> | |
+| **量派** | <span class="box box-red">挂了</span> | |
+| **乾象** | <span class="box box-green">过了</span> | |
+| **天王星** | <span class="box box-green">过了</span> | |
+| **希格斯** | <span class="box box-red">挂了</span> | |
+| **Akuna** | <span class="box box-red">挂了</span> | |
+| **无涯** | <span class="box box-red">挂了</span> | |
+| **佳期** | <span class="box box-red">死得很惨</span> | |
 
 #### 其他
 
 | 公司 & 部门 / 岗位 | 结果 | 一句话总结 |
 | :-: | :-: | :- |
-| **蚂蚁** 大数据 | | |
-| **字节** 编译构建组 | | |
-| **华为** 编程语言 | | |
-| **先临三维** C++ | | |
+| **蚂蚁** 引擎 | <span class="box box-red">挂了</span> | 更关注对 offer 的选择。没能让对方重建信任。 |
+| **字节** 编译构建组 | <span class="box box-red">挂了</span> | |
+| **华为** 编程语言 | <span class="box box-blue">算是过了？</span> | |
+| **先临三维** C++ | <span class="box box-green">过了</span> | |
