@@ -79,7 +79,11 @@ nav:
       - 😕 拼多多: interviews/pdd.md
       - 🤗 美团: interviews/meituan.md
       - 🤔 蚂蚁: interviews/mayi.md
-
+      - 👍 华为: interviews/huawei.md
+      - 字节: interviews/bytedance.md
+      - Intel: interviews/intel.md
+      - 👨‍💻 量化相关: interviews/quant.md
+  
 site_name: 咸鱼暄的代码空间
 site_url: https://xuan-insr.github.io/
 repo_name: xuan-insr/咸鱼暄的代码空间
