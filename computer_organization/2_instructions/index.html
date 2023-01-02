@@ -389,8 +389,6 @@
         
           
         
-          
-        
       
       
         
@@ -435,20 +433,6 @@
     <li class="md-nav__item">
       <a href="../../recent/" class="md-nav__link">
         📆 最近更新
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../%E4%B8%BB%E9%A1%B5/theme/" class="md-nav__link">
-        🌈 颜色主题 & 夜间模式
       </a>
     </li>
   
@@ -2370,7 +2354,7 @@ RISC-V 的跳转指令的 offset 是基于当前指令的地址的偏移；这�
 <li><code>x8</code>-<code>x9</code>和<code>x18</code>-<code>x27</code>是 saved reg，callee 需要保证调用前后这些寄存器的值不变；也就是说，如果 callee 要用到这些寄存器，必须保存一份，返回前恢复。</li>
 <li><code>x10</code>-<code>x17</code>是 8 个参数寄存器，函数调用的前 8 个参数会放在这些寄存器中；如果参数超过 8 个的话就需要放到栈上（放在<code>fp</code>上方，<code>fp + 8</code>是第 9 个参数，<code>fp + 16</code>的第 10 个，以此类推）。同时，过程的结果也会放到这些寄存器中（当然，对于 C 语言这种只能有一个返回值的语言，可能只会用到<code>x10</code>）。</li>
 <li><code>x1</code>用来保存返回地址，所以也叫<code>ra</code>。因此，伪指令<code>ret</code>其实就是<code>jalr x0, 0(x1)</code>。</li>
-<li>栈指针是<code>x2</code>，也叫<code>sp</code>；始终指向**栈顶元素**。栈从高地址向低地址增长。<ul>
+<li>栈指针是<code>x2</code>，也叫<code>sp</code>；始终指向 <strong>栈顶元素</strong>。栈从高地址向低地址增长。<ul>
 <li><code>addi sp, sp, -24</code>, <code>sd x5, 16(sp)</code>, <code>sd x6, 8(sp)</code>, <code>sd x20, 0(sp)</code>可以实现将 x5, x6, x20 压栈。</li>
 </ul>
 </li>
@@ -2400,7 +2384,7 @@ RISC-V 的跳转指令的 offset 是基于当前指令的地址的偏移；这�
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-01T18:46:18+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-01</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-02T16:00:27+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-02</span>
       
         <br>
         创建日期:

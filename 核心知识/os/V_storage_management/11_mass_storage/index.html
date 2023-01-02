@@ -389,8 +389,6 @@
         
           
         
-          
-        
       
       
         
@@ -435,20 +433,6 @@
     <li class="md-nav__item">
       <a href="../../../../recent/" class="md-nav__link">
         📆 最近更新
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../%E4%B8%BB%E9%A1%B5/theme/" class="md-nav__link">
-        🌈 颜色主题 & 夜间模式
       </a>
     </li>
   
@@ -1481,11 +1465,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#112-disk-scheduling" class="md-nav__link">
-    11.2 Disk Scheduling
+  <a href="#112-hdd-scheduling" class="md-nav__link">
+    11.2 HDD Scheduling
   </a>
   
-    <nav class="md-nav" aria-label="11.2 Disk Scheduling">
+    <nav class="md-nav" aria-label="11.2 HDD Scheduling">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2318,11 +2302,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#112-disk-scheduling" class="md-nav__link">
-    11.2 Disk Scheduling
+  <a href="#112-hdd-scheduling" class="md-nav__link">
+    11.2 HDD Scheduling
   </a>
   
-    <nav class="md-nav" aria-label="11.2 Disk Scheduling">
+    <nav class="md-nav" aria-label="11.2 HDD Scheduling">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2448,7 +2432,7 @@
 <h3 id="magnetic-tape">Magnetic Tape<a class="headerlink" href="#magnetic-tape" title="Permanent link">&para;</a></h3>
 <p>磁带是早期的二级内存。现在主要用来备份不常用的信息。</p>
 <p>空间很大（200GB ~ 1.5TB），访问很慢，随机访问特别慢。</p>
-<h2 id="112-disk-scheduling">11.2 Disk Scheduling<a class="headerlink" href="#112-disk-scheduling" title="Permanent link">&para;</a></h2>
+<h2 id="112-hdd-scheduling">11.2 HDD Scheduling<a class="headerlink" href="#112-hdd-scheduling" title="Permanent link">&para;</a></h2>
 <p>OS 需要负责硬件使用的高效性。对于 disk drives 来说，OS 需要提供一个 fast access time 和 high disk bandwidth。我们讨论 HDD。</p>
 <ul>
 <li><strong>access time</strong> : seek time (roughly linear to seek distance) + rotational latency</li>
@@ -2513,8 +2497,11 @@ Advantage:</p>
 </ul>
 <h3 id="1126-selecting-disk-scheduling-algorithm">11.2.6 Selecting Disk-Scheduling Algorithm<a class="headerlink" href="#1126-selecting-disk-scheduling-algorithm" title="Permanent link">&para;</a></h3>
 <p>取决于请求的数目和类型。SSTF 最常见，但是当 I/O 负荷较大时，使用 LOOK / C-LOOK 以避免 starvation。</p>
-<p>SSD 没有 seek time 就都可以用 SSTF 了。</p>
 <p>表现本身依赖于请求的模式，而请求本身又依赖于文件分配策略。文件系统如果注重空间局部性，能够提供很好的表现提升。</p>
+<div class="admonition note">
+<p class="admonition-title">NVM Scheduling</p>
+<p>NVM devices do not contain moving disk heads and commonly use a simple FCFS policy.</p>
+</div>
 <h2 id="113-disk-management">11.3 Disk Management<a class="headerlink" href="#113-disk-management" title="Permanent link">&para;</a></h2>
 <p>操作系统还负责磁盘管理的其他几个方面，例如磁盘初始化、引导、坏块恢复等。</p>
 <h3 id="disk-formatting--磁盘格式化">Disk Formatting | 磁盘格式化<a class="headerlink" href="#disk-formatting--磁盘格式化" title="Permanent link">&para;</a></h3>
@@ -2535,7 +2522,7 @@ Advantage:</p>
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-14T18:31:00+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-14</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-02T16:00:27+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-02</span>
       
         <br>
         创建日期:
