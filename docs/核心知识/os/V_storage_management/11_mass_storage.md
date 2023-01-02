@@ -45,7 +45,7 @@ NVM devices 比 HDD 更可靠，也更贵，可能寿命更短，容量更小，
 
 空间很大（200GB ~ 1.5TB），访问很慢，随机访问特别慢。
 
-## 11.2 Disk Scheduling
+## 11.2 HDD Scheduling
 
 OS 需要负责硬件使用的高效性。对于 disk drives 来说，OS 需要提供一个 fast access time 和 high disk bandwidth。我们讨论 HDD。
 
@@ -122,9 +122,10 @@ Advantage:
 ### 11.2.6 Selecting Disk-Scheduling Algorithm
 取决于请求的数目和类型。SSTF 最常见，但是当 I/O 负荷较大时，使用 LOOK / C-LOOK 以避免 starvation。
 
-SSD 没有 seek time 就都可以用 SSTF 了。
-
 表现本身依赖于请求的模式，而请求本身又依赖于文件分配策略。文件系统如果注重空间局部性，能够提供很好的表现提升。
+
+!!! note "NVM Scheduling"
+    NVM devices do not contain moving disk heads and commonly use a simple FCFS policy.
 
 ## 11.3 Disk Management
 
