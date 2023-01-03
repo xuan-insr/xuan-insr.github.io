@@ -1,4 +1,4 @@
-# 华为
+# 华为 编译相关
 
 岗位是「编译器与编程语言开发工程师」。
 
@@ -335,6 +335,37 @@ tags 中的 tag 有的可能不存在于报文中，这种情况下 length 和 o
 问如何实现 HashMap，如何解决冲突。
 
 让在线做道题，直接给了 LeetCode 链接：https://leetcode.cn/problems/defuse-the-bomb/。
+
+??? success "我的答案"
+    ```c++
+    class Solution {
+    public:
+        int sum_k(vector<int> &v, int begin, int k) {
+            int n = v.size();
+            int sum = 0;
+            for (int i = 0; i < k; i++)
+                sum += v[(begin + i) % n];
+            return sum;
+        }
+
+        vector<int> decrypt(vector<int>& code, int k) {
+            if (k == 0) return vector<int>(code.size(), 0);
+            
+            int n = code.size();
+            vector<int> result(code.size());
+            
+            if (k > 0) {
+                for (int i = 0; i < n; i++)
+                    result[i] = sum_k(code, (i + 1) % n, k);
+                return result;
+            }
+
+            for (int i = 0; i < n; i++)
+                result[i] = sum_k(code, (i + n + k) % n, -k);
+            return result;
+        }
+    };
+    ```
 
 问到现在写过的代码量是多少。
 

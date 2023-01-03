@@ -81,8 +81,8 @@ nav:
       - 🤔 蚂蚁: interviews/mayi.md
       - 👍 华为: interviews/huawei.md
       - 字节: interviews/bytedance.md
-      - Intel: interviews/intel.md
       - 👨‍💻 量化相关: interviews/quant.md
+      - 其他: interviews/others.md
   
 site_name: 咸鱼暄的代码空间
 site_url: https://xuan-insr.github.io/
@@ -176,6 +176,8 @@ extra_javascript:
   - js/mathjax.js # 支持数学公式，ref : https://squidfunk.github.io/mkdocs-material/reference/mathjax
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js # 支持表格排序
+  - js/tablesort.js
 
 plugins:
   - search:
