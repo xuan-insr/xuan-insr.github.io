@@ -105,8 +105,8 @@ theme:
     # - toc.integrate # 文档 toc 集成到总目录中 
   language: 'zh'
   palette:
-    primary: cyan
-    scheme: slate
+    primary: red
+    scheme: default
   font:
     text: Roboto
     code: Roboto Mono
