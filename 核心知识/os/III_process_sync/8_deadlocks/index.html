@@ -2639,7 +2639,7 @@
 <center><img alt="" src="../2022-11-19-18-02-55.png" width="400" /></center><br />
 我们可以先让 T2 运行（也可以是 T3），此后变成：<br />
 <center><img alt="" src="../2022-11-19-18-03-07.png" width="400" /></center><br />
-现在可以让每个 thread 运行，因此之后任何一种运行方式都可以完成，如 T2-&gt;T0-&gt;T1-&gt;T3-&gt;T4。因此当前系统是安全的。</li>
+现在可以让除了 T4 以外的每个 thread 运行，后续类似。因此一个安全序列是 T2-&gt;T0-&gt;T1-&gt;T3-&gt;T4。因此当前系统是安全的。</li>
 <li>如果满足这一要求，之后的状态为：<br />
 <center><img alt="" src="../image-20201129221759272.png" width="400" /></center><br />
 可见，此时任一线程都无法执行。因此此要求不能立即满足。  </li>
@@ -2692,7 +2692,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-05T11:44:37+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-05</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-05T11:49:56+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-05</span>
       
         <br>
         创建日期:
