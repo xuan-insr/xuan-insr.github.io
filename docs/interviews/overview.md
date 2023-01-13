@@ -32,10 +32,9 @@
 
 | 公司 | 结果 | 一句话总结 |
 | :-: | :-: | :- |
-| **卓识** | <span class="box box-green">过了</span> | |
-| **乾象** | <span class="box box-green">过了</span> | |
-| **思勰** | <span class="box box-green">过了</span> | |
-| **泛态** | <span class="box box-gray">咕了</span> | |
+| **卓识** | <span class="box box-green">过了</span> | 问的还是基础知识比较多；现在看来答得不好。但是实习要求不太高。 |
+| **乾象** | <span class="box box-green">过了</span> | 好多编程题哇！！ |
+| **思勰** | <span class="box box-green">过了</span> | 对于「实现」是比较关注的。也暴露出了我这方面不怎么会的问题。 |
 
 ### 秋招
 
@@ -45,16 +44,16 @@
 
 | 公司 | 结果 | 一句话总结 |
 | :-: | :-: | :- |
-| **泛态** | <span class="box box-red">挂了</span> | |
-| **华均广汇** | <span class="box box-red">挂了</span> | |
-| **宽德** | <span class="box box-yellow">终止</span> | |
-| **量派** | <span class="box box-red">挂了</span> | |
-| **乾象** | <span class="box box-green">过了</span> | |
-| **天王星** | <span class="box box-green">过了</span> | |
-| **希格斯** | <span class="box box-red">挂了</span> | |
-| **Akuna** | <span class="box box-red">挂了</span> | |
+| **泛态** | <span class="box box-red">挂了</span> | 忘了QWQ |
+| **华均广汇** | <span class="box box-red">挂了</span> | 很诚恳，有很多分享，聊项目比较多，问的问题也比较细。 |
+| **宽德** | <span class="box box-yellow">终止</span> | 直接是 CTO 面，问的问题比较特别。 |
+| **量派** | <span class="box box-yellow">终止</span> | 考察的内容比较基础。 |
+| **乾象** | <span class="box box-green">过了</span> | 比较友善，代码题更多一些。 |
+| **天王星** | <span class="box box-green">过了</span> | 给得少，HR 瞎话比较多，提出质疑之后直接不理我了。 |
+| **希格斯** | <span class="box box-red">挂了</span> | 笔试相当复古；但是程序填空题确实比直接编程难。不知道为什么问了计网。 |
+| **Akuna** | <span class="box box-red">挂了</span> | 需要洋文交流，对我来说太难乐。比较看重实操。 |
 | **无涯** | <span class="box box-red">挂了</span> | |
-| **佳期** | <span class="box box-red">死得很惨</span> | |
+| **佳期** | <span class="box box-red">死得很惨</span> | 终面长达 4h，很多智商题，基本答不出来什么。 |
 
 #### 其他
 
@@ -99,7 +98,6 @@
 |4.13|[Intel]|二面|
 |4.13|卓识||
 |4.13|乾象||
-|4.14|泛态||
 |4.15|[字节]|三面|
 |4.18|[字节]|HR面|
 |4.18|思勰|笔试|
