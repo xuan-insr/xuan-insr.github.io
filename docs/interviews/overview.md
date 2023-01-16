@@ -45,14 +45,14 @@
 | 公司 | 结果 | 一句话总结 |
 | :-: | :-: | :- |
 | **泛态** | <span class="box box-red">挂了</span> | 忘了QWQ |
-| **华均广汇** | <span class="box box-red">挂了</span> | 很诚恳，有很多分享，聊项目比较多，问的问题也比较细。 |
-| **宽德** | <span class="box box-yellow">终止</span> | 直接是 CTO 面，问的问题比较特别。 |
-| **量派** | <span class="box box-yellow">终止</span> | 考察的内容比较基础。 |
+| **华均广汇** | <span class="box box-yellow">不见了</span> | 很诚恳，有很多分享，聊项目比较多，问的问题也比较细。 |
+| **宽德** | <span class="box box-yellow">不见了</span> | 直接是 CTO 面，问的问题比较特别。 |
+| **量派** | <span class="box box-yellow">不见了</span> | 考察的内容比较基础。 |
 | **乾象** | <span class="box box-green">过了</span> | 比较友善，代码题更多一些。 |
 | **天王星** | <span class="box box-green">过了</span> | 给得少，HR 瞎话比较多，提出质疑之后直接不理我了。 |
 | **希格斯** | <span class="box box-red">挂了</span> | 笔试相当复古；但是程序填空题确实比直接编程难。不知道为什么问了计网。 |
 | **Akuna** | <span class="box box-red">挂了</span> | 需要洋文交流，对我来说太难乐。比较看重实操。 |
-| **无涯** | <span class="box box-red">挂了</span> | |
+| **无涯** | <span class="box box-yellow">终止</span> | 问的内容也比较零散，印象不太深了。 |
 | **佳期** | <span class="box box-red">死得很惨</span> | 终面长达 4h，很多智商题，基本答不出来什么。 |
 
 #### 其他

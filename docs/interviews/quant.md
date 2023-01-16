@@ -29,6 +29,10 @@
 1. Linux 里一个 page 多大。
 1. 让解释 page fault，区分软缺页和硬缺页 (major / minor fault)。如何减少 page fault。（改善调页算法、lock 一些内存、更改 page 大小、提升局部性等）
 1. 什么命令能看一个进程打开的文件。
+1. 让解释 memory model 解决什么问题。用锁能不能实现类似的效果。
+1. 让解释 spin lock 和 mutex 的区别是什么。
+1. 如果实现一个多线程的队列，怎么用锁来实现。我想了一些方法，不过都需要对队列为空的情况特殊判定。面试官提示可以插入一些特殊的东西来使得队列不会为空。
+1. 问对无锁队列有没有了解。我说不太了解。提示可以考虑用 `compare_and_swap()` 实现。我说大概是 `compare_and_swap(&index, index, index + 1)`。他说大概是 `compare_and_swap(&q[i], 0, value)`。
 
 ## 2 C++ 相关
 
@@ -112,7 +116,7 @@ int main() {
 1. 让解释 C++ 的右值引用是干什么的。
 1. 让介绍 C++17 有什么新特性。
 1. 问模板是干什么的。写库用的，是「写工具的工具」。
-1. 斐波那契数列模板元编程。
+1. 模板实现编译时计算斐波那契数列。
 1. 递归深度大概能多少。我猜栈有 256MB，他说没有那么大。
 1. 不同的优化选项，编译器会做什么事。
 1. 让解释 C++ 中 const 的作用。问了 const & 传参有什么好处。
@@ -132,6 +136,10 @@ int main() {
 1. 对比 unique_ptr, shared_ptr 和原始的指针性能。
 1. 让介绍 C++ 的 atomic。我不太懂。
 1. 让介绍 likely 和 unlikely。
+1. 除了 inline 以外还有什么东西可以实现类似的功能。
+1. 让解释 volatile 关键字是干啥的，我不太清楚。
+1. 让解释栈和堆的区别。访问和分配的效率有什么不一样。
+1. 一个程序挂了，怎么调试。
 
 ## 3 写题 / 数据结构和算法相关
 
@@ -437,6 +445,8 @@ HackerRank 上的一次笔试。
 1. 2 手交易最多赚多少（这题考过两次）
 1. 有 N 个大文件，表示 N 支股票的交易记录，每个文件的每一行是 `<timestamp, record>`，且各文件内 timestamp 递增。设计算法将这 N 个文件 merge 到一个文件中，仍然保持 timestamp 递增。相同 timestamp 的顺序任意。
 1. 有两个链表，在后面某个结点相交，让找出这个结点。是这个题 https://leetcode.cn/problems/intersection-of-two-linked-lists/
+1. 给一个 int 数组，问是否有和为 0 的连续的子数组。
+1. 经典滑动窗口最大值：https://leetcode.cn/problems/sliding-window-maximum/ 。
 
 ## 4 其他
 
