@@ -17,7 +17,7 @@
         <link rel="next" href="../others/">
       
       <link rel="icon" href="../../logo.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.4">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.5">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.9c788c91.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
@@ -154,7 +154,7 @@
           <div class="md-search-result__meta">
             正在初始化搜索引擎
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
@@ -2588,6 +2588,10 @@
 <li>Linux 里一个 page 多大。</li>
 <li>让解释 page fault，区分软缺页和硬缺页 (major / minor fault)。如何减少 page fault。（改善调页算法、lock 一些内存、更改 page 大小、提升局部性等）</li>
 <li>什么命令能看一个进程打开的文件。</li>
+<li>让解释 memory model 解决什么问题。用锁能不能实现类似的效果。</li>
+<li>让解释 spin lock 和 mutex 的区别是什么。</li>
+<li>如果实现一个多线程的队列，怎么用锁来实现。我想了一些方法，不过都需要对队列为空的情况特殊判定。面试官提示可以插入一些特殊的东西来使得队列不会为空。</li>
+<li>问对无锁队列有没有了解。我说不太了解。提示可以考虑用 <code>compare_and_swap()</code> 实现。我说大概是 <code>compare_and_swap(&amp;index, index, index + 1)</code>。他说大概是 <code>compare_and_swap(&amp;q[i], 0, value)</code>。</li>
 </ol>
 <h2 id="2-c-相关">2 C++ 相关<a class="headerlink" href="#2-c-相关" title="Permanent link">&para;</a></h2>
 <h3 id="session-1_1">Session 1<a class="headerlink" href="#session-1_1" title="Permanent link">&para;</a></h3>
@@ -2667,7 +2671,7 @@
 <li>让解释 C++ 的右值引用是干什么的。</li>
 <li>让介绍 C++17 有什么新特性。</li>
 <li>问模板是干什么的。写库用的，是「写工具的工具」。</li>
-<li>斐波那契数列模板元编程。</li>
+<li>模板实现编译时计算斐波那契数列。</li>
 <li>递归深度大概能多少。我猜栈有 256MB，他说没有那么大。</li>
 <li>不同的优化选项，编译器会做什么事。</li>
 <li>让解释 C++ 中 const 的作用。问了 const &amp; 传参有什么好处。</li>
@@ -2687,6 +2691,10 @@
 <li>对比 unique_ptr, shared_ptr 和原始的指针性能。</li>
 <li>让介绍 C++ 的 atomic。我不太懂。</li>
 <li>让介绍 likely 和 unlikely。</li>
+<li>除了 inline 以外还有什么东西可以实现类似的功能。</li>
+<li>让解释 volatile 关键字是干啥的，我不太清楚。</li>
+<li>让解释栈和堆的区别。访问和分配的效率有什么不一样。</li>
+<li>一个程序挂了，怎么调试。</li>
 </ol>
 <h2 id="3-写题--数据结构和算法相关">3 写题 / 数据结构和算法相关<a class="headerlink" href="#3-写题--数据结构和算法相关" title="Permanent link">&para;</a></h2>
 <h3 id="session-1_2">Session 1<a class="headerlink" href="#session-1_2" title="Permanent link">&para;</a></h3>
@@ -2975,6 +2983,8 @@
 <li>2 手交易最多赚多少（这题考过两次）</li>
 <li>有 N 个大文件，表示 N 支股票的交易记录，每个文件的每一行是 <code>&lt;timestamp, record&gt;</code>，且各文件内 timestamp 递增。设计算法将这 N 个文件 merge 到一个文件中，仍然保持 timestamp 递增。相同 timestamp 的顺序任意。</li>
 <li>有两个链表，在后面某个结点相交，让找出这个结点。是这个题 <a href="https://leetcode.cn/problems/intersection-of-two-linked-lists/">https://leetcode.cn/problems/intersection-of-two-linked-lists/</a></li>
+<li>给一个 int 数组，问是否有和为 0 的连续的子数组。</li>
+<li>经典滑动窗口最大值：<a href="https://leetcode.cn/problems/sliding-window-maximum/">https://leetcode.cn/problems/sliding-window-maximum/</a> 。</li>
 </ol>
 <h2 id="4-其他">4 其他<a class="headerlink" href="#4-其他" title="Permanent link">&para;</a></h2>
 <h3 id="session-1-hr">Session 1 (HR)<a class="headerlink" href="#session-1-hr" title="Permanent link">&para;</a></h3>
@@ -3003,7 +3013,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-13T09:13:13+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-13</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-16T13:14:31+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-16</span>
       
         <br>
         创建日期:
@@ -3169,7 +3179,7 @@ var giscus = document.querySelector("script[src*=giscus]")
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
       
         <script src="../../js/timeago.min.js"></script>
       
