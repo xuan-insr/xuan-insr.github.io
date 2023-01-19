@@ -8,6 +8,9 @@ nav:
     - cpp/index.md
     - 🍉C++ 学习记录:
       - cpp/cpp_restart/index.md
+      - notes:
+        - 零散内容记录: cpp/cpp_restart/notes/notes.md
+        - The Design and Evaluation of C++ 阅读记录: cpp/cpp_restart/notes/dne_notes.md
     - 快速入门 C++ 写题: cpp/cpp_for_contests.md
     #- C++ 面向对象: 404.md
     - C++ 知识补充:
@@ -145,6 +148,9 @@ markdown_extensions:
       repo: mkdocs-material
   - pymdownx.mark
   - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
