@@ -287,7 +287,7 @@ class String {
 
 3.6.5 简单讨论了不支持用户自定义运算符以及改变已有运算符的操作数数目、结合性或优先级的原因。
 
-
+#### 3.7 引用
 
 *[BS]: Bjarne Stroustrup
 *[SMFs]: Special Member Functions
