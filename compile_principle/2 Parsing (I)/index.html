@@ -1,0 +1,3879 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://xuan-insr.github.io/compile_principle/2%20Parsing%20%28I%29/">
+      
+      
+        <link rel="prev" href="../1%20Lexical%20Analysis/">
+      
+      
+        <link rel="next" href="../3%20Parsing%20%28II%29/">
+      
+      <link rel="icon" href="../../logo.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>II 语法分析 - 自顶向下分析 - 咸鱼暄的代码空间</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../from_oi_wiki/css/extra.css?v=13">
+    
+      <link rel="stylesheet" href="../../css/status.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-JT9BRCXKJJ"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-JT9BRCXKJJ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-JT9BRCXKJJ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3-语法分析--parsing" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="咸鱼暄的代码空间" class="md-header__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../logo.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            咸鱼暄的代码空间
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              II 语法分析 - 自顶向下分析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        🏡 主页
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../cpp/" class="md-tabs__link">
+        C++
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../pl/" class="md-tabs__link">
+        PL & 编译
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/" class="md-tabs__link md-tabs__link--active">
+        核心知识
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E5%AE%89%E5%85%A8/" class="md-tabs__link">
+      安全
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-tabs__link">
+      语言基础
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-tabs__link">
+      其他课程
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%9D%82%E9%A1%B9/" class="md-tabs__link">
+        杂项
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/" class="md-tabs__link">
+        生活
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="咸鱼暄的代码空间" class="md-nav__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../logo.ico" alt="logo">
+
+    </a>
+    咸鱼暄的代码空间
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../..">🏡 主页</a>
+          
+            <label for="__nav_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="🏡 主页" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          🏡 主页
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%B8%BB%E9%A1%B5/about/" class="md-nav__link">
+        ❤️ 我和朋友们！
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recent/" class="md-nav__link">
+        📆 最近更新
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../cpp/">C++</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="C++" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          C++
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../cpp/cpp_restart/">🍉C++ 学习记录</a>
+          
+            <label for="__nav_2_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="🍉C++ 学习记录" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          🍉C++ 学习记录
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_2_2" type="checkbox" id="__nav_2_2_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_2" tabindex="0" aria-expanded="false">
+          notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="notes" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/notes/notes/" class="md-nav__link">
+        零散内容记录
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/notes/dne_notes/" class="md-nav__link">
+        The Design and Evaluation of C++ 阅读记录
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_for_contests/" class="md-nav__link">
+        快速入门 C++ 写题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_4" tabindex="0" aria-expanded="false">
+          C++ 知识补充
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="C++ 知识补充" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          C++ 知识补充
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1/" class="md-nav__link">
+        理解 STL —— 迭代器与函数对象
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../pl/">PL & 编译</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="PL & 编译" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          PL & 编译
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../pl/ppl_notes/">编程语言原理</a>
+          
+            <label for="__nav_3_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="编程语言原理" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          编程语言原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/0_PPL_Final_Problem1/" class="md-nav__link">
+        我在 PPL 2022 Final 出的复习题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_2_3" type="checkbox" id="__nav_3_2_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_3" tabindex="0" aria-expanded="false">
+          Part I - Judgments and Rules | 判断与规则
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part I - Judgments and Rules | 判断与规则" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Part I - Judgments and Rules | 判断与规则
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/1_Abstract_Syntax/" class="md-nav__link">
+        1 抽象语法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/2_Inductive_Definition/" class="md-nav__link">
+        2 归纳定义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/3_Hypothetical_and_General_Judgments/" class="md-nav__link">
+        3 假言判断与一般性判断
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_2_4" type="checkbox" id="__nav_3_2_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_4" tabindex="0" aria-expanded="false">
+          Part II - Statics and Dynamics | 静态语义和动态语义
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part II - Statics and Dynamics | 静态语义和动态语义" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Part II - Statics and Dynamics | 静态语义和动态语义
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/4_Statics/" class="md-nav__link">
+        4 静态语义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/5_Dynamics/" class="md-nav__link">
+        5 动态语义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/6_Type_Safety/" class="md-nav__link">
+        6 类型安全
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_2_5" type="checkbox" id="__nav_3_2_5" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_5" tabindex="0" aria-expanded="false">
+          Part III - Total Functions | 全函数
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part III - Total Functions | 全函数" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Part III - Total Functions | 全函数
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/8_Func_Def_and_Val/" class="md-nav__link">
+        8 函数定义和值
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/9_Sys_T_of_Higher_Order_Recursion/" class="md-nav__link">
+        9 高阶递归的系统 T
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_2_6" type="checkbox" id="__nav_3_2_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_6" tabindex="0" aria-expanded="false">
+          Part IV - Finite Data Types | 有限数据类型
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part IV - Finite Data Types | 有限数据类型" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Part IV - Finite Data Types | 有限数据类型
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/10_product_types/" class="md-nav__link">
+        10 积类型
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/11_sum_types/" class="md-nav__link">
+        11 和类型
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        编译原理
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/">核心知识</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="核心知识" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          核心知识
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2" tabindex="0" aria-expanded="false">
+          操作系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="操作系统" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          操作系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/1_intro/" class="md-nav__link">
+        1 写在前面
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/2_overview/" class="md-nav__link">
+        Part.1 概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2_3" type="checkbox" id="__nav_4_2_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_3" tabindex="0" aria-expanded="false">
+          Part.2 进程管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.2 进程管理" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Part.2 进程管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/3_process/" class="md-nav__link">
+        3 进程
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/4_sched/" class="md-nav__link">
+        4 调度
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/5_thread/" class="md-nav__link">
+        5 线程
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2_4" type="checkbox" id="__nav_4_2_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_4" tabindex="0" aria-expanded="false">
+          Part.3 进程同步
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.3 进程同步" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Part.3 进程同步
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/6_sync_tools/" class="md-nav__link">
+        6 同步及其工具
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/7_sync_examples/" class="md-nav__link">
+        7 经典同步问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/8_deadlocks/" class="md-nav__link">
+        8 死锁
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2_5" type="checkbox" id="__nav_4_2_5" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_5" tabindex="0" aria-expanded="false">
+          Part.4 内存管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.4 内存管理" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Part.4 内存管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/9_main_memory/" class="md-nav__link">
+        9 主存
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/10_virtual_memory/" class="md-nav__link">
+        10 虚拟内存
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2_6" type="checkbox" id="__nav_4_2_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_6" tabindex="0" aria-expanded="false">
+          Part.5 存储管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.5 存储管理" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Part.5 存储管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/V_storage_management/11_mass_storage/" class="md-nav__link">
+        11 大容量存储
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/V_storage_management/12_io_systems/" class="md-nav__link">
+        12 I/O 系统
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2_7" type="checkbox" id="__nav_4_2_7" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_7" tabindex="0" aria-expanded="false">
+          Part.6 文件系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.6 文件系统" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Part.6 文件系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/VI_file_system/13_fs_interface/" class="md-nav__link">
+        13 文件系统
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/VI_file_system/14_fs_impl/" class="md-nav__link">
+        14 文件系统实现
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/15_review/" class="md-nav__link">
+        15 总结
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_3" tabindex="0" aria-expanded="false">
+          计算机组成
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="计算机组成" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          计算机组成
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/1_prelude/" class="md-nav__link">
+        1 写在前面
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/2_instructions/" class="md-nav__link">
+        2 Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/3_arithmetic/" class="md-nav__link">
+        3 Arithmetic
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/4_processor/" class="md-nav__link">
+        4 Processor
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/5_cache/" class="md-nav__link">
+        5 Cache
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/6_IO/" class="md-nav__link">
+        6 I/O
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/%E5%8E%86%E5%B9%B4%E5%8D%B7/" class="md-nav__link">
+        2022 回忆卷
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" checked>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../">编译原理</a>
+          
+            <label for="__nav_4_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="编译原理" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          编译原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%20Lexical%20Analysis/" class="md-nav__link">
+        I 词法分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          II 语法分析 - 自顶向下分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        II 语法分析 - 自顶向下分析
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-上下文无关文法--context-free-grammars-cfgs" class="md-nav__link">
+    3.1 上下文无关文法 | Context-Free Grammars, CFGs
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 上下文无关文法 | Context-Free Grammars, CFGs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#311-推导--derivation" class="md-nav__link">
+    3.1.1 推导 | Derivation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312-语法分析树--parse-tree" class="md-nav__link">
+    3.1.2 语法分析树 | Parse Tree
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#313-二义性--ambiguity" class="md-nav__link">
+    3.1.3 二义性 | Ambiguity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#314-文件结束符--eof-marker" class="md-nav__link">
+    3.1.4 文件结束符 | EOF Marker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#315-上下文无关--context-free" class="md-nav__link">
+    3.1.5 上下文无关 | Context Free
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-递归下降分析--recursive-descent-parsing" class="md-nav__link">
+    3.2 递归下降分析 | Recursive Descent Parsing
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 递归下降分析 | Recursive Descent Parsing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-思路" class="md-nav__link">
+    3.2.1 思路
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-实现" class="md-nav__link">
+    3.2.2 实现
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323-左递归--left-recursive" class="md-nav__link">
+    3.2.3 左递归 | Left-Recursive
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#324-总结" class="md-nav__link">
+    3.2.4 总结
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-ll1-parsing" class="md-nav__link">
+    3.3 LL(1) Parsing
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 LL(1) Parsing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-思路" class="md-nav__link">
+    3.3.1 思路
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-提取左因子--left-factoring" class="md-nav__link">
+    3.3.2 提取左因子 | Left Factoring
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#333-预测分析表--predictive-parsing-table" class="md-nav__link">
+    3.3.3 预测分析表 | Predictive Parsing Table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#334-使用预测分析表" class="md-nav__link">
+    3.3.4 使用预测分析表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#335-构造预测分析表" class="md-nav__link">
+    3.3.5 构造预测分析表
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3.5 构造预测分析表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3351-first-sets" class="md-nav__link">
+    3.3.5.1 First Sets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3352-follow-sets" class="md-nav__link">
+    3.3.5.2 Follow Sets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3353-construct-predictive-table" class="md-nav__link">
+    3.3.5.3 Construct Predictive Table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3354-例子" class="md-nav__link">
+    3.3.5.4 例子
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#336-ll1-grammar" class="md-nav__link">
+    3.3.6 LL(1) Grammar
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#更多练习" class="md-nav__link">
+    更多练习
+  </a>
+  
+    <nav class="md-nav" aria-label="更多练习">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2021-midterm" class="md-nav__link">
+    2021 MidTerm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2018-midterm" class="md-nav__link">
+    2018 MidTerm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3%20Parsing%20%28II%29/" class="md-nav__link">
+        III 语法分析 - 自底向上分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4%20Semantic%20Analysis/" class="md-nav__link">
+        IV 语义分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5%20Runtime%20Environment/" class="md-nav__link">
+        V 运行时环境
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6%20Code%20Generation/" class="md-nav__link">
+        VI 代码生成
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../math_ds_algo/">数学、数据结构和算法</a>
+          
+            <label for="__nav_4_5">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="数学、数据结构和算法" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          数学、数据结构和算法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math_ds_algo/getting_started/" class="md-nav__link">
+        入门路线
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8/" class="md-nav__link">
+        安全
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        语言基础
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-nav__link">
+        其他课程
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%9D%82%E9%A1%B9/">杂项</a>
+          
+            <label for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="杂项" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          杂项
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%9D%82%E9%A1%B9/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        博客搭建记录
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E7%94%9F%E6%B4%BB/">生活</a>
+          
+            <label for="__nav_9">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="生活" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          生活
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_9_2" type="checkbox" id="__nav_9_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9_2" tabindex="0" aria-expanded="false">
+          讨饭历程
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="讨饭历程" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_2">
+          <span class="md-nav__icon md-icon"></span>
+          讨饭历程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/overview/" class="md-nav__link">
+        🏳️‍🌈 总览
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/pdd/" class="md-nav__link">
+        😕 拼多多
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/meituan/" class="md-nav__link">
+        🤗 美团
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/mayi/" class="md-nav__link">
+        🤔 蚂蚁
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/huawei/" class="md-nav__link">
+        👍 华为
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/bytedance/" class="md-nav__link">
+        🥳 字节
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/quant/" class="md-nav__link">
+        👨‍💻 量化相关
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/others/" class="md-nav__link">
+        其他
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%E6%88%91%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E5%A4%96%E7%BD%AE%E5%A4%A7%E8%84%91/" class="md-nav__link">
+        我需要一个外置大脑
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" class="md-nav__link">
+        关于亲密关系的碎碎念
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/2022/" class="md-nav__link">
+        2022 年终总结
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_9_6" type="checkbox" id="__nav_9_6" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%A1%8C%E6%B8%B8/">桌游</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="桌游" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_6">
+          <span class="md-nav__icon md-icon"></span>
+          桌游
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-上下文无关文法--context-free-grammars-cfgs" class="md-nav__link">
+    3.1 上下文无关文法 | Context-Free Grammars, CFGs
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 上下文无关文法 | Context-Free Grammars, CFGs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#311-推导--derivation" class="md-nav__link">
+    3.1.1 推导 | Derivation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312-语法分析树--parse-tree" class="md-nav__link">
+    3.1.2 语法分析树 | Parse Tree
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#313-二义性--ambiguity" class="md-nav__link">
+    3.1.3 二义性 | Ambiguity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#314-文件结束符--eof-marker" class="md-nav__link">
+    3.1.4 文件结束符 | EOF Marker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#315-上下文无关--context-free" class="md-nav__link">
+    3.1.5 上下文无关 | Context Free
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-递归下降分析--recursive-descent-parsing" class="md-nav__link">
+    3.2 递归下降分析 | Recursive Descent Parsing
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 递归下降分析 | Recursive Descent Parsing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-思路" class="md-nav__link">
+    3.2.1 思路
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-实现" class="md-nav__link">
+    3.2.2 实现
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323-左递归--left-recursive" class="md-nav__link">
+    3.2.3 左递归 | Left-Recursive
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#324-总结" class="md-nav__link">
+    3.2.4 总结
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-ll1-parsing" class="md-nav__link">
+    3.3 LL(1) Parsing
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 LL(1) Parsing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-思路" class="md-nav__link">
+    3.3.1 思路
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-提取左因子--left-factoring" class="md-nav__link">
+    3.3.2 提取左因子 | Left Factoring
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#333-预测分析表--predictive-parsing-table" class="md-nav__link">
+    3.3.3 预测分析表 | Predictive Parsing Table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#334-使用预测分析表" class="md-nav__link">
+    3.3.4 使用预测分析表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#335-构造预测分析表" class="md-nav__link">
+    3.3.5 构造预测分析表
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3.5 构造预测分析表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3351-first-sets" class="md-nav__link">
+    3.3.5.1 First Sets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3352-follow-sets" class="md-nav__link">
+    3.3.5.2 Follow Sets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3353-construct-predictive-table" class="md-nav__link">
+    3.3.5.3 Construct Predictive Table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3354-例子" class="md-nav__link">
+    3.3.5.4 例子
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#336-ll1-grammar" class="md-nav__link">
+    3.3.6 LL(1) Grammar
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#更多练习" class="md-nav__link">
+    更多练习
+  </a>
+  
+    <nav class="md-nav" aria-label="更多练习">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2021-midterm" class="md-nav__link">
+    2021 MidTerm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2018-midterm" class="md-nav__link">
+    2018 MidTerm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="3-语法分析--parsing">3 语法分析 | Parsing<a class="headerlink" href="#3-语法分析--parsing" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>朋辈辅学录播</p>
+<p><a href="https://www.bilibili.com/video/BV1KT4y1U7cg?spm_id_from=333.999.0.0">编译原理速成(1) 词法分析&amp;语法分析(上)</a></p>
+<p><a href="https://www.bilibili.com/video/BV1644y1N7qW">编译原理速成(2) 语法分析(中) CFG与自顶向下分析</a></p>
+<p><a href="https://www.bilibili.com/video/BV1j94y1d7eW">编译原理速成(3) 语法分析(下) LL(1)与自底向上分析</a></p>
+</blockquote>
+<p>此部分介绍 <strong>语法分析 (Parsing)</strong> 和 <strong>上下文无关文法 (Context-Free Grammar, CFG)</strong> 的相关概念以及 <strong>自顶向下分析 (Top-Down Parsing)</strong> 的有关内容。</p>
+<p><strong>输入</strong>：词法分析生成的 token 流；<strong>输出</strong>：语法分析树/中间表示</p>
+<p><strong>Input</strong>: sequence of tokens from lexer; <strong>Output</strong>: parse tree of the program (But some parsers never produce a parse tree ...)</p>
+<p><center><img alt="image.png" src="../../assets/1613245146491-7837da83-5218-4b3f-a506-cfbacd614245.png" width="500" /></center></p>
+<p><center><img alt="image.png" src="../../assets/1613245346371-9516f890-562e-4561-a05f-785d9155c64f.png" width="400" /></center></p>
+<p>在 2.5 节给出的 Lex 示例中，我们用名字 <code>digits</code> 作为了数字 <code>[0-9]+</code> 的别名。这种别名使得我们使用 Lex 编写词法规范时更加容易理解。实际上，这种别名的实现非常简单：Lex 在利用正则表达式生成有限自动机之前，用 <code>[0-9]+</code> 代替 <code>digits</code> 的所有出现即可。这与 C 语言中的宏定义类似。</p>
+<p>但是，正如我们在习题 2.2 中探讨过的那样，正则表达式不能实现对括号等的嵌套识别。考虑下面的定义：
+<div class="highlight"><pre><span></span><code>digits = [0-9]+
+sum     = expr &quot;+&quot; expr
+expr    = &quot;(&quot; sum &quot;)&quot; | digits
+</code></pre></div>
+那么，形如 <code>19</code> ， <code>5+6</code> ， <code>((1+2)+(3+4))</code> 等的表达式都可以被上述规则包括（分别对应 digits, sum 和 expr）。其中所有括号都是配对的，但是有限自动机无法实现这种配对的识别。因此，sum 和 expr 不可能被正则表达式表示。这种递归而获得的额外的表示能力正是语法分析所需要的。</p>
+<h2 id="31-上下文无关文法--context-free-grammars-cfgs">3.1 上下文无关文法 | Context-Free Grammars, CFGs<a class="headerlink" href="#31-上下文无关文法--context-free-grammars-cfgs" title="Permanent link">&para;</a></h2>
+<p>如我们所说，编程语言具有递归结构。如同我们用正则表达式静态地定义词法结构一样，我们使用 <strong>上下文无关文法</strong> 静态地定义语法结构。我们在稍后讨论“上下文无关”的含义。</p>
+<p>一个 CFG 描述一种语言。它包括：</p>
+<ul>
+<li>A set of <strong>terminals</strong> <span class="arithmatex">\(T\)</span></li>
+<li>A set of <strong>non-terminal</strong> <span class="arithmatex">\(N\)</span></li>
+<li>A <strong>start symbol</strong> <span class="arithmatex">\(S (\in N)\)</span></li>
+<li>A set of <strong>productions</strong> <span class="arithmatex">\(X \to y_1y_2...y_n\)</span> , where <span class="arithmatex">\(X\in N\)</span>, <span class="arithmatex">\(y_1y_2...y_n\in T\cup N\cup \{\epsilon\}\)</span></li>
+</ul>
+<p>其中 production 集合是 CFG 描述语言的形式， <span class="arithmatex">\(X \to y_1y_2...y_n\)</span> 表示 <span class="arithmatex">\(X\)</span> 可以被 <span class="arithmatex">\(y_1y_2...y_n\)</span> 替换。Terminal 集合 T 中的符号是该语言字母表中的 tokens，其意义是确定的。Non-terminal 集合 N 中的符号出现在某个 production 的左侧，即它的意义并未确定，还可以进行迭代。</p>
+<p>CFG 描述的语言从 start symbol <em>S</em> 出发，将字符串中任何 non-terminal 用某个 production 右侧的东西替换，不断重复直到字符串中没有 non-terminal。亦即，一个 CFG 描述的语言即为自 start symbol 开始，经有限个 production 推导可以得到的 terminal 串的集合。</p>
+<p>例如：
+<div class="highlight"><pre><span></span><code>EXPR -&gt; if EXPR then EXPR else EXPR fi
+      | while EXPR loop EXPR pool
+      | id
+</code></pre></div>
+这里的“|”是或。一般我们将 non-terminal 用大写表示，将 terminal 用小写表示，将 start symbol 写在第一个表达式的左侧。上例等同于：
+<div class="highlight"><pre><span></span><code>EXPR -&gt; if EXPR then EXPR else EXPR fi
+EXPR -&gt; while EXPR loop EXPR pool
+EXPR -&gt; id
+</code></pre></div>
+也就是说，我们在 CFG 中可以不适用可选符号 | 和克林闭包 *，即：</p>
+<ul>
+<li><code>aux -&gt; c|d</code> 可写为 <code>aux -&gt; c</code> , <code>aux -&gt; d</code></li>
+<li><code>expr -&gt; aux*</code> 可写为 <code>expr -&gt; aux expr</code>，<code>expr -&gt; ϵ</code></li>
+</ul>
+<p>举一个更加详细的例子。看下面一个 CFG <strong>（文法 3-1）</strong>：
+<div class="highlight"><pre><span></span><code>S -&gt; S; S
+S -&gt; id := E
+S -&gt; print(L)
+
+E -&gt; id
+E -&gt; num
+E -&gt; E + E
+E -&gt; (S, E)
+
+L -&gt; E
+L -&gt; L, E
+</code></pre></div>
+这个文法有 <code>S E L</code>  三个 non-terminal，有 terminal <code>; id := print ( ) num + ,</code> ，与它对应的源程序可以是 <code>a := 7; b := c + (d := 5 + 6, d); print(b)</code> ，这个源程序经词法分析后是 <code>id := num; id := id + (id := num + num, id); print(id)</code> 。</p>
+<h3 id="311-推导--derivation">3.1.1 推导 | Derivation<a class="headerlink" href="#311-推导--derivation" title="Permanent link">&para;</a></h3>
+<p>如果存在 production <code>A -&gt; a</code> ，那么串 <code>xay</code> 就是表达式 <code>xAy</code> 的一个实例，我们称 <code>xAy =&gt; xay</code> ，即 <code>xAy</code>经过一步推导出 <code>xay</code> 。在 <code>=&gt;</code> 上增加 <code>*</code> 或 <code>+</code> 表示经过零或多步、一或多步推导出。推导证明一个句子属于一个 CFG 的语言。</p>
+<p>例如文法 3-1 的一个句子 <code>a := 7; b := c + 2</code> 可以经如下推导：
+<div class="highlight"><pre><span></span><code>S
+S; S
+id := E; S
+id := num; S
+id := num; id := E
+id := num; id := E + E
+id := num; id := id + E
+id := num; id := id + num
+</code></pre></div>
+在上面的推导中，我们每一次选取最左边的非终结符进行扩展，因此称为 <strong>最左推导 (leftmost derivation)</strong> ，类似地，也有 <strong>最右推导 (rightmost derivation)</strong> 。当然，推导也可以既不是最左推导，也不是最右推导。</p>
+<p>但是，如 <code>a := 1; b := 2; c := 3</code> 的句子有两种不同的 <strong>最左推导</strong> ：</p>
+<div class="highlight"><pre><span></span><code>- `S` =&gt; `S; S` =&gt; `id := num; S` =&gt; `id := num; S; S` =&gt;...
+- `S` =&gt; `S; S` =&gt; `S; S; S` =&gt; `id:= num; S; S` =&gt;...
+</code></pre></div>
+<p>这种现象说明文法是 <strong>二义性的 (ambiguous)</strong> ，我们将在 3.1.3 小节讨论这个问题。</p>
+<h3 id="312-语法分析树--parse-tree">3.1.2 语法分析树 | Parse Tree<a class="headerlink" href="#312-语法分析树--parse-tree" title="Permanent link">&para;</a></h3>
+<p>推导过程中，我们对每个非终结符进行扩展。将非终结符作为父结点，扩展出的内容作为子结点，则可以形成一棵树，即语法分析树。3.1.1 例子的语法分析树为：</p>
+<p><center><img alt="graphviz (17).svg" src="../../assets/1613599026290-e598f3e8-dc06-445f-9e90-692638d75a9d.svg" /></center></p>
+<p>可以看到，语法分析树的所有叶子结点均为 terminals，其他节点均为 non-terminals。叶子结点的中序遍历即为原输入。与原输入相比，语法分析树显示了 token 之间的联系。每种推导对应了一棵语法分析树，但是每棵语法分析树可以对应多种推导方式。</p>
+<p>可以说明，对于每一种最左推导，一定有且仅有一种最右推导与其形成同样的语法分析树；其区别只是树的分支加入的顺序。</p>
+<h3 id="313-二义性--ambiguity">3.1.3 二义性 | Ambiguity<a class="headerlink" href="#313-二义性--ambiguity" title="Permanent link">&para;</a></h3>
+<p>看下面一个例子：</p>
+<p><strong>Grammar</strong>: <code>E -&gt; E+E | E*E | (E) | id</code></p>
+<p><strong>String</strong>: id * id + id</p>
+<p><center><img alt="image.png" src="../../assets/1613601009164-7a3efaae-2c26-4dd6-baf1-c053feb0600c.png" /></center></p>
+<p>这两棵语法分析树分别对应两种最左推导：</p>
+<ul>
+<li><code>E</code> =&gt; <code>E+E</code> =&gt; <code>E*E+E</code> =&gt; ...</li>
+<li><code>E</code> =&gt; <code>E*E</code> =&gt; <code>E*E+E</code> =&gt; ...</li>
+</ul>
+<p>这两种推导方式都是符合文法的最左推导。</p>
+<p>如果一个文法会使某些字符串有不止一个语法分析树，即该字符串有多种最左推导（或对应地，有多种最右推导），则称这个文法有二义性。我们希望文法是无二义性的。</p>
+<p>需要解决二义性，最直接的方法是重新写一个没有二义性的文法（好呆瓜）。上例中，我们一般选取左边那种理解，因为我们认为 * 比 + 具有更高的 <strong>优先级 (precedence)</strong> 。那么我们可以通过重写，强制这种优先级：</p>
+<p><strong>Grammar</strong> : <code>E -&gt; T+E | T</code> , <code>T -&gt; F*T | F</code> , <code>F -&gt; id | (E)</code></p>
+<p>通过这种方式，我们强制了 id 和 () 具有最高优先级（因为他们会被作为一个整体展开），* 次之， + 优先级最低。这样，上例就只有唯一一种最左推导：</p>
+<p><code>E</code> =&gt; <code>T+E</code> =&gt; <code>F*T+E</code> =&gt; ...</p>
+<p>即消除了二义性。</p>
+<p>我们再考虑这样一个例子：</p>
+<p><strong>Grammar</strong> : <code>E -&gt; E-E | num</code> ， <strong>String</strong> : 3-2-1</p>
+<p>可以发现，这样一个简单的文法也有两种不同的最左推导，分别得到 (3-2)-1 和 3-(2-1) 两种结果，显然我们希望的是前一种。这个问题的原因是 <strong>结合性 (associativity)</strong> ，我们希望 - 是左结合的。因此我们可以通过重写，强制这种结合性：</p>
+<p><strong>Grammar</strong> : <code>E -&gt; E-T</code> , <code>T -&gt; num</code></p>
+<p>这样就消除了二义性。</p>
+<p>需要说明的是，这里并没有一种通用的方法来解决二义性（Why？），因此我们只能通过人工的方式完成上面那样的消除二义性文法的重写。但是我们同时可以发现，这种重写会使得文法变得复杂，难以阅读和维护。因此，我们尝试通过某种消除二义性的声明来接受二义性，因为这样的文法更加简单和自然。</p>
+<p>大多数工具采取这样的方法。这些工具通过声明 precedence &amp; associativity 来消除文法中的二义性。</p>
+<blockquote>
+<p>The parser doesn't really understand about associativity &amp; precedence. Instead, these declarations tell it to make certain kind of moves in certain situations. We won't be able to explain this until we get much further into parsing technology.</p>
+</blockquote>
+<h3 id="314-文件结束符--eof-marker">3.1.4 文件结束符 | EOF Marker<a class="headerlink" href="#314-文件结束符--eof-marker" title="Permanent link">&para;</a></h3>
+<p><center><img alt="image.png" src="../../assets/1613604054056-182f9d05-272f-48bd-8a13-fe748a1a6c34.png" /></center></p>
+<h3 id="315-上下文无关--context-free">3.1.5 上下文无关 | Context Free<a class="headerlink" href="#315-上下文无关--context-free" title="Permanent link">&para;</a></h3>
+<p>我们所说的“上下文无关”或者“静态”，这里解释的很清楚（其实就是字面意思）：</p>
+<p><center><img alt="image.png" src="../../assets/1613245830502-fd7fd60d-aed8-479d-8798-ece19e14eb1d.png" /></center></p>
+<p>那么什么是上下文有关呢？我们可以说，如果只有对特定的串 β 和 γ，才有规则 βAγ -&gt; βαγ 时，我们称这条规则是上下文有关的。实际上，我们在 C 语言中需要先声明后使用就是一种上下文有关的例子。即：
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">     </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">     </span><span class="p">...</span>
+<span class="w">     </span><span class="p">...</span><span class="n">x</span><span class="p">...</span>
+<span class="w">     </span><span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+如果给相关的规则加上一些限制，那么我们有可能可以使用 BNF 来完成对上述上下文有关文法的分析；但即使如此，这个工作量是巨大的。因此，我们将这些信息和限制放到稍后去处理。在语法分析部分，我们暂时只考虑上下文无关文法的分析。</p>
+<h2 id="32-递归下降分析--recursive-descent-parsing">3.2 递归下降分析 | Recursive Descent Parsing<a class="headerlink" href="#32-递归下降分析--recursive-descent-parsing" title="Permanent link">&para;</a></h2>
+<p>Recursive Descent Parsing 是 <strong>自顶向下分析 (Top-Down Parsing)</strong> 的一种。所谓 Top-Down Parsing，就是从顶（start symbol）开始，从上到下、从左到右构造 parse tree。</p>
+<h3 id="321-思路">3.2.1 思路<a class="headerlink" href="#321-思路" title="Permanent link">&para;</a></h3>
+<p>递归下降利用的核心思路是，parse tree 叶子结点的中序遍历即为输入的 token 流。</p>
+<p>递归下降分析的过程，即从上到下、从左到右，对 parse tree 中的每一个结点进行遍历。对于遍历到的每个结点，如果该点是</p>
+<ul>
+<li>Terminal，则查看下一位输入是否与该 terminal 相同。如果相同，则接受该输入；如果不同，或者没有下一位输入，则说明出现了错误，进行 backtrack，即回溯到上一步 non-terminal（因为 terminal 一定由 non-terminal 引出）；</li>
+<li>Non-terminal，则：<ul>
+<li>尝试第一个从该 non-terminal 引出的 production，即将该 production 的右端作为该结点的子结点加入 parse tree，然后依次遍历子结点</li>
+<li>如果 backtrack 到了当前 non-terminal，则尝试下一个 production</li>
+<li>如果 backtrack 到了当前 non-terminal 但所有 production 都已经尝试完了，那么说明该 non-terminal 是不应当出现的，回溯到上一步 non-terminal。</li>
+</ul>
+</li>
+</ul>
+<p>重复该步骤，直到所有结点都被遍历完。如果此时输入已经结束，那么我们找到了一个匹配的 parsing；否则说明仍然存在错误，继续 backtrack。</p>
+<p>下面是递归下降分析的一个实例：</p>
+<p><center><img alt="image.png" src="../../assets/1613908497017-5933d06b-03fd-4322-ba83-38978c7f239b.png" /></center></p>
+<p><center><img alt="image.png" src="../../assets/1613908566592-5e4effbc-7d5a-4e68-836d-0fad03502e5d.png" /></center></p>
+<h3 id="322-实现">3.2.2 实现<a class="headerlink" href="#322-实现" title="Permanent link">&para;</a></h3>
+<p>Grammar: <code>E -&gt; T | T+E</code>, <code>T -&gt; int | int * T | (E)</code>  </p>
+<p>我们用 C 语言尝试实现 Recursive Descent Parser：</p>
+<ul>
+<li>我们用 <code>TOKEN</code> 表示 token 的类型，用指针 <code>next</code> 指向下一个 token（Line 1~4）</li>
+<li>我们用一系列函数进行前述思路中的检查和尝试，这些函数的返回值类型为 <code>bool</code> ，用来表示识别成功与否。如果不成功，我们进行回溯。这里的 parse tree 实际上是由函数的嵌套关系组织的，因此所谓“回溯”除了函数的自然返回，就只需要将 <code>next</code> 回到之前的位置即可。<ul>
+<li><code>bool term(TOKEN tok)</code> 是对 terminal 的检查，顺便把 <code>next++</code></li>
+<li><code>bool E1()</code> 是 non-terminal <em>E</em> 的第一个 production <code>E -&gt; T</code> 。可以看到其返回 <code>true</code> 的条件即为 <code>T()</code> 为真。类似地， <code>bool E2()</code> 是 production <code>E -&gt; T+E</code> 对应的函数，返回 <code>true</code> 的条件为依次匹配到 <code>T()</code> , <code>term(PLUS)</code> （即 terminal "+"）和 <code>E()</code> 。</li>
+<li><code>bool E()</code> 是 non-terminal <em>E</em> 的所有 production 的集合，注意到 11 行首先保存 <code>next</code> 到 <code>save</code> ，用来回溯；然后 12 行首先判断 <code>E1()</code> 是否为真：<ul>
+<li>如果为真则根据 C 语言的短路规则，其后的 <code>(next = save, E2())</code> 并不会被运行，直接返回真；</li>
+<li>如果不为真则运行 <code>(next = save, E2())</code> ，即首先恢复 <code>next</code> ，然后判断 <code>E2()</code> 是否为真。<br />
+需要特殊说明的是，这里第 12 行的 <code>(next = save, E1())</code> 中的 <code>next = save</code> 并没有作用，因为第 10 行刚刚将 <code>save</code> 赋值为 <code>next</code> ，这里只是为了整齐，去掉也可以。</li>
+</ul>
+</li>
+<li>开始 parsing 时，我们只需要调用 start symbol 对应的函数，即 <code>E()</code> 。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">enum</span><span class="w"> </span><span class="n">TOKEN</span><span class="w"> </span><span class="p">{</span><span class="n">INT</span><span class="p">,</span><span class="w"> </span><span class="n">OPEN</span><span class="p">,</span><span class="w"> </span><span class="n">CLOSE</span><span class="p">,</span><span class="w"> </span><span class="n">PLUS</span><span class="p">,</span><span class="w"> </span><span class="n">TIMES</span><span class="p">};</span>
+<span class="w">          </span><span class="cm">/* int    (        )        +      -    */</span>
+<span class="n">TOKEN</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="n">MAXN</span><span class="p">];</span>
+<span class="n">TOKEN</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">;</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nf">term</span><span class="p">(</span><span class="n">TOKEN</span><span class="w"> </span><span class="n">tok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="o">++</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">tok</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nf">E1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">T</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">E2</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">T</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">term</span><span class="p">(</span><span class="n">PLUS</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">E</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">E</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="n">TOKEN</span><span class="w"> </span><span class="o">*</span><span class="n">save</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">next</span><span class="p">;</span><span class="w"> </span>
+<span class="w">     </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">save</span><span class="p">,</span><span class="w"> </span><span class="n">E1</span><span class="p">())</span><span class="w"> </span>
+<span class="w">          </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">save</span><span class="p">,</span><span class="w"> </span><span class="n">E2</span><span class="p">());</span><span class="w"> </span>
+<span class="p">}</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nf">T1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">term</span><span class="p">(</span><span class="n">INT</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">T2</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">term</span><span class="p">(</span><span class="n">INT</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">term</span><span class="p">(</span><span class="n">TIMES</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">T</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">T3</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">term</span><span class="p">(</span><span class="n">OPEN</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">E</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">term</span><span class="p">(</span><span class="n">CLOSE</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">T</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">     </span><span class="n">TOKEN</span><span class="w"> </span><span class="o">*</span><span class="n">save</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">next</span><span class="p">;</span><span class="w"> </span>
+<span class="w">     </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">save</span><span class="p">,</span><span class="w"> </span><span class="n">T1</span><span class="p">())</span>
+<span class="w">        </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">save</span><span class="p">,</span><span class="w"> </span><span class="n">T2</span><span class="p">())</span>
+<span class="w">        </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">save</span><span class="p">,</span><span class="w"> </span><span class="n">T3</span><span class="p">());</span><span class="w"> </span>
+<span class="p">}</span>
+</code></pre></div>
+<p>但是，我们考虑这样一种情况： <code>S -&gt; Sa</code></p>
+<p>则我们会写出这样两个函数： <code>bool S1() { return S() &amp;&amp; term(a); }</code> , <code>bool S() { return S1(); }</code> ，我们可以发现 <code>S()</code> 进入了死循环。这种情况称为 <strong>左递归 (left-recursive)</strong> 。</p>
+<h3 id="323-左递归--left-recursive">3.2.3 左递归 | Left-Recursive<a class="headerlink" href="#323-左递归--left-recursive" title="Permanent link">&para;</a></h3>
+<p>承上例，如果存在一个 non-terminal <em>S</em>  使得 <code>S -&gt;+ Sa</code> ，即经过 1 个或多个 production 后，S 可以产生一个由 S 开头的右端，那么我们用前述方法生成的 Recursive Descent 代码就不能够完成语法分析，因为它会陷入死循环。这是左递归的一般形式。</p>
+<p>实际上，左递归可以被机械地（即，有一般方法地）消除。考虑这样一种文法： <code>S -&gt; Sa | b</code> ，实际上这种文法生成的是一个 <code>b</code> 以及若干个 <code>a</code> 。我们可以将它重写为 <strong>右递归 (right-recursion)</strong> 的形式： <code>S -&gt; bT</code> , <code>T -&gt; aT | ϵ</code>。这两种文法的区别是，我们将递归移到了产生式的最右边，而这是可以被 Recursive Descent 接受的形式。</p>
+<p>更一般地，文法 <span class="arithmatex">\(S \to S\alpha_1 | \dots | S\alpha_n|\beta_1|\dots|\beta_m\)</span> 可以概括所有包含左递归的文法，我们可以将其改写为：<span class="arithmatex">\(S\to \beta_1S'|\dots|\beta_mS',\ S'\to\alpha_1S'|\dots|\alpha_nS'|\epsilon\)</span>，即解决了左递归这一问题。</p>
+<p>实际上，我们实现 Recursive Descent Parsing 时，在 3.2.2 小节中展示的步骤之前，我们需要首先将文法改写成没有左递归的形式。</p>
+<h3 id="324-总结">3.2.4 总结<a class="headerlink" href="#324-总结" title="Permanent link">&para;</a></h3>
+<p>Recursive Descent 是一种非常简单而且通用的方法，因为其过程比较简单，且虽然左递归需要提前消除，但是消除左递归的过程是比较简单的，而且可用算法自动完成。在实际操作中，人们通常手动将左递归消除，因为编译器的设计者需要知道 parser 使用何种文法，且消除左递归是容易的。</p>
+<p>由于 Recursive Descent 需要 backtrack，在过去被人们认为非常低效，因此不很常用；在如今的机器上 Recursive Descent 是非常快速和简单的，因此在如今非常流行。例如 gcc 就用到了手写的 Recursive Descent。</p>
+<h2 id="33-ll1-parsing">3.3 LL(1) Parsing<a class="headerlink" href="#33-ll1-parsing" title="Permanent link">&para;</a></h2>
+<p>预测分析 (Predictive Parsing) 也是一种 Top-Down Parsing，它通过查看当前输入位置之后的几个 token 来决定使用哪一个 production，从而避免了 backtracking。</p>
+<p>预测分析器可以用于处理 <strong>LL(k)</strong> 文法，LL(k) 各部分的含义是：</p>
+<ul>
+<li>第一个 L：left-to-right scan of input</li>
+<li>第二个 L：leftmost derivation</li>
+<li>k：predict based on <em>k</em> tokens of lookahead</li>
+</ul>
+<p>我们这里讨论 LL(1) 文法，即通过查看当前 token 之后的一个 token 就能决定使用哪个 production 的文法。</p>
+<h3 id="331-思路">3.3.1 思路<a class="headerlink" href="#331-思路" title="Permanent link">&para;</a></h3>
+<p>对于 Recursive Descent，每一步有多种可选的 production；Backtracking used to undo bad choices.</p>
+<p>对于 LL(1)，每一步只会有一个或零个 (error state) 可以选择的 production。由于 "LL"，因此实际上我们每次只需要将最左端的 non-terminal 用一个 production 的右端替换；而 "(1)" 要求我们只查看输入中的 1 个 token 就可以知道使用哪一个 production；即：每一个 production 右端的第一个 terminal 是唯一的。在这样的条件下，我们可以通过不断的展开和查看 production 来完成 token 流的语法分析。</p>
+<p>这一要求对大多数文法来说是不能满足的，但是我们可以通过一些方法来满足这一要求。</p>
+<h3 id="332-提取左因子--left-factoring">3.3.2 提取左因子 | Left Factoring<a class="headerlink" href="#332-提取左因子--left-factoring" title="Permanent link">&para;</a></h3>
+<p>我们仍然讨论 3.2 中用到的文法： <code>E -&gt; T+E | T</code> , <code>T -&gt; int | int*T | (E)</code></p>
+<p>我们发现一个 non-terminal 的 production 的右端以相同的符号开始，那么我们可以通过 left factoring 解决这一问题，即提取相同的开始符号，并将剩下的部分用一个新的 non-terminal 来代替，如 <code>E -&gt; T+E | T</code> 可以改写为 <code>E -&gt; TX</code> , <code>X -&gt; +E | ϵ</code> 。类似地，<code>T -&gt; int | int*T | (E)</code> 改写为 <code>T -&gt; intY | (E)</code> , <code>Y -&gt; *T | ϵ</code>。</p>
+<h3 id="333-预测分析表--predictive-parsing-table">3.3.3 预测分析表 | Predictive Parsing Table<a class="headerlink" href="#333-预测分析表--predictive-parsing-table" title="Permanent link">&para;</a></h3>
+<p>如我们之前所说，我们需要根据每一个当前最左端的 non-terminal 以及 lookahead 得到的 next input token 来选取唯一的 production。因此我们可以通过一个表格来表示这种预测关系，下图是上述文法的对应例子（我们稍后再讨论这张表的建立方式）：</p>
+<p><center><img alt="image.png" src="../../assets/1614579602146-1742416b-877e-4aca-9e83-90c601698828.png" /></center></p>
+<p><center><img alt="image.png" src="../../assets/1614579640808-bfe65a22-5bfe-44c9-833d-759b96cd4f28.png" /></center></p>
+<p><center><img alt="image.png" src="../../assets/1614579668723-a62ef254-18a0-4dc5-9dbe-b3f8c74b0ad3.png" /></center></p>
+<p>本文中，如果 Parsing Table 中 non-terminal <code>A</code>  和 terminal <code>t</code> 对应的项目为 <code>a</code> ，那么记 <code>T[A,t] = a</code> 。</p>
+<h3 id="334-使用预测分析表">3.3.4 使用预测分析表<a class="headerlink" href="#334-使用预测分析表" title="Permanent link">&para;</a></h3>
+<p>由于我们的语法分析过程始终只需要考虑最左端的 non-terminal，我们可以用一个栈来存储正在生成的 parse tree，栈顶即为 leftmost non-terminal 或者即将被匹配的 leftmost terminal（如果与输入相同则出栈，如果不同则说明出现了语法错误）。如果出现了 error state，则也说明出现了语法错误；如果栈为空且输入结束，则语法分析成功结束。</p>
+<p>下面是 LL(1) Parsing 的算法：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code>initialize stack = {S, $}
+repeat
+    case stack.top of
+     X: //non-terminal
+            if T[X, *next] = Y1...Yn then
+                pop X
+                push Y1...Yn onto stack
+          else
+                error()
+     t: //terminal
+            if t == *next++ then
+                pop t
+          else
+                error()
+until stack == {}
+</code></pre></div></td></tr></table></div>
+其中：</p>
+<ul>
+<li>Line 1, 14：<code>S</code> 是 Start Symbol，<code>$</code> 是输入的末尾，如果最终 <code>stack</code> 为空，说明栈为空（除了 <code>$</code>）的同时输入到达结束，即 parsing 被接受。</li>
+<li>Line 3：当栈非空时，我们不断进行这一工作：检查栈顶是 non-terminal 还是 terminal，如果：<ul>
+<li>为 non-terminal，那么根据该 non-terminal（即 leftmost）以及输入的下一个 token（即 <code>*next</code> ）在 Parsing Table 中进行查找，如果该项为空说明出现错误（Line 7~8）；否则将表中的对应内容，即 <code>T[X, *next]</code> 压入栈顶，即栈从 <code>{X, rest}</code> 变为 <code>{Y1, ..., Yn, rest}</code> 。Production 右端的 leftmost symbol 成为新的栈顶。</li>
+<li>为 terminal，这种情况与之前的 Recursive Descent 中对 terminal 的处理一致。</li>
+</ul>
+</li>
+</ul>
+<p>下面是一个例子：</p>
+<p><center><img alt="image.png" src="../../assets/1614582173249-ba6b58c1-d0d2-4260-bcf2-309db1de2d6b.png" /></center></p>
+<h3 id="335-构造预测分析表">3.3.5 构造预测分析表<a class="headerlink" href="#335-构造预测分析表" title="Permanent link">&para;</a></h3>
+<p>对于 non-terminal <code>A</code> , production <code>A-&gt;X</code> , token <code>t</code> , 则 <code>T[A, t] = X</code> 当且仅当：</p>
+<ul>
+<li><code>X -&gt;* tY</code> ，即 <code>X</code> 可以经 0 步或多步转换成一个由 <code>t</code> 开头的串。这时我们记 <span class="arithmatex">\(t\in\text{First}(X)\)</span>。<strong>或者</strong></li>
+<li><code>X -&gt;* ϵ</code> 且 <code>S -&gt;* pAtq</code> ，其中 <code>p</code> 和 <code>q</code> 为任意串（可为空）；即存在从 Start Symbol 开始的任一步推导包含 <code>At</code> ，且 <code>X</code> 可为空。这时我们记 <span class="arithmatex">\(t\in \text{Follow}(X)\)</span>。</li>
+</ul>
+<p>上面所述的 <span class="arithmatex">\(\text{First}(X)\)</span> 和 <span class="arithmatex">\(\text{Follow}(X)\)</span> 是 terminal 的两个集合。我们给出这两个集合的定义和解释：</p>
+<h4 id="3351-first-sets">3.3.5.1 First Sets<a class="headerlink" href="#3351-first-sets" title="Permanent link">&para;</a></h4>
+<p>给定符号 <code>X</code> ，<span class="arithmatex">\(\text{First}(X)\)</span> 表示可以从 <code>X</code> 中推导出的所有 terminal 串中 leftmost terminal 的集合。这里给出一个形式化的定义：</p>
+<p><span class="arithmatex">\(\text{First}(X) = \{t\ |\ X\Rightarrow^* t\alpha\} \cup\{\epsilon\ |\ X\Rightarrow^* \epsilon\}\)</span>
+即，如果 <code>X</code> 可以经 0 步或多步推导出以 terminal <code>t</code> 开头的串，那么 <code>t</code> 属于 <span class="arithmatex">\(\text{First}(X)\)</span>（<span class="arithmatex">\(\alpha\)</span> 是什么并不重要，它只是用来表示 <code>t</code> 后面还可以有东西）；如果 <code>X</code> 可以经 0 步或者多步推导出空串，那么 <code>ϵ</code> 属于 <span class="arithmatex">\(\text{First}(X)\)</span>。</p>
+<p>我们可以按照如下思路计算出 First Sets：</p>
+<p><center><img alt="image.png" src="../../assets/1614584503311-492b3b4d-5676-4013-9666-02e397ded95c.png" /></center></p>
+<p>举个例子，我们仍然研究刚刚的文法：</p>
+<p><center><img alt="image.png" src="../../assets/1615788482936-6cdbe86f-df66-4e98-8db2-9d58e82a31c9.png" /></center></p>
+<p>首先， <code>X</code> , <code>Y</code> , <code>T</code> 的 First 集合是显然的，因为它们的每一种产生式的开头都是 terminal：</p>
+<p><span class="arithmatex">\(\text{First}(X) = \{+,\epsilon\},\quad \text{First}(Y) = \{*,\epsilon\},\quad \text{First}(T) = \{\ (\ ,\text{int}\}\)</span></p>
+<p>另外注意 <code>E -&gt; TX</code> ，有 <span class="arithmatex">\(\text{First}(T)\subseteq \text{First}(E)\)</span>；进一步我们发现 <code>T</code> 不可能导出空串，因此 <span class="arithmatex">\(\text{First}(E)\)</span> 没有其他元素了。因此 <span class="arithmatex">\(\text{First}(E) = \{\ (\ ,\text{int}\}\)</span>。</p>
+<p>一般地，对于一个非终结符 <code>X</code> ，计算它的 First 集合的算法是：（Ref：<a href="https://github.com/amirbawab/EasyCC-CPP/blob/2bba922715d442ad250997bed6116d98fa1418bc/src/syntax/grammar/Grammar.cppL270">Link</a>）</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code>/* 遍历所有 production。即，在以这个 Non-terminal 为左端的一个 production 中：*/
+
+// If epsilon not found in the first set of the current token or
+// the current token is the last one in the production, then add all
+// the tokens to the first set and don&#39;t continue evaluating the next tokens
+// Example 1:
+//        A -&gt; B C D
+//        B -&gt; &#39;T1&#39; | &#39;T2&#39;
+//        ...
+// Then First(A) contains First(B)
+// Example 2:
+//        A -&gt; B C D
+//        B -&gt; EPSILON | &#39;T1&#39;
+//        C -&gt; &#39;T2&#39; | &#39;T3&#39;
+//        ...
+// Then First(A) contains First(B)-{EPSILON} U First(C)
+// Example 3:
+//        A -&gt; B C D
+//        B -&gt; EPSILON | &#39;T1&#39;
+//        C -&gt; EPSILON | &#39;T2&#39;
+//        D -&gt; EPSILON | &#39;T3&#39;
+//        ...
+// Then First(A) contains First(B)-{EPSILON} U First(C)-{EPSILON} U First(D).
+// Note that in Example 3, EPSILON will be in First(A)
+</code></pre></div></td></tr></table></div>
+<p>我们遍历每一条 production。对于每一条 production，记左边的 non-terminal 为 X，我们遍历其右边的 tokens：</p>
+<ul>
+<li>如果是<span class="arithmatex">\(\epsilon\)</span>或者 terminal，将其加入 X 的 First Set 并且停止遍历。因为<span class="arithmatex">\(\epsilon\)</span>只会单独出现，而 terminal 后面的东西也不会出现在 X 的 First Set 中了；</li>
+<li>如果是 Non-terminal：<ul>
+<li>如果 Non-terminal 的 First Set 中没有<span class="arithmatex">\(\epsilon\)</span>，或者这是当前 production 的最后一个 token，将 Non-terminal 的 First Set 加入 X 的 First Set，然后停止；</li>
+<li>如果 Non-terminal 的 First Set 中有<span class="arithmatex">\(\epsilon\)</span>，而且不是当前 production 的最后一个 token，将 Non-terminal 的 First Set 中除了<span class="arithmatex">\(\epsilon\)</span>以外的元素加入 X 的 First Set，然后继续遍历。</li>
+</ul>
+</li>
+</ul>
+<p>我们重复对 production 的遍历足够多次（production 的条数次；或者直到一次遍历中所有 First Set 没有发生改变），这样保证每个 First Set 都基于正确的其他 First Set 进行合并。这样就得到了所有 Non-terminal 的 First Set。</p>
+<h4 id="3352-follow-sets">3.3.5.2 Follow Sets<a class="headerlink" href="#3352-follow-sets" title="Permanent link">&para;</a></h4>
+<p>给定符号 <code>X</code> ，<span class="arithmatex">\(\text{Follow}(X)\)</span> 表示可以从 Start Symbol <code>S</code> 推导出的所有串中，可能直接接在 <code>X</code> 之后的 terminal 的集合。我们同样给出一个形式化的定义：</p>
+<p><span class="arithmatex">\(\text{Follow}(X) = \{t\ |\ S\Rightarrow^*\alpha Xt\beta\}\)</span>
+同样的，这里 <span class="arithmatex">\(\alpha, \beta\)</span> 是什么也并不重要，它只是用来表示 <code>Xt</code> 的前后还可以有东西。需要注意的是，epsilon 不可能出现在 Follow Sets 中。如果表示当前 token 之后可能什么都没有（即文件结束），则其 Follow Set 包含文件结束符 <code>$</code> 。因此，Start Symbol <code>S</code> 的 Follow Set 包含文件结束符 <code>$</code>。</p>
+<p>一般地，对于一个非终结符 <code>X</code> ，计算它的 Follow 集合的算法是：（Ref：<a href="https://github.com/amirbawab/EasyCC-CPP/blob/2bba922715d442ad250997bed6116d98fa1418bc/src/syntax/grammar/Grammar.cppL335">Link</a>）</p>
+<div class="highlight"><pre><span></span><code>/* 遍历所有 production 右边的每一个 token。即，对于每个 production 中出现的每个 token： */
+
+// If the current token is a non-terminal then iterate on the next token
+// and add its first set to the follow set of the current token except for
+// the epsilon value. If the first set had an epsilon value, then the next token
+// needs to be evaluated as well. This repeats until no epsilon is found or if
+// there are no more tokens in the production, which in that case the follow set
+// of the LHS is added to the follow set of the current token.
+// Example 1
+//        A -&gt; B C D
+//        Follow(A) = {&#39;T1&#39;}
+//        First(C) = {&#39;T2&#39;, EPSILON}
+//        First(D) = {&#39;T3&#39;}
+// Then Follow(B) contains First(C)-{EPSILON} U First(D)
+// Example 2
+//        A -&gt; B C D
+//        Follow(A) = {&#39;T1&#39;}
+//        First(C) = {&#39;T2&#39;, EPSILON}
+//        First(D) = {&#39;T3&#39;, EPSILON}
+// Then Follow(B) contains First(C)-{EPSILON} U First(D)-{EPSILON} U Follow(A)
+</code></pre></div>
+<p>对 Follow Set 的计算是在建立在完成对 First Sets 计算的基础上的。对于每一个 production 右侧的每一个 token X，遍历其后面的 token Ri：将 Ri 的 First Set（减去<span class="arithmatex">\(\epsilon\)</span>）加入 X 的 Follow Set；如果 Ri 的 First Set 不包含<span class="arithmatex">\(\epsilon\)</span>则停止，否则继续遍历下一个 token；如果所有 token 都可以取<span class="arithmatex">\(\epsilon\)</span>，则将 production 左边的 Non-terminal 的 Follow Set 加入 X 的 Follow Set。</p>
+<h4 id="3353-construct-predictive-table">3.3.5.3 Construct Predictive Table<a class="headerlink" href="#3353-construct-predictive-table" title="Permanent link">&para;</a></h4>
+<p>根据我们计算出的 First Sets 和 Follow Sets，我们可以通过如下算法构造出该文法的预测分析表：</p>
+<p><center><img alt="image.png" src="../../assets/1616998045165-7007b9df-8752-4eb9-8c22-67b97a65d3eb.png" /></center></p>
+<p>其中， <code>First(α)</code> 是该 production 的右侧的 First Set，其元素其实就是 3.3.5.1 中遍历到对应 production 时加入到 <code>First(A)</code> 的元素。因此，我们可以在 3.3.5.1 中，同时维护一个对于 production 左边 Non-terminal 的 First Set 和这个 production 本身（或者说，它的右边）的 First Set，以便这一步进行使用。</p>
+<h4 id="3354-例子">3.3.5.4 例子<a class="headerlink" href="#3354-例子" title="Permanent link">&para;</a></h4>
+<p>下面是课本中的一道例题，展示了去除左递归、计算 First 和 Follow Set、构造 LL(1) Parsing Table 和使用 Parsing Table 的过程。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Consider the grammar:</p>
+<div class="highlight"><pre><span></span><code>lexp -&gt; atom | list
+atom -&gt; number | identifier
+list -&gt; (lexp-seq)
+lexp-seq -&gt; lexp-seq lexp | lexp
+</code></pre></div>
+<p>a. Remove the left recursion</p>
+<p>b. Construct the First and Follow set of the nonterminals of the resulting grammar.</p>
+<p>c. Construct the LL(1) table for the resulting grammar.</p>
+<p>d. Show the actions of the corresponding parser, given the following input string <code>(a(b(2))(c))</code>.</p>
+<details class="success">
+<summary>solution</summary>
+<p>a.  Production <code>lexp-seq -&gt; lexp-seq lexp | lexp</code> is left-recursive. We rewrite it to be: <code>lexp-seq -&gt; lexp seq</code>, <code>seq -&gt; lexp seq | EPSILON</code>. That is, the grammar after removing the left recursion is:
+<div class="highlight"><pre><span></span><code>lexp -&gt; atom | list
+atom -&gt; number | identifier
+list -&gt; (lexp-seq)
+lexp-seq -&gt; lexp seq
+seq -&gt; lexp seq | EPSILON
+</code></pre></div></p>
+<p>b.</p>
+<p><strong>First Sets:</strong></p>
+<p>Terminals: <em>number</em>, <em>identifier</em>, <em>(</em> and <em>)</em>.</p>
+<p>We can first get to know that <span class="arithmatex">\(First(atom) = \{number,\ identifier\}\)</span> by production 2 and that <span class="arithmatex">\(First(list) = \{(\}\)</span> by production 3.</p>
+<p>From production 1 we know that <span class="arithmatex">\(First(lexp) = First(atom)\cup First(list) = \{number,\ identifier,\ (\}\)</span>, and from production 4 we know that <span class="arithmatex">\(First(lexp\text-seq) = First(lexp) = \{number,\ identifier,\ (\}\)</span>.</p>
+<p>From production 5 we know that 
+<span class="arithmatex">\(First(seq) =First(lexp)\cup \{\epsilon\} = \{number,\ identifier,\ (,\ \epsilon\}\)</span></p>
+<p><strong>Follow Sets:</strong></p>
+<p>As <code>lexp</code> is the start symbol, there is 
+<span class="arithmatex">\(\$\in Follow(lexp)\)</span>.</p>
+<p>From production 1 we can know that 
+<span class="arithmatex">\(Follow(lexp)\subseteq Follow(atom)\)</span> and <span class="arithmatex">\(Follow(lexp)\subseteq Follow(list)\)</span>.</p>
+<p>From production 3 we can know that 
+<span class="arithmatex">\(\ )\ \in Follow(lexp\text-seq)\)</span></p>
+<p>From production 4 we can know that 
+<span class="arithmatex">\(First(seq) - \{\epsilon\}\subseteq Follow(lexp)\)</span>, and as <span class="arithmatex">\(\epsilon\in First(seq)\)</span>, there is also <span class="arithmatex">\(Follow(lexp\text-seq)\subseteq Follow(lexp)\)</span>. It can also be known that  <span class="arithmatex">\(Follow(lexp\text-seq)\subseteq Follow(seq)\)</span> .</p>
+<p>Therefore the total first and follow sets are:</p>
+<table>
+<thead>
+<tr>
+<th>Non-terminals</th>
+<th>First Sets</th>
+<th>Follow Sets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>lexp</em></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\{number,\ identifier,\ (\}\)</span></td>
+<td><span class="arithmatex">\(\{number,\ identifier,\ (,\ )\ ,\$\}\)</span></td>
+<td></td>
+</tr>
+<tr>
+<td><em>atom</em></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\{number,\ identifier\}\)</span></td>
+<td><span class="arithmatex">\(\{number,\ identifier,\ (,\ )\ ,\$\}\)</span></td>
+<td></td>
+</tr>
+<tr>
+<td><em>list</em></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\{\ (\ \}\)</span></td>
+<td><span class="arithmatex">\(\{number,\ identifier,\ (,\ )\ ,\$\}\)</span></td>
+<td></td>
+</tr>
+<tr>
+<td><em>lexp-seq</em></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\{number,\ identifier,\ (\}\)</span></td>
+<td><span class="arithmatex">\(\{\ )\ \}\)</span></td>
+<td></td>
+</tr>
+<tr>
+<td><em>seq</em></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\{number,\ identifier,\ (,\ \epsilon\}\)</span></td>
+<td><span class="arithmatex">\(\{\ )\ \}\)</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>c.  We can construct the LL(1) parsing table with the first and follow sets above: (the LHS i.e. Left Hand Side of each production has been omitted as they are shown in the leftmost column of the table)</p>
+<table>
+<thead>
+<tr>
+<th><em>LHS</em></th>
+<th>number</th>
+<th>identifier</th>
+<th>(</th>
+<th>)</th>
+<th>$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>lexp</em></td>
+<td><code>-&gt;atom</code></td>
+<td><code>-&gt;atom</code></td>
+<td><code>-&gt;list</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>atom</em></td>
+<td><code>-&gt;number</code></td>
+<td><code>-&gt;identifier</code></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>list</em></td>
+<td></td>
+<td></td>
+<td><code>-&gt;(lexp-seq)</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>lexp-seq</em></td>
+<td><code>-&gt;lexp seq</code></td>
+<td><code>-&gt;lexp seq</code></td>
+<td><code>-&gt;lexp seq</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>seq</em></td>
+<td><code>-&gt;lexp seq</code></td>
+<td><code>-&gt;lexp seq</code></td>
+<td><code>-&gt;lexp seq</code></td>
+<td><code>-&gt;EPSILON</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>As we can see, there is no conflicting entries in the table, or in other words, there is at most 1 production in each table entry. This satisfies the definition of LL(1) grammar. Therefore the grammar is LL(1).</p>
+<p>d.</p>
+<table>
+<thead>
+<tr>
+<th>Stack</th>
+<th>Input</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lexp $</td>
+<td><code>(a(b(2))(c))$</code></td>
+<td><code>-&gt;list</code></td>
+</tr>
+<tr>
+<td>list $</td>
+<td><code>(a(b(2))(c))$</code></td>
+<td><code>-&gt;(lexp-seq)</code></td>
+</tr>
+<tr>
+<td>( lexp-seq ) $</td>
+<td><code>(a(b(2))(c))$</code></td>
+<td><strong>Match</strong> <code>(</code></td>
+</tr>
+<tr>
+<td>lexp-seq ) $</td>
+<td><code>a(b(2))(c))$</code></td>
+<td><code>-&gt;lexp seq</code></td>
+</tr>
+<tr>
+<td>lexp seq ) $</td>
+<td><code>a(b(2))(c))$</code></td>
+<td><code>-&gt;atom</code></td>
+</tr>
+<tr>
+<td>atom seq ) $</td>
+<td><code>a(b(2))(c))$</code></td>
+<td><code>-&gt;identifier</code></td>
+</tr>
+<tr>
+<td>identifier seq ) $</td>
+<td><code>a(b(2))(c))$</code></td>
+<td><strong>Match</strong> <code>a</code></td>
+</tr>
+<tr>
+<td>seq ) $</td>
+<td><code>(b(2))(c))$</code></td>
+<td><code>-&gt;lexp seq</code></td>
+</tr>
+<tr>
+<td>lexp seq ) $</td>
+<td><code>(b(2))(c))$</code></td>
+<td><code>-&gt;list</code></td>
+</tr>
+<tr>
+<td>list seq ) $</td>
+<td><code>(b(2))(c))$</code></td>
+<td><code>-&gt;(lexp-seq)</code></td>
+</tr>
+<tr>
+<td>( lexp-seq ) seq ) $</td>
+<td><code>(b(2))(c))$</code></td>
+<td><strong>Match</strong> <code>(</code></td>
+</tr>
+<tr>
+<td>lexp-seq ) seq ) $</td>
+<td><code>b(2))(c))$</code></td>
+<td><code>-&gt;lexp seq</code></td>
+</tr>
+<tr>
+<td>lexp seq ) seq ) $</td>
+<td><code>b(2))(c))$</code></td>
+<td><code>-&gt;atom</code></td>
+</tr>
+<tr>
+<td>atom seq ) seq ) $</td>
+<td><code>b(2))(c))$</code></td>
+<td><code>-&gt;identifier</code></td>
+</tr>
+<tr>
+<td>identifier seq ) seq ) $</td>
+<td><code>b(2))(c))$</code></td>
+<td><strong>Match</strong> <code>b</code></td>
+</tr>
+<tr>
+<td>seq ) seq ) $</td>
+<td><code>(2))(c))$</code></td>
+<td><code>-&gt;lexp seq</code></td>
+</tr>
+<tr>
+<td>lexp seq ) seq ) $</td>
+<td><code>(2))(c))$</code></td>
+<td><code>-&gt;list</code></td>
+</tr>
+<tr>
+<td>list seq ) seq ) $</td>
+<td><code>(2))(c))$</code></td>
+<td><code>-&gt;(lexp-seq)</code></td>
+</tr>
+<tr>
+<td>( lexp-seq ) seq ) seq ) $</td>
+<td><code>(2))(c))$</code></td>
+<td><strong>Match</strong> <code>(</code></td>
+</tr>
+<tr>
+<td>lexp-seq ) seq ) seq ) $</td>
+<td><code>2))(c))$</code></td>
+<td><code>-&gt;lexp seq</code></td>
+</tr>
+<tr>
+<td>lexp seq ) seq ) seq ) $</td>
+<td><code>2))(c))$</code></td>
+<td><code>-&gt;atom</code></td>
+</tr>
+<tr>
+<td>atom seq ) seq ) seq ) $</td>
+<td><code>2))(c))$</code></td>
+<td><code>-&gt;number</code></td>
+</tr>
+<tr>
+<td>number seq ) seq ) seq ) $</td>
+<td><code>2))(c))$</code></td>
+<td><strong>Match</strong> <code>2</code></td>
+</tr>
+<tr>
+<td>seq ) seq ) seq ) $</td>
+<td><code>))(c))$</code></td>
+<td><code>-&gt;EPSILON</code></td>
+</tr>
+<tr>
+<td>) seq ) seq ) $</td>
+<td><code>))(c))$</code></td>
+<td><strong>Match</strong> <code>)</code></td>
+</tr>
+<tr>
+<td>seq ) seq ) $</td>
+<td><code>)(c))$</code></td>
+<td><code>-&gt;EPSILON</code></td>
+</tr>
+<tr>
+<td>) seq ) $</td>
+<td><code>)(c))$</code></td>
+<td><strong>Match</strong> <code>)</code></td>
+</tr>
+<tr>
+<td>seq ) $</td>
+<td><code>(c))$</code></td>
+<td><code>-&gt;lexp seq</code></td>
+</tr>
+<tr>
+<td>lexp seq ) $</td>
+<td><code>(c))$</code></td>
+<td><code>-&gt;list</code></td>
+</tr>
+<tr>
+<td>list seq ) $</td>
+<td><code>(c))$</code></td>
+<td><code>-&gt;(lexp-seq)</code></td>
+</tr>
+<tr>
+<td>( lexp-seq ) seq ) $</td>
+<td><code>(c))$</code></td>
+<td><strong>Match</strong> <code>(</code></td>
+</tr>
+<tr>
+<td>lexp-seq ) seq ) $</td>
+<td><code>c))$</code></td>
+<td><code>-&gt;lexp seq</code></td>
+</tr>
+<tr>
+<td>lexp seq ) seq ) $</td>
+<td><code>c))$</code></td>
+<td><code>-&gt;atom</code></td>
+</tr>
+<tr>
+<td>atom seq ) seq ) $</td>
+<td><code>c))$</code></td>
+<td><code>-&gt;identifier</code></td>
+</tr>
+<tr>
+<td>identifier seq ) seq ) $</td>
+<td><code>c))$</code></td>
+<td><strong>Match</strong> <code>c</code></td>
+</tr>
+<tr>
+<td>seq ) seq ) $</td>
+<td><code>))$</code></td>
+<td><code>-&gt;EPSILON</code></td>
+</tr>
+<tr>
+<td>) seq ) $</td>
+<td><code>))$</code></td>
+<td><strong>Match</strong> <code>)</code></td>
+</tr>
+<tr>
+<td>seq ) $</td>
+<td><code>)$</code></td>
+<td><code>-&gt;EPSILON</code></td>
+</tr>
+<tr>
+<td>) $</td>
+<td><code>)$</code></td>
+<td><strong>Match</strong> <code>)</code></td>
+</tr>
+<tr>
+<td>$</td>
+<td><code>$</code></td>
+<td><strong>ACCEPT</strong></td>
+</tr>
+</tbody>
+</table>
+</details>
+</div>
+<h3 id="336-ll1-grammar">3.3.6 LL(1) Grammar<a class="headerlink" href="#336-ll1-grammar" title="Permanent link">&para;</a></h3>
+<p>如果在如上述方法构造出的 LL(1) Parsing Table 中的每一格都至多有 1 个 production，那么对于每一个 current non-terminal 和 next input token 的组合，都有且仅有一种情况（一个 production 或者 error state）与之对应。这样的文法能够利用 LL(1) 完成预测分析，我们称这个文法是 LL(1) 的。</p>
+<p>等价地，一个文法是 LL(1) 的，如果：</p>
+<ol>
+<li>For every production <em>A→α1|α2|...|αn</em>, <em>First(αi) ∩ First(αj)</em> is empty for all <em>i</em> and <em>j, 1 ≤ i, j ≤ n, i ≠ j.</em></li>
+<li>For every non-terminal <em>A</em> such that <em>First(A)</em> contains <em>EPSILON</em> , <em>First(A) ∩ Follow(A)</em> is empty. </li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">一些相关的问题和参考回答</p>
+<p>a. Can an LL(1) grammar be ambiguous? Why or why not?
+b. Can an ambiguous grammar be LL(1)? Why or why not?
+c. Must an unambiguous grammar be LL(1)? Why or why not?</p>
+<details class="success">
+<summary>参考回答</summary>
+<p>a. No. For each possible pair of non-terminal on the top of the stack (i.e. leftmost non-terminal) and the input token (i.e. the pending terminal), there is at most 1 production to use. So it's impossible for an input string to get 2+ different parsing trees. So LL(1) grammar must not be ambiguous.</p>
+<p>b. No. If the grammar is ambiguous, then there must be some points where 2+ choices are available, which means that there will be 2+ productions in an entry of the parsing table. But this violates the definition of LL(1) grammar. So no ambiguous grammar can be LL(1).</p>
+<p>c. No. Left-recursive grammars or grammars without left-factoring may be unambiguous but they are still not LL(1). Other grammars which are complex enough maybe also not LL(1). In fact, most programming language CFGs used now are not LL(1) because of their complexity.</p>
+</details>
+</div>
+<h2 id="更多练习">更多练习<a class="headerlink" href="#更多练习" title="Permanent link">&para;</a></h2>
+<h3 id="2021-midterm">2021 MidTerm<a class="headerlink" href="#2021-midterm" title="Permanent link">&para;</a></h3>
+<p><center><img alt="image.png" src="../../assets/1648238706556-9bc6df18-6a9b-4ac5-9195-9180e8aa8d95.png" /></center></p>
+<p><center><img alt="image.png" src="../../assets/1648238747487-60e3f88e-c36d-4758-9c68-330ffecda495.png" /></center></p>
+<h3 id="2018-midterm">2018 MidTerm<a class="headerlink" href="#2018-midterm" title="Permanent link">&para;</a></h3>
+<p><center><img alt="image.png" src="../../assets/1648239184216-19702a45-9fff-403f-af23-b737d50eb763.png" /></center></p>
+<p><center><img alt="image.png" src="../../assets/1648239210337-61c4bad3-a9ed-46dd-b670-71fc5c665e22.png" /></center></p>
+<p><center><img alt="image.png" src="../../assets/1648239225285-4e011a8c-98d0-4528-bb6b-6438abdf6c5b.png" /></center></p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-24T15:10:48+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-24</span>
+      
+        <br>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-24T15:10:48+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-24</span>
+      
+    
+  </small>
+</div>
+
+
+  
+
+
+
+<div id="__comments">
+
+<h3>颜色主题调整</h3>
+
+<div class="tx-switch">
+<button data-md-color-scheme="default"><code>default</code></button>
+<button data-md-color-scheme="slate"><code>slate</code></button>
+</div>
+
+<script>
+var buttons = document.querySelectorAll("button[data-md-color-scheme]")
+buttons.forEach(function(button) {
+        button.addEventListener("click", function() {
+        var attr = this.getAttribute("data-md-color-scheme")
+        document.body.setAttribute("data-md-color-scheme", attr)
+        localStorage.setItem("data-md-color-scheme",attr);
+        updateScheme();
+        })
+})
+</script>
+
+<div class="tx-switch">
+<button class="button1" data-md-color-primary="red" style="background-color:red">red</button>
+<button class="button1" data-md-color-primary="pink" style="background-color:pink;color:black">pink</button>
+<button class="button1" data-md-color-primary="purple" style="background-color:purple">purple</button>
+<button class="button1" data-md-color-primary="indigo" style="background-color:indigo">indigo</button>
+<button class="button1" data-md-color-primary="blue" style="background-color:blue">blue</button>
+<button class="button1" data-md-color-primary="cyan" style="background-color:cyan;color:black">cyan</button>
+<button class="button1" data-md-color-primary="teal" style="background-color:teal">teal</button>
+<button class="button1" data-md-color-primary="green" style="background-color:green">green</button>
+<button class="button1" data-md-color-primary="lime" style="background-color:lime;color:black">lime</button>
+<button class="button1" data-md-color-primary="orange" style="background-color:orange;color:black">orange</button>
+<button class="button1" data-md-color-primary="brown" style="background-color:brown;border-radius=3px">brown</button>
+<button class="button1" data-md-color-primary="grey" style="background-color:grey">grey</button>
+<button class="button1" data-md-color-primary="black" style="background-color:black">black</button>
+<button class="button1" data-md-color-primary="white" style="background-color:white;color:black">white</button>
+</div>
+
+<script>
+var buttons = document.querySelectorAll("button[data-md-color-primary]")
+buttons.forEach(function(button) {
+        button.addEventListener("click", function() {
+        var attr = this.getAttribute("data-md-color-primary")
+        document.body.setAttribute("data-md-color-primary", attr)
+        localStorage.setItem("data-md-color-primary",attr);
+        })
+})
+</script>
+
+<h2 ><!-- 评论 -->评论区~</h2>
+
+有用的话请给我个赞和 star => <a href="https://github.com/xuan-insr/xuan-insr.github.io"><img alt="GitHub stars" src="https://img.shields.io/github/stars/xuan-insr/xuan-insr.github.io.svg?style=plastic&amp;label=Stars"></a>
+
+</br>
+
+快来跟我聊天~
+
+</div>
+
+<script src="https://giscus.app/client.js"
+        data-repo="xuan-insr/discussion"
+        data-repo-id="R_kgDOIUW7XA"
+        data-category="General"
+        data-category-id="DIC_kwDOIUW7XM4CSOC3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+
+updateScheme();
+
+</script>
+
+<!-- Synchronize Giscus theme with palette -->
+<script>
+var giscus = document.querySelector("script[src*=giscus]")
+
+/* Set palette on initial load */
+// var palette = __md_get("__palette")
+// if (palette && typeof palette.color === "object") {
+//     var theme = palette.color.scheme === "slate" ? "dark" : "light"
+//     giscus.setAttribute("data-theme", theme) 
+// }
+
+/* Register event handlers after documented loaded */
+// document.addEventListener("DOMContentLoaded", function() {
+//     var ref = document.querySelector("[data-md-component=palette]")
+//     ref.addEventListener("change", function() {
+//     var palette = __md_get("__palette")
+//     if (palette && typeof palette.color === "object") {
+//         var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+//         /* Instruct Giscus to change theme */
+//         var frame = document.querySelector(".giscus-frame")
+//         frame.contentWindow.postMessage(
+//         { giscus: { setConfig: { theme } } },
+//         "https://giscus.app"
+//         )
+//     }
+//     })
+// })
+</script>
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      本页面的全部内容在 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a> 协议之条款下提供，附加条款亦可能应用
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../from_oi_wiki/js/extra.js"></script>
+      
+        <script src="../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../js/tablesort.js"></script>
+      
+    
+  </body>
+</html>

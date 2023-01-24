@@ -11,6 +11,41 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://xuan-insr.github.io/compile_principle/</loc>
+         <lastmod>2023-01-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xuan-insr.github.io/compile_principle/1%20Lexical%20Analysis/</loc>
+         <lastmod>2023-01-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xuan-insr.github.io/compile_principle/2%20Parsing%20%28I%29/</loc>
+         <lastmod>2023-01-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xuan-insr.github.io/compile_principle/3%20Parsing%20%28II%29/</loc>
+         <lastmod>2023-01-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xuan-insr.github.io/compile_principle/4%20Semantic%20Analysis/</loc>
+         <lastmod>2023-01-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xuan-insr.github.io/compile_principle/5%20Runtime%20Environment/</loc>
+         <lastmod>2023-01-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://xuan-insr.github.io/compile_principle/6%20Code%20Generation/</loc>
+         <lastmod>2023-01-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://xuan-insr.github.io/computer_organization/1_prelude/</loc>
          <lastmod>2023-01-24</lastmod>
          <changefreq>daily</changefreq>

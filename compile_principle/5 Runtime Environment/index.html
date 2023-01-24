@@ -1,0 +1,3198 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://xuan-insr.github.io/compile_principle/5%20Runtime%20Environment/">
+      
+      
+        <link rel="prev" href="../4%20Semantic%20Analysis/">
+      
+      
+        <link rel="next" href="../6%20Code%20Generation/">
+      
+      <link rel="icon" href="../../logo.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>V 运行时环境 - 咸鱼暄的代码空间</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../from_oi_wiki/css/extra.css?v=13">
+    
+      <link rel="stylesheet" href="../../css/status.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-JT9BRCXKJJ"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-JT9BRCXKJJ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-JT9BRCXKJJ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#5-runtime-environment--运行时环境" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="咸鱼暄的代码空间" class="md-header__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../logo.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            咸鱼暄的代码空间
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              V 运行时环境
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        🏡 主页
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../cpp/" class="md-tabs__link">
+        C++
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../pl/" class="md-tabs__link">
+        PL & 编译
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/" class="md-tabs__link md-tabs__link--active">
+        核心知识
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E5%AE%89%E5%85%A8/" class="md-tabs__link">
+      安全
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-tabs__link">
+      语言基础
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-tabs__link">
+      其他课程
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%9D%82%E9%A1%B9/" class="md-tabs__link">
+        杂项
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/" class="md-tabs__link">
+        生活
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="咸鱼暄的代码空间" class="md-nav__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../logo.ico" alt="logo">
+
+    </a>
+    咸鱼暄的代码空间
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../..">🏡 主页</a>
+          
+            <label for="__nav_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="🏡 主页" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          🏡 主页
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%B8%BB%E9%A1%B5/about/" class="md-nav__link">
+        ❤️ 我和朋友们！
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recent/" class="md-nav__link">
+        📆 最近更新
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../cpp/">C++</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="C++" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          C++
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../cpp/cpp_restart/">🍉C++ 学习记录</a>
+          
+            <label for="__nav_2_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="🍉C++ 学习记录" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          🍉C++ 学习记录
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_2_2" type="checkbox" id="__nav_2_2_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_2" tabindex="0" aria-expanded="false">
+          notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="notes" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/notes/notes/" class="md-nav__link">
+        零散内容记录
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/notes/dne_notes/" class="md-nav__link">
+        The Design and Evaluation of C++ 阅读记录
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_for_contests/" class="md-nav__link">
+        快速入门 C++ 写题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_4" tabindex="0" aria-expanded="false">
+          C++ 知识补充
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="C++ 知识补充" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          C++ 知识补充
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1/" class="md-nav__link">
+        理解 STL —— 迭代器与函数对象
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../pl/">PL & 编译</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="PL & 编译" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          PL & 编译
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../pl/ppl_notes/">编程语言原理</a>
+          
+            <label for="__nav_3_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="编程语言原理" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          编程语言原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/0_PPL_Final_Problem1/" class="md-nav__link">
+        我在 PPL 2022 Final 出的复习题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_2_3" type="checkbox" id="__nav_3_2_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_3" tabindex="0" aria-expanded="false">
+          Part I - Judgments and Rules | 判断与规则
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part I - Judgments and Rules | 判断与规则" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Part I - Judgments and Rules | 判断与规则
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/1_Abstract_Syntax/" class="md-nav__link">
+        1 抽象语法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/2_Inductive_Definition/" class="md-nav__link">
+        2 归纳定义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/3_Hypothetical_and_General_Judgments/" class="md-nav__link">
+        3 假言判断与一般性判断
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_2_4" type="checkbox" id="__nav_3_2_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_4" tabindex="0" aria-expanded="false">
+          Part II - Statics and Dynamics | 静态语义和动态语义
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part II - Statics and Dynamics | 静态语义和动态语义" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Part II - Statics and Dynamics | 静态语义和动态语义
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/4_Statics/" class="md-nav__link">
+        4 静态语义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/5_Dynamics/" class="md-nav__link">
+        5 动态语义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/6_Type_Safety/" class="md-nav__link">
+        6 类型安全
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_2_5" type="checkbox" id="__nav_3_2_5" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_5" tabindex="0" aria-expanded="false">
+          Part III - Total Functions | 全函数
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part III - Total Functions | 全函数" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Part III - Total Functions | 全函数
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/8_Func_Def_and_Val/" class="md-nav__link">
+        8 函数定义和值
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/9_Sys_T_of_Higher_Order_Recursion/" class="md-nav__link">
+        9 高阶递归的系统 T
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_2_6" type="checkbox" id="__nav_3_2_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_6" tabindex="0" aria-expanded="false">
+          Part IV - Finite Data Types | 有限数据类型
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part IV - Finite Data Types | 有限数据类型" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Part IV - Finite Data Types | 有限数据类型
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/10_product_types/" class="md-nav__link">
+        10 积类型
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/11_sum_types/" class="md-nav__link">
+        11 和类型
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        编译原理
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/">核心知识</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="核心知识" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          核心知识
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2" tabindex="0" aria-expanded="false">
+          操作系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="操作系统" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          操作系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/1_intro/" class="md-nav__link">
+        1 写在前面
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/2_overview/" class="md-nav__link">
+        Part.1 概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2_3" type="checkbox" id="__nav_4_2_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_3" tabindex="0" aria-expanded="false">
+          Part.2 进程管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.2 进程管理" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Part.2 进程管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/3_process/" class="md-nav__link">
+        3 进程
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/4_sched/" class="md-nav__link">
+        4 调度
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/5_thread/" class="md-nav__link">
+        5 线程
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2_4" type="checkbox" id="__nav_4_2_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_4" tabindex="0" aria-expanded="false">
+          Part.3 进程同步
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.3 进程同步" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Part.3 进程同步
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/6_sync_tools/" class="md-nav__link">
+        6 同步及其工具
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/7_sync_examples/" class="md-nav__link">
+        7 经典同步问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/8_deadlocks/" class="md-nav__link">
+        8 死锁
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2_5" type="checkbox" id="__nav_4_2_5" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_5" tabindex="0" aria-expanded="false">
+          Part.4 内存管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.4 内存管理" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Part.4 内存管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/9_main_memory/" class="md-nav__link">
+        9 主存
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/10_virtual_memory/" class="md-nav__link">
+        10 虚拟内存
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2_6" type="checkbox" id="__nav_4_2_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_6" tabindex="0" aria-expanded="false">
+          Part.5 存储管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.5 存储管理" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Part.5 存储管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/V_storage_management/11_mass_storage/" class="md-nav__link">
+        11 大容量存储
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/V_storage_management/12_io_systems/" class="md-nav__link">
+        12 I/O 系统
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2_7" type="checkbox" id="__nav_4_2_7" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_7" tabindex="0" aria-expanded="false">
+          Part.6 文件系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.6 文件系统" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Part.6 文件系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/VI_file_system/13_fs_interface/" class="md-nav__link">
+        13 文件系统
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/VI_file_system/14_fs_impl/" class="md-nav__link">
+        14 文件系统实现
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/15_review/" class="md-nav__link">
+        15 总结
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_3" tabindex="0" aria-expanded="false">
+          计算机组成
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="计算机组成" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          计算机组成
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/1_prelude/" class="md-nav__link">
+        1 写在前面
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/2_instructions/" class="md-nav__link">
+        2 Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/3_arithmetic/" class="md-nav__link">
+        3 Arithmetic
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/4_processor/" class="md-nav__link">
+        4 Processor
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/5_cache/" class="md-nav__link">
+        5 Cache
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/6_IO/" class="md-nav__link">
+        6 I/O
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/%E5%8E%86%E5%B9%B4%E5%8D%B7/" class="md-nav__link">
+        2022 回忆卷
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" checked>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../">编译原理</a>
+          
+            <label for="__nav_4_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="编译原理" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          编译原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%20Lexical%20Analysis/" class="md-nav__link">
+        I 词法分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2%20Parsing%20%28I%29/" class="md-nav__link">
+        II 语法分析 - 自顶向下分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3%20Parsing%20%28II%29/" class="md-nav__link">
+        III 语法分析 - 自底向上分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4%20Semantic%20Analysis/" class="md-nav__link">
+        IV 语义分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          V 运行时环境
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        V 运行时环境
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#51-程序执行时的存储器组织" class="md-nav__link">
+    5.1 程序执行时的存储器组织
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 程序执行时的存储器组织">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#511-完全静态环境--fully-static-environment" class="md-nav__link">
+    5.1.1 完全静态环境 | Fully Static Environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#512-基于栈的环境--stack-based-environment" class="md-nav__link">
+    5.1.2 基于栈的环境 | Stack-Based Environment
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1.2 基于栈的环境 | Stack-Based Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5121-没有局部过程的基于栈的环境" class="md-nav__link">
+    5.1.2.1 没有局部过程的基于栈的环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5122-带有局部过程的基于栈的环境" class="md-nav__link">
+    5.1.2.2 带有局部过程的基于栈的环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5123-带有过程参数的基于栈的环境" class="md-nav__link">
+    5.1.2.3 带有过程参数的基于栈的环境
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#513-完全动态环境--fully-dynamic-environment" class="md-nav__link">
+    5.1.3 完全动态环境 | Fully Dynamic Environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#514-题目选讲" class="md-nav__link">
+    5.1.4 题目选讲
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-parameter-passing-mechanisms--参数传递机制" class="md-nav__link">
+    5.2 Parameter Passing Mechanisms | 参数传递机制
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 Parameter Passing Mechanisms | 参数传递机制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#521-值传递--pass-by-value" class="md-nav__link">
+    5.2.1 值传递 | Pass by Value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#522-引用传递--pass-by-reference" class="md-nav__link">
+    5.2.2 引用传递 | Pass by Reference
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#523-值结果传递--pass-by-value-result" class="md-nav__link">
+    5.2.3 值结果传递 | Pass by Value-Result
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#524-名字传递--pass-by-name" class="md-nav__link">
+    5.2.4 名字传递 | Pass by Name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#525-例子" class="md-nav__link">
+    5.2.5 例子
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6%20Code%20Generation/" class="md-nav__link">
+        VI 代码生成
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../math_ds_algo/">数学、数据结构和算法</a>
+          
+            <label for="__nav_4_5">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="数学、数据结构和算法" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          数学、数据结构和算法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math_ds_algo/getting_started/" class="md-nav__link">
+        入门路线
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8/" class="md-nav__link">
+        安全
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        语言基础
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-nav__link">
+        其他课程
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%9D%82%E9%A1%B9/">杂项</a>
+          
+            <label for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="杂项" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          杂项
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%9D%82%E9%A1%B9/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        博客搭建记录
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E7%94%9F%E6%B4%BB/">生活</a>
+          
+            <label for="__nav_9">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="生活" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          生活
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_9_2" type="checkbox" id="__nav_9_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9_2" tabindex="0" aria-expanded="false">
+          讨饭历程
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="讨饭历程" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_2">
+          <span class="md-nav__icon md-icon"></span>
+          讨饭历程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/overview/" class="md-nav__link">
+        🏳️‍🌈 总览
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/pdd/" class="md-nav__link">
+        😕 拼多多
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/meituan/" class="md-nav__link">
+        🤗 美团
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/mayi/" class="md-nav__link">
+        🤔 蚂蚁
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/huawei/" class="md-nav__link">
+        👍 华为
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/bytedance/" class="md-nav__link">
+        🥳 字节
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/quant/" class="md-nav__link">
+        👨‍💻 量化相关
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/others/" class="md-nav__link">
+        其他
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%E6%88%91%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E5%A4%96%E7%BD%AE%E5%A4%A7%E8%84%91/" class="md-nav__link">
+        我需要一个外置大脑
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" class="md-nav__link">
+        关于亲密关系的碎碎念
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/2022/" class="md-nav__link">
+        2022 年终总结
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_9_6" type="checkbox" id="__nav_9_6" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%A1%8C%E6%B8%B8/">桌游</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="桌游" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_6">
+          <span class="md-nav__icon md-icon"></span>
+          桌游
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#51-程序执行时的存储器组织" class="md-nav__link">
+    5.1 程序执行时的存储器组织
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 程序执行时的存储器组织">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#511-完全静态环境--fully-static-environment" class="md-nav__link">
+    5.1.1 完全静态环境 | Fully Static Environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#512-基于栈的环境--stack-based-environment" class="md-nav__link">
+    5.1.2 基于栈的环境 | Stack-Based Environment
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1.2 基于栈的环境 | Stack-Based Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5121-没有局部过程的基于栈的环境" class="md-nav__link">
+    5.1.2.1 没有局部过程的基于栈的环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5122-带有局部过程的基于栈的环境" class="md-nav__link">
+    5.1.2.2 带有局部过程的基于栈的环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5123-带有过程参数的基于栈的环境" class="md-nav__link">
+    5.1.2.3 带有过程参数的基于栈的环境
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#513-完全动态环境--fully-dynamic-environment" class="md-nav__link">
+    5.1.3 完全动态环境 | Fully Dynamic Environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#514-题目选讲" class="md-nav__link">
+    5.1.4 题目选讲
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-parameter-passing-mechanisms--参数传递机制" class="md-nav__link">
+    5.2 Parameter Passing Mechanisms | 参数传递机制
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 Parameter Passing Mechanisms | 参数传递机制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#521-值传递--pass-by-value" class="md-nav__link">
+    5.2.1 值传递 | Pass by Value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#522-引用传递--pass-by-reference" class="md-nav__link">
+    5.2.2 引用传递 | Pass by Reference
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#523-值结果传递--pass-by-value-result" class="md-nav__link">
+    5.2.3 值结果传递 | Pass by Value-Result
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#524-名字传递--pass-by-name" class="md-nav__link">
+    5.2.4 名字传递 | Pass by Name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#525-例子" class="md-nav__link">
+    5.2.5 例子
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="5-runtime-environment--运行时环境">5 Runtime Environment | 运行时环境<a class="headerlink" href="#5-runtime-environment--运行时环境" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>朋辈辅学录播
+<a href="https://www.bilibili.com/video/BV1HY4y1Y7py">编译原理速成(5) 运行时环境(上) 参数传递方式</a>
+<a href="https://www.bilibili.com/video/BV1rr4y147gY">编译原理速成(6) 运行时环境(下) 存储器组织</a></p>
+</blockquote>
+<h2 id="51-程序执行时的存储器组织">5.1 程序执行时的存储器组织<a class="headerlink" href="#51-程序执行时的存储器组织" title="Permanent link">&para;</a></h2>
+<p><center><img alt="image.png" src="../../assets/1622306584947-06e12929-04c0-4594-bfe2-caf1d85cc290.png" /></center></p>
+<p>我们将较小的编译时常量直接插入到代码中；而对于大的整型值、浮点值、字符串分配到全局/静态区域中的存储器，在启动时仅保存一次；之后再由执行代码从这些位置中得到。</p>
+<p>这里的堆 (heap) 是一个简单的线性存储器区域，与数据结构中提到的堆无关。</p>
+<p>上图中箭头表示的是栈和堆的生长方向。</p>
+<p>栈上的内容是符合后进先出的，而堆上的内容不一定。</p>
+<p>存储器分配时的一个重要单元是  <strong>过程活动记录 (procedure activation record)</strong> ，其用途是保存调用函数时产生的局部数据。其至少应当包含如下几个部分：</p>
+<p><center><img alt="image.png" src="../../assets/1622307236921-bb868d12-04dd-4670-8562-fd66d0da3a25.png" /></center></p>
+<p>用于 bookkeeping 的空间对于每个函数可能相同，而用于保存参数、局部数据、局部临时变量的空间可能因不同的函数而有不同的大小。</p>
+<p>不同的语言可能将 activation record 分配在不同的地方。例如 FORTRAN77 将其分配在静态区域；C 和 Pascal 将其分配在栈中（此时 activation record 也称为 stack frame）； 而 LISP 将其分配在堆区域。</p>
+<p>处理器寄存器也是 runtime environment 的结构部分。大多数体系结构里都有 PC，SP；有的还有 FP (frame pointer, X86 里的 BP) 等。不同的体系结构的处理器的数量和使用差别较大。</p>
+<p>几乎所有的程序语言都依赖于如下 3 种 runtime environment 的某一个，其主要结构并不依赖于目标机器的特定细节：</p>
+<ul>
+<li>FORTRAN77 的完全静态环境</li>
+<li>C, C++, Pascal, Ada 等的基于栈的环境</li>
+<li>LISP 等的完全动态环境</li>
+</ul>
+<p>这三种类型的混合模式也是可能的。</p>
+<p>我们下面分别讨论这 3 种环境。</p>
+<h3 id="511-完全静态环境--fully-static-environment">5.1.1 完全静态环境 | Fully Static Environment<a class="headerlink" href="#511-完全静态环境--fully-static-environment" title="Permanent link">&para;</a></h3>
+<p>完全静态环境是最简单的运行时环境，其所有数据（包括各个函数的 activation record）都是静态的；如我们所想象的那样，这种环境不支持动态分配以及函数的递归调用。</p>
+<p>在第一代 Fortran 的时候，计算机还不能间接寻址，即不能根据寄存器的值进行寻址，因此 sp / bp(fp) 实现不了，自然不能有堆栈，因此每个函数只能被调用 1 次。</p>
+<p>形参 formal para 和实参 actural para 的来源是 Fortran 语言，Fortran 77 以前是引用传参，当时内存很小，还没有栈，当时形参和实参是名实相符的；60 年代以后 algo 说我们可以传值了</p>
+<p><center><img alt="image.png" src="../../assets/1622308084788-214496d5-bbf2-4606-8f7b-0504926d285e.png" /></center></p>
+<p>课本给出了一个例子：</p>
+<p><center><img alt="image.png" src="../../assets/1622308942165-b6cea914-d18b-4dd0-aeed-0a9499864306.png" /></center></p>
+<p><center><img alt="image.png" src="../../assets/1622308950865-be826649-7247-4ecb-94fe-fc4755eb2136.png" /></center></p>
+<h3 id="512-基于栈的环境--stack-based-environment">5.1.2 基于栈的环境 | Stack-Based Environment<a class="headerlink" href="#512-基于栈的环境--stack-based-environment" title="Permanent link">&para;</a></h3>
+<p>这一内容，我们在计算机系统概论以及汇编语言课程中都有学习过。Stack of activation record, a.k.a. runtime stack / call stack 随着函数的调用而生长或减小。</p>
+<h4 id="5121-没有局部过程的基于栈的环境">5.1.2.1 没有局部过程的基于栈的环境<a class="headerlink" href="#5121-没有局部过程的基于栈的环境" title="Permanent link">&para;</a></h4>
+<p>我们首先讨论以 C 语言为例的  <strong>没有局部函数</strong>  的基于栈的环境。</p>
+<p>我们会用 sp 指向当前栈顶，一个框架指针 (frame pointer, fp; a.k.a 帧指针, bp) 指向当前活动，这两个指针通常保存在寄存器中。先前活动的 fp 会保存在它调用的函数的活动记录中，形成控制链 (control link; a.k.a 动态链, dynamic link)。</p>
+<p><center><img alt="image.png" src="../../assets/1650686086837-a3493f47-f92b-4256-8022-f477f9d23baf.png" /></center></p>
+<h4 id="5122-带有局部过程的基于栈的环境">5.1.2.2 带有局部过程的基于栈的环境<a class="headerlink" href="#5122-带有局部过程的基于栈的环境" title="Permanent link">&para;</a></h4>
+<p>对于 Pascal 之类的语言， <strong>局部函数</strong> 是被允许的。看下面一段代码：
+<div class="highlight"><pre><span></span><code><span class="k">program</span><span class="w"> </span><span class="n">nonLocalRef</span><span class="o">;</span>
+
+<span class="k">procedure</span><span class="w"> </span><span class="nf">p</span><span class="o">;</span>
+<span class="k">var</span><span class="w"> </span><span class="n">n</span><span class="o">:</span><span class="w"> </span><span class="kt">integer</span><span class="o">;</span>
+
+<span class="w">    </span><span class="k">procedure</span><span class="w"> </span><span class="nf">q</span><span class="o">;</span>
+<span class="w">    </span><span class="k">begin</span>
+<span class="w">        </span><span class="cm">(* a reference to n is now</span>
+<span class="cm">        non-local non-global * )</span>
+<span class="cm">    end; (* q *)</span>
+
+<span class="w">    </span><span class="k">procedure</span><span class="w"> </span><span class="nf">r</span><span class="p">(</span><span class="n">n</span><span class="o">:</span><span class="w"> </span><span class="kt">integer</span><span class="p">)</span><span class="w"> </span><span class="o">;</span>
+<span class="w">    </span><span class="k">begin</span>
+<span class="w">        </span><span class="n">q</span><span class="o">;</span>
+<span class="w">    </span><span class="k">end</span><span class="o">;</span><span class="w"> </span><span class="cm">(* r *)</span>
+
+<span class="k">begin</span><span class="w"> </span><span class="cm">(* p *)</span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">1</span><span class="o">;</span>
+<span class="w">    </span><span class="n">r</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span><span class="w"> </span><span class="cm">(* p *)</span>
+
+<span class="k">begin</span><span class="w"> </span><span class="cm">(* main *)</span>
+<span class="w">    </span><span class="n">p</span><span class="o">;</span>
+<span class="k">end</span><span class="o">.</span>
+</code></pre></div>
+这里<code>q</code>和<code>r</code>是<code>p</code>内部定义的嵌套函数。</p>
+<p>由于 pascal 的作用域和 C 一样是静态的（即当 local 符号表中没有访问的标识符时，去函数定义所在的位置查找这个标识符；与之对应的是动态作用域，当 local 没有时去函数 <strong>调用</strong> 所在的位置查找这个标识符），因此这时<code>q</code>和<code>r</code>就可以访问到<code>p</code>的局部函数<code>n</code>。</p>
+<p>为了实现这一访问，我们使用 access link / static link 来指向外层函数的活动记录。全局函数不需要有 access link。如果过程<code>p</code>在源代码直接嵌套在过程<code>q</code>中，那么<code>p</code>的任何活动中的 access link 都一定指向<code>q</code> <strong>最近</strong> 的活动。 </p>
+<p>例如，上面的程序中<code>main</code>调用<code>p</code>，<code>p</code>调用<code>r</code>，<code>r</code>再调用<code>q</code>时栈长这样：</p>
+<p><center><img alt="image.png" src="../../assets/1652793193053-fd699a8e-bb4d-44c3-ae2f-e7c6970ba5b1.png" /></center></p>
+<p>因此，<code>q</code>要访问<code>p</code>的局部函数<code>n</code>时就只需要从 access link 走 1 步到<code>p</code>的活动记录，然后访问局部变量<code>n</code>即可。</p>
+<p>再考虑这样的程序：
+<div class="highlight"><pre><span></span><code><span class="k">program</span><span class="w"> </span><span class="n">chain</span><span class="o">;</span>
+
+<span class="k">procedure</span><span class="w"> </span><span class="nf">p</span><span class="o">;</span>
+<span class="k">var</span><span class="w"> </span><span class="n">x</span><span class="o">:</span><span class="w"> </span><span class="kt">integer</span><span class="o">;</span>
+
+<span class="w">  </span><span class="k">procedure</span><span class="w"> </span><span class="nf">q</span><span class="o">;</span>
+
+<span class="w">    </span><span class="k">procedure</span><span class="w"> </span><span class="nf">r</span><span class="o">;</span>
+<span class="w">    </span><span class="k">begin</span>
+<span class="w">      </span><span class="n">x</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">2</span><span class="o">;</span>
+<span class="w">      </span><span class="o">...</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="n">p</span><span class="o">;</span>
+<span class="w">    </span><span class="k">end</span><span class="o">;</span><span class="w"> </span><span class="cm">(* r *)</span>
+
+<span class="w">  </span><span class="k">begin</span><span class="w"> </span><span class="cm">(* q *)</span>
+<span class="w">    </span><span class="n">r</span><span class="o">;</span>
+<span class="w">  </span><span class="k">end</span><span class="o">;</span><span class="w"> </span><span class="cm">(* q *)</span>
+
+<span class="k">begin</span><span class="w"> </span><span class="cm">(* p *)</span>
+<span class="w">  </span><span class="n">q</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span><span class="w">  </span><span class="cm">(* p *)</span>
+
+<span class="k">begin</span><span class="w"> </span><span class="cm">(* main *)</span>
+<span class="w">  </span><span class="n">p</span><span class="o">;</span>
+<span class="k">end</span><span class="o">.</span>
+</code></pre></div>
+即，<code>p</code>有局部过程<code>q</code>，<code>q</code>又有局部过程<code>r</code>。这时<code>r</code>如果想访问<code>p</code>的局部变量，就需要先从 access link 找到<code>q</code>的 activation record，然后再从这里的 access link 找到<code>p</code>的 activation record，然后访问局部变量；即它需要通过 2 次 access link。这是因为，<code>p</code>嵌套了<code>q</code>，<code>q</code>又嵌套了<code>r</code>，我们记全局函数或过程的嵌套深度是 0，一次嵌套会使得嵌套深度 +1；因此<code>r</code>的嵌套深度比<code>p</code>高 2，对应的也就需要经过 2 次 access link 了：</p>
+<p><center><img alt="image.png" src="../../assets/1652792738460-6b677870-1eff-4526-9127-2faa471c2ce5.png" /></center></p>
+<p>那么，access link 是如何维护的呢？请注意：这个维护的过程是运行时做出的。当过程<code>x</code>调用过程<code>y</code>的时候，有 3 种情况：</p>
+<ol>
+<li>
+<p><code>y</code>的嵌套深度大于<code>x</code>的嵌套深度，那么<code>y</code>一定是直接在<code>x</code>中定义的，即嵌套深度差距为 1，否则<code>x</code>根本访问不到这个<code>y</code>。即：
+<div class="highlight"><pre><span></span><code><span class="k">procedure</span><span class="w"> </span><span class="nf">x</span><span class="o">;</span>
+<span class="w">  </span><span class="k">procedure</span><span class="w"> </span><span class="nf">y</span><span class="o">;</span>
+<span class="w">  </span><span class="o">...</span>
+<span class="o">...</span>
+</code></pre></div>
+因此这时<code>y</code>的 access link 一定就指向<code>x</code>现在的 activation record；</p>
+</li>
+<li>
+<p><code>x</code>和<code>y</code>的嵌套深度相等。这种情况下，它们要么是同一个函数调用自己的递归调用，要么是直接定义在全局或者同一个 procedure 内部的，即：
+<div class="highlight"><pre><span></span><code><span class="k">procedure</span><span class="w"> </span><span class="nf">r</span><span class="o">;</span>
+<span class="w">  </span><span class="k">procedure</span><span class="w"> </span><span class="nf">y</span><span class="o">;</span>
+<span class="w">  </span><span class="o">...</span>
+<span class="w">  </span><span class="k">procedure</span><span class="w"> </span><span class="nf">x</span><span class="o">;</span>
+<span class="w">  </span><span class="o">...</span>
+<span class="o">...</span>
+</code></pre></div>
+因此，<code>y</code>的 access link 直接使用<code>x</code>的 access link 即可；</p>
+</li>
+<li>
+<p><code>y</code>的嵌套深度小于<code>x</code>的嵌套深度。但是既然这时<code>x</code>仍然能调用到<code>y</code>，那么要么<code>y</code>定义在全局，要么<code>y</code>直接定义在一个过程<code>r</code>内部，而<code>x</code>嵌套定义在<code>r</code>内部的某一层，即：
+<div class="highlight"><pre><span></span><code><span class="k">procedure</span><span class="w"> </span><span class="nf">r</span><span class="o">;</span>
+<span class="w">  </span><span class="k">procedure</span><span class="w"> </span><span class="nf">y</span><span class="o">;</span>
+<span class="w">  </span><span class="o">...</span><span class="w">   </span><span class="cm">(* y *)</span>
+<span class="w">  </span><span class="k">procedure</span><span class="w"> </span><span class="nf">s1</span><span class="o">;</span>
+<span class="w">    </span><span class="k">procedure</span><span class="w"> </span><span class="nf">s2</span><span class="o">;</span>
+<span class="w">      </span><span class="o">......</span><span class="w"> </span>
+<span class="w">        </span><span class="k">procedure</span><span class="w"> </span><span class="nf">sn</span><span class="o">;</span><span class="w">       </span><span class="cm">(* n &gt;= 1 *)</span>
+<span class="w">          </span><span class="k">procedure</span><span class="w"> </span><span class="nf">x</span><span class="o">;</span>
+<span class="w">          </span><span class="o">...</span><span class="w"> </span><span class="cm">(* x *)</span>
+<span class="w">        </span><span class="o">...</span><span class="w"> </span><span class="cm">(* sn *)</span>
+<span class="w">      </span><span class="o">......</span>
+<span class="w">    </span><span class="o">...</span><span class="w"> </span><span class="cm">(* s2 *)</span>
+<span class="w">  </span><span class="o">...</span><span class="w"> </span><span class="cm">(* s1 *)</span>
+<span class="o">...</span><span class="w"> </span><span class="cm">(* r *)</span>
+</code></pre></div>
+因此这时，<code>x</code>需要经过<span class="arithmatex">\(n_x - n_y + 1\)</span>次 access link 找到<code>r</code>的 activation record，然后将这个地址赋值给 <code>y</code>的 access link 即可。</p>
+</li>
+</ol>
+<p>等价地，<code>x</code>需要经过<span class="arithmatex">\(n_x - n_y\)</span>次 access link 找到<code>s1</code>的 activation record，然后将<code>s1</code>的 access link 赋值给 <code>y</code>的 access link 即可。</p>
+<p>这里还有一个例题，供读者自我检查。画出这个函数第二次调用<code>c</code>时栈的情况：
+<div class="highlight"><pre><span></span><code><span class="k">program</span><span class="w"> </span><span class="n">env</span><span class="o">;</span>
+
+<span class="k">procedure</span><span class="w"> </span><span class="nf">a</span><span class="o">;</span>
+<span class="k">var</span><span class="w"> </span><span class="n">x</span><span class="o">:</span><span class="w"> </span><span class="kt">integer</span><span class="o">;</span>
+<span class="w">  </span><span class="k">procedure</span><span class="w"> </span><span class="nf">b</span><span class="o">;</span>
+<span class="w">    </span><span class="k">procedure</span><span class="w"> </span><span class="nf">c</span><span class="o">;</span>
+<span class="w">    </span><span class="k">begin</span>
+<span class="w">      </span><span class="n">x</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">2</span><span class="o">;</span>
+<span class="w">      </span><span class="n">b</span><span class="o">;</span>
+<span class="w">    </span><span class="k">end</span><span class="o">;</span>
+<span class="w">  </span><span class="k">begin</span><span class="w"> </span><span class="cm">(* b *)</span>
+<span class="w">    </span><span class="n">c</span><span class="o">;</span>
+<span class="w">  </span><span class="k">end</span><span class="o">;</span>
+<span class="k">begin</span><span class="w"> </span><span class="cm">(* a *)</span>
+<span class="w">  </span><span class="n">b</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">begin</span><span class="w"> </span><span class="cm">(* main *)</span>
+<span class="w">    </span><span class="n">a</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+</code></pre></div></p>
+<p><center><img alt="image.png" src="../../assets/1650686367178-1f303e33-5252-487e-9be9-cb091cf715f0.png" /></center></p>
+<h4 id="5123-带有过程参数的基于栈的环境">5.1.2.3 带有过程参数的基于栈的环境<a class="headerlink" href="#5123-带有过程参数的基于栈的环境" title="Permanent link">&para;</a></h4>
+<p>在一些语言里，过程也可以作为参数。看这段代码：
+<div class="highlight"><pre><span></span><code><span class="k">program</span><span class="w"> </span><span class="n">closureEx</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="o">;</span>
+
+<span class="k">procedure</span><span class="w"> </span><span class="nf">p</span><span class="p">(</span><span class="k">procedure</span><span class="w"> </span><span class="nf">a</span><span class="p">)</span><span class="w"> </span><span class="o">;</span>
+<span class="k">begin</span>
+<span class="w">  </span><span class="n">a</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span>
+
+<span class="k">procedure</span><span class="w"> </span><span class="nf">q</span><span class="o">;</span>
+<span class="k">var</span><span class="w"> </span><span class="n">x</span><span class="o">:</span><span class="w"> </span><span class="kt">integer</span><span class="o">;</span>
+
+<span class="w">  </span><span class="k">procedure</span><span class="w"> </span><span class="nf">r</span><span class="o">;</span>
+<span class="w">  </span><span class="k">begin</span>
+<span class="w">    </span><span class="nb">writeln</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">;</span>
+<span class="w">  </span><span class="k">end</span><span class="o">;</span>
+
+<span class="k">begin</span>
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">2</span><span class="o">;</span>
+<span class="w">  </span><span class="n">p</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="o">;</span>
+<span class="k">end</span><span class="o">;</span><span class="w"> </span><span class="cm">(* q *)</span>
+
+<span class="k">begin</span><span class="w"> </span><span class="cm">(* main *)</span>
+<span class="w">  </span><span class="n">q</span><span class="o">;</span>
+<span class="k">end</span><span class="o">.</span>
+</code></pre></div>
+18 行将 procedure<code>r</code>当做参数传给了<code>p</code>，因此这时显然要传入<code>r</code>的指令的指针<code>ip</code>；同时我们还注意到，我们还需要传入<code>r</code>的 access link<code>ep</code>，否则它将无法访问其外部的过程的局部变量。</p>
+<p>因此，在运行完 18 行进入<code>p</code>时，栈应该长这样：</p>
+<p><center><img alt="image.png" src="../../assets/1652798539061-cab0c601-788d-4c20-b6b5-20a70208dde9.png" /></center></p>
+<p>即，传入的参数<code>a</code>实际上是通过<code>ip</code>和<code>ep</code>的组合实现的；我们将其称为 <strong>闭包 closure</strong> ，因为它不仅传入了函数指针，还捕获了环境中的变量。图中的虚线表示<code>ep</code>的值就是<code>q</code>的 activation record 的地址。</p>
+<p>在第 5 行调用了<code>a</code>后，栈应该长这样：</p>
+<p><center><img alt="image.png" src="../../assets/1652798736490-a1840906-f2e1-4be9-b2c4-e355570faa80.png" /></center></p>
+<p>我们可以看到，<code>a</code>的 access link 指向了<code>ep</code>的值，即<code>q</code>的 activation record 的地址。</p>
+<p>这样的处理需要区分正常的过程调用和来自参数的过程调用。为了简洁性和一致性，编译器的设计者可能希望将所有过程都作为闭包的形式，即：</p>
+<p><center><img alt="image.png" src="../../assets/1652798884931-38b3befc-476e-451e-a90d-184f230c4de3.png" /></center></p>
+<h3 id="513-完全动态环境--fully-dynamic-environment">5.1.3 完全动态环境 | Fully Dynamic Environment<a class="headerlink" href="#513-完全动态环境--fully-dynamic-environment" title="Permanent link">&para;</a></h3>
+<p>基于栈的运行时环境会导致 dangling reference，例如返回局部参数地址的函数。</p>
+<p>类似 ML, LISP 之类的函数式的语言，其函数是“一等公民”，即和平常的变量一样都可以作为参数和返回值等。对于这样的编程语言，基于栈的运行时环境就不太合适了，因此我们可以选择将所有的内容都放在动态存储区，即堆上。</p>
+<p>这种情况下，我们同时也需要考虑垃圾回收机制；其关键是回收 <strong>不可达</strong> 的对象。课本简单介绍了如下几种垃圾回收机制：</p>
+<ul>
+<li><strong>mark and sweep</strong> ，周期性地，或是在 malloc 失败时，从 static &amp; local 出发进行标记，标出所有可达的内存块。剩余的块就是无法被触及的内存，就可以回收掉了。</li>
+<li>在回收之后，还可以使用  <strong>memory compaction</strong>  来将所有分配的空间移到堆的末尾，从而留出连续的空闲空间。</li>
+<li><strong>stop and copy / two space</strong> ，将存储区分为两部分，每次只使用一部分，存储区满时从 static &amp; local 出发将所有可达的内存块复制到另一部分中，这样不需要两遍遍历，也自然进行了 memory compaction。</li>
+<li><strong>generational garbage collection</strong> ，将存在时间足够长的被分配的对象复制到永久空间中，并在随后的存储回收时不再重新分配。这就意味着垃圾回收程序在更新的存储分配时只需要搜索存储器中的很小的一个部分。</li>
+</ul>
+<h3 id="514-题目选讲">5.1.4 题目选讲<a class="headerlink" href="#514-题目选讲" title="Permanent link">&para;</a></h3>
+<p>【2008】</p>
+<p><center><img alt="image.png" src="../../assets/1652946646545-41698cce-9b3d-450d-baab-ef7d6d8024f9.png" /></center></p>
+<p><center><img alt="image.png" src="../../assets/1652946829091-58f4bf85-91aa-4ebe-9c80-952185419beb.png" /></center></p>
+<h2 id="52-parameter-passing-mechanisms--参数传递机制">5.2 Parameter Passing Mechanisms | 参数传递机制<a class="headerlink" href="#52-parameter-passing-mechanisms--参数传递机制" title="Permanent link">&para;</a></h2>
+<p>我们讨论在调用函数时传递参数的方式。后面会举一个具体的例子便于理解。</p>
+<h3 id="521-值传递--pass-by-value">5.2.1 值传递 | Pass by Value<a class="headerlink" href="#521-值传递--pass-by-value" title="Permanent link">&para;</a></h3>
+<p>就是 C 语言中的参数传递方式。需要注意的是，C 语言中即使我们通过传入指针变量实现一些操作，其本质上还是将实参中指针变量的值（即所指地址）复制到形参的相应变量中去。</p>
+<p>是 Pascal 和 Ada 的默认传递方式。</p>
+<h3 id="522-引用传递--pass-by-reference">5.2.2 引用传递 | Pass by Reference<a class="headerlink" href="#522-引用传递--pass-by-reference" title="Permanent link">&para;</a></h3>
+<p>传递变量的引用，即传递其在存储空间中的位置。在函数中所做的一切更改都会作用于这个变量本身。</p>
+<p>这是 Fortran77 中唯一支持的传递方式；在 Pascal 中通过在形参列表中使用 <code>var</code> 关键字来使用引用传递。</p>
+<h3 id="523-值结果传递--pass-by-value-result">5.2.3 值结果传递 | Pass by Value-Result<a class="headerlink" href="#523-值结果传递--pass-by-value-result" title="Permanent link">&para;</a></h3>
+<p>将实参从左到右逐个复制到形参中，在函数运行结束后再逐个将其复制回原来的位置。</p>
+<p>这是 Ada 的传入传出参数机制。</p>
+<h3 id="524-名字传递--pass-by-name">5.2.4 名字传递 | Pass by Name<a class="headerlink" href="#524-名字传递--pass-by-name" title="Permanent link">&para;</a></h3>
+<p>名字传递的思想是：直到函数真正使用了某个参数时才对其赋值，因此也称为  <strong>延迟赋值 (delayed evaluation)</strong> 。等价的做法是将函数在调用的原位进行展开。</p>
+<h3 id="525-例子">5.2.5 例子<a class="headerlink" href="#525-例子" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>7.15 Give the output of  the following program (written in C syntax) using the 4 parameter passing methods discussed in Section 7.5:</p>
+<div class="highlight"><pre><span></span><code><span class="n">include</span><span class="w"> </span><span class="o">&lt;</span><span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">p</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">main</span><span class="p">()</span>
+<span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span>
+<span class="w">  </span><span class="n">p</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<details class="success">
+<summary>solution</summary>
+<p><strong>Pass by value:</strong>  1 1</p>
+<p><code>i = 0</code>, and <code>p(1, 1)</code> is called, but <code>a[0]</code> and <code>a[1]</code> are not modified.</p>
+<p><strong>Pass by reference:</strong>  3 1</p>
+<p><code>i = 0</code>, so <code>p(a[0], a[0])</code> is called. After <code>x += 1</code> and <code>y += 1</code>, <code>a[0]</code> becomes 3. <code>a[1]</code> is never accessed.</p>
+<p><strong>Pass by value-result:</strong>  </p>
+<p><code>i = 0</code>, so <code>p(a[0], a[0])</code> is called, <code>x = 1</code>, <code>y = 1</code>. After <code>x += 1</code> and <code>y += 1</code>,  <code>x = 2</code>, <code>y = 2</code>. We now put <code>x</code> into <code>a[0]</code> and <code>a[0] = 2</code>; then we put <code>y</code> into <code>a[0]</code> so <code>a[0] = 2</code>. <code>a[1]</code> is never accessed.</p>
+<p><strong>Pass by name:</strong>  2 2</p>
+<p>We expand Line 14 to <code>a[i] += 1; i += 1; a[i] += 1;</code>, which actually does: <code>a[0] = 2</code>, <code>i = 2</code>, <code>a[1] = 2</code>.</p>
+</details>
+</div>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-24T15:10:48+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-24</span>
+      
+        <br>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-24T15:10:48+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-24</span>
+      
+    
+  </small>
+</div>
+
+
+  
+
+
+
+<div id="__comments">
+
+<h3>颜色主题调整</h3>
+
+<div class="tx-switch">
+<button data-md-color-scheme="default"><code>default</code></button>
+<button data-md-color-scheme="slate"><code>slate</code></button>
+</div>
+
+<script>
+var buttons = document.querySelectorAll("button[data-md-color-scheme]")
+buttons.forEach(function(button) {
+        button.addEventListener("click", function() {
+        var attr = this.getAttribute("data-md-color-scheme")
+        document.body.setAttribute("data-md-color-scheme", attr)
+        localStorage.setItem("data-md-color-scheme",attr);
+        updateScheme();
+        })
+})
+</script>
+
+<div class="tx-switch">
+<button class="button1" data-md-color-primary="red" style="background-color:red">red</button>
+<button class="button1" data-md-color-primary="pink" style="background-color:pink;color:black">pink</button>
+<button class="button1" data-md-color-primary="purple" style="background-color:purple">purple</button>
+<button class="button1" data-md-color-primary="indigo" style="background-color:indigo">indigo</button>
+<button class="button1" data-md-color-primary="blue" style="background-color:blue">blue</button>
+<button class="button1" data-md-color-primary="cyan" style="background-color:cyan;color:black">cyan</button>
+<button class="button1" data-md-color-primary="teal" style="background-color:teal">teal</button>
+<button class="button1" data-md-color-primary="green" style="background-color:green">green</button>
+<button class="button1" data-md-color-primary="lime" style="background-color:lime;color:black">lime</button>
+<button class="button1" data-md-color-primary="orange" style="background-color:orange;color:black">orange</button>
+<button class="button1" data-md-color-primary="brown" style="background-color:brown;border-radius=3px">brown</button>
+<button class="button1" data-md-color-primary="grey" style="background-color:grey">grey</button>
+<button class="button1" data-md-color-primary="black" style="background-color:black">black</button>
+<button class="button1" data-md-color-primary="white" style="background-color:white;color:black">white</button>
+</div>
+
+<script>
+var buttons = document.querySelectorAll("button[data-md-color-primary]")
+buttons.forEach(function(button) {
+        button.addEventListener("click", function() {
+        var attr = this.getAttribute("data-md-color-primary")
+        document.body.setAttribute("data-md-color-primary", attr)
+        localStorage.setItem("data-md-color-primary",attr);
+        })
+})
+</script>
+
+<h2 ><!-- 评论 -->评论区~</h2>
+
+有用的话请给我个赞和 star => <a href="https://github.com/xuan-insr/xuan-insr.github.io"><img alt="GitHub stars" src="https://img.shields.io/github/stars/xuan-insr/xuan-insr.github.io.svg?style=plastic&amp;label=Stars"></a>
+
+</br>
+
+快来跟我聊天~
+
+</div>
+
+<script src="https://giscus.app/client.js"
+        data-repo="xuan-insr/discussion"
+        data-repo-id="R_kgDOIUW7XA"
+        data-category="General"
+        data-category-id="DIC_kwDOIUW7XM4CSOC3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+
+updateScheme();
+
+</script>
+
+<!-- Synchronize Giscus theme with palette -->
+<script>
+var giscus = document.querySelector("script[src*=giscus]")
+
+/* Set palette on initial load */
+// var palette = __md_get("__palette")
+// if (palette && typeof palette.color === "object") {
+//     var theme = palette.color.scheme === "slate" ? "dark" : "light"
+//     giscus.setAttribute("data-theme", theme) 
+// }
+
+/* Register event handlers after documented loaded */
+// document.addEventListener("DOMContentLoaded", function() {
+//     var ref = document.querySelector("[data-md-component=palette]")
+//     ref.addEventListener("change", function() {
+//     var palette = __md_get("__palette")
+//     if (palette && typeof palette.color === "object") {
+//         var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+//         /* Instruct Giscus to change theme */
+//         var frame = document.querySelector(".giscus-frame")
+//         frame.contentWindow.postMessage(
+//         { giscus: { setConfig: { theme } } },
+//         "https://giscus.app"
+//         )
+//     }
+//     })
+// })
+</script>
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      本页面的全部内容在 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a> 协议之条款下提供，附加条款亦可能应用
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../from_oi_wiki/js/extra.js"></script>
+      
+        <script src="../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../js/tablesort.js"></script>
+      
+    
+  </body>
+</html>

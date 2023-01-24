@@ -1,0 +1,3212 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://xuan-insr.github.io/compile_principle/3%20Parsing%20%28II%29/">
+      
+      
+        <link rel="prev" href="../2%20Parsing%20%28I%29/">
+      
+      
+        <link rel="next" href="../4%20Semantic%20Analysis/">
+      
+      <link rel="icon" href="../../logo.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.6">
+    
+    
+      
+        <title>III 语法分析 - 自底向上分析 - 咸鱼暄的代码空间</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../from_oi_wiki/css/extra.css?v=13">
+    
+      <link rel="stylesheet" href="../../css/status.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-JT9BRCXKJJ"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-JT9BRCXKJJ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-JT9BRCXKJJ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#34-自底向上分析--bottom-up-parsing" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="咸鱼暄的代码空间" class="md-header__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../logo.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            咸鱼暄的代码空间
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              III 语法分析 - 自底向上分析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        🏡 主页
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../cpp/" class="md-tabs__link">
+        C++
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../pl/" class="md-tabs__link">
+        PL & 编译
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/" class="md-tabs__link md-tabs__link--active">
+        核心知识
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E5%AE%89%E5%85%A8/" class="md-tabs__link">
+      安全
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-tabs__link">
+      语言基础
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-tabs__link">
+      其他课程
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%9D%82%E9%A1%B9/" class="md-tabs__link">
+        杂项
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/" class="md-tabs__link">
+        生活
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="咸鱼暄的代码空间" class="md-nav__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../logo.ico" alt="logo">
+
+    </a>
+    咸鱼暄的代码空间
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../..">🏡 主页</a>
+          
+            <label for="__nav_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="🏡 主页" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          🏡 主页
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%B8%BB%E9%A1%B5/about/" class="md-nav__link">
+        ❤️ 我和朋友们！
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recent/" class="md-nav__link">
+        📆 最近更新
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../cpp/">C++</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="C++" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          C++
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../cpp/cpp_restart/">🍉C++ 学习记录</a>
+          
+            <label for="__nav_2_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="🍉C++ 学习记录" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          🍉C++ 学习记录
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_2_2" type="checkbox" id="__nav_2_2_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_2" tabindex="0" aria-expanded="false">
+          notes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="notes" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          notes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/notes/notes/" class="md-nav__link">
+        零散内容记录
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/notes/dne_notes/" class="md-nav__link">
+        The Design and Evaluation of C++ 阅读记录
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_for_contests/" class="md-nav__link">
+        快速入门 C++ 写题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_4" tabindex="0" aria-expanded="false">
+          C++ 知识补充
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="C++ 知识补充" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          C++ 知识补充
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1/" class="md-nav__link">
+        理解 STL —— 迭代器与函数对象
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../pl/">PL & 编译</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="PL & 编译" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          PL & 编译
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../pl/ppl_notes/">编程语言原理</a>
+          
+            <label for="__nav_3_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="编程语言原理" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          编程语言原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/0_PPL_Final_Problem1/" class="md-nav__link">
+        我在 PPL 2022 Final 出的复习题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_2_3" type="checkbox" id="__nav_3_2_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_3" tabindex="0" aria-expanded="false">
+          Part I - Judgments and Rules | 判断与规则
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part I - Judgments and Rules | 判断与规则" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Part I - Judgments and Rules | 判断与规则
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/1_Abstract_Syntax/" class="md-nav__link">
+        1 抽象语法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/2_Inductive_Definition/" class="md-nav__link">
+        2 归纳定义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/3_Hypothetical_and_General_Judgments/" class="md-nav__link">
+        3 假言判断与一般性判断
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_2_4" type="checkbox" id="__nav_3_2_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_4" tabindex="0" aria-expanded="false">
+          Part II - Statics and Dynamics | 静态语义和动态语义
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part II - Statics and Dynamics | 静态语义和动态语义" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Part II - Statics and Dynamics | 静态语义和动态语义
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/4_Statics/" class="md-nav__link">
+        4 静态语义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/5_Dynamics/" class="md-nav__link">
+        5 动态语义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/6_Type_Safety/" class="md-nav__link">
+        6 类型安全
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_2_5" type="checkbox" id="__nav_3_2_5" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_5" tabindex="0" aria-expanded="false">
+          Part III - Total Functions | 全函数
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part III - Total Functions | 全函数" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Part III - Total Functions | 全函数
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/8_Func_Def_and_Val/" class="md-nav__link">
+        8 函数定义和值
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/9_Sys_T_of_Higher_Order_Recursion/" class="md-nav__link">
+        9 高阶递归的系统 T
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_3_2_6" type="checkbox" id="__nav_3_2_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_6" tabindex="0" aria-expanded="false">
+          Part IV - Finite Data Types | 有限数据类型
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part IV - Finite Data Types | 有限数据类型" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Part IV - Finite Data Types | 有限数据类型
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/10_product_types/" class="md-nav__link">
+        10 积类型
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/11_sum_types/" class="md-nav__link">
+        11 和类型
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        编译原理
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/">核心知识</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="核心知识" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          核心知识
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2" tabindex="0" aria-expanded="false">
+          操作系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="操作系统" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          操作系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/1_intro/" class="md-nav__link">
+        1 写在前面
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/2_overview/" class="md-nav__link">
+        Part.1 概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2_3" type="checkbox" id="__nav_4_2_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_3" tabindex="0" aria-expanded="false">
+          Part.2 进程管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.2 进程管理" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Part.2 进程管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/3_process/" class="md-nav__link">
+        3 进程
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/4_sched/" class="md-nav__link">
+        4 调度
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/5_thread/" class="md-nav__link">
+        5 线程
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2_4" type="checkbox" id="__nav_4_2_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_4" tabindex="0" aria-expanded="false">
+          Part.3 进程同步
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.3 进程同步" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Part.3 进程同步
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/6_sync_tools/" class="md-nav__link">
+        6 同步及其工具
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/7_sync_examples/" class="md-nav__link">
+        7 经典同步问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/8_deadlocks/" class="md-nav__link">
+        8 死锁
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2_5" type="checkbox" id="__nav_4_2_5" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_5" tabindex="0" aria-expanded="false">
+          Part.4 内存管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.4 内存管理" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Part.4 内存管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/9_main_memory/" class="md-nav__link">
+        9 主存
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/10_virtual_memory/" class="md-nav__link">
+        10 虚拟内存
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2_6" type="checkbox" id="__nav_4_2_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_6" tabindex="0" aria-expanded="false">
+          Part.5 存储管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.5 存储管理" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Part.5 存储管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/V_storage_management/11_mass_storage/" class="md-nav__link">
+        11 大容量存储
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/V_storage_management/12_io_systems/" class="md-nav__link">
+        12 I/O 系统
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_2_7" type="checkbox" id="__nav_4_2_7" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_7" tabindex="0" aria-expanded="false">
+          Part.6 文件系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Part.6 文件系统" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Part.6 文件系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/VI_file_system/13_fs_interface/" class="md-nav__link">
+        13 文件系统
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/VI_file_system/14_fs_impl/" class="md-nav__link">
+        14 文件系统实现
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/15_review/" class="md-nav__link">
+        15 总结
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_3" tabindex="0" aria-expanded="false">
+          计算机组成
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="计算机组成" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          计算机组成
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/1_prelude/" class="md-nav__link">
+        1 写在前面
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/2_instructions/" class="md-nav__link">
+        2 Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/3_arithmetic/" class="md-nav__link">
+        3 Arithmetic
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/4_processor/" class="md-nav__link">
+        4 Processor
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/5_cache/" class="md-nav__link">
+        5 Cache
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/6_IO/" class="md-nav__link">
+        6 I/O
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/%E5%8E%86%E5%B9%B4%E5%8D%B7/" class="md-nav__link">
+        2022 回忆卷
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" checked>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../">编译原理</a>
+          
+            <label for="__nav_4_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="编译原理" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          编译原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%20Lexical%20Analysis/" class="md-nav__link">
+        I 词法分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2%20Parsing%20%28I%29/" class="md-nav__link">
+        II 语法分析 - 自顶向下分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          III 语法分析 - 自底向上分析
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        III 语法分析 - 自底向上分析
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#34-自底向上分析--bottom-up-parsing" class="md-nav__link">
+    3.4 自底向上分析 | Bottom-Up Parsing
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 自底向上分析 | Bottom-Up Parsing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viable-prefix" class="md-nav__link">
+    Viable Prefix
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-lr0-parsing" class="md-nav__link">
+    3.5 LR(0) Parsing
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 LR(0) Parsing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#351-lr0-item" class="md-nav__link">
+    3.5.1 LR(0) Item
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#352-lr0-parsing-table-的构造" class="md-nav__link">
+    3.5.2 LR(0) Parsing Table 的构造
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#353-lr0-parsing-table-的使用" class="md-nav__link">
+    3.5.3 LR(0) Parsing Table 的使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-slr1-parsing" class="md-nav__link">
+    3.6 SLR(1) Parsing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37-lr1-parsing" class="md-nav__link">
+    3.7 LR(1) Parsing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#38-lalr1-parsing" class="md-nav__link">
+    3.8 LALR(1) Parsing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#39-yacclalr1-语法分析器的生成器" class="md-nav__link">
+    3.9 Yacc：LALR(1) 语法分析器的生成器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#习题" class="md-nav__link">
+    习题
+  </a>
+  
+    <nav class="md-nav" aria-label="习题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lr0--slr1" class="md-nav__link">
+    LR(0) &amp; SLR(1)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4%20Semantic%20Analysis/" class="md-nav__link">
+        IV 语义分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5%20Runtime%20Environment/" class="md-nav__link">
+        V 运行时环境
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6%20Code%20Generation/" class="md-nav__link">
+        VI 代码生成
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../math_ds_algo/">数学、数据结构和算法</a>
+          
+            <label for="__nav_4_5">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="数学、数据结构和算法" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          数学、数据结构和算法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math_ds_algo/getting_started/" class="md-nav__link">
+        入门路线
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8/" class="md-nav__link">
+        安全
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        语言基础
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96%E8%AF%BE%E7%A8%8B/" class="md-nav__link">
+        其他课程
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%9D%82%E9%A1%B9/">杂项</a>
+          
+            <label for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="杂项" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          杂项
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%9D%82%E9%A1%B9/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        博客搭建记录
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E7%94%9F%E6%B4%BB/">生活</a>
+          
+            <label for="__nav_9">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="生活" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          生活
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_9_2" type="checkbox" id="__nav_9_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9_2" tabindex="0" aria-expanded="false">
+          讨饭历程
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="讨饭历程" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_2">
+          <span class="md-nav__icon md-icon"></span>
+          讨饭历程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/overview/" class="md-nav__link">
+        🏳️‍🌈 总览
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/pdd/" class="md-nav__link">
+        😕 拼多多
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/meituan/" class="md-nav__link">
+        🤗 美团
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/mayi/" class="md-nav__link">
+        🤔 蚂蚁
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/huawei/" class="md-nav__link">
+        👍 华为
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/bytedance/" class="md-nav__link">
+        🥳 字节
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/quant/" class="md-nav__link">
+        👨‍💻 量化相关
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/others/" class="md-nav__link">
+        其他
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%E6%88%91%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E5%A4%96%E7%BD%AE%E5%A4%A7%E8%84%91/" class="md-nav__link">
+        我需要一个外置大脑
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" class="md-nav__link">
+        关于亲密关系的碎碎念
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/2022/" class="md-nav__link">
+        2022 年终总结
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " data-md-toggle="__nav_9_6" type="checkbox" id="__nav_9_6" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%A1%8C%E6%B8%B8/">桌游</a>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="桌游" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_6">
+          <span class="md-nav__icon md-icon"></span>
+          桌游
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#34-自底向上分析--bottom-up-parsing" class="md-nav__link">
+    3.4 自底向上分析 | Bottom-Up Parsing
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 自底向上分析 | Bottom-Up Parsing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viable-prefix" class="md-nav__link">
+    Viable Prefix
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-lr0-parsing" class="md-nav__link">
+    3.5 LR(0) Parsing
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 LR(0) Parsing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#351-lr0-item" class="md-nav__link">
+    3.5.1 LR(0) Item
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#352-lr0-parsing-table-的构造" class="md-nav__link">
+    3.5.2 LR(0) Parsing Table 的构造
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#353-lr0-parsing-table-的使用" class="md-nav__link">
+    3.5.3 LR(0) Parsing Table 的使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-slr1-parsing" class="md-nav__link">
+    3.6 SLR(1) Parsing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37-lr1-parsing" class="md-nav__link">
+    3.7 LR(1) Parsing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#38-lalr1-parsing" class="md-nav__link">
+    3.8 LALR(1) Parsing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#39-yacclalr1-语法分析器的生成器" class="md-nav__link">
+    3.9 Yacc：LALR(1) 语法分析器的生成器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#习题" class="md-nav__link">
+    习题
+  </a>
+  
+    <nav class="md-nav" aria-label="习题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lr0--slr1" class="md-nav__link">
+    LR(0) &amp; SLR(1)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>III 语法分析 - 自底向上分析</h1>
+
+<blockquote>
+<p>朋辈辅学录播：<a href="https://www.bilibili.com/video/BV1j94y1d7eW">编译原理速成(3) 语法分析(下) LL(1)与自底向上分析</a></p>
+</blockquote>
+<p>此部分介绍 <strong>自底向上分析 (Buttom-Up Parsing)</strong> 以及 <strong>Yacc</strong> 的有关内容。</p>
+<h2 id="34-自底向上分析--bottom-up-parsing">3.4 自底向上分析 | Bottom-Up Parsing<a class="headerlink" href="#34-自底向上分析--bottom-up-parsing" title="Permanent link">&para;</a></h2>
+<p>所谓 <strong>自底向上分析 (Bottom-Up Parsing)</strong>，就是从输入的 token 流一步步简化为 start symbol。Bottom-Up Parsing 相较 Top-Down Parsing 而言更加通用，而且并没有牺牲性能。Bottom-Up Parsing 的思路基于我们之前讨论过的 Top-Down Parsing 的相关思路。</p>
+<p>同样的，我们首先讨论 Bottom-Up Parsing 的过程，稍后再讨论这些过程具体是怎么实现的，例如 parser 如何知道在什么情形下使用哪条 production。</p>
+<p>我们看这样一个例子，其左边一列是输入的 token 流一步一步被 <strong>规约 (reduce)</strong> 到 start symbol 的过程，其右边一列是每一步用到的 production。注意：自底向上分析使用 production 时是将 production 的 rhs 转换为 lhs：</p>
+<p><center><img alt="" src="../../assets/1618581322665-4786f6cd-5978-4608-977e-0676666da18a.png" /></center></p>
+<p>从下往上查看分析过程，我们可以发现一个重要事实：<strong>自底向上分析是最右分析的一个逆过程</strong>。</p>
+<p>更具体地研究这个过程。我们考虑我们发现的重要事实：如果某一次规约是 <span class="arithmatex">\(\alpha\beta\omega\to\alpha X\omega\)</span>，使用了 production <span class="arithmatex">\(X\to\beta\)</span>，那么由于这是最右分析逆过程的某一步，亦即 <span class="arithmatex">\(\alpha X\omega\to\alpha\beta\omega\)</span> 是最右分析的某一步，因此 <span class="arithmatex">\(\omega\)</span> 一定全部由 terminal 组成，这是分析过程中 <strong>已经完成了展开</strong> 的部分。那么对于这个逆过程来说，<span class="arithmatex">\(\omega\)</span> 则是 <strong>尚未被考虑</strong> 的部分。那么此时我们就可以将当前的 token 串分为两部分：<span class="arithmatex">\(\alpha\beta | \omega\)</span>，其中 | 左边的是已经被考虑过的部分，而 | 右边的是没有考虑过的部分。</p>
+<p>我们进一步可以注意到：所有操作都会发生在 | 紧邻的左右两边。实际上，只会有 2 种操作产生：</p>
+<ol>
+<li><strong>Reduce</strong>，规约：将 | 左边的一些 token 用某条 production 转换为一个 Non-terminal；</li>
+<li><strong>Shift</strong>，移进：将 | 右移一位，即将下一个 terminal 纳入考虑。</li>
+</ol>
+<p>因此，上面的例子实际上就是：</p>
+<p><center><img alt="" src="../../assets/1618582403943-2cc175b0-e5b2-4f6a-b2ac-5a19b2b298c0.png" /></center></p>
+<p>我们容易想到，这个分析过程用栈很容易实现。我们将 | 左边的部分存在栈中，那么 reduce 操作就是将栈顶的若干个元素（对应某个 production 的 rhs，也有可能是 0 个）pop 出来，然后 push 相应 production 的 lhs；而 shift 操作就是读取输入 token 流中的一个 terminal 并将其 push 到栈顶。</p>
+<p>在同一个状态下，parser 可能会有多种可选的操作，例如既可以 reduce 也可以 shift，这称为一个 shift-reduce conflict；有时还可能有多个可选的 reduce 方式，这称为一个 reduce-reduce conflict。这些冲突通常表明语法存在一定问题，当然也可以通过定义优先级的方式进行解决。我们将在后面讨论相应的解决方法。</p>
+<h3 id="viable-prefix">Viable Prefix<a class="headerlink" href="#viable-prefix" title="Permanent link">&para;</a></h3>
+<p><center><img alt="image.png" src="../../assets/1649645253673-7e0f205b-b83b-477a-b5af-cc32592f22be.png" /></center></p>
+<p><center><img alt="image.png" src="../../assets/1649645266346-9136ce47-a39d-4413-990f-868d0fc70b1a.png" /></center></p>
+<h2 id="35-lr0-parsing">3.5 LR(0) Parsing<a class="headerlink" href="#35-lr0-parsing" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.xiaoheidiannao.com/LR0-Analysis-Table-Construction-Algorithm.html">这篇博客</a> 是使我学明白 LR(0) 分析表构造的关键博客；<a href="https://www.cnblogs.com/bryce1010/p/9387114.html">这篇博客</a> 是使我理解这张表怎么用的关键博客（3.5.3 中的伪代码也基于此处更改）；<a href="http://leaver.me/2012/05/14/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B%E7%9A%84lr%E5%88%86%E6%9E%90%E8%BF%87%E7%A8%8B/">这篇博客</a> 中有一个具体的示例演示这张表的用法。</p>
+<p>LR(0) Parsing 是 Bottom-Up Parsing 的一种。LR(k) 表示 Left-to-Right Scan, Rightmost Derivation, Predict Based on <em>k</em> Tokens of Lookahead。</p>
+<h3 id="351-lr0-item">3.5.1 LR(0) Item<a class="headerlink" href="#351-lr0-item" title="Permanent link">&para;</a></h3>
+<p>我们在 3.4 中提到，自底向上分析的过程就是不断地凑出一个 production 的 rhs，并让这些 rhs 位于 Parsing 栈的栈顶。因此假设下一次将会使用到的 production 为 <span class="arithmatex">\(X\to \alpha\beta\)</span>，那么在使用这个 production 进行规约之前，栈顶可能包含了 <span class="arithmatex">\(\cdots\cdots, \cdots\alpha\cdots, \cdots\alpha\beta\)</span> 等情况，即我们凑出这个 production 的 rhs 的进度不同。对于这些情况，我们希望对其做出不一样的操作。</p>
+<p>因此，对于每一个 production，我们用句点 . 来标识一种凑出其 rhs 的进度（right-hand-side position）。例如 <span class="arithmatex">\(X\to\alpha\beta\)</span> 的情况就会有：<span class="arithmatex">\(X\to .\alpha\beta, X\to \alpha.\beta, X\to \alpha\beta.\)</span> 三种。我们将这些情况称为 <strong>LR(0) Item</strong>。我们在后面将看到，我们的分析就是基于这些 Item 的。</p>
+<p>我们举一个例子，贯穿后续小节的学习，直到成功完成分析。对于文法 <code>S'-&gt;S, S-&gt;(S)S | EPSILON</code> ，其 LR(0) Item 包括：<code>S'-&gt;.S</code>, <code>S'-&gt;S.</code>, <code>S-&gt;.(S)S</code>, <code>S-&gt;(.S)S</code>, <code>S-&gt;(S.)S</code>, <code>S-&gt;(S).S</code>, <code>S-&gt;(S)S.</code>, <code>S-&gt;.</code> 。</p>
+<h3 id="352-lr0-parsing-table-的构造">3.5.2 LR(0) Parsing Table 的构造<a class="headerlink" href="#352-lr0-parsing-table-的构造" title="Permanent link">&para;</a></h3>
+<p>我们会看到，LR(0) Item 之间会有一些转换关系。例如：</p>
+<ul>
+<li><span class="arithmatex">\(X\to.\alpha\beta\)</span> 接收 <span class="arithmatex">\(\alpha\)</span> 后就会变成 <span class="arithmatex">\(X\to \alpha.\beta\)</span></li>
+<li>如果存在 production <span class="arithmatex">\(X\to \gamma Y\omega, Y\to \alpha\beta\)</span>，那么 <span class="arithmatex">\(X\to \gamma .Y\omega\)</span> 就可以转换到 <span class="arithmatex">\(Y\to .\alpha\beta\)</span>，因为要凑出 X，这时需要先凑出一个 Y。</li>
+</ul>
+<p>根据上述转换关系，我们可以得到一个 LR(0) Items 的 NFA。之所以是 NFA，是因为上述第二条转换关系导致存在 <span class="arithmatex">\(\epsilon\)</span> 转化。</p>
+<p>那么，对于我们提出的例子，其 NFA 就是：</p>
+<p><center><img alt="" src="../2023-01-24-22-38-00.png" width="200" /></center></p>
+<p>进一步地，我们将 NFA 转换为 DFA：</p>
+<p><center><img alt="" src="../2023-01-24-22-38-23.png" width="200" /></center></p>
+<p>我们可以据此构造出一个 LR(0) Parsing Table：</p>
+<table>
+<thead>
+<tr>
+<th><strong>State</strong></th>
+<th><strong>Input &amp; Shift</strong></th>
+<th></th>
+<th></th>
+<th><strong>Goto</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><strong>(</strong></td>
+<td><strong>)</strong></td>
+<td><strong>$</strong></td>
+<td><strong>S</strong></td>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td>s3/r3</td>
+<td>r3</td>
+<td>r3</td>
+<td>g2</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>r1</td>
+<td>r1</td>
+<td>accept(r1)</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>s3/r3</td>
+<td>r3</td>
+<td>r3</td>
+<td>g4</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td></td>
+<td>s5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td>s3/r3</td>
+<td>r3</td>
+<td>r3</td>
+<td>g6</td>
+</tr>
+<tr>
+<td><strong>6</strong></td>
+<td>r2</td>
+<td>r2</td>
+<td>r2</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>其中，<span class="arithmatex">\(s_k\)</span> 表示将对应的 terminal 压栈，然后移到到状态 <em>k</em>；<span class="arithmatex">\(g_k\)</span> 表示将对应的 non-terminal 压栈，然后移到状态 <em>k</em>；<span class="arithmatex">\(r_k\)</span> 表示用第 <em>k</em> 条 production 规约，这里 r1, r2, r3 分别为 <code>S'-&gt;S</code>, <code>S-&gt;(S)S</code>, <code>S-&gt;EPSILON</code>；accept 表示接受。</p>
+<p>这个表的创建方式是：</p>
+<ul>
+<li>对于 DFA 中的每一个 <span class="arithmatex">\(S_i\stackrel{t}{\longrightarrow}S_j\)</span>，我们令 <code>T[i, t] = sj</code>，其中 <span class="arithmatex">\(S_i\)</span> 是状态 i，t 是一个 terminal；</li>
+<li>对于 DFA 中的每一个 <span class="arithmatex">\(S_i\stackrel{X}{\longrightarrow}S_j\)</span>，我们令 <code>T[i, X] = gj</code>，其中 X 是一个 non-terminal；</li>
+<li>对于每一个可以规约（即句点在 rhs 最后）的 LR(0) item，对其所在状态 i 以及每一个 terminal t，令 <code>T[i, t] = rk</code>，其中 k 是 LR(0) item 对应的 production 的序号。</li>
+</ul>
+<p>我们可以发现，我们建立的表中 <code>T[1, "("], T[3, "("], T[5, "("]</code> 这三项被标红，因为这些表项中有不止一个操作，这说明这里出现了冲突。这三项均为 shift-reduce conflict。这说明，这个文法并不是 LR(0) 文法。（由此可见 LR(0) 文法太弱，不是很有用。但是这会为后面的文法学习打下基础。）</p>
+<h3 id="353-lr0-parsing-table-的使用">3.5.3 LR(0) Parsing Table 的使用<a class="headerlink" href="#353-lr0-parsing-table-的使用" title="Permanent link">&para;</a></h3>
+<p>这里使用的 LR(0) Parsing Table 应当是一个没有冲突的表，即必须对 LR(0) Parsing Table 进行分析。</p>
+<p>在使用 LR(0) Parsing Table 进行分析时，我们维护 2 个栈，分别存储当前分析的 token（就像 3.4 中我们讨论的那样）以及每个 token 对应的状态编号，我们称为 token 栈和状态栈。</p>
+<p>shift 操作的实现是十分容易理解的：将当前 terminal 压入 token 栈，将 <span class="arithmatex">\(s_k\)</span> 指示的状态 k 压入状态栈即可。但对于 reduce 操作（假设操作为 rj ，对应 production 为 A-&gt;β），那么我们需要首先将两个栈 pop 出 |β|（β 中 token 的个数）项，然后查看 <strong>pop 后</strong> 栈顶的状态 S，查看 T[S, A] 的值即 <span class="arithmatex">\(g_k\)</span>，然后将 A 压入 token 栈，k 压入状态栈。</p>
+<p>具体算法的伪代码如下：
+<div class="highlight"><pre><span></span><code>置 ptr 指向输入串 w 的第一个符号
+令 Si 为状态栈顶的状态
+a 是 ptr 指向的符号，即当前输入符号
+WHILE(1) BEGIN
+  IF T[Si, a] = Sj THEN
+    BEGIN
+      PUSH (j, a)                           // 将 j 压入状态栈，将 a 压入 token 栈
+      ptr++
+    END
+  ELSE IF T[Si, a] = rj THEN    // rj 为 A-&gt;β
+    BEGIN
+      pop |β| times
+      若当前栈顶状态为Sk
+      push (T[Sk, A], A)            // 如果 T[Sk, A] 为空也应返回一个错误
+    END
+  ELSE IF T[Si, a] = accept THEN
+    return 0
+  ELSE 
+    return -1
+END
+</code></pre></div>
+我们说这种分析法为 LR(<em>0</em>)，是因为我们 <strong><em>实际上</em></strong> 没有进行 look-ahead（虽然在上述的伪代码中我们做了这件事）：所有的 reduce 操作实际上是与状态绑定的，而不是与 (状态, 输入) 对绑定的。因此我们在读取当前符号之前，就知道应该 reduce 还是应该 shift 了，而如果是 shift，则可以认为是读入当前符号以后再做判断，也就是说从理论上讲我们没有（或者说不必）做任何 look-ahead。</p>
+<h2 id="36-slr1-parsing">3.6 SLR(1) Parsing<a class="headerlink" href="#36-slr1-parsing" title="Permanent link">&para;</a></h2>
+<p>SLR(1) 中的 S 表示 Simple。SLR(1) Parsing 在 LR(0) 的基础上通过简单的判断尝试解决冲突。</p>
+<p>SLR(1) 在如 3.5.2 那样生成了 LR(0) DFA 后，计算每一个 non-terminal 的 Follow Set，并根据这两者创建 SLR(1) 分析表。</p>
+<p>我们继续使用 3.5 小节的例子：<code>S'-&gt;S</code>, <code>S-&gt;(S)S</code>, <code>S-&gt;EPSILON</code>。那么，FOLLOW(S') = {$}，FOLLOW(S) = {')', $}。</p>
+<p>我们构建 SLR(1) 分析表，与构建 LR(0) 分析表非常相似：</p>
+<ul>
+<li>对于 DFA 中的每一个 <span class="arithmatex">\(S_i\stackrel{t}{\longrightarrow}S_j\)</span>，我们令 <code>T[i, t] = sj</code>，其中 <span class="arithmatex">\(S_i\)</span> 是状态 i，t 是一个 terminal；</li>
+<li>对于 DFA 中的每一个 <span class="arithmatex">\(S_i\stackrel{X}{\longrightarrow}S_j\)</span>，我们令 <code>T[i, X] = gj</code>，其中 X 是一个 non-terminal；</li>
+<li>对于每一个可以规约的 LR(0) item（假设是 <code>A-&gt;α.</code>），对其所在状态 i 以及每一个 terminal t，<strong>如果 t ∈ FOLLOW(A)</strong>，令 <code>T[i, t] = rk</code>，其中 k 是 LR(0) item 对应的 production 的序号。</li>
+</ul>
+<p>也就是说，唯一的区别是，LR(0) 对可归约项所在状态的所有 terminal 进行 reduce，而 SLR(1) 只对那些下一个符号在对应 non-terminal 的 Follow Set 的情况进行 reduce。</p>
+<p>对于我们的例子，我们可以构造如下的 SLR(1) Parsing Table。可以发现，我们已经消除了 conflict。</p>
+<table>
+<thead>
+<tr>
+<th><strong>State</strong></th>
+<th><strong>Input &amp; Shift</strong></th>
+<th></th>
+<th></th>
+<th><strong>Goto</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><strong>(</strong></td>
+<td><strong>)</strong></td>
+<td><strong>$</strong></td>
+<td><strong>S</strong></td>
+</tr>
+<tr>
+<td><strong>1</strong></td>
+<td>s3</td>
+<td>r3</td>
+<td>r3</td>
+<td>g2</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td></td>
+<td></td>
+<td>accept(r1)</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>s3</td>
+<td>r3</td>
+<td>r3</td>
+<td>g4</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td></td>
+<td>s5</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td>s3</td>
+<td>r3</td>
+<td>r3</td>
+<td>g6</td>
+</tr>
+<tr>
+<td><strong>6</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>| r2 | r2 |  |</p>
+<p>可以发现，与 LR(0) 不同的是，SLR(1) 的 reduce 不再只与状态有关，我们需要提前观看下一个符号从而判断进行什么样的 shift 或 reduce 操作。</p>
+<p>如果这样构造出的 SLR(1) Parsing Table 没有含冲突的表项，那么称这个文法为 SLR(1) Grammar，否则不是。</p>
+<p>SLR(1) Parsing Table 的使用方法与 3.5.3 完全一致，可以使用一样的伪代码。</p>
+<h2 id="37-lr1-parsing">3.7 LR(1) Parsing<a class="headerlink" href="#37-lr1-parsing" title="Permanent link">&para;</a></h2>
+<p>LR(1) 在 SLR(1) 的基础上进行了进一步优化。</p>
+<p>我们在 3.5.1 中定义了 LR(0) Item，LR(1) Item 与之相似但更加复杂。一个 LR(1) Item 除了有 production 和 rhs position（用句点表示）以外，还有一个 lookahead symbol。例如 <span class="arithmatex">\(A\to \alpha.\beta,\ t\)</span> 表示 <span class="arithmatex">\(\alpha\)</span> 在栈顶，而且未来的输入将会是 <span class="arithmatex">\(\beta t\)</span>。对 3.5 中提出的例子，根据 start symbol，这里有 LR(1) Item <code>S'-&gt;.S, $</code>。</p>
+<p>LR(1) Item 在如下两种情况下存在转化：</p>
+<ul>
+<li><span class="arithmatex">\(X\to.\alpha\beta,\ t\)</span> 接收 <span class="arithmatex">\(\alpha\)</span> 后就会变成 <span class="arithmatex">\(X\to \alpha.\beta , \ t\)</span>；</li>
+<li>如果存在 production <span class="arithmatex">\(X\to \gamma Y\omega, Y\to \alpha\beta\)</span>，那么对于每一个 <span class="arithmatex">\(t_i\in\text{First}(\omega t)\)</span> (<span class="arithmatex">\(\omega\)</span> 可以为 <span class="arithmatex">\(\epsilon\)</span>)，<span class="arithmatex">\(X\to \gamma .Y\omega,\ t\)</span> 可以经 <span class="arithmatex">\(\epsilon\)</span> 转换到 <span class="arithmatex">\(Y\to .\alpha\beta, \ t_i\)</span>。</li>
+</ul>
+<p>例如下面这个例子：
+<div class="highlight"><pre><span></span><code>S&#39;-&gt; S
+S -&gt; aAd
+S -&gt; bBd
+S -&gt; aBe
+S -&gt; bAe
+A -&gt; c
+B -&gt; c
+</code></pre></div>
+Start Symbol 有 LR(1) Item <code>S'-&gt;.S, $</code>，并可以通过此推出如下 State 1 中的 items。其余推导略同，下面是 LR(1) DFA：</p>
+<p><center><img alt="image.png" src="../../assets/1619110489690-3dc51280-a2c1-46a9-a3cf-9fdc544bd4ae.png" /></center></p>
+<p>由此可以构造出 LR(1) Parsing Table，其方式是：</p>
+<ul>
+<li>对于 DFA 中的每一个 <span class="arithmatex">\(S_i\stackrel{t}{\longrightarrow}S_j\)</span>，我们令 <code>T[i, t] = sj</code>，其中 <span class="arithmatex">\(S_i\)</span> 是状态 i，t 是一个 terminal；</li>
+<li>对于 DFA 中的每一个 <span class="arithmatex">\(S_i\stackrel{X}{\longrightarrow}S_j\)</span>，我们令 <code>T[i, X] = gj</code>，其中 X 是一个 non-terminal；</li>
+<li>对于每一个可以规约（即句点在 rhs 最后）的 LR(1) item，对其所在状态 i 以及每一个 lookahead symbol t，令 <code>T[i, t] = rk</code>，其中 k 是 LR(1) item 对应的 production 的序号。</li>
+</ul>
+<p>如果以此法构造出的 Parsing Table 没有冲突项，则说明文法是 LR(1) 的，否则不是。</p>
+<h2 id="38-lalr1-parsing">3.8 LALR(1) Parsing<a class="headerlink" href="#38-lalr1-parsing" title="Permanent link">&para;</a></h2>
+<p>可以看到，LR(1) 的状态有点太多了。在刚刚提出 LR(1) 的那个年代，如此大的空间需求还是不太现实的。因此，LR(1) 的简化版本 LALR(1) (Look-Ahead LR(1)) 被提出了。</p>
+<p>对于每一个状态，我们将其包含的所有 LR(1) items 的第一个分量的集合成为这个状态的核心 (core)。例如，对于 3.7 最后例子中的状态图，其状态 5 和 6 的核心均为 <span class="arithmatex">\(\{A\to c., B\to c.\}\)</span>。我们将这样的具有相同核心的状态进行合并，通常能够减少许多状态。</p>
+<p>但是，这有时（虽然很少）也可能引入 reduce-reduce conflict，例如 3.7 最后的例子的 LALR(1) DFA 是：</p>
+<p><center><img alt="" src="https://cdn.nlark.com/yuque/__graphviz/7f35b67da5519dc8edde547d58a2d007.svglake_card_v2=eyJ0eXBlIjoiZ3JhcGh2aXoiLCJjb2RlIjoiZGlncmFwaCBHIHtcbiAgICByYW5rZGlyID0gVEI7XG4gICAgbm9kZSBbc2hhcGUgPSByZWN0YW5nbGVdO1xuICAgIFxuICAgIDUgW2xhYmVsID0gXCItU3RhdGUgNSY2LVxcbkHihpJjLiwgZC9lXFxuQuKGkmMuLCBkL2VcIl07XG4gICAgMTAwIFtzdHlsZSA9IGludmlzXTtcbiAgICBcbiAgICAxIFtsYWJlbCA9IFwiLVN0YXRlIDEtXFxuUyfihpIuUywgJFxcblPihpIuYUFkLCAkXFxuU-KGki5hQmUsICRcXG5T4oaSLmJBZSwgJFxcblPihpIuYkJkLCAkXCJdOyBcbiAgICAyIFtsYWJlbCA9IFwiLVN0YXRlIDItXFxuUyfihpJTLiwgJFwiXTsgXG4gICAgMyBbbGFiZWwgPSBcIi1TdGF0ZSAzLVxcblPihpJhLkFkLCAkXFxuU-KGkmEuQmUsICRcXG5B4oaSLmMsIGRcXG5C4oaSLmMsIGVcIl07XG4gICAgNCBbbGFiZWwgPSBcIi1TdGF0ZSA0LVxcblPihpJiLkFlLCAkXFxuU-KGkmIuQmQsICRcXG5B4oaSLmMsIGVcXG5C4oaSLmMsIGRcIl07IFxuICAgIFxuICAgIDcgW2xhYmVsID0gXCItU3RhdGUgNy1cXG5T4oaSYUEuZCwgJFwiXTtcbiAgICA4IFtsYWJlbCA9IFwiLVN0YXRlIDgtXFxuU-KGkmFBZC4sICRcIl07XG4gICAgOSBbbGFiZWwgPSBcIi1TdGF0ZSA5LVxcblPihpJhQi5lLCAkXCJdOyBcbiAgICAxMFtsYWJlbCA9IFwiLVN0YXRlIDEwLVxcblPihpJhQmUuLCAkXCJdO1xuICAgIDExW2xhYmVsID0gXCItU3RhdGUgMTEtXFxuU-KGkmJBLmUsICRcIl07XG4gICAgMTJbbGFiZWwgPSBcIi1TdGF0ZSAxMi1cXG5T4oaSYkFlLiwgJFwiXTsgXG4gICAgMTNbbGFiZWwgPSBcIi1TdGF0ZSAxMy1cXG5T4oaSYkIuZCwgJFwiXTtcbiAgICAxNFtsYWJlbCA9IFwiLVN0YXRlIDE0LVxcblPihpJiQmQuLCAkXCJdOyBcbiAgICBcbiAgICAxMDAtPjE7XG4gICAgMS0-MltsYWJlbCA9IFwiU1wiXTtcbiAgICAxLT4zW2xhYmVsID0gXCJhXCJdO1xuICAgIDEtPjRbbGFiZWwgPSBcImJcIl07XG4gICAgMy0-NVtsYWJlbCA9IFwiY1wiXTtcbiAgICA0LT41W2xhYmVsID0gXCJjXCJdO1xuICAgIDQtPjExW2xhYmVsID0gXCJBXCJdO1xuICAgIDQtPjEzW2xhYmVsID0gXCJCXCJdO1xuICAgIDExLT4xMltsYWJlbCA9IFwiZVwiXTtcbiAgICAxMy0-MTRbbGFiZWwgPSBcImRcIl07XG4gICAgMy0-N1tsYWJlbCA9IFwiQVwiXTtcbiAgICAzLT45W2xhYmVsID0gXCJCXCJdO1xuICAgIDctPjhbbGFiZWwgPSBcImRcIl07XG4gICAgOS0-MTBbbGFiZWwgPSBcImVcIl07XG4gICAgXG4gICAge3JhbmsgPSBzYW1lOyAzLCAxLCA0O31cbiAgICB7cmFuayA9IHNhbWU7IDUsIDEwMDt9XG59IiwidXJsIjoiaHR0cHM6Ly9jZG4ubmxhcmsuY29tL3l1cXVlL19fZ3JhcGh2aXovN2YzNWI2N2RhNTUxOWRjOGVkZGU1NDdkNThhMmQwMDcuc3ZnIiwiaWQiOiJjZURNRSIsIm1hcmdpbiI6eyJ0b3AiOnRydWUsImJvdHRvbSI6dHJ1ZX0sImNhcmQiOiJkaWFncmFtIn0=" />注意到合并后的状态 5&amp;6，会存在 reduce-reduce conflict。这说明这个文法不是 LALR(1) 文法。</center></p>
+<p>根据 DFA 可以构造 LALR(1) Parsing Table，其方法与 LR(1) 完全一致，在此不再赘述。同样地，如果构造出的 Parsing Table 没有冲突项，则说明文法是 LALR(1) 的，否则不是。</p>
+<p><center><img alt="image.png" src="../../assets/1648826010075-7ea603c6-7f85-4c5e-b135-7e71302dcdcc.png" /></center></p>
+<h2 id="39-yacclalr1-语法分析器的生成器">3.9 Yacc：LALR(1) 语法分析器的生成器<a class="headerlink" href="#39-yacclalr1-语法分析器的生成器" title="Permanent link">&para;</a></h2>
+<p>我们在 <a href="https://www.yuque.com/xianyuxuan/coding/ttn5z3ka4lH">2.6 Lex：词法分析器的生成器</a> 中学习了 Lex 的使用。我们从本章的学习中发现词法分析器的生成同样是一个相当机械而复杂的过程。因此前人也设计了生成 Parser 的程序，这里我们用到的是 Yacc。</p>
+<p>Yacc 需要和 Lex 结合使用，除非我们在其中自己编写 <code>yylex()</code> 函数。</p>
+<h2 id="习题">习题<a class="headerlink" href="#习题" title="Permanent link">&para;</a></h2>
+<h3 id="lr0--slr1">LR(0) &amp; SLR(1)<a class="headerlink" href="#lr0--slr1" title="Permanent link">&para;</a></h3>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>5.8 Consider the following grammar</p>
+<p><div class="highlight"><pre><span></span><code>declaration → type var-list
+type → int 
+  | float
+var-list → identifier, var-list 
+    | identifier
+</code></pre></div>
+a. Rewrite it in a form more suitable for bottom-up parsing.
+b. Construct the LR(0) DFA for the rewritten grammar.
+c. Construct the SLR(1) parsing table for the rewritten grammar.</p>
+<details class="success">
+<summary>solution</summary>
+<p>a. Add a start symbol and remove the right recursion:</p>
+<div class="highlight"><pre><span></span><code>S -&gt; declaration
+declaration -&gt; type var-list
+type -&gt; int
+type -&gt; float
+var-list -&gt; var-list, identifier
+var-list -&gt; identifier
+</code></pre></div>
+<p>b. The LR(0) NFA is as follows:</p>
+<p><center><img alt="image-20210422104000199.png" src="../../assets/1619094368439-1fa5e31f-7f06-465e-9b40-06cd770e1b5c.png" /></center></p>
+<p>We can simplify the NFA and get the requested DFA:</p>
+<p><center><span class="arithmatex">\(Follow(S) = \{\$\}\subseteq Follow(declaration)\subseteq Follow(var\text-list)\)</span></center></p>
+<p><center><span class="arithmatex">\(First(var\text-list)=\{identifier\}\subseteq Follow(type)\)</span></center></p>
+<p><center><span class="arithmatex">\(\{','\}\subseteq Follow(var\text-list)\)</span></center></p>
+<p>Therefore, the follow set of each non-terminal is:</p>
+<table>
+<thead>
+<tr>
+<th>non-terminal</th>
+<th>S</th>
+<th>declaration</th>
+<th>var-list</th>
+<th>type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>follow set</strong></td>
+<td>{$}</td>
+<td>{$}</td>
+<td>{',' , $}</td>
+<td>{identifier}</td>
+</tr>
+</tbody>
+</table>
+<p>So we can construct the SLR(1) Parsing Table with the DFA and follow sets: 
+<center><img alt="20210422202137.png" src="../../assets/1619094395187-be7e187e-58ca-443e-9c47-24cd897b777f.png" /></center></p>
+</details>
+</div>
+<p>感谢 lt 先生和 lhm 先生指出文档中的问题QWQ</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-24T15:10:48+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-24</span>
+      
+        <br>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-24T15:10:48+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-24</span>
+      
+    
+  </small>
+</div>
+
+
+  
+
+
+
+<div id="__comments">
+
+<h3>颜色主题调整</h3>
+
+<div class="tx-switch">
+<button data-md-color-scheme="default"><code>default</code></button>
+<button data-md-color-scheme="slate"><code>slate</code></button>
+</div>
+
+<script>
+var buttons = document.querySelectorAll("button[data-md-color-scheme]")
+buttons.forEach(function(button) {
+        button.addEventListener("click", function() {
+        var attr = this.getAttribute("data-md-color-scheme")
+        document.body.setAttribute("data-md-color-scheme", attr)
+        localStorage.setItem("data-md-color-scheme",attr);
+        updateScheme();
+        })
+})
+</script>
+
+<div class="tx-switch">
+<button class="button1" data-md-color-primary="red" style="background-color:red">red</button>
+<button class="button1" data-md-color-primary="pink" style="background-color:pink;color:black">pink</button>
+<button class="button1" data-md-color-primary="purple" style="background-color:purple">purple</button>
+<button class="button1" data-md-color-primary="indigo" style="background-color:indigo">indigo</button>
+<button class="button1" data-md-color-primary="blue" style="background-color:blue">blue</button>
+<button class="button1" data-md-color-primary="cyan" style="background-color:cyan;color:black">cyan</button>
+<button class="button1" data-md-color-primary="teal" style="background-color:teal">teal</button>
+<button class="button1" data-md-color-primary="green" style="background-color:green">green</button>
+<button class="button1" data-md-color-primary="lime" style="background-color:lime;color:black">lime</button>
+<button class="button1" data-md-color-primary="orange" style="background-color:orange;color:black">orange</button>
+<button class="button1" data-md-color-primary="brown" style="background-color:brown;border-radius=3px">brown</button>
+<button class="button1" data-md-color-primary="grey" style="background-color:grey">grey</button>
+<button class="button1" data-md-color-primary="black" style="background-color:black">black</button>
+<button class="button1" data-md-color-primary="white" style="background-color:white;color:black">white</button>
+</div>
+
+<script>
+var buttons = document.querySelectorAll("button[data-md-color-primary]")
+buttons.forEach(function(button) {
+        button.addEventListener("click", function() {
+        var attr = this.getAttribute("data-md-color-primary")
+        document.body.setAttribute("data-md-color-primary", attr)
+        localStorage.setItem("data-md-color-primary",attr);
+        })
+})
+</script>
+
+<h2 ><!-- 评论 -->评论区~</h2>
+
+有用的话请给我个赞和 star => <a href="https://github.com/xuan-insr/xuan-insr.github.io"><img alt="GitHub stars" src="https://img.shields.io/github/stars/xuan-insr/xuan-insr.github.io.svg?style=plastic&amp;label=Stars"></a>
+
+</br>
+
+快来跟我聊天~
+
+</div>
+
+<script src="https://giscus.app/client.js"
+        data-repo="xuan-insr/discussion"
+        data-repo-id="R_kgDOIUW7XA"
+        data-category="General"
+        data-category-id="DIC_kwDOIUW7XM4CSOC3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+
+updateScheme();
+
+</script>
+
+<!-- Synchronize Giscus theme with palette -->
+<script>
+var giscus = document.querySelector("script[src*=giscus]")
+
+/* Set palette on initial load */
+// var palette = __md_get("__palette")
+// if (palette && typeof palette.color === "object") {
+//     var theme = palette.color.scheme === "slate" ? "dark" : "light"
+//     giscus.setAttribute("data-theme", theme) 
+// }
+
+/* Register event handlers after documented loaded */
+// document.addEventListener("DOMContentLoaded", function() {
+//     var ref = document.querySelector("[data-md-component=palette]")
+//     ref.addEventListener("change", function() {
+//     var palette = __md_get("__palette")
+//     if (palette && typeof palette.color === "object") {
+//         var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+//         /* Instruct Giscus to change theme */
+//         var frame = document.querySelector(".giscus-frame")
+//         frame.contentWindow.postMessage(
+//         { giscus: { setConfig: { theme } } },
+//         "https://giscus.app"
+//         )
+//     }
+//     })
+// })
+</script>
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      本页面的全部内容在 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a> 协议之条款下提供，附加条款亦可能应用
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../from_oi_wiki/js/extra.js"></script>
+      
+        <script src="../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../js/tablesort.js"></script>
+      
+    
+  </body>
+</html>
