@@ -18,6 +18,8 @@ nav:
   - PL & 编译: 
     - pl/index.md
     - 编程语言原理: 
+      - pl/ppl_notes/index.md
+      - 我在 PPL 2022 Final 出的复习题: pl/ppl_notes/0_PPL_Final_Problem1.md
       - Part I - Judgments and Rules | 判断与规则:
         - 1 抽象语法: pl/ppl_notes/1_Abstract_Syntax.md
         - 2 归纳定义: pl/ppl_notes/2_Inductive_Definition.md
