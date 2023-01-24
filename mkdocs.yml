@@ -34,6 +34,7 @@ nav:
       - Part IV - Finite Data Types | 有限数据类型:
         - 10 积类型: pl/ppl_notes/10_product_types.md
         - 11 和类型: pl/ppl_notes/11_sum_types.md
+    - 编译原理: compile_principle/index.md
   - 核心知识: 
     - 核心知识/index.md
     - 操作系统:
@@ -65,6 +66,14 @@ nav:
       - 5 Cache: computer_organization/5_cache.md
       - 6 I/O: computer_organization/6_IO.md
       - 2022 回忆卷: computer_organization/历年卷.md
+    - 编译原理:
+      - compile_principle/index.md
+      - I 词法分析: compile_principle/1 Lexical Analysis.md
+      - II 语法分析 - 自顶向下分析: compile_principle/2 Parsing (I).md
+      - III 语法分析 - 自底向上分析: compile_principle/3 Parsing (II).md
+      - IV 语义分析: compile_principle/4 Semantic Analysis.md
+      - V 运行时环境: compile_principle/5 Runtime Environment.md
+      - VI 代码生成: compile_principle/6 Code Generation.md
     - 数学、数据结构和算法: 
       - math_ds_algo/index.md
       - 入门路线: math_ds_algo/getting_started.md
