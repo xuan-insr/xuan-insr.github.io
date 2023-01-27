@@ -216,7 +216,7 @@ auto prc_info = lower_bound(prices.begin(), prices.end(), i,
 - 内置类型的最大 / 最小值：
     - `#include <limits>`
     - `std::numeric_limits<int>::max()` 、 `std::numeric_limits<char>::min()` 之类的
-- 可以用  `x & (x - 1) == 0` 检验 `x` 是不是 2 的整数次幂
+- 可以用  `(x & (x - 1)) == 0` 检验 `x` 是不是 2 的整数次幂
 - 可以用  `x & (-x)` 计算 `x` 最大的 2 的整数次幂因子 (the greatest power of 2 that divides X)
 - 可以用  `__builtin_popcount(x)` 计算 int  `x` 在二进制表示中 1 的个数； `__builtin_popcountll` 可以用于 long long。
 
