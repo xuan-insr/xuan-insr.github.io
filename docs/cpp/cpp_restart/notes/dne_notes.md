@@ -3,6 +3,8 @@
 !!! abstract
     阅读 Bjarne Stroustrup 的 The Design and Evaluation of C++ 过程中的一些摘录。
 
+    在阅读时，我会更注意语言特性的设计和发展历程、相关的设计哲学之类的内容，而会比较少地关注已经熟悉或者未来会系统学习的语言特性本身。
+
 ### 前言
 
 C++ 和造就它的设计思想、编程思想自身不会演化，真正演化的是 C++ 用户们对于实际问题的理解，以及它们对于能够帮助解决这些问题的工具的理解。因此，本书也将追溯人们用 C++ 去处理各种关键性问题，以及实际处理那些问题的人们的认识，这些都对 C++ 的发展产生了重要影响。
@@ -18,7 +20,7 @@ C++ 和造就它的设计思想、编程思想自身不会演化，真正演化�
 ## 第一部分
 
 !!! abstract
-    我读完这一部分得到的收获是：了解了 C++ 设计和发展的一些规则和哲学，了解到了一些特性诞生的原因和过程，理解了那些规则对于 C++ 发展的影响，以及对于「C++ 解决什么问题」这个讨论的影响。
+    这部分描述了从 C with Classes (1979) 到 Release 1.0 (1985) 的历程。我读完这一部分得到的收获是：了解了 C++ 设计和发展的一些规则和哲学，了解到了一些特性诞生的原因和过程，理解了那些规则对于 C++ 发展的影响，以及对于「C++ 解决什么问题」这个讨论的影响。
 
 ### 1 The Prehistory of C++
 
@@ -202,6 +204,33 @@ BS 还提及了当时链接器对标识符字符数的限制带来了一些麻�
 
     11~14章好像有关于此的更多讨论。
 
+值得注意的一个例子是：
+```c++ linenums="1"
+#include <iostream>
+using namespace std;
+
+struct B {
+public:
+    int b{0};
+    virtual void f() { cout << "B::f()" << endl; }
+    void g() { b++; f(); }
+    B() { b++; f(); }
+};
+
+struct D : public B {
+public:
+    D() {}
+    void f() { cout << "D::f()" << endl; }
+};
+
+int main() {
+    D d;
+    d.g();
+}
+```
+
+虽然这里是用 `d.g()` 访问的成员函数，但是由于 `g` 里面其实访问的是 `this->f()`，因此仍然会查虚表。因此上面的代码中 `f` 是或不是 virtual 会带来不同的运行结果。
+
 #### 3.6 重载
 
 BS 陈述了引入重载之前的犹豫，即讨论了实现难度、（在手册中的）定义难度、效率问题和阅读难度，并确定了这些不是问题。「一种 feature 能够怎样被用好，要比它可能怎样被用错重要得多。」
@@ -333,9 +362,7 @@ C++ 从 Algol 68 中吸收了一个概念，即允许把声明写在需要它的
 
 为了解决 1 的情况，`for` 语句的 `init-statement` 除了 `expression-statement` 之外，还支持 `simple-declaration`，即 `for (int i = 0; i < MAX; i++)`。
 
-为了解决 3 的情况，`if` 语句的 `condition` 除了 `expression` 之外，还支持 initialized declaration (值是其初始值 contextually converted to bool 的结果[^stmt.pre#6])，即 `if (int i = getint())`。（C++17 开始 `if` 语句也有 `init-statement` 了。）
-
-[^stmt.pre#6]: https://timsong-cpp.github.io/cppwp/n4868/stmt.pre#6
+为了解决 3 的情况，`if` 语句的 `condition` 除了 `expression` 之外，还支持 initialized declaration (值是其初始值 contextually converted to bool 的结果^[stmt.pre#6](https://timsong-cpp.github.io/cppwp/n4868/stmt.pre#6)^)，即 `if (int i = getint())`。（C++17 开始 `if` 语句也有 `init-statement` 了。）
 
 ### 4 C++ Language Design Rules
 
@@ -433,9 +460,183 @@ C++ 的设计是为了作为一种系统编程语言，为了开发由系统部�
 
 ## 第二部分
 
+第二部分介绍了 C++ Release 2.0 (1989)、ARM (1990: namespaces, exception handling, nested classes, templates)、C++98 (1998: )
+
+### 10 Memory Management
+
+`new` 和 `delete` 将存储分配和初始化分离了。用 `new` 来创建一个对象时，`X::operator new` 或者 `::operator new` （取决于前者是否存在）负责分配对应大小的空间并返回一个 `void*`，然后 `X(...)` 负责在这个空间上初始化这个对象。
+
+在 `new` 和 `delete` 之外，用户还可能需要对内存的分配和释放进行细粒度的控制。例如，在很多程序里可能需要频繁地创建和删除大量的某几个重要的类的对象，且通常比较小；这种情况通常可以使用一个独立的 allocator 来解决。另外也有一些需要在资源紧张的环境下长时间运行且不能中断的程序，也需要额外的内存管理策略。因此 `operator new[]` 和 `operator delete[]` 被引入。
+
+需要注明的是，`new` 出的对象用 `delete []` 析构或者 `new []` 出的对象数组用 `delete` 析构都是 UB ^[expr.delete#2](https://timsong-cpp.github.io/cppwp/n4868/expr.delete#2)^。
+
+对于 `delete []`，维护数组元素个数的负担由语言实现；事实上使用 array `new` expressions 时，语言实现可能会在 `operator new[]` 的参数中增加申请空间的大小用来存放数组元素个数（注意，这个事情由 array `new` expressions 而非 `operator new[]` 负责 ^[new.delete#footnote-219](https://timsong-cpp.github.io/cppwp/n4868/new.delete#footnote-219)^）。
+
+本章还讨论了 placement new 和如何处理存储器耗尽的相关问题。这些问题会在后续重新学习，此暂略。本章还讨论了自动的 GC 应当如何设计，主张了可以选用可选的 GC；相关讨论也符合后面智能指针的设计。
+
+### 11 Overloading
+
+C++ 希望表达方式是灵活且自由的。例如，它希望人们能写出 `F = M * A`，而非 `assign(F, mul(M, A))`；它也希望当 `M` 是 `int` 而 `A` 是 `double` 时，能够接受 `M * A` 并作出 `M` 必须在做乘法前提升到 `double` 的判断，而不是要求程序员写出 `double(M) * A`。
+
+但同时，这样的灵活且自由使得安全性、可预见性和简单性受到影响。
+
+11.2 讨论了重载解析的相关话题：11.2.1 提到 C 语言中 int/char, float/double, const/non-const 并没有在函数调用时得到有效区分，但是在重载解析语境下这些（以及 base/derived class）被区分开了。11.2.2 讨论了重载解析面对可能的转换时的解析方案；为防止与现行版本不同，这部分学习也将延后。11.2.3 讨论了空指针的处理，例如存在 `void f(char *); void f(int);` 这样的重载时，定义 `NULL` 为 `0` 并不是一个好选择；而 C++ 的理念又不希望使用宏，例如 `#define NULL (void *)0`。
+
+11.3 讨论了重载如何处理链接问题。一种实现是，将 `void foo(int i);` 产生的函数名字称为 `foo_Fi`，`void foo(int i, char *j);` 产生的函数名字称为 `foo_FiPc` 之类的。这同时能够完成在链接时的类型安全检查。另一方面，为了和 C 链接，C++ 引入了扩充 `extern "C" { ... }`，从而告诉编译器在这些部分采用 C 的命名习惯。
+
+11.4 讨论了对象的建立和复制。将析构函数设为私有，可以使得类的对象不会在全局或者栈上分配，只能使用 `new` 来分配，而且除了成员函数外不能 `delete` 它。将类的 `operator new` 函数设为私有，可以起到相反的效果。还讨论了如何制止派生，不过 C++11 已经引入了 `final` 来实现这个功能。
+
+11.5.1 讨论了对 `operator ->()` 的重载支持；这种支持是为了实现 smart pointer 而提出的。如果有这样的重载，那么 `x->m` 就会被解释为 `x.operator->()->m`^[over.ref#1](https://timsong-cpp.github.io/cppwp/n4868/over.ref#1)^。
+
+!!! note
+    注意，`operator->` 可以看做是一个一元运算符，其不接收 `m` 作为参数，而是将返回值 `ret` 再用来进行 member access `ref->m`。由于对于普通指针，`p->m`, `(*p).m`, `p[0].m` 互相等价，因此相应的类也可以提供类似的等价关系：
+    ```C++
+    class Ptr {
+        Y* p;
+    public:
+        Y* operator->() { return p; }
+        Y& operator*()  { return *p; }
+        Y& operator[](int i) { return p[i]; }
+    };
+    ```
+
+11.5.2 讨论了为什么 `operator .()` 暂时还不能重载，讨论了其中会遇到的问题和进行的考虑。11.5.3 讨论了对于前缀和后缀 `++`, `--` 的重载；虽然最终引入了一个额外的参数用于处理后缀版本（因为其他一元操作符都是前缀的），但是 BS 说他更愿意用 `operator prefix++()` 和 `operator postfix++()` 的方式处理，虽然有些人不喜欢增加关键字。
+
+11.5.4 提到了对 `operator ->*(S b);` 的重载，这是一个正常的二元操作符，而不像 `->` 那样类似一个一元操作符；同时提到了 `.*` 由于与 `.` 中一样的原因没有被支持重载。11.5.5 提到了允许逗号运算符的重载。对这两个允许的原因都是「没有发现不能这样做的理由」。
+
+11.6 提到了对增加运算符，或者支持用户自定义的运算符的一些考虑。不过这些东西暂时还没有被采纳。
+
+11.7 讨论了枚举。BS 说，他希望 C++ 支持的程序设计风格中并不需要枚举，也没有特别的意愿去处理相关的事情，所以 C++ 直接采纳了 C 的枚举规则，没有做任何改变。不过为了函数重载，C++ 之后支持了基于枚举的重载。但是我懒得学这个了，暂时放一放。
+
+11.7 还进行了引入布尔类型的相关介绍。
+
+### 12 Multiple Inheritance
+
+本章讨论了多重继承的引入过程。BS 也提到，多重继承在 2.0 就加入到 C++ 是一个失误，因为还有更好实现也更重要的东西没加进来。
+
+BS 举了几个多重继承的应用案例：
+
+1. 有两个库类 `display` 和 `task`，分别表示一个显示对象和一个调度单元；程序员希望创建一个 `my_displayed_task`，这个类的每个对象既是一个 `display`，也是一个 `task`。
+2. 一系列接口的组合。例如[^stream class hierarchy]  
+<center>![](2023-01-29-17-15-41.png){width=250}</center>
+3. Mixin (i.e. mix-in)。这种风格用一个抽象类来定义接口，用一些派生类提供实现（但是这些类本身也只是「积木」）。[What are Mixins (as a concept)](https://stackoverflow.com/a/18775236/14430730) 的回答中比较好地解释了 mixin 的理念，但是它是用模板实现的；[A use for multiple inheritance?](https://stackoverflow.com/questions/573913/a-use-for-multiple-inheritance) 的回答中展示了用多重继承实现 mixin 的方式。
+
+一个例子是这样的：
+```c++
+class set {
+public:
+    virtual void insert(T*) = 0;
+    virtual void remove(T*) = 0;
+    // ...
+};
+
+class list_set : public set, private list {
+    // ...
+public:
+    void insert(T*) { //... }
+    void remove(T*) { //... }
+    // ...
+};
+```
+
+也就是说，设计接口 `set` 和用户使用 `list_set` 时都不需要关心其具体的实现；而实现完全由 `list_set` 的设计者从 `list` 类中继承并实现。
+
+[^stream class hierarchy]: https://commons.wikimedia.org/wiki/File:Stream_Class_Hierarchy.png
+
+[Why should I avoid multiple inheritance in C++?](https://stackoverflow.com/a/407928/14430730) 的回答中讨论了多重继承相关的一些问题。从一些讨论中也可以看出，多重继承有用但不多。BS 给出的解释是，多重继承是很便宜的东西，因此可以加进来；而同时它也不是什么重要的东西，所以不常用也是可以接受的，但是要用的时候还是能用到的。
+
+12.3 和 12.4 节还讨论了存在多继承对象是如何布局的，讨论了虚继承。存在虚继承时也会用到虚表，一种实现中，虚表用来记录虚基类的偏移。作为一个（比较容易看懂的）例子，VC++ 中的实现可以在 [这里](http://www.openrce.org/articles/files/jangrayhood.pdf) 看到解释。需要注意的是，具体的实现是 implementation-specific 的。
+
+[How Does Virtual Base Class Works Internally](https://www.vishalchovatiya.com/part-2-all-about-virtual-keyword-in-cpp-how-virtual-class-works-internally/) 中给出的例子也比较容易理解：
+
+```c++
+class Top { public: int t; };
+class Left : virtual public Top { public: int l; };
+class Right : virtual public Top { public: int r; };
+class Bottom : public Left, public Right { public: int b; };
+```
+
+```
+|----------------------| <---- Bottom bot;   // Bottom object           
+|  Left::l             |          
+|----------------------|           |------------------| 
+|  Left::_vptr_Left    |-----|     |  offset of Top   | // offset starts from 
+|----------------------|     |-----|------------------| // Left subobject = 20
+|  Right::r            |           |    ...           |
+|----------------------|           |------------------| 
+|  Right::_vptr_Right  |-----|       
+|----------------------|     |     |------------------| 
+|  Bottom::b           |     |     |  offset of Top   | // offset starts from 
+|----------------------|     |-----|------------------| // Right subobject = 12
+|  Top::t              |           |    ...           | 
+|----------------------|           |------------------| 
+```
+
+12.7 介绍了曾经存在的 delegation 特性以及它现在不存在了的原因。12.8 介绍了差点引进的重命名机制。
+
+12.9 介绍了继承的初始化。在 2.0 之前，子类调用父类构造函数的方式大概长这样：
+
+```C++
+class vector {
+    //...
+    vector(int);
+};
+
+class vec : public vector {
+    //...
+    vec(int low, int high) : (high - low - 1) { //... }
+};
+```
+
+在 2.0 里要求明确给出基类的名字，从而适配多继承。
+
+另一方面，2.0 之前成员初始化的顺序是未定义的，而 2.0 中规定初始化的顺序由声明顺序确定。
+
+### 13 Class Concept Refinements 
+
+13.2 中解释了 2.0 中添加的抽象类和纯虚函数的概念。这里举的例子就是 12 节中演示的 `list_set` 的例子。抽象类能够更清晰地划分用户和实现者。纯虚函数的实现方式可以是，在虚表的对应项中填入一个指向 `_pure_virtual_called` 的指针，而这个函数可以提供一些运行时错误信息。
+
+13.3 中讨论了 const 的一些信息，例如 const 成员函数。同时需要注意的是，const 对象有可能会被放到 ROM 里，因此试图对 const 变量的修改（例如 `const int i = 1; const int* p = &i; *((int *)p) = 2;` 或者 `*const_cast<int*>(p) = 2`）都是 UB ^[dcl.type.cv#4](https://timsong-cpp.github.io/cppwp/n4868/dcl.type.cv#4),[ expr.const.cast#note-2](https://timsong-cpp.github.io/cppwp/n4868/expr.const.cast#note-2)^。因此 `const_cast` 只能用来去除那些最终指向非 const 对象的指针或引用的常量性质。因此 `mutable` 被引入，来处理一些需要的可变性。
+
+13.4 中讨论了 static 成员。一个 static 成员声明仅仅是一个声明，表示它所声明的对象或者函数在程序的某个地方有唯一定义。因此，在这种情况下，类被简单地当做一种作用域来使用；这也是名字空间概念的一个起源。
+
+13.5 介绍了类的嵌套；13.6 介绍了没有采用的 `inherited::`。
+
+13.7 介绍了 relaxation of the overriding rules。我们知道父类有一个 `virtual int f() {...}`，子类有一个 `void f() {...}`，这是过不了编译的，联系虚函数的实现就能知道。不过，如果父类有一个 `virtual Base* f() {...}`，子类有一个 `Derived* f() {...}`，这种情况在后来是被允许了的^[class.virtual#8](https://timsong-cpp.github.io/cppwp/n4868/class.virtual#8)^。
+
+!!! note
+    我们还讨论了如果父类有一个 `int f() {...}`，子类有一个 `void f() {...}` 的情况算不算 override，因为这样也能过编译。在标准中，override 的概念在虚函数一节中被引用；但注意到 [class.virtual#8](https://timsong-cpp.github.io/cppwp/n4868/class.virtual#8) 处并没有强调 `virtual`，因此我们认为这种情况不算 override。
+
+    「override」从字面上理解是覆盖，因此对于子类对象及其指针来说不应能够访问到父类对应的函数；但是在该例子中，`((Base &)derived).f()` 能访问到基类的 `f`，因此实际上 `Base::f` 并没有被 override；`Derived` 中同时包含 `Derived::f` 和 `Base::f`，而编译器会选择后者作为调用的对象。
+
+    这就类似于 `struct A { int a, b; };  struct B : A { int a; };`，此时 `B` 中有 `A::a`, `A::b`, `B::a`，但是使用时编译器会选择 `B::a` 来使用。
+
+13.8 讨论了 multi-methods，即如果存在 `class A {...}; class B : A {...}; class C : A {...};`，如何能够设计一个函数 `f` 来接受 `f(B&, B&)`, `f(B&, C&)`, `f(C&, B&)`, `f(C&, C&)` 这么多种情况，而不需要写 $2^n$ 个声明呢？说实话我没完全理解这个问题的意义，也还好 C++ 目前并没有引进相关的直接特性，因此我就先不管了XD
+
+13.9 讨论了 protected members。其考虑是，派生类和 the general public 可能并不一样，派生类理应看到更多的东西。BS 自己也说 protected 成员变量看起来用处不大，但是 protected 成员函数还是有其意义的。
+
+13.10 讨论了一个问题：如果有一个类需要产生虚表，而多个编译单元都使用这个类，就会产生好几份虚表。这里讨论了几种解决方案，但是看起来都不怎么有效和优雅。等有空查一查这个问题现在是怎么解决的。
+
+13.11 介绍了 pointer to member。我们有时希望传递一个函数指针，或者搞一个函数指针数组之类的东西；但是非 static 的类成员需要一个对象才能访问。因此 C++ 引入了 pointer to member。我查了很久没查到什么经典的使用案例，以后用到了再说吧。
+
+### 14 Casting
+
+### 15 Templates
+
+### 16 Exception Handling
+
+### 17 Namespace
+
+### 18 The C Preprocessor
+
+## C++ in 2005
+
+!!! note
+    Added to Japanese translation
 
 
 
 *[BS]: Bjarne Stroustrup
 *[SMFs]: Special Member Functions
 *[GC]: Garbage Collection
+*[ARM]: The Annotated C++ Reference Manual
