@@ -50,6 +50,7 @@ list initialization (C++11)、brace-or-equal initializers (C++11)、designated i
 - [ ] 3-way comparison (C++20)
 - [ ] signed integers are 2's complement (C++20)
 - [ ] modules (C++20)
+- [ ] UB
 
 
 *[ARM]: The Annotated C++ Reference Manual
