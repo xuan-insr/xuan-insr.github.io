@@ -8,3 +8,48 @@
 
 !!! danger
     本文还没有正式启动！我正在展开一些基本的阅读和整理，并将看到的各种东西记录在导航下的各种「notes」里。
+
+### Topics
+
+- [ ] 类 (1979, C with Classes)：类与成员、继承、private & public、友元、inline functions
+- [ ] default arguments, `operator =` overload (1979, C with Classes)
+- [ ] 类 (1985, Release 1.0)：虚函数、new & delete、`::`
+- [ ] 函数和运算符重载 (1985, Release 1.0)
+- [ ] I/O stream (1985, Release 1.0; C++98)
+- [ ] string (1985, Release 1.0; C++98)
+- [ ] 类 (1989, Release 2.0)：多继承、抽象类、`const` 和 `static` 成员函数、每个类的 new & delete、protected、pointers to members
+- [ ] namespace (1990, ARM)
+- [ ] exception (1990, ARM)
+- [ ] 模板 (1990, ARM)
+- [ ] 类 (C++98)：RTTI、covariant return types、mutable
+- [ ] cast operators (C++98)
+- [ ] bool (C++98)
+- [ ] 模板 (C++98)：template instantiations、member templates
+- [ ] STL (C++98)：containers, iterators, algorithms, function objects (`std::function` C++11)
+- [ ] 初始化：value initialization (C++03)、
+list initialization (C++11)、brace-or-equal initializers (C++11)、designated initialization (C++20)
+- [ ] 右值引用和移动语义 (C++11)
+- [ ] 类 (C++11)：defaulted and deleted functions、final and override、move constructors and move assignment operators、delegating and inherited constructors
+- [ ] smart pointers (C++11)
+- [ ] lambda expressions (C++11); generic lambda (C++14); capture `*this` (C++17)
+- [ ] auto (C++11); return type deduction (C++14)
+- [ ] range-based for loop (C++11); init-statement in range-for (C++20)
+- [ ] type aliases (C++11)
+- [ ] trailing return type (C++11)
+- [ ] type traits (C++11)
+- [ ] constexpr (C++11); consteval, constinit (C++20)
+- [ ] 一些遗留问题 (C++11): final, override, nullptr
+- [ ] concurrency support (C++11), memory model (C++11), thread local storage (C++11)
+- [ ] variable template (C++14)
+- [ ] string_view (C++17)
+- [ ] inline variables (C++17)
+- [ ] structured bindings (C++17)
+- [ ] initializers for if and switch (C++17)
+- [ ] [Order of evaluation](https://en.cppreference.com/w/cpp/language/eval_order)
+- [ ] `std::tuple`, `std::any`, `std::optional`, `std::variant` (C++17)
+- [ ] 3-way comparison (C++20)
+- [ ] signed integers are 2's complement (C++20)
+- [ ] modules (C++20)
+
+
+*[ARM]: The Annotated C++ Reference Manual
