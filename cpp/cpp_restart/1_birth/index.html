@@ -2523,6 +2523,12 @@
 </ol>
 <p>很快，<abbr title="Bjarne Stroustrup">BS</abbr> 在 1979 年就遇到了「没有合适工具」的问题，因此他开始按照上述观点开发一个工具。为了上述「可移植性」，他自然不会去开发一个崭新的语言；他选择基于某种已经存在的语言开发一套预处理器，从而将支持了类的语言变体处理成对应语言本身就接受的程序。</p>
 <p>选择哪门语言呢？<abbr title="Bjarne Stroustrup">BS</abbr> 在各种系统程序编程语言中比较喜欢 C，因为它灵活（通用）、高效、各种平台都有 C 编译器、可移植。他后来指出，希望 C++ 一方面能够像 C 一样接近机器，另一方面又能接近需要解决的问题。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>我画了张图！</p>
+<p><center><img alt="" src="../2023-01-31-23-59-28.png" width="500" /></center></p>
+<p>容易理解，随着抽象程度的增加，程序的性能很有可能受到损失。例如 Python 中能保存任意整数的 bignum 的性能一定不会优于 CPU 原生支持的整型。而 C++ 的期望则是，把握这里的「or equal」，即在不损失性能的前提下提供必要的数据抽象。</p>
+</div>
 <p>于是，他设计出了 C with Classes（其中的名字「class」来自 Simula），并设计了一个预处理程序 Cpre（1981/12 首次发布），来将 C with Classes 处理成 C。</p>
 <p><abbr title="Bjarne Stroustrup">BS</abbr> 到 1982 年的时候认为，C with Classes 是成功的，但是又不太成功：它确实很有用，而且有不少人用，从而也能支持维护成本；但是用的人又不够多，因此不足以支持一个开发组织。这样的情况会使得 <abbr title="Bjarne Stroustrup">BS</abbr> 本人被困在这里，因此他决定基于在 C with Classes 的经验，开发一种新的、更好的语言。经过一些讨论和发展，这门语言被命名为 C++。</p>
 <p><abbr title="Bjarne Stroustrup">BS</abbr>  讨论了「用户会是哪些人」「他们使用什么样的系统」「作者如何避免负责提供工具」，从而讨论「这些问题将如何影响语言的定义」。最后一个问题的结论是，C++ 不能带有特别复杂的编译的或运行时的 feature，同时必须能使用原来的链接器，并且产生的代码一开始就要和 C 的一样高效。</p>
@@ -2541,7 +2547,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-31T09:50:09+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-31</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-02-01T14:34:26+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-02-01</span>
       
         <br>
         创建日期:
