@@ -9,27 +9,49 @@
 !!! danger
     本文还没有正式启动！我正在展开一些基本的阅读和整理，并将看到的各种东西记录在导航下的各种「notes」里。
 
+### 内容安排
+
+初步想的内容（划删除线的是可能延后的内容）：
+
+（写好了的就打勾）
+
+1. [x] C++ 诞生
+1. [x] 编程范式
+1. [ ] 引入 oop（list & shape）
+1. [ ] 类：成员、构造与析构 (defaulted and deleted functions)、inline functions、private & public & friend & protected、继承（多继承、函数重写）、抽象类
+1. [ ] 从类引出 default arguments, `operator =` overload，然后引出函数和运算符重载
+1. [ ] 从运算符重载引出引用
+1. [ ] 类：虚函数、多继承（虚继承）
+1. [ ] 类：new & delete, const 和 static 成员函数、mutable ~~、pointers to members、final and override~~
+1. [ ] 从 const 引出 UB
+1. [ ] 引入模板
+1. [ ] STL
+
 ### Topics
 
-- [ ] 类 (1979, C with Classes)：类与成员、继承、private & public、友元、inline functions
-- [ ] default arguments, `operator =` overload (1979, C with Classes)
-- [ ] 类 (1985, Release 1.0)：虚函数、new & delete、`::`
-- [ ] 函数和运算符重载 (1985, Release 1.0)
+（已经安排在上面的就打勾了）
+
+- [x] 类 (1979, C with Classes)：类与成员、继承、private & public、友元、inline functions
+- [x] default arguments, `operator =` overload (1979, C with Classes)
+- [x] 类 (1985, Release 1.0)：虚函数、new & delete、`::`
+- [x] 函数和运算符重载 (1985, Release 1.0)
 - [ ] I/O stream (1985, Release 1.0; C++98)
 - [ ] string (1985, Release 1.0; C++98)
-- [ ] 类 (1989, Release 2.0)：多继承、抽象类、`const` 和 `static` 成员函数、每个类的 new & delete、protected、pointers to members
+- [x] 类 (1989, Release 2.0)：多继承、抽象类、`const` 和 `static` 成员函数、每个类的 new & delete、protected、pointers to members
 - [ ] namespace (1990, ARM)
 - [ ] exception (1990, ARM)
-- [ ] 模板 (1990, ARM)
-- [ ] 类 (C++98)：RTTI、covariant return types、mutable
+- [x] 模板 (1990, ARM)
+- [x] 类 (C++98)：mutable
+- [ ] 类 (C++98)：RTTI、covariant return types
 - [ ] cast operators (C++98)
 - [ ] bool (C++98)
-- [ ] 模板 (C++98)：template instantiations、member templates
-- [ ] STL (C++98)：containers, iterators, algorithms, function objects (`std::function` C++11)
+- [x] 模板 (C++98)：template instantiations、member templates
+- [x] STL (C++98)：containers, iterators, algorithms, function objects (`std::function` C++11)
 - [ ] 初始化：value initialization (C++03)、
 list initialization (C++11)、brace-or-equal initializers (C++11)、designated initialization (C++20)
+- [x] 类 (C++11)：defaulted and deleted functions
 - [ ] 右值引用和移动语义 (C++11)
-- [ ] 类 (C++11)：defaulted and deleted functions、final and override、move constructors and move assignment operators、delegating and inherited constructors
+- [ ] 类 (C++11)：move constructors and move assignment operators、delegating and inherited constructors
 - [ ] smart pointers (C++11)
 - [ ] lambda expressions (C++11); generic lambda (C++14); capture `*this` (C++17)
 - [ ] auto (C++11); return type deduction (C++14)
@@ -50,7 +72,7 @@ list initialization (C++11)、brace-or-equal initializers (C++11)、designated i
 - [ ] 3-way comparison (C++20)
 - [ ] signed integers are 2's complement (C++20)
 - [ ] modules (C++20)
-- [ ] UB
+- [x] UB
 
 
 *[ARM]: The Annotated C++ Reference Manual
