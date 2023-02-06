@@ -645,8 +645,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#总结" class="md-nav__link">
-    总结
+  <a href="#小结" class="md-nav__link">
+    小结
   </a>
   
 </li>
@@ -657,8 +657,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#32-继承--inheritance" class="md-nav__link">
-    3.2 继承 | Inheritance
+  <a href="#32-继承--多态--inheritance--polymorphism" class="md-nav__link">
+    3.2 继承 &amp; 多态 | Inheritance &amp; Polymorphism
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-总结" class="md-nav__link">
+    3.3 总结
   </a>
   
 </li>
@@ -2634,8 +2641,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#总结" class="md-nav__link">
-    总结
+  <a href="#小结" class="md-nav__link">
+    小结
   </a>
   
 </li>
@@ -2646,8 +2653,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#32-继承--inheritance" class="md-nav__link">
-    3.2 继承 | Inheritance
+  <a href="#32-继承--多态--inheritance--polymorphism" class="md-nav__link">
+    3.2 继承 &amp; 多态 | Inheritance &amp; Polymorphism
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-总结" class="md-nav__link">
+    3.3 总结
   </a>
   
 </li>
@@ -2670,7 +2684,7 @@
 
 <h1 id="3-面向对象程序设计--object-oriented-programming">3 面向对象程序设计 | Object-Oriented Programming<a class="headerlink" href="#3-面向对象程序设计--object-oriented-programming" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 2333 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 91 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 9 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 4179 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 224 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 17 分钟</p>
 </div>
 <p>在上一节中，我们讨论了编程范式和抽象的相关内容。而我们要介绍的 OOP 也是一种编程范式；它在结构化程序设计的基础上做了进一步的抽象。</p>
 <p>OOP 强调封装、继承和多态。我们通过一些例子来解释这些思想。</p>
@@ -2913,18 +2927,314 @@
 <summary>C++ 中 <code>class</code> 和 <code>struct</code> 的区别</summary>
 <p>事实上，在 C++ 中 <code>class</code> 和 <code>struct</code> 的 <strong>唯一</strong> 区别是：<code>class</code> 的所有成员默认是 <code>private</code> 的，而 <code>struct</code> 的所有成员默认是 <code>public</code> 的<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.access.general#3">class.access.general#3</a></sup>；没有其他任何差别。因此，<code>class Foo { /* something */ };</code> 和 <code>struct Foo {private: /* something */ };</code> 是完全等价的。</p>
 </details>
-<h3 id="总结">总结<a class="headerlink" href="#总结" title="Permanent link">&para;</a></h3>
+<h3 id="小结">小结<a class="headerlink" href="#小结" title="Permanent link">&para;</a></h3>
 <p>总结来说，<strong>封装</strong> 思想将数据与操纵数据的函数以更加明确的方式绑定在一起，并给予必要的访问控制，从而防止外部随意访问类的成员变量或函数。</p>
 <p>这种方式也有助于降低系统的复杂性和提高代码的可维护性，例如在前例中，如果我们希望模糊所有输出的年龄数据（例如舍入到 10），我们只需要修改 <code>getAge()</code> 中的代码，而不需要在所有访问过 <code>user.age</code> 的地方做修改。</p>
-<h2 id="32-继承--inheritance">3.2 继承 | Inheritance<a class="headerlink" href="#32-继承--inheritance" title="Permanent link">&para;</a></h2>
-<p>考虑这样一个问题！我们在 3.1 中假设我们和队友一起做大程，想要做一个绘图板；我们做好了某种 <code>list</code>，</p>
+<h2 id="32-继承--多态--inheritance--polymorphism">3.2 继承 &amp; 多态 | Inheritance &amp; Polymorphism<a class="headerlink" href="#32-继承--多态--inheritance--polymorphism" title="Permanent link">&para;</a></h2>
+<p>考虑这样一个问题！我们在 3.1 中假设我们和队友一起做大程，想要做一个绘图板；我们已经做好了某种 <code>list</code>，用来保存我们的各种图形。假设我们目前支持 2 种图形：圆形和长方形。我们设计了如下的类：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">};</span><span class="w">  </span><span class="c1">// 用来保存坐标</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Circle</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Point</span><span class="w"> </span><span class="n">center</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">draw</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 做一些准备（例如准备画笔）</span>
+<span class="w">        </span><span class="c1">// 画圆！</span>
+<span class="w">        </span><span class="c1">// 做一些后续处理（例如重置画笔）</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Rectangle</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Point</span><span class="w"> </span><span class="n">center</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">draw</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 做一些准备（例如准备画笔）</span>
+<span class="w">        </span><span class="c1">// 画长方形！</span>
+<span class="w">        </span><span class="c1">// 做一些后续处理（例如重置画笔）</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition tips">
+<p class="admonition-title">Tips</p>
+<p>在 C++ 中，如果有对 <code>struct Foo</code> 的定义，在使用这个结构体时只需要写 <code>Foo</code> 即可，而无需像 C 语言那样带上关键字 <code>struct</code>。<code>class</code> 也类似。上面代码第 5 行是一个例子。</p>
+</div>
+<p>这种设计存在一些问题。</p>
+<p>其一，我们可以看到 <code>Circle</code> 和 <code>Rectangle</code> 包含了一些公共的部分，例如 <code>center</code> 成员和 <code>draw()</code> 中的准备和后续处理。这种设计的问题是，如果我们希望调整准备和后续处理的内容（例如设置画笔颜色），我们需要在这两个类中都做一次相同的修改；当然，我们可以通过把「准备」和「后续处理」提出成函数来部分解决上面的问题（虽然这样会一定程度上破坏封装性）：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">draw_prepare</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* 做一些准备（例如准备画笔）*/</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">draw_finalize</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* 做一些后续处理（例如重置画笔）*/</span><span class="w"> </span><span class="p">}</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Circle</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Point</span><span class="w"> </span><span class="n">center</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">draw</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">draw_prepare</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// 画圆！</span>
+<span class="w">        </span><span class="n">draw_finalize</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Rectangle</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Point</span><span class="w"> </span><span class="n">center</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">draw</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">draw_prepare</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// 画长方形！</span>
+<span class="w">        </span><span class="n">draw_finalize</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>但是，如果我们希望给各个图形类添加一些公共的属性（例如颜色），我们就仍然不得不在各个类中都做一次相同的修改。这时我们就没办法通过类似上面的方式解决了。而且如果我们支持更多的图形种类，这种重复会更多。这说明我们的代码复用性较差、维护难度较高。</p>
+<p>其二，在这样的设计下，我们想要使用前面的某种线性表保存时，不得不保存为两个线性表；但是由于 <code>typedef</code> 不能像 <code>#define</code> 那样取消定义，因此我们可能写出这样的丑陋代码：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#define elem Circle</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;linkedlist.h&quot;</span>
+<span class="cp">#undef elem</span>
+
+<span class="cp">#define elem Rectangle</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;linkedlist.h&quot;</span>
+<span class="cp">#undef elem</span>
+</code></pre></div></td></tr></table></div>
+<p>而且其实这个代码还没办法成功编译，因为在这种情况下，我们会有两份不同的 <code>node</code> 和 <code>linkedlist</code> 定义：</p>
+<p><center><img alt="" src="../2023-02-06-21-40-36.png" width="500" /></center></p>
+<p>即使不考虑语言的限制，也会出现的一个问题是：如果我们支持 16 种不同的图形，那么我们就需要 16 个不同的链表来保存这些图形；在每次遍历、查找、删除、插入等事件发生时，代码都需要处理这 16 个链表，这是非常不优雅的。更不优雅的是，如果要增加一种新的图形，我们需要在 <strong>每处</strong> 使用链表的地方都增加对新的图形对应链表的处理（高亮处表示增加一种新的图形需要做的更改）：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">enum</span><span class="w"> </span><span class="nc">shape_type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="n">CIRCLE</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">RECTANGLE</span><span class="p">,</span><span class="w"> </span>
+<span class="hll"><span class="w">    </span><span class="n">TRIANGLE</span><span class="w"> </span>
+</span><span class="p">};</span>
+
+<span class="n">linkedlist_circle</span><span class="w"> </span><span class="n">lc</span><span class="p">;</span>
+<span class="n">linkedlist_rectange</span><span class="w"> </span><span class="n">lr</span><span class="p">;</span>
+<span class="n">linkedlist_triangle</span><span class="w"> </span><span class="n">lt</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">drawall</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">lc</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="n">lc</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">draw</span><span class="p">();</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">lr</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="n">lr</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">draw</span><span class="p">();</span>
+<span class="hll"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">lt</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class="hll"><span class="w">        </span><span class="n">lt</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">draw</span><span class="p">();</span>
+</span><span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">remove</span><span class="p">(</span><span class="n">shape_type</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">CIRCLE</span><span class="p">)</span>
+<span class="w">        </span><span class="n">lc</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RECTANGLE</span><span class="p">)</span>
+<span class="w">        </span><span class="n">lr</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+<span class="hll"><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">TRIANGLE</span><span class="p">)</span>
+</span><span class="hll"><span class="w">        </span><span class="n">lt</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+</span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>这也说明我们当前的代码的可维护性较低。</p>
+<p>我们介绍 OOP 中的 <strong>继承 (inheritance)</strong> 机制，用来解决这个问题。这种机制允许我们建立「有层次的」类，而非独立的一个一个的类。</p>
+<p>例如我们定义了「人类」这个类，有时我们需要更细致的划分。例如我们需要「学生」这样一个类。显然，「学生」是「人类」的真子集，因此「学生」这个类必然拥有「人类」的状态和行为。而不同的是，「学生」作为一个更细的划分，具有一些「人类」不一定具有的状态和行为，例如均绩和交作业。<strong>继承</strong> 可以让我们克隆已经存在的类的状态和行为，并在克隆的基础上进行一些增加或修改，从而获得我们需要的类。我们把被继承的类称为 <strong>基类 (base class)</strong>，而继承产生的新类称为 <strong>派生类 (derived class)</strong>。</p>
+<div class="admonition tips inline end">
+<p>再次提示！本节中，大家不必太在意语法细节。</p>
+</div>
+<p>基类也被称为 <strong>父类 (parent class)</strong> 或者 <strong>超类 (super class)</strong>；派生类也被称为 <strong>子类 (child class / sub class)</strong>。 </p>
+<p>拿前面的例子来说，我们可以设计出这样的类：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Shape</span><span class="w"> </span><span class="p">{</span><span class="w">       </span><span class="c1">// 基类 Shape</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">prepare</span><span class="p">()</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="cm">/* 做一些准备（例如准备画笔）*/</span><span class="w"> </span><span class="p">}</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">finalize</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* 做一些后续处理（例如重置画笔）*/</span><span class="w"> </span><span class="p">}</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Point</span><span class="w"> </span><span class="n">center</span><span class="p">;</span><span class="w">   </span><span class="c1">// 共有的成员变量</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">draw</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">   </span><span class="c1">// 共有的成员函数</span>
+<span class="w">        </span><span class="n">prepare</span><span class="p">();</span>
+<span class="w">        </span><span class="n">do_draw</span><span class="p">();</span>
+<span class="w">        </span><span class="n">finalize</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">do_draw</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// 要求所有派生类都实现 do_draw()</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>我们设计了一个基类 <code>Shape</code>，它保存了各种图形共同具有的状态（<code>center</code>）和行为（<code>draw()</code>）；同时规定了所有派生类都需要实现一个 <code>do_draw()</code> 函数来完成绘制自身的实际操作。</p>
+<p>这样，子类通过 <code>class Circle : public Shape</code> 的语法说明它继承自 <code>Shape</code>，即说明了「<strong>一个 <code>Circle</code> 是一个 <code>Shape</code></strong>」的逻辑，因此 <code>Circle</code> 类自然包含了 <code>Shape</code> 中的所有状态和行为（即 <code>center</code> 和 <code>draw</code>）。这样，子类就只需要处理自己独有的成员变量和成员函数的实现了：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Circle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Shape</span><span class="w"> </span><span class="p">{</span><span class="w">   </span><span class="c1">// Circle 继承 Shape</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">radius</span><span class="p">;</span><span class="w">     </span><span class="c1">// 独有的成员变量</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">do_draw</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 画圆！</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Rectangle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Shape</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// Rectangle 继承 Shape</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">;</span><span class="w"> </span><span class="c1">// 独有的成员函数</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">do_draw</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 画长方形！</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>值得注意的是，基类中的 <code>draw()</code> 函数中完成了共有的「准备」和「后续处理」的操作，从而提高了代码的重用度；并调用了 <code>do_draw()</code> 函数来使用 <strong>子类</strong> 的绘图操作完成真正的绘图。</p>
+<p>也就是说，虽然代码中写的是 <code>do_draw()</code>，但是代码运行时会根据调用它的对象的实际类型来决定到底调用 <code>Circle::do_draw()</code> 还是 <code>Rectangle::do_draw()</code> 。这种机制就是 OOP 中的 <strong>多态 (polymorphism)</strong>。</p>
+<p>继承和多态的共同作用，使得上面的代码展现出了非常好的可维护性！在这种情况下，我们使用这些类是非常方便的：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="n">Shape</span><span class="w"> </span><span class="n">elem</span><span class="p">;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;linkedlist.h&quot;</span>
+
+<span class="n">linkedlist</span><span class="w"> </span><span class="n">list</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">drawall</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="n">list</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">draw</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>这里我们可以把指向 <code>Circle</code> 和 <code>Rectangle</code> 的指针当做指向 <code>Shape</code> 的指针作为 <code>list</code> 中的元素，这种将派生类对象当做基类对象处理的机制叫做 <strong>向上转型 (upcasting)</strong>。这样做的合法性是容易理解的，因为继承关系本来就是「派生类的对象是基类的对象」的意思。那在实际使用中，程序如何知道这个对象到底属于哪个类型呢？我们留到后面具体讨论 C++ 中的类的时候再展开！</p>
+<p>我们举例说明代码的可维护性。例如我们想要给所有图形增加「颜色」属性，我们只需要在 <code>Shape</code> 中增加一个字段，并且在 <code>prepare()</code> 中增加设置画笔颜色的代码，必要的话在 <code>finalize()</code> 中增加重置画笔颜色的代码即可。</p>
+<p>再例如我们想要增加一种新的图形：文本框；并且希望给它增加「画笔粗细」的控制功能，我们不需要对现有代码做任何更改：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Textbox</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Shape</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">text</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">penwidth</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">do_draw</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">old_penwidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_penwidth</span><span class="p">();</span>
+<span class="w">        </span><span class="n">set_penwidth</span><span class="p">(</span><span class="n">penwidth</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 画出文本框和文本内容</span>
+<span class="w">        </span><span class="n">set_penwidth</span><span class="p">(</span><span class="n">old_penwidth</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="33-总结">3.3 总结<a class="headerlink" href="#33-总结" title="Permanent link">&para;</a></h2>
+<p>本节中，我们讨论了 OOP 的三个重要思想，即封装、继承和多态。封装强调「数据」与「操纵数据的函数」的绑定以及必要的访问控制，从而抽象出「类」和「对象」的概念；继承则进一步刻画出了现实问题中「派生类对象是基类对象」的「is-a relationship」，从而形成「hierarchy of classes」，有助于提高代码重用性；而多态则在这种「hierarchy of classes」的结构中提供了进一步的抽象，允许程序员把「判断对象到底是哪个子类」的任务交给计算机，从而能够在代码扩展时不需要修改原有代码就能自动适配新的类型。</p>
+<p>可以看到，如我们之前所说，随着抽象程度的逐步提高，代码的可读性和可维护性也会得到进一步的提升，代码会更接近于程序员对问题的建模，而更少地关注机器实现的细节。当然，与此同时，省略的这些细节也需要语言本身在编译时或者运行时完成具体的实现。在后面的若干节中，我们将会讨论 C++ 对 OOP 的支持。</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-02-06T11:20:24+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-02-06</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-02-06T15:07:27+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-02-06</span>
       
         <br>
         创建日期:
