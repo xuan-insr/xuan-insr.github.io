@@ -591,9 +591,81 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          3 面向对象程序设计
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         3 面向对象程序设计
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-封装--encapsulation" class="md-nav__link">
+    3.1 封装 | Encapsulation
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 封装 | Encapsulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#struct-概念的扩展" class="md-nav__link">
+    struct 概念的扩展
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#对象和类" class="md-nav__link">
+    对象和类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#访问控制" class="md-nav__link">
+    访问控制
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#总结" class="md-nav__link">
+    总结
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-继承--inheritance" class="md-nav__link">
+    3.2 继承 | Inheritance
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2526,6 +2598,62 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-封装--encapsulation" class="md-nav__link">
+    3.1 封装 | Encapsulation
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 封装 | Encapsulation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#struct-概念的扩展" class="md-nav__link">
+    struct 概念的扩展
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#对象和类" class="md-nav__link">
+    对象和类
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#访问控制" class="md-nav__link">
+    访问控制
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#总结" class="md-nav__link">
+    总结
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-继承--inheritance" class="md-nav__link">
+    3.2 继承 | Inheritance
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2542,9 +2670,16 @@
 
 <h1 id="3-面向对象程序设计--object-oriented-programming">3 面向对象程序设计 | Object-Oriented Programming<a class="headerlink" href="#3-面向对象程序设计--object-oriented-programming" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 557 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 25 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 2 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 2333 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 91 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 9 分钟</p>
 </div>
 <p>在上一节中，我们讨论了编程范式和抽象的相关内容。而我们要介绍的 OOP 也是一种编程范式；它在结构化程序设计的基础上做了进一步的抽象。</p>
+<p>OOP 强调封装、继承和多态。我们通过一些例子来解释这些思想。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>本节的主要目标是介绍 OOP 的思想，其中包含的一些实现和语言细节不一定完全合理和准确；在后面的章节中我们会更加精确地描述 C++ 中的相关语法。</p>
+</div>
+<h2 id="31-封装--encapsulation">3.1 封装 | Encapsulation<a class="headerlink" href="#31-封装--encapsulation" title="Permanent link">&para;</a></h2>
+<h3 id="struct-概念的扩展"><code>struct</code> 概念的扩展<a class="headerlink" href="#struct-概念的扩展" title="Permanent link">&para;</a></h3>
 <p>我们来考虑这样一个情景。假如我们和队友一起做大程，想要做一个绘图板。在这个工程中，会有一些地方要使用到线性表 (list)。我们知道，线性表是一种抽象数据结构 (<abbr title="Abstract Data Type，抽象数据类型">ADT</abbr>, Abstract Data Type)；它能够有序地存放若干数据，数据是可以有重的；它支持的操作可能包括创建表、获取大小、插入元素、删除元素、访问元素等。</p>
 <details class="info">
 <summary>如果不知道什么是线性表或者抽象数据结构</summary>
@@ -2554,7 +2689,7 @@
 </details>
 <p>线性表的常见实现方式包括数组 (array list) 和链表 (linked list)，我们和队友分别实现一种。我们可能会分别写出这样的代码：</p>
 <p>（下面的 <code>elem</code> 是线性表元素的类型，例如 <code>typedef Shape elem</code>。）</p>
-<p>链表的版本 (可以玩一下 <a href="https://godbolt.org/z/GYWjsKhbM">https://godbolt.org/z/GYWjsKhbM</a>)：</p>
+<p>链表的版本 （可以玩一下 <a href="https://godbolt.org/z/GYWjsKhbM">https://godbolt.org/z/GYWjsKhbM</a>)：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -2565,12 +2700,10 @@
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">node</span><span class="w"> </span><span class="p">{</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">node</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">elem</span><span class="o">*</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
 <span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">node</span><span class="o">*</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
 <span class="p">};</span>
-
 <span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">node</span><span class="o">*</span><span class="w"> </span><span class="n">linkedlist</span><span class="p">;</span>
 
 <span class="n">linkedlist</span><span class="w"> </span><span class="nf">create</span><span class="p">();</span>
@@ -2594,11 +2727,11 @@
 <span class="normal">12</span>
 <span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#define MAX_SIZE 1024</span>
 
-<span class="k">struct</span><span class="w"> </span><span class="nc">_arraylist</span><span class="w"> </span><span class="p">{</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">arraylist_</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">elem</span><span class="o">*</span><span class="w"> </span><span class="n">val</span><span class="p">[</span><span class="n">MAX_SIZE</span><span class="p">];</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">;</span>
 <span class="p">};</span>
-<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">_arraylist</span><span class="o">*</span><span class="w"> </span><span class="n">arraylist</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">arraylist_</span><span class="o">*</span><span class="w"> </span><span class="n">arraylist</span><span class="p">;</span>
 
 <span class="n">arraylist</span><span class="w"> </span><span class="nf">create</span><span class="p">();</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">size</span><span class="p">(</span><span class="n">arraylist</span><span class="w"> </span><span class="n">alist</span><span class="p">);</span>
@@ -2606,15 +2739,192 @@
 <span class="kt">void</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">arraylist</span><span class="w"> </span><span class="n">alist</span><span class="p">,</span><span class="w"> </span><span class="n">elem</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
 <span class="c1">// ...</span>
 </code></pre></div></td></tr></table></div>
-<p>它们单独使用都没什么问题。但是，当我们把这两份代码 include 到一起时就发生了错误！因为 C 语言并不允许同名函数有不同类型的版本：</p>
+<p>上面的两个版本，都可以使用如下的代码执行：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">elem</span><span class="p">;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;linkedlist.h&quot;</span><span class="c1"> // OR: #include &quot;arraylist.h&quot;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">linkedlist</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">create</span><span class="p">();</span><span class="w"> </span><span class="c1">// OR: struct arraylist list = create();</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">list</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d &quot;</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">get</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>它们单独使用都没什么问题。但是，当我们把这两份代码 include 到一起时就发生了错误！因为 C 语言并不允许同名函数有不同类型的版本。下面是报错之一：</p>
 <p><center><img alt="" src="../2023-02-04-22-28-48.png" width="600" /></center></p>
+<p>所以，如果我们想在同一个工程里同时使用这两个库，我们就不得不给相关函数改个名，例如 <code>create()</code> 分别改为 <code>llist_create()</code> 和 <code>alist_create()</code> 等。</p>
+<p>但是这很不优雅！而且当我们希望更改部分代码中使用的线性表类型的时候，我们需要将所有使用到相关函数的地方都改一遍名字！这太难过了。问题出在哪里呢？事实上，<code>create</code>, <code>add</code> 之类的函数都应当属于对应的 <code>linkedlist</code> 或者 <code>arraylist</code> 这样的具体的类型，而不应当属于全局；但 C 语言弱化了这一点。在 OOP 的思想中，我们会将 <strong>数据</strong> 和 <strong>操纵数据的函数</strong> 用更加明显的方式捆绑在一起；从语法上说，就是我们扩展了 struct：现在 struct 不仅能包含 <strong>成员变量</strong>，还能包含 <strong>成员函数</strong> 了：</p>
+<p>链表的版本（可以玩一下 <a href="https://godbolt.org/z/x4M8e86KW">https://godbolt.org/z/x4M8e86KW</a>）：</p>
+<div class="admonition tips inline end">
+<p class="admonition-title">Tips</p>
+<p>大家不必太在意这里的语法细节（例如 <code>static</code> 和 <code>const</code> 之类的），后面会慢慢讲的！这里只需要了解到 struct 的成员现在也可以有函数就可以了！</p>
+</div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">elem</span><span class="o">*</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">node</span><span class="o">*</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">linkedlist</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">node</span><span class="o">*</span><span class="w"> </span><span class="n">llist</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">linkedlist</span><span class="w"> </span><span class="nf">create</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">size</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="n">elem</span><span class="o">*</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">elem</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>数组的版本（可以玩一下 <a href="https://godbolt.org/z/TM7GTf58n">https://godbolt.org/z/TM7GTf58n</a>）：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#define MAX_SIZE 1024</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">arraylist_</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">elem</span><span class="o">*</span><span class="w"> </span><span class="n">val</span><span class="p">[</span><span class="n">MAX_SIZE</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">arraylist</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">arraylist_</span><span class="o">*</span><span class="w"> </span><span class="n">alist</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">arraylist</span><span class="w"> </span><span class="nf">create</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">size</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="n">elem</span><span class="o">*</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">elem</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>经过了这样的修改后，我们调用一些成员函数时就不再是使用 <code>size(list)</code> 了，而是使用 <code>list.size()</code>；成员函数 <code>size()</code> 能够获取调用者的数据，并在此基础上做一些计算。</p>
+<p>「将 <strong>数据</strong> 和 <strong>操纵数据的函数</strong> 捆绑在一起」是 <strong>封装 (encapsulation)</strong> 思想的一部分。这种扩展后的 struct，在 C++ 中也称为 <strong>class</strong>，即 <strong>类</strong>。我们会在稍后解释 C++ 中 class 和 struct 的区别。</p>
+<p>这样，在将两份代码共同使用时就不会出现问题了；因为虽然存在同名函数，但是它们分属于不同的类里。例如两个类中的 <code>get</code> 函数实际上分别叫做 <code>linkedlist::get</code> 和 <code>arraylist::get</code>。这里的 <code>::</code> 叫做 <strong>scope resolution operator</strong>，用来指示「<code>linkedlist</code> 中的那个 <code>get</code>」或者「<code>arraylist</code> 中的那个 <code>get</code>」。</p>
+<h3 id="对象和类">对象和类<a class="headerlink" href="#对象和类" title="Permanent link">&para;</a></h3>
+<p>所以，在面向对象的世界里，「类」到底描述的是什么东西呢？「对象」又是什么呢？</p>
+<p>对象的英文是 object，它的一个意项是「物体、物品」。实际上一切事物都可以理解为一个（研究某项问题）的对象，每个对象都有其 <strong>状态</strong> 和 <strong>行为</strong>。例如，你的男朋友（如果有）就可以理解为一个对象：他的状态包括年龄、身高、职业、资产等等，行为包括学习、赚钱、花钱、长高等等。</p>
+<p>从编程的角度来看，「状态」可以由数据变量表示，「行为」可以由函数来实现。</p>
+<p>类又描述的是什么呢？刚才我们提到的「你的男朋友」的 <strong>状态</strong> 和 <strong>行为</strong>，在其他的人 <del>（我们姑且假设你的男朋友是人类）</del> 身上也具备。换句话说，任何一个人都具有上述特性（状态和行为），因此「人类」就是这些人共同所属的类型。再抽象一点来讲，就是每个对象都属于一个描述其特性的类，类是一个共享相同结构和行为的对象的集合。</p>
+<p>从编程的角度看，类其实是一种（用户自定义的）数据类型，程序员可以创建这种类型的变量（称为 <strong>对象</strong> 或 <strong>实例 (instance)</strong>）并操纵这些变量（对其发送请求，对象根据信息进行操作）。这种数据类型是状态和行为的集合，通常以变量和函数来描述和定义。这些变量和函数，是这个类的 <strong>成员</strong>。</p>
+<p>也就是说，在 C 语言这种非 OOP 的语言中，用户自定义的类型只能定义「状态」而不能定义「行为」；这种思考方式更贴近于机器实现，因为在真正的汇编代码中确实不能有同名的函数。不过，OOP 在此基础上做了进一步抽象，让代码更加贴近人们对于「类」这种自然产生的概念的理解；其实现则交由编译器来完成。</p>
+<h3 id="访问控制">访问控制<a class="headerlink" href="#访问控制" title="Permanent link">&para;</a></h3>
+<p>关于封装的含义，我们再考虑另一个问题！</p>
+<p>比如我们设计了这样的一个类：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">password</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">checkPassword</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">pw</span><span class="p">);</span><span class="w"> </span><span class="c1">// check if pw == password</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>但是，外部代码可以这样写：</p>
+<ul>
+<li>窃取数据：<code>printf("%s", user1.password);</code></li>
+<li>篡改数据：<code>user1.password = str;</code></li>
+<li>填入非法值：<code>user1.age = -100;</code></li>
+</ul>
+<p>也就是说，在类中的成员变量对外部直接可访问的情况下，容易导致信息丢失和逻辑混乱。C++ 提供了 access-specifier 来解决这个问题。</p>
+<p>Access-specifier 用来提供访问控制，包括 <code>public</code>, <code>private</code> 和 <code>protected</code> 三种，其中 <code>protected</code> 是在 Release 2.0 中加入的。我们讨论前面两种。</p>
+<p>所谓 <code>public</code>，是说这之后的成员变量和成员函数对外部可见；而 <code>private</code> 则是说这之后的成员变量和成员函数不能在类外被访问，只能在类的成员函数内访问或调用。例如上面的 <code>User</code> 可以改成这样：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">User</span><span class="w"> </span><span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">password</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">checkPassword</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">pw</span><span class="p">);</span><span class="w"> </span><span class="c1">// check if pw == password</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">setAge</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">            </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">getAge</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>在这种情况下，如果外部代码尝试访问 private 变量，就会被编译器拒绝：</p>
+<p><center><img alt="" src="../2023-02-06-02-31-30.png" width="600" /></center></p>
+<p>这是封装思想的另一部分，即限制对对象的一部分状态和行为的直接访问。部分成员变量可能会被拒绝访问，只能被内部使用（例如上面的 <code>password</code>）；另一部分变量可能会被有限制或者经检查地访问（例如上面的 <code>age</code>）。</p>
+<details class="info">
+<summary>C++ 中 <code>class</code> 和 <code>struct</code> 的区别</summary>
+<p>事实上，在 C++ 中 <code>class</code> 和 <code>struct</code> 的 <strong>唯一</strong> 区别是：<code>class</code> 的所有成员默认是 <code>private</code> 的，而 <code>struct</code> 的所有成员默认是 <code>public</code> 的<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.access.general#3">class.access.general#3</a></sup>；没有其他任何差别。因此，<code>class Foo { /* something */ };</code> 和 <code>struct Foo {private: /* something */ };</code> 是完全等价的。</p>
+</details>
+<h3 id="总结">总结<a class="headerlink" href="#总结" title="Permanent link">&para;</a></h3>
+<p>总结来说，<strong>封装</strong> 思想将数据与操纵数据的函数以更加明确的方式绑定在一起，并给予必要的访问控制，从而防止外部随意访问类的成员变量或函数。</p>
+<p>这种方式也有助于降低系统的复杂性和提高代码的可维护性，例如在前例中，如果我们希望模糊所有输出的年龄数据（例如舍入到 10），我们只需要修改 <code>getAge()</code> 中的代码，而不需要在所有访问过 <code>user.age</code> 的地方做修改。</p>
+<h2 id="32-继承--inheritance">3.2 继承 | Inheritance<a class="headerlink" href="#32-继承--inheritance" title="Permanent link">&para;</a></h2>
+<p>考虑这样一个问题！我们在 3.1 中假设我们和队友一起做大程，想要做一个绘图板；我们做好了某种 <code>list</code>，</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-02-05T15:28:22+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-02-05</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-02-06T11:20:24+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-02-06</span>
       
         <br>
         创建日期:
