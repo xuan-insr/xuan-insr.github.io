@@ -17,7 +17,7 @@
 
 1. [x] C++ 诞生
 1. [x] 编程范式
-1. [ ] 引入 oop（list & shape）
+1. [x] 引入 oop（list & shape）
 1. [ ] 类：成员、构造与析构 (defaulted and deleted functions)、inline functions、private & public & friend & protected、继承（多继承、函数重写）、抽象类
 1. [ ] 从类引出 default arguments, `operator =` overload，然后引出函数和运算符重载
 1. [ ] 讨论隐式类型转换和 `explicit`，讨论 copy elision
