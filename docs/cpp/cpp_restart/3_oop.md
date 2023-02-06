@@ -204,14 +204,224 @@ public:
 ??? info "C++ 中 `class` 和 `struct` 的区别"
     事实上，在 C++ 中 `class` 和 `struct` 的 **唯一** 区别是：`class` 的所有成员默认是 `private` 的，而 `struct` 的所有成员默认是 `public` 的^[class.access.general#3](https://timsong-cpp.github.io/cppwp/n4868/class.access.general#3)^；没有其他任何差别。因此，`class Foo { /* something */ };` 和 `struct Foo {private: /* something */ };` 是完全等价的。
 
-### 总结
+### 小结
 
 总结来说，**封装** 思想将数据与操纵数据的函数以更加明确的方式绑定在一起，并给予必要的访问控制，从而防止外部随意访问类的成员变量或函数。
 
 这种方式也有助于降低系统的复杂性和提高代码的可维护性，例如在前例中，如果我们希望模糊所有输出的年龄数据（例如舍入到 10），我们只需要修改 `getAge()` 中的代码，而不需要在所有访问过 `user.age` 的地方做修改。
 
-## 3.2 继承 | Inheritance
+## 3.2 继承 & 多态 | Inheritance & Polymorphism
 
-考虑这样一个问题！我们在 3.1 中假设我们和队友一起做大程，想要做一个绘图板；我们做好了某种 `list`，
+考虑这样一个问题！我们在 3.1 中假设我们和队友一起做大程，想要做一个绘图板；我们已经做好了某种 `list`，用来保存我们的各种图形。假设我们目前支持 2 种图形：圆形和长方形。我们设计了如下的类：
+
+```c++ linenums="1"
+class Point { /* ... */ };  // 用来保存坐标
+
+class Circle {
+public:
+    Point center;
+    int radius;
+    void draw() {
+        // 做一些准备（例如准备画笔）
+        // 画圆！
+        // 做一些后续处理（例如重置画笔）
+    }
+};
+
+class Rectangle {
+public:
+    Point center;
+    int width, height;
+    void draw() {
+        // 做一些准备（例如准备画笔）
+        // 画长方形！
+        // 做一些后续处理（例如重置画笔）
+    }
+};
+```
+
+!!! tips
+    在 C++ 中，如果有对 `struct Foo` 的定义，在使用这个结构体时只需要写 `Foo` 即可，而无需像 C 语言那样带上关键字 `struct`。`class` 也类似。上面代码第 5 行是一个例子。
+
+这种设计存在一些问题。
+
+其一，我们可以看到 `Circle` 和 `Rectangle` 包含了一些公共的部分，例如 `center` 成员和 `draw()` 中的准备和后续处理。这种设计的问题是，如果我们希望调整准备和后续处理的内容（例如设置画笔颜色），我们需要在这两个类中都做一次相同的修改；当然，我们可以通过把「准备」和「后续处理」提出成函数来部分解决上面的问题（虽然这样会一定程度上破坏封装性）：
+
+```c++ linenums="1"
+void draw_prepare() { /* 做一些准备（例如准备画笔）*/ } 
+void draw_finalize() { /* 做一些后续处理（例如重置画笔）*/ }
+
+class Circle {
+public:
+    Point center;
+    int radius;
+    void draw() {
+        draw_prepare();
+        // 画圆！
+        draw_finalize();
+    }
+};
+
+class Rectangle {
+public:
+    Point center;
+    int width, height;
+    void draw() {
+        draw_prepare();
+        // 画长方形！
+        draw_finalize();
+    }
+};
+```
+
+但是，如果我们希望给各个图形类添加一些公共的属性（例如颜色），我们就仍然不得不在各个类中都做一次相同的修改。这时我们就没办法通过类似上面的方式解决了。而且如果我们支持更多的图形种类，这种重复会更多。这说明我们的代码复用性较差、维护难度较高。
+
+其二，在这样的设计下，我们想要使用前面的某种线性表保存时，不得不保存为两个线性表；但是由于 `typedef` 不能像 `#define` 那样取消定义，因此我们可能写出这样的丑陋代码：
+
+```c++ linenums="1"
+#define elem Circle
+#include "linkedlist.h"
+#undef elem
+
+#define elem Rectangle
+#include "linkedlist.h"
+#undef elem
+```
+
+而且其实这个代码还没办法成功编译，因为在这种情况下，我们会有两份不同的 `node` 和 `linkedlist` 定义：
+
+<center>![](2023-02-06-21-40-36.png){width=500}</center>
+
+即使不考虑语言的限制，也会出现的一个问题是：如果我们支持 16 种不同的图形，那么我们就需要 16 个不同的链表来保存这些图形；在每次遍历、查找、删除、插入等事件发生时，代码都需要处理这 16 个链表，这是非常不优雅的。更不优雅的是，如果要增加一种新的图形，我们需要在 **每处** 使用链表的地方都增加对新的图形对应链表的处理（高亮处表示增加一种新的图形需要做的更改）：
+
+
+```c++ linenums="1" hl_lines="4 16 17 25 26"
+enum shape_type { 
+    CIRCLE, 
+    RECTANGLE, 
+    TRIANGLE 
+};
+
+linkedlist_circle lc;
+linkedlist_rectange lr;
+linkedlist_triangle lt;
+
+void drawall() {
+    for (int i = 0; i < lc.size(); i++)
+        lc.get(i)->draw();
+    for (int i = 0; i < lr.size(); i++)
+        lr.get(i)->draw();
+    for (int i = 0; i < lt.size(); i++)
+        lt.get(i)->draw();
+}
+
+void remove(shape_type type, int index) {
+    if (type == CIRCLE)
+        lc.remove(index);
+    else if (type == RECTANGLE)
+        lr.remove(index);
+    else if (type == TRIANGLE)
+        lt.remove(index);
+}
+```
+
+这也说明我们当前的代码的可维护性较低。
+
+我们介绍 OOP 中的 **继承 (inheritance)** 机制，用来解决这个问题。这种机制允许我们建立「有层次的」类，而非独立的一个一个的类。
+
+例如我们定义了「人类」这个类，有时我们需要更细致的划分。例如我们需要「学生」这样一个类。显然，「学生」是「人类」的真子集，因此「学生」这个类必然拥有「人类」的状态和行为。而不同的是，「学生」作为一个更细的划分，具有一些「人类」不一定具有的状态和行为，例如均绩和交作业。**继承** 可以让我们克隆已经存在的类的状态和行为，并在克隆的基础上进行一些增加或修改，从而获得我们需要的类。我们把被继承的类称为 **基类 (base class)**，而继承产生的新类称为 **派生类 (derived class)**。
+
+!!! tips inline end ""
+    再次提示！本节中，大家不必太在意语法细节。
+
+基类也被称为 **父类 (parent class)** 或者 **超类 (super class)**；派生类也被称为 **子类 (child class / sub class)**。 
+
+拿前面的例子来说，我们可以设计出这样的类：
+
+```c++ linenums="1"
+class Shape {       // 基类 Shape
+private:
+    void prepare()  { /* 做一些准备（例如准备画笔）*/ } 
+    void finalize() { /* 做一些后续处理（例如重置画笔）*/ }
+public:
+    Point center;   // 共有的成员变量
+
+    void draw() {   // 共有的成员函数
+        prepare();
+        do_draw();
+        finalize();
+    }
+    virtual void do_draw() = 0; // 要求所有派生类都实现 do_draw()
+};
+```
+
+我们设计了一个基类 `Shape`，它保存了各种图形共同具有的状态（`center`）和行为（`draw()`）；同时规定了所有派生类都需要实现一个 `do_draw()` 函数来完成绘制自身的实际操作。
+
+这样，子类通过 `class Circle : public Shape` 的语法说明它继承自 `Shape`，即说明了「**一个 `Circle` 是一个 `Shape`**」的逻辑，因此 `Circle` 类自然包含了 `Shape` 中的所有状态和行为（即 `center` 和 `draw`）。这样，子类就只需要处理自己独有的成员变量和成员函数的实现了：
+
+```c++ linenums="1"
+class Circle : public Shape {   // Circle 继承 Shape
+public:
+    int radius;     // 独有的成员变量
+
+    void do_draw() {
+        // 画圆！
+    }
+};
+
+class Rectangle : public Shape { // Rectangle 继承 Shape
+public:
+    int width, height; // 独有的成员函数
+
+    void do_draw() {
+        // 画长方形！
+    }
+};
+```
+
+值得注意的是，基类中的 `draw()` 函数中完成了共有的「准备」和「后续处理」的操作，从而提高了代码的重用度；并调用了 `do_draw()` 函数来使用 **子类** 的绘图操作完成真正的绘图。
+
+也就是说，虽然代码中写的是 `do_draw()`，但是代码运行时会根据调用它的对象的实际类型来决定到底调用 `Circle::do_draw()` 还是 `Rectangle::do_draw()` 。这种机制就是 OOP 中的 **多态 (polymorphism)**。
+
+继承和多态的共同作用，使得上面的代码展现出了非常好的可维护性！在这种情况下，我们使用这些类是非常方便的：
+
+```c++ linenums="1"
+typedef Shape elem;
+#include "linkedlist.h"
+
+linkedlist list;
+
+void drawall() {
+    for (int i = 0; i < list.size(); i++)
+        list.get(i)->draw();
+}
+```
+
+这里我们可以把指向 `Circle` 和 `Rectangle` 的指针当做指向 `Shape` 的指针作为 `list` 中的元素，这种将派生类对象当做基类对象处理的机制叫做 **向上转型 (upcasting)**。这样做的合法性是容易理解的，因为继承关系本来就是「派生类的对象是基类的对象」的意思。那在实际使用中，程序如何知道这个对象到底属于哪个类型呢？我们留到后面具体讨论 C++ 中的类的时候再展开！
+
+我们举例说明代码的可维护性。例如我们想要给所有图形增加「颜色」属性，我们只需要在 `Shape` 中增加一个字段，并且在 `prepare()` 中增加设置画笔颜色的代码，必要的话在 `finalize()` 中增加重置画笔颜色的代码即可。
+
+再例如我们想要增加一种新的图形：文本框；并且希望给它增加「画笔粗细」的控制功能，我们不需要对现有代码做任何更改：
+
+```c++ linenums="1"
+class Textbox : public Shape {
+public:
+    char* text;
+    int penwidth;
+
+    void do_draw() {
+        int old_penwidth = get_penwidth();
+        set_penwidth(penwidth);
+        // 画出文本框和文本内容
+        set_penwidth(old_penwidth);
+    }
+}
+```
+
+## 3.3 总结
+
+本节中，我们讨论了 OOP 的三个重要思想，即封装、继承和多态。封装强调「数据」与「操纵数据的函数」的绑定以及必要的访问控制，从而抽象出「类」和「对象」的概念；继承则进一步刻画出了现实问题中「派生类对象是基类对象」的「is-a relationship」，从而形成「hierarchy of classes」，有助于提高代码重用性；而多态则在这种「hierarchy of classes」的结构中提供了进一步的抽象，允许程序员把「判断对象到底是哪个子类」的任务交给计算机，从而能够在代码扩展时不需要修改原有代码就能自动适配新的类型。
+
+可以看到，如我们之前所说，随着抽象程度的逐步提高，代码的可读性和可维护性也会得到进一步的提升，代码会更接近于程序员对问题的建模，而更少地关注机器实现的细节。当然，与此同时，省略的这些细节也需要语言本身在编译时或者运行时完成具体的实现。在后面的若干节中，我们将会讨论 C++ 对 OOP 的支持。
 
 *[ADT]: Abstract Data Type，抽象数据类型
