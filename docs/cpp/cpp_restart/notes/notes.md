@@ -35,3 +35,13 @@
 
 Src: https://www.ralfj.de/blog/2018/07/24/pointers-and-bytes.html
 
+!!! note "一个例子"
+    https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#p5-prefer-compile-time-checking-to-run-time-checking
+
+    <center>![](2023-02-08-20-33-59.png){width=700}</center>
+
+## 零散内容
+
+- RTTI 
+    - overhead: https://stackoverflow.com/a/5408269/14430730，就是在 vtable 里多了一项
+    - 不过如果不用typeid或者dynamic_cast也需要创造这个项，所以好像没什么 overhead

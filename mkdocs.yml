@@ -11,9 +11,13 @@ nav:
       - 1 C++ 的诞生: cpp/cpp_restart/1_birth.md
       - 2 编程范式: cpp/cpp_restart/2_paradigm.md
       - 3 面向对象程序设计: cpp/cpp_restart/3_oop.md
+      - 4 类 (I): cpp/cpp_restart/4_class_1.md
       - 一些笔记和 TODO:
         - 零散内容记录: cpp/cpp_restart/notes/notes.md
         - The Design and Evaluation of C++ 阅读记录: cpp/cpp_restart/notes/dne_notes.md
+        - C++ 语言标准阅读记录: cpp/cpp_restart/notes/std_notes.md
+        - C++ Core Guidelines 阅读记录: cpp/cpp_restart/notes/guideline_notes.md
+        - Bjarne Stroustrup's FAQ 阅读记录: cpp/cpp_restart/notes/bs_faq_notes.md
     - 快速入门 C++ 写题: cpp/cpp_for_contests.md
     #- C++ 面向对象: 404.md
     - C++ 知识补充:
@@ -150,7 +154,7 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.betterem:
-      smart_enable: all
+      # smart_enable: all
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.details
