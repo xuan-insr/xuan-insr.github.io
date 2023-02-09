@@ -170,9 +170,10 @@ markdown_extensions:
       repo: mkdocs-material
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.snippets:
+  - pymdownx.snippets: # 允许将其他文件内容插入文件，语法是 --8<-- "filename.ext" 等，参见 https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippets-notation
       auto_append:
         - includes/abbreviations.md
+      base_path: ["docs"]
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
