@@ -3,7 +3,9 @@
 !!! warning
     从本节开始，我们在部分内容会尝试直接使用 standard 的相应内容讲解。由于会涉及到一些尚未讨论的内容，因此这些内容我们会通过脚注的方式给出。初学者可以忽略这些脚注。
 
---8<-- "cpp/cpp_restart/toggle_visibility.md"
+    因此，从本节开始，类似本节这样有比较大量的参考资料标注和脚注的文章，会提供下面的按钮来帮助提高阅读质量（文末也会有一份）：
+
+    --8<-- "cpp/cpp_restart/toggle_visibility.md"
 
 在 C++ 中，每个类的定义 (class definition) 引入一个新的类型^[class.name#1](https://timsong-cpp.github.io/cppwp/n4868/class.name#1)^。
 
