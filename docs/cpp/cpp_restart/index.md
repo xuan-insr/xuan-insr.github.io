@@ -19,14 +19,15 @@
 1. [x] 编程范式
 1. [x] 引入 oop（list & shape）
 1. [ ] 类：成员、构造与析构 (defaulted and deleted functions)、inline functions、private & public & friend & protected、继承（多继承、函数重写）、抽象类
-1. [ ] 从类引出 default arguments, `operator =` overload，然后引出函数和运算符重载
-1. [ ] 讨论隐式类型转换和 `explicit`，讨论 copy elision
-1. [ ] 从运算符重载引出引用
-1. [ ] 类：虚函数、多继承（虚继承）
-1. [ ] 类：new & delete, const 和 static 成员函数、mutable ~~、pointers to members、final and override~~
-1. [ ] 从 const 引出 UB
-1. [ ] 引入模板
-1. [ ] STL
+    - Properties of classes^[class.prop](https://timsong-cpp.github.io/cppwp/n4868/class.prop)^ 暂时跳过了
+2. [ ] 从类引出 default arguments, `operator =` overload，然后引出函数和运算符重载
+3. [ ] 讨论隐式类型转换和 `explicit`，讨论 copy elision
+4. [ ] 从运算符重载引出引用
+5. [ ] 类：虚函数、多继承（虚继承）
+6. [ ] 类：new & delete, const 和 static 成员函数、mutable ~~、pointers to members、final and override~~
+7. [ ] 从 const 引出 UB
+8. [ ] 引入模板
+9.  [ ] STL
 
 ### Topics
 
@@ -57,7 +58,8 @@ list initialization (C++11)、brace-or-equal initializers (C++11)、designated i
 - [ ] lambda expressions (C++11); generic lambda (C++14); capture `*this` (C++17)
 - [ ] auto (C++11); return type deduction (C++14)
 - [ ] range-based for loop (C++11); init-statement in range-for (C++20)
-- [ ] type aliases (C++11)
+- [x] type aliases (C++11)
+- [ ] alias template (C++11)
 - [ ] trailing return type (C++11)
 - [ ] type traits (C++11)
 - [ ] constexpr (C++11); consteval, constinit (C++20)
