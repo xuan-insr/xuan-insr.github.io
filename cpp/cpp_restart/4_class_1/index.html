@@ -17,7 +17,7 @@
         <link rel="next" href="../notes/notes/">
       
       <link rel="icon" href="../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.12">
     
     
       
@@ -607,9 +607,82 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          4 类 (I)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         4 类 (I)
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#41-类的定义" class="md-nav__link">
+    4.1 类的定义
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-类的成员" class="md-nav__link">
+    4.2 类的成员
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43-inline-函数" class="md-nav__link">
+    4.3 inline 函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#44-构造函数" class="md-nav__link">
+    4.4 构造函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#45-函数默认参数与函数重载" class="md-nav__link">
+    4.5 函数默认参数与函数重载
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#46-转换构造函数" class="md-nav__link">
+    4.6 转换构造函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#47-析构函数" class="md-nav__link">
+    4.7 析构函数
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2539,12 +2612,18 @@
             
           
         
+          
+        
       
       
         
         
         <div class="md-nav__link md-nav__link--index ">
           <a href="../../../%E6%A1%8C%E6%B8%B8/">桌游</a>
+          
+            <label for="__nav_9_7">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
           
         </div>
       
@@ -2555,6 +2634,20 @@
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%A1%8C%E6%B8%B8/components/" class="md-nav__link">
+        配件相关
+      </a>
+    </li>
+  
+
             
           
         </ul>
@@ -2590,6 +2683,63 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#41-类的定义" class="md-nav__link">
+    4.1 类的定义
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-类的成员" class="md-nav__link">
+    4.2 类的成员
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43-inline-函数" class="md-nav__link">
+    4.3 inline 函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#44-构造函数" class="md-nav__link">
+    4.4 构造函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#45-函数默认参数与函数重载" class="md-nav__link">
+    4.5 函数默认参数与函数重载
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#46-转换构造函数" class="md-nav__link">
+    4.6 转换构造函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#47-析构函数" class="md-nav__link">
+    4.7 析构函数
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2606,46 +2756,61 @@
 
 <h1 id="4-类-i">4 类 (I)<a class="headerlink" href="#4-类-i" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 347 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 33 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 2 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 1206 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 76 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 5 分钟</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>从本节开始，我们在部分内容会尝试直接使用 standard 的相应内容讲解。由于会涉及到一些尚未讨论的内容，因此这些内容我们会通过脚注的方式给出。初学者可以忽略这些脚注。</p>
-</div>
+<p>从本节开始，我们在部分内容会尝试直接使用 standard 的相应内容讲解<sup id="fnref:std_version"><a class="footnote-ref" href="#fn:std_version">1</a></sup>。由于会涉及到一些尚未讨论的内容，因此这些内容我们会通过脚注的方式给出。初学者可以忽略这些脚注。</p>
+<p>因此，从本节开始，类似本节这样有比较大量的参考资料标注和脚注的文章，会提供下面的按钮来帮助提高阅读质量（文末也会有一份）：</p>
+<p><script>
+function inFootnote(element) {
+    let parent = element.parentNode;
+    while (parent !== null) {
+      if (parent.classList &amp;&amp; parent.classList.contains("footnote")) {
+        break;
+      }
+      parent = parent.parentNode;
+    }
+    return parent !== null;
+}
+</script>
 <script>
 function toggleVisibility() {
   const links = document.querySelectorAll('a');
   const buttons = document.querySelectorAll('.xyx-toggle');
-  links.forEach(link => {
-    if (!link.classList.contains('md-nav__link') &&
-        !link.classList.contains('md-tabs__link') &&
-        !link.classList.contains('md-source') &&
-        !link.classList.contains('md-header__button') &&
-        !link.closest('.md-nav__link') &&
-        !link.closest('.md-tabs__link') &&
-        !link.closest('.md-source') &&
-        !link.closest('.footnote-backref') &&
-        !link.closest('.footnote-ref') &&
-        !link.closest('.md-header__button')) {
+  links.forEach(link =&gt; {
+    if (!link.classList.contains('md-nav__link') &amp;&amp;
+        !link.classList.contains('md-tabs__link') &amp;&amp;
+        !link.classList.contains('md-source') &amp;&amp;
+        !link.classList.contains('md-header__button') &amp;&amp;
+        !link.closest('.md-nav__link') &amp;&amp;
+        !link.closest('.md-tabs__link') &amp;&amp;
+        !link.closest('.md-source') &amp;&amp;
+        !link.closest('.footnote-backref') &amp;&amp;
+        !link.closest('.footnote-ref') &amp;&amp;
+        !link.closest('.md-header__button') &amp;&amp;
+        !inFootnote(link)
+        ) {
       if (link.style.display === 'none') {
         link.style.display = 'inline';
         for (const button of buttons) {
-            button.innerHTML = '点击此处隐藏本文所有链接';
+            button.innerHTML = '点击此处隐藏正文所有链接';
         }
       } else {
         link.style.display = 'none';
         for (const button of buttons) {
-            button.innerHTML = '点击此处显示本文所有链接';
+            button.innerHTML = '点击此处显示正文所有链接';
         }
       }
     }
   });
 }
-
+</script>
+<script>
 function toggleVisibilityFoot() {
   const links = document.querySelectorAll('a');
   const buttons = document.querySelectorAll('.xyx-toggle2');
-  links.forEach(link => {
+  links.forEach(link =&gt; {
     if (link.closest('.footnote-backref') ||
         link.closest('.footnote-ref')) {
       if (link.style.display === 'none') {
@@ -2660,9 +2825,8 @@ function toggleVisibilityFoot() {
         }
       }
     }
-  });
-
-  const footnotes = document.querySelectorAll('.footnote');
+  });</p>
+<p>const footnotes = document.querySelectorAll('.footnote');
   for (const footnote of footnotes) {
     if (footnote.style.display === 'none') {
       footnote.style.removeProperty('display');
@@ -2671,13 +2835,13 @@ function toggleVisibilityFoot() {
     }
   }
 }
-</script>
-
+</script></p>
 <p><center>
-<button onclick="toggleVisibility()" class="box box-yellow xyx-toggle">点击此处隐藏本文所有链接</button>
+<button onclick="toggleVisibility()" class="box box-yellow xyx-toggle">点击此处隐藏正文所有链接</button>
 <button onclick="toggleVisibilityFoot()" class="box box-green xyx-toggle2">点击此处隐藏本文所有脚注</button>
 </center></p>
-<p>在 C++ 中，每个类的定义 (class definition) 引入一个新的类型<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.name#1">class.name#1</a></sup>。</p>
+</div>
+<h2 id="41-类的定义">4.1 类的定义<a class="headerlink" href="#41-类的定义" title="Permanent link">&para;</a></h2>
 <p>我们在上一节已经看到了类的定义的一些具体例子，例如：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -2703,15 +2867,27 @@ function toggleVisibilityFoot() {
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>具体来说，类的定义具有如下形式<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup><sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.pre#1">class.pre#1,2</a></sup>：</p>
+<p>在 C++ 中，每个类的定义 (class definition) 引入一个新的类型<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.name#1">class.name#1</a></sup>。因此，有了上面的定义，我们就可以用它来声明一个变量，如 <code>Textbox tb;</code> 声明并定义<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/basic.def#2">basic.def#2</a></sup>了一个类型为 <code>Textbox</code>，名为 <code>tb</code> 的变量。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>在 C++ 中，用类来定义变量时，不必像 C 语言那样带有 <code>struct</code> 关键字。即，如果有 <code>class Foo</code> 或者 <code>struct Bar</code> 的定义，那么 <code>Foo x;</code>, <code>class Foo x;</code>, <code>Bar b;</code>, <code>struct Bar b;</code> 都是合法的声明语句。这是因为，从 C with Classes 设计之初就希望让用户定义的类型不是二等公民，而是能被与内置类型一样的方式使用。</p>
+<details class="tips">
+<summary>Elaborated type specifiers</summary>
+<p>带有 <code>struct</code> 或者 <code>class</code> 关键字的类型名 (如 <code>class Foo</code>) 叫做 Elaborated type specifiers<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/dcl.type.elab">dcl.type.elab</a></sup>。</p>
+<p>在 C 语言中，类似 <code>struct x {}; int x;</code> 是符合语法的：虽然这会使得名字 <code>x</code> 既表示一个结构体，又表示一个变量；但在 C 语言中这不会引起歧义，因为当 <code>x</code> 表示结构体时必须带上 <code>struct</code> 关键字。不过在 C++ 中，直接使用 <code>x</code> 就只能引用到变量 <code>x</code> 了，因为此时 <code>int x;</code> 的 <code>x</code> hides <code>struct x {};</code> 的 <code>x</code><sup><a href="https://timsong-cpp.github.io/cppwp/n4868/basic.scope.hiding">basic.scope.hiding</a></sup>。</p>
+<p>但是为了兼容 C，C++ 并没有禁止上述写法，而是规定可以通过 Elaborated type specifiers 显式地来使用结构体 <code>x</code>，即使用 <code>struct x</code><sup><a href="https://timsong-cpp.github.io/cppwp/n4868/basic.lookup.elab#1">basic.lookup.elab#1</a>,<a href="https://timsong-cpp.github.io/cppwp/n4868/class.name#2">class.name#2</a></sup>；对 <code>class</code> 也一样。</p>
+<p>Elaborated type specifiers 还在 forward declaration 以及 enum 中有用途。</p>
+</details>
+</div>
+<p>具体来说，类的定义具有如下形式<sup id="fnref:class-specifier"><a class="footnote-ref" href="#fn:class-specifier">2</a></sup><sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.pre#1">class.pre#1,2</a></sup>：</p>
 <p><center><img alt="" src="../2023-02-09-20-19-03.png" width="600" /></center></p>
 <ol>
 <li>这里的 opt 指明某个元素是可选的。例如，class-specifier: class-head { member-specification<sub>opt</sub> } 说明 class-specifier 中可以没有 member-specification，例如 <code>class Foo {}</code> 或者 <code>class A : public B {}</code> 之类的。</li>
-<li>这里的 class-name 是一个 identifier<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>，例如上面的 <code>Foo</code> 和 <code>A</code>。</li>
-<li>这里的 class-key 决定了类是否是一个 union，以及默认情况下成员是 public 的还是 private 的。union 一次最多保存一个数据成员的值。也就是说，在 C++ 中，struct, class, union 都是类。</li>
+<li>这里的 class-name 是一个 identifier<sup id="fnref:class-name"><a class="footnote-ref" href="#fn:class-name">3</a></sup>，例如上面的 <code>Foo</code> 和 <code>A</code>。</li>
+<li>这里的 class-key 决定了类是否是一个 union，以及默认情况下成员是 public 的还是 private 的。union 一次最多保存一个数据成员的值。也就是说，在 C++ 中，struct, class, union 都是类。但是在本节的后续讨论中，我们暂时只讨论 struct 和 class。</li>
 <li>这里的 attribute-specifier-seq 和 class-virt-specifier 现在暂时不用管。</li>
 <li>这里的 base-clause 定义为 <code>base-clause : base-specifier-list</code>，是用来处理派生类的。例如 1 中的 <code>: public B</code>。</li>
-<li>这里的 nested-name-specifier 是 <code>::</code> 或者 <code>Foo::</code> 之类的东西，其意义可以看下面的例子<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup><sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>：<br />
+<li>这里的 nested-name-specifier 是 <code>::</code> 或者 <code>Foo::</code> 之类的东西，其意义可以看下面的例子<sup id="fnref:refer_to_same"><a class="footnote-ref" href="#fn:refer_to_same">4</a></sup><sup id="fnref:nonzero_size"><a class="footnote-ref" href="#fn:nonzero_size">5</a></sup>：<br />
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">https://godbolt.org/z/shjxaKhxc</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -2740,10 +2916,10 @@ function toggleVisibilityFoot() {
 <span class="w">    </span><span class="n">Outer</span><span class="o">::</span><span class="n">Inner</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
 <span class="w">    </span><span class="n">Inner</span><span class="w"> </span><span class="n">i2</span><span class="p">;</span>
 <span class="w">    </span><span class="o">::</span><span class="n">Inner</span><span class="w"> </span><span class="n">i3</span><span class="p">;</span><span class="w">     </span><span class="c1">// global Inner</span>
-<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">A</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">A</span><span class="p">;</span><span class="w">       </span><span class="c1">// declares struct Outer::A</span>
 <span class="p">};</span>
 
-<span class="k">struct</span><span class="w"> </span><span class="nc">Outer</span><span class="o">::</span><span class="n">A</span><span class="w"> </span><span class="p">{};</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Outer</span><span class="o">::</span><span class="n">A</span><span class="w"> </span><span class="p">{};</span><span class="w"> </span><span class="c1">// defines struct Outer::A</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">Outer</span><span class="w"> </span><span class="n">o</span><span class="p">;</span>
@@ -2754,11 +2930,134 @@ function toggleVisibilityFoot() {
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-在 C++ 中，类的定义会引入新的作用域，其范围是 member-specification 等<sup><a href="https://timsong-cpp.github.io/cppwp/basic.scope.class#1">basic.scope.class#1</a></sup><sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup>。因此这里的 <code>Outer::Inner</code> 和外面的 <code>Inner</code> 可以同时存在<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>。<br />
-这里第 7 行访问到 <code>Outer::Inner</code> 是因为 Name Hiding<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/basic.scope.hiding">basic.scope.hiding</a></sup>，即我们熟悉的作用域屏蔽<sup id="fnref:10"><a class="footnote-ref" href="#fn:10">10</a></sup>。</li>
+在 C++ 中，类的定义会引入新的作用域，其范围是 member-specification 等<sup><a href="https://timsong-cpp.github.io/cppwp/basic.scope.class#1">basic.scope.class#1</a></sup><sup id="fnref:class-scope"><a class="footnote-ref" href="#fn:class-scope">10</a></sup>。因此这里的 <code>Outer::Inner</code> 和外面的 <code>Inner</code> 可以同时存在<sup id="fnref:redeclaration"><a class="footnote-ref" href="#fn:redeclaration">9</a></sup>。<br />
+这里第 7 行访问到 <code>Outer::Inner</code> 是因为 Name Hiding<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/basic.scope.hiding">basic.scope.hiding</a></sup>，即我们熟悉的作用域屏蔽<sup id="fnref:name_hiding"><a class="footnote-ref" href="#fn:name_hiding">11</a></sup>。</li>
 </ol>
-<p>C 和 C++ 都是按名等价 (name equivalence) 而非按结构等价 (structural equivalence) 的<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>，例如<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.name#1">class.name#1</a></sup>：</p>
+<p>C 和 C++ 都是按名等价 (name equivalence) 而非按结构等价 (structural equivalence) 的<sup id="fnref:structural"><a class="footnote-ref" href="#fn:structural">6</a></sup>，例如<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.name#1">class.name#1</a></sup>：</p>
 <p><center><img alt="" src="../2023-02-09-22-36-23.png" width="600" /></center></p>
+<details class="tips">
+<summary>Forward Declaration</summary>
+<p>如果当前作用域没有名为 <code>identifier</code> 的类，那么形如 <code>class-key attr identifier ;</code> 的声明是一个 forward declaration<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.name#2">class.name#2</a></sup>。</p>
+<p>例如 <code>class Foo;</code>，它声明了一个叫 <code>Foo</code> 的类；但直到这个类被定义之前，它的类型是不完整的<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/basic.types.general#5">basic.types.general#5</a></sup>。</p>
+<p>不完整的类型有一些限制，但是也有一些可以完成的操作。例如不完整的类型不能用来定义变量（包括成员变量）、作为函数声明或定义的参数或者返回值类型等；但是可以定义指向它的指针。</p>
+<p>例如，常见的用途是，两个类可能会互相使用。这时就可以写出类似下面这样的代码：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">X</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Y</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">X</span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// X mem; // Error: field has incomplete type &#39;X&#39;</span>
+<span class="w">    </span><span class="n">X</span><span class="o">*</span><span class="w"> </span><span class="nf">foo</span><span class="p">();</span>
+<span class="p">};</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">X</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Y</span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Y</span><span class="o">*</span><span class="w"> </span><span class="nf">bar</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>这时第 1 行是必须的，否则第 3 行的 <code>X</code> 就是一个未知的类型。</p>
+</details>
+<details class="tips">
+<summary>Injected Class Name</summary>
+<p>C++ 规定，A class-name is inserted into the scope in which it is declared immediately after the class-name is seen. The class-name is also inserted into the scope of the class itself; this is known as the injected-class-name<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.pre#2">class.pre#2</a></sup>。这就是 <code>struct Node { Node* next; };</code> 能够使用 <code>Node</code> 的原因。</p>
+</details>
+<h2 id="42-类的成员">4.2 类的成员<a class="headerlink" href="#42-类的成员" title="Permanent link">&para;</a></h2>
+<p>member-specification 说明了类的成员。其结构如下<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.mem.general">class.mem.general</a></sup>：</p>
+<p><center><img alt="" src="../2023-02-11-15-49-10.png" width="400" /></center></p>
+<p>其中 member-declaration 是成员的声明，而 access-specifier 是 <code>private</code>, <code>public</code>, <code>protected</code> 之一（前面两个我们讨论过了，第三个我们会在后文讨论）。成员可以包括成员变量、成员函数，也可以（嵌套的）类、枚举等，如本文前面代码中的 <code>Outer::Inner</code>，还可以包括声明类型的别名（如 <code>typedef</code> 和 <code>using</code>）等<sup id="fnref:class_member"><a class="footnote-ref" href="#fn:class_member">12</a></sup>。</p>
+<div class="admonition note">
+<p class="admonition-title">Type alias</p>
+<p>C++11 引入了 <code>using</code> 来声明类型别名，它的用途和 <code>typedef</code> 类似，如 <code>typedef struct arraylist_* arraylist;</code> 可以写成 <code>using arraylist = struct arraylist_ *;</code>。</p>
+<p>类型别名的声明也可以是类的成员，其作用域是类的作用域，同样受 access-specifier 的影响。例如：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">elem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">int</span><span class="p">;</span>
+<span class="w">    </span><span class="n">elem</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">     </span><span class="c1">// OK, x has type int</span>
+<span class="w">    </span><span class="n">elem</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">elem</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">v</span><span class="p">;</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">char</span><span class="p">;</span>
+<span class="w">    </span><span class="n">type</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w">     </span><span class="c1">// OK, c has type char</span>
+<span class="p">};</span>
+
+<span class="c1">// elem y;      // Error: unknown type name &#39;elem&#39;</span>
+<span class="n">Foo</span><span class="o">::</span><span class="n">elem</span><span class="w"> </span><span class="n">z</span><span class="p">;</span><span class="w">    </span><span class="c1">// OK, z has type int</span>
+<span class="c1">// Foo::type c; // Error: &#39;type&#39; is a private member of &#39;Foo&#39;   </span>
+</code></pre></div></td></tr></table></div>
+<p><code>using</code> 被引入是为了支持模板。我们在讲到模板的时候再来讨论这些问题。</p>
+</div>
+<p>类的成员函数可以在类内直接给出定义，也可以在类内只声明，在类外给出定义；这不影响成员函数的 access-specifier：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">v</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">bar</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">Foo::bar</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">v</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Foo</span><span class="w"> </span><span class="n">f</span><span class="p">;</span>
+<span class="w">    </span><span class="n">f</span><span class="p">.</span><span class="n">bar</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// Error: &#39;bar&#39; is a private member of &#39;Foo&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="43-inline-函数">4.3 inline 函数<a class="headerlink" href="#43-inline-函数" title="Permanent link">&para;</a></h2>
+<h2 id="44-构造函数">4.4 构造函数<a class="headerlink" href="#44-构造函数" title="Permanent link">&para;</a></h2>
+<p>构造函数 (constructor) 是一种特殊的成员函数，用于初始化该类的对象。</p>
+<p>用 <abbr title="Bjarne Stroustrup">BS</abbr> 的话说，构造函数的意义之一是「使程序员能够建立起某种保证，其他成员函数都能依赖这个保证」。例如：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">elem</span><span class="o">*</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Container</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>在上面的程序中，第 5 行的 <code>Container()</code> 是构造函数。它和其他成员函数的区别是，它不写返回值类型，而且它的名字是类的名字。</p>
+<p>第 6 行的 <code>val = nullptr;</code> 就是前面提到的「保证」，即 <code>val</code> 的值要么是 <code>nullptr</code>，要么是其他成员函数赋的值，而不会是个随机的值。</p>
+<div class="admonition note">
+<p class="admonition-title">nullptr</p>
+<p><code>nullptr</code> 是 C++11 引入的一个关键字，用来表示空指针。这与 C 中的 <code>NULL</code> 不同，虽然后者在 C++ 中也能使用。我们在稍后介绍 <code>nullptr</code> 为什么会被引入。</p>
+</div>
+<h2 id="45-函数默认参数与函数重载">4.5 函数默认参数与函数重载<a class="headerlink" href="#45-函数默认参数与函数重载" title="Permanent link">&para;</a></h2>
+<h2 id="46-转换构造函数">4.6 转换构造函数<a class="headerlink" href="#46-转换构造函数" title="Permanent link">&para;</a></h2>
+<h2 id="47-析构函数">4.7 析构函数<a class="headerlink" href="#47-析构函数" title="Permanent link">&para;</a></h2>
+<script>
+function inFootnote(element) {
+    let parent = element.parentNode;
+    while (parent !== null) {
+      if (parent.classList && parent.classList.contains("footnote")) {
+        break;
+      }
+      parent = parent.parentNode;
+    }
+    return parent !== null;
+}
+</script>
 <script>
 function toggleVisibility() {
   const links = document.querySelectorAll('a');
@@ -2773,22 +3072,25 @@ function toggleVisibility() {
         !link.closest('.md-source') &&
         !link.closest('.footnote-backref') &&
         !link.closest('.footnote-ref') &&
-        !link.closest('.md-header__button')) {
+        !link.closest('.md-header__button') &&
+        !inFootnote(link)
+        ) {
       if (link.style.display === 'none') {
         link.style.display = 'inline';
         for (const button of buttons) {
-            button.innerHTML = '点击此处隐藏本文所有链接';
+            button.innerHTML = '点击此处隐藏正文所有链接';
         }
       } else {
         link.style.display = 'none';
         for (const button of buttons) {
-            button.innerHTML = '点击此处显示本文所有链接';
+            button.innerHTML = '点击此处显示正文所有链接';
         }
       }
     }
   });
 }
-
+</script>
+<script>
 function toggleVisibilityFoot() {
   const links = document.querySelectorAll('a');
   const buttons = document.querySelectorAll('.xyx-toggle2');
@@ -2821,41 +3123,47 @@ function toggleVisibilityFoot() {
 </script>
 
 <p><center>
-<button onclick="toggleVisibility()" class="box box-yellow xyx-toggle">点击此处隐藏本文所有链接</button>
+<button onclick="toggleVisibility()" class="box box-yellow xyx-toggle">点击此处隐藏正文所有链接</button>
 <button onclick="toggleVisibilityFoot()" class="box box-green xyx-toggle2">点击此处隐藏本文所有脚注</button>
 </center></p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:1">
-<p>class-specifier 在这里用到：<a href="https://timsong-cpp.github.io/cppwp/n4868/dcl.type.general#1">dcl.type.general#1</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:std_version">
+<p>本文所参考的 standard 版本是 N4868 (October 2020 pre-virtual-plenary working draft/C++20 plus editorial changes)，这并不是最新的版本。参考该版本的主要考量是防止可能的更新导致链接失效。&#160;<a class="footnote-backref" href="#fnref:std_version" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li id="fn:2">
-<p>class-name 还可能是一个 simple-template-id，即模板特化。&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<li id="fn:class-specifier">
+<p>class-specifier 在这里用到：<a href="https://timsong-cpp.github.io/cppwp/n4868/dcl.type.general#1">dcl.type.general#1</a>&#160;<a class="footnote-backref" href="#fnref:class-specifier" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
-<li id="fn:3">
-<p>如果将代码中 L7 提到 L5 之前，GCC 会出现报错。这是因为：<a href="https://timsong-cpp.github.io/cppwp/n4868/basic.scope.class#2">basic.scope.class#2</a>: A name N used in a class S shall refer to the same declaration in its context and when re-evaluated in the completed scope of S. No diagnostic is required for a violation of this rule.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<li id="fn:class-name">
+<p>class-name 还可能是一个 simple-template-id，即模板特化。&#160;<a class="footnote-backref" href="#fnref:class-name" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
-<li id="fn:4">
-<p>关于输出中的 1：<a href="https://timsong-cpp.github.io/cppwp/n4868/class.pre#6">class.pre#6</a>: Complete objects of class type have nonzero size. Base class subobjects and members declared with the no_­unique_­address attribute are not so constrained.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<li id="fn:refer_to_same">
+<p>如果将代码中 L7 提到 L5 之前，GCC 会出现报错。这是因为：<a href="https://timsong-cpp.github.io/cppwp/n4868/basic.scope.class#2">basic.scope.class#2</a>: A name N used in a class S shall refer to the same declaration in its context and when re-evaluated in the completed scope of S. No diagnostic is required for a violation of this rule.&#160;<a class="footnote-backref" href="#fnref:refer_to_same" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
-<li id="fn:5">
-<p>但 layout capability rules 允许了 low-level 的强转。&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+<li id="fn:nonzero_size">
+<p>关于输出中的 1：<a href="https://timsong-cpp.github.io/cppwp/n4868/class.pre#6">class.pre#6</a>: Complete objects of class type have nonzero size. Base class subobjects and members declared with the no_­unique_­address attribute are not so constrained.&#160;<a class="footnote-backref" href="#fnref:nonzero_size" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
-<li id="fn:6">
-<p>还有 noexcept-specifier&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+<li id="fn:structural">
+<p>但 layout capability rules 允许了 low-level 的强转。&#160;<a class="footnote-backref" href="#fnref:structural" title="Jump back to footnote 6 in the text">&#8617;</a></p>
 </li>
-<li id="fn:7">
-<p>注意，作用域定义为「the largest part of the program in which that name is valid, that is, in which that name may be used as an <strong>unqualified name</strong> to refer to the same entity<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/basic.scope.declarative#1">basic.scope.declarative#1</a></sup>.」&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+<li id="fn:noexcept-specifier">
+<p>还有 noexcept-specifier&#160;<a class="footnote-backref" href="#fnref:noexcept-specifier" title="Jump back to footnote 7 in the text">&#8617;</a></p>
 </li>
-<li id="fn:8">
-<p>见问题： <a href="https://stackoverflow.com/questions/75402077/which-subclause-of-c-standard-prohibits-redeclaration-redefinition-in-a-same">Which subclause of C++ standard prohibits redeclaration / redefinition in a same block?</a>，已经解决，看起来像是直到 C++20 的时候还没改好的东西。&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+<li id="fn:scope">
+<p>注意，作用域定义为「the largest part of the program in which that name is valid, that is, in which that name may be used as an <strong>unqualified name</strong> to refer to the same entity<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/basic.scope.declarative#1">basic.scope.declarative#1</a></sup>.」&#160;<a class="footnote-backref" href="#fnref:scope" title="Jump back to footnote 8 in the text">&#8617;</a></p>
 </li>
-<li id="fn:9">
-<p>在 N4868 里，这里解释为：当一个名字在类内被定义后，类内的剩余部分<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/basic.scope.pdecl#6">basic.scope.pdecl#6</a></sup>及该类的成员函数的函数体、default argument 以及 default member initializer（后两者会在后面讲解）<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup><sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.mem.general#6">class.mem.general#6</a></sup>成为其作用域<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup><sup><a href="https://timsong-cpp.github.io/cppwp/n4868/basic.scope.class#1">basic.scope.class#1</a></sup>。在最新版（写本文时，为 2023-01-02）中，scope 的定义发生了较大更改。&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+<li id="fn:redeclaration">
+<p>见问题： <a href="https://stackoverflow.com/questions/75402077/which-subclause-of-c-standard-prohibits-redeclaration-redefinition-in-a-same">Which subclause of C++ standard prohibits redeclaration / redefinition in a same block?</a>，已经解决。&#160;<a class="footnote-backref" href="#fnref:redeclaration" title="Jump back to footnote 9 in the text">&#8617;</a></p>
 </li>
-<li id="fn:10">
-<p>在最新版本里，name hiding 一节也没有了。可以在 <a href="https://timsong-cpp.github.io/cppwp/basic.scope.pdecl#2">basic.scope.pdecl#2</a> 找到相关描述。&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+<li id="fn:class-scope">
+<p>在 N4868 里，这里解释为：当一个名字在类内被定义后，类内的剩余部分<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/basic.scope.pdecl#6">basic.scope.pdecl#6</a></sup>及该类的成员函数的函数体、default argument 以及 default member initializer（后两者会在后面讲解）<sup id="fnref:noexcept-specifier"><a class="footnote-ref" href="#fn:noexcept-specifier">7</a></sup><sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.mem.general#6">class.mem.general#6</a></sup>成为其作用域<sup id="fnref:scope"><a class="footnote-ref" href="#fn:scope">8</a></sup><sup><a href="https://timsong-cpp.github.io/cppwp/n4868/basic.scope.class#1">basic.scope.class#1</a></sup>。在最新版（写本文时，为 2023-01-02）中，scope 的定义发生了较大更改。&#160;<a class="footnote-backref" href="#fnref:class-scope" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:name_hiding">
+<p>在最新版本里，name hiding 一节也没有了。可以在 <a href="https://timsong-cpp.github.io/cppwp/basic.scope.pdecl#2">basic.scope.pdecl#2</a> 找到相关描述。&#160;<a class="footnote-backref" href="#fnref:name_hiding" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+</li>
+<li id="fn:class_member">
+<p>还能有 using-declarations, static_assert declarations, member template declarations, deduction guides (C++17), Using-enum-declarations (C++20)&#160;<a class="footnote-backref" href="#fnref:class_member" title="Jump back to footnote 12 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -2865,7 +3173,7 @@ function toggleVisibilityFoot() {
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-02-09T19:18:42+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-02-09</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-02-13T08:04:36+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-02-13</span>
       
         <br>
         创建日期:
@@ -3031,7 +3339,7 @@ var giscus = document.querySelector("script[src*=giscus]")
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.6df46069.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.4b2c34cd.min.js"></script>
       
         <script src="../../../js/timeago.min.js"></script>
       
