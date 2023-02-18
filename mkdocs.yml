@@ -86,7 +86,9 @@ nav:
       - 入门路线: math_ds_algo/getting_started.md
   - 安全: 安全/index.md
   - 语言基础: 语言基础/index.md
-  - 其他课程: 其他课程/index.md
+  - 其他课程: 
+    - other_courses/index.md
+    - 计算理论: other_courses/theory_of_computation.md
   - 杂项:
     - 杂项/index.md
     - 博客搭建记录: 杂项/博客搭建记录.md
@@ -180,7 +182,8 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.tabbed
+  - pymdownx.tabbed:
+      alternate_style: true 
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde

@@ -8,5 +8,8 @@
                 "script": ".vscode/paste_url.js"
             }
         ]
+    },
+    "yaml.schemas": {
+        "https://json.schemastore.org/mkdocs-1.0.json": "file:///f%3A/xuan-insr.github.io/mkdocs.yml"
     }
 }
