@@ -256,9 +256,6 @@ A language is context-free if it's accepted by some PDA.
 |:-|:-|:-|:-|:-|:-|
 |Context-Free|:material-check:|:material-close:|:material-close:|:material-check:|:material-check:|
 
-
-
-
 *[PDA]: PushDown Automata
 *[CFL]: Context-Free Languages
 *[CFG]: Context-Free Grammars
@@ -268,11 +265,73 @@ A language is context-free if it's accepted by some PDA.
 
 ### 3.1 Turing Machines
 
+- TM $M = (K, \Sigma, \delta, s, H)$
+    - $K$ 是 states，$s$ 是 initial state，$H$ 是 halting states
+    - $\Sigma$ 是 alphabet，包含 left end symbol ▷ 和 blank symbol ⌴
+    - transition function $\delta: (K - H) \times \Sigma \to K \times (\Sigma \cup \{\to, \leftarrow\})$，表示当前 state 接受当前 head 所指的 symbol 后转换到某个 state，并且 head 写入某个 symbol 或者向左 / 向右移动，且满足：
+        - 到了最左边，下次一定向右走
+        - 不能往某个格子里写入 ▷
+- configuration $(q, ▷\alpha, \beta) \in K \times ▷(\Sigma - \{▷\})^* \times ((\Sigma - \{▷\})^*((\Sigma - \{▷, ⌴\})^*)\cup \{e\})$，依次表示当前状态、head 及左边的 string、head 右边的 string（到最后一个非 ⌴ symbol 为止）
+- TM 从初始状态开始，每次读取 head 所指格子中的 symbol 并根据 transition function 的操作进行，直到遇到某个停机状态。
+
+构造若干 TM（按定义构造，或者组合若干 TM）：
+
+<center>![](2023-02-19-02-51-18.png){width=700}</center>
+
 ### 3.2 Usages
+
+TM 可以用来 recognize languages。
+
+#### Semidecide & Recursively Enumerable
+
+- 定义 input alphabets $\Sigma_0 = \Sigma - \{▷, ⌴\}$，因此 TM 也可以写成 $M = (K, \Sigma_0, \Sigma, \delta, s, H)$
+- 定义 $L(M) = \{w \in \Sigma_0^* : (s, ▷⌴, w) \vdash_M^* (h, \alpha) \text{ for some } h \in H\}$，即 the set of strings that $M$ halts on
+- 称 $M$ **semidecides** $L(M)$
+- 如果某个 language 被某个 TM semidecide，则称它是 **recursively enumerable** 的
+
+#### Decide
+
+- 如果 $M = (K, \Sigma_0, \Sigma, \delta, s, \{y, n\})$ 是一个 TM，那么如果对于 $L$ 中的任一字符串 $w$，要么 $(s, ▷⌴, w) \vdash_M^* (y, \alpha)$ （称为 $M$ **accepts** $w$），要么 $(s, ▷⌴, w) \vdash_M^* (n, \alpha)$ （称为 $M$ **rejects** $w$），则称 $M$ **decides** $L$。
+- 如果某个 language 被某个 TM decide，则称它是 **recursive** 或 **decidable** 的
 
 ### 3.3 Extensions
 
+我们说明对 TM 的各种扩展不会增强其计算能力；即能使用没有扩展的 TM 模拟之：
+
+1. multiple tapes：$\Sigma' = (\Sigma \cup \underline\Sigma)^k$ （$\underline\Sigma$ 是用来模拟多个 head 的）
+2. 2-way infinite tape：折成两条
+3. multiple heads: 也是 $\Sigma' = (\Sigma \cup \underline\Sigma)^k$
+4. 2-dimentional tape: 按 BFS 序折成一维
+5. random access: 多走几步就行
+6. non-deterministic——
+
+#### Non-deterministic Turing Machines
+
+- NTM $M = (K, \Sigma, \Delta, s, H)$
+- $M$ semidecides $L(M)$，如果有 branch halts 则在 $L(M)$ 中
+- $M$ decides $L$，如果所有分支都能 halt，且存在分支 accept
+- 例如，$C = \{w : w\ 是合数\}$，则可以构造 NTM 非确定性地猜 $p < w$ 和 $q < w$，如果 $w == pq$ 则 halts with y，否则 halts with n。
+
+**Theorem.** An NTM can be simulated by a DTM.
+
+大概的思路是，NTM 就是棵树，可以用 DTM 来 BFS 搜。搜的时候可以用 3-tape，\#1 存 input，\#2 存 BFS 序列 (1, 2, 3, 11, 12, 21, 22, 31, 32, 111, ...)，\#3 用来根据 \#2 模拟，每次尝试如果没 halt 就恢复 \#1 的 input
+
 ### 3.4 Description
+
+**Church-Turing Thesis.** 大意是说，算法是一个在所有 input 都 halt 的 TM；算法用来解决 decision problem，而这样的 TM decide 某个语言。因此我们可以用算法来描述 TM。
+
+因此，TM 有 3 种描述方式：
+
+1. formal definition
+2. implement-level description (diagram)
+3. high-level description (pseudo code)
+
+用伪代码表述的一个问题是编码。事实上，任何有限集合都能编码，任何由有限集合组成的有限元组也能编码。（因此 TM 也能被编码。）
+
+*[NTM]: Non-deterministic Turing Machines
+*[TM]: Turing Machines
+*[RE]: Recursively Enumerable
+*[REC]: Recursive / Decidable
 
 ## 4 Reduction, Undecidability and Grammar
 
