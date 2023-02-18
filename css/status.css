@@ -13,3 +13,8 @@
 mjx-stretchy-h.mjx-c2013 {
     border-top: 1px solid;
 }
+
+/* xg 纠正偏航的 icon */
+.md-typeset :is(.emojione, .twemoji, .gemoji) {
+    vertical-align: sub;
+}
