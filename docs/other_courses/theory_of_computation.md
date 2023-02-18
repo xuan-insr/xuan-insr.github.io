@@ -133,6 +133,17 @@ Note: $A - B = A \cap \bar B$，因此如果 $\cap$ 和 $\bar A$ 都封闭，则
 
     多想一想 $\{0^n1^n : n \ge 0\}$ 不是 regular 这个例子，同时善用德摩根律之类的各种东西把需要证明的结果凑出来，能凑出来就是 regular 的。
 
+!!! warning
+    RL 和 Non-RL、Non-RL 和 Non-RL 的 concat 都有可能是 RL。
+
+    前者的一个例子是，RL 为 $\varnothing$，则它们的 concat 也是 $\varnothing$。
+
+    后者的一个例子是：[^98]
+
+    <center>![](2023-02-19-03-56-23.png){width=600}</center>
+
+
+[^98]: https://www.cc98.org/topic/5485312/1#1
 *[DFA]: Deterministic Finite Automata
 *[NFA]: Non-Deterministic Finite Automata
 *[RL]: Regular Languages
@@ -293,6 +304,14 @@ TM 可以用来 recognize languages。
 
 - 如果 $M = (K, \Sigma_0, \Sigma, \delta, s, \{y, n\})$ 是一个 TM，那么如果对于 $L$ 中的任一字符串 $w$，要么 $(s, ▷⌴, w) \vdash_M^* (y, \alpha)$ （称为 $M$ **accepts** $w$），要么 $(s, ▷⌴, w) \vdash_M^* (n, \alpha)$ （称为 $M$ **rejects** $w$），则称 $M$ **decides** $L$。
 - 如果某个 language 被某个 TM decide，则称它是 **recursive** 或 **decidable** 的
+
+TM 也可以用来 compute functions。
+
+#### Compute
+
+- 如果 $M = (K, \Sigma_0, \Sigma, \delta, s, H)$ 是一个 TM，对 $w \in \Sigma_0^*$，如果 $(s, ▷⌴, w) \vdash_M^* (h, ▷⌴, y)$ for some $h \in H, y \in \Sigma_0^*$，则称 $y$ 是 the output of $M$ on $w$，记为 $y = M(w)$。
+- 如果对 $f: \Sigma_0^* \to \Sigma_0^*$ 有 $\forall w \in \Sigma_0^*, M(w) = f(w)$，则称 $M$ **computes** $f$。
+- 如果某个 function 被某个 TM compute，则称它是 **recursive** 或 **computable** 的
 
 ### 3.3 Extensions
 
