@@ -472,6 +472,10 @@ Note: $A - B = A \cap \bar B$，因此如果 $\cap$ 和 $\bar A$ 都封闭，则
 - 构造 TM semidecide A
 - 或者找到从 A 到已知 RE 语言的归约
 
+[练习](../toc/final_review_sp06.pdf)
+
+[答案](../toc/final_review_sp06_sol.pdf)
+
 ### 4.5 剩下的东西
 
 - A language L is **Turing enumerable** iff it's RE
