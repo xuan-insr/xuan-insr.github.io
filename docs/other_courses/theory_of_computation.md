@@ -134,6 +134,10 @@ Note: $A - B = A \cap \bar B$，因此如果 $\cap$ 和 $\bar A$ 都封闭，则
     多想一想 $\{0^n1^n : n \ge 0\}$ 不是 regular 这个例子，同时善用德摩根律之类的各种东西把需要证明的结果凑出来，能凑出来就是 regular 的。
 
 !!! warning
+    这种题[^98]：
+    <center>![](2023-02-19-12-46-31.png){width=500}</center>
+
+!!! warning
     RL 和 Non-RL、Non-RL 和 Non-RL 的 concat 都有可能是 RL。
 
     前者的一个例子是，RL 为 $\varnothing$，则它们的 concat 也是 $\varnothing$。
@@ -142,6 +146,8 @@ Note: $A - B = A \cap \bar B$，因此如果 $\cap$ 和 $\bar A$ 都封闭，则
 
     <center>![](2023-02-19-03-56-23.png){width=600}</center>
 
+!!! info
+    $(A\subseteq B)\equiv (A-B=\varnothing )\equiv(A\cup B=B)\equiv(A\cap B=A)$
 
 [^98]: https://www.cc98.org/topic/5485312/1#1
 *[DFA]: Deterministic Finite Automata
@@ -347,16 +353,71 @@ TM 也可以用来 compute functions。
 
 用伪代码表述的一个问题是编码。事实上，任何有限集合都能编码，任何由有限集合组成的有限元组也能编码。（因此 TM 也能被编码。）
 
-*[NTM]: Non-deterministic Turing Machines
-*[TM]: Turing Machines
-*[RE]: Recursively Enumerable
-*[REC]: Recursive / Decidable
+*[NTM]: Non-deterministic Turing Machines 非确定性图灵机
+*[TM]: Turing Machines 图灵机
+*[RE]: Recursively Enumerable 递归可枚举
+*[REC]: Recursive / Decidable 递归
 
 ## 4 Reduction, Undecidability and Grammar
 
 ### 4.1 Reduction
 
+A 到 B 的归约就是找到一个 recursive / computable 的 function $f : \Sigma_A^* \to \Sigma_B^*$ 使得 $\forall x \in \Sigma_A^*, x\in A \Leftrightarrow f(x) \in B$
+
+即，$A \le B$
+
+构造了一些语言对应的图灵机：
+
+- $A_\text{DFA}$ = {"D""w" : D is a DFA that accepts w}: run M on w, if accept accept, else reject
+- $A_\text{NFA}$: NFA -> DFA, run the TM for $A_\text{DFA}$, output the result
+    - reduction: f("N""w") = "D""w"
+- $A_\text{REX}$: REX -> NFA, ...
+- $E_\text{DFA}$: BFS, find path from $s$ to some $f\in F$
+- $EQ_\text{DFA}$: f("D1""D2") = "D" where D = D1 $\oplus$ D2
+- $A_\text{CFG}$: 转为 CNF，尝试所有 length = 2|w| - 1 的 derivation
+- $A_\text{PDA}$: PDA -> CFG
+- $E_\text{CFG}$: 将 e 和所有 terminals 标记，然后将标记反向传递
+- $E_\text{PDA}$: PDA -> CFG
+
+归约可以这样写：
+
+<center>![](2023-02-19-15-22-25.png){width=800}</center>
+
 ### 4.2 Undecidability
+
+!!! note
+    **Theorem.** 如果存在一个从 A 到 B 的 reduction $f$，如果 B 是 REC，则 A 也是 REC。  
+    证明大概是，构造 A 的一个 TM，如果 $M_B$ 接受 $f(w)$ 则接受，否则拒绝。
+
+    **Theorem.** 如果存在一个从 A 到 B 的 reduction $f$，如果 B 是 RE，则 A 也是 RE。  
+    证明大概是，构造 A 的一个 TM，run $M_B$ on $f(w)$，则若 $M_B$ 则停机，否则 loop。
+
+- 定义了单射 injection、满射 surjection、双射 bijection
+- 定义了两个集合等势 equinumerous，如果存在它们之间的一个双射
+- 定义了集合 A 可数 countable，如果 it's finite or is equinumerous with $\mathbb{N}$；否则是 uncountable 的
+- **Theorem.** 对于集合 A，以下表述等价：
+    1. A is countable
+    2. 存在 injection $f: A \to \mathbb{N}$
+    3. 存在一种枚举 A 种元素的方式，使得 A 中的任一元素 a 都能在 n 步内被枚举到，且 n 只取决于 a
+- 证明思路大概是，(a) => \(c): 有双射，因此 a 可以在 $f(a) + 1$ 步内被枚举到；\(c) => (b): $f(a) = 首次枚举到时的步数$；(b) => (a): 将 A 按 $f(a)$ 排序，$g(a) = a 的下标$ 形成双射
+- **Corollary.** 可数集合的任意子集也可数
+
+#### 存在非 RE 的语言
+
+- **Theorem.** 给定 alphabet $\Sigma$，$\Sigma^*$ 是可数的。
+    - 由于 TM 可编码，因此所有 TM 的集合是可数的。
+    - 由于每个语言都是 $\Sigma^*$ 的子集，因此每个语言都是可数的。
+- **Theorem.** $\mathcal{L}$ 是 $\Sigma$ 上所有语言的集合，则 $\mathcal{L}$ 是不可数的。
+    - 用 **对角化 diagonalization** 证明，即假设 $\mathcal{L}$ 可数，则将其列举；所有字符串也可列举；定义语言 $D = \{s_i : s_i \notin L_i\}$，因此 $D$ 与任一 $L_i$ 都不同，因此 $D\notin\mathcal{L}$，矛盾。
+- 由上面两条得知，所有 TM 的集合是可数的，但所有语言的集合是不可数的，而每个 TM 只能 semidecide 一种语言，因此一定存在不是 RE 的语言。
+
+#### 非 RE 的语言，以及 RE 但非 REC 的语言
+
+- $H$ = {"M""w" : M is a TM that halts on w} 是 RE 但非 REC 的。
+- $H_d$ = {"M" : M is a TM that does not halt on "M"} 不是 RE 的。
+    - 证明 $H$ 是 RE 的，只需要构造 **Universal TM** U = run M on w 即可
+    - 证明 $H_d$ 不是 RE 的：用反证法，假设存在 $M_D$ semidecides $H_d$，那么 run $M_D$ on "$M_D$"，得到 $M_D$ halts on "$M_D$" iff $M_D$ doesn't halt on "$M_D$"，矛盾，因此不是 RE 的
+    - 证明 $H$ 不是 REC 的：用反证法，假设是 REC 的，存在 $M_H$ decides $H$，则能构造 $M_D$ = run $M_H$ on "M""M", accept if reject, else reject。$M_D$ decides $H_d$，与 $H_d$ 不是 RE 的矛盾，因此 $H$ 不是 REC 的
 
 ### 4.3 Closure Properties
 
@@ -364,12 +425,60 @@ TM 也可以用来 compute functions。
 |:-|:-|:-|:-|:-|:-|
 |Regular|:material-check:|:material-check:|:material-check:|:material-check:|:material-check:|
 |Context-Free|:material-check:|:material-close:|:material-close:|:material-check:|:material-check:|
-|Recursively Enumerable|:material-check:|:material-close:|:material-check:|:material-check:|:material-check:|
+|Recursively Enumerable|:material-check:|:material-check:|:material-close:|:material-check:|:material-check:|
 |Recursive|:material-check:|:material-check:|:material-check:|:material-check:|:material-check:|
 
 Note: $A - B = A \cap \bar B$，因此如果 $\cap$ 和 $\bar A$ 都封闭，则差运算也封闭。
 
-### 4.4 Grammar
+证明：
+
+- REC
+    - $\cup$ 任一 accept，$\cap$ 都 accept，$\bar A$ 翻转结果
+    - $\circ$：构造 TM，遍历所有可能的拆分，分别用两个 TM 跑，如果都 accept 就 accept
+    - $*$：更多拆分方案
+- RE
+    - $\cap$ 即依次运行
+    - $\cup$ 构造 TM 并行运行两个 TM
+    - $\circ$ 和 $*$ 如 REC 那样拆分，但是用 NTM non-deterministically 拆
+    - $\bar A$——
+
+**Lemma.** $A$ 是 REC iff $A$ 和 $\bar A$ 都是 RE  
+证明思路大概是，如果都是 RE，对于任意输入，两个 TM 必有且仅有一个停机；并行跑这两个 TM，根据哪个停机决定 accept 还是 reject。
+
+而 H 是 RE 但非 REC，因此 $\bar H$ 不是 RE，因此 RE 对 $\bar A$ 不封闭。
+
+### 4.4 一些证明思路
+
+#### 证明某个语言非 REC
+
+- 找到一个从 H 或其他已知 non-REC 的语言到 A 的 reduction
+- 或者用反证法
+
+**Rice's Theorem.**
+
+#### 证明某个语言是 REC
+
+- 构造 TM decide A
+- 或者找到从 A 到已知 REC 语言的归约
+- 或者使用 **Lemma.** $A$ 是 REC iff $A$ 和 $\bar A$ 都是 RE
+
+#### 证明某个语言非 RE
+
+- 使用 **Lemma.** $A$ 是 REC iff $A$ 和 $\bar A$ 都是 RE
+- 或者找到已知 non-RE 的语言到 A 的 reduction
+
+#### 证明某个语言是 RE
+
+- 构造 TM semidecide A
+- 或者找到从 A 到已知 RE 语言的归约
+
+### 4.5 剩下的东西
+
+- A language L is **Turing enumerable** iff it's RE
+- A language L is **lexicographically Turing enumerable** iff it's REC
+- Grammar：和 CFG 的区别是左边可以有好几个 symbol，但是至少有一个 non-terminal。也是 $G = (V, \Sigma, S, R)$
+- 显然，CFG 也是 Grammar
+- **Theorem.** 一个语言由一个 Grammar 产生，当且仅当它被某个 TM semidecided，即它是 RE 的。
 
 ## 5 Numerical Functions and Recursion Theorem
 
