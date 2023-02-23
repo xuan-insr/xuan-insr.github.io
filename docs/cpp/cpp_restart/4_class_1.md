@@ -1,4 +1,4 @@
-# 4 类 (I)
+# 4 类 (I) - 定义、成员、构造、析构
 
 !!! warning
     从本节开始，我们在部分内容会尝试直接使用 standard 的相应内容讲解[^std_version]。由于会涉及到一些尚未讨论的内容，因此这些内容我们会通过脚注的方式给出。初学者可以忽略这些脚注。
@@ -120,6 +120,12 @@ C 和 C++ 都是按名等价 (name equivalence) 而非按结构等价 (structura
 ??? tips "Injected Class Name"
     C++ 规定，A class-name is inserted into the scope in which it is declared immediately after the class-name is seen. The class-name is also inserted into the scope of the class itself; this is known as the injected-class-name^[class.pre#2](https://timsong-cpp.github.io/cppwp/n4868/class.pre#2)^。这就是 `struct Node { Node* next; };` 能够使用 `Node` 的原因。
 
+    但是，考虑内存布局容易理解，class `C` 内部不能有 non-static data member of type `C`。
+
+## ▲ 声明与定义
+
+--8<-- "cpp/cpp_restart/appendix/decl_and_def.md"
+
 ## 4.2 类的成员
 
 member-specification 说明了类的成员。其结构如下^[class.mem.general](https://timsong-cpp.github.io/cppwp/n4868/class.mem.general)^：
@@ -169,7 +175,9 @@ int main() {
 
 [^class_member]: 还能有 using-declarations, static_assert declarations, member template declarations, deduction guides (C++17), Using-enum-declarations (C++20)
 
-## 4.3 inline 函数
+## ▲ inline 函数
+
+--8<-- "cpp/cpp_restart/appendix/inline_functions.md"
 
 ## 4.4 构造函数
 
@@ -196,11 +204,14 @@ public:
 !!! note "nullptr"
     `nullptr` 是 C++11 引入的一个关键字，用来表示空指针。这与 C 中的 `NULL` 不同，虽然后者在 C++ 中也能使用。我们在稍后介绍 `nullptr` 为什么会被引入。
 
-## 4.5 函数默认参数与函数重载
+## ▲ 函数默认参数与函数重载
 
-## 4.6 转换构造函数
+由构造函数默认参数和重载引入本节。
 
-## 4.7 析构函数
+!!! note "nullptr"
+    TODO
+
+## 4.6 析构函数
 
 
 --8<-- "cpp/cpp_restart/toggle_visibility.md"

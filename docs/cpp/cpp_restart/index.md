@@ -18,16 +18,38 @@
 1. [x] C++ 诞生
 1. [x] 编程范式
 1. [x] 引入 oop（list & shape）
-1. [ ] 类：成员、构造与析构 (defaulted and deleted functions)、inline functions、private & public & friend & protected、继承（多继承、函数重写）、抽象类
-    - Properties of classes^[class.prop](https://timsong-cpp.github.io/cppwp/n4868/class.prop)^ 暂时跳过了
-2. [ ] 从类引出 default arguments, `operator =` overload，然后引出函数和运算符重载
-3. [ ] 讨论隐式类型转换和 `explicit`，讨论 copy elision
-4. [ ] 从运算符重载引出引用
-5. [ ] 类：虚函数、多继承（虚继承）
-6. [ ] 类：new & delete, const 和 static 成员函数、mutable ~~、pointers to members、final and override~~
-7. [ ] 从 const 引出 UB
-8. [ ] 引入模板
-9.  [ ] STL
+1. [ ] 类 (I): 定义、成员、构造、析构
+    - 声明与定义
+    - inline 函数
+    - 函数默认参数与函数重载
+1. [ ] 类 (II): 拷贝赋值、拷贝构造、SMFs (defaulted and deleted functions)、动态分配
+    - 运算符重载
+    - 引用
+    - I/O stream
+1. [ ] 类 (III): 转换构造函数
+    - copy elision
+    - 类型
+    - bool
+    - auto & return type deduction
+1. [ ] 类 (IV): const 和 static 成员
+    - UB
+        - signed integers are 2's complement (C++20)
+1. [ ] 类 (V): 继承与抽象类、访问控制
+    - final, override
+    - covariant return types
+    - delegating and inherited constructors
+1. [ ] 模板
+    - string
+    - alias template
+    - constexpr (C++11); consteval, constinit (C++20)
+1. [ ] STL
+    - range-based for loop (C++11); init-statement in range-for (C++20)
+    - lambda
+1. [ ] 右值引用和移动语义
+    - smart pointers
+1. [ ] 类 (VI): 移动构造与移动赋值
+1. [ ] namespace
+1. [ ] exception
 
 ### Topics
 
@@ -37,43 +59,45 @@
 - [x] default arguments, `operator =` overload (1979, C with Classes)
 - [x] 类 (1985, Release 1.0)：虚函数、new & delete、`::`
 - [x] 函数和运算符重载 (1985, Release 1.0)
-- [ ] I/O stream (1985, Release 1.0; C++98)
-- [ ] string (1985, Release 1.0; C++98)
-- [x] 类 (1989, Release 2.0)：多继承、抽象类、`const` 和 `static` 成员函数、每个类的 new & delete、protected、pointers to members
-- [ ] namespace (1990, ARM)
-- [ ] exception (1990, ARM)
+- [x] I/O stream (1985, Release 1.0; C++98)
+- [x] string (1985, Release 1.0; C++98)
+- [x] 类 (1989, Release 2.0)：多继承、抽象类、`const` 和 `static` 成员函数、每个类的 new & delete、protected
+- [ ] 类 (1989, Release 2.0)：pointers to members
+- [x] namespace (1990, ARM)
+- [x] exception (1990, ARM)
 - [x] 模板 (1990, ARM)
-- [x] 类 (C++98)：mutable
-- [ ] 类 (C++98)：RTTI、covariant return types
-- [ ] cast operators (C++98)
-- [ ] bool (C++98)
+- [x] 类 (C++98)：mutable、covariant return types
+- [ ] 类 (C++98)：RTTI
+- [x] cast operators (C++98)
+- [x] bool (C++98)
 - [x] 模板 (C++98)：template instantiations、member templates
 - [x] STL (C++98)：containers, iterators, algorithms, function objects (`std::function` C++11)
-- [ ] 初始化：value initialization (C++03)、
+- [ ] **初始化**：value initialization (C++03)、
 list initialization (C++11)、brace-or-equal initializers (C++11)、designated initialization (C++20)
 - [x] 类 (C++11)：defaulted and deleted functions
-- [ ] 右值引用和移动语义 (C++11)
-- [ ] 类 (C++11)：move constructors and move assignment operators、delegating and inherited constructors
-- [ ] smart pointers (C++11)
-- [ ] lambda expressions (C++11); generic lambda (C++14); capture `*this` (C++17)
-- [ ] auto (C++11); return type deduction (C++14)
-- [ ] range-based for loop (C++11); init-statement in range-for (C++20)
+- [x] 右值引用和移动语义 (C++11)
+- [x] 类 (C++11)：move constructors and move assignment operators、delegating and inherited constructors
+- [x] smart pointers (C++11)
+- [x] lambda expressions (C++11); generic lambda (C++14); capture `*this` (C++17)
+- [x] auto (C++11); return type deduction (C++14)
+- [x] range-based for loop (C++11); init-statement in range-for (C++20)
 - [x] type aliases (C++11)
-- [ ] alias template (C++11)
+- [x] alias template (C++11)
 - [ ] trailing return type (C++11)
 - [ ] type traits (C++11)
-- [ ] constexpr (C++11); consteval, constinit (C++20)
-- [ ] 一些遗留问题 (C++11): final, override, nullptr
+- [x] constexpr (C++11); consteval, constinit (C++20)
+- [x] 一些遗留问题 (C++11): final, override
+- [x] nullptr (C++11)
 - [ ] concurrency support (C++11), memory model (C++11), thread local storage (C++11)
 - [ ] variable template (C++14)
 - [ ] string_view (C++17)
 - [ ] inline variables (C++17)
 - [ ] structured bindings (C++17)
-- [ ] initializers for if and switch (C++17)
-- [ ] [Order of evaluation](https://en.cppreference.com/w/cpp/language/eval_order)
+- [x] initializers for if and switch (C++17)
+- [x] [Order of evaluation](https://en.cppreference.com/w/cpp/language/eval_order)
 - [ ] `std::tuple`, `std::any`, `std::optional`, `std::variant` (C++17)
 - [ ] 3-way comparison (C++20)
-- [ ] signed integers are 2's complement (C++20)
+- [x] signed integers are 2's complement (C++20)
 - [ ] modules (C++20)
 - [x] UB
 
