@@ -71,7 +71,7 @@ if (a < b) {
 }
 ```
 
-请注意，上面这段 C++ 代码只有 3 条语句，因为 3~7 行是一个完整的语句 (selection-statement ^[stmt.select.general#1](https://timsong-cpp.github.io/cppwp/n4868/stmt.select.general#1)^)。
+请注意，上面这段 C++ 代码中 3~7 行是一个完整的语句 (selection-statement ^[stmt.select.general#1](https://timsong-cpp.github.io/cppwp/n4868/stmt.select.general#1)^)。
 
 也就是说，我们熟悉的 C 和 C++ 等编程语言都是 **结构化编程语言 (structured programming languages)**，因为它们有诸如分支、循环、语句块、函数之类的语言结构。
 

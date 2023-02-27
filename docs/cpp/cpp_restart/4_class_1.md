@@ -179,7 +179,7 @@ int main() {
 
 --8<-- "cpp/cpp_restart/appendix/inline_functions.md"
 
-## 4.4 构造函数
+## 4.3 构造函数
 
 构造函数 (constructor) 是一种特殊的成员函数，用于初始化该类的对象。
 
@@ -194,7 +194,7 @@ public:
         val = nullptr;
     }
     // ...
-}
+};
 ```
 
 在上面的程序中，第 5 行的 `Container()` 是构造函数。它和其他成员函数的区别是，它不写返回值类型，而且它的名字是类的名字。
@@ -204,14 +204,61 @@ public:
 !!! note "nullptr"
     `nullptr` 是 C++11 引入的一个关键字，用来表示空指针。这与 C 中的 `NULL` 不同，虽然后者在 C++ 中也能使用。我们在稍后介绍 `nullptr` 为什么会被引入。
 
+因此，当我们在用 `Container c;` 定义一个对象时，就会调用构造函数。例如：
+
+<center>![](2023-02-24-00-02-54.png){width=700}</center>
+
+
+像普通的函数一样，构造函数可以是有参数的。例如，下面的构造函数允许用户传递一个初始大小，然后直接开一个对应大小的空间：
+
+```c++ linenums="1"
+class Container {
+    elem* val;
+    // ...
+public:
+    Container(unsigned size) {
+        val = (elem*)malloc(sizeof(elem) * size);
+        // ...
+    }
+    // ...
+};
+```
+
 ## ▲ 函数默认参数与函数重载
+
+这样的构造函数允许用户传递一个初始大小，然后直接开一个对应大小的空间：
+
+```c++ linenums="1"
+class Container {
+    elem* val;
+    // ...
+public:
+    Container(unsigned size) {
+        val = (elem*)malloc(sizeof(elem) * size);
+        // ...
+    }
+    // ...
+};
+```
+
+那么，假如我们希望用户既可以给定大小，也能够在不知道要开多大的情况下使用一个默认大小，怎么办呢？C++ 支持 **默认参数 (default arguments)**，用来代替函数调用中缺少的末尾几个参数：
+
+```c++
+void point(int x = 3, int y = 4);
+ 
+point(1, 2); // calls point(1, 2)
+point(1);    // calls point(1, 4)
+point();     // calls point(3, 4)
+```
+
+默认参数必须出现在末尾的若干个参数中；即
 
 由构造函数默认参数和重载引入本节。
 
 !!! note "nullptr"
     TODO
 
-## 4.6 析构函数
+## 4.4 析构函数
 
 
 --8<-- "cpp/cpp_restart/toggle_visibility.md"
