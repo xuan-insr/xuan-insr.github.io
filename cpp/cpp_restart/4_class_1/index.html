@@ -17,7 +17,7 @@
         <link rel="next" href="../5_class_2/">
       
       <link rel="icon" href="../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.13">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.15">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ffa9267a.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.113286f1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
@@ -686,8 +686,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#44-构造函数" class="md-nav__link">
-    4.4 构造函数
+  <a href="#43-构造函数" class="md-nav__link">
+    4.3 构造函数
   </a>
   
 </li>
@@ -700,8 +700,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#46-析构函数" class="md-nav__link">
-    4.6 析构函数
+  <a href="#44-析构函数" class="md-nav__link">
+    4.4 析构函数
   </a>
   
 </li>
@@ -3194,8 +3194,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#44-构造函数" class="md-nav__link">
-    4.4 构造函数
+  <a href="#43-构造函数" class="md-nav__link">
+    4.3 构造函数
   </a>
   
 </li>
@@ -3208,8 +3208,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#46-析构函数" class="md-nav__link">
-    4.6 析构函数
+  <a href="#44-析构函数" class="md-nav__link">
+    4.4 析构函数
   </a>
   
 </li>
@@ -3231,7 +3231,7 @@
 
 <h1 id="4-类-i---定义成员构造析构">4 类 (I) - 定义、成员、构造、析构<a class="headerlink" href="#4-类-i---定义成员构造析构" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 1240 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 76 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 5 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 1195 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 101 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 5 分钟</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -3619,7 +3619,7 @@ function toggleVisibilityFoot() {
 <p><a href="https://stackoverflow.com/a/1759575/14430730">这个回答</a> 指出：Don't add <code>inline</code> just because you think your code will run faster if the compiler inlines it. ... Generally, the compiler will be able to do this better than you.</p>
 <p>因此，实际上在现在的 C++ 中，<code>inline</code> 比「让一个函数被内联」更重要的作用在于，帮助实现 header-only 的库。</p>
 </details>
-<h2 id="44-构造函数">4.4 构造函数<a class="headerlink" href="#44-构造函数" title="Permanent link">&para;</a></h2>
+<h2 id="43-构造函数">4.3 构造函数<a class="headerlink" href="#43-构造函数" title="Permanent link">&para;</a></h2>
 <p>构造函数 (constructor) 是一种特殊的成员函数，用于初始化该类的对象。</p>
 <p>用 <abbr title="Bjarne Stroustrup">BS</abbr> 的话说，构造函数的意义之一是「使程序员能够建立起某种保证，其他成员函数都能依赖这个保证」。例如：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -3638,7 +3638,7 @@ function toggleVisibilityFoot() {
 <span class="w">        </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="c1">// ...</span>
-<span class="p">}</span>
+<span class="p">};</span>
 </code></pre></div></td></tr></table></div>
 <p>在上面的程序中，第 5 行的 <code>Container()</code> 是构造函数。它和其他成员函数的区别是，它不写返回值类型，而且它的名字是类的名字。</p>
 <p>第 6 行的 <code>val = nullptr;</code> 就是前面提到的「保证」，即 <code>val</code> 的值要么是 <code>nullptr</code>，要么是其他成员函数赋的值，而不会是个随机的值。</p>
@@ -3646,13 +3646,65 @@ function toggleVisibilityFoot() {
 <p class="admonition-title">nullptr</p>
 <p><code>nullptr</code> 是 C++11 引入的一个关键字，用来表示空指针。这与 C 中的 <code>NULL</code> 不同，虽然后者在 C++ 中也能使用。我们在稍后介绍 <code>nullptr</code> 为什么会被引入。</p>
 </div>
+<p>因此，当我们在用 <code>Container c;</code> 定义一个对象时，就会调用构造函数。例如：</p>
+<p><center><img alt="" src="../2023-02-24-00-02-54.png" width="700" /></center></p>
+<p>像普通的函数一样，构造函数可以是有参数的。例如，下面的构造函数允许用户传递一个初始大小，然后直接开一个对应大小的空间：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">elem</span><span class="o">*</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Container</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">elem</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
 <h2 id="-函数默认参数与函数重载">▲ 函数默认参数与函数重载<a class="headerlink" href="#-函数默认参数与函数重载" title="Permanent link">&para;</a></h2>
+<p>这样的构造函数允许用户传递一个初始大小，然后直接开一个对应大小的空间：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">elem</span><span class="o">*</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Container</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">elem</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>那么，假如我们希望用户既可以给定大小，也能够在不知道要开多大的情况下使用一个默认大小，怎么办呢？C++ 支持 <strong>默认参数 (default arguments)</strong>，用来代替函数调用中缺少的末尾几个参数：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">point</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+
+<span class="n">point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c1">// calls point(1, 2)</span>
+<span class="n">point</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w">    </span><span class="c1">// calls point(1, 4)</span>
+<span class="n">point</span><span class="p">();</span><span class="w">     </span><span class="c1">// calls point(3, 4)</span>
+</code></pre></div>
+<p>默认参数必须出现在末尾的若干个参数中；即</p>
 <p>由构造函数默认参数和重载引入本节。</p>
 <div class="admonition note">
 <p class="admonition-title">nullptr</p>
 <p>TODO</p>
 </div>
-<h2 id="46-析构函数">4.6 析构函数<a class="headerlink" href="#46-析构函数" title="Permanent link">&para;</a></h2>
+<h2 id="44-析构函数">4.4 析构函数<a class="headerlink" href="#44-析构函数" title="Permanent link">&para;</a></h2>
 <script>
 function inFootnote(element) {
     let parent = element.parentNode;
@@ -3780,7 +3832,7 @@ function toggleVisibilityFoot() {
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-02-23T09:01:23+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-02-23</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-02-27T04:04:26+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-02-27</span>
       
         <br>
         创建日期:
