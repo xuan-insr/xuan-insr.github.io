@@ -22,9 +22,11 @@ jobs:
       - run: pip install mkdocs-statistics-plugin
       - run: mkdocs gh-deploy --force
 
+      - name: Copy slides to gh-pages
+        run: |
+          cp -r slides/. gh-pages/slides
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.TOKEN }}
-          publish_dir: ./slides
-          publish_branch: gh-pages
+          publish_dir: ./gh-pages
