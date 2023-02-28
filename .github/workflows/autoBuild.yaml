@@ -26,4 +26,4 @@ jobs:
           personal_token: ${{ secrets.TOKEN }}
           publish_dir: ./slides
           publish_branch: gh-pages
-          clean: false
+          keep_files: true
