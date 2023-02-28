@@ -1,0 +1,3819 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://xuan-insr.github.io/cpp/%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1/">
+      
+      
+        <link rel="prev" href="../cpp_for_contests/">
+      
+      
+        <link rel="next" href="../../pl/">
+      
+      <link rel="icon" href="../../logo.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.15">
+    
+    
+      
+        <title>理解 STL —— 迭代器与函数对象 - 咸鱼暄的代码空间</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.113286f1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Serif SC";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../from_oi_wiki/css/extra.css?v=13">
+    
+      <link rel="stylesheet" href="../../css/status.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-JT9BRCXKJJ"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-JT9BRCXKJJ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-JT9BRCXKJJ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#理解-stl---迭代器与函数对象" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="咸鱼暄的代码空间" class="md-header__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../logo.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            咸鱼暄的代码空间
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              理解 STL —— 迭代器与函数对象
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        🏡 主页
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        C++
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../pl/" class="md-tabs__link">
+        PL & 编译
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
+        核心知识
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E5%AE%89%E5%85%A8/" class="md-tabs__link">
+      安全
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-tabs__link">
+      语言基础
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../other_courses/" class="md-tabs__link">
+        其他课程
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%9D%82%E9%A1%B9/" class="md-tabs__link">
+        杂项
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/" class="md-tabs__link">
+        生活
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="咸鱼暄的代码空间" class="md-nav__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../logo.ico" alt="logo">
+
+    </a>
+    咸鱼暄的代码空间
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../..">🏡 主页</a>
+          
+            <label for="__nav_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          🏡 主页
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%B8%BB%E9%A1%B5/about/" class="md-nav__link">
+        ❤️ 我和朋友们！
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recent/" class="md-nav__link">
+        📆 最近更新
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../">C++</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          C++
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../cpp_restart/">🍉C++ 学习记录</a>
+          
+            <label for="__nav_2_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          🍉C++ 学习记录
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/1_birth/" class="md-nav__link">
+        1 C++ 的诞生
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/2_paradigm/" class="md-nav__link">
+        2 编程范式
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/3_oop/" class="md-nav__link">
+        3 面向对象程序设计
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/4_class_1/" class="md-nav__link">
+        4 类 (I) - 定义、成员、构造、析构
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/5_class_2/" class="md-nav__link">
+        5 类 (II) - 拷贝构造与拷贝赋值
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/6_class_3/" class="md-nav__link">
+        6 类 (III) - 转换构造函数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/7_class_4/" class="md-nav__link">
+        7 类 (IV) - const 和 static 成员
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/8_class_5/" class="md-nav__link">
+        8 类 (V) - 继承与抽象类、访问控制
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/9_template/" class="md-nav__link">
+        9 模板
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/10_stl/" class="md-nav__link">
+        10 STL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/11_move_semantics/" class="md-nav__link">
+        11 右值引用和移动语义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/12_class_6/" class="md-nav__link">
+        12 类 (VI) - 移动构造与移动赋值
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/13_namespace/" class="md-nav__link">
+        13 namespace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/14_exception/" class="md-nav__link">
+        14 exception
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_16" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_16" id="__nav_2_2_16_label" tabindex="0">
+          A 附录
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_16_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2_16">
+          <span class="md-nav__icon md-icon"></span>
+          A 附录
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/appendix/decl_and_def/" class="md-nav__link">
+        声明与定义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/appendix/inline_functions/" class="md-nav__link">
+        inline 函数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/appendix/func_overload/" class="md-nav__link">
+        函数默认参数与重载
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/appendix/operator_overload/" class="md-nav__link">
+        运算符重载
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/appendix/references/" class="md-nav__link">
+        引用
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/appendix/iostream/" class="md-nav__link">
+        I/O stream
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/appendix/copy_elision/" class="md-nav__link">
+        copy elision
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/appendix/cast/" class="md-nav__link">
+        类型转换
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/appendix/bool/" class="md-nav__link">
+        bool
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/appendix/auto/" class="md-nav__link">
+        auto
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/appendix/undefined_behavior/" class="md-nav__link">
+        未定义行为
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/appendix/string/" class="md-nav__link">
+        std::string
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/appendix/smart_pointers/" class="md-nav__link">
+        智能指针
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/appendix/lambda/" class="md-nav__link">
+        lambda
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_17" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_17" id="__nav_2_2_17_label" tabindex="0">
+          一些笔记和 TODO
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_17_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2_17">
+          <span class="md-nav__icon md-icon"></span>
+          一些笔记和 TODO
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/notes/notes/" class="md-nav__link">
+        零散内容记录
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/notes/dne_notes/" class="md-nav__link">
+        The Design and Evaluation of C++ 阅读记录
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/notes/std_notes/" class="md-nav__link">
+        C++ 语言标准阅读记录
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/notes/guideline_notes/" class="md-nav__link">
+        C++ Core Guidelines 阅读记录
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_restart/notes/bs_faq_notes/" class="md-nav__link">
+        Bjarne Stroustrup's FAQ 阅读记录
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_for_contests/" class="md-nav__link">
+        快速入门 C++ 写题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+          C++ 知识补充
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          C++ 知识补充
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          理解 STL —— 迭代器与函数对象
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        理解 STL —— 迭代器与函数对象
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-quiz-时间" class="md-nav__link">
+    0 Quiz 时间！
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-迭代器" class="md-nav__link">
+    1 Why 迭代器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-迭代器的分类" class="md-nav__link">
+    2 迭代器的分类
+  </a>
+  
+    <nav class="md-nav" aria-label="2 迭代器的分类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#又是-quiz-时间" class="md-nav__link">
+    又是 Quiz 时间！
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-迭代器何必是迭代器" class="md-nav__link">
+    3 迭代器何必是迭代器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-函数又何必是函数" class="md-nav__link">
+    4 函数又何必是函数
+  </a>
+  
+    <nav class="md-nav" aria-label="4 函数又何必是函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#函数对象-function-object--functor" class="md-nav__link">
+    函数对象 (Function Object / Functor)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-总结" class="md-nav__link">
+    5 总结
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../pl/">PL & 编译</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          PL & 编译
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../pl/ppl_notes/">编程语言原理</a>
+          
+            <label for="__nav_3_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          编程语言原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/0_PPL_Final_Problem1/" class="md-nav__link">
+        我在 PPL 2022 Final 出的复习题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
+          Part I - Judgments and Rules | 判断与规则
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Part I - Judgments and Rules | 判断与规则
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/1_Abstract_Syntax/" class="md-nav__link">
+        1 抽象语法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/2_Inductive_Definition/" class="md-nav__link">
+        2 归纳定义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/3_Hypothetical_and_General_Judgments/" class="md-nav__link">
+        3 假言判断与一般性判断
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
+          Part II - Statics and Dynamics | 静态语义和动态语义
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Part II - Statics and Dynamics | 静态语义和动态语义
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/4_Statics/" class="md-nav__link">
+        4 静态语义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/5_Dynamics/" class="md-nav__link">
+        5 动态语义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/6_Type_Safety/" class="md-nav__link">
+        6 类型安全
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
+          Part III - Total Functions | 全函数
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Part III - Total Functions | 全函数
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/8_Func_Def_and_Val/" class="md-nav__link">
+        8 函数定义和值
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/9_Sys_T_of_Higher_Order_Recursion/" class="md-nav__link">
+        9 高阶递归的系统 T
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+          Part IV - Finite Data Types | 有限数据类型
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Part IV - Finite Data Types | 有限数据类型
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/10_product_types/" class="md-nav__link">
+        10 积类型
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/11_sum_types/" class="md-nav__link">
+        11 和类型
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compile_principle/" class="md-nav__link">
+        编译原理
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/">核心知识</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          核心知识
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+          操作系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          操作系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/1_intro/" class="md-nav__link">
+        1 写在前面
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/2_overview/" class="md-nav__link">
+        Part.1 概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
+          Part.2 进程管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Part.2 进程管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/3_process/" class="md-nav__link">
+        3 进程
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/4_sched/" class="md-nav__link">
+        4 调度
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/5_thread/" class="md-nav__link">
+        5 线程
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_4" id="__nav_4_2_4_label" tabindex="0">
+          Part.3 进程同步
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Part.3 进程同步
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/6_sync_tools/" class="md-nav__link">
+        6 同步及其工具
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/7_sync_examples/" class="md-nav__link">
+        7 经典同步问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/8_deadlocks/" class="md-nav__link">
+        8 死锁
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
+          Part.4 内存管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Part.4 内存管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/9_main_memory/" class="md-nav__link">
+        9 主存
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/10_virtual_memory/" class="md-nav__link">
+        10 虚拟内存
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_6" id="__nav_4_2_6_label" tabindex="0">
+          Part.5 存储管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Part.5 存储管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/V_storage_management/11_mass_storage/" class="md-nav__link">
+        11 大容量存储
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/V_storage_management/12_io_systems/" class="md-nav__link">
+        12 I/O 系统
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_7" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_7" id="__nav_4_2_7_label" tabindex="0">
+          Part.6 文件系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Part.6 文件系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/VI_file_system/13_fs_interface/" class="md-nav__link">
+        13 文件系统
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/VI_file_system/14_fs_impl/" class="md-nav__link">
+        14 文件系统实现
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/15_review/" class="md-nav__link">
+        15 总结
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+          计算机组成
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          计算机组成
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/1_prelude/" class="md-nav__link">
+        1 写在前面
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/2_instructions/" class="md-nav__link">
+        2 Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/3_arithmetic/" class="md-nav__link">
+        3 Arithmetic
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/4_processor/" class="md-nav__link">
+        4 Processor
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/5_cache/" class="md-nav__link">
+        5 Cache
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/6_IO/" class="md-nav__link">
+        6 I/O
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/%E5%8E%86%E5%B9%B4%E5%8D%B7/" class="md-nav__link">
+        2022 回忆卷
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../compile_principle/">编译原理</a>
+          
+            <label for="__nav_4_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          编译原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compile_principle/1%20Lexical%20Analysis/" class="md-nav__link">
+        I 词法分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compile_principle/2%20Parsing%20%28I%29/" class="md-nav__link">
+        II 语法分析 - 自顶向下分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compile_principle/3%20Parsing%20%28II%29/" class="md-nav__link">
+        III 语法分析 - 自底向上分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compile_principle/4%20Semantic%20Analysis/" class="md-nav__link">
+        IV 语义分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compile_principle/5%20Runtime%20Environment/" class="md-nav__link">
+        V 运行时环境
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compile_principle/6%20Code%20Generation/" class="md-nav__link">
+        VI 代码生成
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../math_ds_algo/">数学、数据结构和算法</a>
+          
+            <label for="__nav_4_5">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          数学、数据结构和算法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math_ds_algo/getting_started/" class="md-nav__link">
+        入门路线
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8/" class="md-nav__link">
+        安全
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        语言基础
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../other_courses/">其他课程</a>
+          
+            <label for="__nav_7">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          其他课程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other_courses/theory_of_computation/" class="md-nav__link">
+        计算理论
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%9D%82%E9%A1%B9/">杂项</a>
+          
+            <label for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          杂项
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%9D%82%E9%A1%B9/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        博客搭建记录
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E7%94%9F%E6%B4%BB/">生活</a>
+          
+            <label for="__nav_9">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          生活
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+          讨饭历程
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9_2">
+          <span class="md-nav__icon md-icon"></span>
+          讨饭历程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/overview/" class="md-nav__link">
+        🏳️‍🌈 总览
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/pdd/" class="md-nav__link">
+        😕 拼多多
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/meituan/" class="md-nav__link">
+        🤗 美团
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/mayi/" class="md-nav__link">
+        🤔 蚂蚁
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/huawei/" class="md-nav__link">
+        👍 华为
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/bytedance/" class="md-nav__link">
+        🥳 字节
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/quant/" class="md-nav__link">
+        👨‍💻 量化相关
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/others/" class="md-nav__link">
+        其他
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%E6%88%91%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E5%A4%96%E7%BD%AE%E5%A4%A7%E8%84%91/" class="md-nav__link">
+        我需要一个外置大脑
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" class="md-nav__link">
+        关于亲密关系的碎碎念
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/2022/" class="md-nav__link">
+        2022 年终总结
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E6%B4%BB/%E5%9B%9E%E9%A1%BE%E5%9C%A8%E4%BF%A1%E5%AE%89%E7%9A%84%E4%B8%89%E5%B9%B4/" class="md-nav__link">
+        回顾在信安的三年
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_7" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%A1%8C%E6%B8%B8/">桌游</a>
+          
+            <label for="__nav_9_7">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9_7">
+          <span class="md-nav__icon md-icon"></span>
+          桌游
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A1%8C%E6%B8%B8/components/" class="md-nav__link">
+        配件相关
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-quiz-时间" class="md-nav__link">
+    0 Quiz 时间！
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-迭代器" class="md-nav__link">
+    1 Why 迭代器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-迭代器的分类" class="md-nav__link">
+    2 迭代器的分类
+  </a>
+  
+    <nav class="md-nav" aria-label="2 迭代器的分类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#又是-quiz-时间" class="md-nav__link">
+    又是 Quiz 时间！
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-迭代器何必是迭代器" class="md-nav__link">
+    3 迭代器何必是迭代器
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-函数又何必是函数" class="md-nav__link">
+    4 函数又何必是函数
+  </a>
+  
+    <nav class="md-nav" aria-label="4 函数又何必是函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#函数对象-function-object--functor" class="md-nav__link">
+    函数对象 (Function Object / Functor)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-总结" class="md-nav__link">
+    5 总结
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="理解-stl---迭代器与函数对象">理解 STL - 迭代器与函数对象<a class="headerlink" href="#理解-stl---迭代器与函数对象" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 7396 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 33 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 25 分钟</p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p><strong>本文所需预备知识：</strong> C / C++ 基础，C++ 模板基础；</p>
+<p><strong>建议预备知识：</strong> 数据结构和算法基础</p>
+<p>在 <a href="../cpp_for_contests/">快速入门 C++ 写题！</a>中，我们介绍的内容大多数（除了 1.1, 1.3 和 2.5）都属于 STL (Standard Template Library)。虽然掌握一些接口就足够我们用它们来做算法题，但是好奇的小朋友们可能也会对一些具体的实现感兴趣。本文中，我们将从 <strong>语言</strong> 层面（而非算法层面）对 STL 的这部分实现展开一些讨论和介绍。</p>
+<p>感谢 <a href="https://www.yuque.com/u27109237?view=doc_embed">白金猫猫</a>、<a href="https://www.yuque.com/27rabbit?view=doc_embed">27rabbit</a> 对本文的审校和建议！</p>
+<p>由于作者能力有限，文中难免有错漏之处。恳请大家批评指正QWQ</p>
+</div>
+<div class="admonition tips">
+<p class="admonition-title">Tips</p>
+<p>本文中这样的段落属于补充说明，读者可以选读</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>本文中这样的段落属于整活，读者可以不读</p>
+</div>
+<p>由于本文介绍的是 STL，因此若无特殊说明，我们默认 <code>using namespace std;</code> 。</p>
+<p>STL 由 4 部分组成：容器 (Containers)、迭代器 (Iterators)、算法 (Algorithms) 和函数对象 (Function objects)。我们已经对 vector, map 等各种容器有了一些基本的认识，同时对 sort, lower_bound 等各种算法也有了一些了解。那么， <strong>迭代器</strong> 和 <strong>函数对象</strong> 是什么东西呢？</p>
+<h3 id="0-quiz-时间">0 Quiz 时间！<a class="headerlink" href="#0-quiz-时间" title="Permanent link">&para;</a></h3>
+<p>在开始之前，我们先抛出若干问题供大家思考；这其中的问题甚至包括我在面试中遇到的原题喔！（你如果知道这些问题的答案，那么就可以不用看这篇文章了 XD）</p>
+<ol>
+<li>我们可以通过 <code>for (auto &amp;a : c)</code> 的方式遍历诸如 vector, set, unordered_set 等的容器。这是怎么实现的？</li>
+<li>我们知道 map 是能够用上述方式遍历的。对于 <code>map&lt;int, int&gt; m;</code> ，我们使用 <code>sort(m.begin(), m.end());</code> 可以吗？</li>
+<li><code>sort</code> 的函数签名是什么样的？即， <code>template &lt;</code><em><code>-1-</code></em><code>&gt; std::sort(</code><em><code>-2-</code></em><code>)</code> 的 <em>-1-</em> 和 <em>-2-</em> 两处是什么？具体而言：<ol>
+<li>为什么它既能对 vector 这样的容器进行排序，也可以对传统的数组进行排序？</li>
+<li>自定义比较函数是怎么实现的？如何适配有和没有自定义比较函数的两种情况的？</li>
+</ol>
+</li>
+<li>有一个比较函数 <code>bool cmp(const int&amp; a, const int&amp; b) { return a &gt; b; }</code> ，我们可以写 <code>sort(v.begin(), v.end(), cmp);</code> 来用 <code>cmp</code> 进行排序。那么，如果我们希望用 <code>cmp</code> 作为 priority_queue 等容器的自定义比较函数应该怎么做呢？</li>
+</ol>
+<h3 id="1-why-迭代器">1 Why 迭代器<a class="headerlink" href="#1-why-迭代器" title="Permanent link">&para;</a></h3>
+<p>我们先来看看第 1 个问题：为什么 <code>for (auto &amp;a : c)</code> 可以遍历诸如 vector, set, unordered_set 等的容器呢？遍历 vector 的方法其实非常容易理解，类似于 <code>for (int i = 0; i &lt; c.size(); i++)</code> 。但是我们知道，set 是用红黑树实现的，红黑树是一种二叉搜索树；遍历这样一棵二叉搜索树的方法和遍历一个数组的方法肯定是不一样的。这怎么办呢？</p>
+<p>其实，我们也可以通过类似的方法实现： <code>for (auto i = c.begin(); i != c.end(); c.go_to_next_node(i))</code> ；其中 <code>c.begin()</code> 和 <code>c.end()</code> 可以是指针，分别指向容器里 第一个 和 最后一个元素的下一个的位置，即最小和最大的元素；而 <code>c.go_to_next_node(i)</code> 实现根据这个指针找到其下一个元素（学过二叉搜索树的小朋友们应该能够想到这个是怎么实现的；不知道也没关系，这并不是我们今天的重点）。这样，我们就可以实现对一个 set 的遍历了。</p>
+<p><br/></p>
+<p>这时回头看看我们对 vector 的遍历，我们会发现，似乎 vector 也能写成后面这种形式，即 <code>for (auto i = c.begin(); i != c.end(); c.go_to_next_node(i))</code> ： <code>c.begin()</code> 和 <code>c.end()</code> 仍然分别指向容器里 第一个 和 最后一个元素的下一个的位置，而 <code>c.go_to_next_node(i)</code> 干的事情只是指针的 <code>++</code> 而已。</p>
+<p>聪明的小朋友一定能发现，这种遍历的关键只有 3 点：从哪里开始、到哪里结束、怎么走到下一个元素；这实际上就对应着两个指针以及我们熟悉的指针的 <code>++</code> 运算符。聪明的小朋友们可能就想到了：我们可以把这样的指针包装成一个类，并重载它的 <code>++</code> 运算符（这里指前置的 <code>++</code> ，下同），这样不同的容器就可以使用同样的方法遍历或者做其他操作了！</p>
+<p>事实上，这就是 <strong>迭代器 (Iterator)</strong> 解决的问题。我们知道，我们写程序的目的就是 <strong>处理、查询、使用数据</strong>，数据结构和算法是我们的工具。<em>在概念层面上</em>，各种容器或者数据结构的意义是以一定的方式或者性质 <strong>容纳</strong> 数据，但是它本身不具备处理数据的能力；而各种算法的意义是按一定的方法 <strong>处理</strong> 数据，它本身并不持有任何数据。而迭代器就是它们之间的桥梁——一个容器可能是一个数组、一棵二叉树、一个链表，或者其他任何可能的数据结构；一种算法需要对容器做遍历或者其他类型的访问；但是遍历一个数组和一棵二叉树的方式肯定是不同的——迭代器存在的意义就是通过运算符重载或者其他方式，来向算法隐藏容器的不同细节；算法只需要使用 <code>++</code> 就能获得下一个元素的迭代器，通过 <code>*</code> 就能访问当前迭代器指向的元素，它不需要关心到底是如何访问的；这其实上就是指针的抽象。通过这种方法，STL 保持了它的简洁性，提升了代码的复用。</p>
+<div class="admonition tip">
+<p class="admonition-title">补充 1.1</p>
+<p>为什么说是 “在概念层面上” 呢？因为在实际的实现中，为了提高性能或者易用性，一些容器也将一些算法放到了自己的成员函数中，例如 <code>map</code> 和 <code>set</code> 的 <code>lower_bound</code> 等。但是从概念角度上，容器就仅仅是个包装好了的数据结构而已。</p>
+</div>
+<p><br/></p>
+<p>这样，我们其实也就知道了 <code>for (auto &amp;a : c)</code> 是如何实现的了！事实上，对于有迭代器的容器（stack, queue, priority_queue 并没有迭代器，因为你不应当尝试去遍历或者以其他自由的形式访问这些容器中的元素），它的成员函数 <code>begin()</code> 和 <code>end()</code> 返回的都是某种迭代器；这些迭代器都重载了 <code>++</code> 运算符（事实上，对于这些容器，实现 <code>++</code> 运算符并不需要知道整个容器的结构；例如在红黑树中找到下一个节点不必知道根节点是什么。想一想为什么）。因此，对于这样包含成员函数 <code>begin()</code> 和 <code>end()</code> ，且其返回值类型支持运算符 <code>++</code> 、 <code>*</code> 和 <code>!=</code> 的类， <code>for (auto &amp;a : c) {/* A */}</code> 的实现方法就类似于： <code>for (auto it = c.begin(); it != c.end(); ++it) {auto &amp;a = *it; /* A */}</code> 。可以看到，这其实和我们刚刚的想法非常相似！</p>
+<div class="admonition tip">
+<p class="admonition-title">补充 1.2</p>
+<p>具体来说，对于 <code>std::vector&lt;int&gt; v;</code> ， <code>v.begin()</code> 的返回值类型可能是 <code>__gnu_cxx::__normal_iterator&lt;int*, std::vector&lt;int&gt;&gt;</code> ；对于 <code>std::map&lt;int, double&gt; m;</code> ， <code>m.begin()</code> 的返回值类型可能是 <code>std::_Rb_tree_iterator&lt;std::pair&lt;const int, double&gt;&gt;</code> 。感兴趣的小朋友可以自己在 <a href="https://godbolt.org/z/6s5x66rdG">https://godbolt.org/z/6s5x66rdG</a> 尝试（这里也展示了一种查看表达式类型的小技巧）！</p>
+<p>同时，也可以使用 C++ Insights 来查看：<a href="https://cppinsights.io/s/cd95e24b">https://cppinsights.io/s/cd95e24b</a> </p>
+<p><img alt="image.png" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1664500731615-8b96bb4c-32ee-45f2-812b-4e35f149d54c.png" /></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">整活 1.3</p>
+<p>我们之前提到，使用这种 range-based for loop，只需要类“包含成员函数 <code>begin()</code> 和 <code>end()</code> ，且其返回值类型支持运算符 <code>++</code> 、 <code>*</code> 和 <code>!=</code> ”，所以其实我们可以写出这样的代码 XD：</p>
+<p><img alt="image.png" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1664267812657-523907ce-5639-45c2-a7d2-5e2cbf6e17b7.png" /></p>
+<p>感兴趣的小朋友可以来玩一玩：<a href="https://godbolt.org/z/813b9e9Pd">https://godbolt.org/z/813b9e9Pd</a></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">补充 1.4</p>
+<p>另外，除了 <code>begin()</code> ，容器还会提供 <code>cbegin()</code> , <code>rbegin()</code> , <code>crbegin()</code> 这三种成员函数，提供不同的迭代器；也有对应的 <code>end()</code> 版本。这里 <code>c</code> 是指 const，即迭代器指向的变量是只读的； <code>r</code> 是指 reverse，即这种迭代器是逆序的，即：</p>
+<p><img alt="Src: https://en.cppreference.com/w/cpp/container/map/rbegin" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1664259868758-5e71b394-b2bd-4c34-a94a-0996b103b881.svg" /></p>
+</div>
+<p><br/></p>
+<h3 id="2-迭代器的分类">2 迭代器的分类<a class="headerlink" href="#2-迭代器的分类" title="Permanent link">&para;</a></h3>
+<p>我们下面再来看第 2 个问题：已知 map 可以遍历，也就是说它是有对应的迭代器的；那么我们可以用 sort 对 map 进行排序吗？</p>
+<p>众所周知，sort 的实现本质上是快速排序（实际上不完全是，具体的实现可以参考 <a href="https://stackoverflow.com/a/22444975/14430730">这里</a>）；而快速排序本身是需要 <strong>随机访问</strong> 容器中的元素的，即能够以 <span class="arithmatex">\(O(1)\)</span> 的时间使用类似 <code>c[i]</code> 的方式访问到容器中的任意一个元素；同时也需要能够以 <span class="arithmatex">\(O(1)\)</span> 的时间计算两个元素之间的 <strong>距离</strong>。但是，map 本身并不能够满足上述要求。</p>
+<p>所以，如果大家尝试写用 sort 对 map 排序的代码就会发现这样的报错：</p>
+<p><img alt="image.png" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1664353939859-114db613-c05f-48a8-8c05-9e34db33ed19.png" /></p>
+<p>它告诉我们， <code>std::_Rb_tree_iterator&lt;...&gt;</code> 之间的 <code>-</code> 运算符并没有被定义；即 map 对应的迭代器并不支持计算两个元素之间距离的功能。</p>
+<p>事实上，C++ 对迭代器作了若干分类（确切地说，是 <strong>具名要求 named requirements</strong>），不同的算法也对所需的迭代器的分类做了不同的要求。我们较为通俗地概括各类迭代器所支持的功能（可能存在不够完整和严谨的地方，但是理解为主）：</p>
+<ol>
+<li>
+<p><em>Legacy</em><strong><em>Input</em></strong><em>Iterator</em> - 能够用来标识、 <strong>遍历</strong> 一个容器中的元素，能够从所指的元素中 <strong>读取</strong> 值。</p>
+<ul>
+<li>注：<em>LegacyInputIterator</em> 只需要保证 <strong>单趟</strong> 算法的有效性：一旦一个 <em>LegacyInputIterator</em> <code>it</code> 被 <code>++</code> 后，它之前所指的值及其所有拷贝都不再需要保证有效性</li>
+</ul>
+<details class="note">
+<summary>具体要求</summary>
+<p>满足这种要求的类型的 <code>It</code> 需要支持：</p>
+<ul>
+<li><code>++it</code> （返回 <code>It &amp;</code> ）</li>
+<li><code>*it</code> （返回一个引用，且能转化为 <code>value_type</code> ）</li>
+<li><code>it1 != it2</code> （返回值能转化为 <code>bool</code> ，且如果 <code>==</code> 有定义，与 <code>!(it1 == it2)</code> 值相同）</li>
+<li><code>it-&gt;m</code> （等价于 <code>(*it).m</code> ）</li>
+<li><code>it++</code> （返回值能转化为 <code>const It&amp;</code> ）</li>
+<li><code>*it++</code> （即 <code>*(it++)</code> ，返回值能转化为 <code>value_type</code> ）</li>
+</ul>
+</details>
+</li>
+<li>
+<p><em>Legacy</em><strong><em>Forward</em></strong><em>Iterator</em> - 在 <em>LegacyInputIterator</em>  的基础上，能够支持 <strong>多趟</strong> 算法。</p>
+<details class="note">
+<summary>具体要求</summary>
+<p>满足这种要求的类型 <code>It</code> 需要：</p>
+<ul>
+<li>满足 <em>LegacyInputIterator</em> </li>
+<li>如果 <code>it1 == it2</code> ，那么要么它们都没有指向一个有效的对象（例如 <code>nullptr</code> 或者类似 <code>c.end()</code> 的迭代器，我们称它们是 <strong>不可解引用的 undereferenceable</strong>），要么它们指向的是同一个元素。</li>
+<li>如果 <code>*it1</code> 和 <code>*it2</code> 引用同一个元素，那么 <code>it1 == it2</code> </li>
+<li><code>it</code> 被 <code>++</code> 后，再次读取其原来指向对象的值，结果不应发生变化</li>
+<li>如果 <code>it1 == it2</code> ，那么 <code>++it1 == ++it2</code> </li>
+</ul>
+</details>
+</li>
+<li>
+<p><em>Legacy</em><strong><em>Bidirectional</em></strong><em>Iterator</em> - 在 _LegacyForwardIterator _ 的基础上，能够 <strong>双向移动</strong> 。</p>
+<details class="note">
+<summary>具体要求</summary>
+<p>满足这种要求的类型 <code>It</code> 需要：</p>
+<ul>
+<li>满足 _LegacyForwardIterator _ </li>
+<li>支持 <code>--it</code> , <code>it--</code> , <code>*it--</code> ，返回值类型与前述 <code>++</code> 相同，且：</li>
+<li><code>--(++it) == it</code> </li>
+<li>如果 <code>--it1 == --it2</code> ，那么 <code>it1 == it2</code> </li>
+</ul>
+</details>
+</li>
+<li>
+<p><em>Legacy</em><strong><em>RandomAccess</em></strong><em>Iterator</em> - 在 <em>LegacyBidirectionalIterator</em> 的基础上，能够在 <strong>常数</strong> 时间内移动从而指向 <strong>任一</strong> 元素。</p>
+<details class="note">
+<summary>具体要求</summary>
+<p>满足这种要求的类型 <code>It</code> 需要：</p>
+<ul>
+<li>满足 <em>LegacyBidirectionalIterator</em> </li>
+<li>支持 <code>it += n</code> , <code>it -= n</code> , <code>it + n</code> , <code>it - n</code> , <code>n + it</code> , <code>it[n]</code> , <code>it1 &lt; it2</code> , <code>it1 &gt; it2</code> , <code>it1 &lt;= it2</code> , <code>it1 &gt;= it2</code> （比较运算符需要在自反、交换、传递下有正确表现）, <code>it1 - it2</code> （计算两个迭代器指向元素的距离） ，含义略，但复杂度须是 <span class="arithmatex">\(O(1)\)</span> 的</li>
+</ul>
+</details>
+</li>
+<li>
+<p><code>C++17</code> <em>Legacy</em><strong><em>Contiguous</em></strong><em>Iterator</em>- 在 <em>LegacyRandomAccessIterator</em> 的基础上，逻辑上相邻的元素在内存里 <strong>物理上也相邻</strong>。</p>
+<ul>
+<li>注：指向数组中元素的 <strong>指针</strong> 满足 <em>LegacyContiguousIterator</em> 的所有要求。</li>
+</ul>
+</li>
+</ol>
+<p>另外，还有一种 <em>Legacy</em><strong><em>Output</em></strong><em>Iterator</em>，它和 <em>LegacyInputIterator</em> 类似，需要能够用来标识、 <strong>遍历</strong> 一个容器中的元素，能够向所指的元素中 <strong>写入</strong> 值；同样不需要保证多趟算法的有效性。</p>
+<p>可以看到，<em>LegacyOutputIterator</em> 和前述 5 个具名要求是相互独立的。因此，我们称满足前述 5 个具名要求中某一个的同时还满足 <em>LegacyOutputIterator</em>  的迭代器为 <strong><em>mutable</em></strong> 的。</p>
+<p>这张表格概括了上述内容：</p>
+<p><img alt="image.png" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1664441337282-9116a864-3d87-492a-9937-596349d7e1b2.png" title="Src: https://en.cppreference.com/w/cpp/iterator" /></p>
+<p><br/></p>
+<h4 id="又是-quiz-时间">又是 Quiz 时间！<a class="headerlink" href="#又是-quiz-时间" title="Permanent link">&para;</a></h4>
+<p>那么，请大家根据自己的理解，结合对应容器的实现方式，写出它们提供满足什么要求的迭代器！</p>
+<p><img alt="1664503076442.jpg" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1664503097580-410c2bf3-feb5-4fd9-95e7-5d8d5a8c7f51.jpeg" /></p>
+<div class="admonition note">
+<p class="admonition-title">图注</p>
+<p><strong>*</strong>  对于 deque，例如每个定长数组长度为 100，那么访问 <code>q[514]</code> 其实就是访问 <code>a[5][14]</code> ，也就是第 6 个数组里的第 15 个元素。</p>
+<p><span class="arithmatex">\(\dagger\)</span> 上表中 Unordered Associative Containers 的实现考虑了这样一个问题：如果有 <span class="arithmatex">\(m = 10^6\)</span> 个 bucket，但是只有 <span class="arithmatex">\(n = 100\)</span> 个元素，如果直接遍历 bucket 的话复杂度是 <span class="arithmatex">\(O(m+n) &gt;&gt; O(n)\)</span> 的；因此实现中额外用一个单向链表维护所有有元素的 bucket 列表，遍历时根据这个列表去找元素，复杂度就仅是 <span class="arithmatex">\(O(n)\)</span> 的了。</p>
+</div>
+<p>答案来咯！</p>
+<p><img alt="1664503060465.jpg" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1664503066712-6d6aa131-3cb0-4dfb-b53e-aec90bc84cbf.jpeg" /></p>
+<div class="admonition note">
+<p class="admonition-title">图注</p>
+<p><strong>#</strong>  特别地， <code>vector&lt;bool&gt;</code> 是 <code>vector</code> 的一个特化，标准希望实现者可以考虑用更节省空间的方式保存 <code>vector&lt;bool&gt;</code> ，但是具体实现方法是 implementation defined 的（标准不指明实现方式，但是具体的实现者需要给出说明）；因此 <code>vector&lt;bool&gt;</code> 提供的迭代器满足的具名要求也是 implementation defined 的。</p>
+</div>
+<p>回顾我们提到的算法， <code>sort</code> 需要传入的迭代器满足 <em>LegacyRandomAccessIterator</em>；这一限制的实现方式其实就是， <code>sort</code> 的实现中会包含 <code>it1 - it2</code> ， <code>it + n</code> 之类的运算，如果不支持这些运算就无法通过编译。</p>
+<p>同时， <code>lower_bound</code> 和 <code>upper_bound</code> 只需要传入的迭代器满足 <em>LegacyForwardIterator</em>；但是如果还满足 <em>LegacyRandomAccessIterator</em>，那么复杂度是 <span class="arithmatex">\(O(\log n)\)</span> 的；否则是 <span class="arithmatex">\(O(n)\)</span> 的。因此，对于 <code>set</code> , <code>map</code> , <code>multiset</code> 和 <code>multimap</code> ，它们提供的迭代器不满足 <em>LegacyRandomAccessIterator</em>，但是它们本身类内提供了自己的 <code>lower_bound</code> 函数，因此此时应该用类内的这些函数。</p>
+<div class="admonition tip">
+<p class="admonition-title">补充 2.1</p>
+<p>这种在满足和不满足 _LegacyRandomAccessIterator _时有不同复杂度的实现方式是，每个 iterator <code>It</code> 都需要有一个对应的 <code>iterator_traits&lt;It&gt;</code> ，其中包含了一个 <code>iterator_category</code> ，它用来标识这个迭代器满足哪种要求。对于指向对象的指针类型， <code>iterator_traits</code> 有对应的特化，其 <code>iterator_category</code> 为 <code>random_access_iterator_tag</code> 。</p>
+<p><img alt="image.png" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1664504718413-164fbe68-142d-4396-8cbf-84b2e36a55f4.png" title="https://en.cppreference.com/w/cpp/iterator/iterator_tags" />
+在 <code>lower_bound</code> 中，使用 <code>it + n</code> 这样的操作可能是通过 <code>std::advance(it, n)</code> 的方式实现的，这个函数对于不同的 <code>iterator_traits</code> 有不同的重载；对于支持随机访问的，就会通过 <code>it + n</code> 的方式实现，而如果不支持，则通过循环实现。</p>
+</div>
+<p><br/></p>
+<h3 id="3-迭代器何必是迭代器">3 迭代器何必是迭代器<a class="headerlink" href="#3-迭代器何必是迭代器" title="Permanent link">&para;</a></h3>
+<p>我们来看第 3 个问题！ <code>sort</code> 的函数签名是什么样的？即， <code>template &lt;</code><em><code>-1-</code></em><code>&gt; std::sort(</code><em><code>-2-</code></em><code>)</code> 的 <em>-1-</em> 和 <em>-2-</em> 两处是什么？具体而言：</p>
+<p>a. 为什么它既能对 vector 这样的容器进行排序，也可以对传统的数组进行排序？<br/>
+b. 自定义比较函数是怎么实现的？如何适配有和没有自定义比较函数的两种情况的？</p>
+<p>我们先来讨论 a 问题。</p>
+<p>前一节中我们讨论过， <code>sort</code> 要求传入的迭代器满足 <em>LegacyRandomAccessIterator</em>，这一要求是因为 <code>sort</code> 的实现中会包含类似 <code>end - begin</code> , <code>it + n</code> , <code>*it</code> 之类的操作。我们在前一节也讨论过了，满足 <em>LegacyRandomAccessIterator</em> 的迭代器需要支持上述操作；而同时，指针类型也支持这样的操作。</p>
+<p>和 <strong>整活 1.3</strong> 中的例子类似，其实只要我们传入的类型支持上述操作就可以了。而如果类型并不支持上述操作，则会编译错误，例如第 2 节开头演示用 sort 对 map 的 begin 和 end 排序其实报的错就是“并没有这两个迭代器之间的 <code>-</code> 运算”：</p>
+<p><img alt="image.png" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1664353939859-114db613-c05f-48a8-8c05-9e34db33ed19.png" /></p>
+<p>为了进一步解释，我们可以写一个小的 demo：</p>
+<p><img alt="image.png" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1665831143797-4b23f72c-efc7-437a-a52f-8c3ec9a57554.png" /></p>
+<p>（可以在 <a href="https://godbolt.org/z/Peh17Ye5o">https://godbolt.org/z/Peh17Ye5o</a> 里玩一下）</p>
+<p>可以看到，我们的 <code>demo</code> 用到了前述三种操作，而 15 和 16 行用指针和 vector 的迭代器调用它的时候都可以正常编译通过；但是 17 行就会出现编译错误：</p>
+<p><img alt="image.png" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1665831350474-096cee5c-aa93-466d-85eb-279c035c0af0.png" /></p>
+<p>所以说， <code>sort</code> 既适用于传统数组，也适用于 vector 等容器是自然的：指针和满足 <em>LegacyRandomAccessIterator</em> 的迭代器都支持 <code>sort</code> 函数里用到的各种运算，因此自然就能通过编译。</p>
+<p>也就是说，我们要求 <code>sort</code> 传入的类型满足 <em>LegacyRandomAccessIterator</em> 并不是一个前提，而是一个 <strong>结果</strong> —— 我们把 <code>sort</code> 以及和它类似的函数，对传入参数类型“能够在 <strong>常数</strong> 时间内移动从而指向 <strong>任一</strong> 元素的函数”的要求起了个名字，叫做 <em>LegacyRandomAccessIterator</em>。而这种要求在语言中的体现，也并不是使用专门的 tag 来标记某个迭代器符合什么样的具名要求，而只是不符合这种要求的类型自然无法通过编译，因为对应函数中使用了要求所说明的一些操作。</p>
+<div class="admonition tip">
+<p class="admonition-title">补充 3.1</p>
+<p>这其实就再次向我们展现了 template 所支持的泛型编程的意义——面向对象编程允许我们写一个支持某一类型（基类）以及属于这一类型的其他类型（子类）的函数；而泛型编程则允许我们写一个支持满足某一条件（拥有某些特定成员）的所有类型的函数。</p>
+<p>也就是说，在面向对象编程中，我们通过继承和多态来将不同的类型抽象起来，用“子类对象是一个父类对象”的逻辑来在需要时把子类对象当做父类对象使用，从而提高代码的简洁性和重用度；而在泛型编程中，我们通过类似上文中 <code>sort</code> 的方式，将不同类型共同具有的一些函数或字段作为要求。即，面向对象的函数所提出的要求是 "is"，而泛型编程的函数所提出的要求是 "has"。这也是泛型编程相比面向对象编程来说更加自然以及自由之处。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">补充 3.2</p>
+<p>聪明的小朋友可能又要问了——泛型编程的逻辑是 "has"，而在前文中 <code>sort</code> 的例子里，如果对应类型并不 "has" 那些运算符，就会出现编译错误。如果我们希望分开 "has" 和 "不 has" 两种情况，使它们分别调用不同的函数重载，怎么办捏？这时就需要介绍伟大的 SFINAE (Substitution Fail Is Not An Error) 技术了。这并不是本文的重点，我们以后有机会的话可能会展开讨论这个问题。好奇的小朋友们可以自行阅读一些相关的资料：</p>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/language/sfinae">https://en.cppreference.com/w/cpp/language/sfinae</a></li>
+<li><a href="https://stackoverflow.com/questions/982808/c-sfinae-examples">https://stackoverflow.com/questions/982808/c-sfinae-examples</a></li>
+</ul>
+</div>
+<p>下面我们来讨论 b 问题，这个问题相对简单。</p>
+<p>首先讨论我们给 sort 传入的是一个自定义函数的指针的情形，我们采用 <a href="../cpp_for_contests/">快速入门 C++ 写题！</a> 中的例子：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nf">cmp</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span>
+<span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span>
+</code></pre></div>
+<p>在 <code>sort</code> 中，我们传入的 <code>cmp</code> 被怎样使用了呢？我们知道一个函数指针 <code>fp</code> 可以通过 <code>fp(args...)</code> 的方式直接调用：</p>
+<p><img alt="image.png" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1665832404328-499a60cb-8928-4af6-9926-c25ef23d5caa.png" /></p>
+<p>那么，其实 <code>sort</code> 中直接调用 <code>cmp(*it1, *it2)</code> 就可以实现对两个元素的比较了！所以， <code>sort</code> 的函数签名可以是：</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Iterator</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">CompFuncPtr</span><span class="o">&gt;</span><span class="w"> </span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="n">begin</span><span class="p">,</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">CompFuncPtr</span><span class="w"> </span><span class="n">cmp</span><span class="p">)</span>
+</code></pre></div>
+<p>这里的模板参数 <code>Iterator</code> 用来适配不同的迭代器类型（包括指针）；而 <code>CompFuncPtr</code> 用来适配不同的比较函数指针，因为比较函数指针的类型因其参数类型的不同而不同。</p>
+<p>不过，事情还没结束！（让我们直接进入下一节——）</p>
+<p><br/></p>
+<h3 id="4-函数又何必是函数">4 函数又何必是函数<a class="headerlink" href="#4-函数又何必是函数" title="Permanent link">&para;</a></h3>
+<p><a href="../cpp_for_contests/">快速入门 C++ 写题！</a> 中给出了 <code>sort</code> 的另一种使用示例：</p>
+<div class="highlight"><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span>
+<span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">greater</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">());</span>
+</code></pre></div>
+<p>这种写法可以实现升序排列。那么这个 <code>greater&lt;int&gt;()</code> 是什么呢？一种可能的实现长这样：</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">greater</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">operator</span><span class="w"> </span><span class="p">()(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">lhs</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">rhs</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>我们可以看到， <code>greater</code> 其实是个结构体，或者说是个类；它里面有一个对运算符 <code>()</code> 的重载。<a href="https://en.cppreference.com/w/cpp/language/operators">标准</a> 中指出，如果 <code>a</code> 是一个对象，那么 <code>a(b...)</code> 其实等同于 <code>(a).operator()(b...)</code> ，其实就是将 <code>b...</code> 作为参数列表，调用了 <code>()</code> 运算符。我们把 <code>()</code> 运算符称为函数调用运算符 (function call operator)，顾名思义，这个运算符表示函数调用。也就是说，如果我们有一个 <code>greater&lt;T&gt;</code> 类的对象 <code>cmp</code> ，那么我们就可以通过 <code>cmp(a, b)</code> 来调用 <code>(cmp).operator()(a, b)</code> ，从而返回比较的结果。</p>
+<p>再回到 <code>sort(v.begin(), v.end(), greater&lt;int&gt;());</code> 中来。聪明的小朋友可以看出， <code>greater&lt;int&gt;()</code> 其实就是调用 <code>greater&lt;int&gt;</code> 的默认构造函数，构造了一个 <code>greater&lt;int&gt;</code> 类型的对象传递给 <code>sort</code> 。不妨设对应形参名为 <code>cmp</code> ，那么在 <code>sort</code> 中，我们就仍然可以通过 <code>cmp(a, b)</code> 来调用 <code>greater&lt;int&gt;</code> 中的 <code>operator ()</code> 来实现比较。</p>
+<p>我们回顾第 3 节中写出的函数签名，我们可以发现，这个函数签名竟仍然适配 <code>greater&lt;int&gt;()</code> 这样的参数！</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Iterator</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">CompFuncPtr</span><span class="o">&gt;</span><span class="w"> </span>
+<span class="kt">void</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="n">begin</span><span class="p">,</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">CompFuncPtr</span><span class="w"> </span><span class="n">cmp</span><span class="p">)</span>
+</code></pre></div>
+<p>这里的 <code>CompFuncPtr</code> 现在并不是一个 <code>bool (*)(const T &amp;, const T &amp;)</code> 的函数指针了，而是 <code>greater&lt;int&gt;</code> 类型，而 <code>cmp</code> 则是该类型的一个对象。在 <code>sort</code> 的实现中，仍然可以像函数指针一样通过 <code>cmp(a, b)</code> 的方式来实现比较。当然， <code>CompFuncPtr</code> 这个名字就不太妥当了，因为比较器不一定是个函数。我们可以改名为 <code>Comparator</code> 。</p>
+<p>那么，我们也可以直接写 <code>sort(v.begin(), v.end());</code> 来实现升序排序。这又是怎么实现的呢？其实非常简单，只需要一个函数重载即可：</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Iterator</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="n">begin</span><span class="p">,</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="n">end</span><span class="p">)</span>
+</code></pre></div>
+<p>而这个函数的实现其实可以直接使用 <strong>类似</strong> <code>sort(begin, end, less&lt;decltype(*begin)&gt;());</code> 的写法，即使用 <code>less&lt;T&gt;()</code> 来作为比较器。</p>
+<div class="admonition tip">
+<p class="admonition-title">补充 4.1</p>
+<p>实际的代码中，这里并不是 <code>less&lt;decltype(*begin)&gt;()</code> 这样的写法，而是类似 <code>less&lt;typename iterator_traits&lt;Iterator&gt;::value_type&gt;()</code> 的写法。即，每个迭代器都有一个对应的 traits，其中保存了迭代器对应的值类型。本文并不想引入 traits 的概念，感兴趣的同学可以自行查阅资料。</p>
+</div>
+<p>综上所述，我们可以给出第 3 个问题的答案： <code>sort</code> 的函数签名可以是：</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Iterator</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="n">begin</span><span class="p">,</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="n">end</span><span class="p">);</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Iterator</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Comparator</span><span class="o">&gt;</span><span class="w"> </span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">Iterator</span><span class="w"> </span><span class="n">begin</span><span class="p">,</span><span class="w"> </span><span class="n">Iterator</span><span class="w"> </span><span class="n">end</span><span class="p">,</span><span class="w"> </span><span class="n">Comparator</span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">补充 4.2</p>
+<p>实际上，查阅<a href="https://en.cppreference.com/w/cpp/algorithm/sort">标准</a>可以看到，C++17 还引入了两个包含 <code>ExecutionPolicy</code> 的版本。这个和本文的主题无关（主要是我也不会），所以我们先行略过。</p>
+<p><img alt="image.png" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1665841114798-17d585ff-d622-4b57-a8bb-2a315b7d3ff2.png" />   </p>
+</div>
+<p><br/></p>
+<h4 id="函数对象-function-object--functor">函数对象 (Function Object / Functor)<a class="headerlink" href="#函数对象-function-object--functor" title="Permanent link">&para;</a></h4>
+<p>在讨论函数对象是什么之前，我们先来回顾一下什么是 <strong>对象 (object)</strong> 。对象要有值、类型、size、生命周期等属性，描述的是一块内存上的数据及其含义。下列常见的实体不是对象：</p>
+<ul>
+<li>struct / class，包含其模板及特化，它用来 <strong>描述</strong> 一类对象的内存安排（虽然它们可能包含虚函数表）；</li>
+<li>struct / class 的非 static 成员变量；</li>
+<li>function，包含其模板及特化，它是一段代码；</li>
+<li>reference，它只是已有对象或函数的别名，编译器不必为它们分配内存（因此不存在引用数组、引用的引用和指向引用的指针）；等。</li>
+</ul>
+<blockquote>
+<p>上述内容更严谨的表述参见 <a href="https://en.cppreference.com/w/cpp/language/object">https://en.cppreference.com/w/cpp/language/object</a>。</p>
+</blockquote>
+<div class="admonition note">
+<p><strong>请注意</strong>：上述“对象”的概念和 OOP 中“对象”的概念并不一致。在 C++ 的上述定义中， <code>int</code> 和 <code>int*</code> 是对象。</p>
+</div>
+<p>上面的内容中，我们只需要知道一件事——函数不是对象。但是，在上述对问题 3 的讨论中，我们已经看到了 2 种能够被当成函数使用的对象：函数指针，以及重载了 function call operator <code>operator ()</code> 的类的对象。事实上，C++ 将任何定义了 function call operator 的对象统称为 <strong>函数对象 (Function Object)</strong> 。具体来说，函数对象包括：</p>
+<ul>
+<li>函数指针；</li>
+<li>任何能够转化到函数指针的类的值（如无状态，即没有捕获任何东西的 lambda 表达式）；</li>
+<li>任何重载了 function call operator 的类的值（如 lambda 表达式）。</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">补充 4.3</p>
+<p>很多人将函数对象称为 <strong>仿函数 (Functor)</strong>，但是事实上直至 C++20，这个名称在标准中 <strong>从未出现过</strong>。所以请不要使用这个名称。</p>
+</div>
+<p>因此，我们使用函数调用语句 <code>E(A...)</code> 时， <code>E</code> 可以是函数、函数引用、函数对象，或者其他值为函数引用或函数对象的表达式。函数用来赋值或者作为参数被传递时，如果接收方不是引用，则会发生 function-to-pointer 的隐式类型转换，即被隐式转换成函数指针。因此当函数作为参数被传递时，接收方要么接收到一个引用，要么接收到一个指针。</p>
+<p>知道了这些内容，我们就有了很多种给 <code>sort</code> 之类的函数传递函数的方式了！</p>
+<p><img alt="image.png" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1665856618271-d86251d1-5ed1-4796-8a9b-a29613ce4232.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">补充 4.4</p>
+<p>聪明的小朋友可能会问了——第 15 行传递引用为什么那么麻烦呀！其实可以看到，如果不显示给出模板参数，那么就会像 13 行一样被解释成函数指针而不是函数引用。这是因为并不存在 funtion-to-reference 的隐式转换。因此如果我们真的想要让它是一个引用，那就只能显式地写出其类型；如果写 <code>decltype(cmp1)</code> 的话，虽然模板参数是一个引用类型，但是传进去的其实还是个函数指针而不是引用，因为函数本身不是对象，我们不能定义一个函数类型的变量。但是如果写 <code>decltype(*cmp1)</code> 的话，这就是一个引用类型，所以传进去的就是一个引用了。</p>
+<p>当然，这里也可以直接写 <code>bool (&amp;)(const int &amp;, const int &amp;)</code> 。</p>
+<p><br/></p>
+<p>聪明的小朋友可能又会问了——为什么第 15 行传递引用写 <code>cmp1</code> 而不是 <code>*cmp1</code> 呀！其实写 <code>*cmp1</code> 也行，但是 <code>cmp1</code> 更自然。 <code>*cmp1</code> 是什么意思呢？显然我们不能对一个函数解引用，因此此时 <code>cmp1</code> 会被隐式转换成函数指针，解引用之后得到指向 <code>cmp1</code> 的一个左值；也就是说 <code>*cmp1</code> 和 <code>cmp1</code> 其实还是一个东西。也是同样的原理我们甚至可以写 <code>*********cmp1</code> ，其实就是反复触发 function-to-pointer 和解引用。例如：</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">补充 4.5</p>
+<p>函数对象除了能够用来将函数当做参数传递以外，还可以用来构造闭包 (closure)。闭包在函数之外，还能够通过成员变量保存一些状态；且不同于函数内部 static 变量的是，拥有统一函数体的不同函数对象，也可以保存不同的状态。这是显然的，因为它们实际上是同一个类的不同实例。</p>
+<p>不过，这并不是本文的重点。感兴趣的小朋友们可以自行进一步探索。</p>
+</div>
+<p>下面我们来到最后一个问题啦！</p>
+<p>有一个比较函数 <code>bool cmp(const int&amp; a, const int&amp; b) { return a &gt; b; }</code> ，我们可以写 <code>sort(v.begin(), v.end(), cmp);</code> 来用 <code>cmp</code> 进行排序。那么，如果我们希望用 <code>cmp</code> 作为 priority_queue 等容器的自定义比较函数应该怎么做呢？</p>
+<p>priority_queue 是一个模板类；它和 sort 的最大区别是，传入的比较函数需要作为一个成员变量存在实例当中。关键的定义如下：</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Compare</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">less</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Container</span><span class="o">::</span><span class="n">value_type</span><span class="o">&gt;</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">priority_queue</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">priority_queue</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">priority_queue</span><span class="p">(</span><span class="n">Compare</span><span class="p">(),</span><span class="w"> </span><span class="n">Container</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">priority_queue</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Compare</span><span class="o">&amp;</span><span class="w"> </span><span class="n">compare</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">priority_queue</span><span class="p">(</span><span class="n">compare</span><span class="p">,</span><span class="w"> </span><span class="n">Container</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">priority_queue</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Compare</span><span class="o">&amp;</span><span class="w"> </span><span class="n">compare</span><span class="p">,</span><span class="w"> </span><span class="n">Container</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">cont</span><span class="w"> </span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* ... Many Other Constructors and Other Members ... */</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>可以看到，priority_queue 接收 3 个模板参数，分别规定了内部元素类型、底层容器类型和比较器；其中底层容器类型默认为 <code>std::vector&lt;T&gt;</code> ，而比较器可以认为默认为 <code>std::less&lt;T&gt;</code> 。</p>
+<p>第 9 行的构造函数接受一个比较器对象和一个容器对象，它们将会作为构造出的实例的成员。</p>
+<p>当我们写类似 <code>priority_queue&lt;int&gt; pq;</code> 的代码时，我们显式指定 <code>T</code> 为 <code>int</code> ，其他参数为默认值，并调用了第 6 行的构造函数；可以看到这个构造函数调用了 <code>Container</code> 和 <code>Compare</code> 的默认构造函数作为参数调用第 9 行的构造函数，从而构造出了本实例的比较器对象和容器对象。</p>
+<p>当我们写类似 <code>priority_queue&lt;int, vector&lt;int&gt;, decltype(lambda)&gt; pq(lambda);</code> 的代码时（ <code>lambda</code> 是一个 lambda 表达式），其实就是显式地说明了模板参数，并调用第 7 行的构造函数，将我们的自定义比较器作为参数传入作为本实例的比较器对象。容器对象仍然是调用对应构造函数构造的。</p>
+<p>所以说，我们其实可以有很多种给 priority_queue 等容器传比较器的方式！</p>
+<p><img alt="image.png" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1665914053958-6122a641-2271-44d0-b29a-1c73f857ea2d.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">补充 4.6</p>
+<p>上图中 (4) 的写法会报这样的编译错误：
+<img alt="image.png" src="../%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1.assets/1665914091814-a7c74fbf-2772-4266-adb7-4020ace08f73.png" />
+也就是说，这里 <code>_Compare</code> 即 <code>decltype(func)</code> 即 <code>bool (const int &amp;, const int &amp;)</code> 是一个函数类型，我们不能声明一个函数类型的成员变量。</p>
+</div>
+<p><br/></p>
+<h3 id="5-总结">5 总结<a class="headerlink" href="#5-总结" title="Permanent link">&para;</a></h3>
+<p>我们回顾文首提出的几个问题，其实它们循序渐进，构成了这篇文章的脉络。我们标注出它们分别引出了什么特性，帮助大家回顾和复习：</p>
+<ol>
+<li>我们可以通过 <code>for (auto &amp;a : c)</code> 的方式遍历诸如 vector, set, unordered_set 等的容器。这是怎么实现的？<strong>（什么是迭代器）</strong></li>
+<li>我们知道 map 是能够用上述方式遍历的。对于 <code>map&lt;int, int&gt; m;</code> ，我们使用 <code>sort(m.begin(), m.end());</code> 可以吗？<strong>（迭代器的分类）</strong></li>
+<li><code>sort</code> 的函数签名是什么样的？即， <code>template &lt;</code><em><code>-1-</code></em><code>&gt; std::sort(</code><em><code>-2-</code></em><code>)</code> 的 <em>-1-</em> 和 <em>-2-</em> 两处是什么？具体而言：<ol>
+<li>为什么它既能对 vector 这样的容器进行排序，也可以对传统的数组进行排序？<strong>（你的迭代器何必是迭代器？——只要它有 <code>++</code> 和 <code>*</code> 之类的基本功能，它就可以被当成迭代器用）</strong></li>
+<li>自定义比较函数是怎么实现的？如何适配有和没有自定义比较函数的两种情况的？<strong>（引入自定义比较函数的实现）</strong></li>
+</ol>
+</li>
+<li>有一个比较函数 <code>bool cmp(const int&amp; a, const int&amp; b) { return a &gt; b; }</code> ，我们可以写 <code>sort(v.begin(), v.end(), cmp);</code> 来用 <code>cmp</code> 进行排序。那么，如果我们希望用 <code>cmp</code> 作为 priority_queue 等容器的自定义比较函数应该怎么做呢？<strong>（既然迭代器不一定是迭代器，那函数一定是函数吗？——只要它有 <code>()</code> ，它就可以被当成函数用）</strong></li>
+</ol>
+<p><br/></p>
+<h3 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://stackoverflow.com/questions/5606973/understanding-iterators-in-the-stl/5607206#5607206">https://stackoverflow.com/questions/5606973/understanding-iterators-in-the-stl/5607206#5607206</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/language/range-for#Explanation">https://en.cppreference.com/w/cpp/language/range-for#Explanation</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/named_req/Iterator">https://en.cppreference.com/w/cpp/named_req/Iterator</a></li>
+<li><a href="https://stackoverflow.com/a/22444975/14430730">https://stackoverflow.com/a/22444975/14430730</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/utility/functional/greater">https://en.cppreference.com/w/cpp/utility/functional/greater</a></li>
+<li><a href="https://github.com/llvm/llvm-project/blob/e7fc254875ca9e82b899d5354fae9b5b779ff485/libcxx/include/__algorithm/sort.h#L264">https://github.com/llvm/llvm-project/blob/e7fc254875ca9e82b899d5354fae9b5b779ff485/libcxx/include/__algorithm/sort.h#L264</a></li>
+<li><a href="https://github.com/gcc-mirror/gcc/blob/d9375e490072d1aae73a93949aa158fcd2a27018/libstdc%2B%2B-v3/include/bits/stl_algo.h#L1950">https://github.com/gcc-mirror/gcc/blob/d9375e490072d1aae73a93949aa158fcd2a27018/libstdc%2B%2B-v3/include/bits/stl_algo.h#L1950</a></li>
+<li><a href="https://cppdepend.com/blog/?p=729">https://cppdepend.com/blog/?p=729</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/language/functions">https://en.cppreference.com/w/cpp/language/functions</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/utility/functional">https://en.cppreference.com/w/cpp/utility/functional</a></li>
+<li><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4861.pdf">http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4861.pdf</a></li>
+</ul>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-13T09:13:13+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-13</span>
+      
+        <br>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-11-07T17:36:51+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-07</span>
+      
+    
+  </small>
+</div>
+
+
+  
+
+
+
+<div id="__comments">
+
+<h3>颜色主题调整</h3>
+
+<div class="tx-switch">
+<button data-md-color-scheme="default"><code>default</code></button>
+<button data-md-color-scheme="slate"><code>slate</code></button>
+</div>
+
+<script>
+var buttons = document.querySelectorAll("button[data-md-color-scheme]")
+buttons.forEach(function(button) {
+        button.addEventListener("click", function() {
+        var attr = this.getAttribute("data-md-color-scheme")
+        document.body.setAttribute("data-md-color-scheme", attr)
+        localStorage.setItem("data-md-color-scheme",attr);
+        updateScheme();
+        })
+})
+</script>
+
+<div class="tx-switch">
+<button class="button1" data-md-color-primary="red" style="background-color:red">red</button>
+<button class="button1" data-md-color-primary="pink" style="background-color:pink;color:black">pink</button>
+<button class="button1" data-md-color-primary="purple" style="background-color:purple">purple</button>
+<button class="button1" data-md-color-primary="indigo" style="background-color:indigo">indigo</button>
+<button class="button1" data-md-color-primary="blue" style="background-color:blue">blue</button>
+<button class="button1" data-md-color-primary="cyan" style="background-color:cyan;color:black">cyan</button>
+<button class="button1" data-md-color-primary="teal" style="background-color:teal">teal</button>
+<button class="button1" data-md-color-primary="green" style="background-color:green">green</button>
+<button class="button1" data-md-color-primary="lime" style="background-color:lime;color:black">lime</button>
+<button class="button1" data-md-color-primary="orange" style="background-color:orange;color:black">orange</button>
+<button class="button1" data-md-color-primary="brown" style="background-color:brown;border-radius=3px">brown</button>
+<button class="button1" data-md-color-primary="grey" style="background-color:grey">grey</button>
+<button class="button1" data-md-color-primary="black" style="background-color:black">black</button>
+<button class="button1" data-md-color-primary="white" style="background-color:white;color:black">white</button>
+</div>
+
+<script>
+var buttons = document.querySelectorAll("button[data-md-color-primary]")
+buttons.forEach(function(button) {
+        button.addEventListener("click", function() {
+        var attr = this.getAttribute("data-md-color-primary")
+        document.body.setAttribute("data-md-color-primary", attr)
+        localStorage.setItem("data-md-color-primary",attr);
+        })
+})
+</script>
+
+<h2 ><!-- 评论 -->评论区~</h2>
+
+有用的话请给我个赞和 star => <a href="https://github.com/xuan-insr/xuan-insr.github.io"><img alt="GitHub stars" src="https://img.shields.io/github/stars/xuan-insr/xuan-insr.github.io.svg?style=plastic&amp;label=Stars"></a>
+
+</br>
+
+快来跟我聊天~
+
+</div>
+
+<script src="https://giscus.app/client.js"
+        data-repo="xuan-insr/discussion"
+        data-repo-id="R_kgDOIUW7XA"
+        data-category="General"
+        data-category-id="DIC_kwDOIUW7XM4CSOC3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+
+updateScheme();
+
+</script>
+
+<!-- Synchronize Giscus theme with palette -->
+<script>
+var giscus = document.querySelector("script[src*=giscus]")
+
+/* Set palette on initial load */
+// var palette = __md_get("__palette")
+// if (palette && typeof palette.color === "object") {
+//     var theme = palette.color.scheme === "slate" ? "dark" : "light"
+//     giscus.setAttribute("data-theme", theme) 
+// }
+
+/* Register event handlers after documented loaded */
+// document.addEventListener("DOMContentLoaded", function() {
+//     var ref = document.querySelector("[data-md-component=palette]")
+//     ref.addEventListener("change", function() {
+//     var palette = __md_get("__palette")
+//     if (palette && typeof palette.color === "object") {
+//         var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+//         /* Instruct Giscus to change theme */
+//         var frame = document.querySelector(".giscus-frame")
+//         frame.contentWindow.postMessage(
+//         { giscus: { setConfig: { theme } } },
+//         "https://giscus.app"
+//         )
+//     }
+//     })
+// })
+</script>
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      本页面的全部内容在 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a> 协议之条款下提供，附加条款亦可能应用
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../from_oi_wiki/js/extra.js"></script>
+      
+        <script src="../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../js/tablesort.js"></script>
+      
+    
+  </body>
+</html>
