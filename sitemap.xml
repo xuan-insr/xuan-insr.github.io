@@ -401,6 +401,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://xuan-insr.github.io/slides/cpp/1_birth_and_oop/</loc>
+         <lastmod>2023-02-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://xuan-insr.github.io/%E4%B8%BB%E9%A1%B5/about/</loc>
          <lastmod>2023-02-28</lastmod>
          <changefreq>daily</changefreq>
