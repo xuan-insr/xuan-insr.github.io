@@ -26,4 +26,4 @@ jobs:
           personal_token: ${{ secrets.TOKEN }}
           publish_dir: ./publish
           publish_branch: gh-pages
-          # keep_files: true
+          keep_files: true
