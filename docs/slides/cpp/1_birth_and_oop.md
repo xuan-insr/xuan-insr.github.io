@@ -112,8 +112,7 @@ a = 123456789012345678901234567890123456789012345678901234567890
 ```C
 int a = 123456789012345678901234567890123456789012345678901234567890;
 ```
-
-> warning: integer constant is too large for its type
+<span class="fragment">warning: integer constant is too large for its type</span>
 
 ===
 
@@ -125,11 +124,11 @@ A set of values + a set of operations
 
 机器码 (machine code)
 
-汇编语言 (assembly): 助记符 (mnemonics) 和 labels
+<span class="fragment">汇编语言 (assembly): 助记符 (mnemonics) 和 labels</span>
 
-非结构化的 (non-structured) 编程语言: 早期 BASIC, Fortran 等
+<span class="fragment">非结构化的 (non-structured) 编程语言: 早期 BASIC, Fortran 等</span>
 
-结构化的编程语言: C, C++ 等
+<span class="fragment">结构化的编程语言: C, C++ 等</span>
 
 ===
 
@@ -191,9 +190,11 @@ C 和 C++ 等编程语言都是 **结构化编程语言 (structured programming 
 
 <br>
 
+<div class="fragment">
 「抽象」的好处就是能够提升程序或者编程语言的通用性、易读性、易写性、可移植性
 
 坏处是可能会损失一些更加精细的控制，也有可能会影响到编译时或运行时的性能
+</div>
 
 ===
 
@@ -957,3 +958,4 @@ public:
 - 理解封装的两层含义，了解 C++ 对 C `struct` 的扩展，理解类和对象的概念
 - 知道 getter & setter，知道 `public` 和 `private`，知道 C++ 中 `struct` 和 `class` 的区别
 - 理解继承和多态，理解继承适用和不适用的场景
+- 了解向上转型的含义及其合理性
