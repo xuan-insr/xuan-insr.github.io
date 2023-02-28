@@ -1,0 +1,4178 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://xuan-insr.github.io/%E7%94%9F%E6%B4%BB/%E5%9B%9E%E9%A1%BE%E5%9C%A8%E4%BF%A1%E5%AE%89%E7%9A%84%E4%B8%89%E5%B9%B4/">
+      
+      
+        <link rel="prev" href="../2022/">
+      
+      
+        <link rel="next" href="../../%E6%A1%8C%E6%B8%B8/">
+      
+      <link rel="icon" href="../../logo.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.15">
+    
+    
+      
+        <title>回顾在信安的三年 - 咸鱼暄的代码空间</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.113286f1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Serif SC";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../from_oi_wiki/css/extra.css?v=13">
+    
+      <link rel="stylesheet" href="../../css/status.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-JT9BRCXKJJ"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-JT9BRCXKJJ",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-JT9BRCXKJJ",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#回顾在信安的三年" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="咸鱼暄的代码空间" class="md-header__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../logo.ico" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            咸鱼暄的代码空间
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              回顾在信安的三年
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        🏡 主页
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../cpp/" class="md-tabs__link">
+        C++
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../pl/" class="md-tabs__link">
+        PL & 编译
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/" class="md-tabs__link">
+        核心知识
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E5%AE%89%E5%85%A8/" class="md-tabs__link">
+      安全
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-tabs__link">
+      语言基础
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../other_courses/" class="md-tabs__link">
+        其他课程
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E6%9D%82%E9%A1%B9/" class="md-tabs__link">
+        杂项
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        生活
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="咸鱼暄的代码空间" class="md-nav__button md-logo" aria-label="咸鱼暄的代码空间" data-md-component="logo">
+      
+  <img src="../../logo.ico" alt="logo">
+
+    </a>
+    咸鱼暄的代码空间
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xuan-insr/咸鱼暄的代码空间
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../..">🏡 主页</a>
+          
+            <label for="__nav_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          🏡 主页
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%B8%BB%E9%A1%B5/about/" class="md-nav__link">
+        ❤️ 我和朋友们！
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recent/" class="md-nav__link">
+        📆 最近更新
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../cpp/">C++</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          C++
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../cpp/cpp_restart/">🍉C++ 学习记录</a>
+          
+            <label for="__nav_2_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          🍉C++ 学习记录
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/1_birth/" class="md-nav__link">
+        1 C++ 的诞生
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/2_paradigm/" class="md-nav__link">
+        2 编程范式
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/3_oop/" class="md-nav__link">
+        3 面向对象程序设计
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/4_class_1/" class="md-nav__link">
+        4 类 (I) - 定义、成员、构造、析构
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/5_class_2/" class="md-nav__link">
+        5 类 (II) - 拷贝构造与拷贝赋值
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/6_class_3/" class="md-nav__link">
+        6 类 (III) - 转换构造函数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/7_class_4/" class="md-nav__link">
+        7 类 (IV) - const 和 static 成员
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/8_class_5/" class="md-nav__link">
+        8 类 (V) - 继承与抽象类、访问控制
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/9_template/" class="md-nav__link">
+        9 模板
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/10_stl/" class="md-nav__link">
+        10 STL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/11_move_semantics/" class="md-nav__link">
+        11 右值引用和移动语义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/12_class_6/" class="md-nav__link">
+        12 类 (VI) - 移动构造与移动赋值
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/13_namespace/" class="md-nav__link">
+        13 namespace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/14_exception/" class="md-nav__link">
+        14 exception
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_16" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_16" id="__nav_2_2_16_label" tabindex="0">
+          A 附录
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_16_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2_16">
+          <span class="md-nav__icon md-icon"></span>
+          A 附录
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/appendix/decl_and_def/" class="md-nav__link">
+        声明与定义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/appendix/inline_functions/" class="md-nav__link">
+        inline 函数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/appendix/func_overload/" class="md-nav__link">
+        函数默认参数与重载
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/appendix/operator_overload/" class="md-nav__link">
+        运算符重载
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/appendix/references/" class="md-nav__link">
+        引用
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/appendix/iostream/" class="md-nav__link">
+        I/O stream
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/appendix/copy_elision/" class="md-nav__link">
+        copy elision
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/appendix/cast/" class="md-nav__link">
+        类型转换
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/appendix/bool/" class="md-nav__link">
+        bool
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/appendix/auto/" class="md-nav__link">
+        auto
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/appendix/undefined_behavior/" class="md-nav__link">
+        未定义行为
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/appendix/string/" class="md-nav__link">
+        std::string
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/appendix/smart_pointers/" class="md-nav__link">
+        智能指针
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/appendix/lambda/" class="md-nav__link">
+        lambda
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_17" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_17" id="__nav_2_2_17_label" tabindex="0">
+          一些笔记和 TODO
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_17_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2_17">
+          <span class="md-nav__icon md-icon"></span>
+          一些笔记和 TODO
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/notes/notes/" class="md-nav__link">
+        零散内容记录
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/notes/dne_notes/" class="md-nav__link">
+        The Design and Evaluation of C++ 阅读记录
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/notes/std_notes/" class="md-nav__link">
+        C++ 语言标准阅读记录
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/notes/guideline_notes/" class="md-nav__link">
+        C++ Core Guidelines 阅读记录
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_restart/notes/bs_faq_notes/" class="md-nav__link">
+        Bjarne Stroustrup's FAQ 阅读记录
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/cpp_for_contests/" class="md-nav__link">
+        快速入门 C++ 写题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+          C++ 知识补充
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          C++ 知识补充
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cpp/%E7%90%86%E8%A7%A3%20STL%20-%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1/" class="md-nav__link">
+        理解 STL —— 迭代器与函数对象
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../pl/">PL & 编译</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          PL & 编译
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../pl/ppl_notes/">编程语言原理</a>
+          
+            <label for="__nav_3_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          编程语言原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/0_PPL_Final_Problem1/" class="md-nav__link">
+        我在 PPL 2022 Final 出的复习题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
+          Part I - Judgments and Rules | 判断与规则
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Part I - Judgments and Rules | 判断与规则
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/1_Abstract_Syntax/" class="md-nav__link">
+        1 抽象语法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/2_Inductive_Definition/" class="md-nav__link">
+        2 归纳定义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/3_Hypothetical_and_General_Judgments/" class="md-nav__link">
+        3 假言判断与一般性判断
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
+          Part II - Statics and Dynamics | 静态语义和动态语义
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Part II - Statics and Dynamics | 静态语义和动态语义
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/4_Statics/" class="md-nav__link">
+        4 静态语义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/5_Dynamics/" class="md-nav__link">
+        5 动态语义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/6_Type_Safety/" class="md-nav__link">
+        6 类型安全
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_5" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_5" id="__nav_3_2_5_label" tabindex="0">
+          Part III - Total Functions | 全函数
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Part III - Total Functions | 全函数
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/8_Func_Def_and_Val/" class="md-nav__link">
+        8 函数定义和值
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/9_Sys_T_of_Higher_Order_Recursion/" class="md-nav__link">
+        9 高阶递归的系统 T
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_6" id="__nav_3_2_6_label" tabindex="0">
+          Part IV - Finite Data Types | 有限数据类型
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Part IV - Finite Data Types | 有限数据类型
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/10_product_types/" class="md-nav__link">
+        10 积类型
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pl/ppl_notes/11_sum_types/" class="md-nav__link">
+        11 和类型
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compile_principle/" class="md-nav__link">
+        编译原理
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/">核心知识</a>
+          
+            <label for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          核心知识
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+          操作系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          操作系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/1_intro/" class="md-nav__link">
+        1 写在前面
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/I_overview/2_overview/" class="md-nav__link">
+        Part.1 概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
+          Part.2 进程管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Part.2 进程管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/3_process/" class="md-nav__link">
+        3 进程
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/4_sched/" class="md-nav__link">
+        4 调度
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/II_process_management/5_thread/" class="md-nav__link">
+        5 线程
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_4" id="__nav_4_2_4_label" tabindex="0">
+          Part.3 进程同步
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Part.3 进程同步
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/6_sync_tools/" class="md-nav__link">
+        6 同步及其工具
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/7_sync_examples/" class="md-nav__link">
+        7 经典同步问题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/III_process_sync/8_deadlocks/" class="md-nav__link">
+        8 死锁
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
+          Part.4 内存管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Part.4 内存管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/9_main_memory/" class="md-nav__link">
+        9 主存
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/IV_memory_management/10_virtual_memory/" class="md-nav__link">
+        10 虚拟内存
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_6" id="__nav_4_2_6_label" tabindex="0">
+          Part.5 存储管理
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Part.5 存储管理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/V_storage_management/11_mass_storage/" class="md-nav__link">
+        11 大容量存储
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/V_storage_management/12_io_systems/" class="md-nav__link">
+        12 I/O 系统
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_7" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_7" id="__nav_4_2_7_label" tabindex="0">
+          Part.6 文件系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Part.6 文件系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/VI_file_system/13_fs_interface/" class="md-nav__link">
+        13 文件系统
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/VI_file_system/14_fs_impl/" class="md-nav__link">
+        14 文件系统实现
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/15_review/" class="md-nav__link">
+        15 总结
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+          计算机组成
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          计算机组成
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/1_prelude/" class="md-nav__link">
+        1 写在前面
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/2_instructions/" class="md-nav__link">
+        2 Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/3_arithmetic/" class="md-nav__link">
+        3 Arithmetic
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/4_processor/" class="md-nav__link">
+        4 Processor
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/5_cache/" class="md-nav__link">
+        5 Cache
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/6_IO/" class="md-nav__link">
+        6 I/O
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_organization/%E5%8E%86%E5%B9%B4%E5%8D%B7/" class="md-nav__link">
+        2022 回忆卷
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../compile_principle/">编译原理</a>
+          
+            <label for="__nav_4_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          编译原理
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compile_principle/1%20Lexical%20Analysis/" class="md-nav__link">
+        I 词法分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compile_principle/2%20Parsing%20%28I%29/" class="md-nav__link">
+        II 语法分析 - 自顶向下分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compile_principle/3%20Parsing%20%28II%29/" class="md-nav__link">
+        III 语法分析 - 自底向上分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compile_principle/4%20Semantic%20Analysis/" class="md-nav__link">
+        IV 语义分析
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compile_principle/5%20Runtime%20Environment/" class="md-nav__link">
+        V 运行时环境
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compile_principle/6%20Code%20Generation/" class="md-nav__link">
+        VI 代码生成
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../math_ds_algo/">数学、数据结构和算法</a>
+          
+            <label for="__nav_4_5">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          数学、数据结构和算法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math_ds_algo/getting_started/" class="md-nav__link">
+        入门路线
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8/" class="md-nav__link">
+        安全
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        语言基础
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../other_courses/">其他课程</a>
+          
+            <label for="__nav_7">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          其他课程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other_courses/theory_of_computation/" class="md-nav__link">
+        计算理论
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%9D%82%E9%A1%B9/">杂项</a>
+          
+            <label for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          杂项
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%9D%82%E9%A1%B9/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        博客搭建记录
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../">生活</a>
+          
+            <label for="__nav_9">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          生活
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+          讨饭历程
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9_2">
+          <span class="md-nav__icon md-icon"></span>
+          讨饭历程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/overview/" class="md-nav__link">
+        🏳️‍🌈 总览
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/pdd/" class="md-nav__link">
+        😕 拼多多
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/meituan/" class="md-nav__link">
+        🤗 美团
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/mayi/" class="md-nav__link">
+        🤔 蚂蚁
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/huawei/" class="md-nav__link">
+        👍 华为
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/bytedance/" class="md-nav__link">
+        🥳 字节
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/quant/" class="md-nav__link">
+        👨‍💻 量化相关
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interviews/others/" class="md-nav__link">
+        其他
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%88%91%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E5%A4%96%E7%BD%AE%E5%A4%A7%E8%84%91/" class="md-nav__link">
+        我需要一个外置大脑
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" class="md-nav__link">
+        关于亲密关系的碎碎念
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2022/" class="md-nav__link">
+        2022 年终总结
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          回顾在信安的三年
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        回顾在信安的三年
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#回顾在信安的三年" class="md-nav__link">
+    回顾在信安的三年
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#把总结写到前面吧" class="md-nav__link">
+    把总结写到前面吧
+  </a>
+  
+    <nav class="md-nav" aria-label="把总结写到前面吧">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#关于信息安全专业" class="md-nav__link">
+    关于信息安全专业
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#这三年学习中让我感到难过的地方以及想做的努力" class="md-nav__link">
+    这三年学习中让我感到难过的地方，以及想做的努力
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#大一上--我来到了信息安全专业" class="md-nav__link">
+    大一上  我来到了信息安全专业
+  </a>
+  
+    <nav class="md-nav" aria-label="大一上  我来到了信息安全专业">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#主修专业确认" class="md-nav__link">
+    主修专业确认
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#最初的印象" class="md-nav__link">
+    最初的印象
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#第一个学期有点迷茫" class="md-nav__link">
+    第一个学期，有点迷茫
+  </a>
+  
+    <nav class="md-nav" aria-label="第一个学期，有点迷茫">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c-小程" class="md-nav__link">
+    C 小程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#大一下--疫情在家" class="md-nav__link">
+    大一下  疫情在家
+  </a>
+  
+    <nav class="md-nav" aria-label="大一下  疫情在家">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#无聊到自学入坑了语雀" class="md-nav__link">
+    无聊到自学，入坑了语雀
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#这个学期真的选了好多课" class="md-nav__link">
+    这个学期真的选了好多课！
+  </a>
+  
+    <nav class="md-nav" aria-label="这个学期真的选了好多课！">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#java-程序设计" class="md-nav__link">
+    Java 程序设计
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#面向对象程序设计" class="md-nav__link">
+    面向对象程序设计
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#汇编语言" class="md-nav__link">
+    汇编语言
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-信息安全原理与数学基础" class="md-nav__link">
+    ▲ 信息安全原理与数学基础
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-大程" class="md-nav__link">
+    C 大程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#大一短的两门课" class="md-nav__link">
+    大一短的两门课
+  </a>
+  
+    <nav class="md-nav" aria-label="大一短的两门课">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#计算机系统概论" class="md-nav__link">
+    计算机系统概论
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matlab-图像处理编程实践初步" class="md-nav__link">
+    MATLAB 图像处理编程实践初步
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#大二上--终于开始学专业课了" class="md-nav__link">
+    大二上  终于开始学专业课了
+  </a>
+  
+    <nav class="md-nav" aria-label="大二上  终于开始学专业课了">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#数字逻辑设计" class="md-nav__link">
+    数字逻辑设计
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#操作系统" class="md-nav__link">
+    操作系统
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#数据结构基础" class="md-nav__link">
+    数据结构基础
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#面向信息技术的沟通技巧" class="md-nav__link">
+    面向信息技术的沟通技巧
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#大二下短--综合难度最大的学期" class="md-nav__link">
+    大二下&amp;短  综合难度最大的学期
+  </a>
+  
+    <nav class="md-nav" aria-label="大二下&amp;短  综合难度最大的学期">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-数据安全与隐私保护" class="md-nav__link">
+    ▲ 数据安全与隐私保护
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-密码学" class="md-nav__link">
+    ▲ 密码学
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#编译原理" class="md-nav__link">
+    编译原理
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#大三上--怎么没课上呢" class="md-nav__link">
+    大三上  怎么没课上呢？
+  </a>
+  
+    <nav class="md-nav" aria-label="大三上  怎么没课上呢？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#程序设计方法学--编程语言原理" class="md-nav__link">
+    程序设计方法学 / 编程语言原理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#计算机网络" class="md-nav__link">
+    计算机网络
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-密码学进阶" class="md-nav__link">
+    ▲ 密码学进阶
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#大三下--安全学期" class="md-nav__link">
+    大三下  安全学期！
+  </a>
+  
+    <nav class="md-nav" aria-label="大三下  安全学期！">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-网络安全原理与实践" class="md-nav__link">
+    ▲ 网络安全原理与实践
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#计算机组成" class="md-nav__link">
+    计算机组成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-软件安全" class="md-nav__link">
+    ▲ 软件安全
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-系统安全" class="md-nav__link">
+    ▲ 系统安全
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-无线与物联网安全基础" class="md-nav__link">
+    ▲ 无线与物联网安全基础
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#后记" class="md-nav__link">
+    后记
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_7" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E6%A1%8C%E6%B8%B8/">桌游</a>
+          
+            <label for="__nav_9_7">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9_7">
+          <span class="md-nav__icon md-icon"></span>
+          桌游
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%A1%8C%E6%B8%B8/components/" class="md-nav__link">
+        配件相关
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#回顾在信安的三年" class="md-nav__link">
+    回顾在信安的三年
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#把总结写到前面吧" class="md-nav__link">
+    把总结写到前面吧
+  </a>
+  
+    <nav class="md-nav" aria-label="把总结写到前面吧">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#关于信息安全专业" class="md-nav__link">
+    关于信息安全专业
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#这三年学习中让我感到难过的地方以及想做的努力" class="md-nav__link">
+    这三年学习中让我感到难过的地方，以及想做的努力
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#大一上--我来到了信息安全专业" class="md-nav__link">
+    大一上  我来到了信息安全专业
+  </a>
+  
+    <nav class="md-nav" aria-label="大一上  我来到了信息安全专业">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#主修专业确认" class="md-nav__link">
+    主修专业确认
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#最初的印象" class="md-nav__link">
+    最初的印象
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#第一个学期有点迷茫" class="md-nav__link">
+    第一个学期，有点迷茫
+  </a>
+  
+    <nav class="md-nav" aria-label="第一个学期，有点迷茫">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c-小程" class="md-nav__link">
+    C 小程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#大一下--疫情在家" class="md-nav__link">
+    大一下  疫情在家
+  </a>
+  
+    <nav class="md-nav" aria-label="大一下  疫情在家">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#无聊到自学入坑了语雀" class="md-nav__link">
+    无聊到自学，入坑了语雀
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#这个学期真的选了好多课" class="md-nav__link">
+    这个学期真的选了好多课！
+  </a>
+  
+    <nav class="md-nav" aria-label="这个学期真的选了好多课！">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#java-程序设计" class="md-nav__link">
+    Java 程序设计
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#面向对象程序设计" class="md-nav__link">
+    面向对象程序设计
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#汇编语言" class="md-nav__link">
+    汇编语言
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-信息安全原理与数学基础" class="md-nav__link">
+    ▲ 信息安全原理与数学基础
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-大程" class="md-nav__link">
+    C 大程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#大一短的两门课" class="md-nav__link">
+    大一短的两门课
+  </a>
+  
+    <nav class="md-nav" aria-label="大一短的两门课">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#计算机系统概论" class="md-nav__link">
+    计算机系统概论
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matlab-图像处理编程实践初步" class="md-nav__link">
+    MATLAB 图像处理编程实践初步
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#大二上--终于开始学专业课了" class="md-nav__link">
+    大二上  终于开始学专业课了
+  </a>
+  
+    <nav class="md-nav" aria-label="大二上  终于开始学专业课了">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#数字逻辑设计" class="md-nav__link">
+    数字逻辑设计
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#操作系统" class="md-nav__link">
+    操作系统
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#数据结构基础" class="md-nav__link">
+    数据结构基础
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#面向信息技术的沟通技巧" class="md-nav__link">
+    面向信息技术的沟通技巧
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#大二下短--综合难度最大的学期" class="md-nav__link">
+    大二下&amp;短  综合难度最大的学期
+  </a>
+  
+    <nav class="md-nav" aria-label="大二下&amp;短  综合难度最大的学期">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-数据安全与隐私保护" class="md-nav__link">
+    ▲ 数据安全与隐私保护
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-密码学" class="md-nav__link">
+    ▲ 密码学
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#编译原理" class="md-nav__link">
+    编译原理
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#大三上--怎么没课上呢" class="md-nav__link">
+    大三上  怎么没课上呢？
+  </a>
+  
+    <nav class="md-nav" aria-label="大三上  怎么没课上呢？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#程序设计方法学--编程语言原理" class="md-nav__link">
+    程序设计方法学 / 编程语言原理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#计算机网络" class="md-nav__link">
+    计算机网络
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-密码学进阶" class="md-nav__link">
+    ▲ 密码学进阶
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#大三下--安全学期" class="md-nav__link">
+    大三下  安全学期！
+  </a>
+  
+    <nav class="md-nav" aria-label="大三下  安全学期！">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-网络安全原理与实践" class="md-nav__link">
+    ▲ 网络安全原理与实践
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#计算机组成" class="md-nav__link">
+    计算机组成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-软件安全" class="md-nav__link">
+    ▲ 软件安全
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-系统安全" class="md-nav__link">
+    ▲ 系统安全
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-无线与物联网安全基础" class="md-nav__link">
+    ▲ 无线与物联网安全基础
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#后记" class="md-nav__link">
+    后记
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>回顾在信安的三年</h1>
+
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 8940 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 30 分钟</p>
+</div>
+<h2 id="回顾在信安的三年">回顾在信安的三年<a class="headerlink" href="#回顾在信安的三年" title="Permanent link">&para;</a></h2>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>俺叫咸鱼暄！ZJU 19 级信息安全本科生！</p>
+<p>写这篇总结，最核心的目标是给自己看😋 同时，我也希望能提供一点点这样的功能：</p>
+<ul>
+<li>让有兴趣的同学了解信息安全专业学什么（课程名标注 ▲ 的是信安专属课程~），并提供一些可以参考的资料</li>
+<li>分享我认为我们的信息安全专业的利弊，供需要选专业的同学参考</li>
+<li>分享我认为目前计算机相关本科教学的一些问题，以及我想做的努力（打打广告——）</li>
+</ul>
+<p>本文总字数不到一万字，我也不知道要看多久。</p>
+</div>
+<hr />
+<blockquote>
+<p>“都说条条大路通罗马，可是我不想去罗马。”</p>
+</blockquote>
+<hr />
+<p>2022 年 7 月 5 日凌晨，最后一门专业必修课的成绩出来了，<del>我可以去合圣遗物了</del>  我在信息安全专业主要的三年大概就结束了🤔说起来，这三年比较迷茫，没有像很多人那样去进个实验室或者搞个科研之类的。但是无论如何，还是值得回顾一下的啦！
+回顾的同时，也想简单<sub>~锐评</sub>~介绍一下一些课程；难免会带一些个人的偏见🤧万一有人会看的话图一乐就好啦QWQ 如果能够让后来的小朋友大概看看信安到底是什么，也算是有点用处啦~（不过其实主要还是写给自己看的😘）</p>
+<p>另外，这里也有我选过的所有课程和对应的老师，如果希望了解某门课也欢迎来问qwq</p>
+<h2 id="把总结写到前面吧">把总结写到前面吧<a class="headerlink" href="#把总结写到前面吧" title="Permanent link">&para;</a></h2>
+<h3 id="关于信息安全专业">关于信息安全专业<a class="headerlink" href="#关于信息安全专业" title="Permanent link">&para;</a></h3>
+<p>在大一我怀着迷茫进入了信息安全专业，在大二的时候我对这个专业产生了种种负面评价和情绪，但是在大三我又体会到了这个专业的优势。</p>
+<p>在信息安全专业，最难过的一点就是  <strong>保研有时过于困难</strong> （在大三上结束的时候，我的均绩是 4.50，但是只能排在 20%，大概就是保研名额的最后一名；但是如果在计科，大概能排在 13%）——我觉得这大概是一个随机导致的事件：由于信息安全专业的人太少，出现厉害同学的频率就不是那么符合期望了；而计科那边人很多，几位神仙不会太影响最后的保研绩点。而且，出于众所周知的原因，信安专业选择出国的同学比例应该比计科少不少。在计科那边排名靠前的同学选择出国就会为后面的同学让出保研名额；而信安这边一方面出国同学少，另一方面由于前述的原因，选择出国的同学并不都会付出大量精力来把 GPA 弄到 4.5+，因此似乎也并不能够额外留出名额。</p>
+<p>同时，由于大三下学期有活活 5 门专业必修课，因此  <strong>大三下学期很难出去实习</strong> ，这对于希望实习或者就业的同学来说可能也会带来困扰。</p>
+<p>在大二和大三开始，我甚至会根据上述两点 <del>劝退</del> 告诫想要选择信息安全专业的同学；但是经过大三一年，我突然发现了信安的美好！相较于计院很多传统课程存在的 大本钟下送快递 上面开摆下面寄 的悲惨状况，信息安全专业引入的新课程大多比较  <strong>舒适、高质量和现代化</strong>  ——主要是因为老师都比较年轻，更加热情负责，愿意和同学们讨论；课程也大多不像计院经典课程那样有老本可以啃；助教配备也比较丰富和专业。虽然小白老师的汇编语言和密码学在大一大二完全摧毁了我对信息安全的兴趣，但是大三的几门安全课让我重建了对安全的理解和一点点爱好！
+另外根据我的观察，如果只是以通过为目标，信安相关的课程比传统计算机课程似乎更容易通过，同时能够学到更多的内容。不过，诸如软件安全、系统安全这样的课程，确实需要一定的思考、交流和“灵光一现”，个人认为难度和含金量也会比传统计算机课程高一些。</p>
+<p>另外值得提及的一点是  <strong>培养方案的变化</strong> 。从 18 级到 19 级，培养方案变得更不像计科，课程有了一番更新，模块课也全部变成了信息安全的形状；从 19 级到 20 级，计算机系统 I ~ III 横空出世，让人非常羡慕🥵。21 级开始似乎就没有内容上的变化了。大概也可以认为，经过这几代小白鼠的尝试😋培养方案大概能够稳定下来了，而这些课程的质量似乎也比传统计算机课程的大多数教学班高不少😜</p>
+<h3 id="这三年学习中让我感到难过的地方以及想做的努力">这三年学习中让我感到难过的地方，以及想做的努力<a class="headerlink" href="#这三年学习中让我感到难过的地方以及想做的努力" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>预警：这部分有广告🤫</p>
+</blockquote>
+<p>总结来说，大部分的课我是喜欢啃书、看 PPT 自学而不是听课的，所以在节省了一些时间的同时也错过了很多有趣的知识。这也是我认为自己不怎么卷也不是怎么摆的原因——除了真正有兴趣的内容之外，学的其实都比较少qwq</p>
+<p>这几年中，让我最迷茫的是：大家都在告诉我可以去做 SRTP、可以早点进实验室。但是，至今没有人给我讲过具体的研究有哪些 <strong>方向</strong> （比如从来没有人告诉过我可以去研究 NLP 或者编程语言或者什么其他的东西），这个方向在干什么、应该学什么、怎么学（不然我们如何判断这个方向适不适合自己呢？）；但是我认为这些是大一或者大二的时候就理应被告知的东西（不然我们如何选择 SRTP、实验室和毕设的方向呢？）。</p>
+<p>同时，由于众所周知的原因，C 小程、大程这种基础课以及传统计算机课程的大部分教学班的 <strong>教学质量相当有待提高</strong> 。小角龙学长 (<a class="magiclink magiclink-github magiclink-mention" href="https://github.com/Zhang-Each" title="GitHub User: Zhang-Each">@Zhang-Each</a>) 在去年也分享过一些 <a href="https://www.cc98.org/topic/5215387">对软工本科教学的建议</a>，其中也涵盖了前述的大多数课程；虽然以数据库系统为例的部分课程有所改善，但是大多数课程仍然“非常遗憾”。所以，事实上，我认为这些课程的遗憾现状相当程度上来自于制度和部分老师，而 <strong>这是我们难以动摇的</strong> 。</p>
+<p>我认为，上述问题能够划归到如下几类：</p>
+<ol>
+<li>部分课程内容和/或考核范围、方式不合理（点名 C 小程）</li>
+<li>部分教学班基础编程能力培养不到位（再点名 C 小程）</li>
+<li>部分课程的 PPT 内容水平以及部分教学班配备的 PPT 朗读专员水平有待提高</li>
+<li>部分课程的实验设置过于古色古香</li>
+<li>关于科研的课外引导紧缺</li>
+</ol>
+<p>根据刚才对遗憾的讨论，这里第 1 点很难改善，但是后面四类似乎都有改善的方法。</p>
+<p>关于第 4 点，<a href="https://csdiy.wiki/">CS 自学指南</a>、 <a href="https://conanhujinming.github.io/comments-for-awesome-courses/">名校公开课程评价网</a>等公开课选择指南提供了不错的解决方案！学这些课程能够加强对相应课程的学习，并且可以接触国内外先进的实验设计，而且似乎还能为建立增光添彩（不过我因为懒几乎没学过😔）。但是，这仍然不完全能够解决第 3 点——除非你是真正的强者，只追求知识不管绩点！</p>
+<p>关于第 3 点，在大二开始，我希望通过在 <a href="https://www.yuque.com/xianyuxuan/coding?view=doc_embed">玩电脑大师！· 咸鱼暄 insr</a>  <strong>记笔记并共享</strong> 的方式来帮助大家学习部分课程，似乎也帮到了一些同学😘：</p>
+<p><img alt="image.png" src="../temp.assets/1657215793974-10875dcd-947d-4064-a19a-459d85b5e531.png" /></p>
+<p>慢慢地，我发现周围愿意在语雀记笔记的同学变得多了起来；但是语雀本身社区属性比较弱，于是在两个月之前，我和 <a class="magiclink magiclink-github magiclink-mention" href="https://github.com/27rabbitlt" title="GitHub User: 27rabbitlt">@27rabbitlt</a> 、<a class="magiclink magiclink-github magiclink-mention" href="https://github.com/IsshikiHugh" title="GitHub User: IsshikiHugh">@IsshikiHugh</a> 一起攒起了 <a href="https://www.yuque.com/xianyuxuan/saltfish_shop?view=doc_embed">咸鱼肆 | 知识生活分享圈</a> <strong>（欢迎大家加入！）</strong> ，希望通过让大家留下自己的简介和博客地址（不一定是语雀）的方式来 <strong>增强大家的互动和互相学习</strong> ：</p>
+<p><img alt="image.png" src="../temp.assets/1657216089407-c8686484-8487-4821-9ba0-ad7423c669e3.png" /></p>
+<p>为了进一步改善前述第 3 点的问题，大家也在 <a href="https://www.yuque.com/xianyuxuan/saltfish_shop/course_res_index?view=doc_embed">📔 课程资源索引</a> 分享出了自己 <strong>泛计算机相关课程的笔记链接</strong> ，从而能够增强互相的参考交流。以 ADS 为例（因为这个最多😝）：</p>
+<p><img alt="image.png" src="../temp.assets/1657216700371-1c7fce1d-162b-4a48-8e89-e7a00024d3ef.png" />
+（课程资源索引的核心目标是分享用来学习的 <strong>笔记</strong> 而不是文件资料。欢迎有兴趣的前辈分享自己的笔记QWQ！）
+不过，课程资源索引目前主要都是课程笔记，而比较稍有之前所说国内外优质公开课的学习笔记。如果能够收集到这些笔记，也许能够提供更大的帮助 QWQ！</p>
+<p>同时， <a href="https://www.yuque.com/xianyuxuan/saltfish_shop?view=doc_embed">咸鱼肆 | 知识生活分享圈</a> 还通过 <strong>周报</strong> 的方式增强互动，分享大家喜闻乐见的 <strong>知识或者科普内容</strong> ：</p>
+<p><img alt="image.png" src="../temp.assets/1657217007868-b92969b6-db43-466c-9905-c602b06e6a3c.png" /></p>
+<p>关于第 2 点，我们希望通过一期专题周报收集一些好资料和解决方案。</p>
+<p>而为了解决第 5 点的问题，咸鱼肆尝试在暑假开始收集整理泛计算机相关的 <strong>科研方向和工作岗位方向的列表</strong> 。如果时间和资源允许，在未来还会考虑收集这些方向进一步的 <strong>介绍、学习路径以及学习资料</strong> 。</p>
+<p>关于这两个内容， <strong>如果有前辈愿意分享相关心得，也欢迎加入或联系我们</strong> 🤤！</p>
+<hr />
+<blockquote>
+<p>下面就是按照时间的回顾和总结啦！</p>
+</blockquote>
+<h2 id="大一上--我来到了信息安全专业">大一上  我来到了信息安全专业<a class="headerlink" href="#大一上--我来到了信息安全专业" title="Permanent link">&para;</a></h2>
+<h3 id="主修专业确认">主修专业确认<a class="headerlink" href="#主修专业确认" title="Permanent link">&para;</a></h3>
+<p>主修专业确认来得太过匆忙，当我们对专业几乎一无所知的时候就不得不做出选择。好在，高中时我就已经确信了自己对编程的兴趣，也就划定了最初的范围：计科 / 软工 / 信安。
+其实在确认专业的时候，我准备了两份材料，分别是计科和信安的；没选择软工是因为学费贵。最终我选择了信安，是因为害怕在计科激烈的竞争中被刷掉。</p>
+<p><img alt="image.png" src="../temp.assets/1657127397581-7f19a481-8b67-4d40-88dd-b3ce0873edc0.png" title="曾经也为专业踌躇许久" /></p>
+<h3 id="最初的印象">最初的印象<a class="headerlink" href="#最初的印象" title="Permanent link">&para;</a></h3>
+<p>来到信安后，班里的大家也就成为了网友。由于专业人比较少，只有二十来个，所以群里的氛围似乎也比计科那边要密切一些。我好像一直都是群里最大的水怪——也不知道有没有给人带来过困扰 QWQ</p>
+<p><img alt="60F89AEA8CCD367BBD65E517D584301A.jpg" src="../temp.assets/1657128175911-465f33ec-96f1-470d-80a5-bf0149bc86a6.jpeg" title="我是大水怪！" /></p>
+<p>这也是我对信安最初的印象——大家都很好玩，也没有像室友的计科班群那样死气沉沉 (x) 不过当时没有意识到的是，这也许只是个体差异🤒就像之后更多的“个体差异”带来的困扰一样。</p>
+<h3 id="第一个学期有点迷茫">第一个学期，有点迷茫<a class="headerlink" href="#第一个学期有点迷茫" title="Permanent link">&para;</a></h3>
+<p>大一上学期没上什么有价值的课，选的课很少、没有人一起学也没有人带，导致有一点点摆烂。课也不怎么去，到最后作业都不怎么交了，线代期末前夜在还有两章没看的情况下竟然能够安然睡去😪这个学期也喜提大学生涯至今最低的均绩。</p>
+<p><img alt="H.png" src="../temp.assets/1657129625874-24649793-e4ba-486e-aac4-15c639030d4e.png" title="大一上上的课。红底的是拉绩点的课——可以看到几乎全军覆没了" /></p>
+<h4 id="c-小程">C 小程<a class="headerlink" href="#c-小程" title="Permanent link">&para;</a></h4>
+<p>这门课……我申请了免听，但是它的评价和期末考试仍然奇怪得紧。这样的一门课程，成绩构成大头竟然不是写程序，理论题竟然包含那么多无意义的背诵——我觉得可以采取的一个方式是，在读程题以外的部分允许大家使用 IDE 来找到一些答案，就像真正的编程时那样。</p>
+<p>我不禁想问，高中那位不是特别会讲课的竞赛老师三天能让我们掌握的基本编程能力，为什么在浙大这样高材生云集的地方有时仍然变得难以企及呢？也许是因为，以类似语文英语应试那样的态度去教授，让大家对着黑板去背、去记一个工具的使用说明，而不是盯着或者至少告诫大家去练习、去使用这个工具而不是去使用它背诵它——我觉得问题就在最开始双方的过度信任，缺乏最初的监督和引导，然后变得畏惧，预设学会这些“很困难”，问题积少成多，就像我当初学物理和微积分那样。</p>
+<blockquote>
+<p>修勾 (<a class="magiclink magiclink-github magiclink-mention" href="https://github.com/IsshikiHugh" title="GitHub User: IsshikiHugh">@IsshikiHugh</a>) 打算在 <a href="https://www.yuque.com/xianyuxuan/saltfish_shop?view=doc_embed">咸鱼肆 | 知识生活分享圈</a> 总结一些给入门同学的经验，也许能够解决这里的一些问题，改善一些现象。文档仍在筹备中，有兴趣的话可以分享一些自己的心得🥰</p>
+</blockquote>
+<h2 id="大一下--疫情在家">大一下  疫情在家<a class="headerlink" href="#大一下--疫情在家" title="Permanent link">&para;</a></h2>
+<h3 id="无聊到自学入坑了语雀">无聊到自学，入坑了语雀<a class="headerlink" href="#无聊到自学入坑了语雀" title="Permanent link">&para;</a></h3>
+<p>在那个寒假，疫情开始了，大家也都没有去学校。我（当时因为没有入坑酒馆战棋和原神所以）不太爱玩游戏，在家的时光便格外无聊。事实证明，当人无聊到一定程度的时候，学习真的可以是一件快乐的事。（但是学习微积分不是，因为当时尝试学习微积分失败了。）</p>
+<p>当时跟着菜鸟教程简单学习了一下，也第一次接触了语雀，开始了电子笔记之旅。</p>
+<p><img alt="image.png" src="../temp.assets/1657129172712-27270599-8098-49fc-899e-d4f799f13100.png" title="我在语雀最初的尝试。可以看到，当时的我中西文之间甚至不加空格" /></p>
+<p>说起笔记，它只是我自己的一个习惯——对我而言，学习的动力来源于兴趣和成就感；而写出一个完整的文档或者笔记则是非常重要的成就感来源，在初中和高中的时候我就喜欢做这样的事。如果有人愿意看我的笔记那就更好啦——虽然我有时会冠冕堂皇地说这是为了帮助我自己查漏补缺，客观上也确实起到了这样的作用，但是实际上更多是为了满足我那点小小的成就感和虚荣心罢了。</p>
+<h3 id="这个学期真的选了好多课">这个学期真的选了好多课！<a class="headerlink" href="#这个学期真的选了好多课" title="Permanent link">&para;</a></h3>
+<p>选了课之后最意外的事情是——申请补选了 <strong>Java 程序设计</strong> 和许威威老师的 <strong>面向对象程序设计</strong> （因为寒假大概在菜鸟教程学了一遍了），竟然都给我过了🤧学分一下子来到了 30.5 分。这个学期面对微积分、大物、小白老师的 <strong>汇编语言</strong> 、 <strong>C 大程</strong> 、 <strong>信息安全原理与数学基础</strong> 、Java、oop 的多重轰炸下，心态也偶尔会爆炸。幸好是在家，不需要去教室假装听课，节省了很多通勤时间和逢场作戏的精力，可以把除了打游戏、睡觉、水群和品尝家乡美食以外的时间更多地放在学习上，成绩也渐渐有了起色。</p>
+<p><img alt="CIM752)O6{EJ~K{FJ9GA$VP.png" src="../temp.assets/1657130106201-902fb207-a6a7-416e-aa2e-c54ad44a542c.png" title="这个学期是课最多的一个学期了QAQ 蓝色字是主干课" /></p>
+<h4 id="java-程序设计">Java 程序设计<a class="headerlink" href="#java-程序设计" title="Permanent link">&para;</a></h4>
+<p>这门课是外专业的计算机类通识课程，选来本来是想刷刷分，但是被理论考试题爆杀😑在这门课程中我第一次折服于我们课程的古色古香！因为已经结课，现在已经进不去这个系统了，但是这个系统真的是古老到披上个斗篷就能给白雪公主送苹果的程度🙄</p>
+<p><img alt="image.png" src="../temp.assets/1657130387898-a92f543d-6b40-486f-8f08-66da583fecae.png" title="稍稍有那么一点复古了" /></p>
+<p>不必说那只能看到得分不能看到哪道题错了的作业和模拟考试系统，也不必说和 C 小程以及 Python 一样的刁钻理论题，更不必说甚至要用 word 交的编程作业……这门课让我再一次回顾 C 小程看到的情景，甚至更甚。</p>
+<h4 id="面向对象程序设计">面向对象程序设计<a class="headerlink" href="#面向对象程序设计" title="Permanent link">&para;</a></h4>
+<p>很庆幸在大一下把这门课上了，不然大二上就只能被 ljj 先生摧残了。这门课似乎不同的学期难度差别很大，不同的老师的作业和大作业也不太一样，不知道是为什么。许威威老师事少给分好，还蛮不错的。</p>
+<p>在学这门课的时候，我啃完了《C++ 编程思想》的第一卷。这本书算是众多黑皮书里翻译的还算不错的了，也不是很厚。从中我对 C++ 面向对象有了初步的理解，把笔记记在了 <a href="https://www.yuque.com/xianyuxuan/coding/cpp-oop?view=doc_embed">1 C++面向对象</a>。不过在后来的学习和面试中发现学到的还是太浅了，一直想进一步深入学习一下但是还一直在拖延🙃我真的是拖延症重度患者……</p>
+<h4 id="汇编语言">汇编语言<a class="headerlink" href="#汇编语言" title="Permanent link">&para;</a></h4>
+<p>这门课是小白老师开给图灵班和信息安全的必修课，和隔壁的那个通识课不完全一样。但是疫情线上上课，小白老师就录了一份，两个班都放这一份！要是我我也这样🤣</p>
+<p>小白老师删回放确实带来了不小的困扰，但是困的也不是特别扰，毕竟他就算不删我也不会看的😜我一直喜欢通过阅读而不是听课来学习。</p>
+<p>我个人不太喜欢小白老师，一方面因为删回放确实比较特立独行，另一方面教学的内容有点复古和过于追求细枝末节。我理想的汇编语言课程应该是像 <strong>计算机系统概论</strong> 那样用一个非常简单的指令集讲清楚汇编语言的基本思想，类似 8086 这样的实例可以作为了解内容或者作业内容，放到考试里的话至少给个 cheat sheet。个人认为闭卷去考一些指令的作用甚至是<code>int 3</code>的机器码这种题目，就像 C 小程的一些理论题一样确实没什么价值。如果要为软保打基础那不如直接放到软保里。这样课时也可以大幅度缩短——确实不太理解有一些一天就能学完的课程为什么要拖到一整个学期来上。</p>
+<p>说实话，十分庆幸这门课由于疫情原因放到了开学后才考试，因为我在计算机系统概论那门课里才真正学透了汇编。</p>
+<h4 id="-信息安全原理与数学基础">▲ 信息安全原理与数学基础<a class="headerlink" href="#-信息安全原理与数学基础" title="Permanent link">&para;</a></h4>
+<p>我们 2019 级是这门课的第一批小白鼠，这门课被用来代替培养方案中原来的离散数学和概统两门课。这门课和线代一样是那种学了以后不知道干啥用并将长期处于不知道干啥用的课程；不过到了现在，这门课的用处也渐渐显露出来，这门课的笔记 <a href="https://www.yuque.com/xianyuxuan/coding/crs-csmath?view=doc_embed">信息安全原理与数学基础</a> 也逐渐成了我最常翻的笔记（线代的用处也渐渐显露出来，所以我因为不会线代把机器学习弃修了🤣）。</p>
+<p>张秉晟老师真的很帅🤩蛮喜欢他讲课的，虽然说实话也没听多少；但是 PPT 做的很细致，便于学习和阅读。秦湛老师上课稍微有一点点困😉后半个学期那会儿刚好是午后，我仍然记得当时在家里上着他的课点个外卖吃完睡过去时的阳光（对不起我错了我磕一个）。最后考试是比较水的，给分也蛮好的。</p>
+<h4 id="c-大程">C 大程<a class="headerlink" href="#c-大程" title="Permanent link">&para;</a></h4>
+<p>当时上这门课是比较爽的，但是鉴于 C 小程悲惨的教学成果，大多数同学完成大作业有点过于大跃进了；课程中也缺乏基本的引导。不过听说 23 级开始 C 大小程要合并了，就不过多评价了，希望到时候能够改善吧。</p>
+<p>顺便，这门课在 2019 年的 project 还比较正常，但是近几年为什么画风变得奇怪了起来……“代码查重”、“简易浏览器”这种内容真的适合做只上过 C 小程的同学们的大作业吗？我不好说。</p>
+<p>带了两年朋辈辅学，21年，用六个多小时做了一个小游戏，说实话讲的不是很好，但是尽可能覆盖了这个图形库里能用到的功能：<a href="https://www.yuque.com/xianyuxuan/coding/cprojt?view=doc_embed">如何写 C 大程 | 2021 朋辈辅学</a>；22 年花了更多的时间去考虑设计的问题，分享了一些如何选题、如何开始、如何设计、具体实现之类的想法，但是都是自己的想法，不知道会不会有帮助：<a href="https://www.yuque.com/xianyuxuan/coding/c_proj_log?view=doc_embed">程序设计专题 2022 朋辈辅学课程内容</a>。</p>
+<h2 id="大一短的两门课">大一短的两门课<a class="headerlink" href="#大一短的两门课" title="Permanent link">&para;</a></h2>
+<p>短学期，在学长的强力推荐下选了 <strong>计算机系统概论</strong> ，同时和它唯一一个不冲突的课是  <strong>MATLAB 图像处理编程实践初步</strong> ，所以两个都选了。</p>
+<h4 id="计算机系统概论">计算机系统概论<a class="headerlink" href="#计算机系统概论" title="Permanent link">&para;</a></h4>
+<p>真的是神课！非常到位地把握了一个用来教学的近乎最小的集合，也基本上验证了数逻+计组+汇编这三门课大概 20 个小时就能从 0 基础开始讲的很通透。这门课的老本一直到上计组的时候还可以啃~</p>
+<p>我个人是比较喜欢这种教学方式的，从一个类似玩具的架构出发，看懂了这个架构之后再去看 RISC-V 就十分容易了，特别好理解QWQ不像某些课那样，每一个点都事无巨细的讲一遍，大家听了也不知道学了什么，之后要用的时候又忘了，最后也什么都记不住。</p>
+<p>不过没有太理解的是 jxh 女士在这门课中发挥的作用（除了黄帕特先生没法在教务系统开课需要挂个名？），不管是沟通、教学还是验收、评分好像都没起到什么正面的作用（即使我不听课，也听到 Patt 先生说了无数次 I've no idea what you are talking about）。</p>
+<p>这个课让我体会到了现代的课程的一点味道——有比较丰富的资料和助教资源，虽然 Lab 还并不是自动化批改。如果 Lab 也是自动化批改的话，感觉比某汇编语言课程领先了至少半辈子😇
+赞美计算机系统概论！</p>
+<h4 id="matlab-图像处理编程实践初步">MATLAB 图像处理编程实践初步<a class="headerlink" href="#matlab-图像处理编程实践初步" title="Permanent link">&para;</a></h4>
+<p>算是让自己入门了一个工具，但是这个课基本上收获不是很多，因为原理上的知识讲的不多，也没什么相关的考核。基本上课程就是不那么详细地把某个概念讲一节课——然后在最后告诉大家这个东西用某个函数就能实现！有很认真地做大作业，但是可能能力有限，也可能是报告写得太实诚了，结果分数也不是很满意。</p>
+<h2 id="大二上--终于开始学专业课了">大二上  终于开始学专业课了<a class="headerlink" href="#大二上--终于开始学专业课了" title="Permanent link">&para;</a></h2>
+<p><img alt="_9{NM@R_K6V$3EHJ@4G)G~Y.png" src="../temp.assets/1657217882310-218a8cc6-a395-4c32-ac9b-747831efd97c.png" /></p>
+<h4 id="数字逻辑设计">数字逻辑设计<a class="headerlink" href="#数字逻辑设计" title="Permanent link">&para;</a></h4>
+<p>这门课的理论部分我不太记得了，但是蔡铭老师讲的真的不错（而且也给调分了🤗）！但是这门课的实验部分实在是奇怪得紧。奇怪的实验报告格式，奇怪的在报告里复制十几页甚至几十页 PPT 内容的优良传统，完全没有后续作用的前几次实验，以及将 Verilog 讲一个学期还能让绝大部分同学都不会的优质讲解……</p>
+<h4 id="操作系统">操作系统<a class="headerlink" href="#操作系统" title="Permanent link">&para;</a></h4>
+<p>这门课放在大二上稍稍有点困难，但是困的也不是那么难，大部分恐惧来自于心理。十分感谢当时队友的 carry，教改后的操作系统实验确实非常有价值；申士讲的课也真的非常有水平！</p>
+<p>当时由于听不太懂没完全好好听，下个学期打算带带操作系统的朋辈辅学，到时候一定要听一遍申士的课再去讲！届时也会在 <a href="https://www.yuque.com/xianyuxuan/coding/os?view=doc_embed">操作系统 | Operating Systems</a> 更新笔记，不过现在还非常不完整~</p>
+<h4 id="数据结构基础">数据结构基础<a class="headerlink" href="#数据结构基础" title="Permanent link">&para;</a></h4>
+<p>这门课还好，唯一想评价的就是：若干老师由于自己都没搞清楚评分标准克扣 bonus，在事前提醒、事后咨询后仍然给出并坚持给出错误的评分，确实十分不尊重部分同学们一学期来做 hard mode 的劳动成果。所以我经常给同学们推荐，有 cyll 上课的课尽可能选她的，因为她是不多见的聪慧、明智、正直、 <strong>能够沟通</strong> 的老师之一。</p>
+<p>笔记记在了 <a href="https://www.yuque.com/xianyuxuan/coding/pkskoq?view=doc_embed">数据结构基础 | FDS</a>，不是特别完整qwq</p>
+<h4 id="面向信息技术的沟通技巧">面向信息技术的沟通技巧<a class="headerlink" href="#面向信息技术的沟通技巧" title="Permanent link">&para;</a></h4>
+<p>这门课似乎从 22 级开始改成了选修的“技术沟通”。我十分喜欢这门课，课程内容本身非常轻松，也给我了非常大的帮助，同时也让我意识到了自己在沟通方面的很多问题。想比于其他专业知识来说，这一课程给我的影响应当更加深远。</p>
+<p>这门课程的核心问题应该是工作量比较大，不过听说在后续学年有所改善。如果改成了选修仍然工作量大的话，大不了就听一听，不去选🤪</p>
+<h2 id="大二下短--综合难度最大的学期">大二下&amp;短  综合难度最大的学期<a class="headerlink" href="#大二下短--综合难度最大的学期" title="Permanent link">&para;</a></h2>
+<p><img alt=")3S)TN0NZ8.png" src="../temp.assets/1657219457284-84546f3a-943d-4b6c-bc5a-383e80ff2415.png" /></p>
+<h4 id="-数据安全与隐私保护">▲ 数据安全与隐私保护<a class="headerlink" href="#-数据安全与隐私保护" title="Permanent link">&para;</a></h4>
+<p>emm 说实话，因为没期末考试，所以没听课，我也不知道他讲了啥🤪</p>
+<h4 id="-密码学">▲ 密码学<a class="headerlink" href="#-密码学" title="Permanent link">&para;</a></h4>
+<p>这门课也是小白老师的，我觉得这门课程的考核方式和范围仍然不太妥当。我完全理解学习密码学应当对一些基本的加密算法有一定的理解，我也可以理解平时作业去实现某种加密方式。但是我仍然不认同小白老师的考核方式——我讲过的、放到 word 里的，你就要背下来；不认同考试里让人背诵默写加密方式、一些数据细节，甚至是 OpenSSL 的 API。正如某位老师所说的那样：“就跟着 Enigma 走？那都不用数学。”</p>
+<h4 id="编译原理">编译原理<a class="headerlink" href="#编译原理" title="Permanent link">&para;</a></h4>
+<p>这门课程……很烂。首先分享一下笔记：<a href="https://www.yuque.com/xianyuxuan/coding/compiler?view=doc_embed">编译原理 | Compiler Principle</a></p>
+<p>这门课使用的课本甚至是早已失传的古书，我们只能使用扫描不良的英文电子书和错漏百出的中文电子书，而实体书已经绝版，泯然于江湖；PPT 也是祖传的，内容比较陈旧。部分老师所配备的部分助教甚至自己都没学过编译原理，确实非常令人惊讶。</p>
+<p>这门课绝大多数精力集中在编译器的前端。但是在我去面试编译相关的一些实习岗位时却被告知——编译器的前端已经比较成型，而最终影响编译出程序性能的内容都在后端；这恰好是被课程省略的内容。同样地，大多数人的编译器大作业也不约而同地使用了 Lex + Yacc + LLVM 这一套内容，同质化相当严重，用处也非常有限。</p>
+<h2 id="大三上--怎么没课上呢">大三上  怎么没课上呢？<a class="headerlink" href="#大三上--怎么没课上呢" title="Permanent link">&para;</a></h2>
+<p><img alt="LZQ1NS%EC2PL.png" src="../temp.assets/1657219551724-0ea12e7f-0dc0-449f-96d5-666e7355758a.png" /></p>
+<p>由于大二上把操作系统上了，大三上的必修课就剩一门计网了，剩下能选的专业课只有密码学进阶……</p>
+<h4 id="程序设计方法学--编程语言原理">程序设计方法学 / 编程语言原理<a class="headerlink" href="#程序设计方法学--编程语言原理" title="Permanent link">&para;</a></h4>
+<p>这门课真的非常非常好（虽然事情有点多）！！非常敬佩翁恺老师知识的丰富和融会贯通，从中也学到了很多很多知识，这应该算是我在浙大第一门全都听了一遍的课！有机会一定要把翁恺老师别的专业课也都听一遍QWQ</p>
+<p>笔记记了，但是今年课程要大改，内容完全不一样了，所以笔记没有参考价值了。</p>
+<h4 id="计算机网络">计算机网络<a class="headerlink" href="#计算机网络" title="Permanent link">&para;</a></h4>
+<p>这门课花了很长时间，也去带了朋辈辅学；这门课的笔记 <a href="https://www.yuque.com/xianyuxuan/coding/network?view=doc_embed">计算机网络 | Computer Network</a> 也成为了我至今所有笔记中最长的一篇，有快三万个字QWQ。这个课本身能学到一些东西，但是大多数也没什么用；考试的话……懂的都懂</p>
+<h4 id="-密码学进阶">▲ 密码学进阶<a class="headerlink" href="#-密码学进阶" title="Permanent link">&para;</a></h4>
+<p>这门课讨论了可证明安全、安全多方计算、零知识证明、加密数据库、私密化信息检索、隐私保护求交集、Oblivious RAM、联邦学习等内容。张秉晟老师讲的部分真的非常有意思；刘健老师讲的部分稍微有点太前沿了，但是听懂的部分也有很大收获！</p>
+<p>个人认为论文给分过低了，以及期末考试设置有点不太合理（不太对得起课程讲的这么多内容）；但是课程本身非常值得一听。这门课也算是一门全都听了一遍的课程！这个课真的比密码学高到不知道哪里去了！</p>
+<p>笔记记在了 <a href="https://www.yuque.com/xianyuxuan/coding/advcrypto?view=doc_embed">密码学进阶 | Advanced Cryptology</a>，不过有一些地方是手写的QWQ 是补天笔记，不一定适合拿来自学。</p>
+<h2 id="大三下--安全学期">大三下  安全学期！<a class="headerlink" href="#大三下--安全学期" title="Permanent link">&para;</a></h2>
+<p><img alt="6SNV7E%O29KOUDER{YEU11M.png" src="../temp.assets/1657219565726-614de453-230e-4bbc-b31a-cbba215d426f.png" /></p>
+<p>这个学期的课程感觉都相当高难度，因此也没有敢选额外的课。</p>
+<p>这个学期的课也基本没怎么听课，网安、无线与物联网两门课基本就是啃PPT，计组就是啃书，剩下两门课……反正没期末考试🤣</p>
+<h4 id="-网络安全原理与实践">▲ 网络安全原理与实践<a class="headerlink" href="#-网络安全原理与实践" title="Permanent link">&para;</a></h4>
+<p>这门课的部分内容需要预修计算机网络。探讨了诸如 DDoS 攻击、安全路由、匿名通信、互联网安全（SQL 注入、跨站脚本攻击等）、Email 安全、攻击溯源、网络保护等话题。</p>
+<p>这门课的实验部分很有趣，理论部分的话由于内容比较多感觉稍微有一点浅，有些地方也没有讲的很深入，但是也非常有意思。英文授课本身带来了比较大的不便，但是鉴于国际化的需求也可以理解。凯哥非常友善，这门课总体来说感觉也比较不错。</p>
+<p>笔记记在 <a href="https://www.yuque.com/xianyuxuan/coding/netsec?view=doc_embed">网络安全原理与实践 | Network Security</a>，并不是讲解性的，不一定适宜用来自学QWQ；少数一些被省略了。</p>
+<h4 id="计算机组成">计算机组成<a class="headerlink" href="#计算机组成" title="Permanent link">&para;</a></h4>
+<p>这个课说实话在学过计算机系统概论和操作系统之后感觉没有什么营养了😥虽然更深层次地去理解了一些设计(比如流水线)，但是大部分思考是和计算机系统概论的数据通路、汇编以及操作系统的虚拟内存一样的。相比来说还是比较羡慕新信安的计算机系统1-3(虽然其实我也不知道他讲了啥)，也许那个课可以更少地去学那些重复的知识。</p>
+<p>这门课记了比较详细的笔记：<a href="https://www.yuque.com/xianyuxuan/coding/co?view=doc_embed">计算机组成 | Computer Organization</a>。</p>
+<h4 id="-软件安全">▲ 软件安全<a class="headerlink" href="#-软件安全" title="Permanent link">&para;</a></h4>
+<p>这个课需要掌握至少一门汇编语言。没太听课，但是作业和期末主要包括了 Buffer Overflow, Return-Oriented Programming, Format-String-Bug 这些漏洞利用方式，以及静态和动态程序分析的内容。实验报告记录在 <a href="https://www.yuque.com/xianyuxuan/coding/softwsec?view=doc_embed">软件安全 | Software Security</a>。</p>
+<p>这个课给分真的好！平时作业和期末作业也比较有挑战性，实验指导也详略得当，在保证基本不太会被(由于没听课导致的)知识性问题以及不知道有什么函数可以用的问题打扰，做作业可以专心去思考解决方式；通常来说解决方式也是多种多样的，大家经常能找到不同的方式解题。这个课让我许久没动的脑袋悄悄活跃了一点。(亲测这个课完全不需要听课也能过)</p>
+<h4 id="-系统安全">▲ 系统安全<a class="headerlink" href="#-系统安全" title="Permanent link">&para;</a></h4>
+<p>申士真的懂得好多，我哭死😭可惜确实对那些话题不太感兴趣……所以没怎么好好听课😥虽然每节课都去了，偶尔听的一些内容也感觉质量很高；万一我打算改行了再回来听听😋三次实验里，第一次实验搞 log4j 那个漏洞我觉得设计的不太好，配环境工作量很大，但是实际内容又没多少；后面两次 ROP 和 JOP 的内核攻防倒是很有趣，而且学到很多！最后的 project 还是蛮有意思的，听说后面要改成长学期课就会更好一些，毕竟近乎盲选题的话也会带来不小的困扰 (还好我选题选的水😜)。</p>
+<h4 id="-无线与物联网安全基础">▲ 无线与物联网安全基础<a class="headerlink" href="#-无线与物联网安全基础" title="Permanent link">&para;</a></h4>
+<p>通过这个课，我的评价是，如果真的想让人学到点内容，期末考试确实是一个不错的手段(虽然很折磨人)。这门课的理论部分是纯期末速成的，虽说营养价值不高，但是还是对无线网络和物联网以及各种安全问题有了一个极其粗浅的了解。个人感觉理论部分最大的问题在于详略不得当，一方面详细到 WPA2 的四次握手都在干什么，另一方面很多地方粗略到不知道讲了啥。实验部分更是离谱，第一次实验是几乎没人做出实验效果的玩传感器；后面两次实验内容都是加密解密这种用接口的，要做的事情就是查一下粘上去，没什么技术含量；思考题问“密钥保存在哪里”这种思考不出来的问题，也就是查查搜索引擎。虽然这种思考题本身也起到了让人学到东西的效果，但是由于详略过于不得当，能收获的内容着实有限。</p>
+<p>笔记记在 <a href="https://www.yuque.com/xianyuxuan/coding/wireless_iot?view=doc_embed">无线与物联网安全基础</a>，其实就是复习 PPT 摘录……不一定适合拿来学。</p>
+<h2 id="后记">后记<a class="headerlink" href="#后记" title="Permanent link">&para;</a></h2>
+<p>很遗憾的是，虽然大三下优秀的课程和老师让我对信安黑转粉，但是我仍然没有从中找到什么特别感兴趣的方向。大学前三年最触动我的课程仍然是编译原理和翁恺老师的程序设计方法学，所以我也决定尝试学一学编程语言相关的内容，做一做相关的毕设。</p>
+<p>在信安的这三年，比较后悔的是没有早点看一看有哪些可以发展的方向，因而也没能更早地尝试和选择，只能在大三结束毕设选导选题时赶鸭子上架；同时也没有学好基础课程，仍然需要额外花时间回来补。但是庆幸的是，信安的班级氛围还是很融洽的，也认识了很多不错的朋友；大多数信安课也让我体会到了优秀课程的感觉——随着后浪推前浪，计院其他课程说不定也能变得配得上浙大的名气以及 A+ 这个评价。</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-29T06:27:42+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-29</span>
+      
+        <br>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-29T06:27:42+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-29</span>
+      
+    
+  </small>
+</div>
+
+
+  
+
+
+
+<div id="__comments">
+
+<h3>颜色主题调整</h3>
+
+<div class="tx-switch">
+<button data-md-color-scheme="default"><code>default</code></button>
+<button data-md-color-scheme="slate"><code>slate</code></button>
+</div>
+
+<script>
+var buttons = document.querySelectorAll("button[data-md-color-scheme]")
+buttons.forEach(function(button) {
+        button.addEventListener("click", function() {
+        var attr = this.getAttribute("data-md-color-scheme")
+        document.body.setAttribute("data-md-color-scheme", attr)
+        localStorage.setItem("data-md-color-scheme",attr);
+        updateScheme();
+        })
+})
+</script>
+
+<div class="tx-switch">
+<button class="button1" data-md-color-primary="red" style="background-color:red">red</button>
+<button class="button1" data-md-color-primary="pink" style="background-color:pink;color:black">pink</button>
+<button class="button1" data-md-color-primary="purple" style="background-color:purple">purple</button>
+<button class="button1" data-md-color-primary="indigo" style="background-color:indigo">indigo</button>
+<button class="button1" data-md-color-primary="blue" style="background-color:blue">blue</button>
+<button class="button1" data-md-color-primary="cyan" style="background-color:cyan;color:black">cyan</button>
+<button class="button1" data-md-color-primary="teal" style="background-color:teal">teal</button>
+<button class="button1" data-md-color-primary="green" style="background-color:green">green</button>
+<button class="button1" data-md-color-primary="lime" style="background-color:lime;color:black">lime</button>
+<button class="button1" data-md-color-primary="orange" style="background-color:orange;color:black">orange</button>
+<button class="button1" data-md-color-primary="brown" style="background-color:brown;border-radius=3px">brown</button>
+<button class="button1" data-md-color-primary="grey" style="background-color:grey">grey</button>
+<button class="button1" data-md-color-primary="black" style="background-color:black">black</button>
+<button class="button1" data-md-color-primary="white" style="background-color:white;color:black">white</button>
+</div>
+
+<script>
+var buttons = document.querySelectorAll("button[data-md-color-primary]")
+buttons.forEach(function(button) {
+        button.addEventListener("click", function() {
+        var attr = this.getAttribute("data-md-color-primary")
+        document.body.setAttribute("data-md-color-primary", attr)
+        localStorage.setItem("data-md-color-primary",attr);
+        })
+})
+</script>
+
+<h2 ><!-- 评论 -->评论区~</h2>
+
+有用的话请给我个赞和 star => <a href="https://github.com/xuan-insr/xuan-insr.github.io"><img alt="GitHub stars" src="https://img.shields.io/github/stars/xuan-insr/xuan-insr.github.io.svg?style=plastic&amp;label=Stars"></a>
+
+</br>
+
+快来跟我聊天~
+
+</div>
+
+<script src="https://giscus.app/client.js"
+        data-repo="xuan-insr/discussion"
+        data-repo-id="R_kgDOIUW7XA"
+        data-category="General"
+        data-category-id="DIC_kwDOIUW7XM4CSOC3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="dark"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+
+updateScheme();
+
+</script>
+
+<!-- Synchronize Giscus theme with palette -->
+<script>
+var giscus = document.querySelector("script[src*=giscus]")
+
+/* Set palette on initial load */
+// var palette = __md_get("__palette")
+// if (palette && typeof palette.color === "object") {
+//     var theme = palette.color.scheme === "slate" ? "dark" : "light"
+//     giscus.setAttribute("data-theme", theme) 
+// }
+
+/* Register event handlers after documented loaded */
+// document.addEventListener("DOMContentLoaded", function() {
+//     var ref = document.querySelector("[data-md-component=palette]")
+//     ref.addEventListener("change", function() {
+//     var palette = __md_get("__palette")
+//     if (palette && typeof palette.color === "object") {
+//         var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+//         /* Instruct Giscus to change theme */
+//         var frame = document.querySelector(".giscus-frame")
+//         frame.contentWindow.postMessage(
+//         { giscus: { setConfig: { theme } } },
+//         "https://giscus.app"
+//         )
+//     }
+//     })
+// })
+</script>
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      本页面的全部内容在 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a> 协议之条款下提供，附加条款亦可能应用
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../from_oi_wiki/js/extra.js"></script>
+      
+        <script src="../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../../js/tablesort.js"></script>
+      
+    
+  </body>
+</html>
