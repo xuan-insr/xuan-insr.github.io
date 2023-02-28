@@ -24,6 +24,6 @@ jobs:
       - uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.TOKEN }}
-          publish_dir: ./slides
+          publish_dir: ./publish
           publish_branch: gh-pages
-          keep_files: true
+          # keep_files: true
