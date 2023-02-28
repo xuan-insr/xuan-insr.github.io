@@ -21,21 +21,9 @@ jobs:
       # - run: git clone https://github.com/smd1121/mkdocs-toolchain.git && cd mkdocs-toolchain/mkdocs-statistics-plugin && pip install -e .
       - run: pip install mkdocs-statistics-plugin
       - run: mkdocs gh-deploy --force
-
-      - name: Check and create slides directory
-        run: |
-          # 检查 gh-pages 分支是否存在 slides 目录，如果不存在就创建它
-          if [ ! -d "../gh-pages/slides" ]; then
-            mkdir ../gh-pages/slides
-            git add ../gh-pages/slides
-            git commit -m "Create slides directory"
-            git push origin gh-pages
-          fi
-      - name: Copy slides to gh-pages
-        run: |
-          cp -r slides/. ../gh-pages/slides
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
+      - uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.TOKEN }}
-          publish_dir: ../gh-pages
+          personal_token: ${{ secrets.TOKEN }}
+          publish_dir: ./slides
+          publish_branch: gh-pages
+          clean: false
