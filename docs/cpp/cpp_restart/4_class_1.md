@@ -179,7 +179,7 @@ int main() {
 
 --8<-- "cpp/cpp_restart/appendix/inline_functions.md"
 
-## 4.3 构造函数
+## 4.3 构造函数[^ctor]
 
 构造函数 (constructor) 是一种特殊的成员函数，用于初始化该类的对象。
 
@@ -226,6 +226,8 @@ public:
 
 ## ▲ 函数默认参数与函数重载
 
+### 默认参数
+
 这样的构造函数允许用户传递一个初始大小，然后直接开一个对应大小的空间：
 
 ```c++ linenums="1"
@@ -251,12 +253,18 @@ point(1);    // calls point(1, 4)
 point();     // calls point(3, 4)
 ```
 
-默认参数必须出现在末尾的若干个参数中；即
+默认参数必须出现在末尾的若干个参数中。这个要求的合理性容易理解：假如没有这个要求，那么如果有 `void point(int x = 3, int y);`，则 `point(4);` 的含义是容易让人迷惑的。
 
-由构造函数默认参数和重载引入本节。
+### 函数重载
 
 !!! note "nullptr"
     TODO
+
+我们可能会发现，函数重载的作用已经足以覆盖默认参数的作用。事实上确实如此：默认参数机制在 C with Classes 时就存在了，其意义就是前面给出的默认参数的例子；而一般的函数重载直到 Release 1.0 才被引入。默认参数机制是重载机制的前驱之一；重载机制的另一个前驱是 `operator =` 的重载，我们会在后面的章节看到它。
+
+### member initializer lists
+
+讨论 Delegating constructor
 
 ## 4.4 析构函数
 

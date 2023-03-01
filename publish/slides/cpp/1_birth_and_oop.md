@@ -1,30 +1,16 @@
 ---
-title: C++
+title: Week 1 - C++ 的诞生与面向对象程序设计
 verticalSeparator: ===
 revealOptions:
-  width: 1800
-  height: 1000
+  width: 1600
+  height: 900
   margin: 0.04
   transition: 'fade'
   slideNumber: true
 ---
 
-<style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
-
-p, .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6, .reveal { text-align: left; font-family: "Noto Serif SC"; }
-.reveal section {
-  text-align: left;
-}
-code.hljs { 
-    font-family: "Roboto Mono"; 
-    font-size:150%; 
-    line-height: 140%; 
-}
-.hljs-meta { color: white; }
-.reveal pre code { max-height: 800px; }
-</style>
+<link rel="stylesheet" href="custom_light.css">
+<link rel="stylesheet" href="custom.css">
 
 # 探索 C++
 
@@ -104,13 +90,13 @@ code.hljs {
 **Python**
 
 ```python
-a = 123456789012345678901234567890123456789012345678901234567890
+a = 1234567890123456789012345678901234567890
 ```
 
 **C**
 
 ```C
-int a = 123456789012345678901234567890123456789012345678901234567890;
+int a = 1234567890123456789012345678901234567890;
 ```
 <span class="fragment">warning: integer constant is too large for its type</span>
 
@@ -152,9 +138,9 @@ A set of values + a set of operations
 70 end
 ```
 
-上面的代码中，虽然有 `if`，但是为了完成分支的效果，仍然需要 `goto` 来帮助。
+<span class="fragment">上面的代码中，虽然有 `if`，但是为了完成分支的效果，仍然需要 `goto` 来帮助。</span>
 
-这是因为，在这种语言中的代码是以 **单条代码** 为单位的，而不是像 C/C++ 中以 **语句块** 为单位的。
+<span class="fragment">这是因为，在这种语言中的代码是以 **单条代码** 为单位的，而不是像 C/C++ 中以 **语句块** 为单位的。</span>
 
 ===
 
@@ -320,7 +306,7 @@ C++ 能够作为一种「高级汇编语言」，即在不付出额外的运行�
 
 <br>
 
-Object-Oriented Programming
+### Object-Oriented Programming
 
 ===
 
@@ -821,7 +807,11 @@ public:
 };
 ```
 
+<span style="font-size: 80%;">
+
 子类通过 `class Circle : public Shape` 的语法说明它继承自 `Shape`，即说明了「 **一个 `Circle` 是一个 `Shape`** 」的逻辑，因此 `Circle` 类自然包含了 `Shape` 中的所有状态和行为（即 `center` 和 `draw`）。这样，子类就只需要处理自己独有的成员变量和成员函数的实现了。
+
+</span>
 
 ===
 
@@ -925,11 +915,11 @@ public:
 
 本节中，我们讨论了 OOP 的三个重要思想，即封装、继承和多态
 
-**封装** 强调「数据」与「操纵数据的函数」的绑定以及必要的访问控制，从而抽象出「类」和「对象」的概念
+<span class="fragment">**封装** 强调「数据」与「操纵数据的函数」的绑定以及必要的访问控制，从而抽象出「类」和「对象」的概念</span>
 
-**继承** 则进一步刻画出了现实问题中「派生类对象是基类对象」的「is-a relationship」，从而形成「hierarchy of classes」，有助于提高代码重用性
+<span class="fragment">**继承** 则进一步刻画出了现实问题中「派生类对象是基类对象」的「is-a relationship」，从而形成「hierarchy of classes」，有助于提高代码重用性</span>
 
-而 **多态** 则在这种「hierarchy of classes」的结构中提供了进一步的抽象，允许程序员把「判断对象到底是哪个子类」的任务交给计算机，从而能够在代码扩展时不需要修改原有代码就能自动适配新的类型
+<span class="fragment">而 **多态** 则在这种「hierarchy of classes」的结构中提供了进一步的抽象，允许程序员把「判断对象到底是哪个子类」的任务交给计算机，从而能够在代码扩展时不需要修改原有代码就能自动适配新的类型</span>
 
 ===
 

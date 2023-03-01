@@ -18,7 +18,8 @@
 1. [ ] 类 (I): 定义、成员、构造、析构
     - 声明与定义
     - inline 函数
-    - 函数默认参数与函数重载
+    - 函数默认参数与函数重载（不包含重载解析）
+    - delegating constructors
 1. [ ] 类 (II): 拷贝赋值、拷贝构造、SMFs (defaulted and deleted functions)、动态分配
     - 运算符重载
     - 引用
@@ -35,7 +36,7 @@
 1. [ ] 类 (V): 继承与抽象类、访问控制
     - final, override
     - covariant return types
-    - delegating and inherited constructors
+    - inherited constructors
 1. [ ] 模板
     - string
     - alias template
@@ -57,6 +58,7 @@
 - [x] default arguments, `operator =` overload (1979, C with Classes)
 - [x] 类 (1985, Release 1.0)：虚函数、new & delete、`::`
 - [x] 函数和运算符重载 (1985, Release 1.0)
+- [ ] 重载解析
 - [x] I/O stream (1985, Release 1.0; C++98)
 - [x] string (1985, Release 1.0; C++98)
 - [x] 类 (1989, Release 2.0)：多继承、抽象类、`const` 和 `static` 成员函数、每个类的 new & delete、protected

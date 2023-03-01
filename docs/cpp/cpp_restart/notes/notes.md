@@ -5,7 +5,7 @@
 
 ## TODO
 
-- [ ] 初始化
+- [ ] 初始化 看这个：[Is C++11 Uniform Initialization a replacement for the old style syntax?](https://softwareengineering.stackexchange.com/questions/133688/is-c11-uniform-initialization-a-replacement-for-the-old-style-syntax)；[Initialization in C++ is bonkers](https://blog.tartanllama.xyz/initialization-is-bonkers/)
 - [ ] value category
 - [ ] 右值引用、移动语义
 - [ ] placement new
@@ -45,3 +45,7 @@ Src: https://www.ralfj.de/blog/2018/07/24/pointers-and-bytes.html
 - RTTI 
     - overhead: https://stackoverflow.com/a/5408269/14430730，就是在 vtable 里多了一项
     - 不过如果不用typeid或者dynamic_cast也需要创造这个项，所以好像没什么 overhead
+
+## 要看的
+
+[c++faq](https://isocpp.org/wiki/faq)

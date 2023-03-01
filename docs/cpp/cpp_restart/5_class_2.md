@@ -14,6 +14,8 @@ operator=
 
 讨论 [keyword arguments](../notes/dne_notes/#651-keyword-arguments)
 
+讨论类中引用成员的初始化
+
 ## ▲ I/O stream
 
 ## 5.1 拷贝赋值运算符 (Cont.)

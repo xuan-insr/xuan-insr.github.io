@@ -8,6 +8,8 @@ nav:
     - cpp/index.md
     - 🍉C++ 学习记录:
       - cpp/cpp_restart/index.md
+      - 朋辈辅学 slides:
+        - Week1 C++ 的诞生与面向对象程序设计: https://xuan-insr.github.io/slides/cpp/1_birth_and_oop/
       - 1 C++ 的诞生: cpp/cpp_restart/1_birth.md
       - 2 编程范式: cpp/cpp_restart/2_paradigm.md
       - 3 面向对象程序设计: cpp/cpp_restart/3_oop.md
@@ -37,6 +39,8 @@ nav:
         - std::string: cpp/cpp_restart/appendix/string.md
         - 智能指针: cpp/cpp_restart/appendix/smart_pointers.md
         - lambda: cpp/cpp_restart/appendix/lambda.md
+      - B 总结:
+        - member initializer lists: cpp/cpp_restart/summaries/member_init_lists.md
       - 一些笔记和 TODO:
         - 零散内容记录: cpp/cpp_restart/notes/notes.md
         - The Design and Evaluation of C++ 阅读记录: cpp/cpp_restart/notes/dne_notes.md
