@@ -179,7 +179,7 @@ int main() {
 
 --8<-- "cpp/cpp_restart/appendix/inline_functions.md"
 
-## 4.3 构造函数[^ctor]
+## 4.3 构造函数
 
 构造函数 (constructor) 是一种特殊的成员函数，用于初始化该类的对象。
 
@@ -204,10 +204,15 @@ public:
 !!! note "nullptr"
     `nullptr` 是 C++11 引入的一个关键字，用来表示空指针。这与 C 中的 `NULL` 不同，虽然后者在 C++ 中也能使用。我们在稍后介绍 `nullptr` 为什么会被引入。
 
+这样，就可以使用 `Container c = Container();` 构造一个对象了[^copy_ctor]。
+
+对构造函数的调用会返回一个构造出的无名对象。不严谨地说，上面的语句将名字 `c` 绑定到了对应的无名对象上。为了代码更加简洁紧凑，C++ 允许更加简洁的写法：`Container c;`。
+
+[^copy_ctor]: 部分对 C++ 有基础了解的读者可能会认为，用这里的构造函数返回的临时对象来构造 `c1` 或者 `c2` 时有可能调用拷贝构造函数。这在早期 C++ 中是有可能的，但是自 C++17 强制 copy elision 之后拷贝构造函数的调用不会发生，而是必定等价于 `Container c1;` 和 `Container c2(64);`。我们会在讨论拷贝构造时讨论这个问题。
+
 因此，当我们在用 `Container c;` 定义一个对象时，就会调用构造函数。例如：
 
 <center>![](2023-02-24-00-02-54.png){width=700}</center>
-
 
 像普通的函数一样，构造函数可以是有参数的。例如，下面的构造函数允许用户传递一个初始大小，然后直接开一个对应大小的空间：
 
@@ -223,6 +228,24 @@ public:
     // ...
 };
 ```
+
+这样，就可以使用 `Container c2 = Container(64);` 构造一个自定义大小的容器了。
+
+同样地，C++ 允许更加简洁的写法：`Container c2(64);`。即，如果无参地构造，则不需要写出括号；如果有参构造，则将参数写在括号中。
+
+也就是说，在 C++ 中，声明变量时的 **初始化器 (initializer)** 除了类似 `int a = 4;` 的 `= initializer-clause` 之外，还有类似 `int a(4);` 的 `( expression-list )`^[dcl.init.general#1](https://timsong-cpp.github.io/cppwp/n4868/dcl.init.general#1)^。[^initializer][^equal-initializer]
+
+[^initializer]: 还有 braced-init-list。我们在后面讨论。
+[^equal-initializer]: 关于类使用 `Foo f = expr;` 形式的初始化的行为，我们在讨论完拷贝构造函数和转换构造函数之后再讨论。
+
+???+ notes "无参构造时为什么不用括号呢？"
+    这个问题被称为 **most vexing parse**。如果它加了括号，变成了 `Container c1();`，会被理解成什么呢？
+
+    我们来看这个东西：`int func();`，这显然是一个函数声明；而 `Container c1();` 的语法结构与其完全相同，因此这样的表述是有歧义的。
+
+    因此，C++ 规定无参构造时不用带括号（准确地说，声明语句中要么没有 initializer，如果有 initalizer 且是括号的形式的话则括号里不能为空^[dcl.init.general#1](https://timsong-cpp.github.io/cppwp/n4868/dcl.init.general#1)^）。
+
+    C++11 引入的 **brace initialization**（也被称为 **uniform initialization**）一定程度上解决了这个问题。我们在后面的章节讨论这个机制。
 
 ## ▲ 函数默认参数与函数重载
 
@@ -243,7 +266,7 @@ public:
 };
 ```
 
-那么，假如我们希望用户既可以给定大小，也能够在不知道要开多大的情况下使用一个默认大小，怎么办呢？C++ 支持 **默认参数 (default arguments)**，用来代替函数调用中缺少的末尾几个参数：
+那么，假如我们希望用户既可以给定大小，也能够在不知道要开多大的情况下使用一个默认大小，怎么办呢？C++ 在函数声明中支持 **默认参数 (default arguments)**，用来允许函数可以以省略末尾的若干参数的方式调用：
 
 ```c++
 void point(int x = 3, int y = 4);
@@ -255,12 +278,51 @@ point();     // calls point(3, 4)
 
 默认参数必须出现在末尾的若干个参数中。这个要求的合理性容易理解：假如没有这个要求，那么如果有 `void point(int x = 3, int y);`，则 `point(4);` 的含义是容易让人迷惑的。
 
+因此，`Container` 类的构造函数可以写成：
+
+```c++ linenums="1" hl_lines="5"
+class Container {
+    elem* val;
+    // ...
+public:
+    Container(unsigned size = 512) {
+        val = (elem*)malloc(sizeof(elem) * size);
+        // ...
+    }
+    // ...
+};
+```
+
+这样，就可以使用 `Container c1;` 构造一个默认大小 (512) 的容器，或者用 `Container c2(64);` 构造一个自定义大小的容器了。前者实际上调用 `Container(512)`，而后者调用 `Container(64)`。
+
+??? info "补充"
+    对于非模板函数，如果已声明的函数在 **同一作用域** 中重新声明（在内部作用域内的重新声明会出发作用域屏蔽），则可以向该函数添加默认参数。在函数调用时，默认值是该函数所有可见声明中提供的默认值的并集。对于默认值已经可见的参数，重新声明不能引入默认值（即使值相同）。
+
+    ```c++
+    void f(int, int);     // #1 
+    void f(int, int = 7); // #2 OK: adds a default
+    
+    void h()
+    {
+        f(3); // #1 and #2 are in scope; makes a call to f(3,7)
+        void f(int = 1, int); // Error: inner scope declarations don't acquire defaults
+    }
+    ```
+
+    带默认参数的友元函数声明必须是一个定义，且 translation unit 中不能有其他声明。
+
+    默认参数不允许使用局部变量，除非它们 not evaluated（比如 `sizeof n`，参见 std notes 6.3）。
+
+    除了函数调用运算符 `operator()` 之外的运算符重载不能有默认参数。
+
 ### 函数重载
 
 !!! note "nullptr"
     TODO
 
-我们可能会发现，函数重载的作用已经足以覆盖默认参数的作用。事实上确实如此：默认参数机制在 C with Classes 时就存在了，其意义就是前面给出的默认参数的例子；而一般的函数重载直到 Release 1.0 才被引入。默认参数机制是重载机制的前驱之一；重载机制的另一个前驱是 `operator =` 的重载，我们会在后面的章节看到它。
+我们可能会发现，函数重载的作用已经足以覆盖默认参数的作用。事实上确实如此：默认参数机制在 C with Classes 时就存在了，其意义就是前面给出的构造函数中默认参数的例子；而一般的函数重载直到 Release 1.0 才被引入。默认参数机制是重载机制的前驱之一；重载机制的另一个前驱是 `operator =` 的重载，我们会在后面的章节看到它。
+
+## 4.3 构造函数 (Cont.)
 
 ### member initializer lists
 

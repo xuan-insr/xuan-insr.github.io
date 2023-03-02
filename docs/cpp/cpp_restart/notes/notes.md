@@ -5,7 +5,7 @@
 
 ## TODO
 
-- [ ] 初始化 看这个：[Is C++11 Uniform Initialization a replacement for the old style syntax?](https://softwareengineering.stackexchange.com/questions/133688/is-c11-uniform-initialization-a-replacement-for-the-old-style-syntax)；[Initialization in C++ is bonkers](https://blog.tartanllama.xyz/initialization-is-bonkers/)
+- [ ] 初始化 看这个：[Is C++11 Uniform Initialization a replacement for the old style syntax?](https://softwareengineering.stackexchange.com/questions/133688/is-c11-uniform-initialization-a-replacement-for-the-old-style-syntax)；[Initialization in C++ is bonkers](https://blog.tartanllama.xyz/initialization-is-bonkers/)；[dcl.init#general](https://timsong-cpp.github.io/cppwp/n4868/dcl.init#general)
 - [ ] value category
 - [ ] 右值引用、移动语义
 - [ ] placement new

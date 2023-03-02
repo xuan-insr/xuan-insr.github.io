@@ -11,6 +11,8 @@ revealOptions:
 
 <link rel="stylesheet" href="custom_light.css">
 <link rel="stylesheet" href="custom.css">
+<link rel="stylesheet" href="../custom_light.css">
+<link rel="stylesheet" href="../custom.css">
 
 # 探索 C++
 

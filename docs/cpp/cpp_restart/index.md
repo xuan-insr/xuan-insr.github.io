@@ -24,15 +24,17 @@
     - 运算符重载
     - 引用
     - I/O stream
+    - brace initialization
 1. [ ] 类 (III): 转换构造函数
     - copy elision
     - 类型
     - bool
-    - auto & return type deduction
+    - auto & return type deduction & trailing return type
     - user-defined conversion function
 1. [ ] 类 (IV): const 和 static 成员
     - UB
         - signed integers are 2's complement (C++20)
+    - 初始化
 1. [ ] 类 (V): 继承与抽象类、访问控制
     - final, override
     - covariant return types
@@ -72,8 +74,9 @@
 - [x] bool (C++98)
 - [x] 模板 (C++98)：template instantiations、member templates
 - [x] STL (C++98)：containers, iterators, algorithms, function objects (`std::function` C++11)
-- [ ] **初始化**：value initialization (C++03)、
-list initialization (C++11)、brace-or-equal initializers (C++11)、designated initialization (C++20)
+- [x] **初始化**：value initialization (C++03)、
+list initialization (C++11)、brace-or-equal initializers (C++11)
+- [ ] designated initialization (C++20)
 - [x] 类 (C++11)：defaulted and deleted functions
 - [x] 右值引用和移动语义 (C++11)
 - [x] 类 (C++11)：move constructors and move assignment operators、delegating and inherited constructors
@@ -83,7 +86,7 @@ list initialization (C++11)、brace-or-equal initializers (C++11)、designated i
 - [x] range-based for loop (C++11); init-statement in range-for (C++20)
 - [x] type aliases (C++11)
 - [x] alias template (C++11)
-- [ ] trailing return type (C++11)
+- [x] trailing return type (C++11)
 - [ ] type traits (C++11)
 - [x] constexpr (C++11); consteval, constinit (C++20)
 - [x] 一些遗留问题 (C++11): final, override
@@ -100,6 +103,7 @@ list initialization (C++11)、brace-or-equal initializers (C++11)、designated i
 - [x] signed integers are 2's complement (C++20)
 - [ ] modules (C++20)
 - [x] UB
+- [ ] literals
 
 
 *[ARM]: The Annotated C++ Reference Manual
