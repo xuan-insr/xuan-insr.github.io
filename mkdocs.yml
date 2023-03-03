@@ -71,6 +71,7 @@ nav:
         - 10 积类型: pl/ppl_notes/10_product_types.md
         - 11 和类型: pl/ppl_notes/11_sum_types.md
     - 编译原理: compile_principle/index.md
+    - OCaml 入门: https://www.yuque.com/xianyuxuan/coding/ocaml
   - 核心知识: 
     - 核心知识/index.md
     - 操作系统:
@@ -113,7 +114,15 @@ nav:
     - 数学、数据结构和算法: 
       - math_ds_algo/index.md
       - 入门路线: math_ds_algo/getting_started.md
-  - 安全: 安全/index.md
+  - 安全: 
+    - 安全/index.md
+    - 密码学: https://www.yuque.com/xianyuxuan/coding/crypto
+    - 密码学进阶: https://www.yuque.com/xianyuxuan/coding/advcrypto
+    - 软件安全: https://www.yuque.com/xianyuxuan/coding/softwsec
+    - 网络安全原理与实践: https://www.yuque.com/xianyuxuan/coding/netsec
+    - 系统安全: https://www.yuque.com/xianyuxuan/coding/syssec
+    - 无线与物联网安全基础: https://www.yuque.com/xianyuxuan/coding/wireless_iot
+    - 面向信息安全的信号处理: https://www.yuque.com/xianyuxuan/coding/signal_processing
   - 语言基础: 语言基础/index.md
   - 其他课程: 
     - other_courses/index.md
