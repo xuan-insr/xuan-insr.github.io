@@ -14,14 +14,16 @@
 在数字逻辑设计这门课程中，我们学过 AND, OR, XOR 这些 gates，以及 inverter 和 mux 这些东西，我们尝试用这些东西攒一个 ALU 出来。在这一节中，我们希望 ALU 具有加法、减法、与运算、或运算和比较的能力。
 
 我们先考虑 1 bit ALU 的构造。我们学习过 1 bit Full Adder 的构造：
-<center>![image.png](../../../assets/1654415057128-ba0032a0-c3b5-49a4-8a7a-43abcb692357.png){width=300}</center>
+<center>![image.png](../../../assets/1654415057128-ba0032a0-c3b5-49a4-8a7a-43abcb692357.png){width=300} ![](2023-03-04-01-24-35.png){width=200}</center>
+
+
 
 上左图是全加器的具体构造，右图是我们将其进行封装后的表示方式。
 
 我们结合一个 mux，就可以构造一个支持与、或以及加法运算的 1 bit ALU：
 <center>![image.png](../../../assets/1654415145349-fd034b21-25ff-4a16-95f1-a0d964750b9b.png){width=300}</center>
 
-其中`Operation`是用来指明 mux 采取哪个结果的信号，值为 00 01 10 分别对应与、或、加法运算。
+其中 `Operation` 是用来指明 mux 采取哪个结果的信号，值为 00 01 10 分别对应与、或、加法运算。
 
 
 ### 3.1.2 加上减法和 NOR！
@@ -29,11 +31,11 @@
 
 <center>![image.png](../../../assets/1654415317462-1a651623-9b94-4957-9f1d-e7c18a33af84.png){width=300}</center>
 
-其中`Binvert`用来指明是否需要将结果取反；在计算减法时，我们将`Binvert`设为`1`，然后将`CarryIn`也设为`1`，`Operation`设为`2`，这样我们的结果就是 $a + \bar b + 1$。
+其中 `Binvert` 用来指明是否需要将结果取反；在计算减法时，我们将 `Binvert` 设为 `1` ，然后将 `CarryIn` 也设为 `1` ， `Operation` 设为 `2` ，这样我们的结果就是 $a + \bar b + 1$。
 
-`NOR`运算：`a NOR b = NOT(a OR b) = (NOT a) AND (NOT b)`，因此`NOR`运算可以这样实现：
+ `NOR` 运算： `a NOR b = NOT(a OR b) = (NOT a) AND (NOT b)` ，因此 `NOR` 运算可以这样实现：
 
-<center>![image.png](../../../assets/1654416483714-328ce497-05f0-4a7c-bb5d-5dd9bb6f585e.png){width=300}</center>
+<center>![image.png](../../../assets/1654416483714-328ce497-05f0-4a7c-bb5d-5dd9bb6f585e.png){width=300} ![](2023-03-04-01-25-30.png){width=200}</center>
 
 上右图是我们目前的 1 bit ALU 的抽象结构。
 
@@ -45,35 +47,37 @@
 
 可以看到，对于 64 位的加法、减法、AND, OR, NOR 运算，这样的 64 位 ALU 都可以完成。
 
-同时也可以注意到，这里面除了我们熟悉的内容外，还多了`Less`, `Set`和`Overflow`这些位。它们是用来干什么的呢？
+同时也可以注意到，这里面除了我们熟悉的内容外，还多了 `Less` ,  `Set` 和 `Overflow` 这些位。它们是用来干什么的呢？
 
-首先`Overflow`是容易理解的，它用来表示加法或减法有没有出现溢出的现象；显然这个判断只需要在 ALU63，即 Most Significant Bit 才需要进行。容易证明，如果 $C_{in} \oplus C_{out} = 1$，那么存在溢出；因此 ALU63 只需要添加一个额外的 XOR 门即可完成这一判断。
+首先 `Overflow` 是容易理解的，它用来表示加法或减法有没有出现溢出的现象；显然这个判断只需要在 ALU63，即 Most Significant Bit 才需要进行。容易证明，如果 $C_{in} \oplus C_{out} = 1$，那么存在溢出；因此 ALU63 只需要添加一个额外的 XOR 门即可完成这一判断。
 
-`Less`和`Set`共同使用，是为了实现`slt rd, rs1, rs2`这个操作的。这个操作的含义是，如果`rs1 < rs2`，那么将`rd`置为`1`，否则置为`0`。如何进行这一判断呢？很简单，如果`rs1 - rs2`的结果为负，也就是说如果`rs1 - rs2`结果的最高位是`1`，那么就说明`rs1 < rs2`。所以等价地，对于`slt`这个操作，我们只需要将 ALU63 中加法器的结果赋值给`Result0`，即运算结果的 Least Significant Bit，而将其他位的结果`Result1`~`Result63`都设成 0，就可以完成`slt`操作了。
+ `Less` 和 `Set` 共同使用，是为了实现 `slt rd, rs1, rs2` 这个操作的。这个操作的含义是，如果 `rs1 < rs2` ，那么将 `rd` 置为 `1` ，否则置为 `0` 。如何进行这一判断呢？很简单，如果 `rs1 - rs2` 的结果为负，也就是说如果 `rs1 - rs2` 结果的最高位是 `1` ，那么就说明 `rs1 < rs2` 。所以等价地，对于 `slt` 这个操作，我们只需要将 ALU63 中加法器的结果赋值给 `Result0` ，即运算结果的 Least Significant Bit，而将其他位的结果 `Result1` ~ `Result63` 都设成 0，就可以完成 `slt` 操作了。
 
-所以可以看到，上图中，除了 ALU0 的`Less`来自 ALU63 的`Set`外，其他 ALU 的`Less`都是`0`。
+所以可以看到，上图中，除了 ALU0 的 `Less` 来自 ALU63 的 `Set` 外，其他 ALU 的 `Less` 都是 `0` 。
 
-结合上述讨论，上图中 ALU0 ~ ALU62 的结构如下左图所示，ALU63 的结构如下右图所示：
+结合上述讨论，上图中 ALU0 ~ ALU62 的结构如下第一张图所示，ALU63 的结构如下第二张图所示：
 
 <center>![image.png](../../../assets/1654430550957-7cc66c76-4fce-415a-bcc7-a43c0eac8bc1.png){width=500}</center>
 
-（注：右图中的 Overflow Detection 被复杂化了，实际上可以通过`CarryIn`和`CarryOut`的异或完成的。）
+<center>![](2023-03-04-01-26-02.png){width=500}</center>
 
-可以看到，`Operation`增加了`3`的取值，这个取值表示进行`slt`操作。
+（注：第二张图中的 Overflow Detection 被复杂化了，实际上可以通过 `CarryIn` 和 `CarryOut` 的异或完成的。）
+
+可以看到， `Operation` 增加了 `3` 的取值，这个取值表示进行 `slt` 操作。
 
 
 ### 3.1.4 一点优化！
-之前我们也讨论过，如果做减法或者`slt`的话，需要将`Binvert`和 ALU0 的`CarryIn`设成`1`，如果是加法的话这两个信号都是`0`；其他运算用不到这两个信号。因此这两个信号始终取值相等，我们可以将这两个信号合并为一个，称之为`Bnegate`。
+之前我们也讨论过，如果做减法或者 `slt` 的话，需要将 `Binvert` 和 ALU0 的 `CarryIn` 设成 `1` ，如果是加法的话这两个信号都是 `0` ；其他运算用不到这两个信号。因此这两个信号始终取值相等，我们可以将这两个信号合并为一个，称之为 `Bnegate` 。
 
-另外，我们也有`beq`，`bne`这样的操作，结合 Common case fast 的设计思想，我们将判断结果是否为 0 的功能也直接加到 ALU 里。
+另外，我们也有 `beq` ， `bne` 这样的操作，结合 Common case fast 的设计思想，我们将判断结果是否为 0 的功能也直接加到 ALU 里。
 
 结合上述两个思路，我们形成了最终的 64-bit ALU！
 
 <center>![image.png](../../../assets/1654431118686-b635a01f-1dbd-41b0-89a3-bddec064c1dc.png){width=500}</center>
 
-对于这样的一个 ALU，我们需要 4 bits 的 control lines，分别是`Ainvert`, `Bnegate`和`Operation`(2 bits)。ALU 的符号和 control lines 的含义如下：
+对于这样的一个 ALU，我们需要 4 bits 的 control lines，分别是 `Ainvert` ,  `Bnegate` 和 `Operation` (2 bits)。ALU 的符号和 control lines 的含义如下：
 
-<center>![image.png](../../../assets/1654432159980-cad11a29-2d85-414a-964b-113491b93193.png){width=300}</center>
+<center>![image.png](../../../assets/1654432159980-cad11a29-2d85-414a-964b-113491b93193.png){width=150} ![](2023-03-04-01-28-12.png){width=300}</center>
 
 
 ### 3.1.5 更快的加法
@@ -131,11 +135,11 @@
 
 我们将小数点左边只有 1 位数字的表示数的方法称为 **科学记数法, scientific notation**，而如果小数点左边的数字不是 0，我们称这个数的表示是一个 **规格化数, normalized number**。科学记数法能用来表示十进制数，当然也能用来表示二进制数。
 
-IEEE 754 规定了一种浮点数标准：我们将浮点数表示为 $(-1)^S \times F \times 2^E$ 的形式，这里的 $F \times 2^E$ 是一个规格化数，而 $(-1)^S$ 用来表示符号位：$S$ 为 0 说明该浮点数为整数，为 1 则为负数；$F$ 和 $E$ 也用若干 bits 表示，分别表示尾数和指数，我们稍后讨论。也就是说，我们将其表示为 $1.\text{xxxxx}_2\times 2^{\text{yyyy}}$ 的形式（为什么小数点左边是 1 呢？因为二进制只有 0 和 1，而规格化要求小数点左边不能为 0）。我们通过科学记数法调整了小数点的位置使其满足规格化的要求，因此我们称这种数的表示方法为 **浮点, floating point**。
+IEEE 754 规定了一种浮点数标准：我们将浮点数表示为 $(-1)^S \times F \times 2^E$ 的形式，这里的 $F \times 2^E$ 是一个规格化数，而 $(-1)^S$ 用来表示符号位：$S$ 为 0 说明该浮点数为正数，为 1 则为负数；$F$ 和 $E$ 也用若干 bits 表示，分别表示尾数和指数，我们稍后讨论。也就是说，我们将其表示为 $1.\text{xxxxx}_2\times 2^{\text{yyyy}}$ 的形式（为什么小数点左边是 1 呢？因为二进制只有 0 和 1，而规格化要求小数点左边不能为 0）。我们通过科学记数法调整了小数点的位置使其满足规格化的要求，因此我们称这种数的表示方法为 **浮点, floating point**。
 
 小数点的英文是 decimal point，但是我们这种表示方法不再是 decimal 的了，因此我们起个新名字：**二进制小数点, binary point**。
 
-IEEE 754 规定了两种精度的浮点数格式，分别是 single precision 和 double precision（分别对应 C 语言中的`float`和`double`），RISC-V 这两种都支持：
+IEEE 754 规定了两种精度的浮点数格式，分别是 single precision 和 double precision（分别对应 C 语言中的 `float` 和 `double` ），RISC-V 这两种都支持：
 
 <center>![image.png](../../../assets/1654451689188-30db0d4d-73e6-478a-b01e-dd90b16c68ca.png){width=700}</center>
 
@@ -144,7 +148,7 @@ IEEE 754 规定了两种精度的浮点数格式，分别是 single precision �
 
 可以看到，fraction 的位数越多，浮点数的精度就越高；而 exponent 的位数越多，浮点数能保存的范围就越大。
 
-那么对于 $(-1)^S \times F \times 2^E$，$S$ 的二进制表示方法是显然的，仅需要一个 bit 就好了。那么 $F$ 和 $E$ 怎么表示呢？如我们之前所说，$F$ 就是 $1.\text{xxxxx}_2$ 的形式，这个 1 是固定的，因此 $F$ 只需要保存 $\text{xxxxx}$ 的部分就可以了！那么 $E$ 怎么办呢？注意到这个指数可能是正整数、负整数或 0，因此我们使用一个偏移，对单精度浮点数偏移 127，双精度浮点数偏移 1023（刚好是表示范围的一半！），也就是说我们保存的 `exponent` 其实是 $E + bias$ 的二进制。也就是说，对于这样的一个表示，其值是：
+那么对于 $(-1)^S \times F \times 2^E$，$S$ 的二进制表示方法是显然的，仅需要一个 bit 就好了。那么 $F$ 和 $E$ 怎么表示呢？如我们之前所说，$F$ 就是 $1.\text{xxxxx}_2$ 的形式，这个 1 是固定的，因此 $F$ 只需要保存 $\text{xxxxx}$ 的部分就可以了！那么 $E$ 怎么办呢？注意到这个指数可能是正整数、负整数或 0，因此我们使用一个偏移，对单精度浮点数偏移 127，双精度浮点数偏移 1023（刚好是表示范围的一半！），也就是说我们保存的  `exponent`  其实是 $E + bias$ 的二进制。也就是说，对于这样的一个表示，其值是：
 
 
 $$(-1)^S\cdot (1 + \text{fraction}) \cdot 2 ^ {\text{exponent} - \text{bias}}$$
@@ -170,9 +174,9 @@ $$(-1)^S\cdot (1 + \text{fraction}) \cdot 2 ^ {\text{exponent} - \text{bias}}$$
 这两种表示法的范围和精度分别是多少呢？
 
    - 范围
-      - 能表示值的 **绝对值** 的范围是 $1.0_2 \times 2^{1-\text{bias}} \sim 1.11\dots 11_2 \times 2^{11\dots 11_2-1-\text{bias}}$，即 $1\times 2^{1 - \text{bias}}\sim(2 - 2^\text{Fra#})\times 2^{(2^\text{Exp#} - 1) - 1 - \text{bias}}$，其中`Fra#`和`Exp#`分别表示 fraction 和 exponent 的位数；
-      - 单精度浮点数：$\pm 1\times 2^{-126}\sim \pm(2 - 2^{23}) \times 2^{127}$
-      - 双精度浮点数：$\pm 1\times 2^{-1022}\sim \pm(2 - 2^{52}) \times 2^{1023}$
+      - 能表示值的 **绝对值** 的范围是 $1.0_2 \times 2^{1-\text{bias}} \sim 1.11\dots 11_2 \times 2^{11\dots 11_2-1-\text{bias}}$，即 $1\times 2^{1 - \text{bias}}\sim(2 - 2^\text{-Fra#})\times 2^{(2^\text{Exp#} - 1) - 1 - \text{bias}}$，其中 `Fra#` 和 `Exp#` 分别表示 fraction 和 exponent 的位数；
+      - 单精度浮点数：$\pm 1\times 2^{-126}\sim \pm(2 - 2^{-23}) \times 2^{127}$
+      - 双精度浮点数：$\pm 1\times 2^{-1022}\sim \pm(2 - 2^{-52}) \times 2^{1023}$
 
    - 精度
       - $2^ \text{-Fra#}$
@@ -223,7 +227,7 @@ Round to nearest even 只对 0.5 有效，别的都和四舍五入一样
 
 一般的浮点数后面还会有 2 bits，分别称为 guard 和 round，其主要目的是让计算结果的舍入更加的精确： 
 
-<center>![image.png](../../../assets/1654504509244-6c97c446-da50-48cb-b778-7217e04fa622.png){width=150}</center>
+<center>![image.png](../../../assets/1654504509244-6c97c446-da50-48cb-b778-7217e04fa622.png){width=128} ![](2023-03-04-01-29-53.png){width=172}</center>
 
 事实上加法只需要用到 guard，但是对于乘法，如果存在前导 0，需要将结果左移，这时候 round bit 就成了有效位，能避免精度的损失。
 

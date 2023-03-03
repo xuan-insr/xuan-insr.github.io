@@ -230,7 +230,7 @@
 ### 5.5.3 页表
 我们下面讨论这种 translation 的具体方案。之前也提到，fully-associative 的一个重要问题就是如何去定位某一项；这里我们引入 **page table** 这种结构，它被存放在 main memory 中，每个程序（实际上是进程，但是写课本的人好像现在并不想引入这个概念）都有一个自己的 page table；同时硬件上有一个 **page table register** 保存当前进程这个页表的地址。
 
-使用页表时，我们根据 virtual page number 找到对应 **page table entry, PTE** 在 page table 中的偏移，然后与 page table register 相加得到对应 entry 的 physical address，从中读取对应的 entry。其实就是说，page table 就是一个数组，`page_table[i]`表示第`i`个 virtual page 对应的 physical page number。
+使用页表时，我们根据 virtual page number 找到对应 **page table entry, PTE** 在 page table 中的偏移，然后与 page table register 相加得到对应 entry 的 physical address，从中读取对应的 entry。其实就是说，page table 就是一个数组， `page_table[i]` 表示第 `i` 个 virtual page 对应的 physical page number。
 
 如下图所示，每个 entry 中包含了一个 valid bit 和 physical page number。如果 valid bit = 1，那么转换完成；否则触发了 page fault，handle 之后再进行转换。
 
@@ -257,7 +257,7 @@ $\cfrac{2^{48} \text{ B}}{4\text{ KiB}} = \cfrac{2^{48}}{4\times 2^{10}} = 2^{36
 
 我们可以通过多级页表的方式解决这个问题。
 
-如我们之前所述，页表是一个数组， `page_table[i]` 中存储的是 page number 为 i 的 page 所对应的 frame number。考虑我们的逻辑地址结构：
+如我们之前所述，页表是一个数组，  `page_table[i]`  中存储的是 page number 为 i 的 page 所对应的 frame number。考虑我们的逻辑地址结构：
 
 <center>![image.png](../../../assets/1607247135113-1998902c-c1c0-4d78-8d21-99766857be7e.png)</center>
 
@@ -269,7 +269,7 @@ $\cfrac{2^{48} \text{ B}}{4\text{ KiB}} = \cfrac{2^{48}}{4\times 2^{10}} = 2^{36
 <center>![image.png](../../../assets/1608315596044-0e1ba30c-ca5d-4f3a-ae2f-f792f992a1b1.png)</center>
 
 
-我们使用一个两级页表， `outer_page_table[i]` 中存储的是 p1 为 i 的 inner page table，即`inner_page_table[i][]` 的基地址；而 `inner_page_table[i][j]` 中存储的就是 p1 为 i，p2 为 j 的 page 对应的 frame number，即 page number 为 p1p2 （没有分割时的 p）对应的 frame number。
+我们使用一个两级页表，  `outer_page_table[i]`  中存储的是 p1 为 i 的 inner page table，即 `inner_page_table[i][]`  的基地址；而  `inner_page_table[i][j]`  中存储的就是 p1 为 i，p2 为 j 的 page 对应的 frame number，即 page number 为 p1p2 （没有分割时的 p）对应的 frame number。
 
 这里，我们称 p1 为 **page directory number** ，p2 为 **page table number**，d 为 **page offset**。
 
