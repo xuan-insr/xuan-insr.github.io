@@ -259,11 +259,15 @@
   
 
 
-  <li class="md-tabs__item">
-    <a href="../../%E5%AE%89%E5%85%A8/" class="md-tabs__link">
-      安全
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../%E5%AE%89%E5%85%A8/" class="md-tabs__link">
+        安全
+      </a>
+    </li>
+  
 
       
         
@@ -1358,6 +1362,8 @@
             
           
         
+          
+        
       
       
         
@@ -1764,6 +1770,20 @@
     <li class="md-nav__item">
       <a href="../../compile_principle/" class="md-nav__link">
         编译原理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.yuque.com/xianyuxuan/coding/ocaml" class="md-nav__link">
+        OCaml 入门
       </a>
     </li>
   
@@ -2824,10 +2844,156 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../%E5%AE%89%E5%85%A8/">安全</a>
+          
+            <label for="__nav_5">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          安全
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../%E5%AE%89%E5%85%A8/" class="md-nav__link">
-        安全
+      <a href="https://www.yuque.com/xianyuxuan/coding/crypto" class="md-nav__link">
+        密码学
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.yuque.com/xianyuxuan/coding/advcrypto" class="md-nav__link">
+        密码学进阶
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.yuque.com/xianyuxuan/coding/softwsec" class="md-nav__link">
+        软件安全
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.yuque.com/xianyuxuan/coding/netsec" class="md-nav__link">
+        网络安全原理与实践
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.yuque.com/xianyuxuan/coding/syssec" class="md-nav__link">
+        系统安全
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.yuque.com/xianyuxuan/coding/wireless_iot" class="md-nav__link">
+        无线与物联网安全基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.yuque.com/xianyuxuan/coding/signal_processing" class="md-nav__link">
+        面向信息安全的信号处理
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -3656,7 +3822,7 @@
 </details>
 <h3 id="553-页表">5.5.3 页表<a class="headerlink" href="#553-页表" title="Permanent link">&para;</a></h3>
 <p>我们下面讨论这种 translation 的具体方案。之前也提到，fully-associative 的一个重要问题就是如何去定位某一项；这里我们引入 <strong>page table</strong> 这种结构，它被存放在 main memory 中，每个程序（实际上是进程，但是写课本的人好像现在并不想引入这个概念）都有一个自己的 page table；同时硬件上有一个 <strong>page table register</strong> 保存当前进程这个页表的地址。</p>
-<p>使用页表时，我们根据 virtual page number 找到对应 <strong>page table entry, PTE</strong> 在 page table 中的偏移，然后与 page table register 相加得到对应 entry 的 physical address，从中读取对应的 entry。其实就是说，page table 就是一个数组，<code>page_table[i]</code>表示第<code>i</code>个 virtual page 对应的 physical page number。</p>
+<p>使用页表时，我们根据 virtual page number 找到对应 <strong>page table entry, PTE</strong> 在 page table 中的偏移，然后与 page table register 相加得到对应 entry 的 physical address，从中读取对应的 entry。其实就是说，page table 就是一个数组， <code>page_table[i]</code> 表示第 <code>i</code> 个 virtual page 对应的 physical page number。</p>
 <p>如下图所示，每个 entry 中包含了一个 valid bit 和 physical page number。如果 valid bit = 1，那么转换完成；否则触发了 page fault，handle 之后再进行转换。</p>
 <p><center><img alt="image.png" src="../../../assets/1653274939462-abfe7f29-a821-469c-b76c-df2efb82a791.png" /></center></p>
 <p>Page fault 会引发一个 exception，由操作系统接管控制，处理完之后再将控制交还给进程。操作系统要做的事情是在 secondary storage 中找到这一 page，将其放到 main memory 里（可能需要与当前主存中的某个 page 交换），然后更新 page table。</p>
@@ -3670,12 +3836,12 @@
 <p>我们不妨关注一下 page table 有多大。在我们之前的例子中，virtual address 有 48 bit，每个 page 的大小为 4KiB，所以 page table entry 的数目是 
 <span class="arithmatex">\(\cfrac{2^{48} \text{ B}}{4\text{ KiB}} = \cfrac{2^{48}}{4\times 2^{10}} = 2^{36}\)</span>；而 RISC-V 每个表项有 8 Byte，所以 page table 的总大小来到了 <span class="arithmatex">\(2^{39}\text{ B} = 0.5 \text{TiB}\)</span>，这是极其不合理的；尤其是每个进程都有一个 page table 的前提下。</p>
 <p>我们可以通过多级页表的方式解决这个问题。</p>
-<p>如我们之前所述，页表是一个数组， <code>page_table[i]</code> 中存储的是 page number 为 i 的 page 所对应的 frame number。考虑我们的逻辑地址结构：</p>
+<p>如我们之前所述，页表是一个数组，  <code>page_table[i]</code>  中存储的是 page number 为 i 的 page 所对应的 frame number。考虑我们的逻辑地址结构：</p>
 <p><center><img alt="image.png" src="../../../assets/1607247135113-1998902c-c1c0-4d78-8d21-99766857be7e.png" /></center></p>
 <p>这样的逻辑地址结构需要一个存储 2p 个元素的 page table，即需要这么大的连续内存，这是非常大的消耗。我们考虑将 p 再分为 p1 和 p2 ：</p>
 <p><center><img alt="image.png" src="../../../assets/1608315590109-e84d3ab8-0a2d-4e6a-becd-d10f57d45f2f.png" /></center></p>
 <p><center><img alt="image.png" src="../../../assets/1608315596044-0e1ba30c-ca5d-4f3a-ae2f-f792f992a1b1.png" /></center></p>
-<p>我们使用一个两级页表， <code>outer_page_table[i]</code> 中存储的是 p1 为 i 的 inner page table，即<code>inner_page_table[i][]</code> 的基地址；而 <code>inner_page_table[i][j]</code> 中存储的就是 p1 为 i，p2 为 j 的 page 对应的 frame number，即 page number 为 p1p2 （没有分割时的 p）对应的 frame number。</p>
+<p>我们使用一个两级页表，  <code>outer_page_table[i]</code>  中存储的是 p1 为 i 的 inner page table，即 <code>inner_page_table[i][]</code>  的基地址；而  <code>inner_page_table[i][j]</code>  中存储的就是 p1 为 i，p2 为 j 的 page 对应的 frame number，即 page number 为 p1p2 （没有分割时的 p）对应的 frame number。</p>
 <p>这里，我们称 p1 为 <strong>page directory number</strong> ，p2 为 <strong>page table number</strong>，d 为 <strong>page offset</strong>。</p>
 <p><center><img alt="image.png" src="../../../assets/1608316895578-0d32183b-93b0-44a1-805d-c96b47b0f3b0.png" /></center></p>
 <p>考虑这样做的好处：hierarchical paging 其实就是对页表的分页（page the page table）。因此，它避免了 page table 必须处在连续内存的问题，这一问题在 <em>p</em> 比较大时尤其严重。</p>
@@ -3716,7 +3882,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-02T16:00:27+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-02</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-03T17:33:06+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-03</span>
       
         <br>
         创建日期:
