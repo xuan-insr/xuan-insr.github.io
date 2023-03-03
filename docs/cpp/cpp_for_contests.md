@@ -272,8 +272,8 @@ auto prc_info = lower_bound(prices.begin(), prices.end(), i,
 > `#include <queue>`
 
 - 构造
-    -  `priority_queue<int> q1` ：队首始终是最小值
-    -  `priority_queue<int, vector<int>, greater<int>> q2` ：队首始终是最大值
+    -  `priority_queue<int> q1` ：队首始终是最大值
+    -  `priority_queue<int, vector<int>, greater<int>> q2` ：队首始终是最小值
     - 自定义比较函数：
         ```cpp
         auto cmp = [](const int &a, const int &b) {return a > b;};
