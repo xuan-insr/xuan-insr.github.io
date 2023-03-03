@@ -206,13 +206,29 @@ public:
 
 这样，就可以使用 `Container c = Container();` 构造一个对象了[^copy_ctor]。
 
-对构造函数的调用会返回一个构造出的无名对象。不严谨地说，上面的语句将名字 `c` 绑定到了对应的无名对象上。为了代码更加简洁紧凑，C++ 允许更加简洁的写法：`Container c;`。
+`Container();` 会返回一个构造出的无名对象。不严谨地说，上面的语句将名字 `c` 绑定到了对应的无名对象上。为了代码更加简洁紧凑，C++ 允许更加简洁的写法：`Container c;`。
 
-[^copy_ctor]: 部分对 C++ 有基础了解的读者可能会认为，用这里的构造函数返回的临时对象来构造 `c1` 或者 `c2` 时有可能调用拷贝构造函数。这在早期 C++ 中是有可能的，但是自 C++17 强制 copy elision 之后拷贝构造函数的调用不会发生，而是必定等价于 `Container c1;` 和 `Container c2(64);`。我们会在讨论拷贝构造时讨论这个问题。
+[^copy_ctor]: 部分对 C++ 有基础了解的读者可能会认为，用这里返回的临时对象来构造 `c1` 或者 `c2` 时有可能调用拷贝构造函数。这在早期 C++ 中是有可能的，但是自 C++17 强制 copy elision 之后拷贝构造函数的调用不会发生，而是必定等价于 `Container c1;` 和 `Container c2(64);`。我们会在讨论拷贝构造时讨论这个问题。
 
 因此，当我们在用 `Container c;` 定义一个对象时，就会调用构造函数。例如：
 
 <center>![](2023-02-24-00-02-54.png){width=700}</center>
+
+???+ note "Container() 是调用构造函数吗？"
+    不是！看下面的代码：
+
+    ```c++
+    Foo f = Foo();
+    Foo f2 = Foo::Foo();
+    ```
+
+    第二行会有报错：
+
+    <center>![](2023-03-03-12-30-33.png)</center>
+
+    即，`Foo();` 的写法并不是对构造函数的调用，而是一个 "function-style cast"。
+
+    这是什么东西呢？我们知道 C 语言中的类型转换 (cast) 表达式形如 `(int)3.2`（称为 C-style cast），而 C++ 引入了形如 `int(3.2)` 的 function-style cast。
 
 像普通的函数一样，构造函数可以是有参数的。例如，下面的构造函数允许用户传递一个初始大小，然后直接开一个对应大小的空间：
 
@@ -323,6 +339,10 @@ public:
 我们可能会发现，函数重载的作用已经足以覆盖默认参数的作用。事实上确实如此：默认参数机制在 C with Classes 时就存在了，其意义就是前面给出的构造函数中默认参数的例子；而一般的函数重载直到 Release 1.0 才被引入。默认参数机制是重载机制的前驱之一；重载机制的另一个前驱是 `operator =` 的重载，我们会在后面的章节看到它。
 
 ## 4.3 构造函数 (Cont.)
+
+### default member initializer
+
+default member initializer 只允许 `brace-or-equal-initializer` 即 `= something` 或者 `{ something }`，而不允许用括号的形式^[class.mem.general#nt:member-declarator](https://timsong-cpp.github.io/cppwp/n4868/class.mem.general#nt:member-declarator)^。
 
 ### member initializer lists
 
