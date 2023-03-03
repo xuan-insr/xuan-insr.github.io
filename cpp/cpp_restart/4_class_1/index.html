@@ -784,6 +784,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#default-member-initializer" class="md-nav__link">
+    default member initializer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#member-initializer-lists" class="md-nav__link">
     member initializer lists
   </a>
@@ -3384,6 +3391,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#default-member-initializer" class="md-nav__link">
+    default member initializer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#member-initializer-lists" class="md-nav__link">
     member initializer lists
   </a>
@@ -3419,7 +3433,7 @@
 
 <h1 id="4-类-i---定义成员构造析构">4 类 (I) - 定义、成员、构造、析构<a class="headerlink" href="#4-类-i---定义成员构造析构" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 1948 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 119 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 8 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 2065 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 121 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 8 分钟</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -3835,9 +3849,20 @@ function toggleVisibilityFoot() {
 <p><code>nullptr</code> 是 C++11 引入的一个关键字，用来表示空指针。这与 C 中的 <code>NULL</code> 不同，虽然后者在 C++ 中也能使用。我们在稍后介绍 <code>nullptr</code> 为什么会被引入。</p>
 </div>
 <p>这样，就可以使用 <code>Container c = Container();</code> 构造一个对象了<sup id="fnref:copy_ctor"><a class="footnote-ref" href="#fn:copy_ctor">13</a></sup>。</p>
-<p>对构造函数的调用会返回一个构造出的无名对象。不严谨地说，上面的语句将名字 <code>c</code> 绑定到了对应的无名对象上。为了代码更加简洁紧凑，C++ 允许更加简洁的写法：<code>Container c;</code>。</p>
+<p><code>Container();</code> 会返回一个构造出的无名对象。不严谨地说，上面的语句将名字 <code>c</code> 绑定到了对应的无名对象上。为了代码更加简洁紧凑，C++ 允许更加简洁的写法：<code>Container c;</code>。</p>
 <p>因此，当我们在用 <code>Container c;</code> 定义一个对象时，就会调用构造函数。例如：</p>
 <p><center><img alt="" src="../2023-02-24-00-02-54.png" width="700" /></center></p>
+<details class="note" open="open">
+<summary>Container() 是调用构造函数吗？</summary>
+<p>不是！看下面的代码：</p>
+<div class="highlight"><pre><span></span><code><span class="n">Foo</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Foo</span><span class="p">();</span>
+<span class="n">Foo</span><span class="w"> </span><span class="n">f2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Foo</span><span class="o">::</span><span class="n">Foo</span><span class="p">();</span>
+</code></pre></div>
+<p>第二行会有报错：</p>
+<p><center><img alt="" src="../2023-03-03-12-30-33.png" /></center></p>
+<p>即，<code>Foo();</code> 的写法并不是对构造函数的调用，而是一个 "function-style cast"。</p>
+<p>这是什么东西呢？我们知道 C 语言中的类型转换 (cast) 表达式形如 <code>(int)3.2</code>（称为 C-style cast），而 C++ 引入了形如 <code>int(3.2)</code> 的 function-style cast。</p>
+</details>
 <p>像普通的函数一样，构造函数可以是有参数的。例如，下面的构造函数允许用户传递一个初始大小，然后直接开一个对应大小的空间：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -3945,6 +3970,8 @@ function toggleVisibilityFoot() {
 </div>
 <p>我们可能会发现，函数重载的作用已经足以覆盖默认参数的作用。事实上确实如此：默认参数机制在 C with Classes 时就存在了，其意义就是前面给出的构造函数中默认参数的例子；而一般的函数重载直到 Release 1.0 才被引入。默认参数机制是重载机制的前驱之一；重载机制的另一个前驱是 <code>operator =</code> 的重载，我们会在后面的章节看到它。</p>
 <h2 id="43-构造函数-cont">4.3 构造函数 (Cont.)<a class="headerlink" href="#43-构造函数-cont" title="Permanent link">&para;</a></h2>
+<h3 id="default-member-initializer">default member initializer<a class="headerlink" href="#default-member-initializer" title="Permanent link">&para;</a></h3>
+<p>default member initializer 只允许 <code>brace-or-equal-initializer</code> 即 <code>= something</code> 或者 <code>{ something }</code>，而不允许用括号的形式<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.mem.general#nt:member-declarator">class.mem.general#nt:member-declarator</a></sup>。</p>
 <h3 id="member-initializer-lists">member initializer lists<a class="headerlink" href="#member-initializer-lists" title="Permanent link">&para;</a></h3>
 <p>讨论 Delegating constructor</p>
 <h2 id="44-析构函数">4.4 析构函数<a class="headerlink" href="#44-析构函数" title="Permanent link">&para;</a></h2>
@@ -4068,7 +4095,7 @@ function toggleVisibilityFoot() {
 <p>还能有 using-declarations, static_assert declarations, member template declarations, deduction guides (C++17), Using-enum-declarations (C++20)&#160;<a class="footnote-backref" href="#fnref:class_member" title="Jump back to footnote 12 in the text">&#8617;</a></p>
 </li>
 <li id="fn:copy_ctor">
-<p>部分对 C++ 有基础了解的读者可能会认为，用这里的构造函数返回的临时对象来构造 <code>c1</code> 或者 <code>c2</code> 时有可能调用拷贝构造函数。这在早期 C++ 中是有可能的，但是自 C++17 强制 copy elision 之后拷贝构造函数的调用不会发生，而是必定等价于 <code>Container c1;</code> 和 <code>Container c2(64);</code>。我们会在讨论拷贝构造时讨论这个问题。&#160;<a class="footnote-backref" href="#fnref:copy_ctor" title="Jump back to footnote 13 in the text">&#8617;</a></p>
+<p>部分对 C++ 有基础了解的读者可能会认为，用这里返回的临时对象来构造 <code>c1</code> 或者 <code>c2</code> 时有可能调用拷贝构造函数。这在早期 C++ 中是有可能的，但是自 C++17 强制 copy elision 之后拷贝构造函数的调用不会发生，而是必定等价于 <code>Container c1;</code> 和 <code>Container c2(64);</code>。我们会在讨论拷贝构造时讨论这个问题。&#160;<a class="footnote-backref" href="#fnref:copy_ctor" title="Jump back to footnote 13 in the text">&#8617;</a></p>
 </li>
 <li id="fn:initializer">
 <p>还有 braced-init-list。我们在后面讨论。&#160;<a class="footnote-backref" href="#fnref:initializer" title="Jump back to footnote 14 in the text">&#8617;</a></p>
@@ -4084,7 +4111,7 @@ function toggleVisibilityFoot() {
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-02T16:45:36+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-02</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-03T05:36:15+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-03</span>
       
         <br>
         创建日期:
