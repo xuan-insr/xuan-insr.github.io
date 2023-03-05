@@ -1,5 +1,5 @@
 ---
-title: C++
+title: Week 2 - 类(I) 定义、成员、构造、析构
 verticalSeparator: ===
 revealOptions:
   width: 1800

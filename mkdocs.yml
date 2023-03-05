@@ -10,20 +10,21 @@ nav:
       - cpp/cpp_restart/index.md
       - 朋辈辅学 slides:
         - Week1 C++ 的诞生与面向对象程序设计: https://xuan-insr.github.io/slides/cpp/1_birth_and_oop/
-      - 1 C++ 的诞生: cpp/cpp_restart/1_birth.md
-      - 2 编程范式: cpp/cpp_restart/2_paradigm.md
-      - 3 面向对象程序设计: cpp/cpp_restart/3_oop.md
-      - 4 类 (I) - 定义、成员、构造、析构: cpp/cpp_restart/4_class_1.md
-      - 5 类 (II) - 拷贝构造与拷贝赋值: cpp/cpp_restart/5_class_2.md
-      - 6 类 (III) - 转换构造函数: cpp/cpp_restart/6_class_3.md
-      - 7 类 (IV) - const 和 static 成员: cpp/cpp_restart/7_class_4.md
-      - 8 类 (V) - 继承与抽象类、访问控制: cpp/cpp_restart/8_class_5.md
-      - 9 模板: cpp/cpp_restart/9_template.md
-      - 10 STL: cpp/cpp_restart/10_stl.md
-      - 11 右值引用和移动语义: cpp/cpp_restart/11_move_semantics.md
-      - 12 类 (VI) - 移动构造与移动赋值: cpp/cpp_restart/12_class_6.md
-      - 13 namespace: cpp/cpp_restart/13_namespace.md
-      - 14 exception: cpp/cpp_restart/14_exception.md
+      - 正文！:
+        - 1 C++ 的诞生: cpp/cpp_restart/1_birth.md
+        - 2 编程范式: cpp/cpp_restart/2_paradigm.md
+        - 3 面向对象程序设计: cpp/cpp_restart/3_oop.md
+        - 4 类 (I) - 定义、成员、构造、析构: cpp/cpp_restart/4_class_1.md
+        - 5 类 (II) - 拷贝构造与拷贝赋值: cpp/cpp_restart/5_class_2.md
+        - 6 类 (III) - 转换构造函数: cpp/cpp_restart/6_class_3.md
+        - 7 类 (IV) - const 和 static 成员: cpp/cpp_restart/7_class_4.md
+        - 8 类 (V) - 继承与抽象类、访问控制: cpp/cpp_restart/8_class_5.md
+        - 9 模板: cpp/cpp_restart/9_template.md
+        - 10 STL: cpp/cpp_restart/10_stl.md
+        - 11 右值引用和移动语义: cpp/cpp_restart/11_move_semantics.md
+        - 12 类 (VI) - 移动构造与移动赋值: cpp/cpp_restart/12_class_6.md
+        - 13 namespace: cpp/cpp_restart/13_namespace.md
+        - 14 exception: cpp/cpp_restart/14_exception.md
       - A 附录:
         - 声明与定义: cpp/cpp_restart/appendix/decl_and_def.md
         - inline 函数: cpp/cpp_restart/appendix/inline_functions.md

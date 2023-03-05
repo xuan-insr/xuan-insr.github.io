@@ -7,6 +7,15 @@
 
     --8<-- "cpp/cpp_restart/toggle_visibility.md"
 
+!!! warning "本节使用的副本"
+    自本节开始，我们会在讲解类相关的内容时，引入一些 C++ 语法说明。这些说明有的是阐明容易混淆的概念，有的是介绍 C++ 相对于 C 的新语法。这些章节用 ▲ 表示。它们仍然是文章的重要部分，但由于本身话题相对独立，因此单独在导航目录中的「A 附录」一节中展示；正文里的是插件引入的副本，因此本文的字数统计并不包含这些副本。
+
+    本节引入的副本包括：
+
+    - [声明与定义](../appendix/decl_and_def)
+    - [inline 函数](../appendix/inline_functions)
+    - [函数默认参数与函数重载](../appendix/func_overload)
+
 ## 4.1 类的定义
 
 我们在上一节已经看到了类的定义的一些具体例子，例如：
@@ -175,13 +184,29 @@ int main() {
 
 [^class_member]: 还能有 using-declarations, static_assert declarations, member template declarations, deduction guides (C++17), Using-enum-declarations (C++20)
 
+### `this` 指针
+
+我们之前介绍过，C++ 早期会被编译成 C 语言，然后再编译成汇编。那么问题来了！例如上面代码中的 `Foo::bar` 函数，如何编译成 C 中的函数呢？这一问题的难点是：这个函数里访问了调用这个函数的对象 (不妨称之为 calling object) 的成员变量 `x`；那么这个函数如何知道 calling object 在哪里，从而访问它的成员变量呢？
+
+答案是，每个成员函数[^this]都会被视为有一个 implicit object parameter，它即是 calling object。而在成员函数的函数体中，`this` 表达式的值即是 implicit object parameter 即 calling object 的地址。
+
+在成员函数的函数体中，访问任何成员时都会被自动添加 `this->`，例如 `void Foo::bar(int v) { x += v; }` 中的 `x += v;` 实际是 `this->x += v;`。
+
+下图中，汇编第 17~19 行将参数 `ff` 放到了第一个参数的位置，20 行调用 `f()`，事实上就是将这个对象的地址隐式传入其中了。
+
+<center>![](2023-03-04-02-13-48.png){width=300}</center>
+
+[^this]: implicit object parameter 的实际用途是重载解析，无论是否 static 都会被视为有这个成员，见 [这个回答](https://stackoverflow.com/a/72534617/14430730)。但是 static 成员函数没有 `this`。只有构造函数没有 implicit object parameter。
+
+自 C++23 开始，`this` 关键字有了新的含义。我们将在后面的章节讨论。
+
 ## ▲ inline 函数
 
 --8<-- "cpp/cpp_restart/appendix/inline_functions.md"
 
 ## 4.3 构造函数
 
-构造函数 (constructor) 是一种特殊的成员函数，用于初始化该类的对象。
+构造函数 (constructor) 是一种特殊的成员函数，用于初始化该类的对象。构造函数 constructor 也时常被简写为 ctor 或者 c'tor 等。
 
 用 BS 的话说，构造函数的意义之一是「使程序员能够建立起某种保证，其他成员函数都能依赖这个保证」。例如：
 
@@ -197,7 +222,7 @@ public:
 };
 ```
 
-在上面的程序中，第 5 行的 `Container()` 是构造函数。它和其他成员函数的区别是，它不写返回值类型，而且它的名字是类的名字。
+在上面的程序中，第 5 行的 `Container()` 是构造函数。它和其他成员函数的区别是，它不写返回值类型，而且它直接使用类的名字。（构造函数并没有名字^[class.ctor.general#2](https://timsong-cpp.github.io/cppwp/n4868/class.ctor.general#2)^。）
 
 第 6 行的 `val = nullptr;` 就是前面提到的「保证」，即 `val` 的值要么是 `nullptr`，要么是其他成员函数赋的值，而不会是个随机的值。
 
@@ -214,7 +239,11 @@ public:
 
 <center>![](2023-02-24-00-02-54.png){width=700}</center>
 
-???+ note "Container() 是调用构造函数吗？"
+也就是说，由于定义一个对象时需要用到构造函数，因此如果要用的构造函数是 `private` 的，对象就无法被构造：
+
+<center>![](2023-03-04-01-35-48.png)</center>
+
+???+ note "Container() 是调用构造函数的函数调用表达式吗？"
     不是！看下面的代码：
 
     ```c++
@@ -263,11 +292,199 @@ public:
 
     C++11 引入的 **brace initialization**（也被称为 **uniform initialization**）一定程度上解决了这个问题。我们在后面的章节讨论这个机制。
 
+### 动态内存分配
+
+我们之前提到，构造函数存在的意义是给该类的每个对象提供一定的「保证」，而 C++ 通过确保每个对象都执行过构造函数来提供这一保证。但是，我们在 C 中知道通过 `malloc` 动态分配内存的方式；那么如果我们写 `Container *p = (Container *)malloc(sizeof(Container));` 会发生什么呢？
+
+事实上，这确实分配了 `sizeof(Container)` 那么大的空间，但是确实也没有调用构造函数。因此，C++ 引入了新的用于创建动态对象的操作符 `new` 以及对应的用来回收的 `delete`。
+
+`new` 表达式可以用来创建对象或者数组：`int * p1 = new int; int * pa = new int[n];`。
+
+如果是类的对象，则构造函数会被调用：
+
+<center>![](2023-03-05-16-37-46.png)</center>
+
+`new` 表达式也可以包含初始化器，但是只能是 `( something )` 或者 `{ something }` 的形式，不能是 `= something` 的形式：
+
+<center>![](2023-03-05-16-41-09.png)</center>
+
+`new` 表达式干的事情是申请内存 + 调用构造函数，返回一个指针；而 `delete` 表达式干的事情是调用析构函数 + 释放内存。`new` 表达式是 **唯一** 的用来创建动态生命周期对象的方式（因为 `malloc` 只是开辟内存，并不创建对象）。
+
+`delete` 会调用类对象的析构函数：
+
+<center>![](2023-03-05-16-43-29.png)</center>
+
+如上面例子所示，如果 `p` 在 `new` 的时候创建的是单个对象，则应该用 `delete p;` 的形式 (single-object delete expression) 回收；如果 `p` 在 `new` 的时候创建的是数组，则应该用 `delete[] p;` (array delete expression) 的形式回收，否则是未定义行为 (UB, undefined behavior)^[expr.delete#2](https://timsong-cpp.github.io/cppwp/n4868/expr.delete#2)^；这种情况下任何情况都有可能发生，包括但不限于（不需要诊断信息的）编译错误、运行时错误，或产生意料之外的运行结果等。我们会在后面的章节中具体讨论未定义行为。
+
+关于 `new` 和 `delete`，我们还有一些话题没有讨论，例如 `operator new` 等以及 placement new。我们会在后面的章节中讨论相关问题。
+
 ## ▲ 函数默认参数与函数重载
 
-### 默认参数
+--8<-- "cpp/cpp_restart/appendix/func_overload.md"
 
-这样的构造函数允许用户传递一个初始大小，然后直接开一个对应大小的空间：
+## 4.3 构造函数 (Cont.)
+
+### implicitly-declared default constructor
+
+我们称一个能够无参调用的构造函数是 default constructor。即，它不接收任何参数，或者所有参数都有默认值。
+
+有一个问题是，我们在讲构造函数之前的代码里都没有写构造函数，但是它们也能正常编译运行！C++ 也希望在没有必要的理由时不与 C 发生不兼容，而 C 中的 struct 也没有写构造函数，但是它们也能被运行。这是怎么回事呢？
+
+事实上，对于一个类，如果用户没有提供任何构造函数，则编译器会自动为这个类创建一个 public 的 implicitly-declared default constructor，它不接收任何参数，也什么都不做。如果有任何用户提供的构造函数[^default_ctor]，则 implicitly-declared default constructor 是 deleted 的。deleted 的函数不能被调用。
+
+[^default_ctor]: 如果有未指明初始化方式的引用成员、const 成员，或者 default ctor 被删除或不可访问的成员或基类等情况下，implicitly-declared default constructor 也是 deleted 的。
+
+不过，如果用户提供了构造函数，他仍然可以用 `ClassName() = default;` 来引入默认的构造函数。
+
+用户还可以通过 `ClassName() = delete;` 显式地将 default constructor 设置成 deleted 的。
+
+### member initializer lists
+
+关于构造函数，我们还有几个问题可以讨论！
+
+一个问题是这样的：假如我们希望根据构造函数的一些参数来初始化一些成员，我们固然可以这样写：
+
+```c++ linenums="1"
+class User {
+    int id, age, failTimes;
+    char* password;
+public:
+    User(int id, int age, char* pw) {
+        this->id = id;
+        this->age = age;
+        failTimes = 0;
+        password = copyStr(pw); // assume that `copyStr` gets a string and allocate some space and copy it
+    }
+    // ...
+};
+```
+
+但是这样很累！于是 C++ 允许这样的写法：
+
+```c++ linenums="1"
+class User {
+    int id, age, failTimes;
+    char* password;
+public:
+    User(int id, int age, char* pw) : id(id), age(age), failTimes(0), password(copyStr(pw)) {}
+    // ...
+};
+```
+
+构造函数定义中形如 `: member(expr), member(expr)` 的东西叫做 member initializer lists^[class#base.init-1](https://timsong-cpp.github.io/cppwp/n4868/class#base.init-1)^，用来指明成员变量的初始化器 (initializer)。这些初始化会在构造函数的函数体执行之前完成。
+
+在一些情况下，member initializer lists 是必要的。例如：
+
+```c++ linenums="1"
+class Point {
+    int x, y;
+public:
+    Point(int x, int y) : x(x), y(y) {}
+};
+
+class Circle {
+    Point c;
+    int r;
+public:
+    Circle(int cx, int cy, int r) : c(cx, cy), r(r) {}
+};
+```
+
+C++ 规定，在构造函数的函数体执行之前，所有参数要么按照 member initializer lists 的描述初始化，要么以默认方式初始化^[class.base.init#13](https://timsong-cpp.github.io/cppwp/n4868/class.base.init#13)^。而对于类的对象，「默认方式初始化」意味着使用 default constructor 构造。然而，`Point` 类并没有 default constructor，因此如果 member initializer lists 没有指明 `Point` 类的初始化方式，就会出现编译错误：
+
+<center>![](2023-03-04-03-11-28.png)</center>
+
+在后面的章节中，我们还会看到更多 member initializer lists 是必要的的情况。
+
+???+ note "补充"
+
+    如果构造函数的声明和定义分离，则 member initializer lists 应当出现在构造函数的定义中。
+
+    member initializer lists 中可以使用 `this` 指针，例如：
+
+    ```c++
+    class Foo {
+        int a[sizeof(*this)];            // error: not inside a member function
+        unsigned int sz = sizeof(*this); // OK: in default member initializer
+    };
+    ```
+
+    member initializer list 的顺序不影响成员被初始化的顺序，它们按照在类定义中的顺序初始化。例如：
+
+    <center>![](2023-03-04-03-20-24.png)</center>
+
+#### delegating constructor
+
+member initializer list 可以将构造委托给同一类型的另一个构造函数，做出这一委托的构造函数称为 delegating constructor；如果这样的话，member initializer list 应当只包含这一个项目。目标构造函数由重载解析选取，其运行结束后，delegating constructor 的函数体被执行^[class.base.init#6](https://timsong-cpp.github.io/cppwp/n4868/class.base.init#6)^。一个构造函数不能直接或间接地被委托给自己。
+
+```c++
+struct C {
+    C( int ) { }                  // #1: non-delegating constructor
+    C(): C(42) { }                // #2: delegates to #1
+    C( char c ) : C(42.0) { }     // #3: ill-formed due to recursion with #4
+    C( double d ) : C('a') { }    // #4: ill-formed due to recursion with #3
+};
+```
+
+<center>![](2023-03-04-03-15-43.png)</center>
+
+可见，被委托的目标构造函数运行完输出 `ctor1 called` 后，委托构造函数运行，输出 `ctor2 called`。
+
+### default member initializer
+
+假设我们有若干个构造函数：
+
+```c++ linenums="1"
+class User {
+    int id, age, failTimes;
+    char* password;
+public:
+    User(int id, int age, char* pw) : id(id), age(age), failTimes(0), password(copyStr(pw)) {}
+    User(int id, int age) : id(id), age(age), failTimes(0), password(nullptr) {}
+    User(int id) : id(id), age(-1), failTimes(0), password(nullptr) {}
+    // ...
+};
+```
+
+可以看到，我们也许想要给构造时没有提供的参数赋一个初值；如果在构造函数或者 member initializer list 中写初始值，则所有构造函数都要写一份，这是比较累的！于是，C++11 引入了 default member initializer 解决这个问题！
+
+```c++ linenums="1"
+class User {
+    int id, age = -1, failTimes = 0;
+    char* password = nullptr;
+public:
+    User(int id, int age, char* pw) : id(id), age(age), password(copyStr(pw)) {}
+    User(int id, int age) : id(id), age(age) {}
+    User(int id) : id(id) {}
+    // ...
+};
+```
+
+如果一个成员变量同时被 member initializer list 指定且有 default member initializer，按前者执行，后者被忽略。
+
+default member initializer 只允许 `brace-or-equal-initializer` 即 `= something` 或者 `{ something }`，而不允许用括号的形式^[class.mem.general#nt:member-declarator](https://timsong-cpp.github.io/cppwp/n4868/class.mem.general#nt:member-declarator)^。`{ something }` 是我们之前提到的 brace initialization (uniform initialization)，我们在后面的章节具体讨论。
+
+也就是说，含 default member initializer 的成员可以形如 `Foo f = Foo(...);`，但不能形如 `Foo f(...);`：
+
+```c++ linenums="1"
+class Point {
+    int x, y;
+public:
+    Point(int x, int y) : x(x), y(y) {}
+};
+
+class Circle {
+    // Point c(0, 0);       // error
+    Point c = Point(0, 0);  // OK
+    int r;
+public:
+    Circle(int cx, int cy, int r) : c(cx, cy), r(r) {}
+};
+```
+
+## 4.4 析构函数
+
+我们考虑这样一个问题：
 
 ```c++ linenums="1"
 class Container {
@@ -282,182 +499,151 @@ public:
 };
 ```
 
-那么，假如我们希望用户既可以给定大小，也能够在不知道要开多大的情况下使用一个默认大小，怎么办呢？C++ 在函数声明中支持 **默认参数 (default arguments)**，用来允许函数可以以省略末尾的若干参数的方式调用：
+`Container` 的每个对象都会 `malloc` 一块内存。众所周知，`malloc` 出来的空间需要我们在不用的时候手动 `free` 来回收。那么什么时候完成这个回收呢？最好的选择显然是当对象的生命周期结束的时候。生命周期结束意味着这个对象再也无法被访问，因此它的成员自然也无法被访问；在这个时候我们将它所拥有的资源（即指针成员变量指向的 `malloc` 出来的内存）释放，既不会太早（因为后面不会再有使用了），也不会太晚（因为此时仍然能知道那些资源的地址）。
 
-```c++
-void point(int x = 3, int y = 4);
- 
-point(1, 2); // calls point(1, 2)
-point(1);    // calls point(1, 4)
-point();     // calls point(3, 4)
-```
+因此，C++ 引入了 **析构函数 (destructors)** 来解决这个问题；析构函数在每个对象的生命周期结束的时候被调用，大多数情况被用来释放对象在运行过程中可能获取的资源，例如释放申请的内存、关闭打开的文件等。我们稍后讨论各种变量的生命周期。析构函数形如 `~class-name()`，其中 `~` 也被用作取反运算符，这里来表示「与构造相反」的含义，即析构。一个例子是：
 
-默认参数必须出现在末尾的若干个参数中。这个要求的合理性容易理解：假如没有这个要求，那么如果有 `void point(int x = 3, int y);`，则 `point(4);` 的含义是容易让人迷惑的。
-
-因此，`Container` 类的构造函数可以写成：
-
-```c++ linenums="1" hl_lines="5"
+```c++ linenums="1"
 class Container {
     elem* val;
     // ...
 public:
-    Container(unsigned size = 512) {
+    Container(unsigned size) {
         val = (elem*)malloc(sizeof(elem) * size);
         // ...
     }
-    // ...
+    ~Container() {
+        free(val);
+    }
 };
 ```
 
-这样，就可以使用 `Container c1;` 构造一个默认大小 (512) 的容器，或者用 `Container c2(64);` 构造一个自定义大小的容器了。前者实际上调用 `Container(512)`，而后者调用 `Container(64)`。
+9~11 行是析构函数。这里，析构函数将 `val` 指向的内存释放。
 
-??? info "补充"
-    对于非模板函数，如果已声明的函数在 **同一作用域** 中重新声明（在内部作用域内的重新声明会出发作用域屏蔽），则可以向该函数添加默认参数。在函数调用时，默认值是该函数所有可见声明中提供的默认值的并集。对于默认值已经可见的参数，重新声明不能引入默认值（即使值相同）。
+析构函数的参数列表永远是空的。显然，析构函数是无法重载的。
 
-    ```c++
-    void f(int, int);     // #1 
-    void f(int, int = 7); // #2 OK: adds a default
-    
-    void h()
-    {
-        f(3); // #1 and #2 are in scope; makes a call to f(3,7)
-        void f(int = 1, int); // Error: inner scope declarations don't acquire defaults
-    }
-    ```
+析构函数和构造函数一样，如果某个类没有 user-declared destructor，编译器会自动生成一个 public 的 implicitly-declared destructor。因此，当类的成员中没有什么需要释放的资源时，我们就不需要写析构函数了[^rule_of_zero]。
 
-    带默认参数的友元函数声明必须是一个定义，且 translation unit 中不能有其他声明。
+[^rule_of_zero]: [The rule of three / five / zero](https://en.cppreference.com/w/cpp/language/rule_of_three) 一些讨论中涵盖了什么时候需要析构函数。我们会在后面的章节中具体讨论相关问题。
 
-    默认参数不允许使用局部变量，除非它们 not evaluated（比如 `sizeof n`，参见 std notes 6.3）。
+析构函数 destructor 也经常被简写为 dtor 或 d'tor 等。
 
-    除了函数调用运算符 `operator()` 之外的运算符重载不能有默认参数。
-
-### 函数重载
-
-那么，假如我希望根据是否传入某个参数来选择不同的构造函数，怎么办呢？例如我们希望 `Container` 的构造函数长这样：
+当然，自 C++11 起，我们仍然可以通过 `= default;` 或者 `= delete;` 来生成默认的析构函数，或者删除 implicitly-declared destructor。例如：
 
 ```c++
-Container::Container(unsigned size, elem initVal) {
-    val = (elem*)malloc(sizeof(elem) * size);   // allocate memory
-    for (unsigned i = 0; i < size; i++) {       // set init values
-        val[i] = initVal;
+class Foo{
+private:
+    ~Foo() = default;
+};
+```
+
+这里我们告知编译器在 `private` 范围内显式生成了默认的构造函数。
+
+```c++
+struct Foo {
+    ~Foo() = delete;
+};
+```
+
+这里我们将 implicitly-declared destructor 标记为 deleted。
+
+类似 `Foo f;` 的全局变量、局部变量或者成员变量定义是非法的，如果 `Foo` 的析构函数是 deleted 的，或者在当前位置不可访问 (如当前在类外，但是析构函数是 private 的)[^private_or_deleted_dtor]。但是，这种情况下，可以通过 `new` 来创建一个动态的对象，因为这样创建的对象并不隐式地在同一个作用域内调用析构函数。
+
+[^private_or_deleted_dtor]: 我们会在后面的章节讨论将析构函数设成 private 或者 delete 的场景。[这篇文章](https://www.rangakrish.com/index.php/2020/03/04/deleted-destructor-in-c/) 给出了一些解释。
+
+与构造函数不同，析构函数是可以手动调用的。我们在后面讨论 placement new 的章节讨论这个问题[^call_dtor]。
+
+[^call_dtor]: https://stackoverflow.com/a/10082335/14430730 是一个很好的例子，讨论容器中对 placement new 和手动调用析构函数的用途。
+
+## 4.5 构造和析构的时机和顺序
+
+对于一个类对象，它的 **生命周期 (lifetime)** 自它的初始化（构造）完成开始，到它的析构函数调用被启动为止。
+
+任何一个对象都会占据一部分存储；这部分存储的最小生命周期称为这个对象的 **storage duration**。对象的 lifetime 等于或被包含于其 storage duration。
+
+!!! note
+    这里说「最小生命周期」，是因为对象被析构后，对应的存储虽然可以被立刻回收，但也不一定立刻被回收。但「最小」提供的是一种保证。
+
+任何一个对象的 storage duration 都是如下一种[^thread_storage_duration]：
+
+- **automatic** storage duration: 没有被定义为 `static`[^auto] 的局部对象。[^auto_opt]
+- **static** storage duration: non-local 对象，或者被定义为 `static` 的局部对象或者类成员对象。我们会在后面的章节讨论 `static` 成员对象。
+- **dynamic** storage duration: `new` 出来的对象。
+
+[^thread_storage_duration]: 自 C++11 开始，还有 thread storage duration，这里暂略。下面的讨论中也一样。
+[^auto]: 还有 `extern` 和 `thread_local`。[basic.stc.auto#1](https://timsong-cpp.github.io/cppwp/n4868/basic.stc.auto#1)
+[^auto_opt]: [basic.stc.auto#3](https://timsong-cpp.github.io/cppwp/n4868/basic.stc.auto#3) If a variable with automatic storage duration has initialization or a destructor with side effects, an implementation shall not destroy it before the end of its block nor eliminate it as an optimization, even if it appears to be unused, except that a class object or its copy/move may be eliminated as specified in [class.copy.elision].
+
+子对象 (subobject，如成员变量) 的 storage duration 是它所在的对象的 storage duration。
+
+在下面的情况下，构造函数会被调用：
+
+- 对于全局对象，在 `main()` 函数运行之前，或者在同一个编译单元内定义的任一函数或对象被使用之前。在同一个编译单元内，它们的构造函数按照声明的顺序初始化。
+- 对于 static local variables，在第一次运行到它的声明的时候[^static_local]。
+- 对于 automatic storage duration 的对象，在其声明被运行时。
+- 对于 dynamic storage duration 的对象，在其用 `new` 表达式创建时。
+
+[^static_local]: 这是线程安全的。这会带来额外的运行时开销，参见 [Does a function local static variable automatically incur a branch?](https://stackoverflow.com/questions/23829389/does-a-function-local-static-variable-automatically-incur-a-branch)。
+
+在下面的情况下，析构函数会被调用：
+
+- 对于 static storage duration 的对象，在程序结束时，按照与构造相反的顺序。
+- 对于 automatic storage duration 的对象，在所在的 block 退出时，按照与构造相反的顺序。
+- 对于 dynamic storage duration 的对象，在 `delete` 表达式中。
+- 对于临时对象，当其生命周期结束时。我们会在后面的章节讨论临时对象及其生命周期。
+
+数组元素的析构函数调用顺序与其构造顺序相反。类的成员的析构函数调用顺序也与其构造顺序相反。
+
+作为一个练习，请说明下面的代码的输出：
+
+```c++ linenums="1"
+class Count{
+    int s = 0;
+public:
+    ~Count();
+
+    Count(int s) { this->s = s; }
+    int getS(){
+        return s;
     }
+    void sPlus(){
+        s++;
+    }
+};
+
+Count::~Count() { cout << this->s << " ";}
+
+Count count5(555);
+static Count count6(666);
+Count count7(777);
+
+void f(){
+    static Count count9(999);
+}
+
+int main() {
+    Count *count1 = new Count(111);
+    Count *count2 = new Count(222);
+
+    Count count3(333);
+    Count count4(444);
+
+    f();
+
+    static Count count8(888);
+
+    delete(count1);
+
+    for(int i = 1; i <= 5; i++)
+        for(Count c(1); c.getS() <= i; c.sPlus());
+
+    return 0;
 }
 ```
 
-但是！我们希望如果没有传入 `initVal`，就不要做那个 set init values 的循环怎么办呢？固然我们可以通过默认参数结合判断来实现，但是假如我们可以根据不同的传入参数来使用不同的构造函数就更好了！
+答案是 `111 2 3 4 5 6 444 333 888 999 777 666 555 `。
 
-事实上，C++ 支持这样的操作，这被称为 **函数重载 (function overloading)**：
-
-```C++
-class Container {
-    elem* val;
-    // ...
-public:
-    Container() { val = nullptr; }
-    Container(unsigned size) {
-        val = (elem*)malloc(sizeof(elem) * size);
-    }
-    Container(unsigned size, elem initVal) {
-        val = (elem*)malloc(sizeof(elem) * size);
-        for (unsigned i = 0; i < size; i++) {    
-            val[i] = initVal;
-        }
-    }
-};
-```
-
-这样，当我们使用 `Container c1, c2(4), c3(6, 2);` 定义三个对象时，它们会分别使用无参、一个参数和两个参数的构造函数：
-
-<center>![](2023-03-03-14-45-31.png)</center>
-
-事实上，不仅是构造函数支持重载，其他的成员函数或者独立的函数[^namespace-scope]也支持重载。例如^[over.pre#2](https://timsong-cpp.github.io/cppwp/n4868/over.pre#2)^：
-
-```c++
-double abs(double);
-int abs(int);
-
-abs(1);             // calls abs(int);
-abs(1.0);           // calls abs(double);
-```
-
-[^namespace-scope]: 准确地说，函数可以在 namespace scope 或者 class scope 被定义。这里没有引入 namespace 的概念所以暂时不用这个术语。
-
-如果一个名字引用多个函数，则它是 overloaded。当使用这样的名字的时候，编译器用来决定使用哪个；这个过程称为 **重载解析 (overload resolution)**。简单来说，重载解析首先收集这个名字能找到的函数形成候选函数集 (candidate functions)，然后检查参数列表来形成可行函数集 (viable functions)，然后在可行函数集中按照一定的规则比较这些函数，如果 **恰好** 有一个函数 (best viable function) 优于其他所有函数，则重载解析成功并调用此函数；否则编译失败。
-
-上面的「规则」比较复杂[^overload_resolution]，但是一个简单的例子是，不需要类型转换的比需要的要好[^rank_of_conversion]：
-
-<center>![](2023-03-03-16-03-41.png)</center>
-
-因此，上面第 5 行的 `f(0L);` 中 `0L` 是 `long` 类型的字面量，它调用 `void f(long)` 不需要转换，而调用 `void f(float)` 需要转换，因此选取前者。
-
-但是，上面第 6 行的 `f(0);` 中 `0` 是 `int` 类型的字面量，它调用两个函数都需要转换，且两个转换没有一个优于另一个[^rank_of_conversion]，因此找不到 best viable function，因此编译错误。
-
-[^overload_resolution]: [Overload Resolution](https://en.cppreference.com/w/cpp/language/overload_resolution), [over](https://timsong-cpp.github.io/cppwp/n4868/over)
-
-[^rank_of_conversion]: 事实上，转换有三个等级，分别是 exact match, promotion 和 conversion。这里 int->long 和 int->float 都属于 conversion。参见[Ranking of implicit conversion sequences](https://en.cppreference.com/w/cpp/language/overload_resolution#Ranking_of_implicit_conversion_sequences)
-
-也是因此，两个只有返回值类型不同的函数不是合法的重载，因为调用时没有办法完成重载解析：
-
-```c++
-int f(int a);
-void f(int a);  // error: functions that differ only in 
-                // their return type cannot be overloaded
-```
-
-我们会在后面的章节具体讨论重载解析的细节。
-
-!!! note "nullptr"
-    我们在前面的章节看到了 `nullptr`，这是 C++11 引入的一个关键字，用来表示空指针。
-
-    为什么要引入这个东西呢？我们首先要提到一个事实：为了类型安全，C++ 不允许 `void*` 隐式转换到其他指针类型。因此，如果我们将 `NULL` 定义为 `(void*) 0`，那么 `int * p = NULL;` 会引发编译错误：
-
-    <center>![](2023-03-03-16-20-49.png)</center>
-
-    （这是 C++ 与 C 不兼容的例子之一。）
-
-    既然 C++ 不允许将 `(void*) 0` 当空指针，那么我们用什么表示空指针呢？在 C++11 之前，空指针常量 (null pointer constant) 是值为 0 的整型字面量^[conv.ptr#1](https://timsong-cpp.github.io/cppwp/n4868/conv.ptr#1)^。
-
-    因此，如果我们将 `NULL` 定义为 `0`，则 `int * p = NULL;` 即 `int * p = 0;` 是合法的（赋值成其他整数是不合法的）。
-
-    但是！问题来了——
-
-    ```c++
-    void f(int *);
-    void f(int);
-
-    #define NULL 0
-    f(NULL);   // ==> f(0) , so f(int) is called
-    ```
-
-    可以看到，重载使得上面的情况可能引起误解，造成意料之外的结果。
-
-    因此，C++11 引入了 `nullptr` 来表示空指针常量。这样就解决了上面的问题：
-
-    ```c++
-    void f(int *);
-    void f(int);
-
-    f(nullptr);   // f(int *) is called
-    ```
-
-    因为 null pointer constant 可以转换到任意指针类型^[conv.ptr#1](https://timsong-cpp.github.io/cppwp/n4868/conv.ptr#1)^。
-
-    当然，为了兼容，值为 0 的整型字面量仍然是空指针常量。
-
-我们可能会发现，函数重载的作用已经足以覆盖默认参数的作用。事实上确实如此：默认参数机制在 C with Classes 时就存在了，其意义就是前面给出的构造函数中默认参数的例子；而一般的函数重载直到 Release 1.0 才被引入。默认参数机制是重载机制的前驱之一；重载机制的另一个前驱是 `operator =` 的重载，我们会在后面的章节看到它。
-
-## 4.3 构造函数 (Cont.)
-
-### default member initializer
-
-default member initializer 只允许 `brace-or-equal-initializer` 即 `= something` 或者 `{ something }`，而不允许用括号的形式^[class.mem.general#nt:member-declarator](https://timsong-cpp.github.io/cppwp/n4868/class.mem.general#nt:member-declarator)^。
-
-### member initializer lists
-
-讨论 Delegating constructor
-
-## 4.4 析构函数
-
+---
 
 --8<-- "cpp/cpp_restart/toggle_visibility.md"
 

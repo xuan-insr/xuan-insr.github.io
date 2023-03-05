@@ -20,37 +20,39 @@
     - inline 函数
     - 函数默认参数与函数重载（不包含重载解析）
     - delegating constructors
-1. [ ] 类 (II): 拷贝赋值、拷贝构造、SMFs (defaulted and deleted functions)、动态分配
+    - 动态内存分配
+2. [ ] 类 (II): 拷贝赋值、拷贝构造、SMFs (defaulted and deleted functions)
     - 运算符重载
     - 引用
     - I/O stream
     - brace initialization
-1. [ ] 类 (III): 转换构造函数
+3. [ ] 类 (III): 转换构造函数
     - copy elision
     - 类型
     - bool
     - auto & return type deduction & trailing return type
     - user-defined conversion function
-1. [ ] 类 (IV): const 和 static 成员
+4. [ ] 类 (IV): const 和 static 成员
     - UB
         - signed integers are 2's complement (C++20)
     - 初始化
-1. [ ] 类 (V): 继承与抽象类、访问控制
+        - aggregate
+5. [ ] 类 (V): 继承与抽象类、访问控制
     - final, override
     - covariant return types
     - inherited constructors
-1. [ ] 模板
+6. [ ] 模板
     - string
     - alias template
     - constexpr (C++11); consteval, constinit (C++20)
-1. [ ] STL
+7. [ ] STL
     - range-based for loop (C++11); init-statement in range-for (C++20)
     - lambda
-1. [ ] 右值引用和移动语义
+8. [ ] 右值引用和移动语义
     - smart pointers
-1. [ ] 类 (VI): 移动构造与移动赋值
-1. [ ] namespace
-1. [ ] exception
+9. [ ] 类 (VI): 移动构造与移动赋值
+10. [ ] namespace
+11. [ ] exception
 
 ### Topics
 
@@ -104,6 +106,8 @@ list initialization (C++11)、brace-or-equal initializers (C++11)
 - [ ] modules (C++20)
 - [x] UB
 - [ ] literals
+- [ ] Explicit object parameter (C++23)
+- [ ] placement new
 
 
 *[ARM]: The Annotated C++ Reference Manual
