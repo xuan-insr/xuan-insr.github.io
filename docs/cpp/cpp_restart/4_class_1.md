@@ -243,7 +243,7 @@ public:
 
 <center>![](2023-03-04-01-35-48.png)</center>
 
-???+ note "Container() 是调用构造函数的函数调用表达式吗？"
+???+ note "Foo() 是调用构造函数的函数调用表达式吗？"
     不是！看下面的代码：
 
     ```c++
@@ -258,6 +258,8 @@ public:
     即，我们不能直接调用构造函数，这是因为 **构造函数并没有名字，因此永远无法被用名字找到**^[class.ctor.general#2](https://timsong-cpp.github.io/cppwp/n4868/class.ctor.general#2)^。`Foo();` 的写法并不是对构造函数的调用，而是一个 "function-style cast"。
 
     这是什么东西呢？我们知道 C 语言中的类型转换 (cast) 表达式形如 `(int)3.2`（称为 C-style cast），而 C++ 引入了形如 `int(3.2)` 的 function-style cast。`int(3.2)` 将 3.2 显式地转换为了一个临时的 `int` 对象；类似地，`Foo()` 也（什么都不用地）显式地转换出了一个临时的 `Foo` 对象。虽然这个转换本身会使用到构造函数，但是这个表达式本身不是在调用构造函数。
+
+    这个东西的重要用途之一也是模板。我们会在后面的章节中再次讨论。
 
 像普通的函数一样，构造函数可以是有参数的。例如，下面的构造函数允许用户传递一个初始大小，然后直接开一个对应大小的空间：
 
@@ -324,6 +326,8 @@ public:
 
 ## 4.3 构造函数 (Cont.)
 
+关于构造函数，我们还有几个问题可以讨论！
+
 ### implicitly-declared default constructor
 
 我们称一个能够无参调用的构造函数是 default constructor。即，它不接收任何参数，或者所有参数都有默认值。
@@ -339,8 +343,6 @@ public:
 用户还可以通过 `ClassName() = delete;` 显式地将 default constructor 设置成 deleted 的。
 
 ### member initializer lists
-
-关于构造函数，我们还有几个问题可以讨论！
 
 一个问题是这样的：假如我们希望根据构造函数的一些参数来初始化一些成员，我们固然可以这样写：
 
@@ -399,15 +401,6 @@ C++ 规定，在构造函数的函数体执行之前，所有参数要么按照 
 ???+ note "补充"
 
     如果构造函数的声明和定义分离，则 member initializer lists 应当出现在构造函数的定义中。
-
-    member initializer lists 中可以使用 `this` 指针，例如：
-
-    ```c++
-    class Foo {
-        int a[sizeof(*this)];            // error: not inside a member function
-        unsigned int sz = sizeof(*this); // OK: in default member initializer
-    };
-    ```
 
     member initializer list 的顺序不影响成员被初始化的顺序，它们按照在类定义中的顺序初始化。例如：
 
@@ -547,7 +540,7 @@ struct Foo {
 
 这里我们将 implicitly-declared destructor 标记为 deleted。
 
-类似 `Foo f;` 的全局变量、局部变量或者成员变量定义是非法的，如果 `Foo` 的析构函数是 deleted 的，或者在当前位置不可访问 (如当前在类外，但是析构函数是 private 的)[^private_or_deleted_dtor]。但是，这种情况下，可以通过 `new` 来创建一个动态的对象，因为这样创建的对象并不隐式地在同一个作用域内调用析构函数。
+如果 `Foo` 的析构函数是 deleted 的，或者在当前位置不可访问 (如当前在类外，但是析构函数是 private 的)，那么类似 `Foo f;` 的全局变量、局部变量或者成员变量定义是非法的[^private_or_deleted_dtor]。但是，这种情况下，可以通过 `new` 来创建一个动态的对象，因为这样创建的对象并不隐式地在同一个作用域内调用析构函数。
 
 [^private_or_deleted_dtor]: 我们会在后面的章节讨论将析构函数设成 private 或者 delete 的场景。[这篇文章](https://www.rangakrish.com/index.php/2020/03/04/deleted-destructor-in-c/) 给出了一些解释。
 
@@ -564,7 +557,7 @@ struct Foo {
 !!! note
     这里说「最小生命周期」，是因为对象被析构后，对应的存储虽然可以被立刻回收，但也不一定立刻被回收。但「最小」提供的是一种保证。
 
-任何一个对象的 storage duration 都是如下一种[^thread_storage_duration]：
+在 C++11 之前，任何一个对象的 storage duration 都是如下一种[^thread_storage_duration]：
 
 - **automatic** storage duration: 没有被定义为 `static`[^auto] 的局部对象。[^auto_opt]
 - **static** storage duration: non-local 对象，或者被定义为 `static` 的局部对象或者类成员对象。我们会在后面的章节讨论 `static` 成员对象。
@@ -593,6 +586,8 @@ struct Foo {
 - 对于临时对象，当其生命周期结束时。我们会在后面的章节讨论临时对象及其生命周期。
 
 数组元素的析构函数调用顺序与其构造顺序相反。类的成员的析构函数调用顺序也与其构造顺序相反。
+
+![](2023-03-05-19-26-59.png)
 
 作为一个练习，请说明下面的代码的输出：
 

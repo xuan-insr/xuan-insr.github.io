@@ -1,13 +1,21 @@
----
-title: Week 2 - 类(I) 定义、成员、构造、析构
-verticalSeparator: ===
-revealOptions:
-  width: 1600
-  height: 900
-  margin: 0.04
-  transition: 'fade'
-  slideNumber: true
----
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Week 2 - 类(I) 定义、成员、构造、析构</title>
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./dist/reset.css" />
+    <link rel="stylesheet" href="./dist/reveal.css" />
+    <link rel="stylesheet" href="./dist/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/base16/zenburn.css" />
+
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
 
 <link rel="stylesheet" href="custom_light.css">
 <link rel="stylesheet" href="../custom_light.css">
@@ -19,12 +27,10 @@ revealOptions:
 <br>
 
 ## Week 2 - 类(I) 定义、成员、构造、析构
-
----
-
+</script></section><section ><section data-markdown><script type="text/template">
 ## 4.1 类的定义
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 我们在上一节已经看到了类的定义的一些具体例子，例如：
 
@@ -43,7 +49,7 @@ public:
 }
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 在 C++ 中，每个类的定义 (class definition) 引入一个新的类型。
 
@@ -59,21 +65,19 @@ public:
 
 </div>
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 类的定义：
 
 ![](2023-03-05-18-21-45.png)
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## A.1 声明与定义
 
 声明将名字引入或重新引入到程序中。
 
 **定义是声明的一种** ，指的是那些引入的名字对应的实体足以被使用的声明。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 [[basic.pre#5](https://timsong-cpp.github.io/cppwp/basic.pre#5)]: Every name is introduced by a declaration
 
@@ -83,7 +87,7 @@ public:
 - it contains the extern specifier or a linkage-specification (`extern "C" {}`) and neither an initializer nor a function-body,
 - ...
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 「重新引入」
 
@@ -97,7 +101,7 @@ int f(int x);
 
 上面的例子是合法的。它们只是 `i` 和 `f` 的声明而非定义。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 下面的语句都是定义：
 
@@ -109,16 +113,14 @@ struct S { int a; int b; };     // defines S, S​::​a, and S​::​b
 enum { up, down };              // defines up and down
 S anS;                          // defines anS
 ```
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## 4.2 类的成员
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ![](2023-03-05-18-21-45.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 member-specification 说明了类的成员。其结构如下：
 
@@ -126,7 +128,7 @@ member-specification 说明了类的成员。其结构如下：
 
 其中 member-declaration 是成员的声明，而 access-specifier 是 `private`, `public`, `protected` 之一
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 成员可以包括成员变量、成员函数，也可以（嵌套的）类、枚举等，还可以包括声明类型的别名（如 `typedef` 和 `using`）等
 
@@ -142,7 +144,7 @@ public:
 Foo::Bar b;
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### Type Alias
 
@@ -158,7 +160,7 @@ typedef struct arraylist_* arraylist;
 using arraylist = struct arraylist_ *;
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 类型别名的声明也可以是类的成员，其作用域是类的作用域，同样受 access-specifier 的影响。例如：
 
@@ -177,11 +179,11 @@ Foo::elem z;    // OK, z has type int
 // Foo::type c; // Error: 'type' is a private member of 'Foo'   
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 `using` 被引入是为了支持模板。我们在讲到模板的时候再来讨论这些问题。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 类的成员函数可以在类内直接给出定义，也可以在类内只声明，在类外给出定义；这不影响成员函数的 access-specifier：
 
@@ -200,7 +202,7 @@ int main() {
 }
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### `this` 指针
 
@@ -218,13 +220,13 @@ C++ 早期会被编译成 C 语言，然后再编译成汇编。
 
 上面代码中的 `Foo::bar` 函数，如何编译成 C 中的函数呢？
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 每个成员函数都会被视为有一个 implicit object parameter，它即是 calling object。
 
 而在成员函数的函数体中，`this` 表达式的值即是 implicit object parameter 的地址。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 成员函数的函数体中，访问任何成员时都会被自动添加 `this->`
 
@@ -232,15 +234,13 @@ C++ 早期会被编译成 C 语言，然后再编译成汇编。
 
 其中的 `x += v;` 实际是 `this->x += v;`。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ![](2023-03-05-18-50-11.png)
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## A.2 inline 函数
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 struct User {
@@ -258,15 +258,15 @@ public:
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ![](2023-03-05-18-57-24.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 不应当因为封装性而带来额外的性能开销
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### 内联替换 (inline substitution)
 
@@ -286,7 +286,7 @@ void foo() {
 }
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 void foo() {
@@ -302,15 +302,15 @@ void foo() {
 }
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ![](2023-03-05-18-58-58.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ![](2023-03-05-18-59-26.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 那么，什么样的函数会被内联呢？
 
@@ -334,11 +334,11 @@ void foo() {
 
 </div>
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 内联会在 **每处** 调用被展开，因此如果被内联的函数非常大，则会导致生成的目标代码很大，这会带来内存紧张或者局部性问题；这也可能会对性能产生一定影响。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 内联函数是 C 语言中 function-like macros 的一个好的替换。
 
@@ -350,7 +350,7 @@ void foo() {
 
 </div>
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 Don't add `inline` just because you think your code will run faster if the compiler inlines it. 
 
@@ -358,23 +358,21 @@ Don't add `inline` just because you think your code will run faster if the compi
 
 Generally, the compiler will be able to do this better than you.
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 C++17 开始，`inline` 还被用于变量。
 
 实际上在现在的 C++ 中，`inline` 比「让一个函数被内联」更重要的作用在于，帮助实现 header-only 的库。
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## 4.3 构造函数
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 构造函数 (constructor) 是一种特殊的成员函数，用于初始化该类的对象。
 
 构造函数 constructor 也时常被简写为 ctor 或者 c'tor 等。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 「使程序员能够建立起某种保证，其他成员函数都能依赖这个保证」
 
@@ -392,7 +390,7 @@ public:
 
 「保证」：即 `val` 的值要么是 `nullptr`，要么是其他成员函数赋的值，而不会是个随机的值。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 这样，就可以使用 `Container c = Container();` 构造一个对象了。
 
@@ -404,17 +402,17 @@ public:
 
 为了代码更加简洁紧凑，C++ 允许更加简洁的写法：`Container c;`。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ![](2023-03-05-19-10-45.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 由于定义一个对象时需要用到构造函数，因此如果要用的构造函数是 private 的，对象就无法被构造：
 
 ![](2023-03-05-19-11-09.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### 构造函数的参数
 
@@ -433,7 +431,7 @@ public:
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 可以使用 `Container c2 = Container(64);` 构造一个自定义大小的容器。
 
@@ -443,7 +441,7 @@ public:
 
 在 C++ 中，声明变量时的 **初始化器 (initializer)** 除了类似 `int a = 4;` 的 `= initializer-clause` 之外，还有类似 `int a(4);` 的 `( expression-list )`。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 #### most vexing parse
 
@@ -460,7 +458,7 @@ void func();
 
 </div>
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### 动态内存分配
 
@@ -476,36 +474,34 @@ Container *p = (Container *)malloc(sizeof(Container));
 
 </div>
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 C++ 引入了新的用于创建动态对象的操作符 `new` 以及对应的用来回收的 `delete`。
 
 `new` 表达式可以用来创建对象或者数组：`int * p1 = new int; int * pa = new int[n];`。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ![](2023-03-05-19-23-35.png)
 
 
 ![](2023-03-05-19-23-43.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ![](2023-03-05-19-23-51.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 如果 `p` 在 `new` 的时候创建的是单个对象，则应该用 `delete p;` 的形式 (single-object delete expression) 回收
 
 如果 `p` 在 `new` 的时候创建的是数组，则应该用 `delete[] p;` (array delete expression) 的形式回收
 
 否则是 **未定义行为 (UB, undefined behavior)**
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## A.3 函数默认参数与函数重载
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 这样的构造函数允许用户传递一个初始大小，然后直接开一个对应大小的空间：
 
@@ -522,7 +518,7 @@ public:
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 假如我们希望用户既可以给定大小，也能够在不知道要开多大的情况下使用一个默认大小，怎么办呢？
 
@@ -540,13 +536,13 @@ point();     // calls point(3, 4)
 
 </div>
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 默认参数必须出现在末尾的若干个参数中。
 
 这个要求的合理性容易理解：假如没有这个要求，那么如果有 `void point(int x = 3, int y);`，则 `point(4);` 的含义是容易让人迷惑的。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 因此，`Container` 类的构造函数可以写成：
 
@@ -562,13 +558,13 @@ public:
     // ...
 };
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 可以使用 `Container c1;` 构造一个默认大小 (512) 的容器，或者用 `Container c2(64);` 构造一个自定义大小的容器了。
 
 前者实际上是 `Container(512)`，而后者是 `Container(64)`。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 那么，假如我希望根据是否传入某个参数来选择不同的构造函数，怎么办呢？例如我们希望 `Container` 的构造函数长这样：
 
@@ -583,7 +579,7 @@ Container::Container(unsigned size, elem initVal) {
 
 但是！我们希望如果没有传入 `initVal`，就不要做那个 set init values 的循环怎么办呢？
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 C++ 支持这样的操作，这被称为 **函数重载 (function overloading)** ：
 
@@ -605,14 +601,14 @@ public:
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 这样，当我们使用 `Container c1, c2(4), c3(6, 2);` 定义三个对象时，它们会分别使用无参、一个参数和两个参数的构造函数：
 
 <img src="2023-03-05-19-33-10.png" width="75%">
 
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 不仅是构造函数支持重载，其他的成员函数或者独立的函数也支持重载。例如：
 
@@ -624,7 +620,7 @@ abs(1);             // calls abs(int);
 abs(1.0);           // calls abs(double);
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 如果一个名字引用多个函数，则称它是 overloaded 的。当使用这样的名字的时候，编译器用来决定使用哪个；这个过程称为 **重载解析 (overload resolution)** 。
 
@@ -649,13 +645,13 @@ abs(1.0);           // calls abs(double);
 
 </div>
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 「规则」比较复杂，但是一个简单的例子是，不需要类型转换的比需要的要好：
 
 ![](2023-03-05-19-37-36.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 也是因此，两个只有返回值类型不同的函数不是合法的重载，因为调用时没有办法完成重载解析：
 
@@ -665,7 +661,7 @@ void f(int a);  // error: functions that differ only in
                 // their return type cannot be overloaded
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 void f(int i = 1);
@@ -677,7 +673,7 @@ void foo() {
 }
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### `nullptr`
 
@@ -687,7 +683,7 @@ void foo() {
 
 （这是 C++ 与 C 不兼容的例子之一。）
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 既然 C++ 不允许将 `(void*) 0` 当空指针，那么我们用什么表示空指针呢？
 
@@ -695,7 +691,7 @@ void foo() {
 
 因此，如果我们将 `NULL` 定义为 `0`，则 `int * p = NULL;` 即 `int * p = 0;` 是合法的（赋值成其他整数是不合法的）。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 void f(int *);
@@ -705,7 +701,7 @@ void f(int);
 f(NULL);   // ==> f(0) , so f(int) is called
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 因此，C++11 引入了 `nullptr` 来表示空指针常量。这样就解决了上面的问题：
 
@@ -718,25 +714,23 @@ f(nullptr);   // f(int *) is called
 
 因为 null pointer constant 可以转换到任意指针类型
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 当然，为了兼容，值为 0 的整型字面量仍然是空指针常量。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 既然有函数重载，为什么要有默认参数呢？
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## 4.3 构造函数 (Cont.)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### implicitly-declared default constructor
 
 我们称一个能够无参调用的构造函数是 default constructor。即，它不接收任何参数，或者所有参数都有默认值。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 有一个问题是，我们在讲构造函数之前的代码里都没有写构造函数，但是它们也能正常编译运行
 
@@ -750,13 +744,13 @@ deleted 的函数不能被调用。
 
 </div>
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 不过，如果用户提供了构造函数，他仍然可以用 `ClassName() = default;` 来引入默认的构造函数。
 
 用户还可以通过 `ClassName() = delete;` 显式地将 default constructor 设置成 deleted 的。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### member initializer lists
 
@@ -776,7 +770,7 @@ public:
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++ linenums="1"
 class User {
@@ -793,7 +787,7 @@ public:
 
 这些初始化会在构造函数的函数体执行之前完成。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 在一些情况下，member initializer lists 是必要的。例如：
 
@@ -812,7 +806,7 @@ public:
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 C++ 规定，在构造函数的函数体执行之前，所有参数要么按照 member initializer lists 的描述初始化，要么以默认方式初始化。
 
@@ -822,21 +816,21 @@ C++ 规定，在构造函数的函数体执行之前，所有参数要么按照 
 
 ![](2023-03-05-19-55-50.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 在后面的章节中，我们还会看到更多 member initializer lists 是必要的的情况。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 如果构造函数的声明和定义分离，则 member initializer lists 应当出现在构造函数的定义中。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 member initializer list 的顺序不影响成员被初始化的顺序，它们按照在类定义中的顺序初始化。例如：
 
 ![](2023-03-05-19-56-51.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 #### delegating constructor
 
@@ -848,7 +842,7 @@ member initializer list 可以将构造委托给同一类型的另一个构造�
 
 ![](2023-03-05-19-57-54.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 一个构造函数不能直接或间接地被委托给自己
 
@@ -861,7 +855,7 @@ struct C {
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### default member initializer
 
@@ -880,7 +874,7 @@ public:
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++ linenums="1"
 class User {
@@ -897,7 +891,7 @@ public:
 
 如果一个成员变量同时被 member initializer list 指定且有 default member initializer，按前者执行，后者被忽略。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 default member initializer 只允许 `brace-or-equal-initializer` 即 `= something` 或者 `{ something }`，而不允许用括号的形式。
 
@@ -918,12 +912,10 @@ public:
     Circle(int cx, int cy, int r) : c(cx, cy), r(r) {}
 };
 ```
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## 4.4 析构函数
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++ linenums="1"
 class Container {
@@ -940,7 +932,7 @@ public:
 
 `malloc` 出来的空间需要我们在不用的时候手动 `free` 来回收。什么时候完成这个回收呢？
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 C++ 引入了 **析构函数 (destructors)** ，在每个对象的生命周期结束的时候被调用，大多数情况被用来释放对象在运行过程中可能获取的资源，例如释放申请的内存、关闭打开的文件等。
 
@@ -961,7 +953,7 @@ public:
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 析构函数的参数列表永远是空的。显然，析构函数是无法重载的。
 
@@ -969,7 +961,7 @@ public:
 
 析构函数 destructor 也经常被简写为 dtor 或 d'tor 等。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 当然，自 C++11 起，我们仍然可以通过 `= default;` 或者 `= delete;` 来生成默认的析构函数，或者删除 implicitly-declared destructor。例如：
 
@@ -982,7 +974,7 @@ private:
 
 这里我们告知编译器在 `private` 范围内显式生成了默认的构造函数。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 struct Foo {
@@ -992,23 +984,21 @@ struct Foo {
 
 这里我们将 implicitly-declared destructor 标记为 deleted。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 如果 `Foo` 的析构函数是 deleted 的，或者在当前位置不可访问 (如当前在类外，但是析构函数是 private 的)，那么类似 `Foo f;` 的全局变量、局部变量或者成员变量定义是非法的。
 
 但是，这种情况下，可以通过 `new` 来创建一个动态的对象，因为这样创建的对象并不隐式地在同一个作用域内调用析构函数。
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## 4.5 构造和析构的时机和顺序
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 对于一个类对象，它的 **生命周期 (lifetime)** 自它的初始化（构造）完成开始，到它的析构函数调用被启动为止。
 
 任何一个对象都会占据一部分存储；这部分存储的最小生命周期称为这个对象的 **storage duration**。对象的 lifetime 等于或被包含于其 storage duration。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 在 C++11 之前，任何一个对象的 storage duration 都是如下一种：
 
@@ -1018,7 +1008,7 @@ struct Foo {
 
 子对象 (subobject，如成员变量) 的 storage duration 是它所在的对象的 storage duration。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 在下面的情况下，构造函数会被调用：
 
@@ -1027,7 +1017,7 @@ struct Foo {
 - 对于 automatic storage duration 的对象，在其声明被运行时。
 - 对于 dynamic storage duration 的对象，在其用 `new` 表达式创建时。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 在下面的情况下，析构函数会被调用：
 
@@ -1036,17 +1026,17 @@ struct Foo {
 - 对于 dynamic storage duration 的对象，在 `delete` 表达式中。
 - 对于临时对象，当其生命周期结束时。我们会在后面的章节讨论临时对象及其生命周期。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 数组元素的析构函数调用顺序与其构造顺序相反。类的成员的析构函数调用顺序也与其构造顺序相反。
 
 ![](2023-03-05-19-26-42.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ![](2023-03-05-19-23-51.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 作为一个练习，请说明下面的代码的输出：
 
@@ -1095,12 +1085,10 @@ int main() {
 }
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 答案是 `111 2 3 4 5 6 444 333 888 999 777 666 555 `。
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Takeaway
 
 - 类的定义
@@ -1113,7 +1101,7 @@ int main() {
   - `this`
 - 函数内联
   
-===
+</script></section><section data-markdown><script type="text/template">
 
 ## Takeaway
 
@@ -1130,7 +1118,7 @@ int main() {
   - 重载解析
   - 为什么 C++ 引入了 `nullptr`
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ## Takeaway
 
@@ -1144,12 +1132,10 @@ int main() {
     - static
     - dynamic
   - 构造和析构的时机和顺序
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## 补充
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### Elaborated type specifiers
         
@@ -1167,13 +1153,13 @@ int main() {
 
 </div>
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 类的定义：
 
 ![](2023-03-05-18-21-45.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 这里的 nested-name-specifier 是 `::` 或者 `Foo::` 之类的东西，例如：
 
@@ -1202,7 +1188,7 @@ int main() {
 }
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 在 C++ 中，类的定义会引入新的作用域，其范围是 member-specification 等。因此这里的 `Outer::Inner` 和外面的 `Inner` 可以同时存在。  
 
@@ -1210,13 +1196,13 @@ int main() {
 
 这里第 7 行访问到 `Outer::Inner` 是因为 Name Hiding，即我们熟悉的作用域屏蔽。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 C 和 C++ 都是按名等价 (name equivalence) 而非按结构等价 (structural equivalence) 的：
 
 ![](2023-03-05-18-25-45.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### Forward Declaration
 
@@ -1231,7 +1217,7 @@ struct X {
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 我们可以用 Forward Declaration 解决这个问题：
 
@@ -1247,7 +1233,7 @@ struct X {
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 如果当前作用域没有名为 `identifier` 的类，那么形如 `class-key attr identifier ;` 的声明是一个 forward declaration。
     
@@ -1255,7 +1241,7 @@ struct X {
 
 不完整的类型有一些限制，但是也有一些可以完成的操作。例如不完整的类型不能用来定义变量（包括成员变量）、作为函数声明或定义的参数或者返回值类型等；但是可以定义指向它的指针。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++ [1-10|4]
 struct X;
@@ -1269,7 +1255,7 @@ struct X {
     Y* bar();
 };
 ```
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### Injected Class Name
 
@@ -1283,7 +1269,7 @@ The class-name is also inserted into the scope of the class itself; this is know
 
 </div>
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### `Container()` 是函数调用表达式吗？
 
@@ -1294,13 +1280,13 @@ Foo f2 = Foo::Foo();
 
 ![](2023-03-05-19-14-01.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 我们不能直接调用构造函数，这是因为 **构造函数并没有名字，因此永远无法被用名字找到**。
 
 `Foo();` 的写法并不是对构造函数的调用，而是一个 "function-style cast"。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 #### Function-style cast
 
@@ -1308,10 +1294,63 @@ C-style cast: `(int)3.2`
 
 function-style cast: `int(3.2)`
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 `int(3.2)` 将 3.2 显式地转换为了一个临时的 `int` 对象
 
 类似地，`Foo()` 也（什么都不用地）显式地转换出了一个临时的 `Foo` 对象
 
 虽然这个转换本身会使用到构造函数，但是这个表达式本身不是在调用构造函数。
+</script></section></section></div>
+    </div>
+
+    <script src="./dist/reveal.js"></script>
+
+    <script src="./plugin/markdown/markdown.js"></script>
+    <script src="./plugin/highlight/highlight.js"></script>
+    <script src="./plugin/zoom/zoom.js"></script>
+    <script src="./plugin/notes/notes.js"></script>
+    <script src="./plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        slideNumber: true,
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":1600,"height":900,"margin":0.04,"transition":"fade","slideNumber":true}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>

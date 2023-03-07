@@ -21,7 +21,7 @@
     - 函数默认参数与函数重载（不包含重载解析）
     - delegating constructors
     - 动态内存分配
-2. [ ] 类 (II): 拷贝赋值、拷贝构造、SMFs (defaulted and deleted functions)
+2. [ ] 类 (II): 拷贝赋值、拷贝构造、SMFs
     - 运算符重载
     - 引用
     - I/O stream

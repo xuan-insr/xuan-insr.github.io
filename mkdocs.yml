@@ -8,8 +8,13 @@ nav:
     - cpp/index.md
     - 🍉C++ 学习记录:
       - cpp/cpp_restart/index.md
-      - 朋辈辅学 slides:
+      - 朋辈辅学 slides 与随材:
         - Week1 C++ 的诞生与面向对象程序设计: https://xuan-insr.github.io/slides/cpp/1_birth_and_oop/
+        - Week1 思考题与复习题: cpp/cpp_restart/review/week1.md
+        - Week2 类(I) 定义、成员、构造、析构: https://xuan-insr.github.io/slides/cpp/2_class_I/
+        - Week2 思考题与复习题: cpp/cpp_restart/review/week2.md
+        - Week3 类 (II) 拷贝赋值、拷贝构造、SMFs: https://xuan-insr.github.io/slides/cpp/3_class_II/
+        - Week3 思考题与复习题: cpp/cpp_restart/review/week3.md
       - 正文！:
         - 1 C++ 的诞生: cpp/cpp_restart/1_birth.md
         - 2 编程范式: cpp/cpp_restart/2_paradigm.md
