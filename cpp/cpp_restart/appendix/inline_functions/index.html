@@ -17,7 +17,7 @@
         <link rel="next" href="../func_overload/">
       
       <link rel="icon" href="../../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.0">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.1">
     
     
       
@@ -570,17 +570,27 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
-          朋辈辅学 slides
+          朋辈辅学 slides 与随材
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2_2_2">
           <span class="md-nav__icon md-icon"></span>
-          朋辈辅学 slides
+          朋辈辅学 slides 与随材
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -592,6 +602,76 @@
     <li class="md-nav__item">
       <a href="https://xuan-insr.github.io/slides/cpp/1_birth_and_oop/" class="md-nav__link">
         Week1 C++ 的诞生与面向对象程序设计
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../review/week1/" class="md-nav__link">
+        Week1 思考题与复习题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://xuan-insr.github.io/slides/cpp/2_class_I/" class="md-nav__link">
+        Week2 类(I) 定义、成员、构造、析构
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../review/week2/" class="md-nav__link">
+        Week2 思考题与复习题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://xuan-insr.github.io/slides/cpp/3_class_II/" class="md-nav__link">
+        Week3 类 (II) 拷贝赋值、拷贝构造、SMFs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../review/week3/" class="md-nav__link">
+        Week3 思考题与复习题
       </a>
     </li>
   
@@ -3481,7 +3561,7 @@
 <p>那么，什么样的函数会被内联呢？在 C with Classes 中，只有那些函数体写在类的定义中的成员函数才会被内联。当然，并非所有这样的函数都会被内联，比如如果某个函数是递归的，那么这个函数很可能就没办法被内联。（当然，如果编译器想的话，可以通过递归展开实现内联。）</p>
 <p>而在后来的 C++ 中，<code>inline</code> 关键字被引入；它用在函数声明中，例如 <code>inline int foo(int x) { return add5(x); }</code>。它向编译器表明一个建议：这里应该优先考虑使用内联替换而非通常的函数调用。函数体写在类的定义中的成员函数也会默认有此建议。（但是编译器通常忽略这种建议，而自己选择是否需要内联。例如前面图中 <code>add5</code> 那个函数，虽然我们没有写 <code>inline</code>，但是编译器仍然决定将它内联。）</p>
 <p>显然，内联也是有代价的。如上面的例子所示，内联会在 <strong>每处</strong> 调用被展开，因此如果被内联的函数非常大，则会导致生成的目标代码很大，这会带来内存紧张或者局部性问题；这也可能会对性能产生一定影响。</p>
-<p>内联函数是 C 语言中 function-like macros 的一个好的替换。BS 说，C++ 希望「允许用语言本身表达所有重要的东西，而不是在注释里或者通过宏这类黑客手段」。宏是预处理器负责的事情，而非编译器。因此 function-like macros 的重大问题之一是缺乏类型检查，另外会因为括号之类的问题引发困扰。用内联的函数替代 function-like macros 也能够有定义域和访问控制，而这些如果使用宏则需要手动控制甚至没办法实现。</p>
+<p>内联函数是 C 语言中 function-like macros 的一个好的替换。BS 说，C++ 希望「允许用语言本身表达所有重要的东西，而不是在注释里或者通过宏这类黑客手段」。宏是预处理器负责的事情，而非编译器。因此 function-like macros 的重大问题之一是缺乏类型检查，另外会因为括号之类的问题引发困扰。用内联的函数替代 function-like macros 也能够有作用域和访问控制，而这些如果使用宏则需要手动控制甚至没办法实现。</p>
 <details class="info">
 <summary>Info</summary>
 <p>内联函数还有相关的很多问题。例如，假如在整个程序中的不同编译单元里，同一个内联函数有不同定义会发生什么事。由于 C++ 允许分别编译，这样的检查是极端困难的。因此，标准规定这种情况是 undefined behavior<sup><a href="../std_citation_needed">std_citation_needed</a></sup>。我们会在未来聊 undefined behavior 相关的问题。</p>
@@ -3494,7 +3574,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-02-23T09:01:23+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-02-23</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-07T02:46:24+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-07</span>
       
         <br>
         创建日期:
@@ -3660,7 +3740,7 @@ var giscus = document.querySelector("script[src*=giscus]")
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.ce72ebac.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.b78d2936.min.js"></script>
       
         <script src="../../../../js/timeago.min.js"></script>
       

@@ -17,7 +17,7 @@
         <link rel="next" href="../5_class_2/">
       
       <link rel="icon" href="../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.0">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.1">
     
     
       
@@ -575,17 +575,27 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
-          朋辈辅学 slides
+          朋辈辅学 slides 与随材
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2_2_2">
           <span class="md-nav__icon md-icon"></span>
-          朋辈辅学 slides
+          朋辈辅学 slides 与随材
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -597,6 +607,76 @@
     <li class="md-nav__item">
       <a href="https://xuan-insr.github.io/slides/cpp/1_birth_and_oop/" class="md-nav__link">
         Week1 C++ 的诞生与面向对象程序设计
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../review/week1/" class="md-nav__link">
+        Week1 思考题与复习题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://xuan-insr.github.io/slides/cpp/2_class_I/" class="md-nav__link">
+        Week2 类(I) 定义、成员、构造、析构
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../review/week2/" class="md-nav__link">
+        Week2 思考题与复习题
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://xuan-insr.github.io/slides/cpp/3_class_II/" class="md-nav__link">
+        Week3 类 (II) 拷贝赋值、拷贝构造、SMFs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../review/week3/" class="md-nav__link">
+        Week3 思考题与复习题
       </a>
     </li>
   
@@ -3745,7 +3825,7 @@
 
 <h1 id="4-类-i---定义成员构造析构">4 类 (I) - 定义、成员、构造、析构<a class="headerlink" href="#4-类-i---定义成员构造析构" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 4133 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 231 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 17 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 4155 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 227 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 17 分钟</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -4143,7 +4223,7 @@ function toggleVisibilityFoot() {
 <p>那么，什么样的函数会被内联呢？在 C with Classes 中，只有那些函数体写在类的定义中的成员函数才会被内联。当然，并非所有这样的函数都会被内联，比如如果某个函数是递归的，那么这个函数很可能就没办法被内联。（当然，如果编译器想的话，可以通过递归展开实现内联。）</p>
 <p>而在后来的 C++ 中，<code>inline</code> 关键字被引入；它用在函数声明中，例如 <code>inline int foo(int x) { return add5(x); }</code>。它向编译器表明一个建议：这里应该优先考虑使用内联替换而非通常的函数调用。函数体写在类的定义中的成员函数也会默认有此建议。（但是编译器通常忽略这种建议，而自己选择是否需要内联。例如前面图中 <code>add5</code> 那个函数，虽然我们没有写 <code>inline</code>，但是编译器仍然决定将它内联。）</p>
 <p>显然，内联也是有代价的。如上面的例子所示，内联会在 <strong>每处</strong> 调用被展开，因此如果被内联的函数非常大，则会导致生成的目标代码很大，这会带来内存紧张或者局部性问题；这也可能会对性能产生一定影响。</p>
-<p>内联函数是 C 语言中 function-like macros 的一个好的替换。<abbr title="Bjarne Stroustrup">BS</abbr> 说，C++ 希望「允许用语言本身表达所有重要的东西，而不是在注释里或者通过宏这类黑客手段」。宏是预处理器负责的事情，而非编译器。因此 function-like macros 的重大问题之一是缺乏类型检查，另外会因为括号之类的问题引发困扰。用内联的函数替代 function-like macros 也能够有定义域和访问控制，而这些如果使用宏则需要手动控制甚至没办法实现。</p>
+<p>内联函数是 C 语言中 function-like macros 的一个好的替换。<abbr title="Bjarne Stroustrup">BS</abbr> 说，C++ 希望「允许用语言本身表达所有重要的东西，而不是在注释里或者通过宏这类黑客手段」。宏是预处理器负责的事情，而非编译器。因此 function-like macros 的重大问题之一是缺乏类型检查，另外会因为括号之类的问题引发困扰。用内联的函数替代 function-like macros 也能够有作用域和访问控制，而这些如果使用宏则需要手动控制甚至没办法实现。</p>
 <details class="info">
 <summary>Info</summary>
 <p>内联函数还有相关的很多问题。例如，假如在整个程序中的不同编译单元里，同一个内联函数有不同定义会发生什么事。由于 C++ 允许分别编译，这样的检查是极端困难的。因此，标准规定这种情况是 undefined behavior<sup><a href="../std_citation_needed">std_citation_needed</a></sup>。我们会在未来聊 undefined behavior 相关的问题。</p>
@@ -4184,7 +4264,7 @@ function toggleVisibilityFoot() {
 <p>也就是说，由于定义一个对象时需要用到构造函数，因此如果要用的构造函数是 <code>private</code> 的，对象就无法被构造：</p>
 <p><center><img alt="" src="../2023-03-04-01-35-48.png" /></center></p>
 <details class="note" open="open">
-<summary>Container() 是调用构造函数的函数调用表达式吗？</summary>
+<summary>Foo() 是调用构造函数的函数调用表达式吗？</summary>
 <p>不是！看下面的代码：</p>
 <div class="highlight"><pre><span></span><code><span class="n">Foo</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Foo</span><span class="p">();</span>
 <span class="n">Foo</span><span class="w"> </span><span class="n">f2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Foo</span><span class="o">::</span><span class="n">Foo</span><span class="p">();</span>
@@ -4193,6 +4273,7 @@ function toggleVisibilityFoot() {
 <p><center><img alt="" src="../2023-03-03-12-30-33.png" /></center></p>
 <p>即，我们不能直接调用构造函数，这是因为 <strong>构造函数并没有名字，因此永远无法被用名字找到</strong><sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.ctor.general#2">class.ctor.general#2</a></sup>。<code>Foo();</code> 的写法并不是对构造函数的调用，而是一个 "function-style cast"。</p>
 <p>这是什么东西呢？我们知道 C 语言中的类型转换 (cast) 表达式形如 <code>(int)3.2</code>（称为 C-style cast），而 C++ 引入了形如 <code>int(3.2)</code> 的 function-style cast。<code>int(3.2)</code> 将 3.2 显式地转换为了一个临时的 <code>int</code> 对象；类似地，<code>Foo()</code> 也（什么都不用地）显式地转换出了一个临时的 <code>Foo</code> 对象。虽然这个转换本身会使用到构造函数，但是这个表达式本身不是在调用构造函数。</p>
+<p>这个东西的重要用途之一也是模板。我们会在后面的章节中再次讨论。</p>
 </details>
 <p>像普通的函数一样，构造函数可以是有参数的。例如，下面的构造函数允许用户传递一个初始大小，然后直接开一个对应大小的空间：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -4290,7 +4371,7 @@ function toggleVisibilityFoot() {
 <span class="w">    </span><span class="c1">// ...</span>
 <span class="p">};</span>
 </code></pre></div></td></tr></table></div>
-<p>这样，就可以使用 <code>Container c1;</code> 构造一个默认大小 (512) 的容器，或者用 <code>Container c2(64);</code> 构造一个自定义大小的容器了。前者实际上调用 <code>Container(512)</code>，而后者调用 <code>Container(64)</code>。</p>
+<p>这样，就可以使用 <code>Container c1;</code> 构造一个默认大小 (512) 的容器，或者用 <code>Container c2(64);</code> 构造一个自定义大小的容器了。前者实际上是 <code>Container(512)</code>，而后者是 <code>Container(64)</code>。</p>
 <details class="info">
 <summary>补充</summary>
 <p>对于非模板函数，如果已声明的函数在 <strong>同一作用域</strong> 中重新声明（在内部作用域内的重新声明会出发作用域屏蔽），则可以向该函数添加默认参数。在函数调用时，默认值是该函数所有可见声明中提供的默认值的并集。对于默认值已经可见的参数，重新声明不能引入默认值（即使值相同）。</p>
@@ -4343,7 +4424,7 @@ function toggleVisibilityFoot() {
 <span class="n">abs</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w">             </span><span class="c1">// calls abs(int);</span>
 <span class="n">abs</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span><span class="w">           </span><span class="c1">// calls abs(double);</span>
 </code></pre></div>
-<p>如果一个名字引用多个函数，则它是 overloaded。当使用这样的名字的时候，编译器用来决定使用哪个；这个过程称为 <strong>重载解析 (overload resolution)</strong>。简单来说，重载解析首先收集这个名字能找到的函数形成候选函数集 (candidate functions)，然后检查参数列表来形成可行函数集 (viable functions)，然后在可行函数集中按照一定的规则比较这些函数，如果 <strong>恰好</strong> 有一个函数 (best viable function) 优于其他所有函数，则重载解析成功并调用此函数；否则编译失败。</p>
+<p>如果一个名字引用多个函数，则称它是 overloaded 的。当使用这样的名字的时候，编译器用来决定使用哪个；这个过程称为 <strong>重载解析 (overload resolution)</strong>。简单来说，重载解析首先收集这个名字能找到的函数形成候选函数集 (candidate functions)，然后检查参数列表来形成可行函数集 (viable functions)，然后在可行函数集中按照一定的规则比较这些函数，如果 <strong>恰好</strong> 有一个函数 (best viable function) 优于其他所有函数，则重载解析成功并调用此函数；否则编译失败。</p>
 <p>上面的「规则」比较复杂<sup id="fnref:overload_resolution"><a class="footnote-ref" href="#fn:overload_resolution">18</a></sup>，但是一个简单的例子是，不需要类型转换的比需要的要好<sup id="fnref:rank_of_conversion"><a class="footnote-ref" href="#fn:rank_of_conversion">19</a></sup>：</p>
 <p><center><img alt="" src="../2023-03-03-16-03-41.png" /></center></p>
 <p>因此，上面第 5 行的 <code>f(0L);</code> 中 <code>0L</code> 是 <code>long</code> 类型的字面量，它调用 <code>void f(long)</code> 不需要转换，而调用 <code>void f(float)</code> 需要转换，因此选取前者。</p>
@@ -4379,8 +4460,18 @@ function toggleVisibilityFoot() {
 <p>因为 null pointer constant 可以转换到任意指针类型<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/conv.ptr#1">conv.ptr#1</a></sup>。</p>
 <p>当然，为了兼容，值为 0 的整型字面量仍然是空指针常量。</p>
 </div>
-<p>我们可能会发现，函数重载的作用已经足以覆盖默认参数的作用。事实上确实如此：默认参数机制在 C with Classes 时就存在了，其意义就是前面给出的构造函数中默认参数的例子；而一般的函数重载直到 Release 1.0 才被引入。默认参数机制是重载机制的前驱之一；重载机制的另一个前驱是 <code>operator =</code> 的重载，我们会在后面的章节看到它。</p>
+<p>考虑函数重载和默认参数共同使用的情况，事实上仍然能通过上面「重载解析」的方式处理：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">();</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w">   </span><span class="c1">// OK, call the first one</span>
+<span class="w">    </span><span class="n">f</span><span class="p">();</span><span class="w">    </span><span class="c1">// Error: ambiguous</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>不过我们可能会发现，函数重载的作用已经足以覆盖默认参数的作用。事实上确实如此：默认参数机制在 C with Classes 时就存在了，其意义就是前面给出的构造函数中默认参数的例子；而一般的函数重载直到 Release 1.0 才被引入。默认参数机制是重载机制的前驱之一；重载机制的另一个前驱是 <code>operator =</code> 的重载，我们会在后面的章节看到它。</p>
 <h2 id="43-构造函数-cont">4.3 构造函数 (Cont.)<a class="headerlink" href="#43-构造函数-cont" title="Permanent link">&para;</a></h2>
+<p>关于构造函数，我们还有几个问题可以讨论！</p>
 <h3 id="implicitly-declared-default-constructor">implicitly-declared default constructor<a class="headerlink" href="#implicitly-declared-default-constructor" title="Permanent link">&para;</a></h3>
 <p>我们称一个能够无参调用的构造函数是 default constructor。即，它不接收任何参数，或者所有参数都有默认值。</p>
 <p>有一个问题是，我们在讲构造函数之前的代码里都没有写构造函数，但是它们也能正常编译运行！C++ 也希望在没有必要的理由时不与 C 发生不兼容，而 C 中的 struct 也没有写构造函数，但是它们也能被运行。这是怎么回事呢？</p>
@@ -4388,7 +4479,6 @@ function toggleVisibilityFoot() {
 <p>不过，如果用户提供了构造函数，他仍然可以用 <code>ClassName() = default;</code> 来引入默认的构造函数。</p>
 <p>用户还可以通过 <code>ClassName() = delete;</code> 显式地将 default constructor 设置成 deleted 的。</p>
 <h3 id="member-initializer-lists">member initializer lists<a class="headerlink" href="#member-initializer-lists" title="Permanent link">&para;</a></h3>
-<p>关于构造函数，我们还有几个问题可以讨论！</p>
 <p>一个问题是这样的：假如我们希望根据构造函数的一些参数来初始化一些成员，我们固然可以这样写：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -4461,12 +4551,6 @@ function toggleVisibilityFoot() {
 <details class="note" open="open">
 <summary>补充</summary>
 <p>如果构造函数的声明和定义分离，则 member initializer lists 应当出现在构造函数的定义中。</p>
-<p>member initializer lists 中可以使用 <code>this</code> 指针，例如：</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">)];</span><span class="w">            </span><span class="c1">// error: not inside a member function</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">sz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span><span class="w"> </span><span class="c1">// OK: in default member initializer</span>
-<span class="p">};</span>
-</code></pre></div>
 <p>member initializer list 的顺序不影响成员被初始化的顺序，它们按照在类定义中的顺序初始化。例如：</p>
 <p><center><img alt="" src="../2023-03-04-03-20-24.png" /></center></p>
 </details>
@@ -4613,7 +4697,7 @@ function toggleVisibilityFoot() {
 <span class="p">};</span>
 </code></pre></div>
 <p>这里我们将 implicitly-declared destructor 标记为 deleted。</p>
-<p>类似 <code>Foo f;</code> 的全局变量、局部变量或者成员变量定义是非法的，如果 <code>Foo</code> 的析构函数是 deleted 的，或者在当前位置不可访问 (如当前在类外，但是析构函数是 private 的)<sup id="fnref:private_or_deleted_dtor"><a class="footnote-ref" href="#fn:private_or_deleted_dtor">22</a></sup>。但是，这种情况下，可以通过 <code>new</code> 来创建一个动态的对象，因为这样创建的对象并不隐式地在同一个作用域内调用析构函数。</p>
+<p>如果 <code>Foo</code> 的析构函数是 deleted 的，或者在当前位置不可访问 (如当前在类外，但是析构函数是 private 的)，那么类似 <code>Foo f;</code> 的全局变量、局部变量或者成员变量定义是非法的<sup id="fnref:private_or_deleted_dtor"><a class="footnote-ref" href="#fn:private_or_deleted_dtor">22</a></sup>。但是，这种情况下，可以通过 <code>new</code> 来创建一个动态的对象，因为这样创建的对象并不隐式地在同一个作用域内调用析构函数。</p>
 <p>与构造函数不同，析构函数是可以手动调用的。我们在后面讨论 placement new 的章节讨论这个问题<sup id="fnref:call_dtor"><a class="footnote-ref" href="#fn:call_dtor">23</a></sup>。</p>
 <h2 id="45-构造和析构的时机和顺序">4.5 构造和析构的时机和顺序<a class="headerlink" href="#45-构造和析构的时机和顺序" title="Permanent link">&para;</a></h2>
 <p>对于一个类对象，它的 <strong>生命周期 (lifetime)</strong> 自它的初始化（构造）完成开始，到它的析构函数调用被启动为止。</p>
@@ -4622,7 +4706,7 @@ function toggleVisibilityFoot() {
 <p class="admonition-title">Note</p>
 <p>这里说「最小生命周期」，是因为对象被析构后，对应的存储虽然可以被立刻回收，但也不一定立刻被回收。但「最小」提供的是一种保证。</p>
 </div>
-<p>任何一个对象的 storage duration 都是如下一种<sup id="fnref:thread_storage_duration"><a class="footnote-ref" href="#fn:thread_storage_duration">24</a></sup>：</p>
+<p>在 C++11 之前，任何一个对象的 storage duration 都是如下一种<sup id="fnref:thread_storage_duration"><a class="footnote-ref" href="#fn:thread_storage_duration">24</a></sup>：</p>
 <ul>
 <li><strong>automatic</strong> storage duration: 没有被定义为 <code>static</code><sup id="fnref:auto"><a class="footnote-ref" href="#fn:auto">25</a></sup> 的局部对象。<sup id="fnref:auto_opt"><a class="footnote-ref" href="#fn:auto_opt">26</a></sup></li>
 <li><strong>static</strong> storage duration: non-local 对象，或者被定义为 <code>static</code> 的局部对象或者类成员对象。我们会在后面的章节讨论 <code>static</code> 成员对象。</li>
@@ -4644,6 +4728,7 @@ function toggleVisibilityFoot() {
 <li>对于临时对象，当其生命周期结束时。我们会在后面的章节讨论临时对象及其生命周期。</li>
 </ul>
 <p>数组元素的析构函数调用顺序与其构造顺序相反。类的成员的析构函数调用顺序也与其构造顺序相反。</p>
+<p><img alt="" src="../2023-03-05-19-26-59.png" /></p>
 <p>作为一个练习，请说明下面的代码的输出：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -4903,7 +4988,7 @@ function toggleVisibilityFoot() {
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-05T10:11:06+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-05</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-07T02:46:24+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-07</span>
       
         <br>
         创建日期:
@@ -5069,7 +5154,7 @@ var giscus = document.querySelector("script[src*=giscus]")
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.ce72ebac.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.b78d2936.min.js"></script>
       
         <script src="../../../js/timeago.min.js"></script>
       
