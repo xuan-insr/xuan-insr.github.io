@@ -54,7 +54,6 @@ nav:
         - C++ Core Guidelines 阅读记录: cpp/cpp_restart/notes/guideline_notes.md
         - Bjarne Stroustrup's FAQ 阅读记录: cpp/cpp_restart/notes/bs_faq_notes.md
     - 快速入门 C++ 写题: cpp/cpp_for_contests.md
-    #- C++ 面向对象: 404.md
     - C++ 知识补充:
       - 理解 STL —— 迭代器与函数对象: cpp/理解 STL - 迭代器与函数对象.md
   - PL & 编译: 
