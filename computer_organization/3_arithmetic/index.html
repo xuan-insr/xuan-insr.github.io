@@ -17,7 +17,7 @@
         <link rel="next" href="../4_processor/">
       
       <link rel="icon" href="../../logo.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.1">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.2">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.402914a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7bf56d0a.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
@@ -3785,18 +3785,28 @@
 
 <h1 id="3-arithmetic">3 Arithmetic<a class="headerlink" href="#3-arithmetic" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 2989 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 10 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 3131 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 10 分钟</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">提示</p>
+</div>
+<p>在开始本章之前，请确保自己了解各种二进制下表示数的相关方法。</p>
 <h2 id="31-一个基本的-alu">3.1 一个基本的 ALU<a class="headerlink" href="#31-一个基本的-alu" title="Permanent link">&para;</a></h2>
 <p><strong>世界上不存在减法</strong>。众所周知，减法就是加上相反数。所以这个世界上不存在减法。</p>
 <p><strong>Overflow</strong>。硬件规模是有限的，因此运算结果超过这个限制时，就会发生溢出。对于有符号加法，当正数和正数相加得到负数，或者负数和负数相加得到正数时，就可以判定溢出。对于无符号加法，如果结果小于二者中任意一个，也可以判定溢出。</p>
+<ul>
+<li>关于 Overflow，硬件层面需要能检测溢出，然后将这个指令的地址存储到一个特别的寄存器 EPC 里，然后跳转到 OS 中专门的程序中来处理这个溢出（异常处理）；</li>
+</ul>
 <p><strong>ALU, Arithmetic Logic Unit</strong>，算术逻辑单元，执行一些算术运算或者逻辑运算。</p>
+<ul>
+<li><a href="https://note.isshikih.top/cour_note/D2QD_DigitalDesign/Chap03/#%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF">数逻里的 ALU</a></li>
+</ul>
 <h3 id="311-1-bit-alu">3.1.1 1-bit ALU<a class="headerlink" href="#311-1-bit-alu" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>（下面这部分内容在课本附录 A.5 开始的地方）</p>
 </blockquote>
 <p>在数字逻辑设计这门课程中，我们学过 AND, OR, XOR 这些 gates，以及 inverter 和 mux 这些东西，我们尝试用这些东西攒一个 ALU 出来。在这一节中，我们希望 ALU 具有加法、减法、与运算、或运算和比较的能力。</p>
-<p>我们先考虑 1 bit ALU 的构造。我们学习过 1 bit Full Adder 的构造：
+<p>我们先考虑 1 bit ALU 的构造。我们学习过 1 bit <a href="https://note.isshikih.top/cour_note/D2QD_DigitalDesign/Chap03/#%E5%8D%8A%E5%8A%A0%E5%99%A8--%E5%85%A8%E5%8A%A0%E5%99%A8">Full Adder</a> 的构造：
 <center><img alt="image.png" src="../../../assets/1654415057128-ba0032a0-c3b5-49a4-8a7a-43abcb692357.png" width="300" /> <img alt="" src="../2023-03-04-01-24-35.png" width="200" /></center></p>
 <p>上左图是全加器的具体构造，右图是我们将其进行封装后的表示方式。</p>
 <p>我们结合一个 mux，就可以构造一个支持与、或以及加法运算的 1 bit ALU：
@@ -3815,7 +3825,7 @@
 <p>可以看到，对于 64 位的加法、减法、AND, OR, NOR 运算，这样的 64 位 ALU 都可以完成。</p>
 <p>同时也可以注意到，这里面除了我们熟悉的内容外，还多了 <code>Less</code> ,  <code>Set</code> 和 <code>Overflow</code> 这些位。它们是用来干什么的呢？</p>
 <p>首先 <code>Overflow</code> 是容易理解的，它用来表示加法或减法有没有出现溢出的现象；显然这个判断只需要在 ALU63，即 Most Significant Bit 才需要进行。容易证明，如果 <span class="arithmatex">\(C_{in} \oplus C_{out} = 1\)</span>，那么存在溢出；因此 ALU63 只需要添加一个额外的 XOR 门即可完成这一判断。</p>
-<p><code>Less</code> 和 <code>Set</code> 共同使用，是为了实现 <code>slt rd, rs1, rs2</code> 这个操作的。这个操作的含义是，如果 <code>rs1 &lt; rs2</code> ，那么将 <code>rd</code> 置为 <code>1</code> ，否则置为 <code>0</code> 。如何进行这一判断呢？很简单，如果 <code>rs1 - rs2</code> 的结果为负，也就是说如果 <code>rs1 - rs2</code> 结果的最高位是 <code>1</code> ，那么就说明 <code>rs1 &lt; rs2</code> 。所以等价地，对于 <code>slt</code> 这个操作，我们只需要将 ALU63 中加法器的结果赋值给 <code>Result0</code> ，即运算结果的 Least Significant Bit，而将其他位的结果 <code>Result1</code> ~ <code>Result63</code> 都设成 0，就可以完成 <code>slt</code> 操作了。</p>
+<p><code>Less</code> 和 <code>Set</code> 共同使用，是为了实现 <code>slt rd, rs1, rs2</code> 这个操作（SLT 即 Set Less Than）的。这个操作的含义是，如果 <code>rs1 &lt; rs2</code> ，那么将 <code>rd</code> 置为 <code>1</code> ，否则置为 <code>0</code> 。如何进行这一判断呢？很简单，如果 <code>rs1 - rs2</code> 的结果为负，也就是说如果 <code>rs1 - rs2</code> 结果的最高位是 <code>1</code> ，那么就说明 <code>rs1 &lt; rs2</code> 。所以等价地，对于 <code>slt</code> 这个操作，我们只需要将 ALU63 中加法器的结果赋值给 <code>Result0</code> ，即运算结果的 Least Significant Bit，而将其他位的结果 <code>Result1</code> ~ <code>Result63</code> 都设成 0，就可以完成 <code>slt</code> 操作了。</p>
 <p>所以可以看到，上图中，除了 ALU0 的 <code>Less</code> 来自 ALU63 的 <code>Set</code> 外，其他 ALU 的 <code>Less</code> 都是 <code>0</code> 。</p>
 <p>结合上述讨论，上图中 ALU0 ~ ALU62 的结构如下第一张图所示，ALU63 的结构如下第二张图所示：</p>
 <p><center><img alt="image.png" src="../../../assets/1654430550957-7cc66c76-4fce-415a-bcc7-a43c0eac8bc1.png" width="500" /></center></p>
@@ -3852,6 +3862,9 @@
 <p><center><img alt="image.png" src="../../../assets/1654531121258-e497919c-c487-4f1f-8310-4e0b537a9dbd.png" width="500" /></center></p>
 <h2 id="33-除法-暂时不想学了听说考的不多">3.3 除法 暂时不想学了，听说考的不多<a class="headerlink" href="#33-除法-暂时不想学了听说考的不多" title="Permanent link">&para;</a></h2>
 <h2 id="34-浮点运算">3.4 浮点运算<a class="headerlink" href="#34-浮点运算" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>大部分处理器可能本身并不支持浮点运算，只不过在软件层面可以将浮点运算转换为整数运算。</p>
+</blockquote>
 <h3 id="341-ieee-754-浮点表示">3.4.1 IEEE 754 浮点表示<a class="headerlink" href="#341-ieee-754-浮点表示" title="Permanent link">&para;</a></h3>
 <p>我们将小数点左边只有 1 位数字的表示数的方法称为 <strong>科学记数法, scientific notation</strong>，而如果小数点左边的数字不是 0，我们称这个数的表示是一个 <strong>规格化数, normalized number</strong>。科学记数法能用来表示十进制数，当然也能用来表示二进制数。</p>
 <p>IEEE 754 规定了一种浮点数标准：我们将浮点数表示为 <span class="arithmatex">\((-1)^S \times F \times 2^E\)</span> 的形式，这里的 <span class="arithmatex">\(F \times 2^E\)</span> 是一个规格化数，而 <span class="arithmatex">\((-1)^S\)</span> 用来表示符号位：<span class="arithmatex">\(S\)</span> 为 0 说明该浮点数为正数，为 1 则为负数；<span class="arithmatex">\(F\)</span> 和 <span class="arithmatex">\(E\)</span> 也用若干 bits 表示，分别表示尾数和指数，我们稍后讨论。也就是说，我们将其表示为 <span class="arithmatex">\(1.\text{xxxxx}_2\times 2^{\text{yyyy}}\)</span> 的形式（为什么小数点左边是 1 呢？因为二进制只有 0 和 1，而规格化要求小数点左边不能为 0）。我们通过科学记数法调整了小数点的位置使其满足规格化的要求，因此我们称这种数的表示方法为 <strong>浮点, floating point</strong>。</p>
@@ -3936,7 +3949,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-03T17:33:06+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-03</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-11T06:28:30+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-11</span>
       
         <br>
         创建日期:
@@ -4102,7 +4115,7 @@ var giscus = document.querySelector("script[src*=giscus]")
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.b78d2936.min.js"></script>
+      <script src="../../assets/javascripts/bundle.fc8c2696.min.js"></script>
       
         <script src="../../js/timeago.min.js"></script>
       

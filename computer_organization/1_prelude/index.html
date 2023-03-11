@@ -17,7 +17,7 @@
         <link rel="next" href="../2_instructions/">
       
       <link rel="icon" href="../../logo.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.1">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.2">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.402914a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7bf56d0a.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
@@ -3539,7 +3539,7 @@
 
 <h1 id="写在前面">写在前面<a class="headerlink" href="#写在前面" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 372 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 1 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 706 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 2 分钟</p>
 </div>
 <div class="admonition danger">
 <p>我的笔记所追求的目标是有逻辑、通畅地总结知识；因此如果您在阅读过程中在任何地方发现了不容易读懂的部分，请务必在评论区或者通过其它方式告知我QWQ！非常感谢！</p>
@@ -3553,6 +3553,21 @@
 <p>但是，计组课程本身在 <strong>2 Instructions</strong> 的部分讲解了很多关于汇编程序的知识；但是我之前在汇编语言和计算机系统概论等课程中已经学习过了这些知识，因此在本章中只整理了 RISC-V 的指令集和一些约定，省略了关于函数调用、递归的一些内容。</p>
 <p>同时，由于时间原因，<strong>1 Overview</strong> 和 <strong>6 I/O</strong> 两章的内容不完整。暂时没有补全计划。</p>
 </div>
+<div class="admonition summary">
+<p class="admonition-title">课程速览</p>
+<ul>
+<li>Chapter1: Computer Abstraction and Technology</li>
+<li><strong>Chapter 2: Instructions: Language of  the Computer</strong></li>
+<li><strong>Chapter 3: Arithmetic for Computers</strong></li>
+<li><strong>Chapter 4:The Processor：Datapath and Control</strong></li>
+<li><strong>Chapter 5:Large and Fast:  Exploiting Memory Hierarchy</strong></li>
+<li>Chapter 6: Parallel processor from client to Cloud (选讲，非考试内容)</li>
+<li>Appendix: Storage, Networks, and Other Peripherals (Ch8 of Version 3,了解概念)</li>
+</ul>
+<blockquote>
+<p>加粗为核心内容。</p>
+</blockquote>
+</div>
 <h2 id="1-intro--misc">1 Intro &amp; Misc<a class="headerlink" href="#1-intro--misc" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Moore's Law</strong>: Integrated circuit resources double every 18-24 months.</li>
@@ -3561,8 +3576,40 @@
 <li><strong>Response Time / Execution Time</strong>    从程序开始到结束的时间</li>
 <li><strong>Throughput / Bandwidth</strong>    单位时间内完成的任务数量</li>
 <li><strong>Performance</strong>   可以定义为 <span class="arithmatex">\(\cfrac{1}{\text{Response Time}}\)</span></li>
-<li><strong>Amdahl Law</strong>   <span class="arithmatex">\(T_{\text{improved}} = \cfrac{T_{\text{affected}}}{\text{Improvement Factor}}+T_\text{unaffected}\)</span></li>
-<li>……不是很想学了 再说吧</li>
+<li>
+<p><strong>Amdahl Law</strong>   <span class="arithmatex">\(T_{\text{improved}} = \cfrac{T_{\text{affected}}}{\text{Improvement Factor}}+T_\text{unaffected}\)</span> <a href="https://zh.wikipedia.org/wiki/%E9%98%BF%E5%A7%86%E8%BE%BE%E5%B0%94%E5%AE%9A%E5%BE%8B">🔗 Wiki</a></p>
+</li>
+<li>
+<p><del>……不是很想学了 再说吧</del> 那我帮你学</p>
+</li>
+<li>
+<p>Eight Great Ideas</p>
+<ul>
+<li>Design for Moore’s Law （设计紧跟摩尔定律）</li>
+<li>Use Abstraction to Simplify Design (采用抽象简化设计)</li>
+<li>Make the Common Case Fast (加速大概率事件)</li>
+<li>Performance via Parallelism (通过并行提高性能)</li>
+<li>Performance via Pipelining (通过流水线提高性能)<ul>
+<li>换句话说就是，每个流程同时进行，只不过每一个流程工作的对象是时间上相邻的若干产品；</li>
+<li>相比于等一个产品完全生产完再开始下一个产品的生产，会快很多；</li>
+<li>希望每一个流程的时间是相对均匀的；</li>
+</ul>
+</li>
+<li>Performance via Prediction (通过预测提高性能)<ul>
+<li>例如先当作 <code>if()</code> 条件成立，执行完内部内容，如果后来发现确实成立，那么直接 apply，否则就再重新正常做；</li>
+<li>这么做就好在，预测成功了就加速了，预测失败了纠正的成本也不高； </li>
+</ul>
+</li>
+<li>Hierarchy of Memories (存储器层次)<ul>
+<li>Disk / Tape -&gt; Main Memory(DRAM) -&gt; L2-Cache(SRAM) -&gt; L1-Cache -&gt; Registers</li>
+</ul>
+</li>
+<li>Dependability via Redundancy (通过冗余提高可靠性)<ul>
+<li>“备胎”；</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
   <hr>
@@ -3570,7 +3617,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-01T18:46:18+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-01</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-11T06:28:30+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-11</span>
       
         <br>
         创建日期:
@@ -3736,7 +3783,7 @@ var giscus = document.querySelector("script[src*=giscus]")
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.b78d2936.min.js"></script>
+      <script src="../../assets/javascripts/bundle.fc8c2696.min.js"></script>
       
         <script src="../../js/timeago.min.js"></script>
       
