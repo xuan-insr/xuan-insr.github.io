@@ -33,6 +33,8 @@
 - **Moore's Law**: Integrated circuit resources double every 18-24 months.
 - KB = 103 B, KiB = 210 B
 - K M G T P E Z Y
+- CPI(clock cycles per instruction), the average number of clock cycles each instruction takes to execute = $\frac{\text{CPU clock cycles}}{\text{Instruction count}}$;
+- CPU Time = $\text{Instruction count} \times \text{CPI} \times \text{clock cycle time}$ = $\frac{\text{Instruction count} \times \text{CPI}}{\text{Clock rate}}$;
 - **Response Time / Execution Time**	从程序开始到结束的时间
 - **Throughput / Bandwidth**	单位时间内完成的任务数量
 - **Performance**	可以定义为 $\cfrac{1}{\text{Response Time}}$
