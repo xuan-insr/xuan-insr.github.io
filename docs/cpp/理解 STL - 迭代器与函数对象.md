@@ -119,12 +119,12 @@ STL 由 4 部分组成：容器 (Containers)、迭代器 (Iterators)、算法 (A
         - `it` 被 `++` 后，再次读取其原来指向对象的值，结果不应发生变化
         - 如果 `it1 == it2` ，那么 `++it1 == ++it2` 
 
-3. _Legacy_**_Bidirectional_**_Iterator_ - 在 _LegacyForwardIterator _ 的基础上，能够 **双向移动** 。
+3. _Legacy_**_Bidirectional_**_Iterator_ - 在 _LegacyForwardIterator_ 的基础上，能够 **双向移动** 。
 
     ??? note "具体要求"
         满足这种要求的类型 `It` 需要：
 
-        - 满足 _LegacyForwardIterator _ 
+        - 满足 _LegacyForwardIterator_ 
         - 支持 `--it` , `it--` , `*it--` ，返回值类型与前述 `++` 相同，且：
         - `--(++it) == it` 
         - 如果 `--it1 == --it2` ，那么 `it1 == it2` 
@@ -177,7 +177,7 @@ STL 由 4 部分组成：容器 (Containers)、迭代器 (Iterators)、算法 (A
 同时， `lower_bound` 和 `upper_bound` 只需要传入的迭代器满足 _LegacyForwardIterator_；但是如果还满足 _LegacyRandomAccessIterator_，那么复杂度是 $O(\log n)$ 的；否则是 $O(n)$ 的。因此，对于 `set` , `map` , `multiset` 和 `multimap` ，它们提供的迭代器不满足 _LegacyRandomAccessIterator_，但是它们本身类内提供了自己的 `lower_bound` 函数，因此此时应该用类内的这些函数。
 
 !!! tip "补充 2.1"
-    这种在满足和不满足 _LegacyRandomAccessIterator _时有不同复杂度的实现方式是，每个 iterator `It` 都需要有一个对应的 `iterator_traits<It>` ，其中包含了一个 `iterator_category` ，它用来标识这个迭代器满足哪种要求。对于指向对象的指针类型， `iterator_traits` 有对应的特化，其 `iterator_category` 为 `random_access_iterator_tag` 。
+    这种在满足和不满足 _LegacyRandomAccessIterator_ 时有不同复杂度的实现方式是，每个 iterator `It` 都需要有一个对应的 `iterator_traits<It>` ，其中包含了一个 `iterator_category` ，它用来标识这个迭代器满足哪种要求。对于指向对象的指针类型， `iterator_traits` 有对应的特化，其 `iterator_category` 为 `random_access_iterator_tag` 。
 
     ![image.png](理解 STL - 迭代器与函数对象.assets/1664504718413-164fbe68-142d-4396-8cbf-84b2e36a55f4.png "https://en.cppreference.com/w/cpp/iterator/iterator_tags")
     在 `lower_bound` 中，使用 `it + n` 这样的操作可能是通过 `std::advance(it, n)` 的方式实现的，这个函数对于不同的 `iterator_traits` 有不同的重载；对于支持随机访问的，就会通过 `it + n` 的方式实现，而如果不支持，则通过循环实现。
