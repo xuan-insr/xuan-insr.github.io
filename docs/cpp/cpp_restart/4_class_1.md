@@ -344,6 +344,9 @@ public:
 
 ### member initializer lists
 
+!!! success "总结"
+    如果您并非初学者，[这里](../summaries/member_init_lists/) 有关于该话题更详尽的总结。
+
 一个问题是这样的：假如我们希望根据构造函数的一些参数来初始化一些成员，我们固然可以这样写：
 
 ```c++ linenums="1"
