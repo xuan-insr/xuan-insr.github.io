@@ -17,7 +17,7 @@
         <link rel="next" href="../6_class_3/">
       
       <link rel="icon" href="../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.2">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.7bf56d0a.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.c4a75a56.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
@@ -856,12 +856,32 @@
     ▲ 运算符重载
   </a>
   
+    <nav class="md-nav" aria-label="▲ 运算符重载">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#友元" class="md-nav__link">
+    友元
+  </a>
+  
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#-引用" class="md-nav__link">
     ▲ 引用
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-隐式类型转换" class="md-nav__link">
+    ▲ 隐式类型转换
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3585,12 +3605,32 @@
     ▲ 运算符重载
   </a>
   
+    <nav class="md-nav" aria-label="▲ 运算符重载">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#友元" class="md-nav__link">
+    友元
+  </a>
+  
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#-引用" class="md-nav__link">
     ▲ 引用
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-隐式类型转换" class="md-nav__link">
+    ▲ 隐式类型转换
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3653,16 +3693,464 @@
 
 <h1 id="5-类-ii---拷贝构造与拷贝赋值">5 类 (II) - 拷贝构造与拷贝赋值<a class="headerlink" href="#5-类-ii---拷贝构造与拷贝赋值" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 121 个字 </p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 1804 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 156 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 8 分钟</p>
+</div>
+<script>
+function inFootnote(element) {
+    let parent = element.parentNode;
+    while (parent !== null) {
+      if (parent.classList && parent.classList.contains("footnote")) {
+        break;
+      }
+      parent = parent.parentNode;
+    }
+    return parent !== null;
+}
+</script>
+<script>
+function toggleVisibility() {
+  const links = document.querySelectorAll('a');
+  const buttons = document.querySelectorAll('.xyx-toggle');
+  links.forEach(link => {
+    if (!link.classList.contains('md-nav__link') &&
+        !link.classList.contains('md-tabs__link') &&
+        !link.classList.contains('md-source') &&
+        !link.classList.contains('md-header__button') &&
+        !link.closest('.md-nav__link') &&
+        !link.closest('.md-tabs__link') &&
+        !link.closest('.md-source') &&
+        !link.closest('.footnote-backref') &&
+        !link.closest('.footnote-ref') &&
+        !link.closest('.md-header__button') &&
+        !inFootnote(link)
+        ) {
+      if (link.style.display === 'none') {
+        link.style.display = 'inline';
+        for (const button of buttons) {
+            button.innerHTML = '点击此处隐藏正文所有链接';
+        }
+      } else {
+        link.style.display = 'none';
+        for (const button of buttons) {
+            button.innerHTML = '点击此处显示正文所有链接';
+        }
+      }
+    }
+  });
+}
+</script>
+<script>
+function toggleVisibilityFoot() {
+  const links = document.querySelectorAll('a');
+  const buttons = document.querySelectorAll('.xyx-toggle2');
+  links.forEach(link => {
+    if (link.closest('.footnote-backref') ||
+        link.closest('.footnote-ref')) {
+      if (link.style.display === 'none') {
+        link.style.display = 'inline';
+        for (const button of buttons) {
+            button.innerHTML = '点击此处隐藏本文所有脚注';
+        }
+      } else {
+        link.style.display = 'none';
+        for (const button of buttons) {
+            button.innerHTML = '点击此处显示本文所有脚注';
+        }
+      }
+    }
+  });
+
+  const footnotes = document.querySelectorAll('.footnote');
+  for (const footnote of footnotes) {
+    if (footnote.style.display === 'none') {
+      footnote.style.removeProperty('display');
+    } else {
+      footnote.style.display = 'none';
+    }
+  }
+}
+</script>
+
+<p><center>
+<button onclick="toggleVisibility()" class="box box-yellow xyx-toggle">点击此处隐藏正文所有链接</button>
+<button onclick="toggleVisibilityFoot()" class="box box-green xyx-toggle2">点击此处隐藏本文所有脚注</button>
+</center></p>
+<div class="admonition warning">
+<p class="admonition-title">本节使用的副本</p>
 </div>
 <h2 id="51-拷贝赋值运算符">5.1 拷贝赋值运算符<a class="headerlink" href="#51-拷贝赋值运算符" title="Permanent link">&para;</a></h2>
-<p>operator=</p>
+<p>在上一节中，我们创建了一个「容器」类：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">elem</span><span class="o">*</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>我们考虑一个问题：假如有两个 <code>Container</code> 的实例 <code>c1</code> 和 <code>c2</code>，那么 <code>c1 = c2;</code> 会发生什么？</p>
+<p>很容易理解，在这个赋值表达式完成后，<code>c1.val</code> 的值变得和 <code>c2.val</code> 一样了；也就是说，这两个容器现在指向同一块内存。</p>
+<p>这样的结果会带来两个问题：</p>
+<ol>
+<li><code>c1</code> 原来的 <code>val</code> 也许指向了一块申请来的内存，但是它并没有被释放；</li>
+<li>这样的「赋值」实际上完成的是某种「共享」，而并非真正地建立一个副本。如果这并非本意，那么此后对 <code>c1.val</code> 的修改对于 <code>c2</code> 也可见，且两个对象的析构函数可能会重复析构这块内存，引发错误。</li>
+</ol>
+<p>为了解决这个问题，C with Classes 开始就允许用户 <strong>重载赋值运算符</strong>。实现的方法是，在类内声明一个称为 <code>operator=</code> 的成员函数。例如：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">elem</span><span class="o">*</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">capa</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Container</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">capa</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">val</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">elem</span><span class="p">[</span><span class="n">capa</span><span class="p">]),</span><span class="w"> </span><span class="n">capa</span><span class="p">(</span><span class="n">capa</span><span class="p">){}</span>
+<span class="w">    </span><span class="o">~</span><span class="n">Container</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">val</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Container</span><span class="w"> </span><span class="n">from</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">        </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">elem</span><span class="p">[</span><span class="n">from</span><span class="o">-&gt;</span><span class="n">capa</span><span class="p">];</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">from</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">from</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">from</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span>
+<span class="w">        </span><span class="n">capa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">from</span><span class="o">-&gt;</span><span class="n">capa</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>上面的实现演示了一个重载 <code>operator=</code> 的例子，它将 <code>from</code> 中指向的内容拷贝了一份，而非简单地拷贝指针。虽然还有一些问题。在讨论这些问题以及解决方案之前，我们先来看一看这样的运算符重载函数是如何被调用的。</p>
+<p>在一个有运算符的表达式中，如果至少一个操作符是某个类的对象<sup id="fnref:overload_op_enum"><a class="footnote-ref" href="#fn:overload_op_enum">1</a></sup>，则由重载解析查找对应的函数。例如 <code>x = y;</code> 就会被视为 <code>x.operator=(y);</code> 进行查找。</p>
+<p>上面的例子还有一些问题和改进空间：</p>
+<p>如果我们写出了 <code>x = x;</code> 会发生什么事情呢？容易理解，这时 <code>this</code> 和 <code>from</code> 的 <code>val</code> 是同一个，因此 <code>delete[]</code> 在 <code>new[]</code> 之后事实上里面的数据已经丢失了。因此我们需要防范这种情况。</p>
+<p>另一个问题是，如果 <code>capa</code> 和 <code>from-&gt;capa</code> 的值相同，那就没必要重新开一份空间了。</p>
+<p>考虑上述问题，我们可以写出这样的代码：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">elem</span><span class="o">*</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">capa</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Container</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">capa</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">val</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">elem</span><span class="p">[</span><span class="n">capa</span><span class="p">]),</span><span class="w"> </span><span class="n">capa</span><span class="p">(</span><span class="n">capa</span><span class="p">){}</span>
+<span class="w">    </span><span class="o">~</span><span class="n">Container</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">val</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Container</span><span class="w"> </span><span class="n">from</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">from</span><span class="o">-&gt;</span><span class="n">val</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// avoid self-assignment</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">from</span><span class="o">-&gt;</span><span class="n">capa</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">capa</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">                </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">elem</span><span class="p">[</span><span class="n">from</span><span class="o">-&gt;</span><span class="n">capa</span><span class="p">];</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">from</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">from</span><span class="o">-&gt;</span><span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">from</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span>
+<span class="w">            </span><span class="n">capa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">from</span><span class="o">-&gt;</span><span class="n">capa</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>结合函数重载，我们也容易理解，<code>operator=</code> 同样可以有重载。例如：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">elem</span><span class="o">*</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">capa</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Container</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">capa</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">val</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">elem</span><span class="p">[</span><span class="n">capa</span><span class="p">]),</span><span class="w"> </span><span class="n">capa</span><span class="p">(</span><span class="n">capa</span><span class="p">){}</span>
+<span class="w">    </span><span class="o">~</span><span class="n">Container</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">val</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Container</span><span class="w"> </span><span class="n">from</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">elem</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>虽然这个例子有点不太恰当（因为没有正确处理 <code>size</code> 和 <code>capa</code>），但是我们仍然能够从中理解：如果有 <code>Container</code> 的实例 <code>c</code> 和一个 <code>elem *</code> 类型的 <code>ptr</code>，那么 <code>c = ptr;</code> 是合法的，因为它实际上会被解释为 <code>c.operator=(ptr);</code>。</p>
+<p><a href="https://godbolt.org/z/jKvvsK8xP">这里</a> 有一个具体的例子：</p>
+<p><center><img alt="" src="../2023-03-15-16-23-50.png" /></center></p>
+<p>与之前的讨论类似，如果用户没有显示地给出 <code>operator=</code>，那么编译器会生成一个 public 的默认拷贝赋值运算符的定义；它完成的内容即为将各个成员变量拷贝一遍。</p>
+<p>用户也可以将 <code>operator=</code> 设置为 <code>= default;</code> 或者 <code>= delete;</code>。如果 <code>operator=</code> 在当前上下文不可见，那么 <code>a = b;</code> 这样的表达式非法：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Foo</span><span class="p">){}</span><span class="w"> </span><span class="c1">// private operator=</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Foo</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">        </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w">      </span><span class="c1">// OK, private function available here</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Bar</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Bar</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span><span class="p">;</span><span class="w"> </span><span class="c1">// deleted operator=</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Bar</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+<span class="w">        </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span><span class="w">      </span><span class="c1">// error: use of deleted function </span>
+<span class="w">                    </span><span class="c1">// &#39;void Bar::operator=(Bar)&#39;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Foo</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w">      </span><span class="c1">// error: &#39;void Foo::operator=(Foo)&#39; </span>
+<span class="w">                </span><span class="c1">// is private within this context</span>
+<span class="w">    </span><span class="n">Bar</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+<span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span><span class="w">      </span><span class="c1">// error: use of deleted function </span>
+<span class="w">                </span><span class="c1">// &#39;void Bar::operator=(Bar)&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="-运算符重载">▲ 运算符重载<a class="headerlink" href="#-运算符重载" title="Permanent link">&para;</a></h2>
-<p>引入运算符重载</p>
-<h2 id="-引用">▲ 引用<a class="headerlink" href="#-引用" title="Permanent link">&para;</a></h2>
-<p>运算符重载引入引用</p>
+<p>既然 <code>operator=</code> 可以重载，那么其他运算符可不可以重载呢？答案是肯定的。C++ 希望表达方式是灵活且自由的；对于自定义类型，C++ 希望人们能写出 <code>F = M * A</code>，而非 <code>assign(F, mul(M, A))</code>。</p>
+<p>事实上，C 语言的运算符就在一定程度上做了「重载」。回顾上一节的定义，重载的含义是同一个函数（根据参数列表不同）具有不同的行为。例如，<code>*</code> 运算符作为单目运算符时是取值运算符，而作为双目运算符时表示相乘；<code>+</code> 运算符在两个算术类型之间表示求和，而对于 <code>ptr + i</code> 时其实表示 <code>ptr + i * sizeof(A)</code>，其中 <code>ptr</code> 的类型是 <code>A*</code>。</p>
+<p>而 C++ 允许用户重载大多数的运算符从而提高代码的简洁性和可维护性。</p>
+<p>考虑一个存放 <code>M * M</code> 大小矩阵的类 <code>Matrix</code>：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Matrix</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">M</span><span class="p">];</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>那么，我们可能希望它能支持 <code>Matrix + Matrix</code>, <code>int * Matrix</code>, <code>Matrix * Matrix</code> 等操作。根据我们之前处理 <code>operator=</code> 的经历，我们容易写出如下的代码：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Matrix</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">M</span><span class="p">];</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">Matrix</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="n">Matrix</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>此时，如果我们写 <code>m1 * m2</code>，其实就等价于 <code>m1.operator*(m2)</code>，就调用我们写的重载了！</p>
+<p>这样的实现方式确实能够实现上述操作，但是它限制了我们只能写出 <code>Matrix * int</code> 而不能写出 <code>int * Matrix</code>，因为后者被解释为 <code>int::operator*(Matrix)</code>，但是 <code>int</code> 中并没有这样的重载（C++ 也不希望支持给内部类型增加新的运算<sup id="fnref:builtin_newop"><a class="footnote-ref" href="#fn:builtin_newop">2</a></sup>）</p>
+<p>如何解决这个问题呢？事实上，运算符重载也可以放在全局，例如：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Matrix</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">M</span><span class="p">];</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">Matrix</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="n">Matrix</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">Matrix</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>当 <code>x * y</code> 的操作数中有类实例时，则重载解析会尝试将它解释为 <code>x.operator*(y)</code> 和 <code>operator*(x, y)</code><sup><a href="https://timsong-cpp.github.io/cppwp/n4868/over.binary.general#1">over.binary.general#1</a></sup>，即 <code>x</code> 对应类中的成员 <code>operator*</code> 和全局的 <code>operator*</code> 都会被纳入候选函数集，然后再根据实际的参数列表完成重载解析：</p>
+<p><center><img alt="" src="../2023-03-15-18-05-58.png" /></center></p>
+<p>这里出现了一个问题！上面的函数 <code>Matrix operator*(int x, Matrix mat)</code>，我们可能会给出这样的实现：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">Matrix</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Matrix</span><span class="w"> </span><span class="n">tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mat</span><span class="p">;</span><span class="w">   </span><span class="c1">// copy mat</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="w">            </span><span class="n">tmp</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="友元">友元<a class="headerlink" href="#友元" title="Permanent link">&para;</a></h3>
+<p>但是，这个函数并非成员函数，因此访问 private 成员 <code>data</code> 时会出现错误：</p>
+<p><center><img alt="" src="../2023-03-15-18-10-24.png" /></center></p>
+<p>如何解决这个问题呢？事实上，C++ 允许一个类的定义中给一个外部的函数<sup id="fnref:friend"><a class="footnote-ref" href="#fn:friend">3</a></sup>「授予」访问其 private 成员的权限，方式是将对应的函数在该类的定义中将对应的函数声明为一个 <strong>友元 (friend)</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Matrix</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">M</span><span class="p">];</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">Matrix</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="n">Matrix</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">Matrix</span><span class="w"> </span><span class="n">mat</span><span class="p">);</span><span class="w"> </span><span class="c1">// Designates a function as friend of this class</span>
+<span class="p">};</span>
+<span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">Matrix</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Matrix</span><span class="w"> </span><span class="n">tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mat</span><span class="p">;</span><span class="w">   </span><span class="c1">// copy mat</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="w">            </span><span class="n">tmp</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">        </span><span class="c1">// can access private member Matrix::data</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>这样，这个问题就解决了！</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>友元只是一种权限授予的声明，而并非类的成员。因此它并不受 access-specifier 的影响。</p>
+</div>
+<p>当然，另一种解决方案是这样的：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Matrix</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">M</span><span class="p">];</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">Matrix</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="n">Matrix</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">Matrix</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">mat</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>这种方案复用了 <code>Matrix::operator*(int)</code>，这样一方面能提高代码的重用性和可维护性，另一方面又不需要把 <code>operator*(int, Matrix)</code> 设置成友元（因为没有访问 private 成员），因此事实上比前面那种解决方案更好。</p>
+<p>其他大多数运算符也能重载。对于一元运算符（如作为正负号的 <code>+</code>, <code>-</code>，以及 <code>!</code>, <code>~</code>, <code>++</code>, <code>--</code> 等），<code>@x</code> 会调用 <code>x.operator@()</code> 或者 <code>operator@(x)</code>。如 <code>-x</code> 会调用 <code>x.operator-()</code> 或者 <code>operator-(x)</code>。</p>
+<details class="tips inline end">
+<summary>Tips</summary>
+<p>不过，BS 说他更愿意用 <code>operator prefix++()</code> 和 <code>operator postfix++()</code> 的方式处理，虽然有些人不喜欢增加关键字。</p>
+</details>
+<p>一个例外是，<code>++</code> 和 <code>--</code> 既可以作为前缀，也可以作为后缀；这如何区分呢？由于其他的单目运算符都是前缀，因此 C++ 规定 <code>Foo::operator++()</code> 和 <code>operator++(Foo)</code> 用来处理前缀的 <code>++</code>，而后缀的 <code>x++</code> 会调用 <code>x.operator++(0)</code> 或者 <code>operator++(x, 0)</code>，即作为后缀时，编译器通过让一个额外的参数 <code>0</code> 参与重载解析。即：</p>
+<div class="highlight"><pre><span></span><code><span class="n">Foo</span><span class="w"> </span><span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="n">Foo</span><span class="w"> </span><span class="n">right</span><span class="p">);</span><span class="w">      </span><span class="cm">/* prefix  */</span>
+<span class="n">Foo</span><span class="w"> </span><span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="n">Foo</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">);</span><span class="w">  </span><span class="cm">/* postfix */</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Bar</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Bar</span><span class="w"> </span><span class="k">operator</span><span class="o">++</span><span class="p">();</span><span class="w">       </span><span class="cm">/* prefix  */</span>
+<span class="w">    </span><span class="n">Bar</span><span class="w"> </span><span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span><span class="w">    </span><span class="cm">/* postfix */</span>
+<span class="p">};</span>
+</code></pre></div>
+<details class="info">
+<summary>一些限制</summary>
+<p>这些运算符不能被重载：<code>::</code> (scope resolution), <code>.</code> (member access), <code>.*</code> (member access through pointer to member), and <code>?:</code> (ternary conditional) </p>
+<p>对 <code>=</code> (assignment), <code>()</code> (function call), <code>[]</code> (subscript), <code>-&gt;</code> (member access) 的重载 <strong>必须是成员</strong></p>
+<details class="info" open="open">
+<summary>上面这条的原因</summary>
+<p>Release 2.0 开始要求 <code>operator=</code> 必须是成员，因为：</p>
+<div class="highlight"><pre><span></span><code>class X {
+    // no operator=
+};
+
+void f(X a, X b) { 
+    a = b;  // predefined meaning of =
+}     
+
+void operator=(X&amp;, X);  // disallowed by 2.0
+
+void g(X a, X b) {
+    a = b;  // user-defined meaning of =
+}
+</code></pre></div>
+<p>即，上面这样的代码会造成混乱。其他赋值运算符因为没有默认的定义，因此不会引起这个问题。</p>
+<p>文中还讨论了 <code>[]</code>, <code>()</code>, <code>-&gt;</code> 必须是成员的原因。BS 解释说「这些运算符通常要修改第一个 operand 的内部状态」，不过他也说「这也可能是不必要的谨小慎微」。<a href="https://stackoverflow.com/questions/3938036/rationale-of-enforcing-some-operators-to-be-members">这里</a> 提到，BS 本人现在可能也觉得不太合理，但是没空改。</p>
+</details>
+<p>不能添加用户自定义的运算符。重载运算符也不能修改运算符的优先级、结合性和操作数数目。</p>
+<p>除了函数调用运算符 <code>operator()</code> 以外的运算符重载不能包含 default arguments。</p>
+<p>对 <code>&amp;&amp;</code> 和 <code>||</code> 的重载将不再会有 short-circuit evaluation。</p>
+<p><sup><a href="https://timsong-cpp.github.io/cppwp/n4868/over.oper.general">over.oper.general</a></sup></p>
+</details>
+<h3 id="-引用">▲ 引用<a class="headerlink" href="#-引用" title="Permanent link">&para;</a></h3>
+<p>考虑前面我们设计的 <code>Matrix</code> 类：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Matrix</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">M</span><span class="p">];</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="n">Matrix</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Matrix</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="w">                </span><span class="n">res</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mat</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>容易发现，这个类的对象占据的内存是非常大的，因此我们将对象作为参数传递时会有很大的开销。</p>
+<p>我们在 C 语言中学习过，可以通过传递指针的方式来减少不必要的拷贝。例如有函数 <code>int getSum(Matrix mat);</code> 就可以改为 <code>int getSum(Matrix * mat);</code>，调用时通过 <code>getSum(&amp;m)</code>，就可以只传递指针而不必拷贝整个对象了。</p>
+<p>但是，对于上面的 <code>Matrix::operator-(Matrix);</code>，我们如何解决这个问题呢？C++ 并不希望要求程序员在这种情况下将 <code>m1 - m2</code> 改为 <code>&amp;m1 - &amp;m2</code> 去写。一方面是不自然，另一方面是指针相减在语言中已有定义。</p>
+<p>为了解决这个问题，BS 将 Algol 68 中的 <strong>引用 (reference)</strong> 机制引入了 C++<sup id="fnref:algol_ref"><a class="footnote-ref" href="#fn:algol_ref">4</a></sup>。</p>
+<p>一个引用是一个已经存在的对象或者函数的别名。</p>
 <p>讨论 <a href="../notes/dne_notes/#651-keyword-arguments">keyword arguments</a></p>
 <p>讨论类中引用成员的初始化</p>
+<h3 id="-隐式类型转换">▲ 隐式类型转换<a class="headerlink" href="#-隐式类型转换" title="Permanent link">&para;</a></h3>
 <h2 id="-io-stream">▲ I/O stream<a class="headerlink" href="#-io-stream" title="Permanent link">&para;</a></h2>
 <h2 id="51-拷贝赋值运算符-cont">5.1 拷贝赋值运算符 (Cont.)<a class="headerlink" href="#51-拷贝赋值运算符-cont" title="Permanent link">&para;</a></h2>
 <p>现在的拷贝赋值运算符长啥样</p>
@@ -3674,13 +4162,111 @@
 <p><a href="https://timsong-cpp.github.io/cppwp/n4868/special">special</a></p>
 <h2 id="54-new-和-delete">5.4 new 和 delete<a class="headerlink" href="#54-new-和-delete" title="Permanent link">&para;</a></h2>
 <p>malloc 和 free</p>
+<hr />
+<script>
+function inFootnote(element) {
+    let parent = element.parentNode;
+    while (parent !== null) {
+      if (parent.classList && parent.classList.contains("footnote")) {
+        break;
+      }
+      parent = parent.parentNode;
+    }
+    return parent !== null;
+}
+</script>
+<script>
+function toggleVisibility() {
+  const links = document.querySelectorAll('a');
+  const buttons = document.querySelectorAll('.xyx-toggle');
+  links.forEach(link => {
+    if (!link.classList.contains('md-nav__link') &&
+        !link.classList.contains('md-tabs__link') &&
+        !link.classList.contains('md-source') &&
+        !link.classList.contains('md-header__button') &&
+        !link.closest('.md-nav__link') &&
+        !link.closest('.md-tabs__link') &&
+        !link.closest('.md-source') &&
+        !link.closest('.footnote-backref') &&
+        !link.closest('.footnote-ref') &&
+        !link.closest('.md-header__button') &&
+        !inFootnote(link)
+        ) {
+      if (link.style.display === 'none') {
+        link.style.display = 'inline';
+        for (const button of buttons) {
+            button.innerHTML = '点击此处隐藏正文所有链接';
+        }
+      } else {
+        link.style.display = 'none';
+        for (const button of buttons) {
+            button.innerHTML = '点击此处显示正文所有链接';
+        }
+      }
+    }
+  });
+}
+</script>
+<script>
+function toggleVisibilityFoot() {
+  const links = document.querySelectorAll('a');
+  const buttons = document.querySelectorAll('.xyx-toggle2');
+  links.forEach(link => {
+    if (link.closest('.footnote-backref') ||
+        link.closest('.footnote-ref')) {
+      if (link.style.display === 'none') {
+        link.style.display = 'inline';
+        for (const button of buttons) {
+            button.innerHTML = '点击此处隐藏本文所有脚注';
+        }
+      } else {
+        link.style.display = 'none';
+        for (const button of buttons) {
+            button.innerHTML = '点击此处显示本文所有脚注';
+        }
+      }
+    }
+  });
+
+  const footnotes = document.querySelectorAll('.footnote');
+  for (const footnote of footnotes) {
+    if (footnote.style.display === 'none') {
+      footnote.style.removeProperty('display');
+    } else {
+      footnote.style.display = 'none';
+    }
+  }
+}
+</script>
+
+<p><center>
+<button onclick="toggleVisibility()" class="box box-yellow xyx-toggle">点击此处隐藏正文所有链接</button>
+<button onclick="toggleVisibilityFoot()" class="box box-green xyx-toggle2">点击此处隐藏本文所有脚注</button>
+</center></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:overload_op_enum">
+<p>class type OR enum type&#160;<a class="footnote-backref" href="#fnref:overload_op_enum" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:builtin_newop">
+<p>DnE 3.6.2 中，BS 表示不希望支持给内部类型增加新的运算，因为「C 内部类型之间的转换已经够肮脏了，决不能再往里面添乱」。&#160;<a class="footnote-backref" href="#fnref:builtin_newop" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:friend">
+<p>或者类。&#160;<a class="footnote-backref" href="#fnref:friend" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:algol_ref">
+<p>作为一个改进，C++ 不允许改变一个引用所引用的东西（也就是不允许重新约束），绑定只能发生在初始化时。&#160;<a class="footnote-backref" href="#fnref:algol_ref" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-01T19:19:17+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-01</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-16T07:29:58+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-16</span>
       
         <br>
         创建日期:
@@ -3809,10 +4395,10 @@ var giscus = document.querySelector("script[src*=giscus]")
           
         </div>
         
-          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
             回到页面顶部
-          </a>
+          </button>
         
       </main>
       
@@ -3846,7 +4432,7 @@ var giscus = document.querySelector("script[src*=giscus]")
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.fc8c2696.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.efa0ade1.min.js"></script>
       
         <script src="../../../js/timeago.min.js"></script>
       
