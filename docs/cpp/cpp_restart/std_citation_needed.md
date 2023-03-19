@@ -9,3 +9,4 @@
 - 4.3 If an inline function or variable (since C++17) with external linkage is defined differently in different translation units, the behavior is undefined. 来源：[inline - cppreference](https://en.cppreference.com/w/cpp/language/inline#Notes)
 
 - A.1 两个 extern 声明同一个变量，但类型不同是错误。
+- dangling reference 会导致 UB

@@ -21,26 +21,23 @@
     - 函数默认参数与函数重载（不包含重载解析）
     - delegating constructors
     - 动态内存分配
-2. [ ] 类 (II): 拷贝赋值、拷贝构造、SMFs
+2. [ ] 类 (II): 拷贝赋值
     - 运算符重载
     - 引用
     - I/O stream
     - brace initialization
-3. [ ] 类 (III): 转换构造函数
-    - copy elision
-    - 类型
-    - bool
-    - auto & return type deduction & trailing return type
+    - 转换构造函数
     - user-defined conversion function
+3. [ ] 类 (III): 拷贝构造、SMFs
+    - copy elision
+    - const
+    - cast
+    - bool
 4. [ ] 类 (IV): const 和 static 成员
     - UB
         - signed integers are 2's complement (C++20)
     - 初始化
         - aggregate
-5. [ ] 类 (V): 继承与抽象类、访问控制
-    - final, override
-    - covariant return types
-    - inherited constructors
 6. [ ] 模板
     - string
     - alias template
@@ -48,11 +45,16 @@
 7. [ ] STL
     - range-based for loop (C++11); init-statement in range-for (C++20)
     - lambda
-8. [ ] 右值引用和移动语义
+    - auto & return type deduction & trailing return type
+5. [ ] 类 (V): 继承与抽象类、访问控制
+    - final, override
+    - covariant return types
+    - inherited constructors
+6. [ ] 右值引用和移动语义
     - smart pointers
-9. [ ] 类 (VI): 移动构造与移动赋值
-10. [ ] namespace
-11. [ ] exception
+7. [ ] 类 (VI): 移动构造与移动赋值
+8. [ ] namespace
+9. [ ] exception
 
 ### Topics
 
@@ -101,6 +103,7 @@ list initialization (C++11)、brace-or-equal initializers (C++11)
 - [x] initializers for if and switch (C++17)
 - [x] [Order of evaluation](https://en.cppreference.com/w/cpp/language/eval_order)
 - [ ] `std::tuple`, `std::any`, `std::optional`, `std::variant` (C++17)
+- [ ] Class template argument deduction (C++17)
 - [ ] 3-way comparison (C++20)
 - [x] signed integers are 2's complement (C++20)
 - [ ] modules (C++20)

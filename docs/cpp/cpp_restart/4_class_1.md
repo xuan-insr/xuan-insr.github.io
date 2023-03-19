@@ -310,7 +310,7 @@ public:
 
 <center>![](2023-03-05-16-41-09.png)</center>
 
-`new` 表达式干的事情是申请内存 + 调用构造函数，返回一个指针；而 `delete` 表达式干的事情是调用析构函数 + 释放内存。`new` 表达式是 **唯一** 的用来创建动态生命周期对象的方式（因为 `malloc` 只是开辟内存，并不创建对象）。
+`new` 表达式干的事情是申请内存 + 调用构造函数，返回一个指针；而 `delete` 表达式干的事情是调用析构函数 + 释放内存。`new` 表达式是 **唯一** 的用来创建动态生命周期对象的方式（因为 `malloc` 只是开辟内存，并不创建对象。对象是「a region of storage with **associated semantics**」）。
 
 `delete` 会调用类对象的析构函数：
 
@@ -640,6 +640,40 @@ int main() {
 ```
 
 答案是 `111 2 3 4 5 6 444 333 888 999 777 666 555 `。
+
+## 4.6 小结
+
+- 类的定义
+    - 定义引入新的类型
+    - class-key 通常不必要
+- 声明和定义
+    - 定义是声明的一种
+- 类的成员
+    - type alias
+    - `this`
+- 函数内联
+- 构造函数
+    - 建立起某种「保证」
+    - 如何无参或有参地构造对象
+    - `new`, `delete`, `new[]`, `delete[]`
+    - implicitly-declared default constructor
+    - `= default;`, `= delete`
+    - member initializer lists
+    - delegating constructor
+    - default member initializer
+- 函数默认参数和函数重载
+    - 重载解析
+    - 为什么 C++ 引入了 `nullptr`
+- 析构函数
+    - 用来回收资源
+    - 为什么析构函数无法重载
+- 构造和析构的时机和顺序
+    - lifetime
+    - storage duration
+        - automatic
+        - static
+        - dynamic
+    - 构造和析构的时机和顺序
 
 ---
 
