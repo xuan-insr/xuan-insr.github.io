@@ -3933,13 +3933,12 @@ END
 <tr>
 <td><strong>6</strong></td>
 <td></td>
-<td></td>
-<td></td>
+<td>r2</td>
+<td>r2</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p>| r2 | r2 |  |</p>
 <p>可以发现，与 LR(0) 不同的是，SLR(1) 的 reduce 不再只与状态有关，我们需要提前观看下一个符号从而判断进行什么样的 shift 或 reduce 操作。</p>
 <p>如果这样构造出的 SLR(1) Parsing Table 没有含冲突的表项，那么称这个文法为 SLR(1) Grammar，否则不是。</p>
 <p>SLR(1) Parsing Table 的使用方法与 3.5.3 完全一致，可以使用一样的伪代码。</p>
@@ -3973,7 +3972,8 @@ Start Symbol 有 LR(1) Item <code>S'-&gt;.S, $</code>，并可以通过此推出
 <p>可以看到，LR(1) 的状态有点太多了。在刚刚提出 LR(1) 的那个年代，如此大的空间需求还是不太现实的。因此，LR(1) 的简化版本 LALR(1) (Look-Ahead LR(1)) 被提出了。</p>
 <p>对于每一个状态，我们将其包含的所有 LR(1) items 的第一个分量的集合成为这个状态的核心 (core)。例如，对于 3.7 最后例子中的状态图，其状态 5 和 6 的核心均为 <span class="arithmatex">\(\{A\to c., B\to c.\}\)</span>。我们将这样的具有相同核心的状态进行合并，通常能够减少许多状态。</p>
 <p>但是，这有时（虽然很少）也可能引入 reduce-reduce conflict，例如 3.7 最后的例子的 LALR(1) DFA 是：</p>
-<p><center><img alt="" src="https://cdn.nlark.com/yuque/__graphviz/7f35b67da5519dc8edde547d58a2d007.svglake_card_v2=eyJ0eXBlIjoiZ3JhcGh2aXoiLCJjb2RlIjoiZGlncmFwaCBHIHtcbiAgICByYW5rZGlyID0gVEI7XG4gICAgbm9kZSBbc2hhcGUgPSByZWN0YW5nbGVdO1xuICAgIFxuICAgIDUgW2xhYmVsID0gXCItU3RhdGUgNSY2LVxcbkHihpJjLiwgZC9lXFxuQuKGkmMuLCBkL2VcIl07XG4gICAgMTAwIFtzdHlsZSA9IGludmlzXTtcbiAgICBcbiAgICAxIFtsYWJlbCA9IFwiLVN0YXRlIDEtXFxuUyfihpIuUywgJFxcblPihpIuYUFkLCAkXFxuU-KGki5hQmUsICRcXG5T4oaSLmJBZSwgJFxcblPihpIuYkJkLCAkXCJdOyBcbiAgICAyIFtsYWJlbCA9IFwiLVN0YXRlIDItXFxuUyfihpJTLiwgJFwiXTsgXG4gICAgMyBbbGFiZWwgPSBcIi1TdGF0ZSAzLVxcblPihpJhLkFkLCAkXFxuU-KGkmEuQmUsICRcXG5B4oaSLmMsIGRcXG5C4oaSLmMsIGVcIl07XG4gICAgNCBbbGFiZWwgPSBcIi1TdGF0ZSA0LVxcblPihpJiLkFlLCAkXFxuU-KGkmIuQmQsICRcXG5B4oaSLmMsIGVcXG5C4oaSLmMsIGRcIl07IFxuICAgIFxuICAgIDcgW2xhYmVsID0gXCItU3RhdGUgNy1cXG5T4oaSYUEuZCwgJFwiXTtcbiAgICA4IFtsYWJlbCA9IFwiLVN0YXRlIDgtXFxuU-KGkmFBZC4sICRcIl07XG4gICAgOSBbbGFiZWwgPSBcIi1TdGF0ZSA5LVxcblPihpJhQi5lLCAkXCJdOyBcbiAgICAxMFtsYWJlbCA9IFwiLVN0YXRlIDEwLVxcblPihpJhQmUuLCAkXCJdO1xuICAgIDExW2xhYmVsID0gXCItU3RhdGUgMTEtXFxuU-KGkmJBLmUsICRcIl07XG4gICAgMTJbbGFiZWwgPSBcIi1TdGF0ZSAxMi1cXG5T4oaSYkFlLiwgJFwiXTsgXG4gICAgMTNbbGFiZWwgPSBcIi1TdGF0ZSAxMy1cXG5T4oaSYkIuZCwgJFwiXTtcbiAgICAxNFtsYWJlbCA9IFwiLVN0YXRlIDE0LVxcblPihpJiQmQuLCAkXCJdOyBcbiAgICBcbiAgICAxMDAtPjE7XG4gICAgMS0-MltsYWJlbCA9IFwiU1wiXTtcbiAgICAxLT4zW2xhYmVsID0gXCJhXCJdO1xuICAgIDEtPjRbbGFiZWwgPSBcImJcIl07XG4gICAgMy0-NVtsYWJlbCA9IFwiY1wiXTtcbiAgICA0LT41W2xhYmVsID0gXCJjXCJdO1xuICAgIDQtPjExW2xhYmVsID0gXCJBXCJdO1xuICAgIDQtPjEzW2xhYmVsID0gXCJCXCJdO1xuICAgIDExLT4xMltsYWJlbCA9IFwiZVwiXTtcbiAgICAxMy0-MTRbbGFiZWwgPSBcImRcIl07XG4gICAgMy0-N1tsYWJlbCA9IFwiQVwiXTtcbiAgICAzLT45W2xhYmVsID0gXCJCXCJdO1xuICAgIDctPjhbbGFiZWwgPSBcImRcIl07XG4gICAgOS0-MTBbbGFiZWwgPSBcImVcIl07XG4gICAgXG4gICAge3JhbmsgPSBzYW1lOyAzLCAxLCA0O31cbiAgICB7cmFuayA9IHNhbWU7IDUsIDEwMDt9XG59IiwidXJsIjoiaHR0cHM6Ly9jZG4ubmxhcmsuY29tL3l1cXVlL19fZ3JhcGh2aXovN2YzNWI2N2RhNTUxOWRjOGVkZGU1NDdkNThhMmQwMDcuc3ZnIiwiaWQiOiJjZURNRSIsIm1hcmdpbiI6eyJ0b3AiOnRydWUsImJvdHRvbSI6dHJ1ZX0sImNhcmQiOiJkaWFncmFtIn0=" />注意到合并后的状态 5&amp;6，会存在 reduce-reduce conflict。这说明这个文法不是 LALR(1) 文法。</center></p>
+<p><center><img alt="" src="../2023-03-19-22-40-15.png" /></center></p>
+<p>注意到合并后的状态 5&amp;6，会存在 reduce-reduce conflict。这说明这个文法不是 LALR(1) 文法。</p>
 <p>根据 DFA 可以构造 LALR(1) Parsing Table，其方法与 LR(1) 完全一致，在此不再赘述。同样地，如果构造出的 Parsing Table 没有冲突项，则说明文法是 LALR(1) 的，否则不是。</p>
 <p><center><img alt="image.png" src="../../assets/1648826010075-7ea603c6-7f85-4c5e-b135-7e71302dcdcc.png" /></center></p>
 <h2 id="39-yacclalr1-语法分析器的生成器">3.9 Yacc：LALR(1) 语法分析器的生成器<a class="headerlink" href="#39-yacclalr1-语法分析器的生成器" title="Permanent link">&para;</a></h2>
@@ -4041,7 +4041,7 @@ var-list -&gt; identifier
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-24T15:10:48+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-24</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-19T14:41:08+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-19</span>
       
         <br>
         创建日期:
