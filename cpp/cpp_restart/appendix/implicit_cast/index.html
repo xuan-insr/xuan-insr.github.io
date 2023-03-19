@@ -8,20 +8,16 @@
       
       
       
-        <link rel="canonical" href="https://xuan-insr.github.io/cpp/cpp_restart/appendix/iostream/">
+        <link rel="canonical" href="https://xuan-insr.github.io/cpp/cpp_restart/appendix/implicit_cast/">
       
       
-        <link rel="prev" href="../references/">
-      
-      
-        <link rel="next" href="../copy_elision/">
       
       <link rel="icon" href="../../../../logo.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
     
     
       
-        <title>I/O stream - 咸鱼暄的代码空间</title>
+        <title>Implicit cast - 咸鱼暄的代码空间</title>
       
     
     
@@ -86,6 +82,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#标准转换--standard-conversion" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -114,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              I/O stream
+              Implicit cast
             
           </span>
         </div>
@@ -202,15 +203,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../../" class="md-tabs__link md-tabs__link--active">
+      <a href="../../../" class="md-tabs__link">
         C++
       </a>
     </li>
@@ -455,16 +454,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -491,7 +488,7 @@
           
         </div>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           C++
@@ -504,16 +501,14 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
       
       
         
@@ -544,7 +539,7 @@
           
         </div>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2_2">
           <span class="md-nav__icon md-icon"></span>
           🍉C++ 学习记录
@@ -949,16 +944,14 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_4" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_4" >
       
       
         
@@ -997,7 +990,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_4_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2_2_4">
           <span class="md-nav__icon md-icon"></span>
           A 附录
@@ -1078,19 +1071,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../iostream/" class="md-nav__link">
         I/O stream
       </a>
-      
     </li>
   
 
@@ -3471,6 +3456,42 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#标准转换--standard-conversion" class="md-nav__link">
+    标准转换 | Standard Conversion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#用户定义的转换--user-defined-conversion" class="md-nav__link">
+    用户定义的转换 | User-Defined Conversion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#转换构造函数--converting-constructor" class="md-nav__link">
+    转换构造函数 | Converting Constructor
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#用户定义的转换函数--user-defined-conversion-function" class="md-nav__link">
+    用户定义的转换函数 | User-defined Conversion Function
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3484,74 +3505,114 @@
                   
 
 
-  <h1>I/O stream</h1>
+  <h1>Implicit cast</h1>
 
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 688 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 72 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 3 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 2268 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 167 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 10 分钟</p>
 </div>
-<p>前面我们聊了运算符重载和引用之类的话题。在 C++ 中，对它们的一个经典应用是输入输出流。</p>
-<p>在 C 中，大家熟悉的输入输出方式是 <code>scanf</code> 和 <code>printf</code>，它们对类型的识别并不是静态的，而是动态地根据格式控制字符串中 <code>%d</code> 之类的东西处理的，这在带来一些安全问题<sup id="fnref:security"><a class="footnote-ref" href="#fn:security">1</a></sup>的同时还引发了一个重要问题——没有办法支持用户自定义类型。</p>
-<p>在 C++ 中，新的头文件 <code>&lt;iostream&gt;</code> (input / output stream) 中提供了两个全局对象 <code>cin</code> (char input) 和 <code>cout</code> (char output) 用来完成输入输出。举一个例子：</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span>
-<span class="normal">8</span>
-<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, y = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<h4 id="标准转换--standard-conversion">标准转换 | Standard Conversion<a class="headerlink" href="#标准转换--standard-conversion" title="Permanent link">&para;</a></h4>
+<p>在 C 语言中，我们已经熟悉了 <strong>隐式类型转换 (implicit conversion)</strong> 的含义。隐式转换中的「隐式」代表这种转换是自动发生的，例如我们可以写 <code>i = 'c';</code>（其中 <code>i</code> 是一个 <code>int</code>）而不必写 <code>i = (int)'c';</code> 或者 <code>i = int('c');</code>。后面两者分别是 C-style cast 和 function-style cast，它们都属于 <strong>显式类型转换 (explicit conversion)</strong>。</p>
+<p>作为几个例子（并不完整，我们会在后面的章节完整讨论这个话题）：</p>
+<ul>
+<li><strong>转换和调整</strong><ul>
+<li>数组类型可以转换为指针类型，这称为 <strong>array-to-pointer conversion</strong>，例如函数要求一个 <code>int *</code> 参数而我们传递了一个类型为 <code>int[25]</code> 的数组时，这个转换发生。</li>
+<li>非 <code>const</code> 指针可以转换为 <code>const</code> 指针，这称为 <strong>qualification conversion</strong>，例如函数要求一个 <code>const int *</code> 而我们传递了一个 <code>int *</code> 时，这个转换发生。</li>
+</ul>
+</li>
+<li><strong>Promotion</strong><ul>
+<li>小整数类型能够转换为更大的整数类型，这称为 <strong>integral promotion</strong>，例如 <code>char</code> 可以隐式转换到 <code>int</code>。</li>
+<li><code>float</code> 能转换为 <code>double</code>，这称为 <strong>floating-point promotion</strong>。</li>
+</ul>
+</li>
+<li><strong>Numeric conversions</strong><ul>
+<li>任何两个整数类型之间都可以相互转换（可能发生截断），如果不属于 promotion，则属于 <strong>integral conversion</strong>。例如 <code>long long</code> 可以隐式转换到 <code>int</code>（虽然编译器可能会报 warning）</li>
+<li><code>double</code> 也能转换为 <code>float</code>，这称为 <strong>floating-point conversion</strong></li>
+<li>浮点类型和整数类型之间也可以互相转换（可能发生截断），这属于 <strong>floating-integral conversion</strong>。例如 <code>int</code> 可以隐式转换到 <code>double</code>，也可以相反</li>
+<li>空指针常量可以隐式转换给任何指针类型，任何 <code>T *</code> 也可以隐式转换为 <code>void *</code>。这称为 <strong>pointer conversion</strong></li>
+<li>整数、浮点数、指针等可以隐式转换给 <code>bool</code> 类型，这称为 <strong>boolean conversion</strong>。若原来的值为 <code>0</code>，则结果为 <code>false</code>；其他任意值结果为 <code>true</code>。</li>
+</ul>
+</li>
+</ul>
+<p>上面的隐式类型转换统称为 <strong>standard conversion</strong>。这种隐式转换能够给编写程序带来很多方便，例如我们求一个 <code>int</code> 变量的平方根时就不必写 <code>sqrt(double(i))</code>，而是直接写 <code>sqrt(i)</code> 就可以了。这个过程发生了 <code>int</code> 到 <code>double</code> 的 floating-integral conversion。</p>
+<h4 id="用户定义的转换--user-defined-conversion">用户定义的转换 | User-Defined Conversion<a class="headerlink" href="#用户定义的转换--user-defined-conversion" title="Permanent link">&para;</a></h4>
+<p>那我们来考虑这样一个问题！关于我们实现的复数类：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Complex</span><span class="w"> </span><span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">real</span><span class="p">,</span><span class="w"> </span><span class="n">imaginary</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Complex</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">real</span><span class="p">(</span><span class="n">r</span><span class="p">),</span><span class="w"> </span><span class="n">imaginary</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="n">Complex</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">real</span><span class="p">(</span><span class="n">r</span><span class="p">),</span><span class="w"> </span><span class="n">imaginary</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">Complex</span><span class="p">,</span><span class="w"> </span><span class="n">Complex</span><span class="p">);</span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="n">Complex</span><span class="p">,</span><span class="w"> </span><span class="n">Complex</span><span class="p">);</span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">Complex</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="n">Complex</span><span class="p">,</span><span class="w"> </span><span class="n">Complex</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">};</span>
 </code></pre></div></td></tr></table></div>
-<p>这里的 <code>std::cin</code> 中的 <code>std</code> (standard) 是对象 <code>cin</code> 所处的 <strong>命名空间 (namespace)</strong> 的名字；我们会在后面的章节讨论命名空间；<code>::</code> 仍然是我们熟悉的 scope resolution operator。<code>std::cout</code> 和 <code>std::endl</code> 也类似；其中 <code>endl</code> (endline) 是换行<sup id="fnref:endl"><a class="footnote-ref" href="#fn:endl">2</a></sup>。</p>
-<p><code>std::cin &gt;&gt; x &gt;&gt; y;</code> 表示从标准输入流中读取 <code>x</code>，然后读取 <code>y</code>，它等价于 <code>std::cin &gt;&gt; x; std::cin &gt;&gt; y;</code>。这里的运算符 <code>&gt;&gt;</code> 本身的含义是右移，而这里我们通过运算符重载给它赋予了新的语义：从流中提取 (stream extraction)。</p>
-<p><code>std::cout &lt;&lt; "x = " &lt;&lt; x &lt;&lt; ", y = " &lt;&lt; y &lt;&lt; std::endl;</code> 表示向标准输出流中输出字符串 <code>"x = "</code>，然后输出 <code>x</code> 的值，然后输出字符串 <code>", y = "</code>，然后输出 <code>y</code> 的值，然后输出换行。<code>&lt;&lt;</code> 本来是左移，而这里对各种基本类型重载了 <code>&lt;&lt;</code> 运算符，来实现向流中插入 (stream insertion) 的语义。</p>
+<p>我们重载了运算符，来实现两个复数之间的加法、减法和乘法。那么问题来了！将复数和实数混合运算是非常正常的事情，比如我们有：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Complex</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="n">Complex</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d</span><span class="p">;</span><span class="w"> </span><span class="c1">// Complex + double</span>
+<span class="w">    </span><span class="n">Complex</span><span class="w"> </span><span class="n">c3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="c1">// double + Complex</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>如何解决这个问题呢？</p>
+<p>方法之一是，要求调用者显式写出转换（请复习 function-like cast），即 <code>c + Complex(d)</code> 和 <code>Complex(d) + c</code>，这会调用构造函数来构造出一个临时的 <code>Complex</code> 参与运算。不过这会让调用者很困扰！</p>
+<p>另一种方法是，为每个运算符写 <code>Complex, Complex</code>, <code>double, Complex</code>, <code>Complex, double</code> 三个版本。这会让代码的可读性和可维护性变差！</p>
+<p>为了解决这个问题，C++ 允许从类型 <code>A</code> 到类型 <code>B</code> 的隐式转换，只要有这样的 <strong>user-defined conversion</strong>。也就是说，除了前面我们提到的 <strong>standard conversion</strong> 之外，用户还可以自定义转换规则。</p>
+<p>User-defined conversion 有两种：<strong>转换构造函数 (converting constructor)</strong> 和 <strong>用户定义的转换函数 (user-defined conversion function)</strong>。我们分别讨论这两种东西！</p>
+<h4 id="转换构造函数--converting-constructor">转换构造函数 | Converting Constructor<a class="headerlink" href="#转换构造函数--converting-constructor" title="Permanent link">&para;</a></h4>
+<p>转换构造函数 <strong>不是</strong> 一种特殊的构造函数，而是构造函数的一种性质。简单来说，凡是没有 <code>explicit</code> 标识符的构造函数 <strong>都是</strong> 转换构造函数。我们稍后讨论 <code>explicit</code> 的含义。</p>
+<p>也就是说，比如我们有构造函数 <code>Complex::Complex(double r);</code>，这其实就提供了一种 <strong>隐式转换</strong> 的规则：<code>double</code> 类型的变量可以隐式转换成一个 <code>Complex</code>。也就是说：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">g</span><span class="p">(</span><span class="n">Complex</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Complex</span><span class="w"> </span><span class="n">z1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d</span><span class="p">;</span><span class="w">     </span><span class="c1">// OK, calls operator+(z, Complex(d));</span>
+<span class="w">    </span><span class="n">Complex</span><span class="w"> </span><span class="n">z2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">z</span><span class="p">;</span><span class="w">     </span><span class="c1">// OK, calls operator+(Complex(d), z);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>即，编译器看到现在有一个 <code>Complex</code> 和一个 <code>double</code> 调用 <code>operator+</code>，但是没有找到精确匹配的函数；这时候编译器发现：有一个接收两个 <code>Complex</code> 的函数，而又有一个转换构造函数 <code>Complex::Complex(double r);</code> 允许我们把 <code>double</code> 隐式地转换为 <code>Complex</code>，所以编译器决定：先完成这个隐式转换，然后调用。因此实际上调用的就是 <code>operator+(z, Complex(d))</code> 了！</p>
 <details class="note" open="open">
-<summary>using</summary>
-<p>如果懒得在每一个地方都写 <code>std::</code>，可以通过 <code>using</code> 语句。例如：</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">;</span>
-<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">   </span><span class="c1">// std::cin</span>
-<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w">   </span><span class="c1">// std::cin</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="p">;</span><span class="w">        </span><span class="c1">// std::cout</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;y = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w">   </span><span class="c1">// std::cout</span>
+<summary>将运算符重载设为成员还是全局</summary>
+<p>有了这种隐式转换，我们就需要意识到一个问题：如果 <code>operator+</code> 是 <code>Complex</code> 的一个成员函数，那么上面代码中 <code>z + d</code> 仍然可以被当做 <code>z.operator+(Complex(d))</code> 来调用，但是 <code>d + z</code> 就不能调用 <code>d.operator+(z)</code>，因为 <code>double</code> 类型中没有这样的函数。如我们之前所说，C++ 不希望给内部类型增加新的运算。</p>
+<p>从这里我们可以知道：如果我们将一个运算符重载设为全局函数能够有更强的逻辑对称性；而将其定义为成员函数则能够保证第一个操作数不发生转换。根据我们之前的讨论，转换得到的是一个临时对象<sup id="fnref:conv_tmp"><a class="footnote-ref" href="#fn:conv_tmp">1</a></sup>；因此对于那些赋值运算符之类的要求第一个操作数是一个实际存在的对象<sup id="fnref:lvalue"><a class="footnote-ref" href="#fn:lvalue">2</a></sup>的运算符是比较好的。</p>
+<p>作为一个好的例子：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">String</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="n">String</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="o">&amp;</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="n">String</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">s2</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>这里 <code>using std::cin</code> 就表示「若无特殊说明，<code>cin</code> 即指 <code>std::cin</code>」。</p>
-<p>或者使用 <code>using namespace std;</code> 表示「若无特殊说明，这里面不知道是什么的东西去 <code>std</code> 里找」：</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
-<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">   </span><span class="c1">// std::cin</span>
-<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w">   </span><span class="c1">// std::cin</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;x = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="p">;</span><span class="w">   </span><span class="c1">// std::cout</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;y = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">   </span><span class="c1">// std::cout, std::endl</span>
-<span class="p">}</span>
-</code></pre></div>
-<p><code>using</code> 语句也属于其作用域，作用范围持续到其所在块结束。将其放到全局，则其作用范围持续到其所在文件结束。</p>
 </details>
-<p>这是如何实现的呢？<code>std::cin</code> 的类型是 <code>std::istream</code> (input stream)，它其中对各种基本类型重载了 <code>operator&gt;&gt;</code>，我们上面使用到的两个分别是：</p>
-<div class="highlight"><pre><span></span><code><span class="n">istream</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">istream</span><span class="o">::</span><span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// ... extract (read) an int from the stream</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">istream</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">istream</span><span class="o">::</span><span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// ... extract (read) a double from the stream</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
-<span class="p">}</span>
+<p>作为一个回顾和提示，<code>Complex operator+(Complex, Complex);</code> 也可以定义为 <code>Complex operator+(const Complex &amp;, const Complex &amp;);</code>，但是不适合定义为 <code>Complex operator+(Complex &amp;, Complex &amp;);</code>，因为后者不能支持我们说的隐式转换。请读者自行回顾其原因。</p>
+<p>不过，我们考虑这样一个问题。以前面的 <code>Container</code> 为例：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">elem</span><span class="o">*</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">capa</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Container</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">capa</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">val</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">elem</span><span class="p">[</span><span class="n">capa</span><span class="p">]),</span><span class="w"> </span><span class="n">capa</span><span class="p">(</span><span class="n">capa</span><span class="p">){}</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">};</span>
 </code></pre></div>
-<p>函数中如何实现从流中读出数据暂且不是我们所在意的重点。我们关注的是——为什么要返回 <code>istream &amp;</code> 类型的对象本身。</p>
-<p>我们考虑 <code>cin &gt;&gt; x &gt;&gt; y;</code> 的运行顺序。首先 <code>cin &gt;&gt; x</code> 被运行，因此这个表达式就类似于 <code>(cin.operator&gt;&gt;(x)) &gt;&gt; y;</code>，而 <code>cin.operator&gt;&gt;(x)</code> 运行结束后返回 <code>cin</code> 本身，剩下的表达式就是 <code>cin &gt;&gt; y;</code> 了。因此，返回 <code>*this</code> 的好处就是能够实现这种链式的读入。</p>
-<p>与 <code>cin</code> 类似，<code>std::cout</code> 的类型是 <code>std::ostream</code> (output stream)，它同样对各种基本类型重载了 <code>&lt;&lt;</code> 运算符。一个例子是 <code>ostream&amp; ostream::opreator&lt;&lt;(int value);</code>。</p>
-<p>前面代码中 <code>cout</code> 完成链式输出的具体调用过程留做练习。</p>
-<p>知道了这些，我们就能够为自己的类提供对 <code>&gt;&gt;</code> 和 <code>&lt;&lt;</code> 的重载，从而能够支持用 <code>cin</code> 和 <code>cout</code> 方便地输入和输出自定义类型了：</p>
+<p>根据我们之前所说，假如我们有一个函数接收一个 <code>const Container &amp;</code>，而我们不慎传进去了一个整数 <code>1</code>，则编译器会帮我们生成一个隐式转换 <code>Container(1)</code> 构造出了一个临时的 <code>Container</code>；又或者我们写出了 <code>Container c = 1;</code> 这样的语句，编译器把它解释为 <code>Container c = Container(1);</code> 即 <code>Container c(1);</code>。如果这些隐式转换并非我们的本意，则它们会给我们带来一些意料之外的情况，而且会让我们 debug 变得困难。</p>
+<p>为了解决这个问题，C++ 引入了说明符 <code>explicit</code>。如果一个构造函数有 <code>explicit</code>，那么它就不是 converting constructor，不能用作隐式类型转换，而只能用作显式类型转换：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -3572,84 +3633,167 @@
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
-
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">istream</span><span class="p">;</span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="p">;</span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
-<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">;</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">Complex</span><span class="w"> </span><span class="p">{</span>
-<span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">real</span><span class="p">,</span><span class="w"> </span><span class="n">imaginary</span><span class="p">;</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">    </span><span class="c1">// ...</span>
-<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">toString</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
-<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">istream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">istream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">is</span><span class="p">,</span><span class="w"> </span><span class="n">Complex</span><span class="o">&amp;</span><span class="w"> </span><span class="n">right</span><span class="p">);</span>
+<span class="hll"><span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">Foo</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</span><span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Bar</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Bar</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
 <span class="p">};</span>
 
-<span class="n">string</span><span class="w"> </span><span class="nf">Complex::toString</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">to_string</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">real</span><span class="p">);</span>
-<span class="w">    </span><span class="n">str</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s">&quot; + &quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="n">str</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">to_string</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">imaginary</span><span class="p">);</span>
-<span class="w">    </span><span class="n">str</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="sc">&#39;i&#39;</span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">str</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">Foo</span><span class="w"> </span><span class="n">f</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">bar</span><span class="p">(</span><span class="n">Bar</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
 
-<span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Complex</span><span class="o">&amp;</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">right</span><span class="p">.</span><span class="n">toString</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="n">istream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">istream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">is</span><span class="p">,</span><span class="w"> </span><span class="n">Complex</span><span class="o">&amp;</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">op</span><span class="p">;</span>
-<span class="w">    </span><span class="n">is</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">right</span><span class="p">.</span><span class="n">real</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">op</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">right</span><span class="p">.</span><span class="n">imaginary</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">op</span><span class="p">;</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">is</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">Complex</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Foo</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Foo</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// OK, explicit conversion</span>
+<span class="hll"><span class="w">    </span><span class="n">Foo</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">      </span><span class="c1">// Error: no valid conversion</span>
+</span><span class="hll"><span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w">         </span><span class="c1">// Error: no valid conversion</span>
+</span><span class="w">    </span><span class="n">Bar</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Bar</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// OK, explicit conversion</span>
+<span class="w">    </span><span class="n">Bar</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">      </span><span class="c1">// OK, implicit conversion</span>
+<span class="w">    </span><span class="n">bar</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w">         </span><span class="c1">// OK, implicit conversion</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>这里的 <code>std::string</code> 是 C++ 提供的字符串类型，它也是一个类。19 行看到的 <code>std::to_string</code> 函数能够（通过重载）把内置类型转换为 <code>std::string</code>，而 20~23 行可以看到 <code>+=</code> 能够实现字符串的拼接。<code>operator&lt;&lt;</code> 同样有针对 <code>std::ostream</code> 和 <code>std::string</code> 的重载。18 行的 <code>toString()</code> 成员函数实现按照 <code>Complex</code> 类的对象生成一个字符串。</p>
-<p>可以看到，函数头部有一个 <code>const</code>，它表示这个函数不会对调用者（<code>*this</code>）造成更改；进一步地说，<code>this</code> 的类型现在是 <code>const Complex *</code> 而不是 <code>Complex *</code> 了。我们会在后面具体讨论它的意义。</p>
-<p>26 行我们重载了 <code>operator&lt;&lt;</code>；由于这个运算符的第一个操作数通常会是 <code>cout</code>，但是我们又没法自己改 <code>std::ostream</code>，因此我们只能把这个运算符重载函数定义为全局函数。可以看到，这个函数简单地将 <code>right.toString()</code> 的结果输出给了 <code>os</code>（通常是 <code>cout</code>），然后返回了调用者的引用本身。</p>
-<p>30 行我们重载了 <code>operator&gt;&gt;</code>。它从 <code>is</code>（通常是 <code>cin</code>）中读取了复数的虚部和实部（以及用一个 <code>char</code> 接收了不重要的部分），然后返回了调用者的引用本身。</p>
-<p>需要注意的是，<code>operator&gt;&gt;</code> 访问了 <code>Complex</code> 类的私有成员 <code>real</code> 和 <code>imaginary</code>，因而必须在 <code>Complex</code> 类中声明为友元（第 14 行）；但 <code>operator&lt;&lt;</code> 只访问了其公有成员 <code>toString()</code>，因此无需设置成友元。</p>
-<p>容易看到，<code>cin</code> 和 <code>cout</code> 的设计使得代码的可读性和可维护性更好，也一定程度上提高了安全性。</p>
-<div class="admonition tips">
-<p class="admonition-title">Tips</p>
-<p>关于 cin 和 cout 还有很多问题没有讨论，例如格式控制、遇到错误输入的处理、流的具体实现等等。作为基本要求，大家能够掌握它们的基本用法即可。感兴趣的同学可以自行寻找资料深入了解。</p>
-</div>
+<p>因此，如果不希望前述隐式转换的发生，请将构造函数（尤其是单个参数的构造函数）标记为 <code>explicit</code>。</p>
+<details class="note">
+<summary>隐式转换的限制</summary>
+<p>隐式转换限于：首先按一定要求完成 0 次或若干次 standard conversion，然后完成 0 次或 1 次 user-defined conversion；如果完成了 user-defined conversion，还可以完成 0 次或若干次 standard conversion。也就是说，隐式转换不会触发两次 user-defined conversion。作为一个例子：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Bar</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Bar</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Foo</span><span class="p">(</span><span class="n">Bar</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">Foo</span><span class="w"> </span><span class="n">f</span><span class="p">);</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="n">Bar</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w">    </span><span class="c1">// OK, foo(Foo(Bar(1))), only Foo(Bar) used</span>
+<span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w">         </span><span class="c1">// Error: no conversion from int to Foo</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<details class="warning">
+<summary>Warning</summary>
+<p>在 C++11 之前，只有单个参数且没有 <code>explicit</code> 的构造函数才是 converting constructor；但是自 C++11 开始引入了 braced-init-list 即 <code>{}</code>，有 0 个或多个参数且没有 <code>explicit</code> 的构造函数也是 converting constructor 了。参看下面的例子<sup><a href="https://en.cppreference.com/w/cpp/language/converting_constructor">Cppref: converting_constructor</a></sup>：</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">A</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">A</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w">         </span><span class="c1">// converting constructor (since C++11)  </span>
+<span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w">      </span><span class="c1">// converting constructor</span>
+<span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// converting constructor (since C++11)</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">B</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">B</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">B</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="n">a1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">      </span><span class="c1">// OK: copy-initialization selects A::A(int)</span>
+<span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="n">a2</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w">       </span><span class="c1">// OK: direct-initialization selects A::A(int)</span>
+<span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="n">a3</span><span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">};</span><span class="w">    </span><span class="c1">// OK: direct-list-initialization selects A::A(int, int)</span>
+<span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="n">a4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">};</span><span class="w"> </span><span class="c1">// OK: copy-list-initialization selects A::A(int, int)</span>
+<span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="n">a5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="mi">1</span><span class="p">;</span><span class="w">   </span><span class="c1">// OK: explicit cast performs static_cast, direct-initialization</span>
+
+<span class="c1">//  B b1 = 1;      // error: copy-initialization does not consider B::B(int)</span>
+<span class="w">    </span><span class="n">B</span><span class="w"> </span><span class="n">b2</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span><span class="w">       </span><span class="c1">// OK: direct-initialization selects B::B(int)</span>
+<span class="w">    </span><span class="n">B</span><span class="w"> </span><span class="n">b3</span><span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">};</span><span class="w">    </span><span class="c1">// OK: direct-list-initialization selects B::B(int, int)</span>
+<span class="c1">//  B b4 = {4, 5}; // error: copy-list-initialization selected an explicit constructor</span>
+<span class="w">                   </span><span class="c1">//        B::B(int, int)</span>
+<span class="w">    </span><span class="n">B</span><span class="w"> </span><span class="n">b5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">B</span><span class="p">)</span><span class="mi">1</span><span class="p">;</span><span class="w">   </span><span class="c1">// OK: explicit cast performs static_cast, direct-initialization</span>
+<span class="w">    </span><span class="n">B</span><span class="w"> </span><span class="n">b6</span><span class="p">;</span><span class="w">          </span><span class="c1">// OK, default-initialization</span>
+<span class="w">    </span><span class="n">B</span><span class="w"> </span><span class="n">b7</span><span class="p">{};</span><span class="w">        </span><span class="c1">// OK, direct-list-initialization</span>
+<span class="c1">//  B b8 = {};     // error: copy-list-initialization selected an explicit constructor</span>
+<span class="w">                   </span><span class="c1">//        B::B()</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>另外需要提示的是，braced-init-list 并不是一个表达式，因此它出现的位置是有一定限制的。参见 <a href="https://stackoverflow.com/questions/51071557/converting-constructor-with-multiple-arguments">这个问题</a>。</p>
+</details>
+<h4 id="用户定义的转换函数--user-defined-conversion-function">用户定义的转换函数 | User-defined Conversion Function<a class="headerlink" href="#用户定义的转换函数--user-defined-conversion-function" title="Permanent link">&para;</a></h4>
+<p>前面的 conversion constructor 给定了从一个其他类型到当前类进行隐式或显式转换的方式。不过，有时我们可能也会希望能够将当前类转换为其他类型从而参与计算或者函数调用等。例如：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Complex</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">// ...</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">to_string</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="nf">to_double</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">to_bool</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>我们也许会想通过 <code>str += c.to_string()</code> 的方式获取 <code>c</code> 转换为 <code>std::string</code> 的结果；或者有时我们想要将 <code>c</code> 作为判断条件，写出 <code>if (c.to_bool())</code> 之类的代码。但是实际上，C++ 提供了机制能够实现从一个类到其他类型的转换，这称为 user-defined conversion function。例如：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Complex</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">// ...</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="k">operator</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="k">operator</span><span class="w"> </span><span class="kt">double</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="k">operator</span><span class="w"> </span><span class="kt">bool</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>事实上，当我们写 function-style cast <code>bool(c)</code> 时，这是一个 cast operator，因此 <code>operator bool()</code> 其实就是重载了 cast operator。这种重载并不需要写出返回值类型，因为它的返回值类型就是它的 operator 名字。作为一个例子<sup id="fnref:cout_string"><a class="footnote-ref" href="#fn:cout_string">3</a></sup>：</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Complex</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Complex</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">r</span><span class="p">(</span><span class="n">r</span><span class="p">),</span><span class="w"> </span><span class="n">i</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">    </span><span class="n">Complex</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">r</span><span class="p">(</span><span class="n">r</span><span class="p">),</span><span class="w"> </span><span class="n">i</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">    </span><span class="k">operator</span><span class="w"> </span><span class="n">string</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;operator string&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">to_string</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; + &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">to_string</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sc">&#39;i&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="kt">double</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;operator double&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="kt">bool</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;operator bool&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Complex</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w">      </span><span class="c1">// implicit conversion, calls Complex(3)</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w">     </span><span class="c1">// implicit conversion, calls Complex::string()</span>
+
+<span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="kt">double</span><span class="p">(</span><span class="n">c</span><span class="p">));</span><span class="w">     </span><span class="c1">// OK, explicit conversion</span>
+<span class="w">    </span><span class="n">foo</span><span class="p">((</span><span class="kt">double</span><span class="p">)</span><span class="n">c</span><span class="p">);</span><span class="w">     </span><span class="c1">// OK, explicit conversion</span>
+<span class="w">    </span><span class="c1">// foo(c);          // Error: no matching call to &#39;foo&#39;, because no </span>
+<span class="w">                        </span><span class="c1">// implicit conversion from Complex to double</span>
+
+<span class="w">    </span><span class="c1">// bool b = c;      // Error: no implicit conversion from Complex to bool</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">            </span><span class="c1">// OK, this context considers explicit operator bool</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">str</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>上面的例子中也显示了 <code>explicit</code> 的意义，即当 <code>opeator type()</code> 为 <code>explicit</code> 时，这种转换只能用于显式转换而不能用于隐式转换，这和前面的转换构造函数是一致的。</p>
+<p>作为一个需要特殊注意的问题，在一些上下文中，类型 <code>bool</code> 是被希望的，而且此时即使 <code>operator bool</code> 是 <code>explicit</code> 的也会被使用。这些上下文包括 <code>if</code>, <code>while</code>, <code>for</code> 的条件、内置逻辑运算符 <code>!</code>, <code>&amp;&amp;</code>, <code>||</code> 的操作数、三元运算符 <code>?:</code> 的第一个操作数等<sup id="fnref:bool_ctx"><a class="footnote-ref" href="#fn:bool_ctx">4</a></sup>。</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:security">
-<p>如 Format String Bugs 等。这不是我们讨论的重点。&#160;<a class="footnote-backref" href="#fnref:security" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:conv_tmp">
+<p>其实转换得到的是一个 prvalue；从 C++17 开始它不一定会产生一个临时对象，但是如果它作为了函数参数那它一定会 materialize 出一个临时对象。&#160;<a class="footnote-backref" href="#fnref:conv_tmp" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
-<li id="fn:endl">
-<p>与直接输出 <code>'\n'</code> 的区别是，输出 <code>std::endl</code> 会 flush 缓冲区。&#160;<a class="footnote-backref" href="#fnref:endl" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<li id="fn:lvalue">
+<p>左值。&#160;<a class="footnote-backref" href="#fnref:lvalue" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:cout_string">
+<p>需要注意的是，如果这里 <code>cout &lt;&lt; c</code> 会发生编译错误。首先由于 <code>operator double</code> 是 <code>explicit</code> 的，因此它不会被选中；而另一方面，<code>cout &lt;&lt; c</code> 也不会输出 <code>std::string</code>，这是因为 <code>cout</code> 对 <code>basic_string</code> 的重载需要模板参数，而隐式类型转换在模板参数推导时不会被考虑。参见 <a href="https://stackoverflow.com/questions/64310779/why-cant-the-compiler-use-the-stdstring-conversion-function-of-the-class-when">这个问题</a>。&#160;<a class="footnote-backref" href="#fnref:cout_string" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:bool_ctx">
+<p>这被称为 <a href="https://en.cppreference.com/w/cpp/language/implicit_conversion#Contextual_conversions">Contextual conversions</a>。&#160;<a class="footnote-backref" href="#fnref:bool_ctx" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3663,7 +3807,7 @@
       
         <br>
         创建日期:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-11T05:34:16+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-11</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-19T05:47:17+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-19</span>
       
     
   </small>

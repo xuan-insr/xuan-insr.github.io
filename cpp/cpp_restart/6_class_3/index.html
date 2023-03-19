@@ -87,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#6-类-iii---转换构造函数" class="md-skip">
+        <a href="#6-类-iii---拷贝构造smfs" class="md-skip">
           跳转至
         </a>
       
@@ -866,8 +866,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#-类型检查与类型转换" class="md-nav__link">
-    ▲ 类型检查与类型转换
+  <a href="#const" class="md-nav__link">
+    const
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-显式类型转换" class="md-nav__link">
+    ▲ 显式类型转换
   </a>
   
 </li>
@@ -875,6 +882,20 @@
         <li class="md-nav__item">
   <a href="#-auto--return-type-deduction" class="md-nav__link">
     ▲ auto &amp; return type deduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-拷贝构造函数" class="md-nav__link">
+    5.2 拷贝构造函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-special-member-functions" class="md-nav__link">
+    5.3 Special Member Functions
   </a>
   
 </li>
@@ -3539,8 +3560,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#-类型检查与类型转换" class="md-nav__link">
-    ▲ 类型检查与类型转换
+  <a href="#const" class="md-nav__link">
+    const
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-显式类型转换" class="md-nav__link">
+    ▲ 显式类型转换
   </a>
   
 </li>
@@ -3548,6 +3576,20 @@
         <li class="md-nav__item">
   <a href="#-auto--return-type-deduction" class="md-nav__link">
     ▲ auto &amp; return type deduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-拷贝构造函数" class="md-nav__link">
+    5.2 拷贝构造函数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-special-member-functions" class="md-nav__link">
+    5.3 Special Member Functions
   </a>
   
 </li>
@@ -3567,22 +3609,27 @@
                   
 
 
-<h1 id="6-类-iii---转换构造函数">6 类 (III) - 转换构造函数<a class="headerlink" href="#6-类-iii---转换构造函数" title="Permanent link">&para;</a></h1>
+<h1 id="6-类-iii---拷贝构造smfs">6 类 (III) - 拷贝构造、SMFs<a class="headerlink" href="#6-类-iii---拷贝构造smfs" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 28 个字 </p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 47 个字 </p>
 </div>
 <h2 id="-copy-elision">▲ copy elision<a class="headerlink" href="#-copy-elision" title="Permanent link">&para;</a></h2>
-<h2 id="-类型检查与类型转换">▲ 类型检查与类型转换<a class="headerlink" href="#-类型检查与类型转换" title="Permanent link">&para;</a></h2>
+<h2 id="const">const<a class="headerlink" href="#const" title="Permanent link">&para;</a></h2>
+<h2 id="-显式类型转换">▲ 显式类型转换<a class="headerlink" href="#-显式类型转换" title="Permanent link">&para;</a></h2>
 <p><a href="../notes/dne_notes/#36-重载">ref</a></p>
-<p>cast operators (C++98)</p>
+<p>cast operators (C++98) <a href="https://stackoverflow.com/questions/103512/why-use-static-castintx-instead-of-intx">https://stackoverflow.com/questions/103512/why-use-static-castintx-instead-of-intx</a></p>
 <h2 id="-auto--return-type-deduction">▲ auto &amp; return type deduction<a class="headerlink" href="#-auto--return-type-deduction" title="Permanent link">&para;</a></h2>
+<h2 id="52-拷贝构造函数">5.2 拷贝构造函数<a class="headerlink" href="#52-拷贝构造函数" title="Permanent link">&para;</a></h2>
+<h2 id="53-special-member-functions">5.3 Special Member Functions<a class="headerlink" href="#53-special-member-functions" title="Permanent link">&para;</a></h2>
+<p>总结除了 move ctor 和 move assignment</p>
+<p><a href="https://timsong-cpp.github.io/cppwp/n4868/special">special</a></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-02-23T09:01:23+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-02-23</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-19T05:47:17+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-19</span>
       
         <br>
         创建日期:
