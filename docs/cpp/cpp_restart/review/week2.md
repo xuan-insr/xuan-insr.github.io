@@ -197,7 +197,7 @@ class Bar { Foo f; };
 
 ```c++
 class Foo { ~Foo() = default; };
-class Bar { 
+struct Bar { 
     Foo f; 
     Bar(){}
 };

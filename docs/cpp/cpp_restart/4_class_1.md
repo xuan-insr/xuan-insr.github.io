@@ -593,7 +593,7 @@ struct Foo {
 
     ```c++
     class Foo { ~Foo() = default; };
-    class Bar { 
+    struct Bar { 
         Foo f; 
         Bar(){}
     };
