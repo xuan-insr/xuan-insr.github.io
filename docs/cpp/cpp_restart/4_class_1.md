@@ -334,11 +334,11 @@ public:
 
 有一个问题是，我们在讲构造函数之前的代码里都没有写构造函数，但是它们也能正常编译运行！C++ 也希望在没有必要的理由时不与 C 发生不兼容，而 C 中的 struct 也没有写构造函数，但是它们也能被运行。这是怎么回事呢？
 
-事实上，对于一个类，如果用户没有提供任何构造函数，则编译器会自动为这个类创建一个 public 的 implicitly-declared default constructor，它不接收任何参数，也什么都不做。如果有任何用户提供的构造函数[^default_ctor]，则 implicitly-declared default constructor 是 deleted 的。deleted 的函数不能被调用。
+事实上，对于一个类，如果用户没有提供任何构造函数，则编译器会自动为这个类创建一个 public 的 implicitly-declared default constructor，它被定义为 defaulted。Defaulted 的构造函数不接收任何参数，也什么都不做。如果有任何用户提供的构造函数[^default_ctor]，则 defaulted default constructor 被定义为 deleted 的。deleted 的函数不能被调用。
 
 [^default_ctor]: 如果有未指明初始化方式的引用成员、const 成员，或者 default ctor 被删除或不可访问的成员或基类等情况下，implicitly-declared default constructor 也是 deleted 的。
 
-不过，如果用户提供了构造函数，他仍然可以用 `ClassName() = default;` 来引入默认的构造函数。
+不过，如果用户提供了构造函数，他仍然可以用 `ClassName() = default;` 来引入 defaulted 的构造函数。
 
 用户还可以通过 `ClassName() = delete;` 显式地将 default constructor 设置成 deleted 的。
 
@@ -518,7 +518,7 @@ public:
 
 析构函数的参数列表永远是空的。显然，析构函数是无法重载的。
 
-析构函数和构造函数一样，如果某个类没有 user-declared destructor，编译器会自动生成一个 public 的 implicitly-declared destructor。因此，当类的成员中没有什么需要释放的资源时，我们就不需要写析构函数了[^rule_of_zero]。
+析构函数和构造函数一样，如果某个类没有 user-declared destructor，编译器会自动生成一个 public 的 implicitly-declared destructor，定义为 defaulted。因此，当类的成员中没有什么需要释放的资源时，我们就不需要写析构函数了[^rule_of_zero]。
 
 [^rule_of_zero]: [The rule of three / five / zero](https://en.cppreference.com/w/cpp/language/rule_of_three) 一些讨论中涵盖了什么时候需要析构函数。我们会在后面的章节中具体讨论相关问题。
 
@@ -550,6 +550,63 @@ struct Foo {
 与构造函数不同，析构函数是可以手动调用的。我们在后面讨论 placement new 的章节讨论这个问题[^call_dtor]。
 
 [^call_dtor]: https://stackoverflow.com/a/10082335/14430730 是一个很好的例子，讨论容器中对 placement new 和手动调用析构函数的用途。
+
+??? note "defaulted ctor & dtor 被 delete 的情况"
+    考虑这个问题：
+ 
+    ```c++
+    struct Foo { Foo(int){} };
+    class Bar { Foo f; };
+    ```
+
+    即，`Foo` 类型没有 default constructor（即可以无参调用的构造函数）；而 `Bar` 类型中有一个 `Foo` 类型的子对象 `f`。`Bar` 类型并没有提供构造函数。
+
+    根据我们所说，如果没有提供构造函数，则编译器自动生成一个 implicitly-declared default constructor；但是这里自动生成的构造函数并不能完成 `f` 的初始化。这种情况怎么办呢？
+
+    类似地，考虑以下几个场景：
+
+    `Foo` 的默认构造函数是有歧义的：
+
+    ```c++
+    struct Foo { 
+        Foo(){}
+        Foo(int x = 1){}
+    };
+    class Bar { Foo f; };
+    ```
+
+    `Foo` 的析构函数是 deleted 的：
+
+    ```c++
+    struct Foo { ~Foo() = delete; };
+    class Bar { Foo f; };
+    ```
+
+    `Foo` 的析构函数是 private 的：
+
+    ```c++
+    class Foo { ~Foo() = default; };
+    class Bar { Foo f; };
+    ```
+
+    或者，这个问题可以对称延伸到析构函数：
+
+    ```c++
+    class Foo { ~Foo() = default; };
+    class Bar { 
+        Foo f; 
+        Bar(){}
+    };
+    ```
+
+    C++ 规定，当以下任一情况发生时，其 defaulted 的 default constructor 被定义为 deleted 的^[class.default.ctor#2](https://timsong-cpp.github.io/cppwp/n4868/class.default.ctor#2)^：
+
+    - 某个没有 default member initializer 的 subobject 没有 default constructor
+    - 对某个 subobject 的对应 constructor 的重载解析得到歧义，或者解析出的函数是被删除或在此处不可访问的
+    - 某个 subobject 的 destructor 是被删除或者在此处不可访问的
+    - （其他情况略）
+
+    同时，如果某个 subobject 的 destructor 是被删除或者在此处不可访问的，其 defaulted 的 dtor 被定义为 deleted 的^[class.dtor#7](https://timsong-cpp.github.io/cppwp/n4868/class.dtor#7)^。
 
 ## 4.5 构造和析构的时机和顺序
 

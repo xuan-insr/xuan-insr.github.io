@@ -152,4 +152,57 @@ Foo::Foo() { puts("ctor called"); }
 
 顺着这个思路，大家可以尝试写 `Foo f = Foo::Foo();`，看看会发生什么！
 
-答案请参看 [4.3 构造函数](../..//4_class_1/#43-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0) 中的「Foo() 是调用构造函数的函数调用表达式吗？」块。
+答案请参看 [4.3 构造函数](../../4_class_1/#43-构造函数) 中的「Foo() 是调用构造函数的函数调用表达式吗？」块。
+
+### 7 关于 implicitly-declared default ctor & dtor
+
+考虑这个问题：
+
+```c++
+struct Foo { Foo(int){} };
+class Bar { Foo f; };
+```
+
+即，`Foo` 类型没有 default constructor（即可以无参调用的构造函数）；而 `Bar` 类型中有一个 `Foo` 类型的子对象 `f`。`Bar` 类型并没有提供构造函数。
+
+根据我们所说，如果没有提供构造函数，则编译器自动生成一个 implicitly-declared default constructor；但是这里自动生成的构造函数并不能完成 `f` 的初始化。这种情况怎么办呢？
+
+类似地，考虑以下几个场景：
+
+`Foo` 的默认构造函数是有歧义的：
+
+```c++
+struct Foo { 
+    Foo(){}
+    Foo(int x = 1){}
+};
+class Bar { Foo f; };
+```
+
+`Foo` 的析构函数是 deleted 的：
+
+```c++
+struct Foo { ~Foo() = delete; };
+class Bar { Foo f; };
+```
+
+`Foo` 的析构函数是 private 的：
+
+```c++
+class Foo { ~Foo() = default; };
+class Bar { Foo f; };
+```
+
+或者，这个问题可以对称延伸到析构函数：
+
+```c++
+class Foo { ~Foo() = default; };
+class Bar { 
+    Foo f; 
+    Bar(){}
+};
+```
+
+在这些时候，会发生什么事呢？
+
+答案请看 [4.4 析构函数](../../4_class_1/#44-析构函数) 末尾的「defaulted ctor & dtor 被 delete 的情况」块。
