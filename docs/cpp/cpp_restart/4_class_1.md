@@ -200,6 +200,24 @@ int main() {
 
 自 C++23 开始，`this` 关键字有了新的含义。我们将在后面的章节讨论。
 
+??? note "成员函数不能重新声明"
+    如果写了这样的代码：
+
+    ```c++
+    class Foo {
+        void foo();
+        void foo();
+    }
+    ```
+
+    gcc 12.2 会给出这样的报错：`'void Foo::foo()' cannot be overloaded with 'void Foo::foo()'`
+
+    这会让人比较疑惑，因为这两个明明都只是声明。错误的原因其实是，标准规定，类的成员函数不应被重新声明，除非这个重新声明是出现在类定义之外的成员函数定义[^redecl]^[class.mfct#2](https://timsong-cpp.github.io/cppwp/n4868/class.mfct#2)^。
+
+    [^redecl]: 或者成员函数模板的显式特化。
+    
+    clang 16.0.0 给出的报错就合理许多：`error: class member cannot be redeclared`
+
 ## ▲ inline 函数
 
 --8<-- "cpp/cpp_restart/appendix/inline_functions.md"
