@@ -455,6 +455,15 @@ $\text{Follow}(X) = \{t\ |\ S\Rightarrow^*\alpha Xt\beta\}$
 
 其中， `First(α)` 是该 production 的右侧的 First Set，其元素其实就是 3.3.5.1 中遍历到对应 production 时加入到 `First(A)` 的元素。因此，我们可以在 3.3.5.1 中，同时维护一个对于 production 左边 Non-terminal 的 First Set 和这个 production 本身（或者说，它的右边）的 First Set，以便这一步进行使用。
 
+这三条规则的原理是容易理解的，我们逐一解释。
+
+回顾之前对预测分析表的定义，`T[A, t] = α` 的含义是，如果当前 non-terminal 是 `A` 且下一个 input token 是 `t`，那我们采取 `A -> α`。
+
+第一条规则是说，如果 `α` 可以以 `t` 开头，那么 `T[A, t] = α`。这是显然的，因为当我们采取 `A -> α` 之后，由于 `α` 可以以 `t` 开头，这样就能匹配下一个 input token `t` 了。
+
+第二条规则是说，如果 `α` 可以为空，那么对于 `Follow(A)` 中的每一个 terminal `t`，`T[A, t] = α`。这是因为，我们采取 `A -> α` 之后，可以进一步采取 `α => ϵ`，这样下一个 terminal 就可能是 `Follow(A)` 中的任何一个了，因此如果下一个 input token `t` 在 `Follow(A)` 中，就可能被匹配。
+
+第三条规则和第二条规则一样，只是单独把 `$` 拿出来说一下。所以其实也可以直接记住前面两个规则。
 
 #### 3.3.5.4 例子
 下面是课本中的一道例题，展示了去除左递归、计算 First 和 Follow Set、构造 LL(1) Parsing Table 和使用 Parsing Table 的过程。
@@ -524,16 +533,11 @@ $\text{Follow}(X) = \{t\ |\ S\Rightarrow^*\alpha Xt\beta\}$
 
         | Non-terminals | First Sets | Follow Sets |
         | --- | --- | --- |
-        | _lexp_ | 
-        $\{number,\ identifier,\ (\}$ | $\{number,\ identifier,\ (,\ )\ ,\$\}$ |
-        | _atom_ | 
-        $\{number,\ identifier\}$ | $\{number,\ identifier,\ (,\ )\ ,\$\}$ |
-        | _list_ | 
-        $\{\ (\ \}$ | $\{number,\ identifier,\ (,\ )\ ,\$\}$ |
-        | _lexp-seq_ | 
-        $\{number,\ identifier,\ (\}$ | $\{\ )\ \}$ |
-        | _seq_ | 
-        $\{number,\ identifier,\ (,\ \epsilon\}$ | $\{\ )\ \}$ |
+        | _lexp_ | $\{number,\ identifier,\ (\}$ | $\{number,\ identifier,\ (,\ )\ ,\$\}$ |
+        | _atom_ | $\{number,\ identifier\}$ | $\{number,\ identifier,\ (,\ )\ ,\$\}$ |
+        | _list_ | $\{\ (\ \}$ | $\{number,\ identifier,\ (,\ )\ ,\$\}$ |
+        | _lexp-seq_ | $\{number,\ identifier,\ (\}$ | $\{\ )\ \}$ |
+        | _seq_ | $\{number,\ identifier,\ (,\ \epsilon\}$ | $\{\ )\ \}$ |
 
 
 
