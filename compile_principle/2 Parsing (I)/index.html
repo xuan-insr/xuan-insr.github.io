@@ -3903,7 +3903,7 @@
 
 <h1 id="3-语法分析--parsing">3 语法分析 | Parsing<a class="headerlink" href="#3-语法分析--parsing" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 6674 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 69 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 23 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 6918 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 69 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 24 分钟</p>
 </div>
 <blockquote>
 <p>朋辈辅学录播</p>
@@ -4272,6 +4272,11 @@ until stack == {}
 <p>根据我们计算出的 First Sets 和 Follow Sets，我们可以通过如下算法构造出该文法的预测分析表：</p>
 <p><center><img alt="image.png" src="../../assets/1616998045165-7007b9df-8752-4eb9-8c22-67b97a65d3eb.png" /></center></p>
 <p>其中， <code>First(α)</code> 是该 production 的右侧的 First Set，其元素其实就是 3.3.5.1 中遍历到对应 production 时加入到 <code>First(A)</code> 的元素。因此，我们可以在 3.3.5.1 中，同时维护一个对于 production 左边 Non-terminal 的 First Set 和这个 production 本身（或者说，它的右边）的 First Set，以便这一步进行使用。</p>
+<p>这三条规则的原理是容易理解的，我们逐一解释。</p>
+<p>回顾之前对预测分析表的定义，<code>T[A, t] = α</code> 的含义是，如果当前 non-terminal 是 <code>A</code> 且下一个 input token 是 <code>t</code>，那我们采取 <code>A -&gt; α</code>。</p>
+<p>第一条规则是说，如果 <code>α</code> 可以以 <code>t</code> 开头，那么 <code>T[A, t] = α</code>。这是显然的，因为当我们采取 <code>A -&gt; α</code> 之后，由于 <code>α</code> 可以以 <code>t</code> 开头，这样就能匹配下一个 input token <code>t</code> 了。</p>
+<p>第二条规则是说，如果 <code>α</code> 可以为空，那么对于 <code>Follow(A)</code> 中的每一个 terminal <code>t</code>，<code>T[A, t] = α</code>。这是因为，我们采取 <code>A -&gt; α</code> 之后，可以进一步采取 <code>α =&gt; ϵ</code>，这样下一个 terminal 就可能是 <code>Follow(A)</code> 中的任何一个了，因此如果下一个 input token <code>t</code> 在 <code>Follow(A)</code> 中，就可能被匹配。</p>
+<p>第三条规则和第二条规则一样，只是单独把 <code>$</code> 拿出来说一下。所以其实也可以直接记住前面两个规则。</p>
 <h4 id="3354-例子">3.3.5.4 例子<a class="headerlink" href="#3354-例子" title="Permanent link">&para;</a></h4>
 <p>下面是课本中的一道例题，展示了去除左递归、计算 First 和 Follow Set、构造 LL(1) Parsing Table 和使用 Parsing Table 的过程。</p>
 <div class="admonition example">
@@ -4323,53 +4328,28 @@ seq -&gt; lexp seq | EPSILON
 <tbody>
 <tr>
 <td><em>lexp</em></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td><span class="arithmatex">\(\{number,\ identifier,\ (\}\)</span></td>
 <td><span class="arithmatex">\(\{number,\ identifier,\ (,\ )\ ,\$\}\)</span></td>
-<td></td>
 </tr>
 <tr>
 <td><em>atom</em></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td><span class="arithmatex">\(\{number,\ identifier\}\)</span></td>
 <td><span class="arithmatex">\(\{number,\ identifier,\ (,\ )\ ,\$\}\)</span></td>
-<td></td>
 </tr>
 <tr>
 <td><em>list</em></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td><span class="arithmatex">\(\{\ (\ \}\)</span></td>
 <td><span class="arithmatex">\(\{number,\ identifier,\ (,\ )\ ,\$\}\)</span></td>
-<td></td>
 </tr>
 <tr>
 <td><em>lexp-seq</em></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td><span class="arithmatex">\(\{number,\ identifier,\ (\}\)</span></td>
 <td><span class="arithmatex">\(\{\ )\ \}\)</span></td>
-<td></td>
 </tr>
 <tr>
 <td><em>seq</em></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td><span class="arithmatex">\(\{number,\ identifier,\ (,\ \epsilon\}\)</span></td>
 <td><span class="arithmatex">\(\{\ )\ \}\)</span></td>
-<td></td>
 </tr>
 </tbody>
 </table>
@@ -4676,7 +4656,7 @@ c. Must an unambiguous grammar be LL(1)? Why or why not?</p>
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-01-24T15:10:48+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-01-24</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-24T06:19:07+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-24</span>
       
         <br>
         创建日期:
