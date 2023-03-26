@@ -14,18 +14,18 @@
         <link rel="prev" href="../5_class_2/">
       
       
-        <link rel="next" href="../7_class_4/">
+        <link rel="next" href="../appendix/decl_and_def/">
       
       <link rel="icon" href="../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
     
     
       
-        <title>6 类 (III) - 转换构造函数 - 咸鱼暄的代码空间</title>
+        <title>6 类 (III) - 拷贝构造、SMFs - 咸鱼暄的代码空间</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.c4a75a56.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.240905d7.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
@@ -119,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              6 类 (III) - 转换构造函数
+              6 类 (III) - 拷贝构造、SMFs
             
           </span>
         </div>
@@ -687,22 +687,6 @@
         
           
         
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
       
       
         <label class="md-nav__link" for="__nav_2_2_3" id="__nav_2_2_3_label" tabindex="0">
@@ -780,7 +764,7 @@
   
     <li class="md-nav__item">
       <a href="../5_class_2/" class="md-nav__link">
-        5 类 (II) - 拷贝构造与拷贝赋值
+        5 类 (II) - 拷贝赋值、运算符重载与引用
       </a>
     </li>
   
@@ -803,12 +787,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          6 类 (III) - 转换构造函数
+          6 类 (III) - 拷贝构造、SMFs
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        6 类 (III) - 转换构造函数
+        6 类 (III) - 拷贝构造、SMFs
       </a>
       
         
@@ -827,44 +811,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#61-拷贝构造函数" class="md-nav__link">
+    6.1 拷贝构造函数
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 拷贝构造函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#special-member-functions" class="md-nav__link">
+    Special Member Functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rule-of-three" class="md-nav__link">
+    Rule of Three
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rule-of-zero" class="md-nav__link">
+    Rule of Zero
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#-copy-elision" class="md-nav__link">
     ▲ copy elision
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#const" class="md-nav__link">
-    const
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#-显式类型转换" class="md-nav__link">
-    ▲ 显式类型转换
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#-auto--return-type-deduction" class="md-nav__link">
-    ▲ auto &amp; return type deduction
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#52-拷贝构造函数" class="md-nav__link">
-    5.2 拷贝构造函数
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#53-special-member-functions" class="md-nav__link">
-    5.3 Special Member Functions
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -872,118 +855,6 @@
   
 </nav>
       
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../7_class_4/" class="md-nav__link">
-        7 类 (IV) - const 和 static 成员
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../8_class_5/" class="md-nav__link">
-        8 类 (V) - 继承与抽象类、访问控制
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../9_template/" class="md-nav__link">
-        9 模板
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../10_stl/" class="md-nav__link">
-        10 STL
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../11_move_semantics/" class="md-nav__link">
-        11 右值引用和移动语义
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../12_class_6/" class="md-nav__link">
-        12 类 (VI) - 移动构造与移动赋值
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../13_namespace/" class="md-nav__link">
-        13 namespace
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../14_exception/" class="md-nav__link">
-        14 exception
-      </a>
     </li>
   
 
@@ -3521,44 +3392,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#61-拷贝构造函数" class="md-nav__link">
+    6.1 拷贝构造函数
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 拷贝构造函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#special-member-functions" class="md-nav__link">
+    Special Member Functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rule-of-three" class="md-nav__link">
+    Rule of Three
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rule-of-zero" class="md-nav__link">
+    Rule of Zero
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#-copy-elision" class="md-nav__link">
     ▲ copy elision
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#const" class="md-nav__link">
-    const
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#-显式类型转换" class="md-nav__link">
-    ▲ 显式类型转换
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#-auto--return-type-deduction" class="md-nav__link">
-    ▲ auto &amp; return type deduction
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#52-拷贝构造函数" class="md-nav__link">
-    5.2 拷贝构造函数
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#53-special-member-functions" class="md-nav__link">
-    5.3 Special Member Functions
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3579,25 +3449,303 @@
 
 <h1 id="6-类-iii---拷贝构造smfs">6 类 (III) - 拷贝构造、SMFs<a class="headerlink" href="#6-类-iii---拷贝构造smfs" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 47 个字 </p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 357 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 66 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 2 分钟</p>
 </div>
-<h2 id="-copy-elision">▲ copy elision<a class="headerlink" href="#-copy-elision" title="Permanent link">&para;</a></h2>
-<h2 id="const">const<a class="headerlink" href="#const" title="Permanent link">&para;</a></h2>
-<h2 id="-显式类型转换">▲ 显式类型转换<a class="headerlink" href="#-显式类型转换" title="Permanent link">&para;</a></h2>
-<p><a href="../notes/dne_notes/#36-重载">ref</a></p>
-<p>cast operators (C++98) <a href="https://stackoverflow.com/questions/103512/why-use-static-castintx-instead-of-intx">https://stackoverflow.com/questions/103512/why-use-static-castintx-instead-of-intx</a></p>
-<h2 id="-auto--return-type-deduction">▲ auto &amp; return type deduction<a class="headerlink" href="#-auto--return-type-deduction" title="Permanent link">&para;</a></h2>
-<h2 id="52-拷贝构造函数">5.2 拷贝构造函数<a class="headerlink" href="#52-拷贝构造函数" title="Permanent link">&para;</a></h2>
-<h2 id="53-special-member-functions">5.3 Special Member Functions<a class="headerlink" href="#53-special-member-functions" title="Permanent link">&para;</a></h2>
-<p>总结除了 move ctor 和 move assignment</p>
-<p><a href="https://timsong-cpp.github.io/cppwp/n4868/special">special</a></p>
+<script>
+function inFootnote(element) {
+    let parent = element.parentNode;
+    while (parent !== null) {
+      if (parent.classList && parent.classList.contains("footnote")) {
+        break;
+      }
+      parent = parent.parentNode;
+    }
+    return parent !== null;
+}
+</script>
+<script>
+function toggleVisibility() {
+  const links = document.querySelectorAll('a');
+  const buttons = document.querySelectorAll('.xyx-toggle');
+  links.forEach(link => {
+    if (!link.classList.contains('md-nav__link') &&
+        !link.classList.contains('md-tabs__link') &&
+        !link.classList.contains('md-source') &&
+        !link.classList.contains('md-header__button') &&
+        !link.closest('.md-nav__link') &&
+        !link.closest('.md-tabs__link') &&
+        !link.closest('.md-source') &&
+        !link.closest('.footnote-backref') &&
+        !link.closest('.footnote-ref') &&
+        !link.closest('.md-header__button') &&
+        !inFootnote(link)
+        ) {
+      if (link.style.display === 'none') {
+        link.style.display = 'inline';
+        for (const button of buttons) {
+            button.innerHTML = '点击此处隐藏正文所有链接';
+        }
+      } else {
+        link.style.display = 'none';
+        for (const button of buttons) {
+            button.innerHTML = '点击此处显示正文所有链接';
+        }
+      }
+    }
+  });
+}
+</script>
+<script>
+function toggleVisibilityFoot() {
+  const links = document.querySelectorAll('a');
+  const buttons = document.querySelectorAll('.xyx-toggle2');
+  links.forEach(link => {
+    if (link.closest('.footnote-backref') ||
+        link.closest('.footnote-ref')) {
+      if (link.style.display === 'none') {
+        link.style.display = 'inline';
+        for (const button of buttons) {
+            button.innerHTML = '点击此处隐藏本文所有脚注';
+        }
+      } else {
+        link.style.display = 'none';
+        for (const button of buttons) {
+            button.innerHTML = '点击此处显示本文所有脚注';
+        }
+      }
+    }
+  });
+
+  const footnotes = document.querySelectorAll('.footnote');
+  for (const footnote of footnotes) {
+    if (footnote.style.display === 'none') {
+      footnote.style.removeProperty('display');
+    } else {
+      footnote.style.display = 'none';
+    }
+  }
+}
+</script>
+
+<p><center>
+<button onclick="toggleVisibility()" class="box box-yellow xyx-toggle">点击此处隐藏正文所有链接</button>
+<button onclick="toggleVisibilityFoot()" class="box box-green xyx-toggle2">点击此处隐藏本文所有脚注</button>
+</center></p>
+<details class="warning">
+<summary>本节使用的副本</summary>
+<p>本节引入的副本包括：</p>
+</details>
+<h2 id="61-拷贝构造函数">6.1 拷贝构造函数<a class="headerlink" href="#61-拷贝构造函数" title="Permanent link">&para;</a></h2>
+<p>上一节中，我们讨论了用于处理赋值的 <code>operator =</code>。不过，对于形如 <code>Matrix m = m1;</code> 的初始化，应当如何处理呢？</p>
+<p>在 C with Classes 早期，这一问题的解决方案是，首先用无参的构造函数构造 <code>m</code>，然后再赋值；即等价于 <code>Matrix m; m = m1;</code>。不过，这种方式比较低效，因此后来的 C++ 引入了 <strong>拷贝构造函数 (copy constructor)</strong>。就像我们前面介绍的转换构造函数一样，拷贝构造函数是一种特殊的构造函数。具体而言，对于 class <code>T</code>，其构造函数中第一个参数类型为 <code>T&amp;</code> 或者 <code>const T&amp;</code>，且没有其他参数或者其他参数都有默认参数的那些构造函数称为拷贝构造函数<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.copy.ctor#1">class.copy.ctor#1</a></sup>。例如，<code>X::X(const X&amp;)</code> 和 <code>X::X(X&amp;, int = 1)</code> 都是拷贝构造函数。</p>
+<p>需要注意的是，形如 <code>X::X(X)</code> 的构造函数是不合法的<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.copy.ctor#5">class.copy.ctor#5</a></sup>。</p>
+<p>与构造函数、析构函数、<code>operator =</code> 一样，拷贝构造函数也会在没有用户定义的版本时声明一个默认的拷贝构造函数<sup id="fnref:implicit"><a class="footnote-ref" href="#fn:implicit">1</a></sup><sup id="fnref:implicit_type"><a class="footnote-ref" href="#fn:implicit_type">2</a></sup>，同时也能够通过 <code>= default;</code> 和 <code>= delete;</code> 显式要求或避免编译器生成拷贝构造函数。</p>
+<p>一个类中可以有多个拷贝构造函数，例如可以同时有 <code>T(T&amp;) = default;</code> 和 <code>T(const T&amp;) = default;</code>。</p>
+<p>每当通过同一类型的另一个对象初始化当前对象时，拷贝构造函数会被调用（除非这个调用被省略，见后文），具体而言，发生在：</p>
+<ul>
+<li>初始化，例如 <code>T t = t1;</code>, <code>T t(t1);</code>, <code>T t = T(t1);</code> 等</li>
+<li>函数参数传递，例如 <code>f(t);</code>，其中 <code>f</code> 的签名是 <code>void t(T t)</code></li>
+<li>函数返回，例如函数 <code>T f()</code> 的返回语句 <code>return t;</code> <sup id="fnref:ret_copy"><a class="footnote-ref" href="#fn:ret_copy">3</a></sup></li>
+</ul>
+<h3 id="special-member-functions">Special Member Functions<a class="headerlink" href="#special-member-functions" title="Permanent link">&para;</a></h3>
+<p>我们之前学到的默认（可无参调用的）构造函数、拷贝构造函数、拷贝赋值运算符和析构函数被统称为 <strong>Special Member Functions (SMF)</strong><sup id="fnref:smf"><a class="footnote-ref" href="#fn:smf">4</a></sup><sup><a href="https://timsong-cpp.github.io/cppwp/n4868/special#1">special#1</a></sup>。它们的共同特点是，如果没有用户显式声明的版本，编译器会生成默认的声明；如果需要使用，则编译器生成默认的定义。</p>
+<h3 id="rule-of-three">Rule of Three<a class="headerlink" href="#rule-of-three" title="Permanent link">&para;</a></h3>
+<p>需要提示的是，如果一个类有用户声明的拷贝赋值运算符或者析构函数，那么不推荐使用隐式定义的拷贝构造函数；对应地，如果一个类有用户声明的拷贝构造函数或者析构函数，那么不推荐使用隐式定义的拷贝赋值函数。在 C++ 的未来版本中，这些隐式定义可能会被删除<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/depr.impldec#1">depr.impldec#1</a></sup>。</p>
+<p>这一提示的依据来自于 <strong>Rule of Three</strong>，即如果用户需要自定义一个类的拷贝构造、拷贝赋值或者析构函数，那么基本上这三个都是必要的。这是因为，如我们之前的讨论，这三个函数的专门定义通常都是为了处理一些额外资源问题的；在这种需求存在时，任何一个函数缺失都有可能带来错误。例如：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Msg</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">content</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Msg</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Msg</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">char</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+<span class="w">        </span><span class="n">strcpy</span><span class="p">(</span><span class="n">content</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">content</span><span class="p">);</span>
+<span class="w">        </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">from</span><span class="p">;</span>
+<span class="w">        </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">to</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Msg</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Msg</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">)</span><span class="w">     </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">content</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">content</span><span class="p">;</span>
+<span class="w">            </span><span class="n">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">char</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">strcpy</span><span class="p">(</span><span class="n">content</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">content</span><span class="p">);</span>
+<span class="w">        </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">from</span><span class="p">;</span>
+<span class="w">        </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">to</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="o">~</span><span class="n">Msg</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">content</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="rule-of-zero">Rule of Zero<a class="headerlink" href="#rule-of-zero" title="Permanent link">&para;</a></h3>
+<p>不过，随着 C++ 的现代化，<strong>Rule of Zero</strong> 被提出。这一建议的核心是，应当遵循单一职责原则，即一个类要么只用来管理资源，要么就不应该有涉及资源管理的操作。例如上面的代码按照这种原则就应当改为：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">String</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">content</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">String</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">char</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+<span class="w">        </span><span class="n">strcpy</span><span class="p">(</span><span class="n">content</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">content</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">)</span><span class="w">     </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">content</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">content</span><span class="p">;</span>
+<span class="w">            </span><span class="n">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">char</span><span class="p">[</span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">strcpy</span><span class="p">(</span><span class="n">content</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">content</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="o">~</span><span class="n">String</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">content</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Msg</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">content</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>在这里，我们用一个专门的类 <code>String</code> 用来处理资源；由于 <code>String</code> 类型有了所有需要的 special functions，因此在 <code>Msg</code> 类中，我们不需要做额外的操作了；编译器隐式生成的拷贝构造、拷贝赋值和析构函数会帮我们调用 <code>String</code> 类的这些函数。</p>
+<p>而事实上，C++ 也帮我们写好了这样的类，就是我们之前看到的 <code>std::string</code>。因此，我们就可以简单地写成这样，而不需要写拷贝构造、拷贝赋值或者析构函数了：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Msg</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">content</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>除了 <code>string</code> 代为管理字符串之外，我们之后还会看到代为管理动态内存的智能指针；文件读写也有 <code>fstream</code> 等替我们管理。因此，在绝大多数情况，我们并没有必要自己定义这三种函数。这就是 Rule of Zero 的含义。也就是说，C++11 改进了语言和标准库，提供了对动态分配对象生命周期管理的更好工具，在这种背景下 Rule of Zero 被提出，作为对之前 Rule of Three 的更新。</p>
+<h3 id="-copy-elision">▲ copy elision<a class="headerlink" href="#-copy-elision" title="Permanent link">&para;</a></h3>
+<p>我们考虑这样一个情形：</p>
+<div class="highlight"><pre><span></span><code><span class="n">T</span><span class="w"> </span><span class="nf">f</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">T</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">f</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>如果按照我们之前的说法，这个函数在返回时构造一个 <code>T</code> 类型的临时对象，把它作为返回值；此时这个临时对象作为返回值会被用来初始化调用处的那个临时对象，然后被析构。随后该语句结束，临时对象被析构。也就是说，有两次构造（其中一次是拷贝构造）和两次析构发生。</p>
+<p>另一个情形是：<code>T t = T(f());</code>，即我们用一个 <code>T</code> 类型的值作为初始化表达式。如果按照我们之前的说法，<code>f()</code> 返回的值会被当做一个临时对象传递给拷贝构造函数构造出 <code>t</code>，随后临时对象被析构；当所在块结束时 <code>t</code> 被析构。</p>
+<p>容易理解，在上面的两种情况下，我们可以简易地达成一个优化，从而减省一次构造和一次析构。即，这两种情况做的事情分别是在返回处构造、拷贝给调用处，以及在调用处构造、拷贝给参数。它们的行为都是在前一处构造，随即拷贝到后一处。但是，如果我们能够直接在「后一处」构造，就可以省略「前一处」的临时对象的构造和析构了。</p>
+<p>即，<code>f();</code> 只会调用一次默认构造函数，而不会调用拷贝构造函数；类似地，<code>T(f())</code> 也是只调用一次默认构造函数来初始化拷贝构造函数的参数，而不会调用拷贝构造函数。如下图所示：</p>
+<p><center><img alt="" src="../2023-03-25-20-58-11.png" /></center></p>
+<p>自 C++17 开始，这种对拷贝的省略是强制的。也因此，在这种情形下，并不要求拷贝构造函数是可访问的：</p>
+<p><center><img alt="" src="../2023-03-25-20-58-55.png" /></center></p>
+<p>在另外的一些情况下，也有可能有优化的空间，例如：</p>
+<div class="highlight"><pre><span></span><code><span class="n">T</span><span class="w"> </span><span class="nf">f</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">T</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">();</span>
+</code></pre></div>
+<p>在这种情况下，有可能做的事情是：<code>tmp</code> 被拷贝给 <code>t</code>，然后 <code>tmp</code> 析构。但是，我们也容易看出，直接让 <code>t</code> 代替 <code>tmp</code> 活下去，就能够节省这次拷贝和析构。事实上，C++ 允许但不强制这种优化的发生，在一个函数返回一个非参数的局部变量时，在最初构造这一临时变量 <code>tmp</code> 时就可以直接构造到返回值 <code>t</code> 的位置，函数中对 <code>tmp</code> 的操作实际上都是对 <code>t</code> 的操作，然后省略返回时的拷贝和析构<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.copy.elision#1.1">class.copy.elision#1.1</a></sup>。这一优化称为 Named Return Value Optimization。</p>
+<p>不过，即使这一优化发生，C++ 也仍然要求此处拷贝构造函数是可以访问的。</p>
+<p>另外，由于这一优化是可选的，因此如果拷贝构造函数是有副作用（如输出、修改全局或成员变量等）的，那么在不同的编译环境下，运行的结果有可能有所不同。这是当前仅有的两种能影响可观察的副作用的优化形式之一<sup><a href="https://en.cppreference.com/w/cpp/language/copy_elision#Notes">copy_elision#Notes</a></sup>。</p>
+<hr />
+<script>
+function inFootnote(element) {
+    let parent = element.parentNode;
+    while (parent !== null) {
+      if (parent.classList && parent.classList.contains("footnote")) {
+        break;
+      }
+      parent = parent.parentNode;
+    }
+    return parent !== null;
+}
+</script>
+<script>
+function toggleVisibility() {
+  const links = document.querySelectorAll('a');
+  const buttons = document.querySelectorAll('.xyx-toggle');
+  links.forEach(link => {
+    if (!link.classList.contains('md-nav__link') &&
+        !link.classList.contains('md-tabs__link') &&
+        !link.classList.contains('md-source') &&
+        !link.classList.contains('md-header__button') &&
+        !link.closest('.md-nav__link') &&
+        !link.closest('.md-tabs__link') &&
+        !link.closest('.md-source') &&
+        !link.closest('.footnote-backref') &&
+        !link.closest('.footnote-ref') &&
+        !link.closest('.md-header__button') &&
+        !inFootnote(link)
+        ) {
+      if (link.style.display === 'none') {
+        link.style.display = 'inline';
+        for (const button of buttons) {
+            button.innerHTML = '点击此处隐藏正文所有链接';
+        }
+      } else {
+        link.style.display = 'none';
+        for (const button of buttons) {
+            button.innerHTML = '点击此处显示正文所有链接';
+        }
+      }
+    }
+  });
+}
+</script>
+<script>
+function toggleVisibilityFoot() {
+  const links = document.querySelectorAll('a');
+  const buttons = document.querySelectorAll('.xyx-toggle2');
+  links.forEach(link => {
+    if (link.closest('.footnote-backref') ||
+        link.closest('.footnote-ref')) {
+      if (link.style.display === 'none') {
+        link.style.display = 'inline';
+        for (const button of buttons) {
+            button.innerHTML = '点击此处隐藏本文所有脚注';
+        }
+      } else {
+        link.style.display = 'none';
+        for (const button of buttons) {
+            button.innerHTML = '点击此处显示本文所有脚注';
+        }
+      }
+    }
+  });
+
+  const footnotes = document.querySelectorAll('.footnote');
+  for (const footnote of footnotes) {
+    if (footnote.style.display === 'none') {
+      footnote.style.removeProperty('display');
+    } else {
+      footnote.style.display = 'none';
+    }
+  }
+}
+</script>
+
+<p><center>
+<button onclick="toggleVisibility()" class="box box-yellow xyx-toggle">点击此处隐藏正文所有链接</button>
+<button onclick="toggleVisibilityFoot()" class="box box-green xyx-toggle2">点击此处隐藏本文所有脚注</button>
+</center></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:implicit">
+<p>当该类有无法被拷贝（拷贝构造函数已删除、不可访问或有歧义）的非静态成员变量、基类，<span class="box box-yellow">TODO: 此处已知不完整</span>&#160;<a class="footnote-backref" href="#fnref:implicit" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:implicit_type">
+<p>如果该类的所有基类和类类型的非静态成员都有形如 <code>S::S(const S&amp;)</code> 的拷贝构造函数，则默认声明的拷贝构造函数形如 <code>T::T(const T&amp;)</code>；否则形如 <code>T::T(T&amp;)</code>。&#160;<a class="footnote-backref" href="#fnref:implicit_type" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:ret_copy">
+<p>这种情况下，如果 <code>T</code> 有移动构造函数，则会调用移动构造函数。&#160;<a class="footnote-backref" href="#fnref:ret_copy" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:smf">
+<p>还有移动构造和移动赋值。&#160;<a class="footnote-backref" href="#fnref:smf" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-19T05:47:17+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-19</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-26T08:23:14+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-26</span>
       
         <br>
         创建日期:
@@ -3763,7 +3911,7 @@ var giscus = document.querySelector("script[src*=giscus]")
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.efa0ade1.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.19047be9.min.js"></script>
       
         <script src="../../../js/timeago.min.js"></script>
       
