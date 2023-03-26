@@ -95,7 +95,7 @@ Matrix operator*(int x, Matrix mat) {
 这样，这个问题就解决了！
 
 !!! note
-    友元只是一种权限授予的声明，而并非类的成员。因此它并不受 access-specifier 的影响。
+    友元只是一种权限授予的声明，友元函数并非类的成员。因此它并不受 access-specifier 的影响。
 
 当然，另一种解决方案是这样的：
 
