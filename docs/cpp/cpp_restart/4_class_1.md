@@ -649,10 +649,12 @@ struct Foo {
 
 在下面的情况下，构造函数会被调用：
 
-- 对于全局对象，在 `main()` 函数运行之前，或者在同一个编译单元内定义的任一函数或对象被使用之前。在同一个编译单元内，它们的构造函数按照声明的顺序初始化。
+- 对于全局对象，在 `main()` 函数运行之前，或者在同一个编译单元内定义的任一函数或对象被使用之前。在同一个编译单元内，它们的构造函数按照声明的顺序初始化[^static_init]。
 - 对于 static local variables，在第一次运行到它的声明的时候[^static_local]。
 - 对于 automatic storage duration 的对象，在其声明被运行时。
 - 对于 dynamic storage duration 的对象，在其用 `new` 表达式创建时。
+
+[^static_init]: 在这里，我们没有讨论跨编译单元的初始化顺序问题。这一问题有时比较重要，
 
 [^static_local]: 这是线程安全的。这会带来额外的运行时开销，参见 [Does a function local static variable automatically incur a branch?](https://stackoverflow.com/questions/23829389/does-a-function-local-static-variable-automatically-incur-a-branch)。
 

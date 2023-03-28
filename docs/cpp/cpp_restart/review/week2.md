@@ -206,3 +206,19 @@ struct Bar {
 在这些时候，会发生什么事呢？
 
 答案请看 [4.4 析构函数](../../4_class_1/#44-析构函数) 末尾的「defaulted ctor & dtor 被 delete 的情况」块。
+
+## 练习题
+
+### 1
+
+尝试回答，下面的类的设计有什么问题？
+
+```c++
+class Container {
+    int * data;
+    unsigned capa;
+    // ...
+public:
+    Container(unsigned c = 512) : capa(c * 4), data(new int[capa]) {}
+};
+```

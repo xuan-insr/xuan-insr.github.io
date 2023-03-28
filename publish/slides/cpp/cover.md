@@ -16,12 +16,12 @@ revealOptions:
 
 ---
 
-## 探索 C++
+# 探索 C++
+<!-- 
+<br>
+
+# 5 类 | Classes (II)
 
 <br>
 
-# 4 类 | Classes (I)
-
-<br>
-
-## 4.9 本章小结
+## 5.6 本章小结 -->

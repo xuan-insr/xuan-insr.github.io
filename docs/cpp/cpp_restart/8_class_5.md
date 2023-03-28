@@ -12,8 +12,10 @@ class XX : public X {
 };
 ```
 
+派生类的拷贝赋值，参见 Effective C++ 条款 12
+
 ## ▲ 显式类型转换
 
-阅读 DnE 14 章
+阅读 DnE 14 章、Effective C++ 条款 27
 
 cast operators (C++98) https://stackoverflow.com/questions/103512/why-use-static-castintx-instead-of-intx
