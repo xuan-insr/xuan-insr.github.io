@@ -19,3 +19,6 @@ class XX : public X {
 阅读 DnE 14 章、Effective C++ 条款 27
 
 cast operators (C++98) https://stackoverflow.com/questions/103512/why-use-static-castintx-instead-of-intx
+
+
+讨论单根结构的优缺点
