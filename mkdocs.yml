@@ -24,9 +24,10 @@ nav:
         - 6 类 (III) - 拷贝构造、SMFs: cpp/cpp_restart/6_class_3.md
         # - 7 类 (IV) - const 和 static 成员: cpp/cpp_restart/7_class_4.md
         # - 8 类 (V) - 继承与抽象类、访问控制: cpp/cpp_restart/8_class_5.md
-        - 7 模板: cpp/cpp_restart/7_template.md
-        - 8 STL: cpp/cpp_restart/8_stl.md
-        # - 11 右值引用和移动语义: cpp/cpp_restart/11_move_semantics.md
+        - 7 模板 (I) - 基本知识与 STL 使用: cpp/cpp_restart/7_template.md
+        - 8 模板 (II) - 理解 STL: cpp/cpp_restart/8_stl.md
+        - 9 右值引用和移动语义: cpp/cpp_restart/11_move_semantics.md
+        - 10 模板 (III) - 更多话题: cpp/cpp_restart/10_template_adv.md
         # - 12 类 (VI) - 移动构造与移动赋值: cpp/cpp_restart/12_class_6.md
         # - 13 namespace: cpp/cpp_restart/13_namespace.md
         # - 14 exception: cpp/cpp_restart/14_exception.md

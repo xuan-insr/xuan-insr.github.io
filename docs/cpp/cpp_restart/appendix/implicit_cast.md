@@ -6,6 +6,7 @@
 
 - **转换和调整**
     - 数组类型可以转换为指针类型，这称为 **array-to-pointer conversion**，例如函数要求一个 `int *` 参数而我们传递了一个类型为 `int[25]` 的数组时，这个转换发生。
+    - 函数类型可以转换为指针类型，这称为 **function-to-pointer conversion**，例如函数要求一个 `void(*)(int)` 
     - 非 `const` 指针可以转换为 `const` 指针，这称为 **qualification conversion**，例如函数要求一个 `const int *` 而我们传递了一个 `int *` 时，这个转换发生。
 - **Promotion**
     - 小整数类型能够转换为更大的整数类型，这称为 **integral promotion**，例如 `char` 可以隐式转换到 `int`。

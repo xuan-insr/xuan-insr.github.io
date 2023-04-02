@@ -20,5 +20,12 @@ class XX : public X {
 
 cast operators (C++98) https://stackoverflow.com/questions/103512/why-use-static-castintx-instead-of-intx
 
+https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-types
+
+https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-members
+
+https://isocpp.org/wiki/faq/templates#nondependent-name-lookup-silent-bug
 
 讨论单根结构的优缺点
+
+CRTP，参考 https://youtu.be/eD-ceG-oByA?t=1455

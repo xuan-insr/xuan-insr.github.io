@@ -94,6 +94,23 @@ int main() {
 }
 ```
 
+作为一个实例，我们回顾之前的对 `operator[]` 的重载。事实上，通常的设计会这样重载[^subscript_const]：
+
+```c++
+class Container {
+    elem * data;
+    // ...
+public:
+          elem & operator[](unsigned index)       { return data[index]; }
+    const elem & operator[](unsigned index) const { return data[index]; }
+    // ...
+}
+```
+
+[^subscript_const]: 如前面脚注里引用的 [这个回答](https://stackoverflow.com/a/2673585/14430730) 中所讨论，`const` 和 non-`const` 的两种版本的代码重用性较差，因此会有 cast away `const` 的解法出现，但这种解法是有争议的。事实上，C++23 中的 explicit object parameter 机制解决了这一问题，可以使用 `decltype(auto) operator[](this auto& self, std::size_t idx) { return self.mVector[idx]; }`，参见 [operators#Array_subscript_operator](https://en.cppreference.com/w/cpp/language/operators#Array_subscript_operator) 以及 https://youtu.be/eD-ceG-oByA?t=1196。
+
+即，当调用者是 `const Container` 时，第二个重载会被使用，此时返回的是对第 `index` 个元素的 `const` 引用；而如果调用者是 `Container` 时，第一个重载会被使用，此时返回的是对第 `index` 元素的 non-`const` 引用。
+
 #### static 成员变量
 
 我们考虑这样一个情形：
@@ -167,7 +184,7 @@ struct Foo {
 }
 ```
 
-在这种情况下，C++ 要求程序员保证各个编译单元内的这个变量的初始值是同一个，因为链接器在这种情况下会把多个定义合并为一个定义。我们会在后面的章节中详细讨论 `inline` 相关的问题。
+在这种情况下，C++ 要求程序员保证各个编译单元内的这个变量的初始值是同一个，因为链接器在这种情况下会把多个定义合并为一个定义。事实上，在现代的 C++ 中，`inline` 不再表示「请把这个东西内联」，而是表示「这个东西可以有多个定义；程序员负责保证这些定义是一致的，因此链接时可以把它们合并」。我们会在后面的章节中再讨论 `inline` 相关的问题。
 
 `static` 成员变量不应是 `mutable` 的。
 

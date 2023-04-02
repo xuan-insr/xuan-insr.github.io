@@ -25,7 +25,6 @@
 - I/O Stream
     - `cin`, `cout` 的使用
     - 对 `operator<<` 和 `operator>>` 的重载
-- `const` 和 `static` 成员
 
 ## 思考题
 
@@ -53,16 +52,25 @@ class Bar {
 
 请大家自行查阅资料回答上述问题。部分解答可以在 [运算符重载](../../5_class_2/#%E5%8F%8B%E5%85%83) 一节的「一些限制」块中找到。
 
-### 3 Keyword arguments
+### 3 矩阵的 `operator[]`
+
+假如我们有这样的定义：
+
+```c++
+const int M = 100;
+class Matrix {
+    int data[M][M];
+};
+```
+
+如果我们希望能够通过运算符重载方便地访问 `mat.data[x][y]`，就像对于 `Container` 类我们可以通过 `c[i]` 访问 `c.data[i]` 那样，应该怎么办呢？
+
+请大家自行查阅资料回答上述问题。部分解答可以在 [引用作为返回值](../../5_class_2/#引用作为返回值) 一节的「关于自定义矩阵的 `operator[]`」块中找到。
+
+### 4 Keyword arguments
 
 Keyword arguments 或者 Named Parameter Idiom 是指根据参数的名字而非参数的位置来传参。这种机制在 C 和 C++ 中并不支持，它们只支持按位置传参。Python 之类的语言是允许这种传参方式的，即通过 `f(b = 1)` 之类的写法可以指定 `b` 的值是 `1`。
 
 问题是：为什么 C++ 不支持这种语法？C++ 有没有方式能够实现这种语法的替代？
 
 请大家自行查阅资料回答上述问题。部分解答可以在 [引用](../../5_class_2/#%E7%B1%BB%E7%9A%84%E5%BC%95%E7%94%A8%E6%88%90%E5%91%98%E5%92%8C-const-%E6%88%90%E5%91%98) 一节的「keyword arguments 的替代」块中找到。
-
-### 4 `mutable`
-
-这一关键字有什么含义？
-
-解释可以在 [const 成员函数](../../5_class_2/#const-%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0) 一节的「mutable」块中找到。

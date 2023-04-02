@@ -184,6 +184,16 @@ int main() {
 
 [^class_member]: 还能有 using-declarations, static_assert declarations, member template declarations, deduction guides (C++17), Using-enum-declarations (C++20)
 
+另外，和全局函数一样，类的成员函数也可以只有声明没有定义，只要这个函数没有被使用：
+
+```c++
+void f();   // OK if f() is never called;
+            // if called, link error may occur
+struct Foo {
+    void bar();     // ditto
+}
+```
+
 ### `this` 指针
 
 我们之前介绍过，C++ 早期会被编译成 C 语言，然后再编译成汇编。那么问题来了！例如上面代码中的 `Foo::bar` 函数，如何编译成 C 中的函数呢？这一问题的难点是：这个函数里访问了调用这个函数的对象 (不妨称之为 calling object) 的成员变量 `x`；那么这个函数如何知道 calling object 在哪里，从而访问它的成员变量呢？
@@ -649,10 +659,12 @@ struct Foo {
 
 在下面的情况下，构造函数会被调用：
 
-- 对于全局对象，在 `main()` 函数运行之前，或者在同一个编译单元内定义的任一函数或对象被使用之前。在同一个编译单元内，它们的构造函数按照声明的顺序初始化[^static_init]。
+- 对于全局对象，在 `main()` 函数运行之前，或者在同一个编译单元[^trans_units]内定义的任一函数或对象被使用之前。在同一个编译单元内，它们的构造函数按照声明的顺序初始化[^static_init]。
 - 对于 static local variables，在第一次运行到它的声明的时候[^static_local]。
 - 对于 automatic storage duration 的对象，在其声明被运行时。
 - 对于 dynamic storage duration 的对象，在其用 `new` 表达式创建时。
+
+[^trans_units]: 简单地说，一个编译单元是一个源代码文件完成编译预处理的结果。
 
 [^static_init]: 在这里，我们没有讨论跨编译单元的初始化顺序问题。这一问题有时比较重要，
 

@@ -13,48 +13,50 @@
 （写好了的就打勾）
 
 1. [x] C++ 诞生
-1. [x] 编程范式
-1. [x] 引入 oop（list & shape）
-1. [ ] 类 (I): 定义、成员、构造、析构
+2. [x] 编程范式
+3. [x] 引入 oop（list & shape）
+4. [ ] 类 (I): 定义、成员、构造、析构
     - 声明与定义
     - inline 函数
     - 函数默认参数与函数重载（不包含重载解析）
     - delegating constructors
     - 动态内存分配
-2. [ ] 类 (II): 拷贝赋值
+5. [ ] 类 (II): 拷贝赋值
     - 运算符重载
     - 引用
     - I/O stream
     - brace initialization
     - 转换构造函数
     - user-defined conversion function
-3. [ ] 类 (III): 拷贝构造、SMFs
+    - const 和 static 成员
+6. [ ] 类 (III): 拷贝构造、SMFs
     - copy elision
     - const
     - cast
     - bool
-4. [ ] 类 (IV): const 和 static 成员
+7. [ ] 模板 (I): 基本知识与 STL 使用
+    - range-based for loop (C++11); init-statement in range-for (C++20)
+    - lambda
+    - auto & return type deduction & trailing return type
+8. [ ] 模板 (II): 理解 STL
+9. [ ] 右值引用和移动语义
+    - smart pointers
+    - value categories
+    - 移动构造与移动赋值
+10. [ ] 模板 (III): 模板进阶
+    - string
+    - alias template
+    - constexpr (C++11); consteval, constinit (C++20)
+11. [ ] 类 (IV): 继承与抽象类、访问控制
+    - final, override
+    - covariant return types
+    - inherited constructors
     - UB
         - signed integers are 2's complement (C++20)
     - 初始化
         - aggregate
-6. [ ] 模板
-    - string
-    - alias template
-    - constexpr (C++11); consteval, constinit (C++20)
-7. [ ] STL
-    - range-based for loop (C++11); init-statement in range-for (C++20)
-    - lambda
-    - auto & return type deduction & trailing return type
-5. [ ] 类 (V): 继承与抽象类、访问控制
-    - final, override
-    - covariant return types
-    - inherited constructors
-6. [ ] 右值引用和移动语义
-    - smart pointers
-7. [ ] 类 (VI): 移动构造与移动赋值
-8. [ ] namespace
-9. [ ] exception
+12. [ ] namespace
+13. [ ] exception
 
 ### Topics
 

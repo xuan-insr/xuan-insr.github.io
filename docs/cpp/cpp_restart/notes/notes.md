@@ -45,7 +45,15 @@ Src: https://www.ralfj.de/blog/2018/07/24/pointers-and-bytes.html
 - RTTI 
     - overhead: https://stackoverflow.com/a/5408269/14430730，就是在 vtable 里多了一项
     - 不过如果不用typeid或者dynamic_cast也需要创造这个项，所以好像没什么 overhead
+- dereference 这个词已经没用了，现在都叫 indirection [[n3362](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3362.html)]
+- 关于用空指针调用成员函数是不是 UB
+    - [SO 问题](https://stackoverflow.com/questions/2474018/when-does-invoking-a-member-function-on-a-null-instance-result-in-undefined-beha)
+    - 调用静态成员函数不是 UB，见 [Closed 315](https://www.open-std.org/jtc1/sc22/wg21/docs/cwg_closed.html#315)
+    - 但非静态成员仍然是 [Active](https://www.open-std.org/jtc1/sc22/wg21/docs/cwg_active.html#232) 的
+- `Attribute [[assume]]`：C++23，告诉编译器可以依据哪些额外的信息进行优化；但是很容易引发 UB；TODO；`std::unreachable()~
 
 ## 要看的
 
 [c++faq](https://isocpp.org/wiki/faq)
+
+[CppCon](https://cppcon.org/)

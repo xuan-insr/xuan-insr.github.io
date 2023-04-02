@@ -146,6 +146,76 @@ const elem & operator[](unsigned index);
 
     这里 `tmp` 作为局部变量，在函数结束时就会被销毁；但是函数却返回了一个引用这个已经不存在的变量的引用。这是个 dangling reference，将会导致 undefined behavior^[std_citation_needed](./std_citation_needed.md)^。
 
+???+ note "关于自定义矩阵的 `operator[]`"
+    假如我们有这样的定义：
+
+    ```c++
+    const int M = 100;
+    class Matrix {
+        int data[M][M];
+    };
+    ```
+
+    如果我们希望能够以 `mat[x][y]` 的方式访问 `mat.data[x][y]`，应该怎么办呢？很遗憾，由于它实际上调用的是 `mat.operator[](x).operator[](y)`，因此 `mat.operator[](x)` 返回的东西必须是一个定义了 `operator[]` 的类型。
+    
+    虽然以下定义是可行的，因为 `int *` 类型可以使用下标访问：
+
+    ```c++
+    const int M = 100;
+    class Matrix {
+        int data[M][M];
+    public:
+        int * operator[](unsigned index) { return data[index]; }
+    };
+    ```
+
+    但是，假如我们需要检查是否下标越界，这样的实现就不好了。
+    
+    因此，我们可能不得不这样定义：
+
+    ```c++
+    const int M = 100;
+
+    class Row {
+        int data[M];
+    public:
+        int & operator[](unsigned index) { return data[index]; }
+    }
+
+    class Matrix {
+        Row data[M];
+    public:
+        Row & operator[](unsigned index) { return data[index]; }
+    }
+    ```
+
+    另一种方案是，借用能接受任意个参数的函数调用运算符 `()`，即：
+
+    ```c++
+    const int M = 100;
+    class Matrix {
+        int data[M][M];
+    public:
+        int & operator()(unsigned x, unsigned y) { return data[x][y]; }
+    };
+    ```
+
+    这样，我们就可以使用 `mat(x, y)` 的形式访问对应的元素了。
+
+    好消息是，自 C++23 开始，`operator[]` 也可以接收任意个参数了（此前确切只能接收 1 个），因此我们可以写：
+
+    ```c++
+    const int M = 100;
+    class Matrix {
+        int data[M][M];
+    public:
+        int & operator[](unsigned x, unsigned y) { return data[x][y]; }
+    };
+    ```
+
+    不过在调用时，我们仍然需要使用 `mat[x, y]` 而非 `mat[x][y]` 的方式访问对应元素。
+
+
 ---
 
 #### 引用类似于包装了的指针
@@ -394,7 +464,9 @@ public:
 ```
 
 !!! info "为什么 `this` 不是引用？"
-    因为有 `this` 的时候 C++ 还没有引用。
+    因为有 `this` 的时候 C++ 还没有引用。[^ref_this]
+
+    [^ref_this]: 不过，C++23 的 deducing `this` 机制使得成员函数中可以使用调用者的引用。
 
 ??? info "keyword arguments 的替代"
     Keyword arguments 或者 Named Parameter Idiom 是指根据参数的名字而非参数的位置来传参。这种机制在 C 和 C++ 中并不支持，它们只支持按位置传参。Python 之类的语言是允许这种传参方式的，即通过 `f(b = 1)` 之类的写法可以指定 `b` 的值是 `1`。
