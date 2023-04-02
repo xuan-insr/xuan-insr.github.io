@@ -906,6 +906,46 @@ int main() {
 
 容易看到，`cin` 和 `cout` 的设计使得代码的可读性和可维护性更好，也一定程度上提高了安全性。
 </script></section></section><section ><section data-markdown><script type="text/template">
+## 5.1 拷贝赋值运算符 (Cont.)
+
+</script></section><section data-markdown><script type="text/template">
+
+规范的拷贝赋值运算符一般写成这样：
+
+```c++ linenums="1"
+Container & operator=(const Container & from) {
+    if (this == &from)      // avoid self-assignment
+        return *this;
+ 
+    if (from->capa != capa) {
+        delete[] val;
+        val = new elem[from->capa];
+    }
+
+    for (unsigned i = 0; i < from->size; i++) {
+        val[i] = from->val[i];
+    }
+    size = from->size;
+    capa = from->capa;
+
+    return *this;
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+为什么这个函数接收一个 `const class-name &` 呢？如我们之前所说，这样一方面能够防止不必要的拷贝，另一方面能够接受临时对象。
+
+</script></section><section data-markdown><script type="text/template">
+
+为什么这个函数又返回一个 `class-name &` (具体地，返回 `*this`) 呢？事实上，C 和 C++ 支持这样的表达式：
+
+`a = b = 1;`
+
+赋值运算符都是 group right-to-left 的：`b = 1; a = b;`。
+
+因此如果让 `operator =` 的返回值是 `*this`，就可以完成类似 `c1 = c2 = c3;` 的操作了。
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## A.6 `const` 和 `static`
 
 </script></section><section data-markdown><script type="text/template">
@@ -961,6 +1001,41 @@ struct Foo {
                 // 'const Foo', but function is not marked const
     }
 };
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+`const int Foo::foo();`
+
+</script></section><section data-markdown><script type="text/template">
+
+是 `const` 和非 `const` 的两个同名成员函数实际上是合法的重载，因为它们其实说明了 `this` 的类型是 `T*` 还是 `const T*`：
+
+```c++
+struct Foo {
+    void foo() { cout << 1 << endl; }
+    void foo() const { cout << 2 << endl; }
+};
+
+int main() {
+    Foo f;
+    const Foo cf;
+    f.foo();    // #1 called, as Foo* fits Foo* best
+    cf.foo();   // #2 called, as const Foo* can only fit const Foo*
+}
+```
+
+</script></section><section data-markdown><script type="text/template">
+
+```c++
+class Container {
+    elem * data;
+    // ...
+public:
+          elem & operator[](unsigned index)       { return data[index]; }
+    const elem & operator[](unsigned index) const { return data[index]; }
+    // ...
+}
 ```
 
 </script></section><section data-markdown><script type="text/template">
@@ -1060,47 +1135,13 @@ struct Foo {
 
 </script></section><section data-markdown><script type="text/template">
 
+显然，`static` 成员函数中不应当有对非静态成员变量或非静态成员函数的访问：
+
+![](2023-04-02-11-47-38.png)
+
+</script></section><section data-markdown><script type="text/template">
+
 `static` 成员函数不能设为 `const`。原因很简单：`static` 说明函数没有 `this`，而 `const` 说明函数的 `this` 是 `const X *`，这两个说明是互相矛盾的。
-</script></section></section><section ><section data-markdown><script type="text/template">
-## 5.1 拷贝赋值运算符 (Cont.)
-
-</script></section><section data-markdown><script type="text/template">
-
-规范的拷贝赋值运算符一般写成这样：
-
-```c++ linenums="1"
-Container & operator=(const Container & from) {
-    if (this == &from)      // avoid self-assignment
-        return *this;
- 
-    if (from->capa != capa) {
-        delete[] val;
-        val = new elem[from->capa];
-    }
-
-    for (unsigned i = 0; i < from->size; i++) {
-        val[i] = from->val[i];
-    }
-    size = from->size;
-    capa = from->capa;
-
-    return *this;
-}
-```
-
-</script></section><section data-markdown><script type="text/template">
-
-为什么这个函数接收一个 `const class-name &` 呢？如我们之前所说，这样一方面能够防止不必要的拷贝，另一方面能够接受临时对象。
-
-</script></section><section data-markdown><script type="text/template">
-
-为什么这个函数又返回一个 `class-name &` (具体地，返回 `*this`) 呢？事实上，C 和 C++ 支持这样的表达式：
-
-`a = b = 1;`
-
-赋值运算符都是 group right-to-left 的：`b = 1; a = b;`。
-
-因此如果让 `operator =` 的返回值是 `*this`，就可以完成类似 `c1 = c2 = c3;` 的操作了。
 </script></section></section><section ><section data-markdown><script type="text/template">
 ## Takeaway
 

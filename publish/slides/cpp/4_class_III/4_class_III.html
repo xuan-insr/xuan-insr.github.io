@@ -1,13 +1,21 @@
----
-title: Week 4 - 类 (III) - 隐式类型转换、拷贝构造、
-verticalSeparator: ===
-revealOptions:
-  width: 1600
-  height: 900
-  margin: 0.04
-  transition: 'fade'
-  slideNumber: true
----
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Week 4 - 类 (III) - 隐式类型转换、拷贝构造、</title>
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./dist/reset.css" />
+    <link rel="stylesheet" href="./dist/reveal.css" />
+    <link rel="stylesheet" href="./dist/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/base16/zenburn.css" />
+
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
 
 <link rel="stylesheet" href="custom_light.css">
 <link rel="stylesheet" href="../custom_light.css">
@@ -19,12 +27,10 @@ revealOptions:
 <br>
 
 ## Week 4 - 类 (III) 隐式类型转换、拷贝构造、SMFs
-
----
-
+</script></section><section ><section data-markdown><script type="text/template">
 ## A.7 隐式类型转换 | Implicit Conversion
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 那我们来考虑这样一个问题！关于我们实现的复数类：
 
@@ -42,7 +48,7 @@ public:
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 void foo() {
@@ -56,7 +62,7 @@ void foo() {
 
 如何解决这个问题呢？
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 要求调用者显式写出转换，即 `c + Complex(d)` 和 `Complex(d) + c`
 
@@ -66,13 +72,13 @@ void foo() {
 
 <span class="fragment">什么是隐式转换？</span>
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 隐式类型转换 (implicit conversion)：这种转换是自动发生的： `i = 'c';`
 
 显式类型转换 (explicit conversion)： `i = (int)'c';` 或者 `i = int('c');`
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### 标准转换 | Standard Conversion
 
@@ -89,7 +95,7 @@ void foo() {
   - <span class="fragment">pointer conversion: `T * p = nullptr;` `void * p2 = p;`</span>
   - <span class="fragment">boolean conversion: `bool b1 = i, b2 = p, b3 = x;`</span>
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 这种隐式转换能够给编写程序带来很多方便
 
@@ -99,7 +105,7 @@ void foo() {
 
 这个过程发生了 `int` 到 `double` 的 floating-integral conversion
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 #### 用户定义的转换 | User-Defined Conversion
 
@@ -117,7 +123,7 @@ C++ 允许从类型 `A` 到类型 `B` 的隐式转换，只要有对应的 **use
 
 也就是说，除了前面我们提到的 **standard conversion** 之外，用户还可以自定义转换规则
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 User-defined conversion 有两种：
 
@@ -125,7 +131,7 @@ User-defined conversion 有两种：
 
 **用户定义的转换函数 (user-defined conversion function)**
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 #### 转换构造函数 | Converting Constructor
 
@@ -133,7 +139,7 @@ User-defined conversion 有两种：
 
 简单来说，凡是没有 `explicit` 说明符的构造函数 **都是** 转换构造函数。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 `Complex::Complex(double r);` 没有 `explicit`
 
@@ -146,7 +152,7 @@ void g(Complex z, double d) {
 }
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 **将运算符重载设为成员还是全局？**
 
@@ -159,7 +165,7 @@ void g(Complex z, double d) {
 }
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 将一个运算符重载设为全局函数能够有更强的 **逻辑对称性**
 
@@ -167,7 +173,7 @@ void g(Complex z, double d) {
 
 因此对于那些赋值运算符之类的要求第一个操作数是一个实际存在的对象的运算符，设为成员是比较好的。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 class String {
@@ -184,7 +190,7 @@ String operator+(const String &s1, const String &s2) {
 }
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 class Container {
@@ -201,7 +207,7 @@ public:
 
 `foo(1);`
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 如果一个构造函数有 `explicit`，那么它就不是 converting constructor，不能用作隐式类型转换，而只能用作显式类型转换：
 
@@ -229,11 +235,11 @@ int main() {
 }
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 因此，如果不希望前述隐式转换的发生，请将构造函数（尤其是单个参数的构造函数）标记为 `explicit`。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 class Bar {
@@ -254,7 +260,7 @@ int main() {
 }
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 struct A
@@ -292,11 +298,11 @@ int main()
 }
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 #### 用户定义的转换函数 | User-defined Conversion Function
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 class Complex {
@@ -308,7 +314,7 @@ public:
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 class Complex {
@@ -320,7 +326,7 @@ public:
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 #include <iostream>
@@ -366,7 +372,7 @@ int main() {
 }
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ##### Contextual conversions
 
@@ -375,24 +381,22 @@ int main() {
 此时即使 `operator bool` 是 `explicit` 的也会被使用
 
 这些上下文包括 `if`, `while`, `for` 的条件、内置逻辑运算符 `!`, `&&`, `||` 的操作数、三元运算符 `?:` 的第一个操作数等
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## 6.1 拷贝构造函数
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 我们定义了 `operator =`。
 
 形如 `Matrix m = m1;` 的初始化应当如何处理呢？
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 C with Classes 早期，这一问题的解决方案是，首先用无参的构造函数构造 `m`，然后再赋值
 
 即等价于 `Matrix m; m = m1;`
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 class Container {
@@ -423,7 +427,7 @@ public:
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 因此后来的 C++ 引入了 **拷贝构造函数 (copy constructor)**
 
@@ -435,13 +439,13 @@ public:
 
 进一步地说，只要能在 `T t = t1;` 中调用的构造函数，都是拷贝构造函数
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 与构造函数、析构函数、`operator =` 一样，拷贝构造函数也会在没有用户定义的版本时声明一个默认的拷贝构造函数，同时也能够通过 `= default;` 和 `= delete;` 显式要求或避免编译器生成拷贝构造函数。
 
 一个类中可以有多个拷贝构造函数，例如可以同时有 `T(T&) = default;` 和 `T(const T&) = default;`。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 每当通过同一类型的另一个对象初始化当前对象时，拷贝构造函数会被调用（除非这个调用被省略），具体而言，发生在：
 
@@ -451,7 +455,7 @@ public:
 
 因此，形如 `X::X(X)` 的构造函数是不合法的
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### copy elision
 
@@ -465,13 +469,13 @@ int main() {
 }
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 直接在需要的地方构造，而不是在别处构造然后拷贝过去：
 
 ![](2023-04-02-12-39-04.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 自 C++17 开始，在以下两种情况下，对拷贝的省略是强制的：
 
@@ -492,13 +496,13 @@ f(); // only one call to default constructor of T
 T x = T(T(f())); // only one call to default constructor of T, to initialize x
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 这种对拷贝的省略是强制的。因此，在这种情形下，并不要求拷贝构造函数是可访问的：
 
 ![](2023-04-02-12-43-41.png)
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 #### Named Return Value Optimization
 
@@ -517,24 +521,22 @@ T t = f();
 C++ 允许但不强制这种优化的发生
 
 因此，即使这一优化发生，C++ 也仍然要求此处拷贝构造函数是可以访问的
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## 6.2 Special Member Functions
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 默认（可无参调用的）构造函数、拷贝构造函数、拷贝赋值运算符和析构函数被统称为 **Special Member Functions (SMF)**
 
 如果没有用户显式声明的版本，编译器会生成默认的声明；如果需要使用，则编译器生成默认的定义
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### Rule of Three
 
 如果用户需要自定义一个类的拷贝构造、拷贝赋值或者析构函数，那么基本上这三个都是必要的
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 class Msg {
@@ -563,7 +565,7 @@ public:
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 如果一个类有用户声明的拷贝赋值运算符或者析构函数，那么不推荐使用隐式定义的拷贝构造函数
 
@@ -571,13 +573,13 @@ public:
 
 在 C++ 的未来版本中，这些隐式定义可能会被删除
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ### Rule of Zero
 
 应当遵循单一职责原则，即一个类要么只用来管理资源，要么就不应该有涉及资源管理的操作
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 class String {
@@ -601,7 +603,7 @@ public:
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 class Msg {
@@ -616,7 +618,7 @@ class Msg {
 
 编译器隐式生成的拷贝构造、拷贝赋值和析构函数会帮我们调用 `String` 类的这些函数。
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ```c++
 class Msg {
@@ -625,7 +627,7 @@ class Msg {
 };
 ```
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 C++11 改进了语言和标准库，提供了对动态分配对象生命周期管理的更好工具，在这种背景下 Rule of Zero 被提出，作为对之前 Rule of Three 的更新
 
@@ -633,9 +635,7 @@ C++11 改进了语言和标准库，提供了对动态分配对象生命周期�
 - STL 容器代为管理数据类型，如 `std::vector` 或者 `std::array` 代为管理数组
 - 智能指针代为管理动态内存
 - `std::fstream` 等代为管理文件读写
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Takeaway
 
 - 隐式类型转换
@@ -644,7 +644,7 @@ C++11 改进了语言和标准库，提供了对动态分配对象生命周期�
     - Converting Constructor
     - User-defined Conversion Function
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ## Takeaway
 
@@ -655,7 +655,7 @@ C++11 改进了语言和标准库，提供了对动态分配对象生命周期�
     - C++17 开始的强制
     - NRVO, Named Return Value Optimization
 
-===
+</script></section><section data-markdown><script type="text/template">
 
 ## Takeaway
 
@@ -663,4 +663,56 @@ C++11 改进了语言和标准库，提供了对动态分配对象生命周期�
   - 默认构造函数、拷贝构造函数、拷贝赋值函数、析构函数
   - 共同特点
   - Rule of Three
-  - **Rule of Zero**
+  - **Rule of Zero**</script></section></section></div>
+    </div>
+
+    <script src="./dist/reveal.js"></script>
+
+    <script src="./plugin/markdown/markdown.js"></script>
+    <script src="./plugin/highlight/highlight.js"></script>
+    <script src="./plugin/zoom/zoom.js"></script>
+    <script src="./plugin/notes/notes.js"></script>
+    <script src="./plugin/math/math.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        slideNumber: true,
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"width":1600,"height":900,"margin":0.04,"transition":"fade","slideNumber":true}, queryOptions);
+    </script>
+
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
