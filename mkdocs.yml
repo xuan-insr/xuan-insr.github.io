@@ -15,6 +15,10 @@ nav:
         - Week2 思考题与复习题: cpp/cpp_restart/review/week2.md
         - Week3 类 (II) 拷贝赋值、拷贝构造、SMFs: https://xuan-insr.github.io/slides/cpp/3_class_II/
         - Week3 思考题与复习题: cpp/cpp_restart/review/week3.md
+        - Week4 类 (III) 隐式类型转换、拷贝构造、SMFs: https://xuan-insr.github.io/slides/cpp/4_class_III/
+        - Week4 思考题与复习题: cpp/cpp_restart/review/week4.md
+        - Week5 模板 (I) 基础知识与 STL 使用: https://xuan-insr.github.io/slides/cpp/5_template_I/
+        - Week5 思考题与复习题: cpp/cpp_restart/review/week5.md
       - 正文！:
         - 1 C++ 的诞生: cpp/cpp_restart/1_birth.md
         - 2 编程范式: cpp/cpp_restart/2_paradigm.md

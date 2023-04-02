@@ -34,7 +34,7 @@
 TYPE abs(TYPE x) { return x > 0 ? x : -x; }
 ```
 
-```c++ title="main.c"
+```c++ title="main.cpp"
 #define TYPE int
 #include "abs.h"
 #undef TYPE
@@ -49,23 +49,23 @@ int main() {
 }
 ```
 
-通过 `g++ main.c -E > main.i` 命令（`-E` 表示只完成预处理），我们得到下面的结果：
+通过 `g++ main.cpp -E > main.i` 命令（`-E` 表示只完成预处理），我们得到下面的结果：
 
 ```c++ title="main.i"
-# 0 "main.c"
+# 0 "main.cpp"
 # 0 "<built-in>"
 # 0 "<command-line>"
-# 1 "main.c"
+# 1 "main.cpp"
 
 # 1 "abs.h" 1
 int abs(int x) { return x > 0 ? x : -x; }
-# 3 "main.c" 2
+# 3 "main.cpp" 2
 
 
 
 # 1 "abs.h" 1
 double abs(double x) { return x > 0 ? x : -x; }
-# 7 "main.c" 2
+# 7 "main.cpp" 2
 
 
 int main() {
@@ -96,7 +96,7 @@ class NAME {
 
 （关于上面这段代码为什么要写的这么麻烦，可以参考 [这个回答](https://stackoverflow.com/a/51161267/14430730)。基本原因是，如果我们写 `Container_TYPE`，那么 `#define TYPE int` 不会导致这个名字被替换为 `Container_int`，因为宏替换只替换完整的 token，而不会替换其中的一部分） 
 
-```c++ title="main.c"
+```c++ title="main.cpp"
 #define TYPE int
 #include "container.h"
 #undef TYPE
@@ -131,7 +131,7 @@ int main() {
 
 但是，显然这样的写法是丑陋的，以及容易出错。回顾之前 BS 说过的，希望 C++ 能够「允许用语言本身表达所有重要的东西，而不是在注释里或者通过宏这类黑客手段」。那么，C++ 如何支持这种让一个函数或类适配多种不同类型的目标呢？
 
-在 Release 3.0 中，C++ 受 Ada （一种编程语言）的启发加入了 **模板 (template)** 机制来解决这一问题。事实上，BS 反思说这么晚才引入模板机制是一个错误，因为模板远比 Release 2.0 中引入的多继承之类的特性重要。的确，模板将 **泛型编程 (generic programming)** 和 **模板元编程 (template metaprogramming)** 这两个编程范式引入了 C++，它在现在发挥着非常重要的作用。我们分别介绍这两种编程范式。
+在 Release 3.0 中，C++ 受 Ada （一种编程语言）的启发加入了 **模板 (template)** 机制来解决这一问题。事实上，BS 反思说这么晚才引入模板机制是一个错误，因为模板远比 Release 2.0 中引入的多继承之类的特性重要。的确，模板将 **泛型编程 (generic programming)** 和 **模板元编程 (template metaprogramming)** 这两个编程范式引入了 C++，它们在现在发挥着非常重要的作用。我们分别介绍这两种编程范式。
 
 ## 7.2 模板和隐式实例化
 

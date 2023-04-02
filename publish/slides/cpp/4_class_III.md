@@ -1,5 +1,5 @@
 ---
-title: Week 4 - 类 (III) - 隐式类型转换、拷贝构造、
+title: Week 4 - 类 (III) - 隐式类型转换、拷贝构造、SMFs
 verticalSeparator: ===
 revealOptions:
   width: 1600
