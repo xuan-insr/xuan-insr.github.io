@@ -5032,7 +5032,7 @@ int vowelStrings(Container&amp; w, int l, int r) { /* ... */ }
 <p>为了解决这个问题，C++ 允许从类型 <code>A</code> 到类型 <code>B</code> 的隐式转换，只要有这样的 <strong>user-defined conversion</strong>。也就是说，除了前面我们提到的 <strong>standard conversion</strong> 之外，用户还可以自定义转换规则。</p>
 <p>User-defined conversion 有两种：<strong>转换构造函数 (converting constructor)</strong> 和 <strong>用户定义的转换函数 (user-defined conversion function)</strong>。我们分别讨论这两种东西！</p>
 <h4 id="转换构造函数--converting-constructor">转换构造函数 | Converting Constructor<a class="headerlink" href="#转换构造函数--converting-constructor" title="Permanent link">&para;</a></h4>
-<p>转换构造函数 <strong>不是</strong> 一种特殊的构造函数，而是构造函数的一种性质。简单来说，凡是没有 <code>explicit</code> 标识符的构造函数 <strong>都是</strong> 转换构造函数。我们稍后讨论 <code>explicit</code> 的含义。</p>
+<p>转换构造函数 <strong>不是</strong> 一种特殊的构造函数，而是构造函数的一种性质。简单来说，凡是没有 <code>explicit</code> 说明符的构造函数 <strong>都是</strong> 转换构造函数。我们稍后讨论 <code>explicit</code> 的含义。</p>
 <p>也就是说，比如我们有构造函数 <code>Complex::Complex(double r);</code>，这其实就提供了一种 <strong>隐式转换</strong> 的规则：<code>double</code> 类型的变量可以隐式转换成一个 <code>Complex</code>。也就是说：</p>
 <div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">g</span><span class="p">(</span><span class="n">Complex</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">Complex</span><span class="w"> </span><span class="n">z1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d</span><span class="p">;</span><span class="w">     </span><span class="c1">// OK, calls operator+(z, Complex(d));</span>
@@ -5043,7 +5043,7 @@ int vowelStrings(Container&amp; w, int l, int r) { /* ... */ }
 <details class="note" open="open">
 <summary>将运算符重载设为成员还是全局</summary>
 <p>有了这种隐式转换，我们就需要意识到一个问题：如果 <code>operator+</code> 是 <code>Complex</code> 的一个成员函数，那么上面代码中 <code>z + d</code> 仍然可以被当做 <code>z.operator+(Complex(d))</code> 来调用，但是 <code>d + z</code> 就不能调用 <code>d.operator+(z)</code>，因为 <code>double</code> 类型中没有这样的函数。如我们之前所说，C++ 不希望给内部类型增加新的运算。</p>
-<p>从这里我们可以知道：如果我们将一个运算符重载设为全局函数能够有更强的逻辑对称性；而将其定义为成员函数则能够保证第一个操作数不发生转换。根据我们之前的讨论，转换得到的是一个临时对象<sup id="fnref:conv_tmp"><a class="footnote-ref" href="#fn:conv_tmp">18</a></sup>；因此对于那些赋值运算符之类的要求第一个操作数是一个实际存在的对象<sup id="fnref:lvalue"><a class="footnote-ref" href="#fn:lvalue">19</a></sup>的运算符是比较好的。</p>
+<p>从这里我们可以知道：如果我们将一个运算符重载设为全局函数能够有更强的逻辑对称性；而将其定义为成员函数则能够保证第一个操作数不发生转换。根据我们之前的讨论，转换得到的是一个临时对象<sup id="fnref:conv_tmp"><a class="footnote-ref" href="#fn:conv_tmp">18</a></sup>；因此对于那些赋值运算符之类的要求第一个操作数是一个实际存在的对象<sup id="fnref:lvalue"><a class="footnote-ref" href="#fn:lvalue">19</a></sup>的运算符，设为成员是比较好的。</p>
 <p>作为一个好的例子：</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">String</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// ...</span>
