@@ -17,7 +17,7 @@
         <link rel="next" href="../copy_elision/">
       
       <link rel="icon" href="../../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.240905d7.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.7a7fce14.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.a0c5b2b5.min.css">
@@ -721,6 +721,10 @@
         
           
         
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_2_2_3" id="__nav_2_2_3_label" tabindex="0">
@@ -826,7 +830,7 @@
   
     <li class="md-nav__item">
       <a href="../../7_template/" class="md-nav__link">
-        7 模板
+        7 模板 (I) - 基本知识与 STL 使用
       </a>
     </li>
   
@@ -840,7 +844,35 @@
   
     <li class="md-nav__item">
       <a href="../../8_stl/" class="md-nav__link">
-        8 STL
+        8 模板 (II) - 理解 STL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11_move_semantics/" class="md-nav__link">
+        9 右值引用和移动语义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10_template_adv/" class="md-nav__link">
+        10 模板 (III) - 更多话题
       </a>
     </li>
   
@@ -3720,6 +3752,17 @@
 <span class="w">    </span><span class="n">cf</span><span class="p">.</span><span class="n">foo</span><span class="p">();</span><span class="w">   </span><span class="c1">// #2 called, as const Foo* can only fit const Foo*</span>
 <span class="p">}</span>
 </code></pre></div>
+<p>作为一个实例，我们回顾之前的对 <code>operator[]</code> 的重载。事实上，通常的设计会这样重载<sup id="fnref:subscript_const"><a class="footnote-ref" href="#fn:subscript_const">4</a></sup>：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">elem</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">          </span><span class="n">elem</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">[](</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w">       </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">elem</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">[](</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>即，当调用者是 <code>const Container</code> 时，第二个重载会被使用，此时返回的是对第 <code>index</code> 个元素的 <code>const</code> 引用；而如果调用者是 <code>Container</code> 时，第一个重载会被使用，此时返回的是对第 <code>index</code> 元素的 non-<code>const</code> 引用。</p>
 <h4 id="static-成员变量">static 成员变量<a class="headerlink" href="#static-成员变量" title="Permanent link">&para;</a></h4>
 <p>我们考虑这样一个情形：</p>
 <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">tot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -3739,7 +3782,7 @@
 <span class="kt">int</span><span class="w"> </span><span class="n">User</span><span class="o">::</span><span class="n">tot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 </code></pre></div>
 <p>这个 <code>tot</code> 虽然从全局移到了类内，但是它仍然具有 static 的生命周期。它的生命周期仍然从它的定义 <code>int User::tot = 0;</code> 开始，到程序结束为止。由于它是类的成员，因此访问它的时候需要用 <code>User::tot</code>。</p>
-<p>如我们刚才所说，<code>static</code> 成员不被绑定到类的实例中，也就是上面 <code>User</code> 类的每个实例里仍然只有 <code>id</code> 而没有 <code>tot</code>。不过，语法仍然允许用一个类的实例访问 <code>static</code> 成员，例如 <code>user.tot</code><sup id="fnref:static_call"><a class="footnote-ref" href="#fn:static_call">4</a></sup>。静态成员也受 access specifier 的影响。</p>
+<p>如我们刚才所说，<code>static</code> 成员不被绑定到类的实例中，也就是上面 <code>User</code> 类的每个实例里仍然只有 <code>id</code> 而没有 <code>tot</code>。不过，语法仍然允许用一个类的实例访问 <code>static</code> 成员，例如 <code>user.tot</code><sup id="fnref:static_call"><a class="footnote-ref" href="#fn:static_call">5</a></sup>。静态成员也受 access specifier 的影响。</p>
 <p>需要提示的是，之前我们讨论的 default member initializer 和 member initializer list 是针对 non-static 成员变量的，它们对于 static 成员变量不适用：</p>
 <p><center><img alt="" src="../2023-03-26-15-15-19.png" /></center></p>
 <p>也就是说，在类中的 static 成员变量 <strong>只是声明</strong> <sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.static.data#3">class.static.data#3</a></sup>。也就是说，我们必须在类外给出其定义，才能让编译器知道在哪里构造这些成员：</p>
@@ -3767,7 +3810,7 @@
 <span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// OK since C++17</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>在这种情况下，C++ 要求程序员保证各个编译单元内的这个变量的初始值是同一个，因为链接器在这种情况下会把多个定义合并为一个定义。我们会在后面的章节中详细讨论 <code>inline</code> 相关的问题。</p>
+<p>在这种情况下，C++ 要求程序员保证各个编译单元内的这个变量的初始值是同一个，因为链接器在这种情况下会把多个定义合并为一个定义。事实上，在现代的 C++ 中，<code>inline</code> 不再表示「请把这个东西内联」，而是表示「这个东西可以有多个定义；程序员负责保证这些定义是一致的，因此链接时可以把它们合并」。我们会在后面的章节中再讨论 <code>inline</code> 相关的问题。</p>
 <p><code>static</code> 成员变量不应是 <code>mutable</code> 的。</p>
 <h4 id="static-成员函数">static 成员函数<a class="headerlink" href="#static-成员函数" title="Permanent link">&para;</a></h4>
 <p><code>static</code> 函数的动机和 <code>static</code> 变量一致，都是「属于类，但不需要和具体对象相关」的需求；在这两种情形下，类被简单地当做一种作用域来使用。</p>
@@ -3795,8 +3838,11 @@
 <li id="fn:const_cast">
 <p>在 C++ 中，提倡明确使用 <code>const_cast</code> 来完成这一任务。Scott Meyers 在 Effective C++ 的条款 03 中提到了一种「适用」cast away <code>const</code> 的情况，这个情况也可以在 <a href="https://stackoverflow.com/a/2673585/14430730">这个回答</a> 中找到。不过我们也可以发现，这种写法是有争议的；C++ Core Guidelines 的 <a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Res-casts-const">ES.50: Don't cast away <code>const</code></a> 一节中有所讨论，建议的处理方案是使用模板和返回值类型推导。&#160;<a class="footnote-backref" href="#fnref:const_cast" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
+<li id="fn:subscript_const">
+<p>如前面脚注里引用的 <a href="https://stackoverflow.com/a/2673585/14430730">这个回答</a> 中所讨论，<code>const</code> 和 non-<code>const</code> 的两种版本的代码重用性较差，因此会有 cast away <code>const</code> 的解法出现，但这种解法是有争议的。事实上，C++23 中的 explicit object parameter 机制解决了这一问题，可以使用 <code>decltype(auto) operator[](this auto&amp; self, std::size_t idx) { return self.mVector[idx]; }</code>，参见 <a href="https://en.cppreference.com/w/cpp/language/operators#Array_subscript_operator">operators#Array_subscript_operator</a> 以及 <a href="https://youtu.be/eD-ceG-oByA?t=1196">https://youtu.be/eD-ceG-oByA?t=1196</a>。&#160;<a class="footnote-backref" href="#fnref:subscript_const" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
 <li id="fn:static_call">
-<p>如果有一个 <code>User &amp; foo();</code>，那么 <code>foo().tot</code> 虽然用的是 <code>User::tot</code>，但是 <code>foo()</code> 仍会被调用。&#160;<a class="footnote-backref" href="#fnref:static_call" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p>如果有一个 <code>User &amp; foo();</code>，那么 <code>foo().tot</code> 虽然用的是 <code>User::tot</code>，但是 <code>foo()</code> 仍会被调用。&#160;<a class="footnote-backref" href="#fnref:static_call" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -3972,7 +4018,7 @@ var giscus = document.querySelector("script[src*=giscus]")
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.19047be9.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.407015b8.min.js"></script>
       
         <script src="../../../../js/timeago.min.js"></script>
       

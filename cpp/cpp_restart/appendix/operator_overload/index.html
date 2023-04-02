@@ -17,7 +17,7 @@
         <link rel="next" href="../references/">
       
       <link rel="icon" href="../../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.240905d7.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.7a7fce14.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.a0c5b2b5.min.css">
@@ -721,6 +721,10 @@
         
           
         
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_2_2_3" id="__nav_2_2_3_label" tabindex="0">
@@ -826,7 +830,7 @@
   
     <li class="md-nav__item">
       <a href="../../7_template/" class="md-nav__link">
-        7 模板
+        7 模板 (I) - 基本知识与 STL 使用
       </a>
     </li>
   
@@ -840,7 +844,35 @@
   
     <li class="md-nav__item">
       <a href="../../8_stl/" class="md-nav__link">
-        8 STL
+        8 模板 (II) - 理解 STL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11_move_semantics/" class="md-nav__link">
+        9 右值引用和移动语义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10_template_adv/" class="md-nav__link">
+        10 模板 (III) - 更多话题
       </a>
     </li>
   
@@ -4042,6 +4074,58 @@ void g(X a, X b) {
 </code></pre></div>
 <p>这里 <code>tmp</code> 作为局部变量，在函数结束时就会被销毁；但是函数却返回了一个引用这个已经不存在的变量的引用。这是个 dangling reference，将会导致 undefined behavior<sup><a href="./std_citation_needed.md">std_citation_needed</a></sup>。</p>
 </details>
+<details class="note" open="open">
+<summary>关于自定义矩阵的 <code>operator[]</code></summary>
+<p>假如我们有这样的定义：</p>
+<div class="highlight"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Matrix</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">M</span><span class="p">];</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>如果我们希望能够以 <code>mat[x][y]</code> 的方式访问 <code>mat.data[x][y]</code>，应该怎么办呢？很遗憾，由于它实际上调用的是 <code>mat.operator[](x).operator[](y)</code>，因此 <code>mat.operator[](x)</code> 返回的东西必须是一个定义了 <code>operator[]</code> 的类型。</p>
+<p>虽然以下定义是可行的，因为 <code>int *</code> 类型可以使用下标访问：</p>
+<div class="highlight"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Matrix</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">M</span><span class="p">];</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">operator</span><span class="p">[](</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>但是，假如我们需要检查是否下标越界，这样的实现就不好了。</p>
+<p>因此，我们可能不得不这样定义：</p>
+<div class="highlight"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Row</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">M</span><span class="p">];</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">[](</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Matrix</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Row</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">M</span><span class="p">];</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Row</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">[](</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>另一种方案是，借用能接受任意个参数的函数调用运算符 <code>()</code>，即：</p>
+<div class="highlight"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Matrix</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">M</span><span class="p">];</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>这样，我们就可以使用 <code>mat(x, y)</code> 的形式访问对应的元素了。</p>
+<p>好消息是，自 C++23 开始，<code>operator[]</code> 也可以接收任意个参数了（此前确切只能接收 1 个），因此我们可以写：</p>
+<div class="highlight"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Matrix</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">M</span><span class="p">];</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">[](</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>不过在调用时，我们仍然需要使用 <code>mat[x, y]</code> 而非 <code>mat[x][y]</code> 的方式访问对应元素。</p>
+</details>
 <hr />
 <h4 id="引用类似于包装了的指针">引用类似于包装了的指针<a class="headerlink" href="#引用类似于包装了的指针" title="Permanent link">&para;</a></h4>
 <p>从实现的角度而言，我们可以认为引用更类似于 const 指针，即 <code>int &amp; y = x;</code> 类似于对 <code>int * const py = &amp;x;</code> 的包装，对 <code>y</code> 的使用实际上是使用 <code>*py</code>。</p>
@@ -4228,7 +4312,7 @@ void g(X a, X b) {
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">为什么 <code>this</code> 不是引用？</p>
-<p>因为有 <code>this</code> 的时候 C++ 还没有引用。</p>
+<p>因为有 <code>this</code> 的时候 C++ 还没有引用。<sup id="fnref:ref_this"><a class="footnote-ref" href="#fn:ref_this">11</a></sup></p>
 </div>
 <details class="info">
 <summary>keyword arguments 的替代</summary>
@@ -4272,7 +4356,7 @@ int vowelStrings(Container&amp; w, int l, int r) { /* ... */ }
 </details>
 <h3 id="-io-stream">▲ I/O stream<a class="headerlink" href="#-io-stream" title="Permanent link">&para;</a></h3>
 <p>前面我们聊了运算符重载和引用之类的话题。在 C++ 中，对它们的一个经典应用是输入输出流。</p>
-<p>在 C 中，大家熟悉的输入输出方式是 <code>scanf</code> 和 <code>printf</code>，它们对类型的识别并不是静态的，而是动态地根据格式控制字符串中 <code>%d</code> 之类的东西处理的，这在带来一些安全问题<sup id="fnref:security"><a class="footnote-ref" href="#fn:security">11</a></sup>的同时还引发了一个重要问题——没有办法支持用户自定义类型。</p>
+<p>在 C 中，大家熟悉的输入输出方式是 <code>scanf</code> 和 <code>printf</code>，它们对类型的识别并不是静态的，而是动态地根据格式控制字符串中 <code>%d</code> 之类的东西处理的，这在带来一些安全问题<sup id="fnref:security"><a class="footnote-ref" href="#fn:security">12</a></sup>的同时还引发了一个重要问题——没有办法支持用户自定义类型。</p>
 <p>在 C++ 中，新的头文件 <code>&lt;iostream&gt;</code> (input / output stream) 中提供了两个全局对象 <code>cin</code> (char input) 和 <code>cout</code> (char output) 用来完成输入输出。举一个例子：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -4292,7 +4376,7 @@ int vowelStrings(Container&amp; w, int l, int r) { /* ... */ }
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>这里的 <code>std::cin</code> 中的 <code>std</code> (standard) 是对象 <code>cin</code> 所处的 <strong>命名空间 (namespace)</strong> 的名字；我们会在后面的章节讨论命名空间；<code>::</code> 仍然是我们熟悉的 scope resolution operator。<code>std::cout</code> 和 <code>std::endl</code> 也类似；其中 <code>endl</code> (endline) 是换行<sup id="fnref:endl"><a class="footnote-ref" href="#fn:endl">12</a></sup>。</p>
+<p>这里的 <code>std::cin</code> 中的 <code>std</code> (standard) 是对象 <code>cin</code> 所处的 <strong>命名空间 (namespace)</strong> 的名字；我们会在后面的章节讨论命名空间；<code>::</code> 仍然是我们熟悉的 scope resolution operator。<code>std::cout</code> 和 <code>std::endl</code> 也类似；其中 <code>endl</code> (endline) 是换行<sup id="fnref:endl"><a class="footnote-ref" href="#fn:endl">13</a></sup>。</p>
 <p><code>std::cin &gt;&gt; x &gt;&gt; y;</code> 表示从标准输入流中读取 <code>x</code>，然后读取 <code>y</code>，它等价于 <code>std::cin &gt;&gt; x; std::cin &gt;&gt; y;</code>。这里的运算符 <code>&gt;&gt;</code> 本身的含义是右移，而这里我们通过运算符重载给它赋予了新的语义：从流中提取 (stream extraction)。</p>
 <p><code>std::cout &lt;&lt; "x = " &lt;&lt; x &lt;&lt; ", y = " &lt;&lt; y &lt;&lt; std::endl;</code> 表示向标准输出流中输出字符串 <code>"x = "</code>，然后输出 <code>x</code> 的值，然后输出字符串 <code>", y = "</code>，然后输出 <code>y</code> 的值，然后输出换行。<code>&lt;&lt;</code> 本来是左移，而这里对各种基本类型重载了 <code>&lt;&lt;</code> 运算符，来实现向流中插入 (stream insertion) 的语义。</p>
 <details class="note" open="open">
@@ -4461,7 +4545,7 @@ int vowelStrings(Container&amp; w, int l, int r) { /* ... */ }
 </code></pre></div>
 <details class="note" open="open">
 <summary>mutable</summary>
-<p>和之前的讨论一样，<code>const</code> 的设计是为了检查偶然的错误，但是不是为了给程序员增加不必要束缚。程序员在需要的时候，可以 <strong>明确地</strong> 要求做一些突破类型系统的事情；这些内容有时是有用的<sup id="fnref:const_cast"><a class="footnote-ref" href="#fn:const_cast">13</a></sup>。例如：</p>
+<p>和之前的讨论一样，<code>const</code> 的设计是为了检查偶然的错误，但是不是为了给程序员增加不必要束缚。程序员在需要的时候，可以 <strong>明确地</strong> 要求做一些突破类型系统的事情；这些内容有时是有用的<sup id="fnref:const_cast"><a class="footnote-ref" href="#fn:const_cast">14</a></sup>。例如：</p>
 <div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
@@ -4495,6 +4579,17 @@ int vowelStrings(Container&amp; w, int l, int r) { /* ... */ }
 <span class="w">    </span><span class="n">cf</span><span class="p">.</span><span class="n">foo</span><span class="p">();</span><span class="w">   </span><span class="c1">// #2 called, as const Foo* can only fit const Foo*</span>
 <span class="p">}</span>
 </code></pre></div>
+<p>作为一个实例，我们回顾之前的对 <code>operator[]</code> 的重载。事实上，通常的设计会这样重载<sup id="fnref:subscript_const"><a class="footnote-ref" href="#fn:subscript_const">15</a></sup>：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">elem</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">          </span><span class="n">elem</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">[](</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w">       </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">elem</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="p">[](</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">];</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>即，当调用者是 <code>const Container</code> 时，第二个重载会被使用，此时返回的是对第 <code>index</code> 个元素的 <code>const</code> 引用；而如果调用者是 <code>Container</code> 时，第一个重载会被使用，此时返回的是对第 <code>index</code> 元素的 non-<code>const</code> 引用。</p>
 <h4 id="static-成员变量">static 成员变量<a class="headerlink" href="#static-成员变量" title="Permanent link">&para;</a></h4>
 <p>我们考虑这样一个情形：</p>
 <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">tot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -4514,7 +4609,7 @@ int vowelStrings(Container&amp; w, int l, int r) { /* ... */ }
 <span class="kt">int</span><span class="w"> </span><span class="n">User</span><span class="o">::</span><span class="n">tot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 </code></pre></div>
 <p>这个 <code>tot</code> 虽然从全局移到了类内，但是它仍然具有 static 的生命周期。它的生命周期仍然从它的定义 <code>int User::tot = 0;</code> 开始，到程序结束为止。由于它是类的成员，因此访问它的时候需要用 <code>User::tot</code>。</p>
-<p>如我们刚才所说，<code>static</code> 成员不被绑定到类的实例中，也就是上面 <code>User</code> 类的每个实例里仍然只有 <code>id</code> 而没有 <code>tot</code>。不过，语法仍然允许用一个类的实例访问 <code>static</code> 成员，例如 <code>user.tot</code><sup id="fnref:static_call"><a class="footnote-ref" href="#fn:static_call">14</a></sup>。静态成员也受 access specifier 的影响。</p>
+<p>如我们刚才所说，<code>static</code> 成员不被绑定到类的实例中，也就是上面 <code>User</code> 类的每个实例里仍然只有 <code>id</code> 而没有 <code>tot</code>。不过，语法仍然允许用一个类的实例访问 <code>static</code> 成员，例如 <code>user.tot</code><sup id="fnref:static_call"><a class="footnote-ref" href="#fn:static_call">16</a></sup>。静态成员也受 access specifier 的影响。</p>
 <p>需要提示的是，之前我们讨论的 default member initializer 和 member initializer list 是针对 non-static 成员变量的，它们对于 static 成员变量不适用：</p>
 <p><center><img alt="" src="../2023-03-26-15-15-19.png" /></center></p>
 <p>也就是说，在类中的 static 成员变量 <strong>只是声明</strong> <sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.static.data#3">class.static.data#3</a></sup>。也就是说，我们必须在类外给出其定义，才能让编译器知道在哪里构造这些成员：</p>
@@ -4542,7 +4637,7 @@ int vowelStrings(Container&amp; w, int l, int r) { /* ... */ }
 <span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// OK since C++17</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>在这种情况下，C++ 要求程序员保证各个编译单元内的这个变量的初始值是同一个，因为链接器在这种情况下会把多个定义合并为一个定义。我们会在后面的章节中详细讨论 <code>inline</code> 相关的问题。</p>
+<p>在这种情况下，C++ 要求程序员保证各个编译单元内的这个变量的初始值是同一个，因为链接器在这种情况下会把多个定义合并为一个定义。事实上，在现代的 C++ 中，<code>inline</code> 不再表示「请把这个东西内联」，而是表示「这个东西可以有多个定义；程序员负责保证这些定义是一致的，因此链接时可以把它们合并」。我们会在后面的章节中再讨论 <code>inline</code> 相关的问题。</p>
 <p><code>static</code> 成员变量不应是 <code>mutable</code> 的。</p>
 <h4 id="static-成员函数">static 成员函数<a class="headerlink" href="#static-成员函数" title="Permanent link">&para;</a></h4>
 <p><code>static</code> 函数的动机和 <code>static</code> 变量一致，都是「属于类，但不需要和具体对象相关」的需求；在这两种情形下，类被简单地当做一种作用域来使用。</p>
@@ -4565,6 +4660,7 @@ int vowelStrings(Container&amp; w, int l, int r) { /* ... */ }
 <ul>
 <li><strong>转换和调整</strong><ul>
 <li>数组类型可以转换为指针类型，这称为 <strong>array-to-pointer conversion</strong>，例如函数要求一个 <code>int *</code> 参数而我们传递了一个类型为 <code>int[25]</code> 的数组时，这个转换发生。</li>
+<li>函数类型可以转换为指针类型，这称为 <strong>function-to-pointer conversion</strong>，例如函数要求一个 <code>void(*)(int)</code> </li>
 <li>非 <code>const</code> 指针可以转换为 <code>const</code> 指针，这称为 <strong>qualification conversion</strong>，例如函数要求一个 <code>const int *</code> 而我们传递了一个 <code>int *</code> 时，这个转换发生。</li>
 </ul>
 </li>
@@ -4633,7 +4729,7 @@ int vowelStrings(Container&amp; w, int l, int r) { /* ... */ }
 <details class="note" open="open">
 <summary>将运算符重载设为成员还是全局</summary>
 <p>有了这种隐式转换，我们就需要意识到一个问题：如果 <code>operator+</code> 是 <code>Complex</code> 的一个成员函数，那么上面代码中 <code>z + d</code> 仍然可以被当做 <code>z.operator+(Complex(d))</code> 来调用，但是 <code>d + z</code> 就不能调用 <code>d.operator+(z)</code>，因为 <code>double</code> 类型中没有这样的函数。如我们之前所说，C++ 不希望给内部类型增加新的运算。</p>
-<p>从这里我们可以知道：如果我们将一个运算符重载设为全局函数能够有更强的逻辑对称性；而将其定义为成员函数则能够保证第一个操作数不发生转换。根据我们之前的讨论，转换得到的是一个临时对象<sup id="fnref:conv_tmp"><a class="footnote-ref" href="#fn:conv_tmp">15</a></sup>；因此对于那些赋值运算符之类的要求第一个操作数是一个实际存在的对象<sup id="fnref:lvalue"><a class="footnote-ref" href="#fn:lvalue">16</a></sup>的运算符是比较好的。</p>
+<p>从这里我们可以知道：如果我们将一个运算符重载设为全局函数能够有更强的逻辑对称性；而将其定义为成员函数则能够保证第一个操作数不发生转换。根据我们之前的讨论，转换得到的是一个临时对象<sup id="fnref:conv_tmp"><a class="footnote-ref" href="#fn:conv_tmp">17</a></sup>；因此对于那些赋值运算符之类的要求第一个操作数是一个实际存在的对象<sup id="fnref:lvalue"><a class="footnote-ref" href="#fn:lvalue">18</a></sup>的运算符是比较好的。</p>
 <p>作为一个好的例子：</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">String</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// ...</span>
@@ -4784,7 +4880,7 @@ int vowelStrings(Container&amp; w, int l, int r) { /* ... */ }
 <span class="w">    </span><span class="k">operator</span><span class="w"> </span><span class="kt">bool</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
-<p>事实上，当我们写 function-style cast <code>bool(c)</code> 时，这是一个 cast operator，因此 <code>operator bool()</code> 其实就是重载了 cast operator。这种重载并不需要写出返回值类型，因为它的返回值类型就是它的 operator 名字。作为一个例子<sup id="fnref:cout_string"><a class="footnote-ref" href="#fn:cout_string">17</a></sup>：</p>
+<p>事实上，当我们写 function-style cast <code>bool(c)</code> 时，这是一个 cast operator，因此 <code>operator bool()</code> 其实就是重载了 cast operator。这种重载并不需要写出返回值类型，因为它的返回值类型就是它的 operator 名字。作为一个例子<sup id="fnref:cout_string"><a class="footnote-ref" href="#fn:cout_string">19</a></sup>：</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
 
@@ -4828,7 +4924,7 @@ int vowelStrings(Container&amp; w, int l, int r) { /* ... */ }
 <span class="p">}</span>
 </code></pre></div>
 <p>上面的例子中也显示了 <code>explicit</code> 的意义，即当 <code>opeator type()</code> 为 <code>explicit</code> 时，这种转换只能用于显式转换而不能用于隐式转换，这和前面的转换构造函数是一致的。</p>
-<p>作为一个需要特殊注意的问题，在一些上下文中，类型 <code>bool</code> 是被希望的，而且此时即使 <code>operator bool</code> 是 <code>explicit</code> 的也会被使用。这些上下文包括 <code>if</code>, <code>while</code>, <code>for</code> 的条件、内置逻辑运算符 <code>!</code>, <code>&amp;&amp;</code>, <code>||</code> 的操作数、三元运算符 <code>?:</code> 的第一个操作数等<sup id="fnref:bool_ctx"><a class="footnote-ref" href="#fn:bool_ctx">18</a></sup>。</p>
+<p>作为一个需要特殊注意的问题，在一些上下文中，类型 <code>bool</code> 是被希望的，而且此时即使 <code>operator bool</code> 是 <code>explicit</code> 的也会被使用。这些上下文包括 <code>if</code>, <code>while</code>, <code>for</code> 的条件、内置逻辑运算符 <code>!</code>, <code>&amp;&amp;</code>, <code>||</code> 的操作数、三元运算符 <code>?:</code> 的第一个操作数等<sup id="fnref:bool_ctx"><a class="footnote-ref" href="#fn:bool_ctx">20</a></sup>。</p>
 <div class="footnote">
 <hr />
 <ol>
@@ -4862,29 +4958,35 @@ int vowelStrings(Container&amp; w, int l, int r) { /* ... */ }
 <li id="fn:ref_conv">
 <p>一个变量是一个左值，它传递给 <code>int</code> 类型时会经历 <code>lvalue-to-rvalue conversion</code> (实际上是 glvalue to prvalue<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/conv.lval#1">conv.lval#1</a></sup>)；而它被绑定给 <code>int &amp;</code> 或者 <code>const int &amp;</code> 类型时发生的是 reference binding，这不需要任何转换<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/over.ics.ref#1">over.ics.ref#1</a></sup> (identity conversion == no conversion<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/over.ics.scs#2">over.ics.scs#2</a></sup>)。而 identity 和 lvalue-to-rvalue conversion 都属于转换中的 Exact Match 等级<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/over.ics.scs#3">over.ics.scs#3</a></sup>，因此没有一个比另一个更优。不过，如果某一个参数的唯一区别是 <code>int &amp;</code> 和 <code>const int &amp;</code>，<code>int &amp;</code> 更优。参见正文。&#160;<a class="footnote-backref" href="#fnref:ref_conv" title="Jump back to footnote 10 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:ref_conv" title="Jump back to footnote 10 in the text">&#8617;</a></p>
 </li>
+<li id="fn:ref_this">
+<p>不过，C++23 的 deducing <code>this</code> 机制使得成员函数中可以使用调用者的引用。&#160;<a class="footnote-backref" href="#fnref:ref_this" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+</li>
 <li id="fn:security">
-<p>如 Format String Bugs 等。这不是我们讨论的重点。&#160;<a class="footnote-backref" href="#fnref:security" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+<p>如 Format String Bugs 等。这不是我们讨论的重点。&#160;<a class="footnote-backref" href="#fnref:security" title="Jump back to footnote 12 in the text">&#8617;</a></p>
 </li>
 <li id="fn:endl">
-<p>与直接输出 <code>'\n'</code> 的区别是，输出 <code>std::endl</code> 会 flush 缓冲区。&#160;<a class="footnote-backref" href="#fnref:endl" title="Jump back to footnote 12 in the text">&#8617;</a></p>
+<p>与直接输出 <code>'\n'</code> 的区别是，输出 <code>std::endl</code> 会 flush 缓冲区。&#160;<a class="footnote-backref" href="#fnref:endl" title="Jump back to footnote 13 in the text">&#8617;</a></p>
 </li>
 <li id="fn:const_cast">
-<p>在 C++ 中，提倡明确使用 <code>const_cast</code> 来完成这一任务。Scott Meyers 在 Effective C++ 的条款 03 中提到了一种「适用」cast away <code>const</code> 的情况，这个情况也可以在 <a href="https://stackoverflow.com/a/2673585/14430730">这个回答</a> 中找到。不过我们也可以发现，这种写法是有争议的；C++ Core Guidelines 的 <a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Res-casts-const">ES.50: Don't cast away <code>const</code></a> 一节中有所讨论，建议的处理方案是使用模板和返回值类型推导。&#160;<a class="footnote-backref" href="#fnref:const_cast" title="Jump back to footnote 13 in the text">&#8617;</a></p>
+<p>在 C++ 中，提倡明确使用 <code>const_cast</code> 来完成这一任务。Scott Meyers 在 Effective C++ 的条款 03 中提到了一种「适用」cast away <code>const</code> 的情况，这个情况也可以在 <a href="https://stackoverflow.com/a/2673585/14430730">这个回答</a> 中找到。不过我们也可以发现，这种写法是有争议的；C++ Core Guidelines 的 <a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Res-casts-const">ES.50: Don't cast away <code>const</code></a> 一节中有所讨论，建议的处理方案是使用模板和返回值类型推导。&#160;<a class="footnote-backref" href="#fnref:const_cast" title="Jump back to footnote 14 in the text">&#8617;</a></p>
+</li>
+<li id="fn:subscript_const">
+<p>如前面脚注里引用的 <a href="https://stackoverflow.com/a/2673585/14430730">这个回答</a> 中所讨论，<code>const</code> 和 non-<code>const</code> 的两种版本的代码重用性较差，因此会有 cast away <code>const</code> 的解法出现，但这种解法是有争议的。事实上，C++23 中的 explicit object parameter 机制解决了这一问题，可以使用 <code>decltype(auto) operator[](this auto&amp; self, std::size_t idx) { return self.mVector[idx]; }</code>，参见 <a href="https://en.cppreference.com/w/cpp/language/operators#Array_subscript_operator">operators#Array_subscript_operator</a> 以及 <a href="https://youtu.be/eD-ceG-oByA?t=1196">https://youtu.be/eD-ceG-oByA?t=1196</a>。&#160;<a class="footnote-backref" href="#fnref:subscript_const" title="Jump back to footnote 15 in the text">&#8617;</a></p>
 </li>
 <li id="fn:static_call">
-<p>如果有一个 <code>User &amp; foo();</code>，那么 <code>foo().tot</code> 虽然用的是 <code>User::tot</code>，但是 <code>foo()</code> 仍会被调用。&#160;<a class="footnote-backref" href="#fnref:static_call" title="Jump back to footnote 14 in the text">&#8617;</a></p>
+<p>如果有一个 <code>User &amp; foo();</code>，那么 <code>foo().tot</code> 虽然用的是 <code>User::tot</code>，但是 <code>foo()</code> 仍会被调用。&#160;<a class="footnote-backref" href="#fnref:static_call" title="Jump back to footnote 16 in the text">&#8617;</a></p>
 </li>
 <li id="fn:conv_tmp">
-<p>其实转换得到的是一个 prvalue；从 C++17 开始它不一定会产生一个临时对象，但是如果它作为了函数参数那它一定会 materialize 出一个临时对象。&#160;<a class="footnote-backref" href="#fnref:conv_tmp" title="Jump back to footnote 15 in the text">&#8617;</a></p>
+<p>其实转换得到的是一个 prvalue；从 C++17 开始它不一定会产生一个临时对象，但是如果它作为了函数参数那它一定会 materialize 出一个临时对象。&#160;<a class="footnote-backref" href="#fnref:conv_tmp" title="Jump back to footnote 17 in the text">&#8617;</a></p>
 </li>
 <li id="fn:lvalue">
-<p>左值。&#160;<a class="footnote-backref" href="#fnref:lvalue" title="Jump back to footnote 16 in the text">&#8617;</a></p>
+<p>左值。&#160;<a class="footnote-backref" href="#fnref:lvalue" title="Jump back to footnote 18 in the text">&#8617;</a></p>
 </li>
 <li id="fn:cout_string">
-<p>需要注意的是，如果这里 <code>cout &lt;&lt; c</code> 会发生编译错误。首先由于 <code>operator double</code> 是 <code>explicit</code> 的，因此它不会被选中；而另一方面，<code>cout &lt;&lt; c</code> 也不会输出 <code>std::string</code>，这是因为 <code>cout</code> 对 <code>basic_string</code> 的重载需要模板参数，而隐式类型转换在模板参数推导时不会被考虑。参见 <a href="https://stackoverflow.com/questions/64310779/why-cant-the-compiler-use-the-stdstring-conversion-function-of-the-class-when">这个问题</a>。&#160;<a class="footnote-backref" href="#fnref:cout_string" title="Jump back to footnote 17 in the text">&#8617;</a></p>
+<p>需要注意的是，如果这里 <code>cout &lt;&lt; c</code> 会发生编译错误。首先由于 <code>operator double</code> 是 <code>explicit</code> 的，因此它不会被选中；而另一方面，<code>cout &lt;&lt; c</code> 也不会输出 <code>std::string</code>，这是因为 <code>cout</code> 对 <code>basic_string</code> 的重载需要模板参数，而隐式类型转换在模板参数推导时不会被考虑。参见 <a href="https://stackoverflow.com/questions/64310779/why-cant-the-compiler-use-the-stdstring-conversion-function-of-the-class-when">这个问题</a>。&#160;<a class="footnote-backref" href="#fnref:cout_string" title="Jump back to footnote 19 in the text">&#8617;</a></p>
 </li>
 <li id="fn:bool_ctx">
-<p>这被称为 <a href="https://en.cppreference.com/w/cpp/language/implicit_conversion#Contextual_conversions">Contextual conversions</a>。&#160;<a class="footnote-backref" href="#fnref:bool_ctx" title="Jump back to footnote 18 in the text">&#8617;</a></p>
+<p>这被称为 <a href="https://en.cppreference.com/w/cpp/language/implicit_conversion#Contextual_conversions">Contextual conversions</a>。&#160;<a class="footnote-backref" href="#fnref:bool_ctx" title="Jump back to footnote 20 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -5060,7 +5162,7 @@ var giscus = document.querySelector("script[src*=giscus]")
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.19047be9.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.407015b8.min.js"></script>
       
         <script src="../../../../js/timeago.min.js"></script>
       

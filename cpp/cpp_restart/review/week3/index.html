@@ -17,7 +17,7 @@
         <link rel="next" href="../../1_birth/">
       
       <link rel="icon" href="../../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.240905d7.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.7a7fce14.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.a0c5b2b5.min.css">
@@ -740,15 +740,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-keyword-arguments" class="md-nav__link">
-    3 Keyword arguments
+  <a href="#3-矩阵的-operator" class="md-nav__link">
+    3 矩阵的 operator[]
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-mutable" class="md-nav__link">
-    4 mutable
+  <a href="#4-keyword-arguments" class="md-nav__link">
+    4 Keyword arguments
   </a>
   
 </li>
@@ -788,6 +788,10 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_3" >
       
       
+        
+          
+        
+          
         
           
         
@@ -910,7 +914,7 @@
   
     <li class="md-nav__item">
       <a href="../../7_template/" class="md-nav__link">
-        7 模板
+        7 模板 (I) - 基本知识与 STL 使用
       </a>
     </li>
   
@@ -924,7 +928,35 @@
   
     <li class="md-nav__item">
       <a href="../../8_stl/" class="md-nav__link">
-        8 STL
+        8 模板 (II) - 理解 STL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11_move_semantics/" class="md-nav__link">
+        9 右值引用和移动语义
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10_template_adv/" class="md-nav__link">
+        10 模板 (III) - 更多话题
       </a>
     </li>
   
@@ -3492,15 +3524,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-keyword-arguments" class="md-nav__link">
-    3 Keyword arguments
+  <a href="#3-矩阵的-operator" class="md-nav__link">
+    3 矩阵的 operator[]
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-mutable" class="md-nav__link">
-    4 mutable
+  <a href="#4-keyword-arguments" class="md-nav__link">
+    4 Keyword arguments
   </a>
   
 </li>
@@ -3527,7 +3559,7 @@
 
 <h1 id="week-3-思考题">Week 3 思考题<a class="headerlink" href="#week-3-思考题" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 626 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 7 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 2 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 700 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 11 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 2 分钟</p>
 </div>
 <div class="admonition abstract">
 <p class="admonition-title">Abstract</p>
@@ -3563,7 +3595,6 @@
 <li>对 <code>operator&lt;&lt;</code> 和 <code>operator&gt;&gt;</code> 的重载</li>
 </ul>
 </li>
-<li><code>const</code> 和 <code>static</code> 成员</li>
 </ul>
 <h2 id="思考题">思考题<a class="headerlink" href="#思考题" title="Permanent link">&para;</a></h2>
 <h3 id="1--和----的重载">1 <code>++</code> 和 <code>--</code> 的重载<a class="headerlink" href="#1--和----的重载" title="Permanent link">&para;</a></h3>
@@ -3581,20 +3612,26 @@
 <p>为什么对 <code>=</code> (assignment), <code>()</code> (function call), <code>[]</code> (subscript), <code>-&gt;</code> (member access) 的重载必须是成员呢？</p>
 <p>运算符重载是否有其他限制，例如能不能添加用户自定义的运算符，比如 <code>**</code> 呢？能不能更改运算符的操作数，或者给运算符增加默认参数呢？</p>
 <p>请大家自行查阅资料回答上述问题。部分解答可以在 <a href="../../5_class_2/#%E5%8F%8B%E5%85%83">运算符重载</a> 一节的「一些限制」块中找到。</p>
-<h3 id="3-keyword-arguments">3 Keyword arguments<a class="headerlink" href="#3-keyword-arguments" title="Permanent link">&para;</a></h3>
+<h3 id="3-矩阵的-operator">3 矩阵的 <code>operator[]</code><a class="headerlink" href="#3-矩阵的-operator" title="Permanent link">&para;</a></h3>
+<p>假如我们有这样的定义：</p>
+<div class="highlight"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Matrix</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">M</span><span class="p">];</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>如果我们希望能够通过运算符重载方便地访问 <code>mat.data[x][y]</code>，就像对于 <code>Container</code> 类我们可以通过 <code>c[i]</code> 访问 <code>c.data[i]</code> 那样，应该怎么办呢？</p>
+<p>请大家自行查阅资料回答上述问题。部分解答可以在 <a href="../../5_class_2/#引用作为返回值">引用作为返回值</a> 一节的「关于自定义矩阵的 <code>operator[]</code>」块中找到。</p>
+<h3 id="4-keyword-arguments">4 Keyword arguments<a class="headerlink" href="#4-keyword-arguments" title="Permanent link">&para;</a></h3>
 <p>Keyword arguments 或者 Named Parameter Idiom 是指根据参数的名字而非参数的位置来传参。这种机制在 C 和 C++ 中并不支持，它们只支持按位置传参。Python 之类的语言是允许这种传参方式的，即通过 <code>f(b = 1)</code> 之类的写法可以指定 <code>b</code> 的值是 <code>1</code>。</p>
 <p>问题是：为什么 C++ 不支持这种语法？C++ 有没有方式能够实现这种语法的替代？</p>
 <p>请大家自行查阅资料回答上述问题。部分解答可以在 <a href="../../5_class_2/#%E7%B1%BB%E7%9A%84%E5%BC%95%E7%94%A8%E6%88%90%E5%91%98%E5%92%8C-const-%E6%88%90%E5%91%98">引用</a> 一节的「keyword arguments 的替代」块中找到。</p>
-<h3 id="4-mutable">4 <code>mutable</code><a class="headerlink" href="#4-mutable" title="Permanent link">&para;</a></h3>
-<p>这一关键字有什么含义？</p>
-<p>解释可以在 <a href="../../5_class_2/#const-%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0">const 成员函数</a> 一节的「mutable」块中找到。</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-26T08:24:44+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-26</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-04-02T03:48:22+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-04-02</span>
       
         <br>
         创建日期:
@@ -3760,7 +3797,7 @@ var giscus = document.querySelector("script[src*=giscus]")
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.19047be9.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.407015b8.min.js"></script>
       
         <script src="../../../../js/timeago.min.js"></script>
       
