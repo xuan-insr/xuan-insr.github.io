@@ -16,12 +16,12 @@ revealOptions:
 
 ---
 
-# 探索 C++
-<!-- 
-<br>
-
-# 5 类 | Classes (II)
+## 探索 C++
 
 <br>
 
-## 5.6 本章小结 -->
+# 6 类 | Classes (III)
+
+<br>
+
+## 6.3 Copy Elision ("RVO" & NRVO)

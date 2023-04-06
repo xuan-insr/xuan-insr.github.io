@@ -15,13 +15,13 @@
 1. [x] C++ 诞生
 2. [x] 编程范式
 3. [x] 引入 oop（list & shape）
-4. [ ] 类 (I): 定义、成员、构造、析构
+4. [x] 类 (I): 定义、成员、构造、析构
     - 声明与定义
     - inline 函数
     - 函数默认参数与函数重载（不包含重载解析）
     - delegating constructors
     - 动态内存分配
-5. [ ] 类 (II): 拷贝赋值
+5. [x] 类 (II): 拷贝赋值
     - 运算符重载
     - 引用
     - I/O stream
@@ -29,7 +29,7 @@
     - 转换构造函数
     - user-defined conversion function
     - const 和 static 成员
-6. [ ] 类 (III): 拷贝构造、SMFs
+6. [x] 类 (III): 拷贝构造、SMFs
     - copy elision
     - const
     - cast
