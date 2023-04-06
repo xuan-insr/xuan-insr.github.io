@@ -965,8 +965,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#724-模板成员" class="md-nav__link">
-    7.2.4 模板成员
+  <a href="#724-默认模板参数" class="md-nav__link">
+    7.2.4 默认模板参数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#725-模板成员" class="md-nav__link">
+    7.2.5 模板成员
   </a>
   
 </li>
@@ -977,23 +984,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#73-stl-基本使用" class="md-nav__link">
-    7.3 STL 基本使用
+  <a href="#73-stl-及其基本使用" class="md-nav__link">
+    7.3 STL 及其基本使用
   </a>
   
-    <nav class="md-nav" aria-label="7.3 STL 基本使用">
+    <nav class="md-nav" aria-label="7.3 STL 及其基本使用">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#731-stdvector" class="md-nav__link">
-    7.3.1 std::vector
+  <a href="#731-为什么要有-stl" class="md-nav__link">
+    7.3.1 为什么要有 STL
+  </a>
+  
+    <nav class="md-nav" aria-label="7.3.1 为什么要有 STL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7311-stdvector" class="md-nav__link">
+    7.3.1.1 std::vector
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#732-stdsort" class="md-nav__link">
-    7.3.2 std::sort
+  <a href="#7312-stdsort" class="md-nav__link">
+    7.3.1.2 std::sort
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#732-stl-都有什么" class="md-nav__link">
+    7.3.2 STL 都有什么
   </a>
   
 </li>
@@ -3622,8 +3649,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#724-模板成员" class="md-nav__link">
-    7.2.4 模板成员
+  <a href="#724-默认模板参数" class="md-nav__link">
+    7.2.4 默认模板参数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#725-模板成员" class="md-nav__link">
+    7.2.5 模板成员
   </a>
   
 </li>
@@ -3634,23 +3668,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#73-stl-基本使用" class="md-nav__link">
-    7.3 STL 基本使用
+  <a href="#73-stl-及其基本使用" class="md-nav__link">
+    7.3 STL 及其基本使用
   </a>
   
-    <nav class="md-nav" aria-label="7.3 STL 基本使用">
+    <nav class="md-nav" aria-label="7.3 STL 及其基本使用">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#731-stdvector" class="md-nav__link">
-    7.3.1 std::vector
+  <a href="#731-为什么要有-stl" class="md-nav__link">
+    7.3.1 为什么要有 STL
+  </a>
+  
+    <nav class="md-nav" aria-label="7.3.1 为什么要有 STL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7311-stdvector" class="md-nav__link">
+    7.3.1.1 std::vector
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#732-stdsort" class="md-nav__link">
-    7.3.2 std::sort
+  <a href="#7312-stdsort" class="md-nav__link">
+    7.3.1.2 std::sort
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#732-stl-都有什么" class="md-nav__link">
+    7.3.2 STL 都有什么
   </a>
   
 </li>
@@ -3677,7 +3731,7 @@
 
 <h1 id="7-模板-i---基本知识与-stl-使用">7 模板 (I) - 基本知识与 STL 使用<a class="headerlink" href="#7-模板-i---基本知识与-stl-使用" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 4313 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 320 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 18 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 5324 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 339 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 22 分钟</p>
 </div>
 <script>
 function inFootnote(element) {
@@ -3999,6 +4053,7 @@ function toggleVisibilityFoot() {
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>上面代码中第 7 行，编译器看到参数列表是 <code>(int, double)</code>，会尝试推导 <code>T</code> 的类型。但是，根据第一个参数推导出的 <code>T</code> 是 <code>int</code>，而根据第二个参数推导出的是 <code>double</code>，因此 <code>T</code> 是有歧义的，推导失败。而第 8 行，我们显式给出了它使用的特化，就没有问题了。</p>
+<p>模板参数推导还有很多值得讨论的问题，我们在后面的章节中具体讨论这些话题。</p>
 <h3 id="723-运算符模板">7.2.3 运算符模板<a class="headerlink" href="#723-运算符模板" title="Permanent link">&para;</a></h3>
 <p>模板类型推导使得运算符模板成为可能。例如（可以在 <a href="https://godbolt.org/z/87fezqvb5">这里</a> 玩一下）：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -4224,7 +4279,32 @@ function toggleVisibilityFoot() {
 <p><code>Container&lt;Container&lt;int&gt;&gt;</code> 在 C++11 之前可能不得不写成 <code>Container&lt; Container&lt;int&gt; &gt;</code> 以避免最后的部分被理解为右移运算符 <code>&gt;&gt;</code>；不过自 C++11 开始这个问题被解决了。</p>
 </div>
 </details>
-<h3 id="724-模板成员">7.2.4 模板成员<a class="headerlink" href="#724-模板成员" title="Permanent link">&para;</a></h3>
+<h3 id="724-默认模板参数">7.2.4 默认模板参数<a class="headerlink" href="#724-默认模板参数" title="Permanent link">&para;</a></h3>
+<p>我们之前讨论过，函数参数可以有默认参数；事实上，模板参数也可以有默认参数。例如：</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">U</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">};</span>
+
+<span class="n">Foo</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">         </span><span class="c1">// Foo&lt;int, int&gt;</span>
+<span class="n">Foo</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w">   </span><span class="c1">// Foo&lt;int, char&gt;</span>
+<span class="c1">// Foo&lt;&gt; z;  Foo w; // Error</span>
+</code></pre></div>
+<p>与函数参数一样，类模板默认参数也只能存在于最后的若干参数中，即 <code>template&lt;typename T = int, typename U&gt; class Bar { /* ... */ };</code> 是非法的。</p>
+<p>不过，由于函数模板通常有模板参数推导，因此函数模板的默认参数 <strong>不必</strong> 只能存在于最后的若干参数中，例如；</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">RT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">void</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w">    </span><span class="c1">// OK</span>
+<span class="n">RT</span><span class="o">*</span><span class="w"> </span><span class="n">address_of</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">RT</span><span class="o">*</span><span class="p">)(</span><span class="o">&amp;</span><span class="n">value</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">foo</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address_of</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w">      </span><span class="c1">// address_of&lt;void, int&gt;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">address_of</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w">  </span><span class="c1">// address_of&lt;int, int&gt;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>另外，如果模板参数既有默认参数也可以推导出来，则使用推导出来的结果（除非推导失败），例如：</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">foo</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">bar</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// foo&lt;double&gt;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="725-模板成员">7.2.5 模板成员<a class="headerlink" href="#725-模板成员" title="Permanent link">&para;</a></h3>
 <p>我们之前看到了类模板，例如：</p>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// ...</span>
@@ -4279,11 +4359,17 @@ function toggleVisibilityFoot() {
 </code></pre></div>
 <p>作为一个示例，可以看 <a href="https://godbolt.org/z/8qTs3jjvb">这段代码</a>:</p>
 <p><center><img alt="" src="../2023-04-01-18-53-15.png" /></center></p>
-<h2 id="73-stl-基本使用">7.3 STL 基本使用<a class="headerlink" href="#73-stl-基本使用" title="Permanent link">&para;</a></h2>
+<h2 id="73-stl-及其基本使用">7.3 STL 及其基本使用<a class="headerlink" href="#73-stl-及其基本使用" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>本节中部分图片取自 Bob Steagall 在 CppCon 2021 的演讲 Back to Basics: Classic STL；该演讲视频可以在 <a href="https://youtu.be/tXUXl_RzkAk">YouTube</a> 找到，对应的 Slides 可以在 <a href="https://github.com/CppCon/CppCon2021/blob/main/Presentations/back_to_basics_classic_stl__bob_steagall__cppcon_2021_1.pdf">GitHub</a> 找到。</p>
+</div>
 <p><strong>STL (Standard Template Library, 标准模板库)</strong> 是 C++ 中的一套非常有用的工具，它在 C++ 的第一个标准化版本 C++98 中就被引入，并直到今天都在增加新的改进。如它的名字所示，这个库大量利用了模板提供的泛型思想；实现了很多常用的数据结构和算法。这些数据结构通过类模板实现，而算法通过函数模板实现。</p>
 <p>在本节中，我们会讨论 STL 中一些容器（数据结构）和算法的基本使用；而在下一节中，我们会仔细讨论它们背后的 C++ 实现，从而给模板的使用带来一定回顾和启发。</p>
-<h3 id="731-stdvector">7.3.1 <code>std::vector</code><a class="headerlink" href="#731-stdvector" title="Permanent link">&para;</a></h3>
-<p>STL 的第一个重要部分：容器库 (Containers library) 集合了一些类模板和算法，从而让程序员可以轻松地使用常见的数据结构，例如线性表、队列、栈、集合、字典等。</p>
+<h3 id="731-为什么要有-stl">7.3.1 为什么要有 STL<a class="headerlink" href="#731-为什么要有-stl" title="Permanent link">&para;</a></h3>
+<p>STL 提供了 <strong>容器库 (Containers library)</strong> 和 <strong>算法库 (Algorithm library)</strong>，这些库里包含了大量常见的数据结构和算法；程序员可以直接调用这些算法，而无需自己实现。我们可以看两个简单的例子：</p>
+<h4 id="7311-stdvector">7.3.1.1 <code>std::vector</code><a class="headerlink" href="#7311-stdvector" title="Permanent link">&para;</a></h4>
+<p>STL 的第一个重要部分——容器库 (Containers library) 集合了一些类模板和算法，从而让程序员可以轻松地使用常见的数据结构，例如线性表、队列、栈、集合、字典等。</p>
 <p>作为其中最常用的例子，我们介绍 <code>vector</code> 类模板，它封装了一个动态大小的的数组；即：我们使用时不必给它规定一个初始大小；当分配的空间用尽时，它会帮我们自动扩展空间。作为一个简单的例子：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -4338,7 +4424,7 @@ function toggleVisibilityFoot() {
 <p><strong>获取长度</strong>。可以通过 <code>v.size()</code> 获取 vector  <code>v</code> 中的元素个数。</p>
 <p><strong>在末尾插入元素</strong>。可以通过 <code>v.push_back(x)</code> 的方式将 <code>x</code> 插入到 vector  <code>v</code> 的末尾。</p>
 <p><strong>访问（读取 / 修改）元素</strong>。和数组一样，可以通过 <code>v[i]</code> 的方式访问 vector  <code>v</code> 的第 <code>i</code> 个元素，下标从 0 开始。注意，当 <code>i &gt;= v.size()</code> 的时候，程序可能发生运行时错误。</p>
-<h3 id="732-stdsort">7.3.2 <code>std::sort</code><a class="headerlink" href="#732-stdsort" title="Permanent link">&para;</a></h3>
+<h4 id="7312-stdsort">7.3.1.2 <code>std::sort</code><a class="headerlink" href="#7312-stdsort" title="Permanent link">&para;</a></h4>
 <p><code>sort</code> 用于对数组或 vector 等可以随机访问且元素可比较的数据结构进行排序。平均和最差复杂度均为 <span class="arithmatex">\(O(n\log n)\)</span>。例如：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -4401,16 +4487,36 @@ function toggleVisibilityFoot() {
 <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span>
 </code></pre></div>
 <p>注意，比较函数逻辑上相当于 <code>a 严格在 b 前面</code> 。因此当两个元素相等时，比较函数总是应当返回 false。</p>
-<p>C++11 开始，也可以使用 lambda 表达式（类似于匿名函数）简化写法：</p>
-<div class="highlight"><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span>
-<span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="p">});</span>
-</code></pre></div>
 <p>自定义比较函数可以适用更复杂的排序，例如需要比较的元素本身并没有内置的比较运算符的时候。例如：</p>
 <div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nf">cmp</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">foo</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">sort</span><span class="p">(</span><span class="n">foo</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">foo</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">cmp</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div>
-<p>这个比较函数可以用于 <code>vector&lt;vector&lt;int&gt;&gt;</code> 类型的排序。</p>
+<p>如上面所示，这个比较函数可以用于 <code>vector&lt;vector&lt;int&gt;&gt;</code> 类型的排序。</p>
+<h3 id="732-stl-都有什么">7.3.2 STL 都有什么<a class="headerlink" href="#732-stl-都有什么" title="Permanent link">&para;</a></h3>
+<p>如上面所示，STL 提供的容器和算法在性能、通用性和封装性上都比较好，而且它们是经过良好测试的；因此我们使用它们有助于让我们的代码具有更好的性能以及更高的可读性、可写性。所以，STL 都提供了哪些容器和算法呢？</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>这里，我们只展示有哪些容器和算法，并不具体介绍它们的使用方法和使用场景。</p>
+<p>关于这里常用工具的简单的使用方法，参见 <a href="../../cpp_for_contests">快速入门 C++ 写题</a>；但是，我们期望在第 8 节完成后，大家能够具备直接阅读 <a href="https://en.cppreference.com/w/cpp">CppReference</a> 就可以理解 STL 中这些容器或算法使用方式的能力。在朋辈辅学的对应章节中，我们也会带领大家尝试阅读其中的例子。</p>
+<p>关于具体的使用场景，则需要大家在具体的做题或者编程过程中尝试发现。通常这些东西的使用是明确的：需要排序时使用 <code>sort</code>；需要在有序数组中查询内容使用 <code>upper_bound</code>, <code>lower_bound</code>, <code>binary_search</code> 等；需要去重时使用 <code>unique</code> 或者 <code>set</code> 或者 <code>unordered_set</code>；需要字典时使用 <code>map</code> 或者 <code>unordered_map</code> 等。CppReference 中也可以找到这些算法或者容器的各种操作的复杂度。「使用什么」的问题更多关于题目或者代码逻辑本身，并非本文的讨论重点。</p>
+</div>
+<p><a href="https://en.cppreference.com/w/cpp/container">Containers library</a> 中提供了若干种 container 和若干种 adaptors。</p>
+<p>容器扮演的作用是提供一些数据结构，它们的大概类型如下面三张图所示（图片来源见 7.3 节开始的 note）：</p>
+<p><strong>Sequence containers</strong> 包含单向延伸的 <code>vector</code>、双向延伸的双端队列 <code>deque</code>、大小固定的数组 <code>array</code>、双向链表 <code>list</code> 和单向链表 <code>forward_list</code>；</p>
+<p><center><img alt="" src="../2023-04-07-01-24-04.png" width="400" /></center></p>
+<p><strong>Associative containers</strong> 中，<code>set</code> 是唯一、有序元素的集合；<code>map</code> 是键值对的集合（即字典），键唯一、有序；还有 <code>multiset</code> 和 <code>multimap</code> 分别是它们的可重版本，即键不唯一；它们通常用红黑树实现：</p>
+<p><center><img alt="" src="../2023-04-07-01-26-56.png" /></center></p>
+<p><strong>Unordered associative containers</strong> 是 associative containers 的无序版本；用哈希实现：</p>
+<p><center><img alt="" src="../2023-04-07-01-30-35.png" /></center></p>
+<p>另外，<strong>适配器 (adapters)</strong> 利用容器（上述容器，或者用户自定义的容器）来提供一些接口，例如栈 <code>stack</code>、队列 <code>queue</code> 和优先队列 <code>priority_queue</code> 等：</p>
+<p><center><img alt="" src="../2023-04-07-01-32-52.png" width="400" /></center></p>
+<p>而 <a href="https://en.cppreference.com/w/cpp/algorithm">Algorithms library</a> 提供了更多的算法，其中常用的部分我们在 <a href="../../cpp_for_contests">快速入门 C++ 写题</a> 有所介绍。大家也可以在阅读完第 8 节后，自行阅读网页中的内容，查阅这些算法。</p>
+<p>另外，其中关于 C++20 引入的 <code>ranges</code> namespace 下的算法版本，我们会在后面的章节中具体介绍其背景和动机；大家可以暂时先行跳过。</p>
 <hr />
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -4508,7 +4614,7 @@ function toggleVisibilityFoot() {
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-04-02T05:30:59+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-04-02</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-04-06T18:35:06+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-04-06</span>
       
         <br>
         创建日期:

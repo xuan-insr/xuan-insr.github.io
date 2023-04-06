@@ -974,6 +974,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#more-about-template-argument-deduction" class="md-nav__link">
+    More about template argument deduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#73-将声明和实现分离" class="md-nav__link">
     7.3 将声明和实现分离？
   </a>
@@ -1065,6 +1072,13 @@
         <li class="md-nav__item">
   <a href="#模板元编程" class="md-nav__link">
     模板元编程
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concept-与-ranges" class="md-nav__link">
+    Concept 与 Ranges
   </a>
   
 </li>
@@ -3622,6 +3636,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#more-about-template-argument-deduction" class="md-nav__link">
+    More about template argument deduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#73-将声明和实现分离" class="md-nav__link">
     7.3 将声明和实现分离？
   </a>
@@ -3718,6 +3739,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#concept-与-ranges" class="md-nav__link">
+    Concept 与 Ranges
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#-auto--return-type-deduction" class="md-nav__link">
     ▲ auto &amp; return type deduction
   </a>
@@ -3742,10 +3770,11 @@
   <h1>10 模板 (III) - 更多话题</h1>
 
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 570 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 14 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 2 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 582 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 14 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 2 分钟</p>
 </div>
 <h3 id="724-模板友元">7.2.4 模板友元<a class="headerlink" href="#724-模板友元" title="Permanent link">&para;</a></h3>
 <p>看这个 <a href="https://isocpp.org/wiki/faq/templates#template-friends">https://isocpp.org/wiki/faq/templates#template-friends</a></p>
+<h2 id="more-about-template-argument-deduction">More about template argument deduction<a class="headerlink" href="#more-about-template-argument-deduction" title="Permanent link">&para;</a></h2>
 <h2 id="73-将声明和实现分离">7.3 将声明和实现分离？<a class="headerlink" href="#73-将声明和实现分离" title="Permanent link">&para;</a></h2>
 <p>.h 里放不会编译出任何二进制代码的东西，例如 extern 全局变量声明、没有 body 的函数声明、类定义和模板；
 .cpp 里放会编译出二进制代码的东西，例如全局变量定义、函数定义、类成员定义。</p>
@@ -3786,6 +3815,7 @@
 <p>类的显式实例化的参数类型和返回类型可以是 private 成员。</p>
 <h2 id="默认模板参数">默认模板参数<a class="headerlink" href="#默认模板参数" title="Permanent link">&para;</a></h2>
 <p><center><img alt="" src="../2023-04-01-01-19-23.png" /></center></p>
+<p><a href="https://www.foonathan.net/2020/10/tricks-default-template-argument/">https://www.foonathan.net/2020/10/tricks-default-template-argument/</a></p>
 <h2 id="74-显式特化与偏特化">7.4 显式特化与偏特化<a class="headerlink" href="#74-显式特化与偏特化" title="Permanent link">&para;</a></h2>
 <p><code>typename</code></p>
 <p>例子：<code>min</code> for <code>char const *</code></p>
@@ -3812,6 +3842,9 @@
 <p>自「理解 STL」补充 3.2 引入，同时参考：</p>
 <p><a href="https://www.cppstories.com/2016/02/notes-on-c-sfinae/">https://www.cppstories.com/2016/02/notes-on-c-sfinae/</a></p>
 <h2 id="模板元编程">模板元编程<a class="headerlink" href="#模板元编程" title="Permanent link">&para;</a></h2>
+<p>type traits</p>
+<h2 id="concept-与-ranges">Concept 与 Ranges<a class="headerlink" href="#concept-与-ranges" title="Permanent link">&para;</a></h2>
+<p><a href="https://godbolt.org/z/rr8TGYx5j">https://godbolt.org/z/rr8TGYx5j</a></p>
 <hr />
 <h2 id="-auto--return-type-deduction">▲ auto &amp; return type deduction<a class="headerlink" href="#-auto--return-type-deduction" title="Permanent link">&para;</a></h2>
 
@@ -3820,7 +3853,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-04-02T03:48:22+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-04-02</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-04-06T18:35:06+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-04-06</span>
       
         <br>
         创建日期:
