@@ -98,7 +98,8 @@ list initialization (C++11)、brace-or-equal initializers (C++11)
 - [x] 一些遗留问题 (C++11): final, override
 - [x] nullptr (C++11)
 - [ ] concurrency support (C++11), memory model (C++11), thread local storage (C++11)
-- [ ] variable template (C++14)
+- [ ] Parallel algorithms and execution policies (C++17)
+- [x] variable template (C++14)
 - [ ] string_view (C++17)
 - [ ] inline variables (C++17)
 - [ ] structured bindings (C++17)
@@ -113,6 +114,14 @@ list initialization (C++11)、brace-or-equal initializers (C++11)
 - [ ] literals
 - [ ] Explicit object parameter (C++23)
 - [ ] placement new
+- [ ] alignas & alignof 
+- [ ] enum
+- [ ] union
+- [ ] attribute
+- [ ] fold expressions
+- [ ] functional
+- [ ] Coroutines (C++20)
+- [ ] explicit(bool) (C++20)
 
 
 *[ARM]: The Annotated C++ Reference Manual

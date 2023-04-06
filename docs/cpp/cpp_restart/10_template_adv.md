@@ -2,6 +2,10 @@
 
 看这个 https://isocpp.org/wiki/faq/templates#template-friends
 
+## More about template argument deduction
+
+
+
 ## 7.3 将声明和实现分离？
 
 .h 里放不会编译出任何二进制代码的东西，例如 extern 全局变量声明、没有 body 的函数声明、类定义和模板；
@@ -53,6 +57,8 @@ int abs<int>(int x)
 
 <center>![](2023-04-01-01-19-23.png)</center>
 
+https://www.foonathan.net/2020/10/tricks-default-template-argument/
+
 ## 7.4 显式特化与偏特化
 
 `typename`
@@ -102,6 +108,12 @@ https://www.cppstories.com/2016/02/notes-on-c-sfinae/
 
 
 ## 模板元编程
+
+type traits
+
+## Concept 与 Ranges
+
+https://godbolt.org/z/rr8TGYx5j
 
 ---
 

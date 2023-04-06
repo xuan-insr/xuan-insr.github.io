@@ -286,6 +286,8 @@ void foo(int a, double b) {
 
 上面代码中第 7 行，编译器看到参数列表是 `(int, double)`，会尝试推导 `T` 的类型。但是，根据第一个参数推导出的 `T` 是 `int`，而根据第二个参数推导出的是 `double`，因此 `T` 是有歧义的，推导失败。而第 8 行，我们显式给出了它使用的特化，就没有问题了。
 
+模板参数推导还有很多值得讨论的问题，我们在后面的章节中具体讨论这些话题。
+
 ### 7.2.3 运算符模板
 
 模板类型推导使得运算符模板成为可能。例如（可以在 [这里](https://godbolt.org/z/87fezqvb5) 玩一下）：
@@ -420,7 +422,43 @@ int main() {
     !!! tips
         `Container<Container<int>>` 在 C++11 之前可能不得不写成 `Container< Container<int> >` 以避免最后的部分被理解为右移运算符 `>>`；不过自 C++11 开始这个问题被解决了。
 
-### 7.2.4 模板成员
+### 7.2.4 默认模板参数
+
+我们之前讨论过，函数参数可以有默认参数；事实上，模板参数也可以有默认参数。例如：
+
+```c++
+template<typename T, typename U = int> class Foo { /* ... */ };
+
+Foo<int> x;         // Foo<int, int>
+Foo<int, char> y;   // Foo<int, char>
+// Foo<> z;  Foo w; // Error
+```
+
+与函数参数一样，类模板默认参数也只能存在于最后的若干参数中，即 `template<typename T = int, typename U> class Bar { /* ... */ };` 是非法的。
+
+不过，由于函数模板通常有模板参数推导，因此函数模板的默认参数 **不必** 只能存在于最后的若干参数中，例如；
+
+```c++
+template<typename RT = void, typename T>    // OK
+RT* address_of(T& value) { return (RT*)(&value); }
+
+void foo(int x) {
+    void * pv = address_of(x);		// address_of<void, int>
+    int * pi = address_of<int>(x);	// address_of<int, int>
+}
+```
+
+另外，如果模板参数既有默认参数也可以推导出来，则使用推导出来的结果（除非推导失败），例如：
+
+```c++
+template<typename T = int>  void foo(T x) {}
+
+void bar(double x) {
+    foo(x); // foo<double>
+}
+```
+
+### 7.2.5 模板成员
 
 我们之前看到了类模板，例如：
 
@@ -494,15 +532,22 @@ Container<T> & Container<T>::operator+=(const Container<U> & rhs) {
 
 <center>![](2023-04-01-18-53-15.png)</center>
 
-## 7.3 STL 基本使用
+## 7.3 STL 及其基本使用
+
+!!! note
+    本节中部分图片取自 Bob Steagall 在 CppCon 2021 的演讲 Back to Basics: Classic STL；该演讲视频可以在 [YouTube](https://youtu.be/tXUXl_RzkAk) 找到，对应的 Slides 可以在 [GitHub](https://github.com/CppCon/CppCon2021/blob/main/Presentations/back_to_basics_classic_stl__bob_steagall__cppcon_2021_1.pdf) 找到。
 
 **STL (Standard Template Library, 标准模板库)** 是 C++ 中的一套非常有用的工具，它在 C++ 的第一个标准化版本 C++98 中就被引入，并直到今天都在增加新的改进。如它的名字所示，这个库大量利用了模板提供的泛型思想；实现了很多常用的数据结构和算法。这些数据结构通过类模板实现，而算法通过函数模板实现。
 
 在本节中，我们会讨论 STL 中一些容器（数据结构）和算法的基本使用；而在下一节中，我们会仔细讨论它们背后的 C++ 实现，从而给模板的使用带来一定回顾和启发。
 
-### 7.3.1 `std::vector`
+### 7.3.1 为什么要有 STL
 
-STL 的第一个重要部分：容器库 (Containers library) 集合了一些类模板和算法，从而让程序员可以轻松地使用常见的数据结构，例如线性表、队列、栈、集合、字典等。
+STL 提供了 **容器库 (Containers library)** 和 **算法库 (Algorithm library)**，这些库里包含了大量常见的数据结构和算法；程序员可以直接调用这些算法，而无需自己实现。我们可以看两个简单的例子：
+
+#### 7.3.1.1 `std::vector`
+
+STL 的第一个重要部分——容器库 (Containers library) 集合了一些类模板和算法，从而让程序员可以轻松地使用常见的数据结构，例如线性表、队列、栈、集合、字典等。
 
 作为其中最常用的例子，我们介绍 `vector` 类模板，它封装了一个动态大小的的数组；即：我们使用时不必给它规定一个初始大小；当分配的空间用尽时，它会帮我们自动扩展空间。作为一个简单的例子：
 
@@ -547,7 +592,7 @@ int main()
 
 **访问（读取 / 修改）元素**。和数组一样，可以通过 `v[i]` 的方式访问 vector  `v` 的第 `i` 个元素，下标从 0 开始。注意，当 `i >= v.size()` 的时候，程序可能发生运行时错误。
 
-### 7.3.2 `std::sort`
+#### 7.3.1.2 `std::sort`
 
 `sort` 用于对数组或 vector 等可以随机访问且元素可比较的数据结构进行排序。平均和最差复杂度均为 $O(n\log n)$。例如：
 
@@ -598,22 +643,54 @@ sort(v.begin(), v.end(), cmp);
 
 注意，比较函数逻辑上相当于 `a 严格在 b 前面` 。因此当两个元素相等时，比较函数总是应当返回 false。
 
-C++11 开始，也可以使用 lambda 表达式（类似于匿名函数）简化写法：
-
-```cpp
-vector<int> v = {3, 1, 4, -2, 5, 3};
-sort(v.begin(), v.end(), [](const int& a, const int& b) { return a > b; });
-```
-
 自定义比较函数可以适用更复杂的排序，例如需要比较的元素本身并没有内置的比较运算符的时候。例如：
 
 ```cpp
 bool cmp(const vector<int>& a, const vector<int>& b) {
     return a[0] == b[0] ? a[1] < b[1] : a[0] < b[0];
 }
+
+void foo(vector<vector<int>> & foo) {
+    sort(foo.begin(), foo.end(), cmp);
+}
 ```
 
-这个比较函数可以用于 `vector<vector<int>>` 类型的排序。
+如上面所示，这个比较函数可以用于 `vector<vector<int>>` 类型的排序。
+
+### 7.3.2 STL 都有什么
+
+如上面所示，STL 提供的容器和算法在性能、通用性和封装性上都比较好，而且它们是经过良好测试的；因此我们使用它们有助于让我们的代码具有更好的性能以及更高的可读性、可写性。所以，STL 都提供了哪些容器和算法呢？
+
+!!! warning
+    这里，我们只展示有哪些容器和算法，并不具体介绍它们的使用方法和使用场景。
+
+    关于这里常用工具的简单的使用方法，参见 [快速入门 C++ 写题](../../cpp_for_contests)；但是，我们期望在第 8 节完成后，大家能够具备直接阅读 [CppReference](https://en.cppreference.com/w/cpp) 就可以理解 STL 中这些容器或算法使用方式的能力。在朋辈辅学的对应章节中，我们也会带领大家尝试阅读其中的例子。
+
+    关于具体的使用场景，则需要大家在具体的做题或者编程过程中尝试发现。通常这些东西的使用是明确的：需要排序时使用 `sort`；需要在有序数组中查询内容使用 `upper_bound`, `lower_bound`, `binary_search` 等；需要去重时使用 `unique` 或者 `set` 或者 `unordered_set`；需要字典时使用 `map` 或者 `unordered_map` 等。CppReference 中也可以找到这些算法或者容器的各种操作的复杂度。「使用什么」的问题更多关于题目或者代码逻辑本身，并非本文的讨论重点。
+
+[Containers library](https://en.cppreference.com/w/cpp/container) 中提供了若干种 container 和若干种 adaptors。
+
+容器扮演的作用是提供一些数据结构，它们的大概类型如下面三张图所示（图片来源见 7.3 节开始的 note）：
+
+**Sequence containers** 包含单向延伸的 `vector`、双向延伸的双端队列 `deque`、大小固定的数组 `array`、双向链表 `list` 和单向链表 `forward_list`；
+
+<center>![](2023-04-07-01-24-04.png){width=400}</center>
+
+**Associative containers** 中，`set` 是唯一、有序元素的集合；`map` 是键值对的集合（即字典），键唯一、有序；还有 `multiset` 和 `multimap` 分别是它们的可重版本，即键不唯一；它们通常用红黑树实现：
+
+<center>![](2023-04-07-01-26-56.png)</center>
+
+**Unordered associative containers** 是 associative containers 的无序版本；用哈希实现：
+
+<center>![](2023-04-07-01-30-35.png)</center>
+
+另外，**适配器 (adapters)** 利用容器（上述容器，或者用户自定义的容器）来提供一些接口，例如栈 `stack`、队列 `queue` 和优先队列 `priority_queue` 等：
+
+<center>![](2023-04-07-01-32-52.png){width=400}</center>
+
+而 [Algorithms library](https://en.cppreference.com/w/cpp/algorithm) 提供了更多的算法，其中常用的部分我们在 [快速入门 C++ 写题](../../cpp_for_contests) 有所介绍。大家也可以在阅读完第 8 节后，自行阅读网页中的内容，查阅这些算法。
+
+另外，其中关于 C++20 引入的 `ranges` namespace 下的算法版本，我们会在后面的章节中具体介绍其背景和动机；大家可以暂时先行跳过。
 
 ---
 
