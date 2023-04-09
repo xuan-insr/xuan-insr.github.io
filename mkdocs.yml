@@ -18,7 +18,9 @@ nav:
         - Week4 类 (III) 隐式类型转换、拷贝构造、SMFs: https://xuan-insr.github.io/slides/cpp/4_class_III/
         - Week4 思考题与复习题: cpp/cpp_restart/review/week4.md
         - Week5 模板 (I) 基础知识与 STL 使用: https://xuan-insr.github.io/slides/cpp/5_template_I/
-        - Week5 思考题与复习题: cpp/cpp_restart/review/week5.md
+        # - Week5 思考题与复习题: cpp/cpp_restart/review/week5.md
+        - Week6 模板 (II) 理解 STL - 迭代器与函数对象: https://xuan-insr.github.io/slides/cpp/6_stl/
+        # - Week6 思考题与复习题: cpp/cpp_restart/review/week6.md
       - 正文！:
         - 1 C++ 的诞生: cpp/cpp_restart/1_birth.md
         - 2 编程范式: cpp/cpp_restart/2_paradigm.md
