@@ -59,10 +59,11 @@ STL 由 4 部分组成：容器 (Containers)、迭代器 (Iterators)、算法 (A
 !!! tip "补充 1.2"
     具体来说，对于 `std::vector<int> v;` ， `v.begin()` 的返回值类型可能是 `__gnu_cxx::__normal_iterator<int*, std::vector<int>>` ；对于 `std::map<int, double> m;` ， `m.begin()` 的返回值类型可能是 `std::_Rb_tree_iterator<std::pair<const int, double>>` 。感兴趣的小朋友可以自己在 [https://godbolt.org/z/6s5x66rdG](https://godbolt.org/z/6s5x66rdG) 尝试（这里也展示了一种查看表达式类型的小技巧）！
 
-
     同时，也可以使用 C++ Insights 来查看：[https://cppinsights.io/s/cd95e24b](https://cppinsights.io/s/cd95e24b) 
 
     ![image.png](理解 STL - 迭代器与函数对象.assets/1664500731615-8b96bb4c-32ee-45f2-812b-4e35f149d54c.png)
+
+    不过，我们在真正使用到这些类型的时候，可以通过 `std::vector<int>::iterator` 来获得迭代器的类型；这是类的一个成员，声明了一个别名。
 
 
 !!! info "整活 1.3"
@@ -94,9 +95,9 @@ STL 由 4 部分组成：容器 (Containers)、迭代器 (Iterators)、算法 (A
 
 事实上，C++ 对迭代器作了若干分类（确切地说，是 **具名要求 named requirements**），不同的算法也对所需的迭代器的分类做了不同的要求。我们较为通俗地概括各类迭代器所支持的功能（可能存在不够完整和严谨的地方，但是理解为主）：
 
-1. _Legacy_**_Input_**_Iterator_ - 能够用来标识、 **遍历** 一个容器中的元素，能够从所指的元素中 **读取** 值。
+1. _**_Input_**_ Iterator - 能够用来标识、 **遍历** 一个容器中的元素，能够从所指的元素中 **读取** 值。
 
-    - 注：_LegacyInputIterator_ 只需要保证 **单趟** 算法的有效性：一旦一个 _LegacyInputIterator_ `it` 被 `++` 后，它之前所指的值及其所有拷贝都不再需要保证有效性
+    - 注：Input Iterator 只需要保证 **单趟** 算法的有效性：一旦一个 Input Iterator `it` 被 `++` 后，它之前所指的值及其所有拷贝都不再需要保证有效性
 
     ??? note "具体要求"
         满足这种要求的类型的 `It` 需要支持：
@@ -108,42 +109,42 @@ STL 由 4 部分组成：容器 (Containers)、迭代器 (Iterators)、算法 (A
         - `it++` （返回值能转化为 `const It&` ）
         - `*it++` （即 `*(it++)` ，返回值能转化为 `value_type` ）
 
-2. _Legacy_**_Forward_**_Iterator_ - 在 _LegacyInputIterator_  的基础上，能够支持 **多趟** 算法。
+2. _**_Forward_**_ Iterator - 在 Input Iterator  的基础上，能够支持 **多趟** 算法。
 
     ??? note "具体要求"
         满足这种要求的类型 `It` 需要：
 
-        - 满足 _LegacyInputIterator_ 
+        - 满足 Input Iterator 
         - 如果 `it1 == it2` ，那么要么它们都没有指向一个有效的对象（例如 `nullptr` 或者类似 `c.end()` 的迭代器，我们称它们是 **不可解引用的 undereferenceable**），要么它们指向的是同一个元素。
         - 如果 `*it1` 和 `*it2` 引用同一个元素，那么 `it1 == it2` 
         - `it` 被 `++` 后，再次读取其原来指向对象的值，结果不应发生变化
         - 如果 `it1 == it2` ，那么 `++it1 == ++it2` 
 
-3. _Legacy_**_Bidirectional_**_Iterator_ - 在 _LegacyForwardIterator_ 的基础上，能够 **双向移动** 。
+3. _**_Bidirectional_**_ Iterator - 在 Forward Iterator 的基础上，能够 **双向移动** 。
 
     ??? note "具体要求"
         满足这种要求的类型 `It` 需要：
 
-        - 满足 _LegacyForwardIterator_ 
+        - 满足 Forward Iterator 
         - 支持 `--it` , `it--` , `*it--` ，返回值类型与前述 `++` 相同，且：
         - `--(++it) == it` 
         - 如果 `--it1 == --it2` ，那么 `it1 == it2` 
 
-4. _Legacy_**_RandomAccess_**_Iterator_ - 在 _LegacyBidirectionalIterator_ 的基础上，能够在 **常数** 时间内移动从而指向 **任一** 元素。
+4. _**_Random Access_**_ Iterator - 在 Bidirectional Iterator 的基础上，能够在 **常数** 时间内移动从而指向 **任一** 元素。
 
     ??? note "具体要求"
         满足这种要求的类型 `It` 需要：
 
-        - 满足 _LegacyBidirectionalIterator_ 
+        - 满足 Bidirectional Iterator 
         - 支持 `it += n` , `it -= n` , `it + n` , `it - n` , `n + it` , `it[n]` , `it1 < it2` , `it1 > it2` , `it1 <= it2` , `it1 >= it2` （比较运算符需要在自反、交换、传递下有正确表现）, `it1 - it2` （计算两个迭代器指向元素的距离） ，含义略，但复杂度须是 $O(1)$ 的
 
-5. `C++17` _Legacy_**_Contiguous_**_Iterator_- 在 _LegacyRandomAccessIterator_ 的基础上，逻辑上相邻的元素在内存里 **物理上也相邻**。
+5. `C++17` _**_Contiguous_**_ Iterator- 在 Random Access Iterator 的基础上，逻辑上相邻的元素在内存里 **物理上也相邻**。
 
-    - 注：指向数组中元素的 **指针** 满足 _LegacyContiguousIterator_ 的所有要求。
+    - 注：指向数组中元素的 **指针** 满足 Contiguous Iterator 的所有要求。
 
-另外，还有一种 _Legacy_**_Output_**_Iterator_，它和 _LegacyInputIterator_ 类似，需要能够用来标识、 **遍历** 一个容器中的元素，能够向所指的元素中 **写入** 值；同样不需要保证多趟算法的有效性。
+另外，还有一种 _**_Output_**_ Iterator，它和 Input Iterator 类似，需要能够用来标识、 **遍历** 一个容器中的元素，能够向所指的元素中 **写入** 值；同样不需要保证多趟算法的有效性。
 
-可以看到，_LegacyOutputIterator_ 和前述 5 个具名要求是相互独立的。因此，我们称满足前述 5 个具名要求中某一个的同时还满足 _LegacyOutputIterator_  的迭代器为 **_mutable_** 的。
+可以看到，Output Iterator 和前述 5 个具名要求是相互独立的。因此，我们称满足前述 5 个具名要求中某一个的同时还满足 Output Iterator  的迭代器为 **_mutable_** 的。
 
 这张表格概括了上述内容：
 
@@ -169,15 +170,20 @@ STL 由 4 部分组成：容器 (Containers)、迭代器 (Iterators)、算法 (A
 ![1664503060465.jpg](理解 STL - 迭代器与函数对象.assets/1664503066712-6d6aa131-3cb0-4dfb-b53e-aec90bc84cbf.jpeg)
 
 !!! Note "图注"
-    **#**  特别地， `vector<bool>` 是 `vector` 的一个特化，标准希望实现者可以考虑用更节省空间的方式保存 `vector<bool>` ，但是具体实现方法是 implementation defined 的（标准不指明实现方式，但是具体的实现者需要给出说明）；因此 `vector<bool>` 提供的迭代器满足的具名要求也是 implementation defined 的。
+    **#**  特别地， `vector<bool>` 是 `vector` 的一个显式特化，标准希望实现者可以考虑用更节省空间的方式保存 `vector<bool>` ，但是具体实现方法是 implementation defined 的（标准不指明实现方式，但是具体的实现者需要给出说明）；因此 `vector<bool>` 提供的迭代器满足的具名要求也是 implementation defined 的。
 
+同时，除了 `set`, `unordered_set`, `multiset`, `unordered_multiset` 的迭代器只有 const 的版本之外，其他容器的迭代器都有 const 和 mutable 两个版本；即其他容器的迭代器的 mutable 版本符合 output iterator 的要求，可以用它们修改指向元素的值。
 
-回顾我们提到的算法， `sort` 需要传入的迭代器满足 _LegacyRandomAccessIterator_；这一限制的实现方式其实就是， `sort` 的实现中会包含 `it1 - it2` ， `it + n` 之类的运算，如果不支持这些运算就无法通过编译。
+为什么集合系列容器没有 mutable 迭代器呢？因为集合按元素的值做了排序 / 哈希；如果允许通过迭代器修改，那么有可能导致顺序被破坏。
 
-同时， `lower_bound` 和 `upper_bound` 只需要传入的迭代器满足 _LegacyForwardIterator_；但是如果还满足 _LegacyRandomAccessIterator_，那么复杂度是 $O(\log n)$ 的；否则是 $O(n)$ 的。因此，对于 `set` , `map` , `multiset` 和 `multimap` ，它们提供的迭代器不满足 _LegacyRandomAccessIterator_，但是它们本身类内提供了自己的 `lower_bound` 函数，因此此时应该用类内的这些函数。
+那为什么 map 系列容器有 mutable 迭代器呢？这是否意味着它们的 key 可以被修改呢？并非如此。map 系列容器可以看做键值对的集合，其元素的类型是 `std::pair<const Key, Val>`；可以看到它的 `first` 元素类型是 `const Key`，因此虽然迭代器是 mutable 的，但是只能用来修改 value，而不能用来修改 key。
+
+回顾我们提到的算法， `sort` 需要传入的迭代器满足 Random Access Iterator；这一限制的实现方式其实就是， `sort` 的实现中会包含 `it1 - it2` ， `it + n` 之类的运算，如果不支持这些运算就无法通过编译。
+
+同时， `lower_bound` 和 `upper_bound` 只需要传入的迭代器满足 Forward Iterator；但是如果还满足 Random Access Iterator，那么复杂度是 $O(\log n)$ 的；否则是 $O(n)$ 的。因此，对于 `set` , `map` , `multiset` 和 `multimap` ，它们提供的迭代器不满足 Random Access Iterator，但是它们本身类内提供了自己的 `lower_bound` 函数，因此此时应该用类内的这些函数。
 
 !!! tip "补充 2.1"
-    这种在满足和不满足 _LegacyRandomAccessIterator_ 时有不同复杂度的实现方式是，每个 iterator `It` 都需要有一个对应的 `iterator_traits<It>` ，其中包含了一个 `iterator_category` ，它用来标识这个迭代器满足哪种要求。对于指向对象的指针类型， `iterator_traits` 有对应的特化，其 `iterator_category` 为 `random_access_iterator_tag` 。
+    这种在满足和不满足 Random Access Iterator 时有不同复杂度的实现方式是，每个 iterator `It` 都需要有一个对应的 `iterator_traits<It>` ，其中包含了一个 `iterator_category` ，它用来标识这个迭代器满足哪种要求。对于指向对象的指针类型， `iterator_traits` 有对应的特化，其 `iterator_category` 为 `random_access_iterator_tag` 。
 
     ![image.png](理解 STL - 迭代器与函数对象.assets/1664504718413-164fbe68-142d-4396-8cbf-84b2e36a55f4.png "https://en.cppreference.com/w/cpp/iterator/iterator_tags")
     在 `lower_bound` 中，使用 `it + n` 这样的操作可能是通过 `std::advance(it, n)` 的方式实现的，这个函数对于不同的 `iterator_traits` 有不同的重载；对于支持随机访问的，就会通过 `it + n` 的方式实现，而如果不支持，则通过循环实现。
@@ -193,7 +199,7 @@ b. 自定义比较函数是怎么实现的？如何适配有和没有自定义�
 
 我们先来讨论 a 问题。
 
-前一节中我们讨论过， `sort` 要求传入的迭代器满足 _LegacyRandomAccessIterator_，这一要求是因为 `sort` 的实现中会包含类似 `end - begin` , `it + n` , `*it` 之类的操作。我们在前一节也讨论过了，满足 _LegacyRandomAccessIterator_ 的迭代器需要支持上述操作；而同时，指针类型也支持这样的操作。
+前一节中我们讨论过， `sort` 要求传入的迭代器满足 Random Access Iterator，这一要求是因为 `sort` 的实现中会包含类似 `end - begin` , `it + n` , `*it` 之类的操作。我们在前一节也讨论过了，满足 Random Access Iterator 的迭代器需要支持上述操作；而同时，指针类型也支持这样的操作。
 
 和 **整活 1.3** 中的例子类似，其实只要我们传入的类型支持上述操作就可以了。而如果类型并不支持上述操作，则会编译错误，例如第 2 节开头演示用 sort 对 map 的 begin 和 end 排序其实报的错就是“并没有这两个迭代器之间的 `-` 运算”：
 
@@ -209,9 +215,9 @@ b. 自定义比较函数是怎么实现的？如何适配有和没有自定义�
 
 ![image.png](理解 STL - 迭代器与函数对象.assets/1665831350474-096cee5c-aa93-466d-85eb-279c035c0af0.png)
 
-所以说， `sort` 既适用于传统数组，也适用于 vector 等容器是自然的：指针和满足 _LegacyRandomAccessIterator_ 的迭代器都支持 `sort` 函数里用到的各种运算，因此自然就能通过编译。
+所以说， `sort` 既适用于传统数组，也适用于 vector 等容器是自然的：指针和满足 Random Access Iterator 的迭代器都支持 `sort` 函数里用到的各种运算，因此自然就能通过编译。
 
-也就是说，我们要求 `sort` 传入的类型满足 _LegacyRandomAccessIterator_ 并不是一个前提，而是一个 **结果** —— 我们把 `sort` 以及和它类似的函数，对传入参数类型“能够在 **常数** 时间内移动从而指向 **任一** 元素的函数”的要求起了个名字，叫做 _LegacyRandomAccessIterator_。而这种要求在语言中的体现，也并不是使用专门的 tag 来标记某个迭代器符合什么样的具名要求，而只是不符合这种要求的类型自然无法通过编译，因为对应函数中使用了要求所说明的一些操作。
+也就是说，我们要求 `sort` 传入的类型满足 Random Access Iterator 并不是一个前提，而是一个 **结果** —— 我们把 `sort` 以及和它类似的函数，对传入参数类型“能够在 **常数** 时间内移动从而指向 **任一** 元素的函数”的要求起了个名字，叫做 Random Access Iterator。而这种要求在语言中的体现，也并不是使用专门的 tag 来标记某个迭代器符合什么样的具名要求，而只是不符合这种要求的类型自然无法通过编译，因为对应函数中使用了要求所说明的一些操作。
 
 !!! tip "补充 3.1"
     这其实就再次向我们展现了 template 所支持的泛型编程的意义——面向对象编程允许我们写一个支持某一类型（基类）以及属于这一类型的其他类型（子类）的函数；而泛型编程则允许我们写一个支持满足某一条件（拥有某些特定成员）的所有类型的函数。
@@ -349,7 +355,7 @@ bool sort(Iterator begin, Iterator end, Comparator cmp);
 
 
 !!! tip "补充 4.4"
-    聪明的小朋友可能会问了——第 15 行传递引用为什么那么麻烦呀！其实可以看到，如果不显示给出模板参数，那么就会像 13 行一样被解释成函数指针而不是函数引用。这是因为并不存在 funtion-to-reference 的隐式转换。因此如果我们真的想要让它是一个引用，那就只能显式地写出其类型；如果写 `decltype(cmp1)` 的话，虽然模板参数是一个引用类型，但是传进去的其实还是个函数指针而不是引用，因为函数本身不是对象，我们不能定义一个函数类型的变量。但是如果写 `decltype(*cmp1)` 的话，这就是一个引用类型，所以传进去的就是一个引用了。
+    聪明的小朋友可能会问了——第 15 行传递引用为什么那么麻烦呀！其实可以看到，如果不显示给出模板参数，那么就会像 13 行一样被解释成函数指针而不是函数引用。因此如果我们真的想要让它是一个引用，那就只能显式地写出其类型；如果写 `decltype(cmp1)` 的话，虽然模板参数是一个引用类型，但是传进去的其实还是个函数指针而不是引用，因为函数本身不是对象，我们不能定义一个函数类型的变量（此时，编译器会自动把参数类型从函数改为函数指针^[temp.deduct.general#3](https://timsong-cpp.github.io/cppwp/n4868/temp.deduct.general#3.sentence-1)^ ^[dcl.fct#5](https://timsong-cpp.github.io/cppwp/n4868/dcl.fct#5.sentence-3)^；参见 [这里](https://cppinsights.io/s/bcf2606b)）。但是如果写 `decltype(*cmp1)` 的话，这就是一个引用类型，所以传进去的就是一个引用了。
 
     当然，这里也可以直接写 `bool (&)(const int &, const int &)` 。
     
@@ -357,6 +363,20 @@ bool sort(Iterator begin, Iterator end, Comparator cmp);
     
     聪明的小朋友可能又会问了——为什么第 15 行传递引用写 `cmp1` 而不是 `*cmp1` 呀！其实写 `*cmp1` 也行，但是 `cmp1` 更自然。 `*cmp1` 是什么意思呢？显然我们不能对一个函数解引用，因此此时 `cmp1` 会被隐式转换成函数指针，解引用之后得到指向 `cmp1` 的一个左值；也就是说 `*cmp1` 和 `cmp1` 其实还是一个东西。也是同样的原理我们甚至可以写 `*********cmp1` ，其实就是反复触发 function-to-pointer 和解引用。例如：
 
+    ```c++
+    void foo() {
+        int arr[100];
+        // (1) pass by pointer to function
+        sort(arr, arr + 100, *******cmp1);
+        // (2) pass by reference to function
+        sort<int *, decltype(*cmp1)>(arr, arr + 100, ****cmp1);
+        sort<int *, bool(&)(const int &, const int &)>(arr, arr + 100, cmp1);
+        // (3) pass by lambda expression
+        sort(arr, arr + 100, [](int a, int b) { return a < b; });
+        // (4) pass by function objects
+        sort(arr, arr + 100, MyGreater());
+    }
+    ```
 
 !!! tip "补充 4.5"
     函数对象除了能够用来将函数当做参数传递以外，还可以用来构造闭包 (closure)。闭包在函数之外，还能够通过成员变量保存一些状态；且不同于函数内部 static 变量的是，拥有统一函数体的不同函数对象，也可以保存不同的状态。这是显然的，因为它们实际上是同一个类的不同实例。
@@ -375,6 +395,7 @@ template<class T,
     class Container = std::vector<T>,
     class Compare = std::less<typename Container::value_type>
 > class priority_queue {
+    Compare comp;
 public:
     priority_queue() : priority_queue(Compare(), Container()) { }
     explicit priority_queue( const Compare& compare )

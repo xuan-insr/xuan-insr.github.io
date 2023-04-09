@@ -4,7 +4,7 @@
 
 ---
 
-## 7.1 引入
+## 7.1 引入：泛型编程
 
 在介绍 OOP 的章节中，我们讨论过一个链表的实现和使用，我们面临过这样的问题：
 
@@ -528,10 +528,6 @@ Container<T> & Container<T>::operator+=(const Container<U> & rhs) {
 }
 ```
 
-作为一个示例，可以看 [这段代码](https://godbolt.org/z/8qTs3jjvb):
-
-<center>![](2023-04-01-18-53-15.png)</center>
-
 ## 7.3 STL 及其基本使用
 
 !!! note
@@ -541,7 +537,7 @@ Container<T> & Container<T>::operator+=(const Container<U> & rhs) {
 
 在本节中，我们会讨论 STL 中一些容器（数据结构）和算法的基本使用；而在下一节中，我们会仔细讨论它们背后的 C++ 实现，从而给模板的使用带来一定回顾和启发。
 
-### 7.3.1 为什么要有 STL
+### 7.3.1 为什么要用 STL
 
 STL 提供了 **容器库 (Containers library)** 和 **算法库 (Algorithm library)**，这些库里包含了大量常见的数据结构和算法；程序员可以直接调用这些算法，而无需自己实现。我们可以看两个简单的例子：
 
@@ -699,8 +695,6 @@ void foo(vector<vector<int>> & foo) {
 
     - [[History of C++] Templates: from C-style macros to concepts](https://belaycpp.com/2021/10/01/history-of-c-templates-from-c-style-macros-to-concepts)
     - [Generic Programming | Wikipedia](https://en.wikipedia.org/wiki/Generic_programming)
-
-    事实上，C 语言在 C11 标准中也引入了泛型。感兴趣的读者可以阅读 [这里](https://en.cppreference.com/w/c/language/generic)。
 
 ---
 
