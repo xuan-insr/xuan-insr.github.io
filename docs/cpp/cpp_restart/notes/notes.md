@@ -57,3 +57,7 @@ Src: https://www.ralfj.de/blog/2018/07/24/pointers-and-bytes.html
 [c++faq](https://isocpp.org/wiki/faq)
 
 [CppCon](https://cppcon.org/)
+
+## const 系列
+
+`const` 指明一个变量是不可变的；

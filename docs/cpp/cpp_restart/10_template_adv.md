@@ -71,6 +71,17 @@ https://www.foonathan.net/2020/10/tricks-default-template-argument/
 
 ## 7.5 变量模板
 
+C++14 引入了 **变量模板 (variable templates)**，它的应用场景比较简单。例如：
+
+```c++
+template<typename T> constexpr T pi = T(3.1415926535897932385);
+
+template<typename T> T area_of_circle(T radius) {
+    return pi<T> * radius * radius;
+}
+```
+
+
 ## lambda 模板
 
 ## 7.6 重载解析
@@ -84,6 +95,8 @@ https://www.foonathan.net/2020/10/tricks-default-template-argument/
 <center>![](2023-04-01-01-33-21.png)</center>
 
 ## 7.7 非类型的模板参数
+
+参数需要是编译期常量；进一步引出 constexpr，一个例子是 numeric_limit，参见 [n2235](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2235.pdf)。参考 [这个回答](https://stackoverflow.com/a/28821610/14430730)。
 
 ### 将模板作为参数
 
