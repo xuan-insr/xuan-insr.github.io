@@ -32,7 +32,7 @@
 
 当把一个 prvalue 绑定给一个 rvalue reference 时，materialization 也发生。
 
-有名字的东西就是个 lvalue。
+有名字的表达式就是 lvalue。（为数不多的例外是：枚举有名字，但是右值。类、命名空间、类模板有名字，但不是表达式，因此不是右值。）
 
 ## C++ Rvalue References Explained
 
@@ -120,19 +120,96 @@ int && y = z; // Error: rvalue reference to type 'int' cannot bind to lvalue of 
 int && x = 1; // OK
 ```
 
-在 `int && x = 1;` 时，实际上完成了 temporary materialization conversion，即虽然 `1` 本身是个 prvalue，但是它被用来
+在 `int && x = 1;` 时，实际上完成了 temporary materialization conversion，即虽然 `1` 本身是个 prvalue，但是它被用来初始化一个右值引用，因此它需要实际地占用一块内存（虽然这块内存在实际实现中仍然有可能被优化掉），因此我们创建了一个临时对象并用 `x` 绑定。
 
+与移动赋值类似，移动构造函数完成通过移动语义构造一个对象。例如：
+
+```c++
+template<typename T>
+Container<T>::Container(Container<T>&& rhs) :
+    data(rhs.data), size(rhs.size), capa(rhs.capa) {
+        rhs.data = nullptr;
+    }
+```
+
+现在，考虑这样一个例子：
+
+```c++ linenums="1"
+template<class T>
+void swap(T& a, T& b) 
+{ 
+    T tmp(a);
+    a = b; 
+    b = tmp; 
+} 
+
+Container<int> a, b;
+swap(a, b);
+```
+
+这里，第 4 行用到的是拷贝构造而非移动构造；第 5 行和第 6 行用到的都是拷贝复制而非移动复制，因为 `a` 和 `b` 是左值而非右值。
+
+<center>![](2023-04-24-01-25-33.png)</center>
+
+但是这是不好的——显然，在第 4 行之后，我们不再关心 `a` 的成员，因为在第 5 行我们即将将其覆盖；对 `b` 来说也是一样的。也就是说，如果这里我们采用移动语义，可以将 3 次拷贝变成 3 次移动，这能显著提高程序的性能。
+
+这几处使用拷贝语义而非移动语义的原因是，`a`, `b`, `tmp` 是个左值。如果我们希望使用移动语义，就需要将它们变成右值。事实上，C++ 提供了函数 `std::move` 帮我们完成「将参数转换为右值」这个事情：
+
+```c++ linenums="1"
+template<class T>
+void swap(T& a, T& b) 
+{ 
+    T tmp(std::move(a));
+    a = std::move(b); 
+    b = std::move(tmp); 
+} 
+
+Container<int> a, b;
+swap(a, b);
+```
+
+<center>![](2023-04-24-01-49-28.png)</center>
+
+??? note
+    看到这个例子后，我们能够意识到：`a = std::move(b);` 这样的移动赋值实际上就是交换了 `a` 和 `b` 的资源——双方都没有被析构。虽然 `a` 持有的资源会在 `b` 的生命周期结束时被销毁，但这和拷贝赋值对比，`a` 所持有资源的销毁时机变得不那么确定了。在没有什么副作用的情况下，这不会带来什么问题；但是假如这个销毁有外部可见的副作用，时机的不确定就会带来隐患。因此，对于移动赋值运算符，我们仍然需要处理析构过程中那些对外可见的副作用。一个例子是，假如每个对象构造时申请了一个锁，则在移动赋值运算符中，也应当将锁释放掉。
+
+右值引用本身是一个左值，否则我们就没有办法完成诸如修改它的值之类的「对左值的」操作。右值引用和左值引用的区别不在于能做什么事，而只是在于什么值可以绑定给这个引用。
 
 ```c++
 int && x = 1; // OK
 int && r = x; // Error: rvalue reference to type 'int' cannot bind to lvalue of type 'int'
 ```
 
+![](2023-04-24-01-20-40.png)
 
+另一方面，假如右值引用被视为一个右值，则可能会出现一些混乱的情况：
+
+```c++
+template<typename T>
+void foo(Container<T> && x) {
+    Container<T> y = x;
+    // ...
+}
+```
+
+如果右值引用被视为右值，则上面的 `y` 是被移动构造的；此时，`x` 的 `data` 变成了 `nullptr`，因此如果我们再尝试对 `x` 做操作就可能会发生问题，这是我们不希望的。移动语义最开始的场景 `x = foo();` 是在「不影响结果的地方」使用，因为这样一定不会带来问题；而 `std::move` 的含义则是「程序员明确知道这里使用移动不影响结果」，程序员对这样的移动语义负责。但是，如果右值引用被视为右值，上面的例子显示了移动语义可能会在程序员可能不明确了解且有可能影响后续结果的情况下发生；这是语言设计者不希望的。这也是右值引用被视为左值的另一个原因。
+
+同时，这也不违反我们「有名字的表达式是左值」的说法。
+
+Perfect Forwarding
+
+https://www.modernescpp.com/index.php/perfect-forwarding
+
+`std::forward`
+- https://stackoverflow.com/questions/42947358/std-forward-implementation-and-reference-collapsing
+- https://stackoverflow.com/questions/7779900/why-is-template-argument-deduction-disabled-with-stdforward/7780006#7780006
+- https://isocpp.org/blog/2012/11/universal-references-in-c11-scott-meyers
 
 本文参考：
+
 - [Back to Basics: Understanding Value Categories - Ben Saks - CppCon 2019](https://youtu.be/XS2JddPq7GQ)
 - [A Taxonomy of Expression Value Categories](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3055.pdf)
 - [C++ Rvalue References Explained](http://thbecker.net/articles/rvalue_references/section_01.html)
+    - http://thbecker.net/articles/rvalue_references/section_06.html
 
 值类型 https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0135r0.html
