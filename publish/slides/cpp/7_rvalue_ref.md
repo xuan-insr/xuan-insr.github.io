@@ -703,6 +703,7 @@ void bar() {
 | :-: | :-: | :-: |
 | Can't be moved from | lvalue | - |
 | Can be moved from (**rvalue**) | xvalue | prvalue's materalization |
+
 ===
 
 ```c++ linenums="1"
@@ -724,13 +725,55 @@ swap(a, b);
 
 ===
 
-#### `std::move`<!-- .element: class="fragment" -->
+对于一个函数调用表达式：
+
+- 如果函数返回值类型不是引用，则该表达式是 prvalue
+- 如果函数返回值类型是左值引用，则该表达式是 lvalue
+- 如果函数返回值类型是对象的右值引用，则该表达式是 xvalue
+
+类似地，对于一个 cast 表达式：
+
+- 如果目标不是引用，则该表达式是 prvalue
+- 如果目标是左值引用，则该表达式是 lvalue
+- 如果目标是对象的右值引用，则该表达式是 xvalue
+
+===
 
 我们希望用移动语义，因为我们明知原来的值不需要保留
 
-<div class="fragment">
+```c++ linenums="1"
+template<class T>
+void swap(T& a, T& b) 
+{ 
+    T tmp((T&&)(a));
+    a = (T&&)(b); 
+    b = (T&&)(tmp); 
+} 
 
-`std::move` 帮我们完成「将参数转换为右值」这个事情：
+Container<int> a, b;
+swap(a, b);
+```
+
+===
+
+```c++ linenums="1"
+template<class T>
+void swap(T& a, T& b) 
+{ 
+    T tmp(static_cast<T&&>(a));
+    a = static_cast<T&&>(b); 
+    b = static_cast<T&&>(tmp); 
+} 
+
+Container<int> a, b;
+swap(a, b);
+```
+
+===
+
+#### `std::move`
+
+为了便于表示意图，`std::move` 帮我们完成「将参数转换为右值」这个事情：
 
 ```c++ linenums="1"
 template<class T>
@@ -745,25 +788,9 @@ Container<int> a, b;
 swap(a, b);
 ```
 
-</div>
-
 ===
 
 ![](2023-04-28-02-58-19.png)
-
-===
-
-对于一个函数调用表达式：
-
-- 如果函数返回值类型不是引用，则该表达式是 prvalue
-- 如果函数返回值类型是左值引用，则该表达式是 lvalue
-- 如果函数返回值类型是对象的右值引用（如 `std::move`），则该表达式是 xvalue
-
-类似地，对于一个 cast 表达式：
-
-- 如果目标不是引用，则该表达式是 prvalue
-- 如果目标是左值引用，则该表达式是 lvalue
-- 如果目标是对象的右值引用，则该表达式是 xvalue
 
 ===
 
@@ -896,9 +923,11 @@ Container<T>::Container(Container<T>&& rhs) :
     - 如果没有任何用户声明的构造函数（包括拷贝构造或移动构造），则被隐式声明<!-- .element: class="fragment" -->
     - 隐式声明的构造函数仍有可能被定义为删除，如该类有无 default initializer 的引用或 const 非静态成员，或有无法构造或析构的非静态成员或基类<!-- .element: class="fragment" -->
     - 没有被定义为删除的隐式声明，如果被使用，则被编译器隐式定义；其他 SMFs 也一样<!-- .element: class="fragment" -->
+    - 行为：按声明顺序，逐个以 default initializer (如果有) 或默认方式构造。<!-- .element: class="fragment" -->
 - **dtor** - `T::~T()`
     - 如果没有用户声明的析构函数，则被隐式声明<!-- .element: class="fragment" -->
     - 隐式声明的析构函数仍有可能被定义为删除，如该类有无法析构的非静态成员或基类<!-- .element: class="fragment" -->
+    - 行为：按构造的相反顺序逐个析构。<!-- .element: class="fragment" -->
 
 ===
 
@@ -906,9 +935,11 @@ Container<T>::Container(Container<T>&& rhs) :
     - 如果没有用户声明的拷贝构造函数，则被隐式声明<!-- .element: class="fragment" -->
     - 如果每个基类和非静态成员都能以 const ref 的方式构造，则签名为前者，否则为后者<!-- .element: class="fragment" -->
     - 隐式声明被定义为删除，如果该类有无法拷贝构造或析构的非静态成员或基类，或者该类有用户定义的移动构造或移动赋值<!-- .element: class="fragment" -->
+    - 行为：按声明顺序逐个拷贝构造。<!-- .element: class="fragment" -->
 - **move ctor** - `T::T(T&&)` (C++11) 
     - 如果没有用户定义的移动构造函数，且该类没有用户声明的拷贝构造、拷贝赋值、移动赋值或析构函数中的任何一种，则被隐式声明<!-- .element: class="fragment" -->
     - 隐式声明被定义为删除，如果该类有不能移动或无法析构的非静态成员或基类；此时重载解析忽略这个函数<!-- .element: class="fragment" -->
+    - 行为：按声明顺序逐个移动构造。<!-- .element: class="fragment" -->
 
 ===
 
@@ -916,9 +947,11 @@ Container<T>::Container(Container<T>&& rhs) :
     - 如果没有用户声明的拷贝赋值运算符，则被隐式声明<!-- .element: class="fragment" -->
     - 如果每个基类和非静态成员都能以 const ref 的方式拷贝赋值，则签名为前者，否则为后者<!-- .element: class="fragment" -->
     - 隐式声明被定义为删除，如果该类有无法拷贝的非静态成员或基类，或者有引用或 const 非静态成员，或者该类有用户定义的移动构造或移动赋值<!-- .element: class="fragment" -->
+    - 行为：按声明顺序逐个拷贝赋值。<!-- .element: class="fragment" -->
 - **move assignment operator** - `T& T::operator=(T&&)` (C++11) 
     - 如果没有用户定义的移动赋值运算符，且该类没有用户声明的拷贝构造、移动构造、拷贝赋值或析构函数中的任何一种，则被隐式声明<!-- .element: class="fragment" -->
     - 隐式声明被定义为删除，如果该类有不能移动的非静态成员或基类，或者有引用或 const 非静态成员；此时重载解析忽略这个函数<!-- .element: class="fragment" -->
+    - 行为：按声明顺序逐个移动赋值。<!-- .element: class="fragment" -->
 
 ===
 
@@ -1057,8 +1090,10 @@ class Container {
 public:
     Container(unsigned capa = 512) : data(new T[capa]), capa(capa) {}
     ~Container() { delete[] data; }
-    Container(const Container &) = default;
+    Container(const Container &);
+    Container(Container &&);
     Container & operator=(const Container &rhs);
+    Container & operator=(Container &&);
 
     T& operator[](unsigned index) { return data[index]; }
     const T& operator[](unsigned index) const { return data[index]; }
@@ -1077,11 +1112,458 @@ public:
 
 ===
 
+```c++ linenums="1"
+template<typename T>
+class Container {
+    T* data;
+    unsigned size = 0, capa;
+public:
+    Container(unsigned capa = 512) : data(new T[capa]), capa(capa) {}
+
+    // ...
+
+    Container & add(const T& val) { 
+        /* if full, expand storage */
+        data[size++] = val;
+        return *this; 
+    }
+    // ...
+};
+```
+
 ===
 
-forward
+#### Placement new
 
-universial ref
+```c++ linenums="1"
+template<typename T>
+class Container {
+    T* data;
+    unsigned size = 0, capa;
+public:
+    Container(unsigned capa = 512) 
+        : data(static_cast<T*>(malloc(capa * sizeof(T)))), capa(capa) {}
+    ~Container() {
+        for (unsigned i = 0; i < size; i++)
+            data[i].~T();
+        free(data);
+    }
+    template</* T 的构造函数参数的类型 */>
+    void emplace_back(/* T 的构造函数的参数 */) { 
+        /* if full, expand storage */
+        new (data + size++) T(/* T 的构造函数的参数 */); // placement new
+    }
+    // ...
+};
+```
+
+<!-- https://stackoverflow.com/questions/33906008/c-placement-new-in-a-home-made-vector-container 有关于对齐的一些讨论 -->
+
+===
+
+```c++
+vector<pair<int, string>> v;
+v.push_back(make_pair(1, "123"));
+v.emplace_back(1, "123");
+```
+
+===
+
+```c++ linenums="1"
+template<typename T>
+class Container {
+    // ...
+    template</* T 的构造函数参数的类型 */>
+    void emplace_back(/* T 的构造函数的参数 */) { 
+        /* if full, expand storage */
+        new (data + size++) T(/* T 的构造函数的参数 */); // placement new
+    }
+    void push_back(const T & v) {
+        emplace_back(v);            // expect T(const T &) -> copy ctor
+    }
+    void push_back(T && v) {
+        emplace_back(std::move(v)); // expect T(T&&) -> move ctor
+    }
+    // ...
+};
+```
+
+===
+
+简化问题：假设 `T` 的构造函数参数只有一个
+
+```c++
+template<typename T>
+template<typename Arg>
+void Container<T>::emplace_back(const Arg & arg) { 
+    /* if full, expand storage */
+    new (data + size++) T(arg); // placement new
+}
+```
+
+没有使用移动语义<!-- .element: class="fragment" -->
+
+===
+
+### 7.5 完美转发 | Perfect Forwarding<!-- .element: class="fragment" -->
+
+再简化一点：
+
+```c++
+template <typename T,typename Arg>
+T create(/* something about Arg */ a){
+    return T(/* something about a */);
+}
+```
+
+预期行为：
+
+对 lvalue: `T create(Arg& a) { return T(a); }`
+
+对 rvalue: `T create(Arg&& a) { return T(std::move(a)); }`
+
+===
+
+通常情况下，模板参数推导 **不会** 推导出引用：
+
+```c++
+template<typename T> void foo(T t);
+
+int a;
+foo(a);     // foo<int>(int), not foo<int&>
+int &b = a;
+foo(b);     // foo<int>(int), not foo<int&>
+int &&c = 1;
+foo(1);     // foo<int>(int), not foo<int&&> or foo<int&>
+foo(c);     // foo<int>(int), not foo<int&&> or foo<int&>
+```
+
+===
+
+如果需要引用，自己写：
+
+```c++
+template<typename T> void foo(T& t);
+
+int a;
+foo(a);     // foo<int>(int&)
+int &b = a;
+foo(b);     // foo<int>(int&)
+int &&c = 1;
+foo(1);     // Error: deducted T = int not viable:
+            // expects an lvalue for 1st argument
+foo(c);     // foo<int>(int&)
+```
+
+===
+
+事实上，之前介绍的 `auto` 的逻辑和模板参数推导一致：
+
+```c++
+auto a = 1;     // int a = 1;
+auto b = a;     // int b = a;
+auto &c = b;    // int &c = b;
+```
+
+===
+
+但是！为了实现我们的需求：
+
+```c++
+template <typename T, typename Arg>
+T create(/* something about Arg */ a){
+    return T(/* something about a */);
+}
+```
+
+**Forwarding References** (a.k.a. **Universal References**) 被引入
+
+===
+
+#### Forwarding References
+
+Forwarding References 是一种特殊的引用，它保留函数参数的 value category，从而使得 forward 成为可能。
+
+Forwarding References 是以下两种中的一种：
+
+- 函数模板中形如 `T&&` 的参数，其中 `T` 是该函数模板的一个模板参数
+- `auto&&`
+
+注意：`const T&&` 或者 `vector<T>&&` 之类的都不是 Forwarding References
+
+===
+
+也就是说，T&& Doesn’t Always Mean 「Rvalue Reference」
+
+```c++
+Foo&& var1 = someFoo;       // here, “&&” means rvalue reference
+ 
+auto&& var2 = var1;         // here, “&&” does not mean rvalue reference
+ 
+template<typename T>
+void f(std::vector<T>&& p); // here, “&&” means rvalue reference
+ 
+template<typename T>
+void f(T&& p);              // here, “&&” does not mean rvalue reference
+```
+
+===
+
+当初始化 forward reference 的表达式是左值时，T 被推导成对应类型的左值引用；否则仍然推导成对应类型。例如：
+
+```c++
+template <typename T, typename Arg>
+T create(Arg&& x)                      // x is a forwarding reference
+{
+    return /* something */;
+}
+ 
+int main()
+{
+    int i;
+    create<Foo>(i); // argument is lvalue, Arg = int&
+    create<Foo>(0); // argument is rvalue, Arg = int
+}
+```
+
+===
+
+而 C++ 允许在模板或者类型别名的情况下出现「引用的引用」的形式，此时 **引用折叠 (reference collapsing)** 规则适用：右值引用到右值引用折叠到右值引用，所有其他组合形成左值引用：
+
+```c++
+typedef int&  lref;
+typedef int&& rref;
+int n;
+ 
+lref&  r1 = n; // type of r1 is int&
+lref&& r2 = n; // type of r2 is int&
+rref&  r3 = n; // type of r3 is int&
+rref&& r4 = 1; // type of r4 is int&&
+```
+
+===
+
+```c++
+template <typename T, typename Arg>
+T create(Arg&& x)                      // x is a forwarding reference
+{
+    return /* something */;
+}
+ 
+int main()
+{
+    int i;
+    create<Foo>(i); // argument is lvalue, Arg = int&
+    create<Foo>(0); // argument is rvalue, Arg = int
+}
+```
+
+因此，在 `create<Foo>(i);` 的 `Arg = int &` 时，参数 `Arg&& x` 折叠为 `int& x`，是左值引用。
+
+===
+
+也就是说，当初始化 forward reference 的表达式是左值时，forward reference 变成一个左值引用；否则变成一个右值引用。即：
+
+```c++
+template <typename T, typename Arg>
+T create(Arg&& x)                      // x is a forwarding reference
+{
+    return /* something */;
+}
+ 
+int main()
+{
+    int i;
+    create<Foo>(i); // argument is lvalue, calls create<Foo, int&>(int&)
+    create<Foo>(0); // argument is rvalue, calls fcreate<Foo, int>(int&&)
+}
+```
+
+===
+
+我们的需求是：
+
+- 对 lvalue: `T create(Arg& a) { return T(a); }`
+- 对 rvalue: `T create(Arg&& a) { return T(std::move(a)); }`
+
+而我们已经实现了：
+
+- `create<Foo>(i);` calls `create<Foo, int&>(int&)`
+- `create<Foo>(0);` calls `create<Foo, int>(int&&)`
+
+我们最后一步就只是填充这个函数：
+
+```c++
+template <typename T, typename Arg>
+T create(Arg&& x)   {        // x is a forwarding reference
+    return /* something */;
+}
+```
+
+===
+
+事实上，下面的写法足以完成这个任务：
+
+```c++
+template <typename T, typename Arg>
+T create(Arg&& x) {
+    return T(static_cast<Arg&&>(x));
+}
+
+int main()
+{
+    int i;
+    create<Foo>(i); // argument is lvalue, Arg = int&, calls create<Foo, int&>(int&), 
+                    // static_cast<Arg&&>(x) == static_cast<int&>(x) is lvalue
+    create<Foo>(0); // argument is rvalue, Arg = int, calls create<<Foo, int>(int&&), 
+                    // static_cast<Arg&&>(x) == static_cast<int&&>(x) is rvalue
+}
+```
+
+===
+
+#### `std::forward`
+
+不过，与 `std::move` 类似，为了可读和可追溯，C++ 提供了 `std::forward` 用来表示
+
+```c++
+template <typename T, typename Arg>
+T create(Arg&& x) {
+    return T(std::forward<Arg>(x));
+}
+```
+
+其中，`std::forward` 定义如下：
+
+```c++
+template<class S>
+S&& forward(typename remove_reference<S>::type& a) noexcept {
+    return static_cast<S&&>(a);
+} 
+```
+
+===
+
+如果我们调用 `create<Foo>(i)`, 则 `Arg = int&`，相关函数为：
+
+```c++
+template<> Foo create(int& && x) {
+    return Foo(std::forward<int&>(x));
+}
+
+template<> int& && forward(typename remove_reference<int&>::type& a) noexcept {
+    return static_cast<int& &&>(a);
+} 
+```
+
+即
+
+```c++
+template<> Foo create(int& x) {
+    return Foo(std::forward<int&>(x));
+}
+
+template<> int& forward(int& a) noexcept {
+    return static_cast<int&>(a);
+} 
+```
+
+===
+
+如果我们调用 `create<Foo>(0)`, 则 `Arg = int`，相关函数为：
+
+```c++
+template<> Foo create(int && x) {
+    return Foo(std::forward<int>(x));
+}
+
+template<> int&& forward(typename remove_reference<int>::type& a) noexcept {
+    return static_cast<int&&>(a);
+} 
+```
+
+即
+
+```c++
+template<> Foo create(int && x) {
+    return Foo(std::forward<int>(x));
+}
+
+template<> int&& forward(int& a) noexcept {
+    return static_cast<int&&>(a);
+} 
+```
+
+===
+
+上面的实现
+
+```c++
+template<class S>
+S&& forward(typename remove_reference<S>::type& a) noexcept {
+    return static_cast<S&&>(a);
+} 
+```
+
+事实上也可以写成
+
+```c++
+template<class S>
+S&& forward(S& a) noexcept {
+    return static_cast<S&&>(a);
+} 
+```
+
+- 在 `S = int&` 时成为 `int& forward(int& a) noexcept`
+- 在 `S = int` 时成为 `int&& forward(int& a) noexcept`
+
+===
+
+为什么要使用前者呢？
+
+事实上，`typename std::remove_reference<T>::type` 这样的模板参数 `T` 出现在 `::` 前面的情况属于 non-deduced context，即编译器并不试图通过这个参数推导这个 `T`。
+
+这样，就可以禁用掉形如 `forward(foo)` 的调用，因为这样的调用通常意图不明确。参见 https://stackoverflow.com/questions/7779900/why-is-template-argument-deduction-disabled-with-stdforward/7780006#7780006。
+
+===
+
+另外，`std::move` 的实现如下：
+
+```c++
+template<class T> 
+typename remove_reference<T>::type&&
+std::move(T&& a) noexcept
+{
+    typedef typename remove_reference<T>::type&& RvalRef;
+    return static_cast<RvalRef>(a);
+}
+```
+
+===
+
+可变参数模板 (variadic template) 借助 parameter pack 实现不定数目参数的接收，因此我们的问题可以这样解决：
+
+```c++ linenums="1"
+template<typename T> class Container {
+    T* data;
+    unsigned size = 0, capa;
+public:
+    Container(unsigned capa = 512) 
+        : data(static_cast<T*>(malloc(capa * sizeof(T)))), capa(capa) {}
+    ~Container() {
+        for (unsigned i = 0; i < size; i++)
+            data[i].~T();
+        free(data);
+    }
+    template<typename... Args>
+    T & emplace_back(Args&&... args) { 
+        /* if full, expand storage */
+        return *new (data + size++) T(std::forward<Args>(args)...); 
+    }
+};
+```
+
+我们会在后面的章节讨论可变参数模板。
 
 ---
 
@@ -1134,6 +1616,27 @@ universial ref
 
 - 完美转发
     - 保留参数的左值 / 右值性
+    - forwarding reference
+    - reference collapsing
     - `std::forward`
-    - 引用折叠与 universal reference
     - `std::move` 的实现
+
+===
+
+### References
+
+- [**C++ Rvalue References Explained**](http://thbecker.net/articles/rvalue_references/section_01.html)
+- **value categories**
+    - [Back to Basics: Understanding Value Categories - Ben Saks - CppCon 2019](https://youtu.be/XS2JddPq7GQ)
+    - [A Taxonomy of Expression Value Categories](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3055.pdf)
+    - [Value Categories](https://oneraynyday.github.io/dev/2020/07/03/Value-Categories)
+    - ["New" Value Terminology by Bjarne Stroustrup, 2010.](http://www.stroustrup.com/terminology.pdf)
+- **C++17 copy elision 和 value categories**
+    - https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0135r0.html
+    - https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0135r1.html
+- **Perfect Forwarding & `std::forward`**
+    - [std forward implementation and reference collapsing](https://stackoverflow.com/questions/42947358/std-forward-implementation-and-reference-collapsing)
+    - [Why is template argument deduction disabled with std::forward?](https://stackoverflow.com/questions/7779900/why-is-template-argument-deduction-disabled-with-stdforward/7780006#7780006)
+    - [Universal References in C++11](https://isocpp.org/blog/2012/11/universal-references-in-c11-scott-meyers)
+    - [Perfect Forwarding](https://www.modernescpp.com/index.php/perfect-forwarding)
+    - [Why use `std::forward<T>` instead of `static_cast<T&&>`](https://stackoverflow.com/questions/53257824/why-use-stdforwardt-instead-of-static-castt)

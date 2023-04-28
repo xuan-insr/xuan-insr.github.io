@@ -1,5 +1,8 @@
 # 9 右值引用与移动语义
 
+!!! danger
+    本文未完成，以下仅为学习笔记。
+
 ## Back to Basics: Understanding Value Categories - Ben Saks - CppCon 2019
 
 下面的讨论暂时不考虑类。
@@ -196,24 +199,23 @@ void foo(Container<T> && x) {
 
 同时，这也不违反我们「有名字的表达式是左值」的说法。
 
-Perfect Forwarding
 
-https://www.modernescpp.com/index.php/perfect-forwarding
 
-`std::forward`
-
-- https://stackoverflow.com/questions/42947358/std-forward-implementation-and-reference-collapsing
-- https://stackoverflow.com/questions/7779900/why-is-template-argument-deduction-disabled-with-stdforward/7780006#7780006
-- https://isocpp.org/blog/2012/11/universal-references-in-c11-scott-meyers
 
 本文参考：
 
-- [Back to Basics: Understanding Value Categories - Ben Saks - CppCon 2019](https://youtu.be/XS2JddPq7GQ)
-- [A Taxonomy of Expression Value Categories](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3055.pdf)
-- [C++ Rvalue References Explained](http://thbecker.net/articles/rvalue_references/section_01.html)
-    - http://thbecker.net/articles/rvalue_references/section_06.html
-- [Value Categories](https://oneraynyday.github.io/dev/2020/07/03/Value-Categories)
-- C++17 copy elision 和值类型
+- [**C++ Rvalue References Explained**](http://thbecker.net/articles/rvalue_references/section_01.html)
+- **value categories**
+    - [Back to Basics: Understanding Value Categories - Ben Saks - CppCon 2019](https://youtu.be/XS2JddPq7GQ)
+    - [A Taxonomy of Expression Value Categories](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3055.pdf)
+    - [Value Categories](https://oneraynyday.github.io/dev/2020/07/03/Value-Categories)
+    - ["New" Value Terminology by Bjarne Stroustrup, 2010.](http://www.stroustrup.com/terminology.pdf)
+- **C++17 copy elision 和 value categories**
     - https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0135r0.html
     - https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0135r1.html
-- ["New" Value Terminology by Bjarne Stroustrup, 2010.](http://www.stroustrup.com/terminology.pdf)
+- **Perfect Forwarding & `std::forward`**
+    - [std forward implementation and reference collapsing](https://stackoverflow.com/questions/42947358/std-forward-implementation-and-reference-collapsing)
+    - [Why is template argument deduction disabled with std::forward?](https://stackoverflow.com/questions/7779900/why-is-template-argument-deduction-disabled-with-stdforward/7780006#7780006)
+    - [Universal References in C++11](https://isocpp.org/blog/2012/11/universal-references-in-c11-scott-meyers)
+    - [Perfect Forwarding](https://www.modernescpp.com/index.php/perfect-forwarding)
+    - [Why use `std::forward<T>` instead of `static_cast<T&&>`](https://stackoverflow.com/questions/53257824/why-use-stdforwardt-instead-of-static-castt)
