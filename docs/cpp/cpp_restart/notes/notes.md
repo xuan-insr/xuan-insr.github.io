@@ -51,6 +51,7 @@ Src: https://www.ralfj.de/blog/2018/07/24/pointers-and-bytes.html
     - 调用静态成员函数不是 UB，见 [Closed 315](https://www.open-std.org/jtc1/sc22/wg21/docs/cwg_closed.html#315)
     - 但非静态成员仍然是 [Active](https://www.open-std.org/jtc1/sc22/wg21/docs/cwg_active.html#232) 的
 - `Attribute [[assume]]`：C++23，告诉编译器可以依据哪些额外的信息进行优化；但是很容易引发 UB；TODO；`std::unreachable()~
+- struct 的比较：`std::tie`, https://en.cppreference.com/w/cpp/language/operators#Comparison_operators
 
 ## 要看的
 

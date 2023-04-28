@@ -201,6 +201,7 @@ Perfect Forwarding
 https://www.modernescpp.com/index.php/perfect-forwarding
 
 `std::forward`
+
 - https://stackoverflow.com/questions/42947358/std-forward-implementation-and-reference-collapsing
 - https://stackoverflow.com/questions/7779900/why-is-template-argument-deduction-disabled-with-stdforward/7780006#7780006
 - https://isocpp.org/blog/2012/11/universal-references-in-c11-scott-meyers
@@ -211,5 +212,8 @@ https://www.modernescpp.com/index.php/perfect-forwarding
 - [A Taxonomy of Expression Value Categories](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2010/n3055.pdf)
 - [C++ Rvalue References Explained](http://thbecker.net/articles/rvalue_references/section_01.html)
     - http://thbecker.net/articles/rvalue_references/section_06.html
-
-值类型 https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0135r0.html
+- [Value Categories](https://oneraynyday.github.io/dev/2020/07/03/Value-Categories)
+- C++17 copy elision 和值类型
+    - https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0135r0.html
+    - https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0135r1.html
+- ["New" Value Terminology by Bjarne Stroustrup, 2010.](http://www.stroustrup.com/terminology.pdf)

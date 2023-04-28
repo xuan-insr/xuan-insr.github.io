@@ -248,6 +248,32 @@ Release 3.0 中，C++ 受 Ada 的启发加入了 **模板 (template)** 机制来
 
 ===
 
+```c++
+template<typename T>
+class Container {
+    T* data;
+    unsigned size, capa;
+public:
+    Container(unsigned capa = 512) : data(new T[capa]) {}
+    ~Container() { delete[] data; }
+    T& operator[](unsigned index) { return data[index]; }
+    // ...
+};
+```
+
+===
+
+```c++
+template<typename T>
+    T abs(T x) { return x > 0 ? x : -x; }
+```
+
+===
+
+![](2023-04-25-16-47-46.png)
+
+===
+
 ### 7.2.1 隐式实例化
 
 类模板独立于具体的类型，它定义的是一种根据给定的参数生成类的规则

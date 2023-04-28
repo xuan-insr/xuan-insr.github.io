@@ -588,12 +588,13 @@ public:
         strcpy(content, s.content);
     }
     String & operator=(const String &s) {
-        if (this == *s)     return *this;
+        if (this == &s)     return *this;
         if (strlen(content) != strlen(s.content)) {
             delete[] content;
             content = new char[strlen(s.content) + 1];
         }
         strcpy(content, s.content);
+        return *this;
     }
     ~String() {
         delete[] content;
