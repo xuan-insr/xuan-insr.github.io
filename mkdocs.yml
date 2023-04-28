@@ -21,6 +21,7 @@ nav:
         # - Week5 思考题与复习题: cpp/cpp_restart/review/week5.md
         - Week6 模板 (II) 理解 STL - 迭代器与函数对象: https://xuan-insr.github.io/slides/cpp/6_stl/
         # - Week6 思考题与复习题: cpp/cpp_restart/review/week6.md
+        - Week7 值类型、右值引用与移动语义: https://xuan-insr.github.io/slides/cpp/7_rvalue_ref/
       - 正文！:
         - 1 C++ 的诞生: cpp/cpp_restart/1_birth.md
         - 2 编程范式: cpp/cpp_restart/2_paradigm.md
