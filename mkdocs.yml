@@ -109,7 +109,8 @@ nav:
         - 14 文件系统实现: 核心知识/os/VI_file_system/14_fs_impl.md
       - 15 总结: 核心知识/os/15_review.md
     - 计算机组成:
-      - 1 写在前面: computer_organization/1_prelude.md
+      - computer_organization/index.md
+      - 1 Prelude: computer_organization/1_prelude.md
       - 2 Instructions: computer_organization/2_instructions.md
       - 3 Arithmetic: computer_organization/3_arithmetic.md
       - 4 Processor: computer_organization/4_processor.md

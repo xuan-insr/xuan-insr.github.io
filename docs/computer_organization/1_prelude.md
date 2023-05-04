@@ -1,62 +1,211 @@
-# 写在前面
+# 1 Prelude
 
-!!! danger ""
-    我的笔记所追求的目标是有逻辑、通畅地总结知识；因此如果您在阅读过程中在任何地方发现了不容易读懂的部分，请务必在评论区或者通过其它方式告知我QWQ！非常感谢！
+!!! tip "前言"
+    本章内容有不少概述性的内容，很多内容很浅也很散，之后章节都会详细展开，此处更多的是介绍。建议重点关注以下部分：
 
-这是计算机组成课程的学习记录。
+    - [1.1 Eight Great Ideas](#11-eight-great-ideas)
+    - [1.5 Performance](#15-performance)
 
-使用的课本是 _Computer Organization and Design - The Hardware / Software Interface (RISC-V Edition)_：
+## 1.1 Eight Great Ideas
 
-<center>![image.png](../../../assets/1654452339796-a855e535-5361-4b3f-96bc-f084bb514e00.png){width=300}</center>
+- Design for Moore’s Law （设计紧跟摩尔定律）
+    - **Moore's Law**: Integrated circuit resources double every 18-24 months.
+- Use Abstraction to Simplify Design (采用抽象简化设计)
+- Make the Common Case Fast (加速大概率事件)
+- Performance via Parallelism (通过并行提高性能)
+- Performance via Pipelining (通过流水线提高性能)
+    - 换句话说就是，每个流程同时进行，只不过每一个流程工作的对象是时间上相邻的若干产品；
+    - 相比于等一个产品完全生产完再开始下一个产品的生产，会快很多；
+    - 希望每一个流程的时间是相对均匀的；
+- Performance via Prediction (通过预测提高性能)
+- 例如先当作 `if()` 条件成立，执行完内部内容，如果后来发现确实成立，那么直接 apply，否则就再重新正常做；
+    - 这么做就好在（又或者说只有这种情况适合预测），预测成功了就加速了，预测失败了纠正的成本也不高； 
+- Hierarchy of Memories (存储器层次)
+    - Disk / Tape -> Main Memory(DRAM) -> L2-Cache(SRAM) -> L1-Cache -> Registers
+- Dependability via Redundancy (通过冗余提高可靠性)
+    - 类似于卡车的多个轮胎，一个模块 down 了以后不会剧烈影响整个系统；
 
-!!! warning "说明"
-    我自认为在 **3 Arithmetic**, **4 Processor**, **5 Cache** 三章中的整理和讲解是非常详细的，如果这些部分存在看不懂的地方，请务必联系我。
+---
 
-    但是，计组课程本身在 **2 Instructions** 的部分讲解了很多关于汇编程序的知识；但是我之前在汇编语言和计算机系统概论等课程中已经学习过了这些知识，因此在本章中只整理了 RISC-V 的指令集和一些约定，省略了关于函数调用、递归的一些内容。
+## 1.2 Below Program
 
-    同时，由于时间原因，**1 Overview** 和 **6 I/O** 两章的内容不完整。暂时没有补全计划。
+```mermaid
+graph TD;
+A["High-level language program"]
+B["Assembly language program"]  
+C["Binary machine language"]
+A --->|"Compiler"| B --->|"Assembler"| C 
+```
 
-!!! summary "课程速览"
-    - Chapter1: Computer Abstraction and Technology
-    - **Chapter 2: Instructions: Language of  the Computer**
-    - **Chapter 3: Arithmetic for Computers**
-    - **Chapter 4:The Processor：Datapath and Control**
-    - **Chapter 5:Large and Fast:  Exploiting Memory Hierarchy**
-    - Chapter 6: Parallel processor from client to Cloud (选讲，非考试内容)
-    - Appendix: Storage, Networks, and Other Peripherals (Ch8 of Version 3,了解概念)
+- 高级语言的出现体现了“抽象”的思想；
 
-    > 加粗为核心内容。
+---
 
+## 1.3 Components of a computer
 
-## 1 Intro & Misc
+The five classic components of a computer:
 
-- **Moore's Law**: Integrated circuit resources double every 18-24 months.
-- KB = 103 B, KiB = 210 B
-- K M G T P E Z Y
-- CPI(clock cycles per instruction), the average number of clock cycles each instruction takes to execute = $\frac{\text{CPU clock cycles}}{\text{Instruction count}}$;
-- CPU Time = $\text{Instruction count} \times \text{CPI} \times \text{clock cycle time}$ = $\frac{\text{Instruction count} \times \text{CPI}}{\text{Clock rate}}$;
+- **input**;
+- **output**;
+- **memory** (DRAM);
+    - 程序、数据存储的地方，也是程序“运行的位置”；
+    - cache memory (SRAM): buffer for the DRAM memory;
+- **datapath**;
+    - 负责实际的数据处理；
+- **control**;
+    - 负责指挥控制如何进行数据处理，给出控制信号；
+
+> **processor** / **(central processor unit)CPU** = datapath + control
+
+为了实现抽象，我们设计了一套硬件和最低抽象程度的软件之间的接口——**instruction set architecture** (ISA)，本课程将会以 RISC-V 为例进行介绍，详细内容将放在[第二章](./2_instructions.md)。
+
+此外，根据是否具有易失性，内存被分为两类：**main memory / prime memory** (eg. DRAM) 和 **secondary memory** (eg. magnetic disks, flash memory)。
+
+---
+
+## 1.4 Technologies for Building Processors and Memory
+
+- integrated circuit (IC): dozens to hundreds of transistors into a single chip;
+- very large-scale integrated circuit (VLIC): billions of combinations of conductors, insulators, and switches manufactured in a single small package;
+
+集成电路加工绕不开的一个话题就是硅晶加工，硅晶锭(silicon crystal ingot)会被加工成硅片(silicon wafer)，然后再进行加工，最后成为集成电路。一个硅片会被切成很多小块，其中难免有一些坏的(defects)，而那些好的就被称为 dies，或者说 chips。而这个工艺的产量则由下面这个公式定义：
+
+$$
+\begin{aligned}
+\text{Cost per die} &= \frac{\text{Cost per wafer}}{\text{Dies per wafer} \times \text{yield}} \\
+\text{Dies per wafer} &\approx \frac{\text{Wafer area}}{\text{Die area}} \\
+\text{Yield} &= \frac{1}{\left(
+    1 + (\text{Defects per area} \times \text{Die area} / 2)
+\right) ^ 2}
+\end{aligned}
+$$
+
+最后一个式子基于经验观察得到，其中指数实际上与加工步骤数量有关。
+
+---
+
+## 1.5 Performance
+
+衡量计算机的性能和表现，无论对于工程师还是消费者都是一个非常必要的需求。其中一个重要的标准就是“运行速度”，具体来说：
+
 - **Response Time / Execution Time**	从程序开始到结束的时间
 - **Throughput / Bandwidth**	单位时间内完成的任务数量
-- **Performance**	可以定义为 $\cfrac{1}{\text{Response Time}}$
+
+并且我们这样联系 performance 和 execution time：
+
+$$
+\text{Performance}_X \frac{1}{\text{Execution time}_X}
+$$
+
+而相对性能(Relative Performance)就是非常 naive 的对两个比较对象求比值。
+
+当我们需要衡量一个 CPU 的性能，或者具体去分析一个 CPU 的性能构成时，就需要更加具体的指标：
+
+- CPU (execution) time（CPU 执行时间）
+- CPU clock cycle（时钟周期数）
+- clock rate（时钟频率） / clock cycle time（时钟周期）
+
+$$
+\begin{aligned}
+    \text{CPU execution time} &= \text{CPU clock cycles} \times \text{Clock cycle time} \\
+    &= \frac{\text{CPU clock cycles}}{\text{Clock rate}}
+\end{aligned}
+$$
+
+同时，还有一个容易得到的关系：
+
+$$
+\begin{aligned}
+    \text{CPU clock cycles} &= \text{Instructions count} \times \text{Average cycles per instruction}
+\end{aligned}
+$$
+
+其中，每条指令的平均周期数(Average cycles per instruction)又缩写为 CPI。
+
+> CPI(clock cycles per instruction), the average number of clock cycles each instruction takes to execute = $\frac{\text{CPU clock cycles}}{\text{Instruction count}}$;
+
+于是，将上面的两块关系整合起来就得到：
+
+$$
+\begin{aligned}
+    \text{CPU time} &= \text{Instruction count} \times \text{CPI} \times \text{Clock cycle time} \\ 
+    &= \frac{\text{Instruction count} \times \text{CPI}}{\text{Clock rate}}
+\end{aligned}
+$$
+
+??? note "练习"
+    === "题面"
+        编译器可能提供两种代码序列，每一个序列都包含 A、B、C 三种类型的指令，每种指令的 CPI 如下表所示。
+
+        |     |  A  |  B  |  C  |   
+        |:---:|:---:|:---:|:---:|
+        | CPI |  1  |  2  |  3  |
+        |Instruction count \@ seq 1|  2  |  1  |  2  |
+        |Instruction count \@ seq 2|  4  |  1  |  1  |
+
+        1. 哪一个 seq 执行了最多的指令？
+        2. 哪一个 seq 更快？
+        3. 每一个 seq 的 CPI 是多少？
+
+    === "答案"
+
+        1.弱智题，加起来就行。
+
+        $$
+        \begin{aligned}
+            \text{instruction count @ seq 1} = 2 + 1 + 2 = 5 \\
+            \text{instruction count @ seq 2} = 4 + 1 + 1 = 6
+        \end{aligned}
+        $$
+
+        所以 2 多。
+
+        2.由于产生差异的地方是编译器，所以我们默认时钟周期相同，所以比较 CPU time 等效于比较 clock cycles。
+
+        $$
+        \begin{aligned}
+            \text{clock cycles @ seq 1} = 2 \times 1 + 1 \times 2 + 2 \times 3 = 10 \\
+            \text{clock cycles @ seq 2} = 4 \times 1 + 1 \times 2 + 1 \times 3 = 9
+        \end{aligned}
+        $$
+
+        所以 2 快。
+
+        3.seq 的 CPI 就是 seq 的 clock cycles 除以 seq 的 instruction count：
+
+        $$
+        \begin{aligned}
+              \text{CPI @ seq 1} = \frac{10}{5} = 2 \\
+              \text{CPI @ seq 2} = \frac{9}{6} = 1.5
+        \end{aligned}
+        $$
+
+??? note "练习"
+    === "题面"
+        A given application written in Java runs 15 seconds on a desktop processor. A new  Java compiler is released that requires only 0.6 as many instructions as the old  compiler. Unfortunately, it increases the CPI by 1.1. How fast can we expect the application to run using this new compiler? Pick the right answer from the three  choices below:
+
+        1. $\frac{15\times 0.6}{1.1} = 8.2 sec$;
+        2. $15\times 0.6\times 1.1 = 9.9 sec$;
+        3. $\frac{15\times 1.1}{0.6} = 27.5 sec$;
+        
+    === "答案"
+        已知公式：
+
+        $$
+        \begin{aligned}
+            \text{CPU time} &= \text{CPI} * \text{instruction count} * \text{clock cycle time}
+        \end{aligned}
+        $$
+
+        现在 CPI 变成 1.1 倍，instruction count 变成 0.6 倍，所以应该选 2。
+        
+
+---
+
+## Others
+
+- ……不是很想学了 再说吧
+
+- KB = 10^3 B, KiB = 2^{10} B
+- K M G T P E Z Y
 - **Amdahl Law**   $T_{\text{improved}} = \cfrac{T_{\text{affected}}}{\text{Improvement Factor}}+T_\text{unaffected}$ [🔗 Wiki](https://zh.wikipedia.org/wiki/%E9%98%BF%E5%A7%86%E8%BE%BE%E5%B0%94%E5%AE%9A%E5%BE%8B)
-
-- ~~……不是很想学了 再说吧~~ 那我帮你学
-
-- Eight Great Ideas
-    - Design for Moore’s Law （设计紧跟摩尔定律）
-    - Use Abstraction to Simplify Design (采用抽象简化设计)
-    - Make the Common Case Fast (加速大概率事件)
-    - Performance via Parallelism (通过并行提高性能)
-    - Performance via Pipelining (通过流水线提高性能)
-        - 换句话说就是，每个流程同时进行，只不过每一个流程工作的对象是时间上相邻的若干产品；
-        - 相比于等一个产品完全生产完再开始下一个产品的生产，会快很多；
-        - 希望每一个流程的时间是相对均匀的；
-    - Performance via Prediction (通过预测提高性能)
-        - 例如先当作 `if()` 条件成立，执行完内部内容，如果后来发现确实成立，那么直接 apply，否则就再重新正常做；
-        - 这么做就好在，预测成功了就加速了，预测失败了纠正的成本也不高； 
-    - Hierarchy of Memories (存储器层次)
-        - Disk / Tape -> Main Memory(DRAM) -> L2-Cache(SRAM) -> L1-Cache -> Registers
-    - Dependability via Redundancy (通过冗余提高可靠性)
-        - “备胎”；
-
-
