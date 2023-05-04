@@ -28,6 +28,15 @@
 
 <center>![image.png](../../assets/1612540744502-fd3a1ab6-e83f-4932-a0c0-61ea415e63eb.png){width=300}</center>
 
+### NJU 编译原理实验教程
+
+之前在 GitHub 找到了这套教程，感觉非常有用：
+
+- [1 词法分析与语法分析](./nju/Project_1.pdf)
+- [2 语义分析](./nju/Project_2.pdf)
+- [3 中间代码生成](./nju/Project_3.pdf)
+- [4 目标代码生成](./nju/Project_4.pdf)
+
 ### 历年卷等相关资源
 
 （很多来自 [求是潮课程攻略共享计划](https://github.com/QSCTech/zju-icicles/tree/master/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86) ，但是我为了方便把部分的题目和答案分开了）

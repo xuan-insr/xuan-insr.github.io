@@ -154,9 +154,7 @@ SLR(1) 在如 3.5.2 那样生成了 LR(0) DFA 后，计算每一个 non-terminal
 | **3** | s3 | r3 | r3 | g4 |
 | **4** |  | s5 |  |  |
 | **5** | s3 | r3 | r3 | g6 |
-| **6** | 
-
- | r2 | r2 |  |
+| **6** |  | r2 | r2 |  |
 
 
 可以发现，与 LR(0) 不同的是，SLR(1) 的 reduce 不再只与状态有关，我们需要提前观看下一个符号从而判断进行什么样的 shift 或 reduce 操作。
@@ -206,8 +204,9 @@ Start Symbol 有 LR(1) Item `S'->.S, $`，并可以通过此推出如下 State 1
 
 但是，这有时（虽然很少）也可能引入 reduce-reduce conflict，例如 3.7 最后的例子的 LALR(1) DFA 是：
 
-<center>![](https://cdn.nlark.com/yuque/__graphviz/7f35b67da5519dc8edde547d58a2d007.svglake_card_v2=eyJ0eXBlIjoiZ3JhcGh2aXoiLCJjb2RlIjoiZGlncmFwaCBHIHtcbiAgICByYW5rZGlyID0gVEI7XG4gICAgbm9kZSBbc2hhcGUgPSByZWN0YW5nbGVdO1xuICAgIFxuICAgIDUgW2xhYmVsID0gXCItU3RhdGUgNSY2LVxcbkHihpJjLiwgZC9lXFxuQuKGkmMuLCBkL2VcIl07XG4gICAgMTAwIFtzdHlsZSA9IGludmlzXTtcbiAgICBcbiAgICAxIFtsYWJlbCA9IFwiLVN0YXRlIDEtXFxuUyfihpIuUywgJFxcblPihpIuYUFkLCAkXFxuU-KGki5hQmUsICRcXG5T4oaSLmJBZSwgJFxcblPihpIuYkJkLCAkXCJdOyBcbiAgICAyIFtsYWJlbCA9IFwiLVN0YXRlIDItXFxuUyfihpJTLiwgJFwiXTsgXG4gICAgMyBbbGFiZWwgPSBcIi1TdGF0ZSAzLVxcblPihpJhLkFkLCAkXFxuU-KGkmEuQmUsICRcXG5B4oaSLmMsIGRcXG5C4oaSLmMsIGVcIl07XG4gICAgNCBbbGFiZWwgPSBcIi1TdGF0ZSA0LVxcblPihpJiLkFlLCAkXFxuU-KGkmIuQmQsICRcXG5B4oaSLmMsIGVcXG5C4oaSLmMsIGRcIl07IFxuICAgIFxuICAgIDcgW2xhYmVsID0gXCItU3RhdGUgNy1cXG5T4oaSYUEuZCwgJFwiXTtcbiAgICA4IFtsYWJlbCA9IFwiLVN0YXRlIDgtXFxuU-KGkmFBZC4sICRcIl07XG4gICAgOSBbbGFiZWwgPSBcIi1TdGF0ZSA5LVxcblPihpJhQi5lLCAkXCJdOyBcbiAgICAxMFtsYWJlbCA9IFwiLVN0YXRlIDEwLVxcblPihpJhQmUuLCAkXCJdO1xuICAgIDExW2xhYmVsID0gXCItU3RhdGUgMTEtXFxuU-KGkmJBLmUsICRcIl07XG4gICAgMTJbbGFiZWwgPSBcIi1TdGF0ZSAxMi1cXG5T4oaSYkFlLiwgJFwiXTsgXG4gICAgMTNbbGFiZWwgPSBcIi1TdGF0ZSAxMy1cXG5T4oaSYkIuZCwgJFwiXTtcbiAgICAxNFtsYWJlbCA9IFwiLVN0YXRlIDE0LVxcblPihpJiQmQuLCAkXCJdOyBcbiAgICBcbiAgICAxMDAtPjE7XG4gICAgMS0-MltsYWJlbCA9IFwiU1wiXTtcbiAgICAxLT4zW2xhYmVsID0gXCJhXCJdO1xuICAgIDEtPjRbbGFiZWwgPSBcImJcIl07XG4gICAgMy0-NVtsYWJlbCA9IFwiY1wiXTtcbiAgICA0LT41W2xhYmVsID0gXCJjXCJdO1xuICAgIDQtPjExW2xhYmVsID0gXCJBXCJdO1xuICAgIDQtPjEzW2xhYmVsID0gXCJCXCJdO1xuICAgIDExLT4xMltsYWJlbCA9IFwiZVwiXTtcbiAgICAxMy0-MTRbbGFiZWwgPSBcImRcIl07XG4gICAgMy0-N1tsYWJlbCA9IFwiQVwiXTtcbiAgICAzLT45W2xhYmVsID0gXCJCXCJdO1xuICAgIDctPjhbbGFiZWwgPSBcImRcIl07XG4gICAgOS0-MTBbbGFiZWwgPSBcImVcIl07XG4gICAgXG4gICAge3JhbmsgPSBzYW1lOyAzLCAxLCA0O31cbiAgICB7cmFuayA9IHNhbWU7IDUsIDEwMDt9XG59IiwidXJsIjoiaHR0cHM6Ly9jZG4ubmxhcmsuY29tL3l1cXVlL19fZ3JhcGh2aXovN2YzNWI2N2RhNTUxOWRjOGVkZGU1NDdkNThhMmQwMDcuc3ZnIiwiaWQiOiJjZURNRSIsIm1hcmdpbiI6eyJ0b3AiOnRydWUsImJvdHRvbSI6dHJ1ZX0sImNhcmQiOiJkaWFncmFtIn0=)注意到合并后的状态 5&6，会存在 reduce-reduce conflict。这说明这个文法不是 LALR(1) 文法。</center>
+<center>![](2023-03-19-22-40-15.png)</center>
 
+注意到合并后的状态 5&6，会存在 reduce-reduce conflict。这说明这个文法不是 LALR(1) 文法。
 
 根据 DFA 可以构造 LALR(1) Parsing Table，其方法与 LR(1) 完全一致，在此不再赘述。同样地，如果构造出的 Parsing Table 没有冲突项，则说明文法是 LALR(1) 的，否则不是。
 

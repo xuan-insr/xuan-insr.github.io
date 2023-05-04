@@ -184,6 +184,16 @@ int main() {
 
 [^class_member]: 还能有 using-declarations, static_assert declarations, member template declarations, deduction guides (C++17), Using-enum-declarations (C++20)
 
+另外，和全局函数一样，类的成员函数也可以只有声明没有定义，只要这个函数没有被使用：
+
+```c++
+void f();   // OK if f() is never called;
+            // if called, link error may occur
+struct Foo {
+    void bar();     // ditto
+}
+```
+
 ### `this` 指针
 
 我们之前介绍过，C++ 早期会被编译成 C 语言，然后再编译成汇编。那么问题来了！例如上面代码中的 `Foo::bar` 函数，如何编译成 C 中的函数呢？这一问题的难点是：这个函数里访问了调用这个函数的对象 (不妨称之为 calling object) 的成员变量 `x`；那么这个函数如何知道 calling object 在哪里，从而访问它的成员变量呢？
@@ -199,6 +209,24 @@ int main() {
 [^this]: implicit object parameter 的实际用途是重载解析，无论是否 static 都会被视为有这个成员，见 [这个回答](https://stackoverflow.com/a/72534617/14430730)。但是 static 成员函数没有 `this`。只有构造函数没有 implicit object parameter。
 
 自 C++23 开始，`this` 关键字有了新的含义。我们将在后面的章节讨论。
+
+??? note "成员函数不能重新声明"
+    如果写了这样的代码：
+
+    ```c++
+    class Foo {
+        void foo();
+        void foo();
+    }
+    ```
+
+    gcc 12.2 会给出这样的报错：`'void Foo::foo()' cannot be overloaded with 'void Foo::foo()'`
+
+    这会让人比较疑惑，因为这两个明明都只是声明。错误的原因其实是，标准规定，类的成员函数不应被重新声明，除非这个重新声明是出现在类定义之外的成员函数定义[^redecl]^[class.mfct#2](https://timsong-cpp.github.io/cppwp/n4868/class.mfct#2)^。
+
+    [^redecl]: 或者成员函数模板的显式特化。
+    
+    clang 16.0.0 给出的报错就合理许多：`error: class member cannot be redeclared`
 
 ## ▲ inline 函数
 
@@ -310,7 +338,7 @@ public:
 
 <center>![](2023-03-05-16-41-09.png)</center>
 
-`new` 表达式干的事情是申请内存 + 调用构造函数，返回一个指针；而 `delete` 表达式干的事情是调用析构函数 + 释放内存。`new` 表达式是 **唯一** 的用来创建动态生命周期对象的方式（因为 `malloc` 只是开辟内存，并不创建对象）。
+`new` 表达式干的事情是申请内存 + 调用构造函数，返回一个指针；而 `delete` 表达式干的事情是调用析构函数 + 释放内存。`new` 表达式是 **唯一** 的用来创建动态生命周期对象的方式（因为 `malloc` 只是开辟内存，并不创建对象。对象是「a region of storage with **associated semantics**」）。
 
 `delete` 会调用类对象的析构函数：
 
@@ -334,15 +362,18 @@ public:
 
 有一个问题是，我们在讲构造函数之前的代码里都没有写构造函数，但是它们也能正常编译运行！C++ 也希望在没有必要的理由时不与 C 发生不兼容，而 C 中的 struct 也没有写构造函数，但是它们也能被运行。这是怎么回事呢？
 
-事实上，对于一个类，如果用户没有提供任何构造函数，则编译器会自动为这个类创建一个 public 的 implicitly-declared default constructor，它不接收任何参数，也什么都不做。如果有任何用户提供的构造函数[^default_ctor]，则 implicitly-declared default constructor 是 deleted 的。deleted 的函数不能被调用。
+事实上，对于一个类，如果用户没有提供任何构造函数，则编译器会自动为这个类创建一个 public 的 implicitly-declared default constructor，它被定义为 defaulted。Defaulted 的构造函数不接收任何参数，也什么都不做。如果有任何用户提供的构造函数[^default_ctor]，则 defaulted default constructor 被定义为 deleted 的。deleted 的函数不能被调用。
 
 [^default_ctor]: 如果有未指明初始化方式的引用成员、const 成员，或者 default ctor 被删除或不可访问的成员或基类等情况下，implicitly-declared default constructor 也是 deleted 的。
 
-不过，如果用户提供了构造函数，他仍然可以用 `ClassName() = default;` 来引入默认的构造函数。
+不过，如果用户提供了构造函数，他仍然可以用 `ClassName() = default;` 来引入 defaulted 的构造函数。
 
 用户还可以通过 `ClassName() = delete;` 显式地将 default constructor 设置成 deleted 的。
 
 ### member initializer lists
+
+!!! success "总结"
+    如果您并非初学者，[这里](../summaries/member_init_lists/) 有关于该话题更详尽的总结。
 
 一个问题是这样的：假如我们希望根据构造函数的一些参数来初始化一些成员，我们固然可以这样写：
 
@@ -515,7 +546,7 @@ public:
 
 析构函数的参数列表永远是空的。显然，析构函数是无法重载的。
 
-析构函数和构造函数一样，如果某个类没有 user-declared destructor，编译器会自动生成一个 public 的 implicitly-declared destructor。因此，当类的成员中没有什么需要释放的资源时，我们就不需要写析构函数了[^rule_of_zero]。
+析构函数和构造函数一样，如果某个类没有 user-declared destructor，编译器会自动生成一个 public 的 implicitly-declared destructor，定义为 defaulted。因此，当类的成员中没有什么需要释放的资源时，我们就不需要写析构函数了[^rule_of_zero]。
 
 [^rule_of_zero]: [The rule of three / five / zero](https://en.cppreference.com/w/cpp/language/rule_of_three) 一些讨论中涵盖了什么时候需要析构函数。我们会在后面的章节中具体讨论相关问题。
 
@@ -548,6 +579,63 @@ struct Foo {
 
 [^call_dtor]: https://stackoverflow.com/a/10082335/14430730 是一个很好的例子，讨论容器中对 placement new 和手动调用析构函数的用途。
 
+??? note "defaulted ctor & dtor 被 delete 的情况"
+    考虑这个问题：
+ 
+    ```c++
+    struct Foo { Foo(int){} };
+    class Bar { Foo f; };
+    ```
+
+    即，`Foo` 类型没有 default constructor（即可以无参调用的构造函数）；而 `Bar` 类型中有一个 `Foo` 类型的子对象 `f`。`Bar` 类型并没有提供构造函数。
+
+    根据我们所说，如果没有提供构造函数，则编译器自动生成一个 implicitly-declared default constructor；但是这里自动生成的构造函数并不能完成 `f` 的初始化。这种情况怎么办呢？
+
+    类似地，考虑以下几个场景：
+
+    `Foo` 的默认构造函数是有歧义的：
+
+    ```c++
+    struct Foo { 
+        Foo(){}
+        Foo(int x = 1){}
+    };
+    class Bar { Foo f; };
+    ```
+
+    `Foo` 的析构函数是 deleted 的：
+
+    ```c++
+    struct Foo { ~Foo() = delete; };
+    class Bar { Foo f; };
+    ```
+
+    `Foo` 的析构函数是 private 的：
+
+    ```c++
+    class Foo { ~Foo() = default; };
+    class Bar { Foo f; };
+    ```
+
+    或者，这个问题可以对称延伸到析构函数：
+
+    ```c++
+    class Foo { ~Foo() = default; };
+    struct Bar { 
+        Foo f; 
+        Bar(){}
+    };
+    ```
+
+    C++ 规定，当以下任一情况发生时，其 defaulted 的 default constructor 被定义为 deleted 的^[class.default.ctor#2](https://timsong-cpp.github.io/cppwp/n4868/class.default.ctor#2)^：
+
+    - 某个没有 default member initializer 的 subobject 没有 default constructor
+    - 对某个 subobject 的对应 constructor 的重载解析得到歧义，或者解析出的函数是被删除或在此处不可访问的
+    - 某个 subobject 的 destructor 是被删除或者在此处不可访问的
+    - （其他情况略）
+
+    同时，如果某个 subobject 的 destructor 是被删除或者在此处不可访问的，其 defaulted 的 dtor 被定义为 deleted 的^[class.dtor#7](https://timsong-cpp.github.io/cppwp/n4868/class.dtor#7)^。
+
 ## 4.5 构造和析构的时机和顺序
 
 对于一个类对象，它的 **生命周期 (lifetime)** 自它的初始化（构造）完成开始，到它的析构函数调用被启动为止。
@@ -571,10 +659,14 @@ struct Foo {
 
 在下面的情况下，构造函数会被调用：
 
-- 对于全局对象，在 `main()` 函数运行之前，或者在同一个编译单元内定义的任一函数或对象被使用之前。在同一个编译单元内，它们的构造函数按照声明的顺序初始化。
+- 对于全局对象，在 `main()` 函数运行之前，或者在同一个编译单元[^trans_units]内定义的任一函数或对象被使用之前。在同一个编译单元内，它们的构造函数按照声明的顺序初始化[^static_init]。
 - 对于 static local variables，在第一次运行到它的声明的时候[^static_local]。
 - 对于 automatic storage duration 的对象，在其声明被运行时。
 - 对于 dynamic storage duration 的对象，在其用 `new` 表达式创建时。
+
+[^trans_units]: 简单地说，一个编译单元是一个源代码文件完成编译预处理的结果。
+
+[^static_init]: 在这里，我们没有讨论跨编译单元的初始化顺序问题。这一问题有时比较重要，
 
 [^static_local]: 这是线程安全的。这会带来额外的运行时开销，参见 [Does a function local static variable automatically incur a branch?](https://stackoverflow.com/questions/23829389/does-a-function-local-static-variable-automatically-incur-a-branch)。
 
@@ -637,6 +729,40 @@ int main() {
 ```
 
 答案是 `111 2 3 4 5 6 444 333 888 999 777 666 555 `。
+
+## 4.6 小结
+
+- 类的定义
+    - 定义引入新的类型
+    - class-key 通常不必要
+- 声明和定义
+    - 定义是声明的一种
+- 类的成员
+    - type alias
+    - `this`
+- 函数内联
+- 构造函数
+    - 建立起某种「保证」
+    - 如何无参或有参地构造对象
+    - `new`, `delete`, `new[]`, `delete[]`
+    - implicitly-declared default constructor
+    - `= default;`, `= delete`
+    - member initializer lists
+    - delegating constructor
+    - default member initializer
+- 函数默认参数和函数重载
+    - 重载解析
+    - 为什么 C++ 引入了 `nullptr`
+- 析构函数
+    - 用来回收资源
+    - 为什么析构函数无法重载
+- 构造和析构的时机和顺序
+    - lifetime
+    - storage duration
+        - automatic
+        - static
+        - dynamic
+    - 构造和析构的时机和顺序
 
 ---
 

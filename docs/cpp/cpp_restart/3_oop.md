@@ -203,6 +203,11 @@ public:
 
 这是封装思想的另一部分，即限制对对象的一部分状态和行为的直接访问。部分成员变量可能会被拒绝访问，只能被内部使用（例如上面的 `password`）；另一部分变量可能会通过类似 `getAge()` 和 `setAge()` 的 **getters and setters** 被有限制或者经检查地访问（例如上面的 `age`）。
 
+??? tips "封装 != 安全"
+    封装是（通过编译错误来）防止程序员犯错的方式，而非一种安全机制。
+    
+    「Encapsulation prevents mistakes, not espionage.」
+
 !!! tips
     注意：请不要为 **每个** private 成员变量都弄一个 getter 和 setter；这两者也 **不一定** 需要成对出现。当且仅当需要时再提供这些接口。
 

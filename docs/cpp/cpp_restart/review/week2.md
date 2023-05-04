@@ -1,9 +1,7 @@
-# Week 2 思考题与复习题
+# Week 2 思考题
 
 !!! abstract
     思考题旨在提出场景帮助大家了解一些比较零碎的知识。这些内容比较简单且没有那么重要，因此没有放在课程内容中。
-
-    复习题旨在帮助大家回顾本节的知识。
 
 ## 本周内容一览
 
@@ -154,4 +152,73 @@ Foo::Foo() { puts("ctor called"); }
 
 顺着这个思路，大家可以尝试写 `Foo f = Foo::Foo();`，看看会发生什么！
 
-答案请参看 [4.3 构造函数](../..//4_class_1/#43-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0) 中的「Foo() 是调用构造函数的函数调用表达式吗？」块。
+答案请参看 [4.3 构造函数](../../4_class_1/#43-构造函数) 中的「Foo() 是调用构造函数的函数调用表达式吗？」块。
+
+### 7 关于 implicitly-declared default ctor & dtor
+
+考虑这个问题：
+
+```c++
+struct Foo { Foo(int){} };
+class Bar { Foo f; };
+```
+
+即，`Foo` 类型没有 default constructor（即可以无参调用的构造函数）；而 `Bar` 类型中有一个 `Foo` 类型的子对象 `f`。`Bar` 类型并没有提供构造函数。
+
+根据我们所说，如果没有提供构造函数，则编译器自动生成一个 implicitly-declared default constructor；但是这里自动生成的构造函数并不能完成 `f` 的初始化。这种情况怎么办呢？
+
+类似地，考虑以下几个场景：
+
+`Foo` 的默认构造函数是有歧义的：
+
+```c++
+struct Foo { 
+    Foo(){}
+    Foo(int x = 1){}
+};
+class Bar { Foo f; };
+```
+
+`Foo` 的析构函数是 deleted 的：
+
+```c++
+struct Foo { ~Foo() = delete; };
+class Bar { Foo f; };
+```
+
+`Foo` 的析构函数是 private 的：
+
+```c++
+class Foo { ~Foo() = default; };
+class Bar { Foo f; };
+```
+
+或者，这个问题可以对称延伸到析构函数：
+
+```c++
+class Foo { ~Foo() = default; };
+struct Bar { 
+    Foo f; 
+    Bar(){}
+};
+```
+
+在这些时候，会发生什么事呢？
+
+答案请看 [4.4 析构函数](../../4_class_1/#44-析构函数) 末尾的「defaulted ctor & dtor 被 delete 的情况」块。
+
+## 练习题
+
+### 1
+
+尝试回答，下面的类的设计有什么问题？
+
+```c++
+class Container {
+    int * data;
+    unsigned capa;
+    // ...
+public:
+    Container(unsigned c = 512) : capa(c * 4), data(new int[capa]) {}
+};
+```
