@@ -17,7 +17,7 @@
         <link rel="next" href="../3_arithmetic/">
       
       <link rel="icon" href="../../logo.ico">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.8">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
     
     
       
@@ -25,10 +25,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ded33207.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.85bb2934.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a6bdf11c.min.css">
       
       
 
@@ -2469,6 +2469,10 @@
       
         
           
+            
+          
+        
+          
         
           
         
@@ -2484,10 +2488,16 @@
         
       
       
-        <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
-          计算机组成
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../">计算机组成</a>
+          
+            <label for="__nav_4_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
       
       <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_4_3">
@@ -2497,13 +2507,15 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+          
+            
               
   
   
   
     <li class="md-nav__item">
       <a href="../1_prelude/" class="md-nav__link">
-        1 写在前面
+        1 Prelude
       </a>
     </li>
   
@@ -3681,7 +3693,7 @@
 
 <h1 id="2-instructions">2 Instructions<a class="headerlink" href="#2-instructions" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 1567 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 5 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 1590 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 5 分钟</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -3696,7 +3708,7 @@
 <h4 id="寻址">寻址<a class="headerlink" href="#寻址" title="Permanent link">&para;</a></h4>
 <p>RISC-V architecture 的地址是 64 位的，地址为字节地址，因此总共可以寻址 <span class="arithmatex">\(2^{64}\)</span> 个字节，即 <span class="arithmatex">\(2^{61}\)</span> 个 dword (doubleword, 下同)。</p>
 <p>在一些 architecture 中，word 的起始地址必须是 word 大小的整倍数，dword 也一样，这种要求称为 <strong>alignment restriction</strong>。RISC-V 允许不对齐的寻址，但是效率会低。</p>
-<p>RISC-V 使用 <strong>little endian</strong> 小端编址。也就是说，当我们从 0x1000 这个地址读出一个 dword 时，我们读到的实际上是 0x1000~0x1007 这 8 个字节，并将 0x1000 存入寄存器地位，0x1007 存入高位。</p>
+<p>RISC-V 使用 <strong>little endian</strong> 小端编址。也就是说，当我们从 0x1000 这个地址读出一个 dword 时，我们读到的实际上是 0x1000~0x1007 这 8 个字节，并将 0x1000 存入寄存器低位，0x1007 存入高位。</p>
 <p>RISC-V 支持 PC relative 寻址、立即数寻址 ( <code>lui</code> )、间接寻址 ( <code>jalr</code> )、基址寻址 ( <code>8(sp)</code> )：</p>
 <p><img alt="image.png" src="../../../assets/1654055499913-f3fd752f-06b7-43e4-a06f-3640e66481ed.png" /></p>
 <h4 id="补码-2s-complement">补码 2's complement<a class="headerlink" href="#补码-2s-complement" title="Permanent link">&para;</a></h4>
@@ -3713,8 +3725,11 @@
 </div>
 <h3 id="22-指令指令格式">2.2 指令，指令格式<a class="headerlink" href="#22-指令指令格式" title="Permanent link">&para;</a></h3>
 <p>课本上介绍的 RISC-V 指令（ <code>lr.d</code> ,  <code>sc.d</code> 被省略了）列表如下：</p>
-<p><img alt="1.png" src="../../../assets/1654864713202-23520b16-be27-484e-8f08-39aa863679ba.png" />
-RISC-V 的跳转指令的 offset 是基于当前指令的地址的偏移；这不同于其他一些汇编是基于下一条指令的偏移的。即如果是跳转语句 <code>PC</code> 就不 +4 了，而是直接 +offset。</p>
+<p><img alt="1.png" src="../../../assets/1654864713202-23520b16-be27-484e-8f08-39aa863679ba.png" /></p>
+<blockquote>
+<p>在 RISC 指令集中，只有 load 系列和 store 系列指令能够访问内存。</p>
+</blockquote>
+<p>RISC-V 的跳转指令的 offset 是基于当前指令的地址的偏移；这不同于其他一些汇编是基于下一条指令的偏移的。即如果是跳转语句 <code>PC</code> 就不 +4 了，而是直接 +offset。</p>
 <p><code>lw</code> ,  <code>lwu</code> 等操作都会清零高位。</p>
 <p>RISC-V 指令格式如下：</p>
 <p><img alt="1.png" src="../../../assets/1653461947307-ab399754-6565-46f5-8554-641c7def91a4.png" />
@@ -3770,7 +3785,7 @@ RISC-V 的跳转指令的 offset 是基于当前指令的地址的偏移；这�
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-03-03T17:33:06+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-03-03</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-05-04T02:43:22+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-05-04</span>
       
         <br>
         创建日期:
@@ -3936,7 +3951,7 @@ var giscus = document.querySelector("script[src*=giscus]")
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.tracking", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.51198bba.min.js"></script>
+      <script src="../../assets/javascripts/bundle.fac441b0.min.js"></script>
       
         <script src="../../js/timeago.min.js"></script>
       
