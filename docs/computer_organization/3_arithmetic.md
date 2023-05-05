@@ -1,7 +1,7 @@
 # 3 Arithmetic
 
 !!! tip "提示"
-   在开始本章之前，请确保自己了解各种二进制下表示数的相关方法。
+    在开始本章之前，请确保自己了解各种二进制下表示数的相关方法。
 
 ## 3.1 一个基本的 ALU
 
@@ -41,7 +41,7 @@
 
 其中 `Binvert` 用来指明是否需要将结果取反；在计算减法时，我们将 `Binvert` 设为 `1` ，然后将 `CarryIn` 也设为 `1` ， `Operation` 设为 `2` ，这样我们的结果就是 $a + \bar b + 1$。
 
- `NOR` 运算： `a NOR b = NOT(a OR b) = (NOT a) AND (NOT b)` ，因此 `NOR` 运算可以这样实现：
+`NOR` 运算： `a NOR b = NOT(a OR b) = (NOT a) AND (NOT b)` ，因此 `NOR` 运算可以这样实现：
 
 <center>![image.png](../../../assets/1654416483714-328ce497-05f0-4a7c-bb5d-5dd9bb6f585e.png){width=300} ![](2023-03-04-01-25-30.png){width=200}</center>
 
@@ -59,7 +59,7 @@
 
 首先 `Overflow` 是容易理解的，它用来表示加法或减法有没有出现溢出的现象；显然这个判断只需要在 ALU63，即 Most Significant Bit 才需要进行。容易证明，如果 $C_{in} \oplus C_{out} = 1$，那么存在溢出；因此 ALU63 只需要添加一个额外的 XOR 门即可完成这一判断。
 
- `Less` 和 `Set` 共同使用，是为了实现 `slt rd, rs1, rs2` 这个操作（SLT 即 Set Less Than）的。这个操作的含义是，如果 `rs1 < rs2` ，那么将 `rd` 置为 `1` ，否则置为 `0` 。如何进行这一判断呢？很简单，如果 `rs1 - rs2` 的结果为负，也就是说如果 `rs1 - rs2` 结果的最高位是 `1` ，那么就说明 `rs1 < rs2` 。所以等价地，对于 `slt` 这个操作，我们只需要将 ALU63 中加法器的结果赋值给 `Result0` ，即运算结果的 Least Significant Bit，而将其他位的结果 `Result1` ~ `Result63` 都设成 0，就可以完成 `slt` 操作了。
+`Less` 和 `Set` 共同使用，是为了实现 `slt rd, rs1, rs2` 这个操作（SLT 即 Set Less Than）的。这个操作的含义是，如果 `rs1 < rs2` ，那么将 `rd` 置为 `1` ，否则置为 `0` 。如何进行这一判断呢？很简单，如果 `rs1 - rs2` 的结果为负，也就是说如果 `rs1 - rs2` 结果的最高位是 `1` ，那么就说明 `rs1 < rs2` 。所以等价地，对于 `slt` 这个操作，我们只需要将 ALU63 中加法器的结果赋值给 `Result0` ，即运算结果的 Least Significant Bit，而将其他位的结果 `Result1` ~ `Result63` 都设成 0，就可以完成 `slt` 操作了。
 
 所以可以看到，上图中，除了 ALU0 的 `Less` 来自 ALU63 的 `Set` 外，其他 ALU 的 `Less` 都是 `0` 。
 
@@ -101,7 +101,7 @@
 
 <center>![image.png](../../../assets/1654448385307-b26150c1-a6fb-4e18-b237-e1a4ddf9ead3.png){width=150}</center>
 
-所以，我们可以推导出如下关系：
+所以，我们可以推导出如下关系（可以形象理解每一个等式的每一个 term 的来源）：
 
 <center>![image.png](../../../assets/1654448174404-88b6a7da-5012-41b6-95ce-5a58f0e1fe68.png){width=500}</center>
 
@@ -109,13 +109,16 @@
 
 <center>![image.png](../../../assets/1654448839751-163b42fd-a4f6-4667-a1ba-c021ec0e70c3.png){width=500}</center>
 
-上面的 PFA, Partial Fully Adder，就是前面我们构造的新全加器的一部分。可以看到，通过这样的方式，我们可以加速加法的运算；但是注意到越到高位，门的 fan-in 就越大，但是这不是可以一直增加的。所以对于更多位数的加法器，我们将上面这样构成的 4-bit CLA 再通过类似的方式串起来！
+上面的 PFA, Partial Fully Adder，就是前面我们构造的新全加器的一部分。可以看到，通过这样的方式，我们可以加速加法的运算；但是注意到越到高位，门的 fan-in 就越大，因此不能一直增加的。所以对于更多位数的加法器，我们将上面这样构成的 4-bit CLA 再通过类似的方式串起来！
 
 <center>![image.png](../../../assets/1654450398290-9368b91c-4f00-4f53-8777-dc7147a6d99e.png){width=500}</center>
 
 #### 3.1.5.2 Carry Skip Adder (马德先生没讲)
 
 #### 3.1.5.3 Carry Select Adder, CSA
+
+体现了 预测 / 冗余 的思想。
+
 这个思路其实比较简单，就是把输入 carry 为 0 或者 1 的情况都算一遍，然后根据实际的情况从中选出正确的那种就好了：
 
 
@@ -126,13 +129,39 @@
 <center>![image.png](../../../assets/1654450525296-c94b0e6d-acad-4a81-952a-70fe8c461e32.png){width=500}</center>
 
 
-## 3.2 乘法 暂时不想学了，听说考的不多
-下面这样的硬件结构可以实现无符号乘法：
+## 3.2 乘法 
 
+～～暂时不想学了，听说考的不多～～
+
+### V1
+
+- [大致原理](https://note.isshikih.top/cour_note/D2QD_DigitalDesign/Chap06/?h=%E4%B9%98%E6%B3%95#%E7%AE%97%E6%9C%AF)
+
+下面这样的硬件结构可以实现无符号乘法：
 
 <center>![image.png](../../../assets/1654531121258-e497919c-c487-4f1f-8310-4e0b537a9dbd.png){width=500}</center>
 
+大概就是类似于竖式乘法。
 
+### V2
+
+但是我们发现，例如对于 64 位乘法器，最终需要占 128 位，但是每一次乘法过程中只会用到 64 位，所以根据这个特性我们可以对它进行优化。
+
+大概意思就是每次计算的结果都加到高 64 位，然后再右移，实现在前面的加法过程中只使用 64 位。
+
+TODO: 贴图 & 详细解释
+
+### V3
+
+观察到 V2 版中，128 位存结果的加法器的空余末若干位，其数量和乘数尚未计算的位数是一致的，所以我们可以直接把乘数存在结果后面。每计算一次，乘数位数减一，结果位数加一，perfect。
+
+TODO: 贴图 & 详细解释
+
+---
+
+乘有符号数不太一样
+
+- Booth's Algorithm
 
 ## 3.3 除法 暂时不想学了，听说考的不多
 
@@ -205,10 +234,11 @@ $$(-1)^S\cdot (1 + \text{fraction}) \cdot 2 ^ {\text{exponent} - \text{bias}}$$
 ### 3.4.2 浮点加法
 以 $1.000_2\times2^{-1}-1.110_2\times2^{-2}$ 为例， 浮点数的加减法分为以下几步：
 
-1.  指数对齐，将小指数对齐到大指数：$-1.110_2\times2^{-2} = -0.111\times2^{-1}$
-2.  Fraction 部分相加减：$1.000-0.111=0.001$
-3.  将结果规格化：$0.001\times2^{-1}=1.000\times2^{-4}$；同时需要检查是否出现 overflow 或者 underflow，如果出现则触发 Exception
-4.  将 Fraction 部分舍入到正确位数；舍入结果可能还需要规格化，此时回到步骤 3 继续运行
+1.  Alignment: 指数对齐，**将小指数对齐到大指数**：$-1.110_2\times2^{-2} = -0.111\times2^{-1}$
+    1.  为什么是小对大？因为在计算过程中，我们保持的精确位数是有限的，而在迫不得已丢去精度的过程中，让小的那个数的末几位被丢掉的代价比大的要小；
+2.  Addiction Fraction 部分相加减：$1.000-0.111=0.001$
+3.  Normalization: 将结果规格化：$0.001\times2^{-1}=1.000\times2^{-4}$；同时需要检查是否出现 overflow 或者 underflow，如果出现则触发 Exception
+4.  Rounding: 将 Fraction 部分舍入到正确位数；舍入结果可能还需要规格化，此时回到步骤 3 继续运行
 
 <center>![image.png](../../../assets/1654493922562-098d36c8-cd64-4671-ac6b-a83f882e095a.png){width=400}</center>
 
@@ -217,8 +247,8 @@ $$(-1)^S\cdot (1 + \text{fraction}) \cdot 2 ^ {\text{exponent} - \text{bias}}$$
 ### 3.4.3 浮点乘法
 分别处理符号位、exponent 和 fraction：
 
-- Exponent 相加并 **减去 bias**，因为 bias 加了 2 次
-- Fraction 部分相乘，并将其规格化；此时同样要考虑 overflow 和 underflow；然后舍入，如果还需要规格化则重复执行
+- Exponent 相加并 **减去一个 bias**，因为 bias 加了 2 次
+- Fraction 相乘，并将其规格化；此时同样要考虑 overflow 和 underflow；然后舍入，如果还需要规格化则重复执行
 - 根据两个操作数的符号决定结果的符号
 
 
@@ -227,9 +257,12 @@ $$(-1)^S\cdot (1 + \text{fraction}) \cdot 2 ^ {\text{exponent} - \text{bias}}$$
 
 
 ### 3.4.4 精确算术
+
 IEEE 754 规定了一些额外的舍入控制，用来保证舍入的精确性。
 
 **Round modes**
+
+- `guard` / `round` / `sticky`
 
 <center>![](../../../assets/1654504454500-4ae127de-3333-4b4e-8b88-e44f5d83f7ed.png){width=600}</center>
 
@@ -241,4 +274,7 @@ Round to nearest even 只对 0.5 有效，别的都和四舍五入一样
 
 事实上加法只需要用到 guard，但是对于乘法，如果存在前导 0，需要将结果左移，这时候 round bit 就成了有效位，能避免精度的损失。
 
-另外还有一个位叫 sticky bit，其定义是：只要 round 右边有非零位，就将 sticky 置 1，这一点可以用在加法的右移中，可以记住是否有 1 被移出，从而能够实现 "round to nearest even"。
+另外还有一个位叫 sticky bit，其定义是：只要 round 右边出现过非零位，就将 sticky 置 1，这一点可以用在加法的右移中，可以记住是否有 1 被移出，从而能够实现 "round to nearest even"。
+
+`units in the last place(ulp)`: The number of bits in error in the leas t significant bits of the significant between the actual number and the number that can be represented.
+

@@ -21,13 +21,15 @@ RISC-V architecture 的地址是 64 位的，地址为字节地址，因此总�
 
 在一些 architecture 中，word 的起始地址必须是 word 大小的整倍数，dword 也一样，这种要求称为 **alignment restriction**。RISC-V 允许不对齐的寻址，但是效率会低。
 
-RISC-V 使用 **little endian** 小端编址。也就是说，当我们从 0x1000 这个地址读出一个 dword 时，我们读到的实际上是 0x1000~0x1007 这 8 个字节，并将 0x1000 存入寄存器地位，0x1007 存入高位。
+RISC-V 使用 **little endian** 小端编址。也就是说，当我们从 0x1000 这个地址读出一个 dword 时，我们读到的实际上是 0x1000~0x1007 这 8 个字节，并将 0x1000 存入寄存器低位，0x1007 存入高位。
 
 RISC-V 支持 PC relative 寻址、立即数寻址 ( `lui` )、间接寻址 ( `jalr` )、基址寻址 ( `8(sp)` )：
 
 ![image.png](../../../assets/1654055499913-f3fd752f-06b7-43e4-a06f-3640e66481ed.png)
 
+
 #### 补码 2's complement
+
 $x + \bar x = 111\dots111_2 = -1$，因此 $-x = \bar x + 1$。前导 0 表示正数，前导 1 表示负数。[See also](https://www.yuque.com/xianyuxuan/coding/sca003#VqE99)
 
 因此在将不足 64 位的数据载入寄存器时，如果数据是无符号数，只需要使用 0 将寄存器的其他部分填充 (**zero extension**)；而如果是符号数，则需要用最高位即符号位填充剩余部分，称为符号扩展 (**sign extension**)。
@@ -43,9 +45,13 @@ $x + \bar x = 111\dots111_2 = -1$，因此 $-x = \bar x + 1$。前导 0 表示�
 
 
 ### 2.2 指令，指令格式
+
 课本上介绍的 RISC-V 指令（ `lr.d` ,  `sc.d` 被省略了）列表如下：
 
 ![1.png](../../../assets/1654864713202-23520b16-be27-484e-8f08-39aa863679ba.png)
+
+> 在 RISC 指令集中，只有 load 系列和 store 系列指令能够访问内存。
+
 RISC-V 的跳转指令的 offset 是基于当前指令的地址的偏移；这不同于其他一些汇编是基于下一条指令的偏移的。即如果是跳转语句 `PC` 就不 +4 了，而是直接 +offset。
 
  `lw` ,  `lwu` 等操作都会清零高位。
