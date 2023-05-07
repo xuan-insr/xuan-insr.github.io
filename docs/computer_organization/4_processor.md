@@ -41,7 +41,7 @@
 ### 4.1.3 ALU Control
 在 3.1 节中，我们设计的 ALU 需要这样的控制结构：
 
-<center>![image.png](../../../assets/1654674035822-c566a50e-cde7-4244-880a-21bcc3b31699.png)</center>
+<center>![image.png](/../assets/1654674035822-c566a50e-cde7-4244-880a-21bcc3b31699.png)</center>
 
 我们列一下需要使用 ALU 的指令的表格（我们在）：
 
