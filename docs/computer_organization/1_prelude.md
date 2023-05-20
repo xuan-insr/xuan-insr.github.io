@@ -94,7 +94,7 @@ $$
 并且我们这样联系 performance 和 execution time：
 
 $$
-\text{Performance}_X \frac{1}{\text{Execution time}_X}
+\text{Performance}_X = \frac{1}{\text{Execution time}_X}
 $$
 
 而相对性能(Relative Performance)就是非常 naive 的对两个比较对象求比值。
@@ -206,6 +206,6 @@ $$
 
 - ……不是很想学了 再说吧
 
-- KB = 10^3 B, KiB = 2^{10} B
+- $KB = 10^3 B, KiB = 2^{10} B$
 - K M G T P E Z Y
 - **Amdahl Law**   $T_{\text{improved}} = \cfrac{T_{\text{affected}}}{\text{Improvement Factor}}+T_\text{unaffected}$ [🔗 Wiki](https://zh.wikipedia.org/wiki/%E9%98%BF%E5%A7%86%E8%BE%BE%E5%B0%94%E5%AE%9A%E5%BE%8B)
