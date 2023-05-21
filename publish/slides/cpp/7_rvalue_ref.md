@@ -486,10 +486,10 @@ rvalue 和 glvalue 是 mixed categories，通常用于简便的表达<!-- .eleme
 | Property | lvalue | xvalue | prvalue |
 | :-: | :-: | :-: | :-: |
 | **取地址** | 是 | 否* | 否 |
-| **被赋值** | 是，如果 modifiable | 否 | 否 |
+| **被赋值** | 是，如果 modifiable | 否* | 否 |
 | **初始化引用** | 是 | 仅能初始化 const & | materialize 为 xvalue |
 
-\* 理论上，xvalue 占内存因此可以被允许取地址，但是由于其生命周期通常即将结束，因此获取它的地址在大多数情况下会引发错误。因此，C++ 并不允许对 xvalue 取地址。<!-- .element: class="fragment" -->
+\* 理论上，xvalue 占内存因此可以被允许取地址，但是由于其生命周期通常即将在所在完整表达式结束时结束，因此获取它的地址在大多数情况下会引发错误。因此，C++ 并不允许对 xvalue 取地址。也是类似的原因，xvalue 也并不允许被赋值。<!-- .element: class="fragment" -->
 
 ===
 
@@ -1567,6 +1567,47 @@ public:
 
 ---
 
+#### 补充
+
+```c++
+std::vector<int> foo() {
+    std::vector<int> x;
+    // do something on x
+    return x;
+    // return std::move(x); ?
+}
+```
+
+===
+
+```c++
+std::vector<int> foo() {
+    std::vector<int> x;
+    // do something on x
+    return x;
+}
+```
+
+如果 `return` 语句中的表达式是函数体中的一个 implicitly movable entity，则编译器首先尝试以移动的方式返回，即尝试先将表达式视为 rvalue；如果重载解析失败，再将表达式视为 lvalue 尝试以拷贝的方式返回。如果仍然失败，则编译错误。
+
+Implicitly movable entity：具有 automatic storage duration 的一个 non-volatile object 或者 non-volatile object 的一个右值引用。
+
+===
+
+```c++
+std::vector<int> foo() {
+    std::vector<int> x;
+    // do something on x
+    return x;
+}
+```
+
+当以上述方式决定使用的是拷贝还是移动后，如果发生 NRVO 则调用会被省略。但是，如在 NRVO 所讲到的那样，被选择的函数必须可以被调用。
+
+<!-- https://timsong-cpp.github.io/cppwp/n4868/class.copy.elision#3 -->
+
+---
+
 ### Takeaway
 
 - **value categories**
@@ -1620,6 +1661,7 @@ public:
     - reference collapsing
     - `std::forward`
     - `std::move` 的实现
+- Implicitly movable entity，尝试以移动的方式返回
 
 ===
 
