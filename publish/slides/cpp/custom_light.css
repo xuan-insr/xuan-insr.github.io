@@ -3,3 +3,11 @@
     --r-main-color: #191919;
     --r-heading-color: #191919;
 }
+
+.reveal .slides .custom-background {
+    background-image: url('assets/logo.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.1 !important;/* 调整透明度 */
+}

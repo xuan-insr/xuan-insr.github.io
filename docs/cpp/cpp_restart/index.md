@@ -34,19 +34,15 @@
     - const
     - cast
     - bool
-7. [ ] 模板 (I): 基本知识与 STL 使用
+7. [x] 模板 (I): 基本知识与 STL 使用
     - range-based for loop (C++11); init-statement in range-for (C++20)
     - lambda
     - auto & return type deduction & trailing return type
-8. [ ] 模板 (II): 理解 STL
-9. [ ] 右值引用和移动语义
+8. [x] 模板 (II): 理解 STL
+9. [x] 右值引用和移动语义
     - smart pointers
     - value categories
     - 移动构造与移动赋值
-10. [ ] 模板 (III): 模板进阶
-    - string
-    - alias template
-    - constexpr (C++11); consteval, constinit (C++20)
 11. [ ] 类 (IV): 继承与抽象类、访问控制
     - final, override
     - covariant return types
@@ -57,6 +53,10 @@
         - aggregate
 12. [ ] namespace
 13. [ ] exception
+10. [ ] 模板 (III): 模板进阶
+    - string
+    - alias template
+    - constexpr (C++11); consteval, constinit (C++20)
 
 ### Topics
 

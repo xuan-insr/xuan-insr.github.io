@@ -1135,7 +1135,7 @@ public:
 
 #### Placement new
 
-```c++ linenums="1"
+```c++ [3|6-7|14-17|8-12]
 template<typename T>
 class Container {
     T* data;
@@ -1156,6 +1156,8 @@ public:
     // ...
 };
 ```
+
+`new Foo(args)` => `new ptr Foo(args)`
 
 <!-- https://stackoverflow.com/questions/33906008/c-placement-new-in-a-home-made-vector-container 有关于对齐的一些讨论 -->
 
@@ -1202,6 +1204,30 @@ void Container<T>::emplace_back(const Arg & arg) {
 ```
 
 没有使用移动语义<!-- .element: class="fragment" -->
+
+===
+
+```c++
+template<typename T>
+template<typename Arg>
+void Container<T>::emplace_back(const Arg & arg) { 
+    /* if full, expand storage */
+    new (data + size++) T(arg); // placement new
+}
+```
+
+```c++
+struct Foo {
+    Foo(const Bar &);
+    Foo(Bar &&);
+};
+
+void func(Container<Foo> & c) {
+    Bar b;
+    c.emplace_back(b);
+    c.emplace_back(std::move(b));
+}
+```
 
 ===
 
@@ -1293,18 +1319,18 @@ Forwarding References 是以下两种中的一种：
 
 ===
 
-也就是说，T&& Doesn’t Always Mean 「Rvalue Reference」
+也就是说，T&& Doesn’t Always Mean "Rvalue Reference"
 
 ```c++
-Foo&& var1 = someFoo;       // here, “&&” means rvalue reference
+Foo&& var1 = someFoo;       // here, "&&" means rvalue reference
  
-auto&& var2 = var1;         // here, “&&” does not mean rvalue reference
- 
-template<typename T>
-void f(std::vector<T>&& p); // here, “&&” means rvalue reference
+auto&& var2 = var1;         // here, "&&" does not mean rvalue reference
  
 template<typename T>
-void f(T&& p);              // here, “&&” does not mean rvalue reference
+void f(std::vector<T>&& p); // here, "&&" means rvalue reference
+ 
+template<typename T>
+void f(T&& p);              // here, "&&" does not mean rvalue reference
 ```
 
 ===
@@ -1321,8 +1347,8 @@ T create(Arg&& x)                      // x is a forwarding reference
 int main()
 {
     int i;
-    create<Foo>(i); // argument is lvalue, Arg = int&
-    create<Foo>(0); // argument is rvalue, Arg = int
+    create<Foo>(i); // argument is lvalue, Arg = int&, Arg&& = int&
+    create<Foo>(0); // argument is rvalue, Arg = int , Arg&& = int&&
 }
 ```
 
@@ -1375,7 +1401,7 @@ int main()
 {
     int i;
     create<Foo>(i); // argument is lvalue, calls create<Foo, int&>(int&)
-    create<Foo>(0); // argument is rvalue, calls fcreate<Foo, int>(int&&)
+    create<Foo>(0); // argument is rvalue, calls create<Foo, int>(int&&)
 }
 ```
 
