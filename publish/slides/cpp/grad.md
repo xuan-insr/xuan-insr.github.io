@@ -124,8 +124,105 @@ if (cond) {
 
 ![](assets/2023-05-26-17-08-51.png)
 
+===
+
+### 性质
+
+用户给定断言：`__CPROVER_assert( cond );`
+
+自动生成断言：`--pointer-check`
+- 缓冲区溢出
+- 指针安全
+- 内存泄漏
+- 除以 0
+- NaN
+- 算术溢出
+
 ---
 
+```c++
+bool IsValidString(const char *input, uint32_t maxLen) {
+    if (input == NULL) 
+        return false;
+
+    uint32_t len = strlen(input);
+    if (len >= maxLen) 
+        return false;
+
+    return true;
+}
+```
+
+===
+
+```c++
+bool IsValidString(const char *input, uint32_t maxLen);
+```
+
+```c++
+#include "../../include/xyx_proof_includes.h"
+#include "softbus_utils.h"
+
+void harness(void) {
+    uint32_t maxLen;
+    uint32_t size;
+
+    __CPROVER_assume(size > 0);
+    char * str = malloc(size);
+
+    bool res = IsValidString(str, maxLen);
+
+    if (!str)
+        __CPROVER_assert(res == false, 
+            "IsValidString should return false if str is a null pointer.");
+}
+```
+
+===
+
+![](assets/string_report1.png)
+
+===
+
+#### Loop unwinding failure
+
+![](assets/unwindFailure.png)
+
+<center>
+
+`--unwind 3`
+
+`--remove-function-body` <!-- .element: class="fragment" -->
+
+</center>
+
+===
+
+```c++
+bool IsValidString(const char *input, uint32_t maxLen);
+```
+
+```c++
+#include "../../include/xyx_proof_includes.h"
+#include "softbus_utils.h"
+
+void harness(void) {
+    uint32_t maxLen;
+    uint32_t size;
+
+    __CPROVER_assume(size > 0);
+    char * str = malloc(size);
+
+    if (str)
+        __CPROVER_assume(str[size - 1] == 0);
+
+    bool res = IsValidString(str, maxLen);
+
+    if (!str)
+        __CPROVER_assert(res == false, 
+            "IsValidString should return false if str is a null pointer.");
+}
+```
 ---
 
 ### 总结
