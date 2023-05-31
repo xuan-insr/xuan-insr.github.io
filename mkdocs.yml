@@ -22,6 +22,7 @@ nav:
         - Week6 模板 (II) 理解 STL - 迭代器与函数对象: https://xuan-insr.github.io/slides/cpp/6_stl/
         # - Week6 思考题与复习题: cpp/cpp_restart/review/week6.md
         - Week7 值类型、右值引用与移动语义: https://xuan-insr.github.io/slides/cpp/7_rvalue_ref/
+        - Week8 智能指针基础: https://xuan-insr.github.io/slides/cpp/8_smart_ptr/
       - 正文！:
         - 1 C++ 的诞生: cpp/cpp_restart/1_birth.md
         - 2 编程范式: cpp/cpp_restart/2_paradigm.md
@@ -34,7 +35,9 @@ nav:
         - 7 模板 (I) - 基本知识与 STL 使用: cpp/cpp_restart/7_template.md
         - 8 模板 (II) - 理解 STL: cpp/cpp_restart/8_stl.md
         - 9 右值引用和移动语义: cpp/cpp_restart/9_move_semantics.md
-        - 10 模板 (III) - 更多话题: cpp/cpp_restart/10_template_adv.md
+        - 10 智能指针基础: cpp/cpp_restart/10_smart_ptr.md
+        - 11 类 (IV) - 继承、RTTI: cpp/cpp_restart/11_class_4.md
+        # - 10 模板 (III) - 更多话题: cpp/cpp_restart/10_template_adv.md
         # - 12 类 (VI) - 移动构造与移动赋值: cpp/cpp_restart/12_class_6.md
         # - 13 namespace: cpp/cpp_restart/13_namespace.md
         # - 14 exception: cpp/cpp_restart/14_exception.md
