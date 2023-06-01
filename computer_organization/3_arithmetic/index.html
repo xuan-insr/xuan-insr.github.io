@@ -3901,7 +3901,7 @@
 
 <h1 id="3-arithmetic">3 Arithmetic<a class="headerlink" href="#3-arithmetic" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 4141 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 14 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 4204 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 14 分钟</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">提示</p>
@@ -4027,9 +4027,13 @@
 </ol>
 <hr />
 <p>乘有符号数不太一样</p>
+<hr />
 <ul>
-<li>Booth's Algorithm</li>
+<li>Booth's Algorithm（有点类似于差分算法）</li>
 </ul>
+<p><center>
+    <img alt="" src="../2023-05-05_20-54-20.png" />
+</center></p>
 <h2 id="33-除法-暂时不想学了听说考的不多">3.3 除法 暂时不想学了，听说考的不多<a class="headerlink" href="#33-除法-暂时不想学了听说考的不多" title="Permanent link">&para;</a></h2>
 <p>和乘法很像。</p>
 <h2 id="34-浮点运算">3.4 浮点运算<a class="headerlink" href="#34-浮点运算" title="Permanent link">&para;</a></h2>
@@ -4038,13 +4042,13 @@
 </blockquote>
 <h3 id="341-ieee-754-浮点表示">3.4.1 IEEE 754 浮点表示<a class="headerlink" href="#341-ieee-754-浮点表示" title="Permanent link">&para;</a></h3>
 <p>我们将小数点左边只有 1 位数字的表示数的方法称为 <strong>科学记数法, scientific notation</strong>，而如果小数点左边的数字不是 0，我们称这个数的表示是一个 <strong>规格化数, normalized number</strong>。科学记数法能用来表示十进制数，当然也能用来表示二进制数。</p>
-<p>IEEE 754 规定了一种浮点数标准：我们将浮点数表示为 <span class="arithmatex">\((-1)^S \times F \times 2^E\)</span> 的形式，这里的 <span class="arithmatex">\(F \times 2^E\)</span> 是一个规格化数，而 <span class="arithmatex">\((-1)^S\)</span> 用来表示符号位：<span class="arithmatex">\(S\)</span> 为 0 说明该浮点数为正数，为 1 则为负数；<span class="arithmatex">\(F\)</span> 和 <span class="arithmatex">\(E\)</span> 也用若干 bits 表示，分别表示尾数和指数，我们稍后讨论。也就是说，我们将其表示为 <span class="arithmatex">\(1.\text{xxxxx}_2\times 2^{\text{yyyy}}\)</span> 的形式（为什么小数点左边是 1 呢？因为二进制只有 0 和 1，而规格化要求小数点左边不能为 0）。我们通过科学记数法调整了小数点的位置使其满足规格化的要求，因此我们称这种数的表示方法为 <strong>浮点, floating point</strong>。</p>
+<p>IEEE 754 规定了一种浮点数标准：我们将浮点数表示为 <span class="arithmatex">\((-1)^S \times F \times 2^E\)</span> 的形式，这里的 <span class="arithmatex">\(F \times 2^E\)</span> 是一个规格化数，而 <span class="arithmatex">\((-1)^S\)</span> 用来表示符号位：<span class="arithmatex">\(S\)</span> 为 0 说明该浮点数为正数，为 1 则为负数；<span class="arithmatex">\(F\)</span> 和 <span class="arithmatex">\(E\)</span> 也用若干 bits 表示，分别表示尾数和指数，我们稍后讨论。也就是说，我们将其表示为 <span class="arithmatex">\(1.\text{xxxxx}_2\times 2^{\text{yyyy}}\)</span> 的形式这意味着我们没法直接通过这种表达形式表示 0（为什么小数点左边是 1 呢？因为二进制只有 0 和 1，而规格化要求小数点左边不能为 0）。我们通过科学记数法调整了小数点的位置使其满足规格化的要求，因此我们称这种数的表示方法为 <strong>浮点, floating point</strong>。</p>
 <p>小数点的英文是 decimal point，但是我们这种表示方法不再是 decimal 的了，因此我们起个新名字：<strong>二进制小数点, binary point</strong>。</p>
 <p>IEEE 754 规定了两种精度的浮点数格式，分别是 single precision 和 double precision（分别对应 C 语言中的 <code>float</code> 和 <code>double</code> ），RISC-V 这两种都支持：</p>
 <p><center><img alt="image.png" src="../../../assets/1654451689188-30db0d4d-73e6-478a-b01e-dd90b16c68ca.png" width="700" /></center></p>
 <p><center><img alt="image.png" src="../../../assets/1654451723799-f579acc1-0bdb-4e18-9804-ac94ad9d1d55.png" width="700" /></center></p>
 <p>可以看到，fraction 的位数越多，浮点数的精度就越高；而 exponent 的位数越多，浮点数能保存的范围就越大。</p>
-<p>那么对于 <span class="arithmatex">\((-1)^S \times F \times 2^E\)</span>，<span class="arithmatex">\(S\)</span> 的二进制表示方法是显然的，仅需要一个 bit 就好了。那么 <span class="arithmatex">\(F\)</span> 和 <span class="arithmatex">\(E\)</span> 怎么表示呢？如我们之前所说，<span class="arithmatex">\(F\)</span> 就是 <span class="arithmatex">\(1.\text{xxxxx}_2\)</span> 的形式，这个 1 是固定的，因此 <span class="arithmatex">\(F\)</span> 只需要保存 <span class="arithmatex">\(\text{xxxxx}\)</span> 的部分就可以了！那么 <span class="arithmatex">\(E\)</span> 怎么办呢？注意到这个指数可能是正整数、负整数或 0，因此我们使用一个偏移，对单精度浮点数偏移 127，双精度浮点数偏移 1023（刚好是表示范围的一半！），也就是说我们保存的  <code>exponent</code>  其实是 <span class="arithmatex">\(E + bias\)</span> 的二进制。也就是说，对于这样的一个表示，其值是：</p>
+<p>那么对于 <span class="arithmatex">\((-1)^S \times F \times 2^E\)</span>，<span class="arithmatex">\(S\)</span> 的二进制表示方法是显然的，仅需要一个 bit 就好了。那么 <span class="arithmatex">\(F\)</span> 和 <span class="arithmatex">\(E\)</span> 怎么表示呢？如我们之前所说，<span class="arithmatex">\(F\)</span> 就是 <span class="arithmatex">\(1.\text{.xxxxx}_2\)</span> 的形式，这个 1 是固定的，因此 <span class="arithmatex">\(F\)</span> 只需要保存 <span class="arithmatex">\(\text{.xxxxx}\)</span> 的部分就可以了（但是请注意，它的权重从左到右分别是 <span class="arithmatex">\(2^{-1}, 2^{-2}, ...\)</span>）！那么 <span class="arithmatex">\(E\)</span> 怎么办呢？注意到这个指数在实际使用中可能是正整数、负整数或 0，因此我们使用一个偏移，对单精度浮点数偏移 127，双精度浮点数偏移 1023（刚好是表示范围的一半！），也就是说我们保存的  <code>exponent</code>  其实是 <span class="arithmatex">\(E + bias\)</span> 的二进制。也就是说，对于这样的一个表示，其值是：</p>
 <div class="arithmatex">\[(-1)^S\cdot (1 + \text{fraction}) \cdot 2 ^ {\text{exponent} - \text{bias}}\]</div>
 <p>课本给出了一个例子：</p>
 <p><center><img alt="image.png" src="../../../assets/1654452276501-8091ba6c-3817-41b9-9bc0-592dff9a9432.png" /></center></p>
@@ -4103,8 +4107,8 @@
 <h3 id="343-浮点乘法">3.4.3 浮点乘法<a class="headerlink" href="#343-浮点乘法" title="Permanent link">&para;</a></h3>
 <p>分别处理符号位、exponent 和 fraction：</p>
 <ul>
-<li>Exponent 相加并 <strong>减去一个 bias</strong>，因为 bias 加了 2 次</li>
-<li>Fraction 相乘，并将其规格化；此时同样要考虑 overflow 和 underflow；然后舍入，如果还需要规格化则重复执行</li>
+<li>将两个 Exponent 相加并 <strong>减去一个 bias</strong>，因为 bias 加了 2 次</li>
+<li>将两个 (1 + Fraction) 相乘，并将其规格化；此时同样要考虑 overflow 和 underflow；然后舍入，如果还需要规格化则重复执行</li>
 <li>根据两个操作数的符号决定结果的符号</li>
 </ul>
 <p><center><img alt="image.png" src="../../../assets/1654494125594-7445f47b-e6a7-4288-a370-b2a8cd0c746d.png" width="400" /></center></p>
@@ -4127,7 +4131,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-05-05T12:43:43+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-05-05</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-05-05T13:42:05+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-05-05</span>
       
         <br>
         创建日期:
