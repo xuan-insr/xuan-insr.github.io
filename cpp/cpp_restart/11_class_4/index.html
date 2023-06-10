@@ -3603,13 +3603,17 @@
 
 <h1 id="8-类-v---继承与抽象类访问控制">8 类 (V) - 继承与抽象类、访问控制<a class="headerlink" href="#8-类-v---继承与抽象类访问控制" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 323 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 14 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 1 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 442 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 14 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 2 分钟</p>
 </div>
 <p>类的布局绝大多数是 implementation-defined 或者 unspecified 的；为数不多被指定了的是，具有相同 access control 的成员会按顺序分配，但每个成员后仍然有可能有实现决定的填充。<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.mem.general#19">class.mem.general#19</a></sup></p>
+<p>What if <code>Base b = d;</code> or <code>b = d;</code>?</p>
+<p>Default: <code>Base::Base(const Base &amp;);</code> <code>Base&amp; Base::operator=(const Base &amp;);</code></p>
+<p>「Object Slicing」<a href="https://stackoverflow.com/questions/274626/what-is-object-slicing">https://stackoverflow.com/questions/274626/what-is-object-slicing</a></p>
+<p><code>final</code> 类的指针 / 引用做 virtual function call 容易被优化：<a href="https://godbolt.org/z/nre68aj4n">https://godbolt.org/z/nre68aj4n</a></p>
 <p>虽然 C++ 标准并未规定虚函数的具体实现，但几乎所有的 C++ 编译器都通过虚表 (virtual table) 来</p>
 <p>虚拟函数调用 (virtual function call) 的主要性能开销事实上是对流水线预测的破坏；其内存访问和跳转本身并没有很显著的额外开销。虚拟函数调用的成本主要应当与函数本身的时长相比较。</p>
 <p>可以通过 <code>final</code> 声明类不能被继承，或者成员函数不能被 override</p>
-<p>派生类可以 override 非 virtual 成员函数，但通常不要这么做：<a href="https://isocpp.org/wiki/faq/strange-inheritance#redefining-nonvirtuals">https://isocpp.org/wiki/faq/strange-inheritance#redefining-nonvirtuals</a></p>
+<p>派生类可以重新定义 ("override") 非 virtual 成员函数，但通常不要这么做。做这样的事情的场景一般是，子类有更多的信息，从而能以更高的效率完成 <strong>相同</strong> 的工作；但程序员应当保证子类和基类的这一函数的行为是相同的。<a href="https://isocpp.org/wiki/faq/strange-inheritance#redefining-nonvirtuals">Ref</a></p>
 <p>通常的编译器实现会将 vtable 放在定义了第一个非 inline virtual 函数被定义的编译单元</p>
 <p><img alt="" src="../assets/2023-06-01-14-51-02.png" /></p>
 <p>受控的是访问权而不是可见性：</p>
@@ -3630,6 +3634,8 @@
 <span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div>
+<p><a href="https://youtu.be/SShSV_iV1Ko">Back to Basics: Class Layout - Stephen Dewhurst - CppCon 2020</a></p>
+<p><a href="https://youtu.be/QzJL-8WbpuU">CppCon 2017: Arthur O'Dwyer “dynamic_cast From Scratch”</a></p>
 <h2 id="-显式类型转换">▲ 显式类型转换<a class="headerlink" href="#-显式类型转换" title="Permanent link">&para;</a></h2>
 <p>阅读 DnE 14 章、Effective C++ 条款 27</p>
 <p>cast operators (C++98) <a href="https://stackoverflow.com/questions/103512/why-use-static-castintx-instead-of-intx">https://stackoverflow.com/questions/103512/why-use-static-castintx-instead-of-intx</a></p>
@@ -3644,7 +3650,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-06-10T10:06:11+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-06-10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-06-10T21:20:13+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-06-10</span>
       
         <br>
         创建日期:

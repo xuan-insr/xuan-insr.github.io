@@ -11,6 +11,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://xuan-insr.github.io/tmp/</loc>
+         <lastmod>2023-06-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://xuan-insr.github.io/compile_principle/</loc>
          <lastmod>2023-06-10</lastmod>
          <changefreq>daily</changefreq>
