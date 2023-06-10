@@ -1,6 +1,20 @@
 # 8 类 (V) - 继承与抽象类、访问控制
 
+类的布局绝大多数是 implementation-defined 或者 unspecified 的；为数不多被指定了的是，具有相同 access control 的成员会按顺序分配，但每个成员后仍然有可能有实现决定的填充。^[class.mem.general#19](https://timsong-cpp.github.io/cppwp/n4868/class.mem.general#19)^
+
+
+
 虽然 C++ 标准并未规定虚函数的具体实现，但几乎所有的 C++ 编译器都通过虚表 (virtual table) 来
+
+虚拟函数调用 (virtual function call) 的主要性能开销事实上是对流水线预测的破坏；其内存访问和跳转本身并没有很显著的额外开销。虚拟函数调用的成本主要应当与函数本身的时长相比较。
+
+可以通过 `final` 声明类不能被继承，或者成员函数不能被 override
+
+派生类可以 override 非 virtual 成员函数，但通常不要这么做：https://isocpp.org/wiki/faq/strange-inheritance#redefining-nonvirtuals
+
+通常的编译器实现会将 vtable 放在定义了第一个非 inline virtual 函数被定义的编译单元
+
+![](assets/2023-06-01-14-51-02.png)
 
 受控的是访问权而不是可见性：
 
