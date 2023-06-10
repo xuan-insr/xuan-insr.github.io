@@ -130,6 +130,12 @@ iterator_traits
 
 https://godbolt.org/z/rr8TGYx5j
 
+https://godbolt.org/z/eYKM8Mcq8
+
+gcc 8.4~9.5 `-std=c++2a -fconcepts`
+
+gcc 10.1~ `-std=c++20`
+
 ---
 
 

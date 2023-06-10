@@ -2,6 +2,14 @@
 
 类的布局绝大多数是 implementation-defined 或者 unspecified 的；为数不多被指定了的是，具有相同 access control 的成员会按顺序分配，但每个成员后仍然有可能有实现决定的填充。^[class.mem.general#19](https://timsong-cpp.github.io/cppwp/n4868/class.mem.general#19)^
 
+What if `Base b = d;` or `b = d;`?
+
+Default: `Base::Base(const Base &);` `Base& Base::operator=(const Base &);`
+
+「Object Slicing」https://stackoverflow.com/questions/274626/what-is-object-slicing
+
+`final` 类的指针 / 引用做 virtual function call 容易被优化：https://godbolt.org/z/nre68aj4n
+
 
 
 虽然 C++ 标准并未规定虚函数的具体实现，但几乎所有的 C++ 编译器都通过虚表 (virtual table) 来
@@ -10,7 +18,7 @@
 
 可以通过 `final` 声明类不能被继承，或者成员函数不能被 override
 
-派生类可以 override 非 virtual 成员函数，但通常不要这么做：https://isocpp.org/wiki/faq/strange-inheritance#redefining-nonvirtuals
+派生类可以重新定义 ("override") 非 virtual 成员函数，但通常不要这么做。做这样的事情的场景一般是，子类有更多的信息，从而能以更高的效率完成 **相同** 的工作；但程序员应当保证子类和基类的这一函数的行为是相同的。[Ref](https://isocpp.org/wiki/faq/strange-inheritance#redefining-nonvirtuals)
 
 通常的编译器实现会将 vtable 放在定义了第一个非 inline virtual 函数被定义的编译单元
 
@@ -39,6 +47,10 @@ class Bar : public Foo {
   }
 };
 ```
+
+[Back to Basics: Class Layout - Stephen Dewhurst - CppCon 2020](https://youtu.be/SShSV_iV1Ko)
+
+[CppCon 2017: Arthur O'Dwyer “dynamic_cast From Scratch”](https://youtu.be/QzJL-8WbpuU)
 
 ## ▲ 显式类型转换
 

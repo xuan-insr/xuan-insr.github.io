@@ -53,6 +53,28 @@ Src: https://www.ralfj.de/blog/2018/07/24/pointers-and-bytes.html
 - `Attribute [[assume]]`：C++23，告诉编译器可以依据哪些额外的信息进行优化；但是很容易引发 UB；TODO；`std::unreachable()~
 - struct 的比较：`std::tie`, https://en.cppreference.com/w/cpp/language/operators#Comparison_operators
 
+#### 关于数组初始化
+
+`int a[4] = {1, 2};` 效果等同于 `int a[4] = {1, 2, 0, 0};`：
+
+初始化 `int a[4] = {1, 2};` 是 [aggregate initialization](https://en.cppreference.com/w/cpp/language/aggregate_initialization)。第一个元素是 explicitly initialized element，其他的则不是。非 explicitly initialized element 规定如下：
+
+![](assets/2023-06-01-11-23-45.png)
+
+此时，即 list initialization `int a_1 = {};`。其中规定：
+
+![](assets/2023-06-01-11-29-53.png)
+
+而 value initialization 对于基本类型是 zero-initialized 的：
+
+![](assets/2023-06-01-11-34-40.png)
+
+而 zero initialization 对于标量类型即为显式 cast 到 0：
+
+![](assets/2023-06-01-11-34-08.png)
+
+
+
 ## 要看的
 
 [c++faq](https://isocpp.org/wiki/faq)
