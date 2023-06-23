@@ -3,7 +3,7 @@
 !!! warning
     本章部分内容建立在掌握至少一门汇编语言的基础上，例如修读过计算机系统概论或汇编语言等课程。
 
-我们讨论过，计算机的 performance 受 **inst#, clock cycle time 和 clock cycles per inst (CPI)** 决定。给定一个程序，需要使用的 inst# 受编译器和 inst set architecture 决定。
+我们讨论过，计算机的 performance 受 **#inst, clock cycle time 和 clock cycles per inst (CPI)** 决定。给定一个程序，需要使用的 #inst 受编译器和 inst set architecture 决定。
 
 本章介绍 RISC-V 的 ISA。
 
@@ -17,7 +17,7 @@ RISC-V architecture 也提供一系列浮点数寄存器 `f0` ~ `f31` ，这不�
 
 #### 寻址
 
-RISC-V architecture 的地址是 64 位的，地址为字节地址，因此总共可以寻址 $2^{64}$ 个字节，即 $2^{61}$ 个 dword (doubleword, 下同)。
+RISC-V architecture 的地址是 64 位的，地址为字节地址，因此总共可以寻址 $2^{64}$ 个字节，即 $2^{61}$ 个 dword (doubleword, 下同)，因为一个 dword 占 $\log_2{\frac{64}{8}}=3$ 位。
 
 在一些 architecture 中，word 的起始地址必须是 word 大小的整倍数，dword 也一样，这种要求称为 **alignment restriction**。RISC-V 允许不对齐的寻址，但是效率会低。
 
@@ -26,6 +26,8 @@ RISC-V 使用 **little endian** 小端编址。也就是说，当我们从 0x100
 <center>
     ![](2023-05-06_19-21-08.png)
 </center>
+
+> 一个记忆方法是，如果你将地址横着写，即从左到右递增，那么对于大端来说是比较自然的，但是对于小端来说会比较不自然。以上面的 `0A0B0C0D` 为例子，大端为从低地址到高地址是 `0A` `0B ` `0C` `0D`，而小端从低到高地址则是 `0D` `0C` `0B` `0A`。
 
 RISC-V 支持 PC relative 寻址、立即数寻址 ( `lui` )、间接寻址 ( `jalr` )、基址寻址 ( `8(sp)` )：
 
