@@ -783,3 +783,5 @@ https://godbolt.org/z/oq3zPj67s
 - RTTI
 - vtable 里还有什么
 - class layout
+
+TODO：构造和析构与 virtual

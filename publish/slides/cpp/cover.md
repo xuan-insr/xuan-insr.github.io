@@ -20,8 +20,8 @@ revealOptions:
 
 <br>
 
-# 6 类 | Classes (III)
+# 11 类 (IV) - 继承
 
 <br>
 
-## 6.3 Copy Elision ("RVO" & NRVO)
+## 11.7 本章小结
