@@ -6,11 +6,44 @@
     - [1.1 Eight Great Ideas](#11-eight-great-ideas)
     - [1.5 Performance](#15-performance)
 
+- 冯·偌伊曼架构
+  - 计算与存储分离
+  - 数据和指令放在同一个存储器
+
+<center>
+    ![](2023-06-23_12-05-34.png)
+</center>
+
+```mermaid
+graph LR;
+A["Computer\nSystem"]
+B["Software"]
+C["Hardware"]
+D["CPU"]
+E["Memory"]
+F["I/O\ninterface"]
+G["Control\nunit"]
+H["Datapath"]
+
+A--->B
+A--->C
+C--->D
+C--->E
+C--->F
+D--->G
+D--->H
+```
+
+
 ## 1.1 Eight Great Ideas
+
+部分在实际题目中还挺难区分的，注意识别题目中的关键暗示。此外，先学习了之后的内容会对部分思想有更深刻的理解。
 
 - Design for Moore’s Law （设计紧跟摩尔定律）
     - **Moore's Law**: Integrated circuit resources double every 18-24 months.
+    - Design for where it will be when finishes rather than design for where it starts.
 - Use Abstraction to Simplify Design (采用抽象简化设计)
+    - 层次化、模块化的设计
 - Make the Common Case Fast (加速大概率事件)
 - Performance via Parallelism (通过并行提高性能)
 - Performance via Pipelining (通过流水线提高性能)
@@ -18,10 +51,10 @@
     - 相比于等一个产品完全生产完再开始下一个产品的生产，会快很多；
     - 希望每一个流程的时间是相对均匀的；
 - Performance via Prediction (通过预测提高性能)
-- 例如先当作 `if()` 条件成立，执行完内部内容，如果后来发现确实成立，那么直接 apply，否则就再重新正常做；
+    - 例如先当作 `if()` 条件成立，执行完内部内容，如果后来发现确实成立，那么直接 apply，否则就再重新正常做；
     - 这么做就好在（又或者说只有这种情况适合预测），预测成功了就加速了，预测失败了纠正的成本也不高； 
 - Hierarchy of Memories (存储器层次)
-    - Disk / Tape -> Main Memory(DRAM) -> L2-Cache(SRAM) -> L1-Cache -> Registers
+    - Disk / Tape -> Main Memory(DRAM) -> L2-Cache(SRAM) -> L1-Cache(On-Chip) -> Registers
 - Dependability via Redundancy (通过冗余提高可靠性)
     - 类似于卡车的多个轮胎，一个模块 down 了以后不会剧烈影响整个系统；
 
@@ -97,7 +130,7 @@ $$
 \text{Performance}_X = \frac{1}{\text{Execution time}_X}
 $$
 
-而相对性能(Relative Performance)就是非常 naive 的对两个比较对象求比值。
+而相对性能(Relative Performance)就是非常 naive 地对两个比较对象求比值，我们通常所说的比较两个东西的性能，也就是指计算它们的相对性能。
 
 当我们需要衡量一个 CPU 的性能，或者具体去分析一个 CPU 的性能构成时，就需要更加具体的指标：
 
@@ -209,3 +242,27 @@ $$
 - $KB = 10^3 B, KiB = 2^{10} B$
 - K M G T P E Z Y
 - **Amdahl Law**   $T_{\text{improved}} = \cfrac{T_{\text{affected}}}{\text{Improvement Factor}}+T_\text{unaffected}$ [🔗 Wiki](https://zh.wikipedia.org/wiki/%E9%98%BF%E5%A7%86%E8%BE%BE%E5%B0%94%E5%AE%9A%E5%BE%8B)
+
+- MIPS: Millions of Instructions Per Seconds
+
+$$
+\begin{aligned}
+MIPS 
+&= \frac{\text{\#Instructions}}{\text{Execution time} \times 10^6} \\
+&= \frac{\text{\#Instructions}}{
+    \frac{
+        \text{Instruction count} \times \text{CPI}
+    }{
+        \text{Clock rate}
+    } \times 10^6
+} \\
+&= \frac{\text{Clock rate}}{\text{CPI} \times 10^6}
+    
+\end{aligned}
+$$
+
+### 内存
+
+<center>
+    ![](2023-06-23_17-12-24.png)
+</center>
