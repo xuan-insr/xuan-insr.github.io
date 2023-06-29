@@ -3725,25 +3725,28 @@
 
 <h1 id="2-instructions">2 Instructions<a class="headerlink" href="#2-instructions" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 1608 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 5 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 1711 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 6 分钟</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>本章部分内容建立在掌握至少一门汇编语言的基础上，例如修读过计算机系统概论或汇编语言等课程。</p>
 </div>
-<p>我们讨论过，计算机的 performance 受 <strong>inst#, clock cycle time 和 clock cycles per inst (CPI)</strong> 决定。给定一个程序，需要使用的 inst# 受编译器和 inst set architecture 决定。</p>
+<p>我们讨论过，计算机的 performance 受 <strong>#inst, clock cycle time 和 clock cycles per inst (CPI)</strong> 决定。给定一个程序，需要使用的 #inst 受编译器和 inst set architecture 决定。</p>
 <p>本章介绍 RISC-V 的 ISA。</p>
 <h3 id="21-寄存器寻址方式">2.1 寄存器，寻址方式<a class="headerlink" href="#21-寄存器寻址方式" title="Permanent link">&para;</a></h3>
 <h4 id="寄存器">寄存器<a class="headerlink" href="#寄存器" title="Permanent link">&para;</a></h4>
 <p>RISC-V architecture 提供 32 个数据寄存器，分别命名为 <code>x0</code> ~ <code>x31</code> ，每个寄存器的大小是 <code>64</code> 位。在 RISC-V architecture 中，一个 <strong>word</strong> 为 32 位，一个 <strong>doubleword</strong> 为 64 位。这些寄存器中的一部分有专门的用途，我们稍后对其进行讨论。</p>
 <p>RISC-V architecture 也提供一系列浮点数寄存器 <code>f0</code> ~ <code>f31</code> ，这不是我们讨论的重点。</p>
 <h4 id="寻址">寻址<a class="headerlink" href="#寻址" title="Permanent link">&para;</a></h4>
-<p>RISC-V architecture 的地址是 64 位的，地址为字节地址，因此总共可以寻址 <span class="arithmatex">\(2^{64}\)</span> 个字节，即 <span class="arithmatex">\(2^{61}\)</span> 个 dword (doubleword, 下同)。</p>
+<p>RISC-V architecture 的地址是 64 位的，地址为字节地址，因此总共可以寻址 <span class="arithmatex">\(2^{64}\)</span> 个字节，即 <span class="arithmatex">\(2^{61}\)</span> 个 dword (doubleword, 下同)，因为一个 dword 占 <span class="arithmatex">\(\log_2{\frac{64}{8}}=3\)</span> 位。</p>
 <p>在一些 architecture 中，word 的起始地址必须是 word 大小的整倍数，dword 也一样，这种要求称为 <strong>alignment restriction</strong>。RISC-V 允许不对齐的寻址，但是效率会低。</p>
 <p>RISC-V 使用 <strong>little endian</strong> 小端编址。也就是说，当我们从 0x1000 这个地址读出一个 dword 时，我们读到的实际上是 0x1000~0x1007 这 8 个字节，并将 0x1000 存入寄存器低位，0x1007 存入高位。</p>
 <p><center>
     <img alt="" src="../2023-05-06_19-21-08.png" />
 </center></p>
+<blockquote>
+<p>一个记忆方法是，如果你将地址横着写，即从左到右递增，那么对于大端来说是比较自然的，但是对于小端来说会比较不自然。以上面的 <code>0A0B0C0D</code> 为例子，大端为从低地址到高地址是 <code>0A</code> <code>0B</code> <code>0C</code> <code>0D</code>，而小端从低到高地址则是 <code>0D</code> <code>0C</code> <code>0B</code> <code>0A</code>。</p>
+</blockquote>
 <p>RISC-V 支持 PC relative 寻址、立即数寻址 ( <code>lui</code> )、间接寻址 ( <code>jalr</code> )、基址寻址 ( <code>8(sp)</code> )：</p>
 <p><img alt="image.png" src="../../../assets/1654055499913-f3fd752f-06b7-43e4-a06f-3640e66481ed.png" /></p>
 <h4 id="补码-2s-complement">补码 2's complement<a class="headerlink" href="#补码-2s-complement" title="Permanent link">&para;</a></h4>
@@ -3820,7 +3823,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-05-06T12:17:55+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-05-06</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-06-23T09:33:27+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-06-23</span>
       
         <br>
         创建日期:

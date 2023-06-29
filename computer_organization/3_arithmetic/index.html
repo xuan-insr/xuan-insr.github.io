@@ -2711,6 +2711,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#booths-algorithm" class="md-nav__link">
+    Booth's Algorithm。
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3831,6 +3838,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#booths-algorithm" class="md-nav__link">
+    Booth's Algorithm。
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3901,7 +3915,7 @@
 
 <h1 id="3-arithmetic">3 Arithmetic<a class="headerlink" href="#3-arithmetic" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 4204 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 14 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 5104 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 17 分钟</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">提示</p>
@@ -3943,8 +3957,11 @@
 <p>首先 <code>Overflow</code> 是容易理解的，它用来表示加法或减法有没有出现溢出的现象；显然这个判断只需要在 ALU63，即 Most Significant Bit 才需要进行。容易证明，如果 <span class="arithmatex">\(C_{in} \oplus C_{out} = 1\)</span>，那么存在溢出；因此 ALU63 只需要添加一个额外的 XOR 门即可完成这一判断。</p>
 <blockquote>
 <p>Tip: 这里提到的 <span class="arithmatex">\(C_{in}\)</span> 和 <span class="arithmatex">\(C_{out}\)</span> 指的都是最后一个 ALU 的 carry in 和 carry out。</p>
+<p>简单做解释，首先，最后一位是符号位。<span class="arithmatex">\(C_{in} \oplus C_{out} = 1\)</span> 意味着其中一个是 1，另外一个是 0；
+- 假设 <span class="arithmatex">\(C_{in} = 1, \, C_{out} = 0\)</span>，则意味着 <span class="arithmatex">\(a_{63}\)</span> 和 <span class="arithmatex">\(b_{63}\)</span> 都为 0，即两个 operand 都是正数，此时由于 <span class="arithmatex">\(C_{in} = 1\)</span>，所以 <span class="arithmatex">\(res_{63}=1\)</span> 即结果是负数，两正数相加得到负数，发生 overflow；
+- 假设 <span class="arithmatex">\(C_{in} = 0, \, C_{out} = 1\)</span>，则意味着 <span class="arithmatex">\(a_{63}\)</span> 和 <span class="arithmatex">\(b_{63}\)</span> 都为 1，即两个 operand 都是负数，此时由于 <span class="arithmatex">\(C_{out} = 0\)</span>，所以 <span class="arithmatex">\(res_{63}=0\)</span> 即结果是正数，两负数相加得到正数，发生 overflow；</p>
 </blockquote>
-<p><code>Less</code> 和 <code>Set</code> 共同使用，是为了实现 <code>slt rd, rs1, rs2</code> 这个操作（即实现比较操作）（SLT 即 Set Less Than）的。这个操作的含义是，如果 <code>rs1 &lt; rs2</code> ，那么将 <code>rd</code> 置为 <code>1</code> ，否则置为 <code>0</code> 。如何进行这一判断呢？很简单，如果 <code>rs1 - rs2</code> 的结果为负，也就是说如果 <code>rs1 - rs2</code> 结果的最高位是 <code>1</code> ，那么就说明 <code>rs1 &lt; rs2</code> 。所以等价地，对于 <code>slt</code> 这个操作，我们只需要将 ALU63 中加法器的结果（即最终结果的符号位）赋值给 <code>Result[0]</code> ，即运算结果的 Least Significant Bit，而将其他位的结果 <code>Result[1:63]</code> 都设成 0，就可以完成 <code>slt</code> 操作了。</p>
+<p><code>Less</code> 和 <code>Set</code> 共同使用，是为了实现 <code>slt rd, rs1, rs2</code> 这个操作（即实现比较操作）（SLT 即 Set Less Than）的。这个操作的含义是，如果 <code>rs1 &lt; rs2</code> ，那么将 <code>rd</code> 置为 <code>1</code> ，否则置为 <code>0</code> 。如何进行这一判断呢？很简单，<code>rs1 &lt; rs2</code> 即 <code>rs1 - rs2 &lt; 0</code>，也就是说如果 <code>rs1 - rs2</code> 结果的最高位是 <code>1</code> ，那么就说明 <code>rs1 &lt; rs2</code> 。所以对于 <code>slt</code> 这个操作，我们只需要计算 <code>rs1 - rs2</code>，而后将 ALU63 中加法器的结果（即最终结果的符号位）赋值给 <code>Result[0]</code> ，即运算结果的 Least Significant Bit，而将其他位的结果 <code>Result[1:63]</code> 都设成 0，就可以完成 <code>slt</code> 操作了。</p>
 <p>所以可以看到，上图中，除了 ALU0 的 <code>Less</code> 来自 ALU63 的 <code>Set</code> 外，其他 ALU 的 <code>Less</code> 都是 <code>0</code> 。</p>
 <p>结合上述讨论，上图中 ALU0 ~ ALU62 的结构如下第一张图所示，ALU63 的结构如下第二张图所示：</p>
 <p><center><img alt="image.png" src="../../../assets/1654430550957-7cc66c76-4fce-415a-bcc7-a43c0eac8bc1.png" width="500" /></center></p>
@@ -4026,14 +4043,36 @@
 <li>判断是否做满 64 次，决定是否终止；</li>
 </ol>
 <hr />
-<p>乘有符号数不太一样</p>
+<p>乘有符号数主要是转化为乘无符号数来做。首先存储两个数的符号，然后将它们转化为无符号数。接下来对两个无符号数做无符号乘法，最后根据之前存储的符号决定结果的符号并转化为有符号数。</p>
 <hr />
+<p>一种改进的乘法方法是 Booth's Algorithm。</p>
+<h3 id="booths-algorithm">Booth's Algorithm。<a class="headerlink" href="#booths-algorithm" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Booth's Algorithm（有点类似于差分算法）</li>
 </ul>
+<blockquote>
+<p>我个人觉得 xyx 放的这张图不是很清晰，把它折叠了。</p>
+</blockquote>
+<details class="tip">
+<summary>xyx's img</summary>
 <p><center>
     <img alt="" src="../2023-05-05_20-54-20.png" />
 </center></p>
+</details>
+<p>在我看来，Booth's Algorithm 的主要思想在于，减少乘数中“<code>1</code>”的数量。具体来说，在我们原先的乘法策略中，每当乘数中有一位 <code>1</code> 时，都会需要一个加法（将位移后的被乘数累加到结果中）。但是，如果乘数中有较长的一串 <code>1</code> 时，我们可以将它转化为一个大数字减一个小数，如：<code>00111100 = 01000000 - 00000100</code>，此时 4 个 <code>1</code> 变为 2 个 <code>1</code>，我们就可以减少做加法的次数。这也是为什么 xyx 说有点像差分了。</p>
+<p><center>
+    <img alt="" src="../2023-06-23_13-29-37.png" />
+</center></p>
+<p>那么在实际执行过程中，Booth's Algorithm 主要遵循两位比特的模式进行操作。</p>
+<p><center>
+    <img alt="" src="../2023-06-23_13-38-32.png" />
+    <img alt="" src="../2023-06-23_13-46-15.png" />
+</center></p>
+<blockquote>
+<p>对于上面这张图的理解，稍微做一些解释。它实际上的表示是挪用了 V3 的乘法器。product 一列代表的是 product 寄存器，左一半一开始置 0，右一半一开始存放的是乘数，而上面提到的将被乘数加减累计到结果中的操作，也是对于左半部分来说的（<strong>换句话来说就是用 V3 做 Booth's</strong>）。需要提醒的是，在 Booth's Algorithm 中，两位识别是从第一位开始的，此时第一位作为两位中的高位，低位为 0，而后在下一轮中第一位作为低位，第二位作为高位，以此类推。</p>
+</blockquote>
+<p>有意思的事出现了，Booth's Algorithm 也能应用于负数。</p>
+<p>仔细想想就会发现其实很合理，对于正数，其最高位一定是 <code>0</code>，因此不管怎么样它最终都会匹配到一个 <code>01</code> 的模式，来给一个 <code>1111..</code> 收尾。但是负数不然，负数的最高位是 <code>1</code>，这也意味着它最终不会执行所谓的 <code>01</code> 对应的加法操作来给 <code>111...</code> 收尾。换句话来说，它好像“亏”了一个在下一位的加法。（具体的为什么我来不及细想了，但是只管上理解这个“亏”很合理.）</p>
 <h2 id="33-除法-暂时不想学了听说考的不多">3.3 除法 暂时不想学了，听说考的不多<a class="headerlink" href="#33-除法-暂时不想学了听说考的不多" title="Permanent link">&para;</a></h2>
 <p>和乘法很像。</p>
 <h2 id="34-浮点运算">3.4 浮点运算<a class="headerlink" href="#34-浮点运算" title="Permanent link">&para;</a></h2>
@@ -4082,6 +4121,9 @@
 </ul>
 </li>
 </ul>
+<blockquote>
+<p>有时候题目里会出不同的浮点数表示法，让你比较精度，此时一般指的是，fraction + exponent 总位数相同的情况下，fraction 更多的一般更精确，也就是说这个精度更倾向于“能表示更多的小数位”。</p>
+</blockquote>
 <div class="admonition info">
 <p class="admonition-title">18~19 Final</p>
 <p><center><img alt="image.png" src="../../../assets/1655018545639-c1ced675-3229-464b-94c1-5c684361738b.png" width="600" /></center></p>
@@ -4095,7 +4137,7 @@
 <p>以 <span class="arithmatex">\(1.000_2\times2^{-1}-1.110_2\times2^{-2}\)</span> 为例， 浮点数的加减法分为以下几步：</p>
 <ol>
 <li>Alignment: 指数对齐，<strong>将小指数对齐到大指数</strong>：<span class="arithmatex">\(-1.110_2\times2^{-2} = -0.111\times2^{-1}\)</span><ol>
-<li>为什么是小对大？因为在计算过程中，我们保持的精确位数是有限的，而在迫不得已丢去精度的过程中，让小的那个数的末几位被丢掉的代价比大的要小；</li>
+<li>为什么是小对大？首先，小对大的过程是在小指数的 fraction 前补 <code>0</code>，可能导致末尾数据丢失；大对小的过程是在大指数的 fraction 后补 <code>0</code>，可能导致前面的数据丢失。在计算过程中，我们保持的精确位数是有限的，而在迫不得已丢去精度的过程中，让小的那个数的末几位被丢掉的代价比大的前几位丢失要小太多了；</li>
 </ol>
 </li>
 <li>Addiction Fraction 部分相加减：<span class="arithmatex">\(1.000-0.111=0.001\)</span></li>
@@ -4131,7 +4173,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-05-05T13:42:05+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-05-05</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-06-23T06:39:30+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-06-23</span>
       
         <br>
         创建日期:
