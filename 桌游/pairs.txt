@@ -1,0 +1,30 @@
+#expand
+{: colspan=4}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"}
+#想买
+<span class="box box-red">想买</span>
+#买了
+<span class="box box-green">买了！</span>
+#好复刻
+<span class="box box-yellow">好复刻</span>
+#5
+<span class="box box-green">5</span>
+#4.5
+<span class="box box-green">4.5</span>
+#4
+<span class="box box-green">4</span>
+#3.5
+<span class="box box-blue">3.5</span>
+#3
+<span class="box box-blue">3</span>
+#2.5
+<span class="box box-blue">2.5</span>
+#2
+<span class="box box-yellow">2</span>
+#1.5
+<span class="box box-yellow">1.5</span>
+#1
+<span class="box box-yellow">1</span>
+#0.5
+<span class="box box-red">0.5</span>
+#0
+<span class="box box-red">0</span>
