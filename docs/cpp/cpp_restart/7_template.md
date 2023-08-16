@@ -639,7 +639,21 @@ sort(v.begin(), v.end(), cmp);
 
 注意，比较函数逻辑上相当于 `a 严格在 b 前面` 。因此当两个元素相等时，比较函数总是应当返回 false。
 
-自定义比较函数可以适用更复杂的排序，例如需要比较的元素本身并没有内置的比较运算符的时候。例如：
+???+ info "lambda 表达式"
+    我们可以通过 **lambda 表达式** 来简化上面的写法：
+
+    ```cpp
+    vector<int> v = {3, 1, 4, -2, 5, 3};
+    sort(v.begin(), v.end(), [](const int& a, const int& b) { return a > b; });
+    ```
+
+    这段代码实现的效果和前面那段代码完全相同，好处是我们没有引入一个额外的函数，这在程序中包含多种不同的排序方式，且每种只用到一次的情况下非常有用。
+
+    lambda 表达式形如 `[](){}`，其中 `()` 中是参数列表，`{}` 中是函数体，返回值类型由编译器根据 `return` 语句推断。`[]` 中的内容我们在后面的章节详细介绍。
+
+    lambda 表达式类似于「匿名函数」的概念，但其作用不止于此，我们会在后面的章节详细介绍 lambda 表达式的详细知识。
+
+自定义比较函数可以适用更复杂的排序，例如需要比较的元素本身并没有内置的比较运算符的时候：
 
 ```cpp
 bool cmp(const vector<int>& a, const vector<int>& b) {
@@ -664,6 +678,8 @@ void foo(vector<vector<int>> & foo) {
 
     关于具体的使用场景，则需要大家在具体的做题或者编程过程中尝试发现。通常这些东西的使用是明确的：需要排序时使用 `sort`；需要在有序数组中查询内容使用 `upper_bound`, `lower_bound`, `binary_search` 等；需要去重时使用 `unique` 或者 `set` 或者 `unordered_set`；需要字典时使用 `map` 或者 `unordered_map` 等。CppReference 中也可以找到这些算法或者容器的各种操作的复杂度。「使用什么」的问题更多关于题目或者代码逻辑本身，并非本文的讨论重点。
 
+#### 7.3.2.1 数据结构
+
 [Containers library](https://en.cppreference.com/w/cpp/container) 中提供了若干种 container 和若干种 adaptors。
 
 容器扮演的作用是提供一些数据结构，它们的大概类型如下面三张图所示（图片来源见 7.3 节开始的 note）：
@@ -684,9 +700,167 @@ void foo(vector<vector<int>> & foo) {
 
 <center>![](2023-04-07-01-32-52.png){width=400}</center>
 
-而 [Algorithms library](https://en.cppreference.com/w/cpp/algorithm) 提供了更多的算法，其中常用的部分我们在 [快速入门 C++ 写题](../../cpp_for_contests) 有所介绍。大家也可以在阅读完第 8 节后，自行阅读网页中的内容，查阅这些算法。
+#### 7.3.2.2 算法
 
-另外，其中关于 C++20 引入的 `ranges` namespace 下的算法版本，我们会在后面的章节中具体介绍其背景和动机；大家可以暂时先行跳过。
+[Algorithms library](https://en.cppreference.com/w/cpp/algorithm) 提供了更多的算法，其中常用的部分我们在 [快速入门 C++ 写题](../../cpp_for_contests) 有所介绍。大家也可以在阅读完第 8 节后，自行阅读网页中的内容，查阅这些算法。下面我们给出一些简单好用的例子
+
+**Non-modifying sequence operations**
+
+- `auto it = std::find(v.begin(), v.end(), 3);`
+    - 这里的 `v.begin()` 和 `v.end()` 获取容器 `v` 的开始和结尾[^end]，其返回值类型是这个容器的 **迭代器 (iterator)**；我们会在下一节中详细介绍迭代器是什么，现在我们可以把它简单地理解为「指针」。
+    - 这里 `std::find(first, last, value)` 在 `[first, last)` 这个左闭右开的范围内（通常是某个数组或容器的若干连续元素）查找值为 `value` 的元素，如果找到则返回对应元素的迭代器，否则返回 `last`。
+    - 从上面一条我们容易得知，`std::find` 的返回值类型是对应容器的迭代器；如果对于 `std::vector<int>`，那么返回值类型就是 `std::vector<int>::iterator`。不过，我们也许懒得写这个类型，因此在 C++11 开始，我们可以用 `auto it = std::find(...)` 来代替 `std::vector<int>::iterator it = std::find(...)`；即用 **placeholder type specifier** `auto` 告知编译器：**这个变量的类型请编译器自己推导**，而推导的依据就是初始化器（即等号右边部分）表达式的类型。编译器完成这样推导的过程和模板参数推导的方式完全一致。我们会在后面的章节中详细介绍 `auto` 的更多用法。
+- `int n = std::count(v.begin(), v.end(), 3);`
+    - `std::count` 的含义是显然的，即统计 `[first, last)` 的范围内 `3` 的个数。
+- `int n = std::count_if(v.begin, v.end(), [](int i) { return i % 4 == 0; });`
+    - 这里的 `[](int i) { return i % 4 == 0; }`  是本节前面介绍的 lambda 表达式，请大家复习。
+    - `std::count_if(first, last, p)` 统计 `[first, last)` 范围内，满足谓词 `p` 的元素个数。
+- `std::for_each(v.begin(), v.end(), [](int &n){ n *= 2; });`
+    - `std::for_each(first, last, f)` 对 `[first, last)` 范围内的每个元素依次执行函数 `f`；例如本例会让 `v` 的所有元素变成原来的 2 倍。
+
+[^end]: 这里「结尾」实际上指 one-past-the-end position，详见下一节
+
+!!! info
+    下面的一些例子，其含义可以容易地从其函数名中理解；如果遇到拿不准的情况，不妨自己写个代码尝试一下！
+
+    再次提醒，此处的举例 **不是** STL 算法的全部，大家可以在 [Algorithms library](https://en.cppreference.com/w/cpp/algorithm) 获得更详尽的列表！
+
+**Modifying sequence operations**
+
+- `std::reverse(v.begin(), v.end());`
+- `std::fill(v.begin(), v.end(), -1);`
+
+**Partitioning operations**
+
+```c++
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+int main() {
+    std::vector<int> v = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    std::cout << "Original vector: ";
+    for (int elem : v)
+        std::cout << elem << ' ';
+ 
+    auto it = std::partition(v.begin(), v.end(), [](int i){
+        return i % 2 == 0;
+    });
+ 
+    std::cout << "\nPartitioned vector: ";
+    auto print = [](int x){ std::cout << x << ' '; };
+    std::for_each(v.begin(), it, print);
+    std::cout << "* ";
+    std::for_each(it, v.end(), print);
+}
+
+/* Output:
+Original vector: 0 1 2 3 4 5 6 7 8 9 
+Partitioned vector: 0 8 2 6 4 * 5 3 7 1 9
+*/
+```
+
+**Sorting operations**
+
+- `std::sort(v.begin(), v.end(), std::greater<int>());`
+- `std::stable_sort(v.begin(), v.end());`
+- `std::partial_sort(v.begin(), v.begin() + 5, v.end());`
+
+**Binary search operations** (on sorted ranges)
+
+- `bool res = std::binary_search(v.begin(), v.end(), 4);`
+- `auto lower = std::lower_bound(data.begin(), data.end(), 5);`
+    - 返回范围内大于 5 的第一个元素的迭代器
+- `auto upper = std::upper_bound(data.begin(), data.end(), 5);`
+    - 返回范围内不小于 5 的第一个元素的迭代器
+
+![](2023-04-07-17-08-09.png)
+
+**Other operations on sorted ranges**
+
+```c++
+#include <algorithm>
+#include <iostream>
+#include <vector>
+ 
+template<class Iter>
+void merge_sort(Iter first, Iter last) {
+    if (last - first > 1) {
+        Iter middle = first + (last - first) / 2;
+        merge_sort(first, middle);
+        merge_sort(middle, last);
+        std::inplace_merge(first, middle, last);
+    }
+}
+ 
+int main() {
+    std::vector<int> v {8, 2, -2, 0, 11, 11, 1, 7, 3};
+    merge_sort(v.begin(), v.end());
+    for (auto n : v)
+        std::cout << n << ' ';
+    std::cout << '\n';
+}
+
+// Output: -2 0 1 2 3 7 8 11 11
+```
+
+**Set operations** (on sorted ranges)
+
+- `std::includes`
+- `std::set_difference`
+- `std::set_intersection`
+- `std::set_symmetric_difference`
+- `std::set_union`
+
+**Minimum/maximum operations**
+
+- `int maxn = std::max(a, b);`
+- `int maxn = std::max({a, b, c, d});`
+- `auto it = std::max_element(v.begin(), v.end());`
+
+**Heap operations**
+
+- `std::make_heap(v.begin(), v.end());`
+- `std::pop_heap(v.begin(), v.end()); int top = v.back();`
+- `v.push_back(6); std::push_heap(v.begin(), v.end());`
+
+**Comparison operations**
+
+- `bool res = std::equal(a.begin(), a.end(), b.begin());`
+- `bool res = std::lexicographical_compare(v1.begin(), v1.end(), v2.begin(), v2.end());`
+
+```c++
+bool is_palindrome(const std::string& s) {
+    return std::equal(s.begin(), s.begin() + s.size() / 2, s.rbegin());
+}
+```
+
+**Permutation operations**
+
+```c++
+#include <algorithm>
+#include <iostream>
+#include <string>
+ 
+int main() {
+    std::string s = "aba";
+    std::sort(s.begin(), s.end());
+ 
+    do std::cout << s << '\n';
+    while (std::next_permutation(s.begin(), s.end()));
+}
+
+/* Output:
+aab
+aba
+baa
+*/
+```
+
+!!! note
+    另外，其中关于 C++20 引入的 `ranges` namespace 下的算法版本，我们会在后面的章节中具体介绍其背景和动机；大家可以暂时先行跳过。
+
+
 
 ---
 

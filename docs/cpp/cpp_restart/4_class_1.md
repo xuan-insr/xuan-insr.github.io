@@ -261,7 +261,7 @@ public:
 
 `Container();` 会返回一个构造出的无名对象。不严谨地说，上面的语句将名字 `c` 绑定到了对应的无名对象上。为了代码更加简洁紧凑，C++ 允许更加简洁的写法：`Container c;`。
 
-[^copy_ctor]: 部分对 C++ 有基础了解的读者可能会认为，用这里返回的临时对象来构造 `c1` 或者 `c2` 时有可能调用拷贝构造函数。这在早期 C++ 中是有可能的，但是自 C++17 强制 copy elision 之后拷贝构造函数的调用不会发生，而是必定等价于 `Container c1;` 和 `Container c2(64);`。我们会在讨论拷贝构造时讨论这个问题。
+[^copy_ctor]: 部分对 C++ 有基础了解的读者可能会认为，用这里返回的临时对象来构造 `c1` 或者 `c2` 时有可能调用拷贝构造函数。这在早期 C++ 中是有可能的，但是自 C++17 强制 copy elision 之后拷贝构造函数的调用不会发生，即`Container()` 得到的是一个 prvalue，用这个 prvalue 去构造 `f` 时会出现 copy elision。事实上，在 C++17 之前，如果抑制 RVO，`Container f = Container();` 可能会触发一次构造和一次拷贝构造：https://godbolt.org/z/W55qWddM7 。因此，这里的构造必定等价于 `Container c1;` 和 `Container c2(64);`。我们会在讨论拷贝构造时讨论这个问题。
 
 因此，当我们在用 `Container c;` 定义一个对象时，就会调用构造函数。例如：
 
