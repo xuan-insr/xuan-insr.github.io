@@ -5168,7 +5168,7 @@ function toggleVisibilityFoot() {
 <p>或者成员函数模板的显式特化。&#160;<a class="footnote-backref" href="#fnref:redecl" title="Jump back to footnote 14 in the text">&#8617;</a></p>
 </li>
 <li id="fn:copy_ctor">
-<p>部分对 C++ 有基础了解的读者可能会认为，用这里返回的临时对象来构造 <code>c1</code> 或者 <code>c2</code> 时有可能调用拷贝构造函数。这在早期 C++ 中是有可能的，但是自 C++17 强制 copy elision 之后拷贝构造函数的调用不会发生，而是必定等价于 <code>Container c1;</code> 和 <code>Container c2(64);</code>。我们会在讨论拷贝构造时讨论这个问题。&#160;<a class="footnote-backref" href="#fnref:copy_ctor" title="Jump back to footnote 15 in the text">&#8617;</a></p>
+<p>部分对 C++ 有基础了解的读者可能会认为，用这里返回的临时对象来构造 <code>c1</code> 或者 <code>c2</code> 时有可能调用拷贝构造函数。这在早期 C++ 中是有可能的，但是自 C++17 强制 copy elision 之后拷贝构造函数的调用不会发生，即<code>Container()</code> 得到的是一个 prvalue，用这个 prvalue 去构造 <code>f</code> 时会出现 copy elision。事实上，在 C++17 之前，如果抑制 RVO，<code>Container f = Container();</code> 可能会触发一次构造和一次拷贝构造：<a href="https://godbolt.org/z/W55qWddM7">https://godbolt.org/z/W55qWddM7</a> 。因此，这里的构造必定等价于 <code>Container c1;</code> 和 <code>Container c2(64);</code>。我们会在讨论拷贝构造时讨论这个问题。&#160;<a class="footnote-backref" href="#fnref:copy_ctor" title="Jump back to footnote 15 in the text">&#8617;</a></p>
 </li>
 <li id="fn:initializer">
 <p>还有 braced-init-list。我们在后面讨论。&#160;<a class="footnote-backref" href="#fnref:initializer" title="Jump back to footnote 16 in the text">&#8617;</a></p>
@@ -5223,7 +5223,7 @@ function toggleVisibilityFoot() {
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-06-10T21:20:13+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-06-10</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-08-16T02:29:27+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-08-16</span>
       
         <br>
         创建日期:

@@ -979,6 +979,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#81-迭代器--iterators" class="md-nav__link">
+    8.1 迭代器 | Iterators
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#82-迭代器的分类" class="md-nav__link">
+    8.2 迭代器的分类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#泛型编程与-oop" class="md-nav__link">
     泛型编程与 OOP
   </a>
@@ -3612,6 +3626,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#81-迭代器--iterators" class="md-nav__link">
+    8.1 迭代器 | Iterators
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#82-迭代器的分类" class="md-nav__link">
+    8.2 迭代器的分类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#泛型编程与-oop" class="md-nav__link">
     泛型编程与 OOP
   </a>
@@ -3635,7 +3663,7 @@
 
 <h1 id="8-模板-ii---理解-stl迭代器与函数对象">8 模板 (II) - 理解 STL：迭代器与函数对象<a class="headerlink" href="#8-模板-ii---理解-stl迭代器与函数对象" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 380 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 1 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 3151 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 100 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 12 分钟</p>
 </div>
 <script>
 function inFootnote(element) {
@@ -3718,6 +3746,226 @@ function toggleVisibilityFoot() {
 <button onclick="toggleVisibilityFoot()" class="box box-green xyx-toggle2">点击此处隐藏本文所有脚注</button>
 </center></p>
 <hr />
+<h2 id="81-迭代器--iterators">8.1 迭代器 | Iterators<a class="headerlink" href="#81-迭代器--iterators" title="Permanent link">&para;</a></h2>
+<p>在上一节中我们看到，STL 中有十余种容器，同时有上百种算法。但是，我们很容易理解的是，即使是相同的算法，它在不同的容器上的具体实现也是不同的。看下面一个例子：</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;set&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;list&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">};</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">};</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">};</span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">print</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">){</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">print</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">print</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">l</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">print</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* Output:</span>
+<span class="cm">0 1 2 3 4 5 6 7 8 9 </span>
+<span class="cm">-1 1 2 4 </span>
+<span class="cm">1 5 6 2 7</span>
+<span class="cm">*/</span>
+</code></pre></div>
+<p>我们知道，<code>std::vector</code> 的底层数据结构是数组，<code>std::set</code> 的底层数据结构是红黑树，<code>std::list</code> 的底层数据是双向链表；<code>std::for_each</code> 对它们进行遍历的方式显然不同。</p>
+<p><center><img alt="Alt text" src="../image.png" width="400" /></center></p>
+<p>但是，对它们进行遍历的方式也有共通之处：对于 <code>for_each(c.begin(), c.end(), print);</code>，它需要做的事就是，从容器的 <strong>开头</strong> 开始，每次 <strong>找到下一个元素</strong>，<strong>访问元素内容</strong>，直到容器的 <strong>末尾</strong> 为止。即：<code>for (SomeType ptr = c.begin(); ptr != c.end(); go_to_next_node(ptr)) { print(get_value(ptr)); }</code>。</p>
+<div class="admonition inline end tips">
+<p class="admonition-title">Inline</p>
+<p>「迭代 (iteration)」的一个义项是 "One cycle of a set of instructions to be repeated"，即循环中的一次。在我们的语境中，我们的循环是为了遍历数据结构，迭代要做的事就是找到下一个元素和访问元素内容。</p>
+</div>
+<p>这里 <code>SomeType</code> 就是用来迭代 (iterate) 这个数据结构的变量的类型。显然，这个类型并不是数据结构中元素的类型，因为对于一个数组 <code>int a[10];</code>，我们需要通过一个 <code>int *</code> 才能找到下一个元素，而不是通过 <code>int</code>。即，这个循环形如 <code>for (int * ptr = a; ptr != a + N; ++ptr) { print(*ptr); }</code>。也就是说，这里的「开头」是 <code>a</code>，「末尾」是 <code>a + N</code>，「判断是否到达末尾」的方式是 <code>ptr != end()</code>，「找到下一个元素」的方式是 <code>++ptr</code>，「访问元素内容」的方式是 <code>*ptr</code>。</p>
+<p>也就是说，我们通过指针能够完成「找到下一个元素」「访问元素内容」以及「比较」的功能，也就是迭代时所需的功能。因此我们将指针称为数组的 <strong>迭代器 (iterator)</strong>。迭代器并不是一个具体的数据类型，而是一类东西的统称。</p>
+<details class="tips" open="open">
+<summary>Tips</summary>
+<p>不过，数组的最后一个元素明明是 <code>a[N - 1]</code>，为什么要把 <code>a + N</code> 即 <code>&amp;a[N]</code> 作为末尾？原因是，我们希望循环在 <strong>越过</strong> <code>a[N - 1]</code>，即 <strong>到达但未访问</strong> <code>a[N]</code> 时就停止，也就是说我们的「末尾」其实是 <strong>one-past-the-end position</strong>，如下图所示：</p>
+<p><center><img alt="" src="../assets/2023-08-01-11-59-52.png" width="500" /></center></p>
+</details>
+<p>然而，对于其他数据结构，就没有指针这样简单的方式来实现遍历了。不过，我们可以通过运算符重载的方式来为其他数据结构提供用于它们的「指针」，从而能够使用和数组的指针一样的方式来遍历容器，亦即：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyIterator</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 一些内部数据</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// 构造函数</span>
+<span class="w">    </span><span class="n">MyIterator</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">++</span><span class="p">();</span><span class="w">   </span><span class="c1">// 找到下一个元素</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="o">!=</span><span class="p">();</span><span class="w">          </span><span class="c1">// 判断是否到达末尾</span>
+<span class="w">    </span><span class="n">Elem</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">();</span><span class="w">          </span><span class="c1">// 访问元素内容</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>这样，我们就也可以通过 <code>for (MyIterator it = c.begin(); it != c.end(); ++it) { print(*it); }</code> 的方式来遍历容器 <code>c</code> 了。</p>
+<p>作为一个具体的例子，我们考虑单链表：</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Node</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="p">())</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MyLList</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">tail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">insert_after</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">tail</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+<span class="w">        </span><span class="n">tail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tail</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>我们可以为它写出如下的迭代器：</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MyLList</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">tail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">MyIterator</span><span class="p">;</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">iterator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyIterator</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">iterator</span><span class="w"> </span><span class="nf">begin</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">iterator</span><span class="p">(</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="n">iterator</span><span class="w"> </span><span class="nf">end</span><span class="p">()</span><span class="w">   </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">iterator</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">insert_after</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">tail</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+<span class="w">        </span><span class="n">tail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tail</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MyLList</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">MyIterator</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">MyIterator</span><span class="p">(</span><span class="n">Node</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">val</span><span class="p">(</span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="n">MyIterator</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">++</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">MyIterator</span><span class="w"> </span><span class="o">&amp;</span><span class="n">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">it</span><span class="p">.</span><span class="n">val</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">val</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>这样，我们就可以方便地遍历 <code>MyLList</code> 了，例如下面代码所示：</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">MyLList</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="p">;</span>
+<span class="w">    </span><span class="n">list</span><span class="p">.</span><span class="n">insert_after</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="w">    </span><span class="n">list</span><span class="p">.</span><span class="n">insert_after</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="w">    </span><span class="n">list</span><span class="p">.</span><span class="n">insert_after</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="w">    </span><span class="n">list</span><span class="p">.</span><span class="n">insert_after</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">list</span><span class="p">)</span><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="p">[](</span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="p">});</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">list</span><span class="p">)</span><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>这段代码使用了上一节介绍的 range-based for loop、placeholder type specifier <code>auto</code> 以及 lambda 表达式，不记得了的话可以去前一节复习！</p>
+<p>这段代码的运行结果可以在 <a href="https://godbolt.org/z/P3d5bvf8Y">Complier Explorer</a> 看到！</p>
+<p>从这个例子中，我们可以理解 <strong>迭代器 (Iterator)</strong> 解决的问题。我们知道，我们写程序的目的就是 <strong>处理、查询、使用数据</strong>，数据结构和算法是我们的工具。<em>在概念层面上</em>，各种容器或者数据结构的意义是以一定的方式或者性质 <strong>容纳</strong> 数据，但是它本身不具备处理数据的能力；而各种算法的意义是按一定的方法 <strong>处理</strong> 数据，它本身并不持有任何数据。而迭代器就是它们之间的桥梁——一个容器可能是一个数组、一棵二叉树、一个链表，或者其他任何可能的数据结构；一种算法需要对容器做遍历或者其他类型的访问；但是遍历一个数组和一棵二叉树的方式肯定是不同的——迭代器存在的意义就是通过运算符重载或者其他方式，来向算法隐藏容器的不同细节；算法只需要使用 <code>++</code> 就能获得下一个元素的迭代器，通过 <code>*</code> 就能访问当前迭代器指向的元素，它不需要关心到底是如何访问的；这其实上就是指针的抽象。通过这种方法，STL 保持了它的简洁性，提升了代码的复用。</p>
+<details class="tip" open="open">
+<summary>Tip</summary>
+<p>为什么说是 “在概念层面上” 呢？因为在实际的实现中，为了提高性能或者易用性，一些容器也将一些算法放到了自己的成员函数中，例如 <code>map</code> 和 <code>set</code> 的 <code>lower_bound</code> 等。但是从概念角度上，容器就仅仅是个包装好了的数据结构而已。</p>
+</details>
+<p>这样，我们其实也就知道了 <code>for (auto &amp;a : c)</code> 是如何实现的了！事实上，对于有迭代器的容器（stack, queue, priority_queue 并没有迭代器，因为你不应当尝试去遍历或者以其他自由的形式访问这些容器中的元素），它的成员函数 <code>begin()</code> 和 <code>end()</code> 返回的都是某种迭代器；这些迭代器都重载了 <code>++</code> 运算符（事实上，对于这些容器，实现 <code>++</code> 运算符并不需要知道整个容器的结构；例如在红黑树中找到下一个节点不必知道根节点是什么。想一想为什么）。因此，对于这样包含成员函数 <code>begin()</code> 和 <code>end()</code> ，且其返回值类型支持运算符 <code>++</code> 、 <code>*</code> 和 <code>!=</code> 的类， <code>for (auto &amp;a : c) {/* A */}</code> 的实现方法就类似于： <code>for (auto it = c.begin(); it != c.end(); ++it) {auto &amp;a = *it; /* A */}</code> 。</p>
+<details class="tip" open="open">
+<summary>Tip</summary>
+<p>我们之前提到，对于 <code>std::vector&lt;int&gt; v;</code> ， <code>v.begin()</code> 的返回值类型是 <code>std::vector&lt;int&gt;::iterator</code>；而这和我们前面那段代码中所写的 <code>MyLList&lt;T&gt;::iterator</code> 一样，它其实是另一个类的别名，在我们之前的例子中，它实际上是 <code>MyLList&lt;T&gt;::MyIterator</code> 的别名。库的作者可以根据自己的喜好来定义迭代器类型实际的名称，而只需要设置好 <code>Container::iterator</code> 这个统一的别名即可。</p>
+<p>在实践中，取决于环境，<code>std::vector&lt;int&gt;::iterator</code> 可能是 <code>__gnu_cxx::__normal_iterator&lt;int*, std::vector&lt;int&gt;&gt;</code> ；对于 <code>std::map&lt;int, double&gt; m;</code> ， <code>m.begin()</code> 的返回值类型可能是 <code>std::_Rb_tree_iterator&lt;std::pair&lt;const int, double&gt;&gt;</code> 。感兴趣的小朋友可以自己在 <a href="https://godbolt.org/z/6s5x66rdG">https://godbolt.org/z/6s5x66rdG</a> 尝试（这里也展示了一种查看表达式类型的小技巧）！</p>
+<p>同时，也可以使用 C++ Insights 来查看：<a href="https://cppinsights.io/s/cd95e24b">https://cppinsights.io/s/cd95e24b</a> </p>
+<p><img alt="" src="../assets/2023-08-07-12-02-27.png" /></p>
+<p>不过，我们在真正使用到这些类型的时候，可以通过 <code>std::vector&lt;int&gt;::iterator</code> 来获得迭代器的类型；这是类的一个成员，声明了一个别名。</p>
+</details>
+<p>我们可以通过 <a href="https://cppinsights.io/s/90d5fb67">CppInsights</a> 查看之前遍历 <code>MyLList</code> 的代码，从而验证上述知识。</p>
+<details class="info" open="open">
+<summary>整活</summary>
+<p>我们之前提到，使用这种 range-based for loop，只需要类“包含成员函数 <code>begin()</code> 和 <code>end()</code> ，且其返回值类型支持运算符 <code>++</code> 、 <code>*</code> 和 <code>!=</code> ”，所以其实我们可以写出这样的代码 XD：</p>
+<p><img alt="" src="../assets/2023-08-07-12-05-32.png" /></p>
+<p>感兴趣的小朋友可以来玩一玩：<a href="https://godbolt.org/z/813b9e9Pd">https://godbolt.org/z/813b9e9Pd</a></p>
+</details>
+<details class="tip" open="open">
+<summary>Tip</summary>
+<p>另外，除了 <code>begin()</code> ，容器还会提供 <code>cbegin()</code> , <code>rbegin()</code> , <code>crbegin()</code> 这三种成员函数，提供不同的迭代器；也有对应的 <code>end()</code> 版本。这里 <code>c</code> 是指 const，即迭代器指向的变量是只读的； <code>r</code> 是指 reverse，即这种迭代器是逆序的，即：</p>
+<p><img alt="" src="../assets/2023-08-07-12-05-43.png" /></p>
+</details>
+<h2 id="82-迭代器的分类">8.2 迭代器的分类<a class="headerlink" href="#82-迭代器的分类" title="Permanent link">&para;</a></h2>
+<p>我们在前一节中得知，<code>std::vector</code> 和 <code>std::unordered_set</code> 之类的容器都是有迭代器的，我们可以通过迭代器遍历它们。我们还知道，我们可以通过 <code>std::sort</code> 来对 <code>vector</code> 中的元素进行排序。请问：我们是否可以用 <code>sort</code> 来对 <code>unordered_set</code> 中的元素进行排序？如果不能，为什么？</p>
+<details class="tips">
+<summary>Unordered Associative Containers 的实现</summary>
+<p>作为一个提示，我们介绍 <code>unordered_set</code> 的实现思路。</p>
+<p>我们知道，Unordered Associative Containers 基于哈希表来实现，各个元素会根据给定的哈希函数计算出一个哈希值。每个哈希值对应一个链表，元素根据哈希值放到对应的链表 ("bucket") 中。当进行遍历时，实际上会遍历所有有元素的哈希值，并遍历其链表中的每一个元素。</p>
+<p>不过，我们考虑这样一个问题：如果有 <span class="arithmatex">\(m = 10^6\)</span> 个 bucket，但是只有 <span class="arithmatex">\(n = 100\)</span> 个元素，如果直接遍历 bucket 的话复杂度是 <span class="arithmatex">\(O(m+n) &gt;&gt; O(n)\)</span> 的。</p>
+<p>因此，实现中会额外用一个单向链表维护所有有元素的 bucket 列表，遍历时根据这个列表去找元素，复杂度就仅是 <span class="arithmatex">\(O(n)\)</span> 的了。</p>
+</details>
+<p>根据上述实现，我们很容易理解，这样的数据结构中并没有「排序」的余地。那假如我们就是尝试做这样的事，会发生什么呢？</p>
+<p>我们写出这样的代码：</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unordered_set&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unordered_set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>得到了巨大报错！！</p>
+<div class="highlight"><pre><span></span><code>In file included from &lt;source&gt;:2:
+In file included from /opt/compiler-explorer/gcc-12.2.0/lib/gcc/x86_64-linux-gnu/12.2.0/../../../../include/c++/12.2.0/algorithm:61:
+/opt/compiler-explorer/gcc-12.2.0/lib/gcc/x86_64-linux-gnu/12.2.0/../../../../include/c++/12.2.0/bits/stl_algo.h:1938:22: error: invalid operands to binary expression (&#39;std::__detail::_Node_iterator&lt;int, true, false&gt;&#39; and &#39;std::__detail::_Node_iterator&lt;int, true, false&gt;&#39;)
+                                std::__lg(__last - __first) * 2,
+                                          ~~~~~~ ^ ~~~~~~~
+/opt/compiler-explorer/gcc-12.2.0/lib/gcc/x86_64-linux-gnu/12.2.0/../../../../include/c++/12.2.0/bits/stl_algo.h:4820:12: note: in instantiation of function template specialization &#39;std::__sort&lt;std::__detail::_Node_iterator&lt;int, true, false&gt;, __gnu_cxx::__ops::_Iter_less_iter&gt;&#39; requested here
+      std::__sort(__first, __last, __gnu_cxx::__ops::__iter_less_iter());
+           ^
+&lt;source&gt;:5:10: note: in instantiation of function template specialization &#39;std::sort&lt;std::__detail::_Node_iterator&lt;int, true, false&gt;&gt;&#39; requested here
+    std::sort(s.begin(), s.end());
+         ^
+/opt/compiler-explorer/gcc-12.2.0/lib/gcc/x86_64-linux-gnu/12.2.0/../../../../include/c++/12.2.0/bits/stl_iterator.h:621:5: note: candidate template ignored: could not match &#39;reverse_iterator&#39; against &#39;_Node_iterator&#39;
+    operator-(const reverse_iterator&lt;_IteratorL&gt;&amp; __x,
+    ^
+/opt/compiler-explorer/gcc-12.2.0/lib/gcc/x86_64-linux-gnu/12.2.0/../../../../include/c++/12.2.0/bits/stl_iterator.h:1778:5: note: candidate template ignored: could not match &#39;move_iterator&#39; against &#39;_Node_iterator&#39;
+    operator-(const move_iterator&lt;_IteratorL&gt;&amp; __x,
+    ^
+In file included from &lt;source&gt;:2:
+In file included from /opt/compiler-explorer/gcc-12.2.0/lib/gcc/x86_64-linux-gnu/12.2.0/../../../../include/c++/12.2.0/algorithm:61:
+/opt/compiler-explorer/gcc-12.2.0/lib/gcc/x86_64-linux-gnu/12.2.0/../../../../include/c++/12.2.0/bits/stl_algo.h:1847:18: error: invalid operands to binary expression (&#39;std::__detail::_Node_iterator&lt;int, true, false&gt;&#39; and &#39;std::__detail::_Node_iterator&lt;int, true, false&gt;&#39;)
+      if (__last - __first &gt; int(_S_threshold))
+          ~~~~~~ ^ ~~~~~~~
+/opt/compiler-explorer/gcc-12.2.0/lib/gcc/x86_64-linux-gnu/12.2.0/../../../../include/c++/12.2.0/bits/stl_algo.h:1940:9: note: in instantiation of function template specialization &#39;std::__final_insertion_sort&lt;std::__detail::_Node_iterator&lt;int, true, false&gt;, __gnu_cxx::__ops::_Iter_less_iter&gt;&#39; requested here
+          std::__final_insertion_sort(__first, __last, __comp);
+               ^
+/opt/compiler-explorer/gcc-12.2.0/lib/gcc/x86_64-linux-gnu/12.2.0/../../../../include/c++/12.2.0/bits/stl_algo.h:4820:12: note: in instantiation of function template specialization &#39;std::__sort&lt;std::__detail::_Node_iterator&lt;int, true, false&gt;, __gnu_cxx::__ops::_Iter_less_iter&gt;&#39; requested here
+      std::__sort(__first, __last, __gnu_cxx::__ops::__iter_less_iter());
+           ^
+&lt;source&gt;:5:10: note: in instantiation of function template specialization &#39;std::sort&lt;std::__detail::_Node_iterator&lt;int, true, false&gt;&gt;&#39; requested here
+    std::sort(s.begin(), s.end());
+         ^
+/opt/compiler-explorer/gcc-12.2.0/lib/gcc/x86_64-linux-gnu/12.2.0/../../../../include/c++/12.2.0/bits/stl_iterator.h:621:5: note: candidate template ignored: could not match &#39;reverse_iterator&#39; against &#39;_Node_iterator&#39;
+    operator-(const reverse_iterator&lt;_IteratorL&gt;&amp; __x,
+    ^
+/opt/compiler-explorer/gcc-12.2.0/lib/gcc/x86_64-linux-gnu/12.2.0/../../../../include/c++/12.2.0/bits/stl_iterator.h:1778:5: note: candidate template ignored: could not match &#39;move_iterator&#39; against &#39;_Node_iterator&#39;
+    operator-(const move_iterator&lt;_IteratorL&gt;&amp; __x,
+    ^
+2 errors generated.
+</code></pre></div>
+<p>遇到这种情况时，不要怕，我们来找 <strong>error</strong> 到底是什么：</p>
+<p><img alt="" src="../assets/2023-08-07-12-21-13.png" /></p>
+<p>编译器告诉我们，<code>std::__detail::_Node_iterator&lt;int, true, false&gt;</code> 之间的二元运算 <code>-</code> 是非法的；即没有运算符重载定义了这个类型之间的 <code>-</code> 运算。</p>
+<p>猜一猜，这个陌生的 <code>std::__detail::_Node_iterator&lt;int, true, false&gt;</code> 是什么东西呢？回顾前面的讨论我们不难猜出，它实际上就是 <code>std::unordered_set&lt;int&gt;::iterator</code>。也就是说，它对应的迭代器并不支持计算两个元素之间距离的功能。</p>
+<p>众所周知，<code>sort</code> 的实现类似快速排序<sup id="fnref:sort"><a class="footnote-ref" href="#fn:sort">1</a></sup>；而快速排序本身是需要 <strong>随机访问</strong> 容器中的元素的，即能够以 <span class="arithmatex">\(O(1)\)</span> 的时间使用类似 <code>c[i]</code> 的方式访问到容器中的任意一个元素；同时也需要能够以 <span class="arithmatex">\(O(1)\)</span> 的时间计算两个元素之间的 <strong>距离</strong>。但是，<code>unordered_set</code> 本身显然不能够满足上述要求。</p>
+<p>这也就告诉我们，迭代器的能力其实是有强有弱的。</p>
+<p>考虑数组，我们有大量任务可以在常数时间内完成：</p>
+<p><img alt="" src="../assets/2023-08-07-12-28-52.png" /></p>
+<p>而如果是双向链表，能在常数时间内完成的任务就会少了许多，例如我们失去了随机访问和计算距离等能力：</p>
+<p><img alt="" src="../assets/2023-08-07-12-29-30.png" /></p>
+<p>对于单向链表，我们进一步失去了访问前序元素的能力：</p>
+<p><img alt="" src="../assets/2023-08-07-12-30-06.png" /></p>
+<p>而在阅读一个输入流的情况下，我们也许会进一步失去「从头开始再看一遍」的能力：</p>
+<p><img alt="" src="../assets/2023-08-07-12-31-22.png" /></p>
 <h2 id="泛型编程与-oop">泛型编程与 OOP<a class="headerlink" href="#泛型编程与-oop" title="Permanent link">&para;</a></h2>
 <p>自 1987 年左右，C++ 及其编程风格开发的重点转向了模板、static polymorphism、泛型编程和多范式编程。</p>
 <p>泛型编程是基于「参数化 (parameterization)」的一种编程范式，我们可以将一个类型或者一个算法参数化，从而将一种数据结构或者算法一般化。</p>
@@ -3806,13 +4054,21 @@ function toggleVisibilityFoot() {
 <button onclick="toggleVisibility()" class="box box-yellow xyx-toggle">点击此处隐藏正文所有链接</button>
 <button onclick="toggleVisibilityFoot()" class="box box-green xyx-toggle2">点击此处隐藏本文所有脚注</button>
 </center></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:sort">
+<p>实际上的实现可以参考 <a href="https://stackoverflow.com/a/22444975/14430730">这里</a>。快速排序的 worst case 是 <span class="arithmatex">\(O(n^2)\)</span> 的，但是 <code>std::sort</code> 的 worst case 是 <span class="arithmatex">\(O(n \log n)\)</span> 的。&#160;<a class="footnote-backref" href="#fnref:sort" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-04-19T03:44:03+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-04-19</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-08-16T02:29:27+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-08-16</span>
       
         <br>
         创建日期:
