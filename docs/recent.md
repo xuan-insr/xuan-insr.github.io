@@ -6,6 +6,7 @@
 
 ### 其他近期更新的推荐内容
 
+- <span class="box box-green">生活</span> [咸鱼暄学做饭！](../生活/咸鱼暄今天吃什么)
 - <span class="box box-red">面经</span> [暑期实习和秋招复盘](../interviews/overview/) 基本已经更新完了！
 - <span class="box box-yellow">核心知识</span> [编译原理](../compile_principle/) 已经搬过来了！
 - <span class="box box-green">生活</span> [桌游游玩记录！](../桌游/)

@@ -23,6 +23,7 @@ nav:
         # - Week6 思考题与复习题: cpp/cpp_restart/review/week6.md
         - Week7 值类型、右值引用与移动语义: https://xuan-insr.github.io/slides/cpp/7_rvalue_ref/
         - Week8 智能指针基础: https://xuan-insr.github.io/slides/cpp/8_smart_ptr/
+        - Week9 类 (IV) 继承: https://xuan-insr.github.io/slides/cpp/9_class_IV/
       - 正文！:
         - 1 C++ 的诞生: cpp/cpp_restart/1_birth.md
         - 2 编程范式: cpp/cpp_restart/2_paradigm.md
