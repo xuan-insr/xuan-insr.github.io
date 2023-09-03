@@ -38,6 +38,7 @@ nav:
         - 9 右值引用和移动语义: cpp/cpp_restart/9_move_semantics.md
         - 10 智能指针基础: cpp/cpp_restart/10_smart_ptr.md
         - 11 类 (IV) - 继承、RTTI: cpp/cpp_restart/11_class_4.md
+        - 12 exception: cpp/cpp_restart/12_exception.md
         # - 10 模板 (III) - 更多话题: cpp/cpp_restart/10_template_adv.md
         # - 12 类 (VI) - 移动构造与移动赋值: cpp/cpp_restart/12_class_6.md
         # - 13 namespace: cpp/cpp_restart/13_namespace.md

@@ -1,5 +1,8 @@
-# 8 类 (V) - 继承与抽象类、访问控制
+# 11 类 (V) - 继承与抽象类、访问控制
 
+!!! danger
+    本文未完成，以下仅为学习笔记。
+    
 类的布局绝大多数是 implementation-defined 或者 unspecified 的；为数不多被指定了的是，具有相同 access control 的成员会按顺序分配，但每个成员后仍然有可能有实现决定的填充。^[class.mem.general#19](https://timsong-cpp.github.io/cppwp/n4868/class.mem.general#19)^
 
 What if `Base b = d;` or `b = d;`?
