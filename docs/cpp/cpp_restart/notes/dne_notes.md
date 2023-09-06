@@ -1,7 +1,7 @@
-# The Design and Evaluation of C++ 阅读记录
+# The Design and Evolution of C++ 阅读记录
 
 !!! abstract
-    阅读 Bjarne Stroustrup 的 The Design and Evaluation of C++ 过程中的一些摘录。
+    阅读 Bjarne Stroustrup 的 The Design and Evolution of C++ 过程中的一些摘录。
 
     在阅读时，我会更注意语言特性的设计和发展历程、相关的设计哲学之类的内容，而会比较少地关注已经熟悉或者未来会系统学习的语言特性本身。
 
