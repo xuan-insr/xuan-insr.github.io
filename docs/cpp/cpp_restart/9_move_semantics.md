@@ -1,45 +1,302 @@
 # 9 右值引用与移动语义
 
-!!! danger
-    本文未完成，以下仅为学习笔记。
+## 9.1 lvalue & rvalue
 
-## Back to Basics: Understanding Value Categories - Ben Saks - CppCon 2019
+### 9.1.1 引入
 
-下面的讨论暂时不考虑类。
+假如有定义 `int n;`，为什么 `n = 1;` 是合法的，而 `1 = n;` 是非法的呢？这不是类型的原因，`n` 和 `1` 这两个表达式的类型都是 `int`。
 
-假如有定义 `int n;`，为什么 `n = 1;` 是合法的，而 `1 = n;` 是非法的呢？这不是类型的原因，`n` 和 `1` 这两个表达式的类型都是 `int`。其原因是，`n` 是一个表达式，它指向一个对象；回顾上一节我们给出的对对象的定义，它表征着一块内存，其内容表示一个值。而 `1` 则不指向一个实在的对象，它是一个不与对象关联的值，因此它不必占据内存。
+事实上，对于后者，编译器会给出这样的报错：Expression `1` is not assignable。也就是说，`n` 是一个表达式，它指向一个对象；回顾上一节我们给出的对对象的定义，它表征着一块内存，其内容表示一个值。而 `1` 则不指向一个实在的对象，它是一个不与对象关联的值，因此它不必占据内存。
 
-也就是说，虽然 `n` 和 `1` 都是表达式，但是它们具有不同的性质。这一设计的原因是，让一些表达式的值不必占据内存有助于我们实现一些优化。如果我们规定所有表达式的值都是一个对象的话，那么字面量 `1` 也需要占据一块实际的内存，这会使得代码中的内存操作变得非常多。
+??? info "表达式和语句"
+    以防有同学不清楚表达式和语句的概念，在这里再科普一下。
 
-我们将指向一个对象的表达式称为 **左值 (lvalue)**，因为它们可以出现在赋值表达式的左边；而将一个值不与对象关联的表达式称为 **右值 (rvalue)**，因为它们只能出现在赋值表达式的右边。
+    **表达式 (expressions)** 是运算符和操作数的序列，用来指明一个计算。
 
-左值表征一个对象，而右值则是一个值。当我们将一个左值放在赋值表达式的右边时，如 `n = m;`，则会发生 lvalue-to-rvalue conversion，因为此时我们关注的是 `m` 这个对象中的值，而不是 `m` 这个对象本身。
+    操作数也是表达式，因此任何操作符的操作数要么是 **primary expressions**，要么是其他表达式。顾名思义，primary expressions 是最基本的表达式。它们包括：
 
-右值不一定不占用内存，例如虽然 `n += 1;` 可以用一句汇编语句（如 `addi x1, x1, 1;`）实现，但是当字面量变得足够大时，一条语句可能装不下，这时右值会占据一定内存。
+    - `this`
+    - 字面量，例如 `2` 或者 `"Hello, world!"`
+    - id-expressions，例如 `n` 或者 `std::cout`
+    - lambda 表达式，例如 `[](int & n) { n *= 2; }`
+    - fold-expressions
+    - requires-expressions
 
-同时，左值表征的对象虽然从概念上说一定占据内存，但编译器有可能对其做一些优化从而使其实际上不占内存，而只是放在寄存器中或者直接在编译时完成相关的计算从而删除它。但是，这只会发生在我们不会注意到的情况下。例如，定义 `const int n = 2;` 有可能会使得所有对 `n` 的使用被替换成 `2`，从而左值 `n` 表征的对象在生成的程序中不再存在（因而不再占据内存），但是如果我们使用了 `std::cout << &n;`，那么 `n` 就一定会存在并占据内存以满足这一输出的要求。
+    后两者我们目前还没有遇见过，大家可以先不管。
 
-除了字符串字面量是 lvalue（因为字符串字面量的类型是 `const char[N]`^[lex.string#5](https://timsong-cpp.github.io/cppwp/n4868/lex.string#5)^）以外，其他字面量都是 rvalue。（用户自定义字面量不一定）
+    **表达式可以产生值，并可能导致副作用。**例如：
+    
+    - `2 + 2` 这个表达式产生 `4` 这个值，没有副作用；
+    - `x = y = 2` 这个表达式产生的值是 `2`，产生的副作用是把 `x` 和 `y` 赋值为 2；
+    - 如果有 `void print(int x){ std::cout << x; }`，那么函数调用表达式 `print(1)` 没有产生值，但是有把 `1` 打印到标准输出的副作用。
 
-在 C++ 中，这一切有所不同。
+    ---
 
-类类型的右值会占据内存，例如 `int i = foo().y;`，需要用 base + offset 的方式得到 `y` 的值。
+    **语句 (statements)** 是按顺序执行的 C++ 程序片段。任何函数的函数体都是语句的一个序列。C++ 包含如下类型的语句：
 
-不是所有左值都能出现在赋值表达式的左边，比如 `const char name [] = "Xuan";`，`name[0] = 'D';` 是非法的，虽然 `name[0]` 是个左值。这样的左值被称为 non-modifiable lvalues。
+    1. labeled statements       `EXIT: return 0;`
+    2. expression statements    `n = 1;`
+    3. compound statements      `{ n = i; i++; }`
+    4. selection statements     `if (n == 1) break;`
+    5. iteration statements     `while (n--);`
+    6. jump statements          `break;`, `return 0;`, `goto EXIT;`
+    7. declaration statements   `int n = 0;`
+    8. try blocks               
+    9. atomic and synchronized blocks (TM TS)
 
-我们说过引用的实现类似于常指针，而指针必须指向一个 lvalue，因此引用也只能引用一个 lvalue。如 `int * pi = &3;` 和 `int & ri = 3;` 是非法的。
+    事实上，我们在 [2 编程范式](../2_paradigm) 一节中简单提及过语句，以介绍结构化编程。
 
-不过例外是，当将一个 rvalue 绑定到一个 const & 时，会创建出一个 temporary object。这个 temporary object 仍然不能被赋值，因为它是个 reference to const。这个创建的过程称为 **temporary materialization conversion**，具体来说，从一个 prvalue 转到一个 xvalue。
 
-也就是说，内置的类型 rvalue 不占内存，但如果创建了 temp object 则占内存。因此，我们将 rvalue 分成两种：不占内存的 pure rvalue 和占内存的 expiring rvalue。
+也就是说，虽然 `n` 和 `1` 都是表达式，但是它们具有不同的性质。
 
-当把一个 prvalue 绑定给一个 rvalue reference 时，materialization 也发生。
+这一设计的原因是，让一些表达式的值不必占据内存有助于我们实现一些优化。如果我们规定所有表达式的值都是一个对象的话，那么字面量 `1` 也需要占据一块实际的内存，这会使得代码中的内存操作变得非常多。
 
-有名字的表达式就是 lvalue。（为数不多的例外是：枚举有名字，但是右值。类、命名空间、类模板有名字，但不是表达式，因此不是右值。）
+???+ info "举个栗子"
+    考虑 `n += 1` 这个表达式在汇编中的实现。如果我们要求 `1` 也需要占据实际内存的话，汇编会长这样：
 
-## C++ Rvalue References Explained
+    ```riscv
+    la   t3, p
+    lw   t0, 0(t3)      // t0 = p
+    la   t4, one       
+    lw   t1, 0(t4)      // t1 = one
+    add  t0, t0, t1     // t0 += t1
+    sw   t0, 0(t3)      // p = t0
 
-```c++ linenums="1"
+    p:   .word 0
+    one: .word 1
+    ``` 
+
+    不过如果 `1` 不必占内存，那么就会简单不少：
+
+    ```riscv
+    la   t3, p
+    lw   t0, 0(t3)      // t0 = p
+    addi t0, t0, 1      // t0 += 1
+    sw   t0, 0(t3)      // p = t0
+
+    p:   .word 0
+    ```
+
+    需要澄清的是，「不必占内存」不是「一定不占内存」的意思。前面那种稍微冗长的实现也是合法的，只是后者更加简练、自然和高效。
+
+
+类似地，对于 `int m;`, `m + 1 = 2` 这个表达式也是非法的，因为 `m + 1` 这个表达式的值并不表征一个实际的对象。对于 `int foo();`, `foo() = 2` 也是非法的，因为 `foo()` 这个函数调用表达式的值也不表征一个实际的对象。
+
+由此可见，每个表达式其实都有两个性质，一个是我们熟知的 **类型 (type)**，而另一个就是我们刚刚发现的「新区别」：**value category**。
+
+我们将表征一个对象的表达式称为 **左值 (lvalue)**，因为它们可以出现在赋值表达式的左边；而将一个值不与对象关联的表达式称为 **右值 (rvalue)**，因为它们只能出现在赋值表达式的右边。
+
+### 9.1.2 关于内存占用
+
+**右值不一定不占用内存**，例如虽然 `n += 1;` 可以用一句汇编语句（如 `addi x1, x1, 1;`）实现，但是当字面量变得足够大时，一条语句可能装不下，这时右值会占据一定内存。
+
+同时，左值表征的对象虽然 **从概念上说** 一定占据内存，但编译器有可能对其做一些优化从而使其 **实际上** 不占内存，而只是放在寄存器中或者直接在编译时完成相关的计算从而删除它。但是，**这只会发生在我们不会注意到的情况下**。例如，定义 `const int n = 2;` 有可能会使得所有对 `n` 的使用被替换成 `2`，从而左值 `n` 表征的对象在生成的程序中不再存在（因而不再占据内存），但是如果我们使用了 `std::cout << &n;`，那么 `n` 就一定会存在并占据内存以满足这一输出的要求。
+
+???+ info "再举个例子"
+    `n` 由于值必定是 1，因此这个函数直接被简化为了 `return 2;`，`n` 不再占据内存：
+
+    ![](assets/2023-10-04-03-26-56.png)
+
+    但是，假如我们要使用 `n` 的地址，那么 `n` 就一定会占据内存来满足我们的需求：
+
+    ![](assets/2023-10-04-03-30-08.png)
+
+因此，我们在后面的讨论中，始终从概念层面上认为 lvalue 会占用内存。编译器将这个内存优化掉是实践层面的事情，如前所述，并不会影响我们这样讨论的正确性。
+
+### 9.1.3 lvalue
+
+lvalue 用来表征一个对象，或者说一个位置。因此，lvalue 可以被取地址，以及用来初始化引用。
+
+值得提及的是，不是所有左值都能出现在赋值表达式的左边，比如 `const char name [] = "Xuan";`，`name[0] = 'D';` 是非法的；虽然 `name[0]` 是个左值，但是它的类型是 `const char`。这样的左值被称为 non-modifiable lvalues。除此之外的左值，可以作为内置赋值操作符 (`=`) 或者复合赋值操作符 (`+=` 等) 的左侧操作数。
+
+左值包括：
+
+- **任何有名字的表达式** 都是左值，唯一的例外的枚举；
+- **内置** 的 `++a`, `a = b`, `a += b`, `*p`, `p->m` 是 lvalue
+- 如果 `a[n]` 的操作数之一是 array lvalue 或者 pointer，则是 lvalue
+- 如果 `a` 是 lvalue，`m` 是成员变量，则 `a.m` 是 lvalue；如果 `m` 是成员变量，`p->m` 是 lvalue
+- 返回值为引用类型的函数调用表达式是 lvalue，因为返回值表征的是一个对象
+- 目标为引用的 cast expression 是 lvalue，如 `(int&)(x)`，这一操作可以理解为初始化一个引用
+- 除了字符串字面量是 lvalue（因为字符串字面量的类型是 `const char[N]`^[lex.string#5](https://timsong-cpp.github.io/cppwp/n4868/lex.string#5)^）以外，其他字面量都是 rvalue。（用户自定义字面量不一定，我们会在后面讨论这个话题。）
+
+???+ info "lvalue-to-rvalue conversion"
+    左值表征一个对象，而右值则是一个值。当我们将一个左值放在赋值表达式的右边时，如 `n = m;`，则会发生 **lvalue-to-rvalue conversion**，因为此时我们关注的是 `m` 这个对象中的值，而不是 `m` 这个对象本身。
+
+### 9.1.4 rvalue
+
+rvalue 并不表征一个对象，非左值的表达式是右值。
+
+右值表达式通常被用来完成以下两件事之一：
+
+- 计算内置运算符的一个操作数
+    - 例如 `1 + 2 + 3` 中（假设从左到右计算），`1` 和 `2` 是 rvalue，作为第一个 `+` 的操作数；`1 + 2` 也是 rvalue，作为第二个 `+` 的操作数
+- 初始化一个对象
+    - 初始化出的对象称为这个表达式的 result object
+    - 例如 `int i = 1 + 2;`，或者 `void f(int x);`, `f(1)`。
+
+右值包括：
+
+- 枚举数 (enumerator) 和除了字符串字面量以外的字面量是 rvalue
+- 内置的 `a++`, `a + b`, `a || b`, `a < b`, `&a` 等表达式是 rvalue
+- 返回值不是引用类型的函数调用表达式是 rvalue
+- 目标为非引用类型的 cast expression 是 rvalue，如 `int(3.0)`
+- `this` 是 rvalue
+- lambda 表达式是 rvalue
+
+### 9.1.5 小结
+
+简而言之：
+
+lvalue 是 locator，它计算出一个对象（的位置）
+
+而 rvalue 计算出的结果用于初始化对象 (result object)，或者执行进一步的计算
+
+## 9.2 prvalue & xvalue
+
+### 9.2.1 引入
+
+上面的定义在大多数情况下工作良好，不过 C++ 中的两个东西会给上面的内容带来一些疑惑。
+
+!!! info "问题 1：访问类右值的成员"
+
+    假如我有一个类 `struct Foo { int x, y, z; };`，有一个对象 `Foo f;`，那么我是如何访问到 `f.y` 的呢？
+
+    事实上，访问它的方式是 base + offset，也就是我们会根据 `f` 的地址以及 `y` 在 `Foo` 中的偏移位置来找到 `f.y`。假设 `sizeof(int) == 4`，那么访问 `f.y` 的方式其实是 `*(f_addr + 4)`。
+
+    那么问题来了！假如我有这样一个函数 `Foo func();`，如我们之前所说，`func()` 这个函数调用表达式是一个 `Foo` 类型的 rvalue。那么假如我们有 `int tmp = func().y;`，会发生什么？
+
+    根据我们之前的讨论，这时其实我们会找 `*(ret_val_addr + 4)`。也就是说，虽然此时 `func()` 是一个 rvalue，且它的生命周期确实在这个声明语句结束后就结束了，但是此时它必须占内存，才能用来访问字段 `y`。也就是说，此时 `func()` 必须要表征一个对象了。
+    
+!!! info "问题 2：把右值绑定给 const 引用"
+    我们说过引用的实现类似于常指针，而指针必须指向一个 lvalue，因此引用也只能引用一个 lvalue。如 `int * pi = &3;` 和 `int & ri = 3;` 是非法的。
+
+    不过我们讲过，「可以将一个临时对象绑定给一个 const 引用，这个临时对象的生命周期被延长以匹配这个 const 引用的生命周期」。一个例子是，`const int & cr = 1;` 是合法的。不过这里有一个问题没有解释清楚，那就是，`1` 是个 rvalue，它并不表征一个对象；而我们把一个临时对象绑定给了 `cr`，这个临时对象是哪来的？
+
+    唯一的答案是，此时我们需要使用 `1` 这个 rvalue 来初始化一个临时对象，用来绑定引用；临时对象本应在这个声明完成后结束，但生命周期被延长了。
+
+    我们刚才说「rvalue 用来初始化对象」——当它用来绑定 const ref 时，事实上就是用来初始化了这个「临时对象」。
+    
+上面两个例子对我们之前的 value category 体系产生了一些动摇。我们用一个表格说明发生了什么：对于「是否临时」和「是否占内存」，左值和右值给出了相反的答案；但是刚才看到的两个问题产生了一种新的情况：
+
+| value category | 是否是临时的 | 是否占内存 |
+| :-: | :-: | :-: |
+| **lvalue** (left / locator value) | 否 | 是 |
+| **rvalue** (right value) | 是 | 否 |
+| **?** | 是 | 是 |
+
+因此，C++ 给出了新的分类。它将我们之前讨论的 rvalue 更名为了 prvalue (pure rvalue)，而将新情况命名为 xvalue (expiring value)：
+
+| value category | 是否是临时的 | 是否占内存 |
+| :-: | :-: | :-: |
+| **lvalue** (left / locator value) | 否 | 是 |
+| **prvalue** (**pure** right value) | 是 | 否 |
+| **xvalue** (**eXpiring** value) | 是 | 是 |
+
+我们来详细介绍一下 C++ 的 value category 结构。
+
+### 9.2.2 prvalue
+
+prvalue，如我们 9.1.4 中介绍的一样，用来完成这两种事情中的一种：
+
+- 计算内置运算符的一个操作数
+- 初始化一个对象
+    - `int i = 1;`
+    - `Foo func();`, `Foo f = func();`
+        - 此时会发生 [copy elision](../6_class_3/#copy-elision)，我们在本章后面也会再次讲解
+    - `const int & r = 1;`
+        - 此时，prvalue 转为 xvalue
+
+??? info "关于 copy elision"
+    自 C++17 开始，在以下两种情况下，对拷贝的省略是强制的：
+
+    **Case 1**. 返回一个与返回值类型相同的 **prvalue**：
+
+    ```c++
+    T f()
+    {
+        return T();
+    }
+    
+    f(); // only one call to default constructor of T
+    ```
+
+    **Case 2**. 初始化表达式是相同类型的 **prvalue**：
+
+    ```c++
+    T x = T(T(f())); // only one call to default constructor of T, to initialize x
+    ```
+
+    https://godbolt.org/z/vKhvxre7d
+
+    ![](assets/2023-08-15-18-36-02.png)
+
+    这里，我们使用编译器选项禁用了 NRVO。`bar` 和 `baz` 的区别在于前者的返回值是 prvalue，而后者不是；其类型都与返回值类型匹配。因此，根据 copy elision 的规则，前者是强制的 copy elision (Case 1)，而后者可以发生 NRVO，但被我们禁用了。我们观察并解释这 4 条语句的过程：
+
+    - 首先，我们刻画函数返回值的过程。首先，`return` 语句的表达式被求值，然后这个值被返回给函数调用表达式，我们记函数调用表达式的值为 `__call_expr`。我们用两个下划线的前缀来表征它实际上是 prvalue，起名字只是便于我们理解。
+    - 对于 `Foo f1 = bar();`，由于 copy elision (Case 1) 的存在，`Foo()` 直接会构造在 `__call_expr` 上，亦即 `Foo __call_expr = Foo();` (ctor here)，`Foo f1 = __call_expr;`（这里的 `__call_expr` 实际上是个 prvalue，因此发生 copy elision (Case 2)），因此只有一次构造函数被调用。
+    - 对于 `Foo f2 = baz();`，由于没有 NRVO，构造出的 `Foo f = Foo();` (ctor here) 被返回。在 `return f;` 时，由于编译器首先尝试以移动的方式返回[^ret_move]，因此返回过程等价于 `Foo __call_expr = std::move(f);` (move ctor here)，然后发生 `Foo f2 = __call_expr;`（这里的 `__call_expr` 实际上是个 prvalue，因此发生 copy elision (Case 2)），因此共有 1 次构造和 1 次移动构造。
+    - 对于 `f1 = bar();`，由于 copy elision (Case 1) 的存在，`Foo()` 直接会构造在 `__call_expr` 上，亦即 `Foo __call_expr = Foo();` (ctor here)，然后 `f1 = __call_expr;`（这里的 `__call_expr` 实际上是个 prvalue，因此 move assign here），因此发生 1 次构造函数和 1 次移动赋值。
+    - 对于 `f2 = baz();`，过程是：`Foo f = Foo();` (ctor here), `Foo __call_expr = std::move(f);` (move ctor here), `f2 = __call_expr;` (move assign here)，因此发生 1 次构造函数、1 次移动构造和 1 次移动赋值。
+
+    [^ret_move]: 如果 `return` 语句中的表达式是函数体中的一个 implicitly movable entity[^imp_mov_ent]，则编译器首先尝试以移动的方式返回，即尝试先将表达式视为 rvalue；如果重载解析失败，再将表达式视为 lvalue 尝试以拷贝的方式返回。如果仍然失败，则编译错误。
+    [^imp_mov_ent]: Implicitly movable entity：具有 automatic storage duration 的一个 non-volatile object 或者 non-volatile object 的一个右值引用。
+
+### 9.2.3 xvalue 的产生：Temporary materialization
+
+任一完整类型 `T` 的 prvalue 都可以转换为 `T` 的 xvalue，这一转换称为 **temporary materialization**。这一转化用 prvalue 初始化一个临时对象，产生表示这个临时对象的 xvalue。
+
+temporary materialization 发生在如下情形中：
+
+- 将引用绑定到 prvalue，如 `const int & r = 1;`
+- 对类 prvalue 进行成员访问，如 `foo().x;`（此时 `x` 也是 xvalue）
+- 对于一个数组 prvalue `a`，对其进行 subscript `a[1]` 或者 array-to-pointer convsersion `f(a)` 时
+- 当 prvalue 是一个 discarded-value expression 时
+
+??? info "discarded-value expression"
+    这样的表达式只为其副作用而使用，其值本身没有被使用。这样的表达式如果是 prvalue，那么它会被 temporary materialization。例如（以下 `a`, `b` 均为 `int`）：
+
+    - `a = 1;`
+    - `cout << endl;`
+    - `void(x);`
+    - `a++, b++;` 中的 `a++`
+
+### 9.2.4 小结
+
+现在，我们就能看懂这张经典的 C++ value category 结构图了：
+
+![](assets/2023-10-04-04-08-48.png)
+
+我们将原来表示「临时」的 rvalue 拆分成了 prvalue 和 xvalue 两种；将表示「占内存」的 lvalue 和 xvalue 统称为 **glvalue (generalized lvalue)**。
+
+lvalue, xvalue 和 prvalue 是 **primary categories**，表达式属于且仅属于其中之一；rvalue 和 glvalue 是 **mixed categories**，通常用于简便的表达。
+
+我们能够总结出这三种 primary categories 所具备的主要性质：
+
+| Property | lvalue | xvalue | prvalue |
+| :-: | :-: | :-: | :-: |
+| **取地址** | 是 | 否* | 否 |
+| **被赋值** | 是，如果 modifiable | 否 | 否 |
+| **初始化引用** | 是 | 仅能初始化 const & | materialize 为 xvalue |
+
+值得一提的是，理论上，xvalue 占内存因此可以被允许取地址，但是由于其生命周期通常即将在所在完整表达式结束时结束，因此获取它的地址在大多数情况下会引发错误。因此，C++ 并不允许对 xvalue 取地址。也是类似的原因，xvalue 也并不允许被赋值。
+
+## 9.3 移动语义与右值引用
+
+### 9.3.1 移动语义 | moving semantics
+
+我们刚刚给出了这样的表格：
+
+| value category | 是否是临时的 | 是否占内存 |
+| :-: | :-: | :-: |
+| **lvalue** | 否 | 是 |
+| **prvalue** | 是 | 否 |
+| **xvalue** | 是 | 是 |
+
+可以看到，我们特别关注一个表达式是不是临时的。那么，「临时」到底有什么意义？
+
+回顾我们之前写出来的 `Container` 类模板：
+
+```c++
 template<typename T>
 class Container {
     T* data;
@@ -76,15 +333,58 @@ public:
 };
 ```
 
+考虑下面的代码会发生什么：
+
 ```c++
-Container<int> x;
-// perhaps use x in various ways
-x = foo();
+Container<int> foo() {
+    Container<int> c;
+    // perhaps use c in various ways
+    return c;
+}
+
+void bar() {
+    Container<int> x;
+    // perhaps use x in various ways
+    x = foo();
+}
 ```
 
-在赋值运算符右侧是右值的特殊情况下，我们希望赋值运算符能够简单地将 `this` 和 `rhs` 的 `data` 交换，然后让编译器销毁 `rhs` 时将 `this` 本来的 `data` 释放，这样可以避免不必要的新建内存和拷贝。
+我们关注 `x = foo()` 这个表达式。我们之前说过，[NRVO](../6_class_3/#copy-elision) 并不是强制的，因此我们不妨假设这里不会发生 NRVO。因此，这里 `Container<int>::operator=` 会被调用。这个函数的实现如下：
 
-这被称为 **移动语义 (moving semantics)** 这可以通过函数重载来完成：
+```c++
+Container & operator=(const Container &rhs) {
+    // ...
+    delete[] data;
+    data = new T[rhs.capa];
+    // copy ...
+    return *this;
+}
+```
+
+我用一张图画出来了这里发生了什么：
+
+![](assets/2023-10-04-04-18-57.png)
+
+明眼人都能看出，我们拷贝了一份 `b` 之后反手就把原来的 `b` 给释放了，这听起来有点蠢。假如我们能让 `x` 把 `foo()` 的 `b`「偷」过来，同时让 `foo()` 析构的时候不要释放 `b`，不就能省一份拷贝的时间了吗？也就是说我们希望：
+
+![](assets/2023-10-04-04-21-11.png)
+
+用代码来说就是：
+
+```c++
+template<typename T>
+Container<T> & Container<T>::operator=(/* some type */ rhs) {
+    delete[] data;
+    data = rhs.data;
+    rhs.data = nullptr; // delete nullptr is safe
+    // ...
+    return *this;
+}
+```
+
+更干净优雅一点的做法是，既然 `x` 的 `b` 要被析构，那我们不妨直接把 `x` 和 `foo()` 的 `b` 交换一下：
+
+![](assets/2023-10-04-04-22-46.png)
 
 ```c++
 template<typename T>
@@ -96,9 +396,40 @@ Container<T> & Container<T>::operator=(/* some type */ rhs) {
 }
 ```
 
-这里的参数类型是什么呢？首先它肯定是个引用，否则交换没有意义，那样 `this` 原先持有的数据无人释放，而现在持有的数据已经被释放了，这会导致严重的问题。
+而这其实就是「移动语义 (moving semantics)」的精髓：用资源的移动代替拷贝。
 
-但是，它不能是个 `Container<T> &`，因为右值不能绑定给 non-const 引用；而它也不能是个 `const Container<T> &`，因为这样就无法修改。因此，事实上在 C++11 之前这个事情无法简单地完成。不过，在 C++11，**右值引用 (rvalue reference)** 被引入，解决了这个问题。上面的函数被实现为：
+不过，我们离移动语义还差临门一脚，那就是，上面代码中的 `/* some type */` 到底是什么？我们熟悉的类型似乎都走不通：
+
+- `Container<T> &`?
+    - rvalue 不能绑定给 non-const ref
+- `const Container<T> &`?
+    - 无法修改成员
+- `Container<T> *`?
+    - rvalue 不能取地址
+
+因此，为了实现移动语义，C++11 引入了 **右值引用**。
+
+### 9.3.2 右值引用 | rvalue reference
+
+对于任何类型 `X`，`X&&` 被称为「对 `X` 的右值引用」。为了与此区分，`X&` 现在也被称为「对 `X` 的左值引用」。
+
+右值引用只能绑定右值：
+
+```c++
+int z = 1;
+int && y = z; // Error: rvalue reference to type 'int' cannot bind to lvalue of type 'int'
+
+int && x = 1; // OK
+x = 2;        // OK, rvalue reference can be modified
+```
+
+在 `int && x = 1;` 时，实际上完成了 temporary materialization conversion，即虽然 `1` 本身是个 prvalue，但是它被用来初始化一个右值引用，因此它需要实际地占用一块内存（虽然这块内存在实际实现中仍然有可能被优化掉），因此我们创建了一个临时对象并用 `x` 绑定。
+
+左值引用和右值引用在「能做什么事」的方面没有区别，其区别是什么值可以绑定给这个引用。也就是说，右值引用是可以赋值的，赋值修改的其实就是 temporary materialization 出来的那个对象。
+
+#### 移动构造与移动赋值
+
+这样，我们就可以实现之前的 `operator=` 了：
 
 ```c++
 template<typename T>
@@ -110,20 +441,7 @@ Container<T> & Container<T>::operator=(Container<T>&& rhs) {
 }
 ```
 
-由于这样的赋值运算符实现移动语义，因此它也被称为 **移动赋值运算符**。
-
-对于任何类型 `X`，`X&&` 被称为「对 `X` 的右值引用」。为了与此区分，`X&` 现在也被称为「对 `X` 的左值引用」。
-
-右值引用只能绑定右值：
-
-```c++
-int z = 1;
-int && y = z; // Error: rvalue reference to type 'int' cannot bind to lvalue of type 'int'
-
-int && x = 1; // OK
-```
-
-在 `int && x = 1;` 时，实际上完成了 temporary materialization conversion，即虽然 `1` 本身是个 prvalue，但是它被用来初始化一个右值引用，因此它需要实际地占用一块内存（虽然这块内存在实际实现中仍然有可能被优化掉），因此我们创建了一个临时对象并用 `x` 绑定。
+由于这样的赋值运算符实现移动语义，因此它也被称为 **移动赋值运算符 (moving assignment operator)** 。
 
 与移动赋值类似，移动构造函数完成通过移动语义构造一个对象。例如：
 
@@ -134,6 +452,36 @@ Container<T>::Container(Container<T>&& rhs) :
         rhs.data = nullptr;
     }
 ```
+
+注意：由于 C++17 的强制 copy elision，现在移动构造函数只会在用 xvalue 构造时被调用；用 prvalue 构造时，移动构造不会发生。
+
+这样，我们就能回答之前的问题了：「临时」意味着可以利用移动语义窃取（重用）其资源，从而避免不必要的拷贝。
+
+```c++
+Container<int> foo();
+
+void bar() {
+    Container<int> x, y;
+    // perhaps use x and y in various ways
+    x = foo();  // move assignment (if no copy elision)
+    y = x;      // copy assignment
+}
+```
+
+| value category | 是否可以复用资源 | 是否占内存 |
+| :-: | :-: | :-: |
+| **lvalue** | 否 | 是 |
+| **prvalue** | 是 (materialize) | 否 |
+| **xvalue** | 是 | 是 |
+
+这样，我们就可以总结各个 value category 的分类依据了：
+
+| | Has identity (**glvalue**) | Doesn't have identity |
+| :-: | :-: | :-: |
+| Can't be moved from | lvalue | - |
+| Can be moved from (**rvalue**) | xvalue | prvalue's materalization |
+
+### 9.3.3 `std::move`
 
 现在，考虑这样一个例子：
 
@@ -208,41 +556,8 @@ void foo(Container<T> && x) {
     - 为了将这个 prvalue 传递给 `Foo &&`，会发生一次 materialization
     - 即，实际发生的是 `Foo f = Foo(static_cast<Foo &&>(Bar()));`
 
-### 关于 copy elision
 
-自 C++17 开始，在以下两种情况下，对拷贝的省略是强制的：
-
-**Case 1**. 返回一个与返回值类型相同的 **prvalue**：
-
-```c++
-T f()
-{
-    return T();
-}
- 
-f(); // only one call to default constructor of T
-```
-
-**Case 2**. 初始化表达式是相同类型的 **prvalue**：
-
-```c++
-T x = T(T(f())); // only one call to default constructor of T, to initialize x
-```
-
-https://godbolt.org/z/vKhvxre7d
-
-![](assets/2023-08-15-18-36-02.png)
-
-这里，我们使用编译器选项禁用了 NRVO。`bar` 和 `baz` 的区别在于前者的返回值是 prvalue，而后者不是；其类型都与返回值类型匹配。因此，根据 copy elision 的规则，前者是强制的 copy elision (Case 1)，而后者可以发生 NRVO，但被我们禁用了。我们观察并解释这 4 条语句的过程：
-
-- 首先，我们刻画函数返回值的过程。首先，`return` 语句的表达式被求值，然后这个值被返回给函数调用表达式，我们记函数调用表达式的值为 `__call_expr`。我们用两个下划线的前缀来表征它实际上是 prvalue，起名字只是便于我们理解。
-- 对于 `Foo f1 = bar();`，由于 copy elision (Case 1) 的存在，`Foo()` 直接会构造在 `__call_expr` 上，亦即 `Foo __call_expr = Foo();` (ctor here)，`Foo f1 = __call_expr;`（这里的 `__call_expr` 实际上是个 prvalue，因此发生 copy elision (Case 2)），因此只有一次构造函数被调用。
-- 对于 `Foo f2 = baz();`，由于没有 NRVO，构造出的 `Foo f = Foo();` (ctor here) 被返回。在 `return f;` 时，由于编译器首先尝试以移动的方式返回[^ret_move]，因此返回过程等价于 `Foo __call_expr = std::move(f);` (move ctor here)，然后发生 `Foo f2 = __call_expr;`（这里的 `__call_expr` 实际上是个 prvalue，因此发生 copy elision (Case 2)），因此共有 1 次构造和 1 次移动构造。
-- 对于 `f1 = bar();`，由于 copy elision (Case 1) 的存在，`Foo()` 直接会构造在 `__call_expr` 上，亦即 `Foo __call_expr = Foo();` (ctor here)，然后 `f1 = __call_expr;`（这里的 `__call_expr` 实际上是个 prvalue，因此 move assign here），因此发生 1 次构造函数和 1 次移动赋值。
-- 对于 `f2 = baz();`，过程是：`Foo f = Foo();` (ctor here), `Foo __call_expr = std::move(f);` (move ctor here), `f2 = __call_expr;` (move assign here)，因此发生 1 次构造函数、1 次移动构造和 1 次移动赋值。
-
-[^ret_move]: 如果 `return` 语句中的表达式是函数体中的一个 implicitly movable entity[^imp_mov_ent]，则编译器首先尝试以移动的方式返回，即尝试先将表达式视为 rvalue；如果重载解析失败，再将表达式视为 lvalue 尝试以拷贝的方式返回。如果仍然失败，则编译错误。
-[^imp_mov_ent]: Implicitly movable entity：具有 automatic storage duration 的一个 non-volatile object 或者 non-volatile object 的一个右值引用。
+## 参考资料
 
 本文参考：
 

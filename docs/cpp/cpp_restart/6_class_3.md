@@ -31,6 +31,9 @@
 
 ### copy elision
 
+!!! warning
+    这里的讲解限于当前知识水平做了简化。如果读者理解 value category，可以直接阅读 [更标准的版本](../9_move_semantics/#922-prvalue)。
+
 我们考虑这样一个情形：
 
 ```c++
