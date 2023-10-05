@@ -4582,7 +4582,7 @@
 
 <h1 id="2-overview">2 Overview<a class="headerlink" href="#2-overview" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 1832 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 6 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 1841 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 6 分钟</p>
 </div>
 <h2 id="21-操作系统是啥">2.1 操作系统是啥<a class="headerlink" href="#21-操作系统是啥" title="Permanent link">&para;</a></h2>
 <p>我们在计组课上搞好了一个 CPU，还有配套的内存之类的设备，现在要用它。可以直接把汇编写到内存里运行。</p>
@@ -4593,7 +4593,7 @@
 <li><strong>批处理系统, Batch Processing Systems</strong>。Jobs 在内存或者外存里，内存始终有一个 job 在运行，操作系统负责在结束后加载下一个开始运行（我们将加载到内存并运行的程序为 <strong>进程, process</strong>）。  <br />
   批处理系统的逻辑简单，弊端也非常明显：当进程执行 I/O 时，CPU 会停下来等待事件完成。I/O 事件有可能是和显示器等设备交互，但更耗时的实际上是等待用户进行输入。在这样的系统里，大多数时间浪费在了等用户输入这件事情上。</li>
 <li><strong>多道批处理系统, Multiprogramming Batch Systems</strong>。在批处理系统基础上，当当前 job 发生 I/O 时，操作系统负责让 CPU 转而运行另一个 job。  <br />
-  多道批处理系统通过这种方式避免了批处理系统等待用户输入等 I/O 事件的 CPU 时间浪费，但是这样的系统仍然对用户不够友好。例如，我们假设视频播放器播放视频需要一个单独的进程，那么如果用户希望同时开两个视频播放器分别播放一个视频，在多道批处理系统中就是不可能实现的，因为 CPU 始终只在执行一个 job，因此只有一个视频能被播放。</li>
+  多道批处理系统通过这种方式避免了批处理系统等待用户输入等 I/O 事件的 CPU 时间浪费，但是这样的系统仍然对用户不够友好。例如，我们假设视频播放器播放视频需要一个单独的进程，那么如果用户希望同时开两个视频播放器分别播放一个视频，在多道批处理系统中就是不可能实现的，因为在没有 I/O 的情况下 CPU 始终只在执行一个 job，因此只有一个视频能被播放。<sup id="fnref:video"><a class="footnote-ref" href="#fn:video">1</a></sup></li>
 <li><strong>分时系统, Time Sharing Systems</strong>。将 CPU 时间划分为很小的时间片，操作系统负责安排各个 job 轮流运行。  <br />
   这个设计解决了「两个视频播放器」的问题：由于切换频率很高，远高于人的反应频率，因此可以快速在两个播放进程之间切换，从而让用户看起来「以为」两个视频是同时播放的。<br />
   分时系统本身也是一种多道 (multiprogramming) 系统，即允许多个 job 并发 (concurrently) 执行。但是不是批处理 (batch) 系统。</li>
@@ -4643,13 +4643,21 @@
 <p>系统设计也可能引入更多 mode，或者叫 <strong>privilege level</strong>。例如在虚拟化的情境下，可能会支持多于 user mode 但是少于 kernel mode 的指令等。</p>
 </div>
 <p>因此，当发生中断、system call、错误（例如除以 0，或者访问未知指令）等情况时，会发生 user mode 到 kernel mode 的转换。</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:video">
+<p>事实上播放视频这个事情本身确实也是需要 I/O 的，但是大概理解一下意思就行了）））意会 意会&#160;<a class="footnote-backref" href="#fnref:video" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-10-05T07:44:21+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-10-05</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-10-05T07:50:58+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-10-05</span>
       
         <br>
         创建日期:
