@@ -5,91 +5,68 @@ nav:
     - 📆 最近更新: recent.md
     # - 🌈 颜色主题 & 夜间模式: 主页/theme.md
   - C++:
-    - cpp/index.md
-    - 🍉C++ 学习记录:
-      - cpp/cpp_restart/index.md
-      - 朋辈辅学 slides 与随材:
-        - Week1 C++ 的诞生与面向对象程序设计: https://xuan-insr.github.io/slides/cpp/1_birth_and_oop/
-        - Week1 内容回顾: cpp/cpp_restart/review/week1.md
-        - Week2 类(I) 定义、成员、构造、析构: https://xuan-insr.github.io/slides/cpp/2_class_I/
-        - Week2 思考题与复习题: cpp/cpp_restart/review/week2.md
-        - Week3 类 (II) 拷贝赋值、拷贝构造、SMFs: https://xuan-insr.github.io/slides/cpp/3_class_II/
-        - Week3 思考题与复习题: cpp/cpp_restart/review/week3.md
-        - Week4 类 (III) 隐式类型转换、拷贝构造、SMFs: https://xuan-insr.github.io/slides/cpp/4_class_III/
-        - Week4 思考题与复习题: cpp/cpp_restart/review/week4.md
-        - Week5 模板 (I) 基础知识与 STL 使用: https://xuan-insr.github.io/slides/cpp/5_template_I/
-        # - Week5 思考题与复习题: cpp/cpp_restart/review/week5.md
-        - Week6 模板 (II) 理解 STL - 迭代器与函数对象: https://xuan-insr.github.io/slides/cpp/6_stl/
-        # - Week6 思考题与复习题: cpp/cpp_restart/review/week6.md
-        - Week7 值类型、右值引用与移动语义: https://xuan-insr.github.io/slides/cpp/7_rvalue_ref/
-        - Week8 智能指针基础: https://xuan-insr.github.io/slides/cpp/8_smart_ptr/
-        - Week9 类 (IV) 继承: https://xuan-insr.github.io/slides/cpp/9_class_IV/
-      - 正文！:
-        - 1 C++ 的诞生: cpp/cpp_restart/1_birth.md
-        - 2 编程范式: cpp/cpp_restart/2_paradigm.md
-        - 3 面向对象程序设计: cpp/cpp_restart/3_oop.md
-        - 4 类 (I) - 定义、成员、构造、析构: cpp/cpp_restart/4_class_1.md
-        - 5 类 (II) - 拷贝赋值、运算符重载与引用: cpp/cpp_restart/5_class_2.md
-        - 6 类 (III) - 拷贝构造、SMFs: cpp/cpp_restart/6_class_3.md
-        # - 7 类 (IV) - const 和 static 成员: cpp/cpp_restart/7_class_4.md
-        # - 8 类 (V) - 继承与抽象类、访问控制: cpp/cpp_restart/8_class_5.md
-        - 7 模板 (I) - 基本知识与 STL 使用: cpp/cpp_restart/7_template.md
-        - 8 模板 (II) - 理解 STL: cpp/cpp_restart/8_stl.md
-        - 9 右值引用和移动语义: cpp/cpp_restart/9_move_semantics.md
-        - 10 智能指针基础: cpp/cpp_restart/10_smart_ptr.md
-        - 11 类 (IV) - 继承、RTTI: cpp/cpp_restart/11_class_4.md
-        - 12 exception: cpp/cpp_restart/12_exception.md
-        # - 10 模板 (III) - 更多话题: cpp/cpp_restart/10_template_adv.md
-        # - 12 类 (VI) - 移动构造与移动赋值: cpp/cpp_restart/12_class_6.md
-        # - 13 namespace: cpp/cpp_restart/13_namespace.md
-        # - 14 exception: cpp/cpp_restart/14_exception.md
-      - A 附录:
-        - 声明与定义: cpp/cpp_restart/appendix/decl_and_def.md
-        - inline 函数: cpp/cpp_restart/appendix/inline_functions.md
-        - 函数默认参数与重载: cpp/cpp_restart/appendix/func_overload.md
-        - 运算符重载: cpp/cpp_restart/appendix/operator_overload.md
-        - 引用: cpp/cpp_restart/appendix/references.md
-        - I/O stream: cpp/cpp_restart/appendix/iostream.md
-        - copy elision: cpp/cpp_restart/appendix/copy_elision.md
-        - 类型转换: cpp/cpp_restart/appendix/cast.md
-        - bool: cpp/cpp_restart/appendix/bool.md
-        - auto: cpp/cpp_restart/appendix/auto.md
-        - 未定义行为: cpp/cpp_restart/appendix/undefined_behavior.md
-        - std::string: cpp/cpp_restart/appendix/string.md
-        - 智能指针: cpp/cpp_restart/appendix/smart_pointers.md
-        - lambda: cpp/cpp_restart/appendix/lambda.md
-      - B 总结:
-        - member initializer lists: cpp/cpp_restart/summaries/member_init_lists.md
-      - 一些笔记和 TODO:
-        - 零散内容记录: cpp/cpp_restart/notes/notes.md
-        - The Design and Evaluation of C++ 阅读记录: cpp/cpp_restart/notes/dne_notes.md
-        - C++ 语言标准阅读记录: cpp/cpp_restart/notes/std_notes.md
-        - C++ Core Guidelines 阅读记录: cpp/cpp_restart/notes/guideline_notes.md
-        - Bjarne Stroustrup's FAQ 阅读记录: cpp/cpp_restart/notes/bs_faq_notes.md
+    - cpp/cpp_restart/index.md
+    - 网课 slides 与随材:
+      - Week1 C++ 的诞生与面向对象程序设计: https://xuan-insr.github.io/slides/cpp/1_birth_and_oop/
+      - Week1 内容回顾: cpp/cpp_restart/review/week1.md
+      - Week2 类(I) 定义、成员、构造、析构: https://xuan-insr.github.io/slides/cpp/2_class_I/
+      - Week2 思考题与复习题: cpp/cpp_restart/review/week2.md
+      - Week3 类 (II) 拷贝赋值、拷贝构造、SMFs: https://xuan-insr.github.io/slides/cpp/3_class_II/
+      - Week3 思考题与复习题: cpp/cpp_restart/review/week3.md
+      - Week4 类 (III) 隐式类型转换、拷贝构造、SMFs: https://xuan-insr.github.io/slides/cpp/4_class_III/
+      - Week4 思考题与复习题: cpp/cpp_restart/review/week4.md
+      - Week5 模板 (I) 基础知识与 STL 使用: https://xuan-insr.github.io/slides/cpp/5_template_I/
+      # - Week5 思考题与复习题: cpp/cpp_restart/review/week5.md
+      - Week6 模板 (II) 理解 STL - 迭代器与函数对象: https://xuan-insr.github.io/slides/cpp/6_stl/
+      # - Week6 思考题与复习题: cpp/cpp_restart/review/week6.md
+      - Week7 值类型、右值引用与移动语义: https://xuan-insr.github.io/slides/cpp/7_rvalue_ref/
+      - Week8 智能指针基础: https://xuan-insr.github.io/slides/cpp/8_smart_ptr/
+      - Week9 类 (IV) 继承: https://xuan-insr.github.io/slides/cpp/9_class_IV/
+    - 正文！:
+      - 1 C++ 的诞生: cpp/cpp_restart/1_birth.md
+      - 2 编程范式: cpp/cpp_restart/2_paradigm.md
+      - 3 面向对象程序设计: cpp/cpp_restart/3_oop.md
+      - 4 类 (I) - 定义、成员、构造、析构: cpp/cpp_restart/4_class_1.md
+      - 5 类 (II) - 拷贝赋值、运算符重载与引用: cpp/cpp_restart/5_class_2.md
+      - 6 类 (III) - 拷贝构造、SMFs: cpp/cpp_restart/6_class_3.md
+      # - 7 类 (IV) - const 和 static 成员: cpp/cpp_restart/7_class_4.md
+      # - 8 类 (V) - 继承与抽象类、访问控制: cpp/cpp_restart/8_class_5.md
+      - 7 模板 (I) - 基本知识与 STL 使用: cpp/cpp_restart/7_template.md
+      - 8 模板 (II) - 理解 STL: cpp/cpp_restart/8_stl.md
+      - 9 右值引用和移动语义: cpp/cpp_restart/9_move_semantics.md
+      - 10 智能指针基础: cpp/cpp_restart/10_smart_ptr.md
+      - 11 类 (IV) - 继承、RTTI: cpp/cpp_restart/11_class_4.md
+      - 12 exception: cpp/cpp_restart/12_exception.md
+      # - 10 模板 (III) - 更多话题: cpp/cpp_restart/10_template_adv.md
+      # - 12 类 (VI) - 移动构造与移动赋值: cpp/cpp_restart/12_class_6.md
+      # - 13 namespace: cpp/cpp_restart/13_namespace.md
+      # - 14 exception: cpp/cpp_restart/14_exception.md
+    - A 附录:
+      - 声明与定义: cpp/cpp_restart/appendix/decl_and_def.md
+      - inline 函数: cpp/cpp_restart/appendix/inline_functions.md
+      - 函数默认参数与重载: cpp/cpp_restart/appendix/func_overload.md
+      - 运算符重载: cpp/cpp_restart/appendix/operator_overload.md
+      - 引用: cpp/cpp_restart/appendix/references.md
+      - I/O stream: cpp/cpp_restart/appendix/iostream.md
+      - copy elision: cpp/cpp_restart/appendix/copy_elision.md
+      - 类型转换: cpp/cpp_restart/appendix/cast.md
+      - bool: cpp/cpp_restart/appendix/bool.md
+      - auto: cpp/cpp_restart/appendix/auto.md
+      - 未定义行为: cpp/cpp_restart/appendix/undefined_behavior.md
+      - std::string: cpp/cpp_restart/appendix/string.md
+      - 智能指针: cpp/cpp_restart/appendix/smart_pointers.md
+      - lambda: cpp/cpp_restart/appendix/lambda.md
+    - B 总结:
+      - member initializer lists: cpp/cpp_restart/summaries/member_init_lists.md
+    - 一些笔记和 TODO:
+      - 零散内容记录: cpp/cpp_restart/notes/notes.md
+      - The Design and Evaluation of C++ 阅读记录: cpp/cpp_restart/notes/dne_notes.md
+      - C++ 语言标准阅读记录: cpp/cpp_restart/notes/std_notes.md
+      - C++ Core Guidelines 阅读记录: cpp/cpp_restart/notes/guideline_notes.md
+      - Bjarne Stroustrup's FAQ 阅读记录: cpp/cpp_restart/notes/bs_faq_notes.md
     - 快速入门 C++ 写题: cpp/cpp_for_contests.md
     - C++ 知识补充:
       - 理解 STL —— 迭代器与函数对象: cpp/理解 STL - 迭代器与函数对象.md
-  - PL & 编译: 
-    - pl/index.md
-    - 编程语言原理: 
-      - pl/ppl_notes/index.md
-      - 我在 PPL 2022 Final 出的复习题: pl/ppl_notes/0_PPL_Final_Problem1.md
-      - Part I - Judgments and Rules | 判断与规则:
-        - 1 抽象语法: pl/ppl_notes/1_Abstract_Syntax.md
-        - 2 归纳定义: pl/ppl_notes/2_Inductive_Definition.md
-        - 3 假言判断与一般性判断: pl/ppl_notes/3_Hypothetical_and_General_Judgments.md
-      - Part II - Statics and Dynamics | 静态语义和动态语义:
-        - 4 静态语义: pl/ppl_notes/4_Statics.md
-        - 5 动态语义: pl/ppl_notes/5_Dynamics.md
-        - 6 类型安全: pl/ppl_notes/6_Type_Safety.md
-      - Part III - Total Functions | 全函数:
-        - 8 函数定义和值: pl/ppl_notes/8_Func_Def_and_Val.md
-        - 9 高阶递归的系统 T: pl/ppl_notes/9_Sys_T_of_Higher_Order_Recursion.md
-      - Part IV - Finite Data Types | 有限数据类型:
-        - 10 积类型: pl/ppl_notes/10_product_types.md
-        - 11 和类型: pl/ppl_notes/11_sum_types.md
-    - 编译原理: compile_principle/index.md
-    - OCaml 入门: https://www.yuque.com/xianyuxuan/coding/ocaml
   - 核心知识: 
     - 核心知识/index.md
     - 操作系统:
@@ -142,10 +119,28 @@ nav:
     - 系统安全: https://www.yuque.com/xianyuxuan/coding/syssec
     - 无线与物联网安全基础: https://www.yuque.com/xianyuxuan/coding/wireless_iot
     - 面向信息安全的信号处理: https://www.yuque.com/xianyuxuan/coding/signal_processing
-  - 语言基础: 语言基础/index.md
+  # - 语言基础: 语言基础/index.md
   - 其他课程: 
     - other_courses/index.md
     - 计算理论: other_courses/theory_of_computation.md
+    - 编程语言原理: 
+      - pl/ppl_notes/index.md
+      - 我在 PPL 2022 Final 出的复习题: pl/ppl_notes/0_PPL_Final_Problem1.md
+      - Part I - Judgments and Rules | 判断与规则:
+        - 1 抽象语法: pl/ppl_notes/1_Abstract_Syntax.md
+        - 2 归纳定义: pl/ppl_notes/2_Inductive_Definition.md
+        - 3 假言判断与一般性判断: pl/ppl_notes/3_Hypothetical_and_General_Judgments.md
+      - Part II - Statics and Dynamics | 静态语义和动态语义:
+        - 4 静态语义: pl/ppl_notes/4_Statics.md
+        - 5 动态语义: pl/ppl_notes/5_Dynamics.md
+        - 6 类型安全: pl/ppl_notes/6_Type_Safety.md
+      - Part III - Total Functions | 全函数:
+        - 8 函数定义和值: pl/ppl_notes/8_Func_Def_and_Val.md
+        - 9 高阶递归的系统 T: pl/ppl_notes/9_Sys_T_of_Higher_Order_Recursion.md
+      - Part IV - Finite Data Types | 有限数据类型:
+        - 10 积类型: pl/ppl_notes/10_product_types.md
+        - 11 和类型: pl/ppl_notes/11_sum_types.md
+    - OCaml 入门: https://www.yuque.com/xianyuxuan/coding/ocaml
   - 杂项:
     - 杂项/index.md
     - 博客搭建记录: 杂项/博客搭建记录.md
@@ -212,6 +207,8 @@ markdown_extensions:
   - tables
   - meta
   - md_in_html
+  - neoteroi.cards
+  - neoteroi.timeline
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.betterem:
@@ -250,6 +247,11 @@ extra:
   analytics:
     provider: google
     property: G-JT9BRCXKJJ
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/smd1121
+    - icon: fontawesome/solid/envelope
+      link: mailto:xianyuxuan@outlook.com
 
 # extra:
 #   search:
@@ -261,6 +263,7 @@ copyright: '本页面的全部内容在 <a href="https://creativecommons.org/lic
 extra_css:
   - 'from_oi_wiki/css/extra.css?v=13'
   - css/status.css
+  - css/neoteroi-mkdocs.css
 
 extra_javascript:
   - 'from_oi_wiki/js/extra.js'
