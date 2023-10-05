@@ -34,7 +34,7 @@ e. New -> Ready
 - Maximize **Throughput** : 吞吐量，每个时间单元内完成的进程
 - Minimize **Turnaround Time** : 周转时间，从进程创立到进程完成的时间，包括等待进入内存、在 ready queue 中等待、在 CPU 上执行、I/O 执行等时间
 - Minimize **Waiting Time** : 等待时间，在 ready queue 中（或在 Ready 状态下）等待所花的时间之和
-- Minimize **Response Time** : 响应时间，交互系统从进程创立到第一次产生相应的时间
+- Minimize **Response Time** : 响应时间，交互系统从进程创立到第一次产生响应的时间
 
 这些要求有时甚至是冲突的。例如，较多的 context switch 会减少 throughput，因为 context switch 过程中并没有有用的工作；而较少的 context switch 会增加 response time。
 
