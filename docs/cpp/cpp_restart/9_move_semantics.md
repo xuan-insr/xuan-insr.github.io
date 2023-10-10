@@ -504,7 +504,57 @@ swap(a, b);
 
 但是这是不好的——显然，在第 4 行之后，我们不再关心 `a` 的成员，因为在第 5 行我们即将将其覆盖；对 `b` 来说也是一样的。也就是说，如果这里我们采用移动语义，可以将 3 次拷贝变成 3 次移动，这能显著提高程序的性能。
 
-这几处使用拷贝语义而非移动语义的原因是，`a`, `b`, `tmp` 是个左值。如果我们希望使用移动语义，就需要将它们变成右值。事实上，C++ 提供了函数 `std::move` 帮我们完成「将参数转换为右值」这个事情：
+这几处使用拷贝语义而非移动语义的原因是，`a`, `b`, `tmp` 是个左值。如果我们希望使用移动语义，就需要将它们变成右值。我们如何将一个左值变为一个右值呢？事实上，C++ 中有以下规定：
+
+!!! note
+    对于一个函数调用表达式：
+
+    - 如果函数返回值类型不是引用，则该表达式是 prvalue
+    - 如果函数返回值类型是左值引用，则该表达式是 lvalue
+    - 如果函数返回值类型是对象的右值引用，则该表达式是 xvalue[^cast_to_rvalue_ref]
+
+    类似地，对于一个 cast 表达式：
+
+    - 如果目标不是引用，则该表达式是 prvalue
+    - 如果目标是左值引用，则该表达式是 lvalue
+    - 如果目标是对象的右值引用，则该表达式是 xvalue[^cast_to_rvalue_ref]
+
+    [^cast_to_rvalue_ref]: 特别地，cast 到一个函数的右值引用，这个表达式是左值。
+
+!!! danger "TODO"
+    为什么？
+
+也就是说，我们可以通过将 `a`, `b`, `tmp` cast 到右值引用的方式实现将 lvalue 变为 xvalue，而 xvalue 是 rvalue 的一种。即：
+
+```c++
+template<class T>
+void swap(T& a, T& b) 
+{ 
+    T tmp((T&&)(a));
+    a = (T&&)(b); 
+    b = (T&&)(tmp); 
+} 
+
+Container<int> a, b;
+swap(a, b);
+```
+
+或者用更 C++ 的方式，使用 C++ style cast 而非 function style cast：
+
+```c++
+template<class T>
+void swap(T& a, T& b) 
+{ 
+    T tmp(static_cast<T&&>(a));
+    a = static_cast<T&&>(b); 
+    b = static_cast<T&&>(tmp); 
+} 
+
+Container<int> a, b;
+swap(a, b);
+```
+
+事实上，C++ 提供了函数 `std::move` 帮我们完成「将参数转换为右值」这个事情；我们稍后再讨论 `std::move` 是如何实现的：
 
 ```c++ linenums="1"
 template<class T>
@@ -519,21 +569,51 @@ Container<int> a, b;
 swap(a, b);
 ```
 
+如我们所愿，这种情况下会发生移动构造和移动赋值，而非拷贝；这在 `T` 需要 non-trivial copy（即 copy 不仅仅需要拷贝字段，还需要完成更多操作）的情况下会有性能提升：
+
 <center>![](2023-04-24-01-49-28.png)</center>
 
-??? note
+也就是说，虽然 `T foo(bar);` 这样的构造在 `bar` 是左值的时候会使用拷贝构造，但如果我们 **明知** `bar` 此后不会被用到，且通过 `std::move(bar)` **明确告知** 编译器这一点，那么我们就可以通过 `T foo(std::move(bar));` 的方式来实现移动构造。对于赋值也是类似。
+
+???+ note
     看到这个例子后，我们能够意识到：`a = std::move(b);` 这样的移动赋值实际上就是交换了 `a` 和 `b` 的资源——双方都没有被析构。虽然 `a` 持有的资源会在 `b` 的生命周期结束时被销毁，但这和拷贝赋值对比，`a` 所持有资源的销毁时机变得不那么确定了。在没有什么副作用的情况下，这不会带来什么问题；但是假如这个销毁有外部可见的副作用，时机的不确定就会带来隐患。因此，对于移动赋值运算符，我们仍然需要处理析构过程中那些对外可见的副作用。一个例子是，假如每个对象构造时申请了一个锁，则在移动赋值运算符中，也应当将锁释放掉。
 
-右值引用本身是一个左值，否则我们就没有办法完成诸如修改它的值之类的「对左值的」操作。右值引用和左值引用的区别不在于能做什么事，而只是在于什么值可以绑定给这个引用。
+???+ note "既然可以 `static_cast<T&&>`，为什么还要 `std::move` 呢？
+    因为这样可以提高代码的可读性，同时便于查找。一个 cast 并不能显而易见地让人理解这里是要将 lvalue 转为 xvalue，而 `std::move` 则很容易表现这一点。另外，假如我们希望找到代码中所有这样的转换，我们就可以直接查找 `std::move` 的出现了。
+
+#### 右值引用本身是一个左值
+
+考虑这段代码的输出：
 
 ```c++
-int && x = 1; // OK
-int && r = x; // Error: rvalue reference to type 'int' cannot bind to lvalue of type 'int'
+void foo(int && x) {
+    cout << "int &&\n";
+}
+void foo(int & x) {
+    cout << "int &\n";
+}
+
+int main() {
+    int i = 1;
+    int & lr = i;
+    int && rr = 2;
+
+    foo(1);
+    foo(i);
+    foo(lr);
+    foo(rr);
+
+    return 0;
+}
 ```
 
-![](2023-04-24-01-20-40.png)
+![](assets/2023-10-08-19-12-10.png)
 
-另一方面，假如右值引用被视为一个右值，则可能会出现一些混乱的情况：
+容易看到，右值引用本身是一个左值，否则我们就没有办法完成诸如修改它的值之类的「对左值的」操作。为什么这样设计呢？
+
+一方面，右值引用和左值引用的区别不在于能做什么事，而只是在于什么值可以绑定给这个引用。
+
+另一方面，移动语义最开始的场景 `x = foo();` 是在「不影响结果的地方」使用，因为这样一定不会带来问题；而我们后来讨论的 `std::move` 的含义则是「程序员明确知道这里使用移动不影响结果」，程序员对这样的移动语义负责。但是，假如右值引用被视为一个右值，则可能会出现一些混乱的情况：
 
 ```c++
 template<typename T>
@@ -547,6 +627,33 @@ void foo(Container<T> && x) {
 
 同时，这也不违反我们「有名字的表达式是左值」的说法。
 
+### 9.3.4 member functions with ref-qualifier
+
+非静态成员函数可以有 ref-qualifier，用来在重载解析阶段根据调用者的值类型选择不同的重载：
+
+```c++
+struct S {
+    void f() &  { std::cout << "lvalue\n"; }
+    void f() && { std::cout << "rvalue\n"; }
+};
+ 
+int main() {
+    S s;
+    s.f();            // prints "lvalue"
+    std::move(s).f(); // prints "rvalue"
+    S().f();          // prints "rvalue"
+}
+```
+
+与 cv-qualification 不同，ref-qualification 不改变 `this` 指针的属性：在 rvalue ref-qualified function 中，`*this` 仍然是 lvalue。
+
+感兴趣的同学可以在 https://andreasfertig.blog/2022/07/the-power-of-ref-qualifiers/ 这篇文章中了解到 ref-qualifier 的详细用途。
+
+## 9.4 移动构造函数与移动赋值运算符
+
+
+
+## 9.5 完美转发 | Perfect forwarding
 
 !!! note
     有 `struct Foo {}; struct Bar : Foo {};`，那么 `Foo f = Bar();` 发生了什么？

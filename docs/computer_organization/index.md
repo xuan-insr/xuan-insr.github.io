@@ -3,6 +3,8 @@
 !!! danger ""
     我的笔记所追求的目标是有逻辑、通畅地总结知识；因此如果您在阅读过程中在任何地方发现了不容易读懂的部分，请务必在评论区或者通过其它方式告知我QWQ！非常感谢！
 
+    本文经 @IsshikiHugh 补充和完善。
+
 这是计算机组成课程的学习记录。
 
 使用的课本是 _Computer Organization and Design - The Hardware / Software Interface (RISC-V Edition)_：
