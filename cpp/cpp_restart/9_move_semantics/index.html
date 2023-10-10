@@ -1298,10 +1298,44 @@
     9.3.3 std::move
   </a>
   
+    <nav class="md-nav" aria-label="9.3.3 std::move">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#右值引用本身是一个左值" class="md-nav__link">
+    右值引用本身是一个左值
+  </a>
+  
 </li>
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#934-member-functions-with-ref-qualifier" class="md-nav__link">
+    9.3.4 member functions with ref-qualifier
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#94-移动构造函数与移动赋值运算符" class="md-nav__link">
+    9.4 移动构造函数与移动赋值运算符
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#95-完美转发--perfect-forwarding" class="md-nav__link">
+    9.5 完美转发 | Perfect forwarding
+  </a>
   
 </li>
       
@@ -4817,10 +4851,44 @@
     9.3.3 std::move
   </a>
   
+    <nav class="md-nav" aria-label="9.3.3 std::move">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#右值引用本身是一个左值" class="md-nav__link">
+    右值引用本身是一个左值
+  </a>
+  
 </li>
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#934-member-functions-with-ref-qualifier" class="md-nav__link">
+    9.3.4 member functions with ref-qualifier
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#94-移动构造函数与移动赋值运算符" class="md-nav__link">
+    9.4 移动构造函数与移动赋值运算符
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#95-完美转发--perfect-forwarding" class="md-nav__link">
+    9.5 完美转发 | Perfect forwarding
+  </a>
   
 </li>
       
@@ -4848,7 +4916,7 @@
 
 <h1 id="9-右值引用与移动语义">9 右值引用与移动语义<a class="headerlink" href="#9-右值引用与移动语义" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 2490 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 141 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 10 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 3248 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 189 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 13 分钟</p>
 </div>
 <h2 id="91-lvalue--rvalue">9.1 lvalue &amp; rvalue<a class="headerlink" href="#91-lvalue--rvalue" title="Permanent link">&para;</a></h2>
 <h3 id="911-引入">9.1.1 引入<a class="headerlink" href="#911-引入" title="Permanent link">&para;</a></h3>
@@ -5384,7 +5452,51 @@ p:   .word 0
 <p>这里，第 4 行用到的是拷贝构造而非移动构造；第 5 行和第 6 行用到的都是拷贝复制而非移动复制，因为 <code>a</code> 和 <code>b</code> 是左值而非右值。</p>
 <p><center><img alt="" src="../2023-04-24-01-25-33.png" /></center></p>
 <p>但是这是不好的——显然，在第 4 行之后，我们不再关心 <code>a</code> 的成员，因为在第 5 行我们即将将其覆盖；对 <code>b</code> 来说也是一样的。也就是说，如果这里我们采用移动语义，可以将 3 次拷贝变成 3 次移动，这能显著提高程序的性能。</p>
-<p>这几处使用拷贝语义而非移动语义的原因是，<code>a</code>, <code>b</code>, <code>tmp</code> 是个左值。如果我们希望使用移动语义，就需要将它们变成右值。事实上，C++ 提供了函数 <code>std::move</code> 帮我们完成「将参数转换为右值」这个事情：</p>
+<p>这几处使用拷贝语义而非移动语义的原因是，<code>a</code>, <code>b</code>, <code>tmp</code> 是个左值。如果我们希望使用移动语义，就需要将它们变成右值。我们如何将一个左值变为一个右值呢？事实上，C++ 中有以下规定：</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>对于一个函数调用表达式：</p>
+<ul>
+<li>如果函数返回值类型不是引用，则该表达式是 prvalue</li>
+<li>如果函数返回值类型是左值引用，则该表达式是 lvalue</li>
+<li>如果函数返回值类型是对象的右值引用，则该表达式是 xvalue<sup id="fnref2:cast_to_rvalue_ref"><a class="footnote-ref" href="#fn:cast_to_rvalue_ref">3</a></sup></li>
+</ul>
+<p>类似地，对于一个 cast 表达式：</p>
+<ul>
+<li>如果目标不是引用，则该表达式是 prvalue</li>
+<li>如果目标是左值引用，则该表达式是 lvalue</li>
+<li>如果目标是对象的右值引用，则该表达式是 xvalue<sup id="fnref:cast_to_rvalue_ref"><a class="footnote-ref" href="#fn:cast_to_rvalue_ref">3</a></sup></li>
+</ul>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">TODO</p>
+<p>为什么？</p>
+</div>
+<p>也就是说，我们可以通过将 <code>a</code>, <code>b</code>, <code>tmp</code> cast 到右值引用的方式实现将 lvalue 变为 xvalue，而 xvalue 是 rvalue 的一种。即：</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">swap</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span>
+<span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="nf">tmp</span><span class="p">((</span><span class="n">T</span><span class="o">&amp;&amp;</span><span class="p">)(</span><span class="n">a</span><span class="p">));</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">T</span><span class="o">&amp;&amp;</span><span class="p">)(</span><span class="n">b</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">T</span><span class="o">&amp;&amp;</span><span class="p">)(</span><span class="n">tmp</span><span class="p">);</span><span class="w"> </span>
+<span class="p">}</span><span class="w"> </span>
+
+<span class="n">Container</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+</code></pre></div>
+<p>或者用更 C++ 的方式，使用 C++ style cast 而非 function style cast：</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">swap</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span>
+<span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="nf">tmp</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&amp;&amp;&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&amp;&amp;&gt;</span><span class="p">(</span><span class="n">b</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&amp;&amp;&gt;</span><span class="p">(</span><span class="n">tmp</span><span class="p">);</span><span class="w"> </span>
+<span class="p">}</span><span class="w"> </span>
+
+<span class="n">Container</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+</code></pre></div>
+<p>事实上，C++ 提供了函数 <code>std::move</code> 帮我们完成「将参数转换为右值」这个事情；我们稍后再讨论 <code>std::move</code> 是如何实现的：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -5405,17 +5517,41 @@ p:   .word 0
 <span class="n">Container</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
 <span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
+<p>如我们所愿，这种情况下会发生移动构造和移动赋值，而非拷贝；这在 <code>T</code> 需要 non-trivial copy（即 copy 不仅仅需要拷贝字段，还需要完成更多操作）的情况下会有性能提升：</p>
 <p><center><img alt="" src="../2023-04-24-01-49-28.png" /></center></p>
-<details class="note">
+<p>也就是说，虽然 <code>T foo(bar);</code> 这样的构造在 <code>bar</code> 是左值的时候会使用拷贝构造，但如果我们 <strong>明知</strong> <code>bar</code> 此后不会被用到，且通过 <code>std::move(bar)</code> <strong>明确告知</strong> 编译器这一点，那么我们就可以通过 <code>T foo(std::move(bar));</code> 的方式来实现移动构造。对于赋值也是类似。</p>
+<details class="note" open="open">
 <summary>Note</summary>
 <p>看到这个例子后，我们能够意识到：<code>a = std::move(b);</code> 这样的移动赋值实际上就是交换了 <code>a</code> 和 <code>b</code> 的资源——双方都没有被析构。虽然 <code>a</code> 持有的资源会在 <code>b</code> 的生命周期结束时被销毁，但这和拷贝赋值对比，<code>a</code> 所持有资源的销毁时机变得不那么确定了。在没有什么副作用的情况下，这不会带来什么问题；但是假如这个销毁有外部可见的副作用，时机的不确定就会带来隐患。因此，对于移动赋值运算符，我们仍然需要处理析构过程中那些对外可见的副作用。一个例子是，假如每个对象构造时申请了一个锁，则在移动赋值运算符中，也应当将锁释放掉。</p>
 </details>
-<p>右值引用本身是一个左值，否则我们就没有办法完成诸如修改它的值之类的「对左值的」操作。右值引用和左值引用的区别不在于能做什么事，而只是在于什么值可以绑定给这个引用。</p>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// OK</span>
-<span class="kt">int</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="c1">// Error: rvalue reference to type &#39;int&#39; cannot bind to lvalue of type &#39;int&#39;</span>
+<p>???+ note "既然可以 <code>static_cast&lt;T&amp;&amp;&gt;</code>，为什么还要 <code>std::move</code> 呢？
+    因为这样可以提高代码的可读性，同时便于查找。一个 cast 并不能显而易见地让人理解这里是要将 lvalue 转为 xvalue，而 <code>std::move</code> 则很容易表现这一点。另外，假如我们希望找到代码中所有这样的转换，我们就可以直接查找 <code>std::move</code> 的出现了。</p>
+<h4 id="右值引用本身是一个左值">右值引用本身是一个左值<a class="headerlink" href="#右值引用本身是一个左值" title="Permanent link">&para;</a></h4>
+<p>考虑这段代码的输出：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;int &amp;&amp;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;int &amp;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">rr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="n">lr</span><span class="p">);</span>
+<span class="w">    </span><span class="n">foo</span><span class="p">(</span><span class="n">rr</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
-<p><img alt="" src="../2023-04-24-01-20-40.png" /></p>
-<p>另一方面，假如右值引用被视为一个右值，则可能会出现一些混乱的情况：</p>
+<p><img alt="" src="../assets/2023-10-08-19-12-10.png" /></p>
+<p>容易看到，右值引用本身是一个左值，否则我们就没有办法完成诸如修改它的值之类的「对左值的」操作。为什么这样设计呢？</p>
+<p>一方面，右值引用和左值引用的区别不在于能做什么事，而只是在于什么值可以绑定给这个引用。</p>
+<p>另一方面，移动语义最开始的场景 <code>x = foo();</code> 是在「不影响结果的地方」使用，因为这样一定不会带来问题；而我们后来讨论的 <code>std::move</code> 的含义则是「程序员明确知道这里使用移动不影响结果」，程序员对这样的移动语义负责。但是，假如右值引用被视为一个右值，则可能会出现一些混乱的情况：</p>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="kt">void</span><span class="w"> </span><span class="n">foo</span><span class="p">(</span><span class="n">Container</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">Container</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
@@ -5424,6 +5560,24 @@ p:   .word 0
 </code></pre></div>
 <p>如果右值引用被视为右值，则上面的 <code>y</code> 是被移动构造的；此时，<code>x</code> 的 <code>data</code> 变成了 <code>nullptr</code>，因此如果我们再尝试对 <code>x</code> 做操作就可能会发生问题，这是我们不希望的。移动语义最开始的场景 <code>x = foo();</code> 是在「不影响结果的地方」使用，因为这样一定不会带来问题；而 <code>std::move</code> 的含义则是「程序员明确知道这里使用移动不影响结果」，程序员对这样的移动语义负责。但是，如果右值引用被视为右值，上面的例子显示了移动语义可能会在程序员可能不明确了解且有可能影响后续结果的情况下发生；这是语言设计者不希望的。这也是右值引用被视为左值的另一个原因。</p>
 <p>同时，这也不违反我们「有名字的表达式是左值」的说法。</p>
+<h3 id="934-member-functions-with-ref-qualifier">9.3.4 member functions with ref-qualifier<a class="headerlink" href="#934-member-functions-with-ref-qualifier" title="Permanent link">&para;</a></h3>
+<p>非静态成员函数可以有 ref-qualifier，用来在重载解析阶段根据调用者的值类型选择不同的重载：</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">S</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;lvalue</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;rvalue</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">S</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+<span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="n">f</span><span class="p">();</span><span class="w">            </span><span class="c1">// prints &quot;lvalue&quot;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">s</span><span class="p">).</span><span class="n">f</span><span class="p">();</span><span class="w"> </span><span class="c1">// prints &quot;rvalue&quot;</span>
+<span class="w">    </span><span class="n">S</span><span class="p">().</span><span class="n">f</span><span class="p">();</span><span class="w">          </span><span class="c1">// prints &quot;rvalue&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>与 cv-qualification 不同，ref-qualification 不改变 <code>this</code> 指针的属性：在 rvalue ref-qualified function 中，<code>*this</code> 仍然是 lvalue。</p>
+<p>感兴趣的同学可以在 <a href="https://andreasfertig.blog/2022/07/the-power-of-ref-qualifiers/">https://andreasfertig.blog/2022/07/the-power-of-ref-qualifiers/</a> 这篇文章中了解到 ref-qualifier 的详细用途。</p>
+<h2 id="94-移动构造函数与移动赋值运算符">9.4 移动构造函数与移动赋值运算符<a class="headerlink" href="#94-移动构造函数与移动赋值运算符" title="Permanent link">&para;</a></h2>
+<h2 id="95-完美转发--perfect-forwarding">9.5 完美转发 | Perfect forwarding<a class="headerlink" href="#95-完美转发--perfect-forwarding" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>有 <code>struct Foo {}; struct Bar : Foo {};</code>，那么 <code>Foo f = Bar();</code> 发生了什么？</p>
@@ -5468,6 +5622,9 @@ p:   .word 0
 <li id="fn:imp_mov_ent">
 <p>Implicitly movable entity：具有 automatic storage duration 的一个 non-volatile object 或者 non-volatile object 的一个右值引用。&#160;<a class="footnote-backref" href="#fnref:imp_mov_ent" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
+<li id="fn:cast_to_rvalue_ref">
+<p>特别地，cast 到一个函数的右值引用，这个表达式是左值。&#160;<a class="footnote-backref" href="#fnref:cast_to_rvalue_ref" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:cast_to_rvalue_ref" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
 </ol>
 </div>
 
@@ -5476,7 +5633,7 @@ p:   .word 0
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-10-03T20:36:46+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-10-03</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-10-10T03:39:16+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-10-10</span>
       
         <br>
         创建日期:
