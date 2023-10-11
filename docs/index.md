@@ -31,6 +31,7 @@ statistics: true
     - [新鲜男孩！](https://freshboy-cyh.github.io/) 
     - [旭宝的博客！](https://zicx.top/notebook/)
     - [娃娃机！](https://lhmd.github.io/)
+    - [Zizheng's Blog](https://www.zizheng.life/) (在墙外！)
     - [Frank!](https://frankgu.top/)
     - [小角龙！](https://zhang-each.github.io/)
     - [搜拉宅！](https://wjn233.fun/)
