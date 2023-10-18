@@ -4756,20 +4756,20 @@
 
 <h1 id="4-scheduling">4 Scheduling<a class="headerlink" href="#4-scheduling" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 1659 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 6 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 2316 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 8 分钟</p>
 </div>
 <p><strong>​多道 (multiprogramming)</strong> 环境下，进程的个数通常大于 CPU 的个数。CPU 调度就是 OS 关于哪个 ready 进程可以运行（使用 CPU）以及运行多久的决定。</p>
 <p>​其目标是始终允许某个进程运行以最大化 CPU 利用率，同时保证一定的公平性。这在多道环境下是必要的，关系到系统的整体效率。</p>
 <h2 id="41-调度的时机">4.1 调度的时机<a class="headerlink" href="#41-调度的时机" title="Permanent link">&para;</a></h2>
-<p>​​​CPU 调度可能出现在某一个进程：</p>
+<p>​​​CPU 调度可能出现在 <strong>任意</strong> 一个进程：</p>
 <p>a. Running -&gt; Waiting，如等待 I/O<br />
 b. Running -&gt; Terminated<br />
 c. Running -&gt; Ready，当发生了 interrupt，如计时器到时间了<br />
 d. Waiting -&gt; Ready，如 I/O 完成了<br />
 e. New -&gt; Ready</p>
 <p><center><img alt="" src="../2022-12-08-16-38-05.png" width="400" /></center></p>
-<p><strong>​非抢占式 (nonpreemptive)</strong> 调度只会在 a, b 处进行调度，因为只有这时候当前正在运行的进程不能再运行了；<strong>抢占式 (preemptive)</strong> 调度会发生在上述任何时机。因此，抢占式调度使得 OS 有更充分的控制，但它也更复杂。</p>
-<p>​也就是说，当上述情况发生时，可以直接调用调度器来进行调度。</p>
+<p><strong>​非抢占式 (nonpreemptive)</strong> 调度只会在 a, b 处进行调度，因为只有这时候当前正在运行的进程不能再运行了；<strong>抢占式 (preemptive)</strong> 调度会发生在上述任何时机（例如，当一个新的进程被创建，即 e 发生时，也会重新进行调度）。因此，抢占式调度使得 OS 有更充分的控制，但它也更复杂。</p>
+<p>​也就是说，当上述情况发生时，调度器会被调用，来进行调度。</p>
 <h2 id="42-调度的过程">4.2 调度的过程<a class="headerlink" href="#42-调度的过程" title="Permanent link">&para;</a></h2>
 <p><center><img alt="" src="../2022-12-08-17-33-40.png" width="600" /></center></p>
 <p>​这个过程叫 上下文切换 (context switch)，这里的上下文其实就由 PCB 来表示。</p>
@@ -4790,13 +4790,32 @@ e. New -&gt; Ready</p>
 <p><center>​​<img alt="" src="../2022-12-08-17-37-10.png" width="400" /></center></p>
 <p><strong>​Convoy effect</strong> - short process behind long process，​尤其是当有进程进入 waiting 后，再返回的时候又需要重新排队。</p>
 <h3 id="442-shortest-job-first-sjf">4.4.2 ​Shortest-Job-First (SJF)<a class="headerlink" href="#442-shortest-job-first-sjf" title="Permanent link">&para;</a></h3>
+<p>SJF 的核心想法是，让下一次运行时间最短的进程先来运行；根据数学知识，我们可以得知这样能得到最少的平均等待时间。</p>
+<div class="admonition note inline end">
+<p class="admonition-title">Note</p>
+<p>当然，如果我们不忽略非抢占式系统中进程 running -&gt; waiting 的情况，则「下一次运行时间」也就是剩余运行时间了。所以，如果出现了不忽略的情况，大家也要会处理。核心就是把握调度的时机。可以通过下面两个例子理解。</p>
+</div>
+<p>对于非抢占式的系统来说，当我们忽略 I/O 等会进入 waiting 的情况（因为题目通常这样设计），进程「下一次运行时间」就是整个进程所需的总运行时间。但是，对于抢占式的系统而言，「下一次运行时间」实际上是进程的剩余运行时间，因为进程可能曾经被打断过。因此我们将 SJF 进一步细分成了两种。</p>
 <h4 id="non-preemptive-shortest-next-cpu-burst">​Non-preemptive: Shortest-next-CPU-burst<a class="headerlink" href="#non-preemptive-shortest-next-cpu-burst" title="Permanent link">&para;</a></h4>
 <p>​每当 CPU 调度时，其选取 ready queue 中下次 CPU 执行时间最短的进程。这样会使得给定的一组进程具有 minimum average waiting time.</p>
 <p><center><img alt="" src="../2022-12-08-17-42-28.png" width="300" /></center></p>
+<ul>
+<li>在这个情景中，0s 时只有 P1 到达，因此 P1 先运行</li>
+<li>由于是非抢占式的，因此 P1 运行过程中其他进程的到达并不会导致重新调度，P1 得以完全运行</li>
+<li>P1 结束时，剩余进程都已到达，处于 ready 状态，因此调度器从 ready queue 中选取 brust time 最短的来运行，以此类推。</li>
+</ul>
 <h4 id="preemptive-shortest-remaining-time-first">​Preemptive: Shortest-remaining-time-first<a class="headerlink" href="#preemptive-shortest-remaining-time-first" title="Permanent link">&para;</a></h4>
 <p>​每当 CPU 调度时（注意抢占式调度的调度时机），选择最短剩余运行时间的进程。</p>
 <p><center><img alt="" src="../2022-12-08-17-42-49.png" width="300" /></center></p>
-<p>​SJF 的两个版本都可以获得最小的平均等待时间，但最大的问题在于我们并不知道剩余的运行时间。解决方案是预测，将下次执行时间预测为此前 CPU 执行长度的指数平均。</p>
+<ul>
+<li>在这个情境中，0s 时只有 P1 到达，因此 P1 先运行</li>
+<li>但不同的是，由于是抢占式的，因此 2s P2 到达时也会引发一次调度，此时 P1 的剩余时间是 8s，P2 是 6s，因此 P2 优先运行</li>
+<li>4s 时 P3 到达也引发一次调度，但此时 P1 的剩余时间是 8s，P2 是 4s，P3 是 7s，其中 P2 最短，因此仍然是 P2 继续运行</li>
+<li>5s 时 P4 到达也引发一次调度，此时 P1 的剩余时间是 8s，P2 是 3s，P3 是 7s，P4 是 2s，其中 P4 最短，因此 P4 优先运行</li>
+<li>P4 运行结束时，ready queue 中 P1 的剩余时间是 8s，P2 是 3s，P3 是 7s，因此 P2 先运行，以此类推。</li>
+</ul>
+<p>由此也可以看出，两个版本的调度选择其实没有太大的区别，最大的区别只是调度的时机不同。</p>
+<p>如我们之前所述，​SJF 的两个版本都可以获得最小的平均等待时间，但最大的问题在于我们并不知道「下一次运行时间」。解决方案是预测，将下次执行时间预测为此前 CPU 执行长度的指数平均。指数平均需要操作系统统计该进程此前的运行情况；关于指数平均的具体实现，感兴趣的同学可以在课本中自行查阅。</p>
 <h3 id="443-round-robin-rr--preemptive">4.4.3 ​Round-Robin (RR) | Preemptive<a class="headerlink" href="#443-round-robin-rr--preemptive" title="Permanent link">&para;</a></h3>
 <p>​定义一个 <strong>时间片 (time slice / time quantum)</strong> ，即一个固定的较小时间单元 (10-100ms)。除非一个 process 是 ready queue 中的唯一进程，它不会连续运行超过一个时间片的时间。Ready queue 是一个 FIFO 的循环队列。每次调度时取出 ready queue 中的第一个进程，设置一个计时器使得进程在一个时间片后发生中断，然后 dispatch the process。</p>
 <p><center><img alt="" src="../2022-12-08-17-44-56.png" width="300" /></center></p>
@@ -4832,7 +4851,7 @@ e. New -&gt; Ready</p>
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-10-05T07:44:21+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-10-05</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-10-18T07:15:38+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-10-18</span>
       
         <br>
         创建日期:
