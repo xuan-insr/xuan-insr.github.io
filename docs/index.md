@@ -33,7 +33,7 @@ statistics: true
     - [笨蛋修勾的全新笔记本——](https://note.isshikih.top/link/) （写的很详细！但是修勾很笨蛋，暴揍修勾）
     - [Bowling's TechStack](https://note.bowling233.top/)
     - [新鲜男孩！](https://freshboy-cyh.github.io/) 
-    - [旭宝的博客！](https://zicx.top/notebook/)
+    - [旭宝的笔记本！](https://zicx.top/notebook/) （赞美旭宝！）
     - [娃娃机！](https://lhmd.github.io/)
     - [Zizheng's Blog](https://www.zizheng.life/) (在墙外！)
     - [Frank!](https://frankgu.top/)
