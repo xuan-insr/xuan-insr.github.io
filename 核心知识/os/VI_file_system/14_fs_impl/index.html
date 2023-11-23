@@ -4836,7 +4836,7 @@
 
 <h1 id="14-file-system-implementation--文件系统实现">14 File System Implementation | 文件系统实现<a class="headerlink" href="#14-file-system-implementation--文件系统实现" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 2957 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 10 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 2958 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 10 分钟</p>
 </div>
 <p>如我们所说，文件系统利用磁盘驱动器所提供的读写磁盘 blocks 的接口来实现；其发挥的功能是给用户和程序提供存储功能，提供高效和便捷的磁盘访问，并将这种逻辑结构映射到物理的外存设备上。</p>
 <p>现存的文件系统由很多种，大多数操作系统也支持多种文件系统。</p>
@@ -4942,7 +4942,7 @@
 <p>一个问题是，索引块应当有多大；即，我们希望 overhead 不要太大，但是也要能支持大文件。有若干种可选的实现思路：</p>
 <ul>
 <li><strong>linked index blocks</strong>。每个 index block 占用一个 disk block，形成一个 disk block 的链表。</li>
-<li><strong>multiple-level index blocks</strong>。例如，每个 disk block 为 4KiB，那么对于一个二级的索引结构，一级索引就可以有 1024 个 4B 的指针指向二级索引，每个二级索引也能有 1024 个 4B 的指针指向文件块，因此就能够有 <span class="arithmatex">\(2^20\)</span> 块，即支持 4GiB 的最大文件。</li>
+<li><strong>multiple-level index blocks</strong>。例如，每个 disk block 为 4KiB，那么对于一个二级的索引结构，一级索引就可以有 1024 个 4B 的指针指向二级索引，每个二级索引也能有 1024 个 4B 的指针指向文件块，因此就能够有 <span class="arithmatex">\(2^{20}\)</span> 块，即支持 4GiB 的最大文件。</li>
 <li><strong>comblined scheme</strong>。UNIX 的文件系统采取这种方案。在 inode 中有 15 个指针（下面假设 <code>block size = 512B, ptr = 4B</code>）：<ul>
 <li>前 12 个指向 <strong>direct block</strong>，即文件的前 12 个 block。如果文件小于这个大小 (12 * 512B = 6KiB)，则不需要 index block；</li>
 <li>第 13 个指向 <strong>single indirect block</strong>，指向一个一级的索引块，可以索引 128 * 512B = 64KiB 数据；</li>
@@ -4965,7 +4965,7 @@
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2022-12-21T05:35:16+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-12-21</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2023-11-23T10:36:58+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-11-23</span>
       
         <br>
         创建日期:
