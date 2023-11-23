@@ -158,7 +158,7 @@ Unix 等系统将 devices 和 network connections 等也用文件系统来管理
 一个问题是，索引块应当有多大；即，我们希望 overhead 不要太大，但是也要能支持大文件。有若干种可选的实现思路：
 
 - **linked index blocks**。每个 index block 占用一个 disk block，形成一个 disk block 的链表。
-- **multiple-level index blocks**。例如，每个 disk block 为 4KiB，那么对于一个二级的索引结构，一级索引就可以有 1024 个 4B 的指针指向二级索引，每个二级索引也能有 1024 个 4B 的指针指向文件块，因此就能够有 $2^20$ 块，即支持 4GiB 的最大文件。
+- **multiple-level index blocks**。例如，每个 disk block 为 4KiB，那么对于一个二级的索引结构，一级索引就可以有 1024 个 4B 的指针指向二级索引，每个二级索引也能有 1024 个 4B 的指针指向文件块，因此就能够有 $2^{20}$ 块，即支持 4GiB 的最大文件。
 - **comblined scheme**。UNIX 的文件系统采取这种方案。在 inode 中有 15 个指针（下面假设 `block size = 512B, ptr = 4B`）：
     - 前 12 个指向 **direct block**，即文件的前 12 个 block。如果文件小于这个大小 (12 * 512B = 6KiB)，则不需要 index block；
     - 第 13 个指向 **single indirect block**，指向一个一级的索引块，可以索引 128 * 512B = 64KiB 数据；
