@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.10">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.35e1ed30.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.fad675c6.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.356b1318.min.css">
@@ -78,12 +78,16 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="indigo">
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="cyan">
   
     
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -131,6 +135,30 @@
       </div>
     </div>
     
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
       
     
     
@@ -2988,6 +3016,8 @@
       
         
       
+        
+      
     
     
     
@@ -3039,6 +3069,26 @@
   
   <span class="md-ellipsis">
     入门路线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../math_ds_algo/dp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    动态规划 | Dynamic Programming
   </span>
   
 
@@ -4636,7 +4686,7 @@
 
 <h3>颜色主题调整</h3>
 
-<div class="tx-switch">
+<!-- <div class="tx-switch">
 <button data-md-color-scheme="default"><code>default</code></button>
 <button data-md-color-scheme="slate"><code>slate</code></button>
 </div>
@@ -4651,7 +4701,7 @@ buttons.forEach(function(button) {
         updateScheme();
         })
 })
-</script>
+</script> -->
 
 <div class="tx-switch">
 <button class="button1" data-md-color-primary="red" style="background-color:red">red</button>
@@ -4715,29 +4765,29 @@ updateScheme();
 var giscus = document.querySelector("script[src*=giscus]")
 
 /* Set palette on initial load */
-// var palette = __md_get("__palette")
-// if (palette && typeof palette.color === "object") {
-//     var theme = palette.color.scheme === "slate" ? "dark" : "light"
-//     giscus.setAttribute("data-theme", theme) 
-// }
+var palette = __md_get("__palette")
+if (palette && typeof palette.color === "object") {
+    var theme = palette.color.scheme === "slate" ? "dark" : "light"
+    giscus.setAttribute("data-theme", theme) 
+}
 
 /* Register event handlers after documented loaded */
-// document.addEventListener("DOMContentLoaded", function() {
-//     var ref = document.querySelector("[data-md-component=palette]")
-//     ref.addEventListener("change", function() {
-//     var palette = __md_get("__palette")
-//     if (palette && typeof palette.color === "object") {
-//         var theme = palette.color.scheme === "slate" ? "dark" : "light"
-
-//         /* Instruct Giscus to change theme */
-//         var frame = document.querySelector(".giscus-frame")
-//         frame.contentWindow.postMessage(
-//         { giscus: { setConfig: { theme } } },
-//         "https://giscus.app"
-//         )
-//     }
-//     })
-// })
+document.addEventListener("DOMContentLoaded", function() {
+    var ref = document.querySelector("[data-md-component=palette]")
+    ref.addEventListener("change", function() {
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+        var theme = palette.color.scheme === "slate" ? "dark" : "light"
+        localStorage.setItem("data-md-color-scheme", palette.color.scheme === "slate" ? "slate" : "default");
+        /* Instruct Giscus to change theme */
+        var frame = document.querySelector(".giscus-frame")
+        frame.contentWindow.postMessage(
+        { giscus: { setConfig: { theme } } },
+        "https://giscus.app"
+        )
+    }
+    })
+})
 </script>
                 
               </article>
@@ -4808,7 +4858,7 @@ var giscus = document.querySelector("script[src*=giscus]")
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "content.code.annotate", "navigation.indexes", "navigation.top", "toc.follow"], "search": "../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.6c14ae12.min.js"></script>
       
         <script src="../../../js/timeago.min.js"></script>
       
