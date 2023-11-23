@@ -110,6 +110,7 @@ nav:
     - 数学、数据结构和算法: 
       - math_ds_algo/index.md
       - 入门路线: math_ds_algo/getting_started.md
+      - 动态规划 | Dynamic Programming: math_ds_algo/dp.md
   - 安全: 
     - 安全/index.md
     - 密码学: https://www.yuque.com/xianyuxuan/coding/crypto
@@ -187,8 +188,20 @@ theme:
     # - toc.integrate # 文档 toc 集成到总目录中 
   language: 'zh'
   palette:
-    primary: red
-    scheme: default
+    # Palette toggle for light mode
+    - scheme: default
+      primary: cyan
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: orange
+      accent: orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
   font:
     text: Noto Serif SC # Roboto
     code: Roboto Mono
