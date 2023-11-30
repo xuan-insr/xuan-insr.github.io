@@ -38,10 +38,11 @@ blockquote.page-copyright i.md-icon {
 .button1 {
     color: white;
     padding: 1px 4px;
+    width: 60px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 15px;
+    cursor: pointer;font-size: 14px;
     margin: 0px 2px;
     cursor: pointer;
     border-radius: 4px;
