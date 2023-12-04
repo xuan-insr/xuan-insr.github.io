@@ -3,7 +3,17 @@
 !!! danger
     本文未完成，以下仅为学习笔记。
     
-提供一种方式，使得
+提供一种方式，使
+
+If you have enough information to handle an error, it's not an exception.
+
+`std::ofstream` 如果没有调用 dtor 程序就退出了的话，有可能没有 flush 缓冲区，因此导致该写到文件里的东西并没有完全写进去。
+
+stack unwinding 
+
+`exit` 或者 `std::exit` 之类的各种事情不会完成 stack unwinding；另外如果在写库函数，也不可能用这种东西
+
+需要注意的是，如果一个 exception 没有被 catch，
 
 与函数定义相比，异常处理器要少很多；与函数调用相比，异常出现的频率要低得多
 
@@ -15,7 +25,9 @@
 
 `class network_file_err : public network_err, public file_system_err {};`
 
-Java 不支持多继承，所以 Java 没法像这样自定义同属于两个分类的异常
+Java 不支持多继承，所以 Java 没法像这样自定义同属于两个分类的异常。（Java 支持 implement 多个 interface，但可惜 `Throwable` 并不是个接口，而是个类。）
+
+C++ 可以 throw 任何东西。而在 Java 中，throw 的东西必须是 `Throwable` 的子类。C++ 可以 throw 任何东西的一个重要原因是，它没理由要求我们必须用 `std::exception`，「单根结构」相关的讨论也说明了这一点。
 
 一个单元的错误处理能力是有限的，类似计网里各个层次的纠错能力。一个单元必然存在一些情况会发生无法处理的情况，因而不得不向更高层汇报。最直接的例子就是任何单元都不可能从电脑断电的异常情况中恢复过来。
 

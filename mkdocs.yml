@@ -67,6 +67,13 @@ nav:
     - 快速入门 C++ 写题: cpp/cpp_for_contests.md
     - C++ 知识补充:
       - 理解 STL —— 迭代器与函数对象: cpp/理解 STL - 迭代器与函数对象.md
+  - 新的技术积累！:
+    - 通过造轮子学习 git！: 
+      - git/index.md
+      - 0 写在前面: git/0_preface.md
+      - 1 构建框架: git/1_framework.md
+      - 2 初始化仓库: git/2_init.md
+      - 3 对象存储: git/3_obj_storage.md
   - 核心知识: 
     - 核心知识/index.md
     - 操作系统:
@@ -294,3 +301,10 @@ plugins:
       enable_creation_date: true
       type: timeago
   - statistics
+  - termynal:
+      title: ""
+      buttons: macos
+      prompt_literal_start:
+        - "$"
+        - ">"
+        - "%"

@@ -7,10 +7,12 @@ statistics: true
 !!! danger ""
     <center> ⭐ [来看看咸鱼肆吧！](https://github.com/SaltyfishShop) ⭐ </center>
     
+???+ success "正在努力更新！"
+    - [**C++**](cpp/cpp_restart/index.md) - 重新总结一下 C++ 学习，尝试实现「自举」
+    - [**DIY a git**](git/index.md) - 通过造轮子的方式学习 git！
 
 ???+ example "比较完整的内容"
-    - [**面试复盘**](interviews/overview.md) 回顾一下找暑期实习和秋招的面试历程~
-    - [**C++**](cpp/cpp_restart/index.md) 重新总结一下 C++ 学习，尝试实现「自举」
+    - [**面试复盘**](interviews/overview.md) - 回顾一下找暑期实习和秋招的面试历程~
     - [操作系统](核心知识/os/I_overview/1_intro/) - 已经整理完了！
     - [计算机组成](computer_organization/index.md) - 已经搬过来了！
     - [编译原理](compile_principle/) - 已经搬过来了！
