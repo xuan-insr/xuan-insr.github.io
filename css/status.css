@@ -56,3 +56,10 @@ article sup a[href^="https://"]::after {
 article a[href^="https://github.com/xuan-insr/xuan-insr.github.io"]::after {
     display: none !important;
 }
+
+.grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 6px;
+}
