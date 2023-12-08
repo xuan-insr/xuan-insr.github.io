@@ -74,6 +74,7 @@ nav:
       - 1 构建框架: git/1_framework.md
       - 2 初始化仓库: git/2_init.md
       - 3 对象存储: git/3_obj_storage.md
+      - 4 树对象和提交对象: git/4_tree_and_commit.md
   - 核心知识: 
     - 核心知识/index.md
     - 操作系统:
