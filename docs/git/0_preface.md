@@ -9,13 +9,12 @@
 我 Google 了 DIY git，找到了一些参考资料。这些参考资料能够在千行以内实现一个简化版的 git，这让我认为这个目标是可行的。不过，我比较在意的一些指令在这些参考资料中并没有实现，因此实现这些指令是我的一个挑战性目标。
 
 <a name="references"></a>
-!!! info "references"
-    以下是我的学习过程中参考的资料：
-
-    - [Pro Git](https://git-scm.com/book/en/v2)
-        - 中文版：[Pro Git](https://git-scm.com/book/zh/v2)
+!!! quote "我的学习过程中参考的资料"
+    - [Pro Git](https://git-scm.com/book/en/v2) ([中文版](https://git-scm.com/book/zh/v2))
     - [ugit](https://www.leshenko.net/p/ugit/)
     - [wyag](https://wyag.thb.lt/intro)
+    - [图解 git](https://marklodato.github.io/visual-git-guide/index-zh-cn.html)
+    - [interactive git cheetsheet](https://ndpsoftware.com/git-cheatsheet.html)
 
     我部分代码的实现，以及本文的部分文段，可能来自于上述资料。除此之外的参考，我会在文中单独标注。
 
@@ -77,6 +76,9 @@
 
 !!! note "次要内容"
     一些可能会有人感兴趣但不重要的内容
+
+!!! quote "参考资料"
+    用于标明一些参考或出处
 </section>
 
 我并不一定会将所有符合上述描述的内容都用 admonitions 标注出来。如果它们非常短，我可能会在文中直接说明；而如果它们非常长，我可能会将它们放在一个单独的小节中。

@@ -1,4 +1,4 @@
-# 3 对象存储
+# [WIP] 3 对象存储
 
 !!! abstract
     从这一章开始，我们正式进入 git 的世界！这一章我们会了解到 git 的对象存储系统，并完成对象的存储和读取。
@@ -148,6 +148,105 @@ blob 15SaltyFish Xuan
 SaltyFish Xuan
 ```
 
+### 树对象
+
+刚刚我们提到，blob 对象包含了一个文件的内容，但是并不包含文件路径等信息。因此，仅仅是 blob 对象并不足以刻画和还原一个仓库的状态。
+
+事实上，git 通过「树 (tree) 对象」来描述一个仓库的状态。树对象中包含了模式、类型、文件名等信息。不妨直接看个例子！
+
+<!-- termynal: {"prompt_literal_start": ["%"], title: "", buttons: macos} -->
+```
+% git cat-file -p main^{tree}  
+100644 blob 567994ceb193ad3c00ebec195c7a702c2223826e    .gitignore
+100644 blob efa312a9fe09c9d1995b9ef3ac4dd001baa04897    readme.md
+040000 tree 4ac134baee324779055a2f920bd27f21b8a4ad3b    scripts
+100644 blob 19bb2f232819b48dace673d19c62e61d284e17fc    setup.py
+040000 tree fa87295799e0c8a99ed4df60b330a805deb6822a    xgit
+```
+
+这里 `-p` 表示 `--pretty`，即按照对象的类型，以人类可读的方式打印对象的内容。`main^{tree}` 表示 `main` 分支上最新提交所指向的树对象，我们会稍后详细介绍提交的具体逻辑。
+
+这里的输出有 4 列，依次表示模式 (file mode)、类型、对象的 hash 值和名字。可以看到，这里有两个 blob 对象，一个树对象和一个目录对象。
+
+可以看到，树对象中包含了 4 个 blob 对象和 2 个树对象。其中，`scripts` 和 `xgit` 是两个目录，因此它们对应的对象类型是 `tree`；而 `readme.md` 和 `setup.py` 是两个文件，因此它们对应的对象类型是 `blob`。
+
+对于 file mode，git 中主要有 5 种类型：
+- 普通文件：`100644` 表示不可执行的普通文件，`100755` 表示可执行的普通文件；
+- 符号链接：`120000` 表示符号链接 (symlink, symbolic link, a.k.a. soft link | 软连接)；
+- 目录：`040000` 表示目录；
+- gitlink：`160000` 表示 gitlink，即子模块 (submodule)。
+
+???+ tip "符号链接"
+    符号链接，也称为软连接，是一种特殊的文件类型。它的内容是一个路径，当我们访问这个文件时，系统会将我们重定向到这个路径所指向的文件。
+
+    例如，我们可以使用 `ln -s a a_symlink` 来创建一个符号链接，它指向 `a` 这个文件：
+
+    ```
+    % echo "123" > a
+    % ln -s a a_symlink
+    % ls -lh
+    total 4.0K
+    -rw-rw-r-- 1 dev dev 4 Jan  2 14:19 a
+    lrwxrwxrwx 1 dev dev 1 Jan  2 14:20 a_symlink -> a
+    % cat a_symlink
+    123
+    % readlink a_symlink
+    a
+    ```
+
+    用 `ls -l` 可以看到，`a_symlink` 的 permission string 是 `lrwxrwxrwx`，这里的第一个字符 `l` 表示这个文件是一个 symlink；在后面我们也可以看到它事实上是指向 `a_symlink -> a` 的。
+
+    当我们 `cat a_symlink` 的时候，系统会将我们重定向到 `a` 这个文件，因此我们看到的是 `a` 的内容。当我们 `readlink a_symlink` 的时候，我们能看到 `a_symlink` 指向文件，这事实上也是 `a_symlink` 这个文件本身的内容。
+
+    我们可以使用 `ln -s /tmp/xyx0102/a a_symlink_abs` 创建一个指向绝对路径的符号链接：
+
+    ```
+    % ls -lh
+    total 4.0K
+    -rw-rw-r-- 1 dev dev  4 Jan  2 14:19 a
+    lrwxrwxrwx 1 dev dev  1 Jan  2 14:20 a_symlink -> a
+    lrwxrwxrwx 1 dev dev 14 Jan  2 14:21 a_symlink_abs -> /tmp/xyx0102/a
+    ```
+
+    注意看第 5 列，`a_symlink` 的大小是 1B，而 `a_symlink_abs` 的大小是 14B，这和它们的内容（即指向的文件的路径这个字符串）的长度是一致的。
+
+    指向相对路径和绝对路径的符号链接有什么区别呢？如果我们将当前目录移动到另一个位置，`a_symlink` 仍然能够指向 `a` 这个文件；但是 `a_symlink_abs` 就不行了，因为它指向的是 `/tmp/xyx0102/a`，而这个文件已经不存在了。类似地，如果我们不移动 `a`，而只移动两个符号链接，那么 `a_symlink_abs` 仍然能够指向 `a`，但是 `a_symlink` 就不行了。
+
+    因此，如我们刚才所说的那样，符号链接仍然还是一个文件。所以 git 在处理它时，也会将它看作一个 blob 对象；其 SHA 值也是由它的内容决定的。
+
+对于上面一个具体的树对象，它也可以通过类似地方式查看内容：
+
+<!-- termynal: {"prompt_literal_start": ["%"], title: "", buttons: macos} -->
+```
+% git cat-file -p fa87295799e0c8a99ed4df60b330a805deb6822a
+100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391    __init__.py
+100644 blob f01ed6f00183801a41b97b94d34fa6a88f08b78f    cli.py
+040000 tree ab23095a203b7d5427a34e6bd67e29cdd955a85d    commands
+100644 blob ba652e6c821887b83988d12a5de03b85d0314976    constants.py
+100644 blob 5203a0a1944c62265ae663c8b12bdf4d3ee20b57    utils.py
+```
+
+这样，我们就看到 `xgit` 这个目录下的内容了。可以看到，它包含了 4 个 blob 对象和 1 个树对象。用类似的方式，我们也可以看到 `commands` 这个目录下的内容。也就是说，树对象如它的名字一样，刻画出了一个目录的结构。
+
+为什么需要 `-p` 呢？请回顾前面我们 `cat-file` 的实现，我们只是简单地将对象的内容打印出来了。如果我们直接打印它，会得到下面这样的结果：
+
+<!-- termynal: {"prompt_literal_start": ["%"], title: "", buttons: macos} -->
+```
+% git cat-file tree fa87295799e0c8a99ed4df60b330a805deb6822a
+100644 __init__.py�⛲��CK�)�wZ���S�100644 cli.py�����A�{��O����40000 commands�# Z ;}T'�Nk�~)��U�]100644 constants.py�e.l���9��*]�;��1Iv100644 utils.pyR���Lb&Z�cȱ+�M>�
+                             W                                                                                                        
+% xgit cat-file tree fa87295799e0c8a99ed4df60b330a805deb6822a
+100644 __init__.py�⛲��CK�)�wZ���S�100644 cli.py�����A�{��O����40000 commands�# Z ;}T'�Nk�~)��U�]100644 constants.py�e.l���9��*]�;��1Iv100644 utils.pyR���Lb&Z�cȱ+�M>�
+                             W
+```
+
+这就不得不谈到 git 对于树对象的内容的组织方式了。我们上一节提到，一个对象的存储方式是 `[type] 0x20 size 0x00 content`；而对于树对象，它的 content 是由多个 `[file mode] 0x20 [file name] 0x00 [hash]` 前后连接组成的。因此，我们上面看到的乱码一样的东西，其实是这里的 `[hash]`，因为他们是 20 个字节的二进制数据，并不一定都是可打印字符。
+
+也是因此，当任意一级子目录中的文件发生变化时，其哈希值会变化；由于它的哈希值是所在目录对应的树对象内容的一部分，因此影响了其这个树对象的哈希值
+；这进一步会影响整个 work-tree 对应的树对象的哈希值。因此，给定任何一个树对象的哈希值以及对象存储，我们都可以还原出整个仓库的状态。
+
+在本章中，我们会实现通过 `cat-file` 来查看 tree 对象的内容，但是我们把写入 tree 对象的细节留到下一章中！
+
 ### 如何给指令添加选项
 
 根据上述讨论，我们预期大家能够实现出具备上述功能的 `hash-object` 和 `cat-file` 指令了！
@@ -245,7 +344,7 @@ Xianyu Xuan
 
 ## 3.3 我的实现
 
-!!! success "您可以在 [这个 commit](https://github.com/smd1121/xuan-git/commit/b8f7d9a42e63a86ee8fdd9a5a86933a744b38646) 中看到我的实现。"
+!!! success "您可以在 [这个 commit](https://github.com/smd1121/xuan-git/commit/56e91220d1cad7b531e78e05e6d536f313463463) 中看到我的实现。"
 
 TODO
 

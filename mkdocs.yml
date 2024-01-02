@@ -75,6 +75,14 @@ nav:
       - 2 初始化仓库: git/2_init.md
       - 3 对象存储: git/3_obj_storage.md
       - 4 树对象和提交对象: git/4_tree_and_commit.md
+    - 咸鱼暄学 Python:
+      - python/index.md
+      - 用 Coverage.py 衡量 Python 测试覆盖率: python/coverage.md
+    - GitLab CI:
+      - gitlab/index.md
+      - 用 GitLab CI Artifacts 在 Job 之间共享文件: gitlab/artifacts.md
+    - Bazel:
+      - bazel/index.md
   - 核心知识: 
     - 核心知识/index.md
     - 操作系统:
