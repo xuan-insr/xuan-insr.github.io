@@ -14,7 +14,7 @@
         <link rel="prev" href="../2_init/">
       
       
-        <link rel="next" href="../4_tree_and_commit/">
+        <link rel="next" href="../4_index/">
       
       
       <link rel="icon" href="../../logo.ico">
@@ -2328,11 +2328,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../4_tree_and_commit/" class="md-nav__link">
+      <a href="../4_index/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    4 树对象和提交对象
+    4 暂存区
   </span>
   
 
@@ -5421,11 +5421,11 @@
 
 <h1 id="wip-3-对象存储">[WIP] 3 对象存储<a class="headerlink" href="#wip-3-对象存储" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 3387 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 6 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 11 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8V2m6.78 1a.69.69 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38-2.5-2.5Z"/></svg></span> 约 3454 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span> 6 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3L12.5 13Z"/></svg></span> 预计阅读时间 12 分钟</p>
 </div>
 <div class="admonition abstract">
 <p class="admonition-title">Abstract</p>
-<p>从这一章开始，我们正式进入 git 的世界！这一章我们会了解到 git 的对象存储系统，并完成对象的存储和读取。</p>
+<p>从这一章开始，我们正式进入 git 的世界！这一章我们会了解到 git 的对象存储系统，并完成 blob 对象的存储和读取以及 tree 对象的读取。</p>
 <p>这章里，我们会实现 <code>hash-object</code> 和 <code>cat-file</code> 两个指令。</p>
 </div>
 <h2 id="31-预备知识">3.1 预备知识<a class="headerlink" href="#31-预备知识" title="Permanent link">&para;</a></h2>
@@ -5466,7 +5466,7 @@
 <p>可以看到，重命名并没有改变这个对象的 SHA。那么，这个 SHA 是如何计算出来的呢？</p>
 <h3 id="git-hash-object-的实现细节"><code>git hash-object</code> 的实现细节<a class="headerlink" href="#git-hash-object-的实现细节" title="Permanent link">&para;</a></h3>
 <p>事实上，当我们用 <code>git hash-object</code> 时，git 会根据这个对象的类型和内容的大小作为「头部」放到内容之前，对这个组合进行哈希。</p>
-<p>具体来说，一个对象以它的类型开始，即 blob, commit, tag 或 tree（我们会慢慢学习到这些）。类型后面是一个 ASCII 空格（0x20），然后是对象的大小（以字节为单位，用 ASCII 数字表示），然后是空字节 null（0x00），最后是对象的内容。</p>
+<p>具体来说，一个对象以它的类型开始，即 blob, commit, tag 或 tree（我们会慢慢学习到这些）。类型后面是一个 ASCII 空格（0x20），然后是对象的大小（以字节为单位，用 ASCII 数字表示），然后是空字节 null（0x00），最后是对象的内容。即 <code>[type] 0x20 [size] 0x00 [content]</code>。</p>
 <p>用 Python 代码表示就是：</p>
 <div class="highlight"><pre><span></span><code><span class="n">hdr</span> <span class="o">=</span> <span class="n">obj_type</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">content</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
 <span class="n">obj</span> <span class="o">=</span> <span class="n">hdr</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">content</span>
@@ -5474,10 +5474,10 @@
 </code></pre></div>
 <details class="tip" open="open">
 <summary>bytes</summary>
-<p><code>!python b" "</code> 的类型是 <code>bytes</code>，即一个字节串。字节串是已经编码过的内容，因而能被直接用来写入文件，或者用于网络交互。<code>sha1</code> 的参数就需要是一个 <code>bytes</code>。</p>
-<p>我们可以通过 <code>s.encode()</code> 的方式来将一个字符串编码成 <code>bytes</code>；因此上面代码中 <code>hdr</code> 就是用空格隔开的对象类型和内容的长度。我们会稍后讨论对象的类型。</p>
-<p><code>b"\x00"</code> 表示一个值为 0 的字节，这和 C 语言中的 <code>\0</code> 是同一个东西。Git 使用这样一个空字节来分隔头部和内容。</p>
-<p>最后，我们通过 <code>hashlib</code> 库提供的 <code>sha1</code> 函数实现计算一个 <code>bytes</code> 的 SHA-1 值。我们使用 <code>hexdigest()</code> 来得到一个十六进制的字符串，这和我们之前看到的 SHA-1 值是一样的。</p>
+<p><code class="highlight"><span class="sa">b</span><span class="s2">&quot; &quot;</span></code> 的类型是 <code>bytes</code>，即一个字节串。字节串是已经编码过的内容，因而能被直接用来写入文件，或者用于网络交互。<code>sha1</code> 的参数就需要是一个 <code>bytes</code>。</p>
+<p>我们可以通过 <code class="highlight"><span class="n">s</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span></code> 的方式来将一个字符串编码成 <code>bytes</code>；因此上面代码中 <code>hdr</code> 就是用空格隔开的对象类型和内容的长度。我们会稍后讨论对象的类型。</p>
+<p><code class="highlight"><span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span></code> 表示一个值为 0 的字节，这和 C 语言中的 <code>\0</code> 是同一个东西。Git 使用这样一个空字节来分隔头部和内容。</p>
+<p>最后，我们通过 <code>hashlib</code> 库提供的 <code>sha1</code> 函数实现计算一个 <code>bytes</code> 的 SHA-1 值。我们使用 <code class="highlight"><span class="n">hexdigest</span><span class="p">()</span></code> 来得到一个十六进制的字符串，这和我们之前看到的 SHA-1 值是一样的。</p>
 </details>
 <p>而这里的「类型」又是什么呢？事实上，<code>git hash-object</code> 有一个选项 <code>-t</code> 用来指定对象的类型，它的默认值是 <code>blob</code>；也就是说，我们之前并没有指定 <code>-t</code>，因此我们之前的尝试中，对象的类型都是 <code>blob</code>。Blob (Binary Large OBject) 可以用来存储各种二进制数据，例如文件的内容。我们的标准输入或者文件会被编码成二进制，然后用于上述计算。</p>
 <p>我们会稍后介绍其他的对象类型。</p>
@@ -5485,7 +5485,7 @@
 <div class="termy" data-termynal data-ty-macos data-ty-title=""><span data-ty="input" data-ty-prompt="%">python</span><span data-ty="input" data-ty-prompt="&gt;&gt;&gt;">import hashlib</span><span data-ty="input" data-ty-prompt="&gt;&gt;&gt;">content = &quot;SaltyFish Xuan\n&quot;.encode()</span><span data-ty="input" data-ty-prompt="&gt;&gt;&gt;">obj_type = b&quot;blob&quot;</span><span data-ty="input" data-ty-prompt="&gt;&gt;&gt;">hdr = obj_type + b&quot; &quot; + str(len(content)).encode()</span><span data-ty="input" data-ty-prompt="&gt;&gt;&gt;">obj = hdr + b&quot;\x00&quot; + content</span><span data-ty="input" data-ty-prompt="&gt;&gt;&gt;">sha = hashlib.sha1(obj).hexdigest()</span><span data-ty="input" data-ty-prompt="&gt;&gt;&gt;">obj</span><span data-ty>b'blob 15\x00SaltyFish Xuan\n'</span><span data-ty="input" data-ty-prompt="&gt;&gt;&gt;">sha</span><span data-ty>'ea2aabee9fc38b9a77792e731c0725ad6bc2df9f'<br></span></div>
 
 <p>在我们计算出来 SHA 之后，我们就知道这个对象 <a href="%E5%AF%B9%E8%B1%A1%E5%A6%82%E4%BD%95%E5%AD%98%E5%82%A8%E5%AD%98%E5%82%A8%E5%88%B0%E5%93%AA%E9%87%8C:~:text=git%20%E4%BC%9A%E5%B0%86%20SHA%20%E7%9A%84%E5%89%8D%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%BD%9C%E4%B8%BA%E7%9B%AE%E5%BD%95%E5%90%8D%EF%BC%8C%E5%90%8E%E9%9D%A2%E7%9A%84%E4%BD%9C%E4%B8%BA%E6%96%87%E4%BB%B6%E5%90%8D%EF%BC%8C%E8%BF%99%E6%A0%B7%E5%8F%AF%E4%BB%A5%E9%81%BF%E5%85%8D%E6%89%80%E6%9C%89%E6%8F%90%E4%BA%A4%E9%83%BD%E5%86%99%E5%85%A5%E5%88%B0%E5%90%8C%E4%B8%80%E4%B8%AA%E7%9B%AE%E5%BD%95%E4%B8%AD">会被存储到哪个文件中了</a>。那么，这个文件中保存了什么信息呢？</p>
-<p>事实上，git 会将我们刚刚得到的 <code>obj</code> 经过压缩之后写入到文件中，即 <code>!python file.write(zlib.compress(result))</code>。</p>
+<p>事实上，git 会将我们刚刚得到的 <code>obj</code> 经过压缩之后写入到文件中，即 <code class="highlight"><span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">zlib</span><span class="o">.</span><span class="n">compress</span><span class="p">(</span><span class="n">result</span><span class="p">))</span></code>。</p>
 <p>我们可以对它进行解压来验证：</p>
 <div class="termy" data-termynal data-ty-macos data-ty-title=""><span data-ty="input" data-ty-prompt="%">zlib-flate -uncompress &lt; .git/objects/ea/2aabee9fc38b9a77792e731c0725ad6bc2df9f</span><span data-ty>blob 15SaltyFish Xuan<br></span></div>
 
@@ -5500,14 +5500,15 @@
 <p>事实上，git 通过「树 (tree) 对象」来描述一个仓库的状态。树对象中包含了模式、类型、文件名等信息。不妨直接看个例子！</p>
 <div class="termy" data-termynal data-ty-macos data-ty-title=""><span data-ty="input" data-ty-prompt="%">git cat-file -p main^{tree}  </span><span data-ty>100644 blob 567994ceb193ad3c00ebec195c7a702c2223826e    .gitignore<br>100644 blob efa312a9fe09c9d1995b9ef3ac4dd001baa04897    readme.md<br>040000 tree 4ac134baee324779055a2f920bd27f21b8a4ad3b    scripts<br>100644 blob 19bb2f232819b48dace673d19c62e61d284e17fc    setup.py<br>040000 tree fa87295799e0c8a99ed4df60b330a805deb6822a    xgit<br></span></div>
 
-<p>这里 <code>-p</code> 表示 <code>--pretty</code>，即按照对象的类型，以人类可读的方式打印对象的内容。<code>main^{tree}</code> 表示 <code>main</code> 分支上最新提交所指向的树对象，我们会稍后详细介绍提交的具体逻辑。</p>
-<p>这里的输出有 4 列，依次表示模式 (file mode)、类型、对象的 hash 值和名字。可以看到，这里有两个 blob 对象，一个树对象和一个目录对象。</p>
-<p>可以看到，树对象中包含了 4 个 blob 对象和 2 个树对象。其中，<code>scripts</code> 和 <code>xgit</code> 是两个目录，因此它们对应的对象类型是 <code>tree</code>；而 <code>readme.md</code> 和 <code>setup.py</code> 是两个文件，因此它们对应的对象类型是 <code>blob</code>。</p>
-<p>对于 file mode，git 中主要有 5 种类型：
-- 普通文件：<code>100644</code> 表示不可执行的普通文件，<code>100755</code> 表示可执行的普通文件；
-- 符号链接：<code>120000</code> 表示符号链接 (symlink, symbolic link, a.k.a. soft link | 软连接)；
-- 目录：<code>040000</code> 表示目录；
-- gitlink：<code>160000</code> 表示 gitlink，即子模块 (submodule)。</p>
+<p>这里 <code>-p</code> 表示 <code>--pretty</code>，即按照对象的类型，以人类可读的方式打印对象的内容。<code>main^{tree}</code> 表示 <code>main</code> 分支上最新提交所指向的树对象，我们会下一章才会详细介绍提交的具体逻辑。</p>
+<p>这里的输出有 4 列，依次表示模式 (file mode)、类型、对象的 hash 值和名字。可以看到，这里有 3 个 blob 对象和另外 2 个 tree 对象。其中，<code>scripts</code> 和 <code>xgit</code> 是两个子目录，因此它们对应的对象类型是 <code>tree</code>，因为他们在文件系统的树状结构<sup id="fnref:fs"><a class="footnote-ref" href="#fn:fs">1</a></sup>中确实是子树；而 <code>readme.md</code> 和 <code>setup.py</code> 是两个文件，因此它们对应的对象类型是 <code>blob</code>。</p>
+<p>对于 file mode，git 中主要有 5 种类型：</p>
+<ul>
+<li>普通文件：<code>100644</code> 表示不可执行的普通文件，<code>100755</code> 表示可执行的普通文件；</li>
+<li>符号链接：<code>120000</code> 表示符号链接 (symlink, symbolic link, a.k.a. soft link | 软连接)；</li>
+<li>目录：<code>040000</code> 表示目录；</li>
+<li>gitlink：<code>160000</code> 表示 gitlink，即子模块 (submodule)。</li>
+</ul>
 <details class="tip" open="open">
 <summary>符号链接</summary>
 <p>符号链接，也称为软连接，是一种特殊的文件类型。它的内容是一个路径，当我们访问这个文件时，系统会将我们重定向到这个路径所指向的文件。</p>
@@ -5540,10 +5541,10 @@ lrwxrwxrwx 1 dev dev 14 Jan  2 14:21 a_symlink_abs -&gt; /tmp/xyx0102/a
 <div class="termy" data-termynal data-ty-macos data-ty-title=""><span data-ty="input" data-ty-prompt="%">git cat-file -p fa87295799e0c8a99ed4df60b330a805deb6822a</span><span data-ty>100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391    __init__.py<br>100644 blob f01ed6f00183801a41b97b94d34fa6a88f08b78f    cli.py<br>040000 tree ab23095a203b7d5427a34e6bd67e29cdd955a85d    commands<br>100644 blob ba652e6c821887b83988d12a5de03b85d0314976    constants.py<br>100644 blob 5203a0a1944c62265ae663c8b12bdf4d3ee20b57    utils.py<br></span></div>
 
 <p>这样，我们就看到 <code>xgit</code> 这个目录下的内容了。可以看到，它包含了 4 个 blob 对象和 1 个树对象。用类似的方式，我们也可以看到 <code>commands</code> 这个目录下的内容。也就是说，树对象如它的名字一样，刻画出了一个目录的结构。</p>
-<p>为什么需要 <code>-p</code> 呢？请回顾前面我们 <code>cat-file</code> 的实现，我们只是简单地将对象的内容打印出来了。如果我们直接打印它，会得到下面这样的结果：</p>
+<p>为什么需要 <code>-p</code> 呢？请回顾前面我们 <code>cat-file</code> 的讨论，我们只是简单地将对象的内容打印出来了。如果我们直接打印它，会得到下面这样的结果：</p>
 <div class="termy" data-termynal data-ty-macos data-ty-title=""><span data-ty="input" data-ty-prompt="%">git cat-file tree fa87295799e0c8a99ed4df60b330a805deb6822a</span><span data-ty>100644 __init__.py�⛲��CK�)�wZ���S�100644 cli.py�����A�{��O����40000 commands�# Z ;}T'�Nk�~)��U�]100644 constants.py�e.l���9��*]�;��1Iv100644 utils.pyR���Lb&amp;Z�cȱ+�M&gt;�<br>                             W                                                                                                        </span><span data-ty="input" data-ty-prompt="%">xgit cat-file tree fa87295799e0c8a99ed4df60b330a805deb6822a</span><span data-ty>100644 __init__.py�⛲��CK�)�wZ���S�100644 cli.py�����A�{��O����40000 commands�# Z ;}T'�Nk�~)��U�]100644 constants.py�e.l���9��*]�;��1Iv100644 utils.pyR���Lb&amp;Z�cȱ+�M&gt;�<br>                             W<br></span></div>
 
-<p>这就不得不谈到 git 对于树对象的内容的组织方式了。我们上一节提到，一个对象的存储方式是 <code>[type] 0x20 size 0x00 content</code>；而对于树对象，它的 content 是由多个 <code>[file mode] 0x20 [file name] 0x00 [hash]</code> 前后连接组成的。因此，我们上面看到的乱码一样的东西，其实是这里的 <code>[hash]</code>，因为他们是 20 个字节的二进制数据，并不一定都是可打印字符。</p>
+<p>这就不得不谈到 git 对于树对象的内容的组织方式了。我们刚才提到，一个对象的存储方式是 <code>[type] 0x20 [size] 0x00 [content]</code>；而对于树对象，它的 content 是由多个 <code>[file mode] 0x20 [file name] 0x00 [hash]</code> 前后连接组成的。因此，我们上面看到的乱码一样的东西，其实是这里的 <code>[hash]</code>，因为他们是 20 个字节的二进制数据，并不一定都是可打印字符。</p>
 <p>也是因此，当任意一级子目录中的文件发生变化时，其哈希值会变化；由于它的哈希值是所在目录对应的树对象内容的一部分，因此影响了其这个树对象的哈希值
 ；这进一步会影响整个 work-tree 对应的树对象的哈希值。因此，给定任何一个树对象的哈希值以及对象存储，我们都可以还原出整个仓库的状态。</p>
 <p>在本章中，我们会实现通过 <code>cat-file</code> 来查看 tree 对象的内容，但是我们把写入 tree 对象的细节留到下一章中！</p>
@@ -5561,12 +5562,23 @@ lrwxrwxrwx 1 dev dev 14 Jan  2 14:21 a_symlink_abs -&gt; /tmp/xyx0102/a
 
 <h2 id="32-效果">3.2 效果<a class="headerlink" href="#32-效果" title="Permanent link">&para;</a></h2>
 <p>我们会实现两个指令：<code>hash-object</code> 和 <code>cat-file</code>。它们接收如下的参数和选项：</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title=""><span data-ty="input" data-ty-prompt="%">xgit hash-object --help</span><span data-ty>                                                                                    <br> Usage: xgit hash-object [OPTIONS] [FILES]...                                       <br>                                                                                    <br> 计算对象的哈希值；如果指定了 -w，则将内容写入到对象数据库中。                      <br>                                                                                    <br>╭─ Arguments ──────────────────────────────────────────────────────────────────────╮<br>│   files      [FILES]...  要计算哈希值的文件 [default: None]                         │<br>╰──────────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ────────────────────────────────────────────────────────────────────────╮<br>│          -w            将内容写入到对象数据库中                                      │<br>│ --stdin                从标准输入读取内容                                           │<br>│          -t      TEXT  指定要创建的对象类型 [default: blob]                         │<br>│ --help                 Show this message and exit.                               │<br>╰──────────────────────────────────────────────────────────────────────────────────╯<br></span><span data-ty="input" data-ty-prompt="%"></span><span data-ty="input" data-ty-prompt="%">xgit cat-file --help   </span><span data-ty>                                                                                    <br> Usage: xgit cat-file [OPTIONS] TYPE OBJECT                                         <br>                                                                                    <br> 根据对象的哈希值，查看对象的内容。                                                 <br>                                                                                    <br>╭─ Arguments ──────────────────────────────────────────────────────────────────────╮<br>│ *    type        TEXT  要查看的对象的类型 [default: None] [required]                │<br>│ *    object      TEXT  要查看的对象的哈希值 [default: None] [required]              │<br>╰──────────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ────────────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                      │<br>╰──────────────────────────────────────────────────────────────────────────────────╯<br></span></div>
+<div class="termy" data-termynal data-ty-macos data-ty-title=""><span data-ty="input" data-ty-prompt="%">xgit hash-object --help</span><span data-ty>                                                                                    <br> Usage: xgit hash-object [OPTIONS] [FILES]...                                       <br>                                                                                    <br> 计算对象的哈希值；如果指定了 -w，则将内容写入到对象数据库中。                      <br>                                                                                    <br>╭─ Arguments ──────────────────────────────────────────────────────────────────────╮<br>│   files      [FILES]...  要计算哈希值的文件 [default: None]                         │<br>╰──────────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ────────────────────────────────────────────────────────────────────────╮<br>│          -w            将内容写入到对象数据库中                                      │<br>│ --stdin                从标准输入读取内容                                           │<br>│          -t      TEXT  指定要创建的对象类型 [default: blob]                         │<br>│ --help                 Show this message and exit.                               │<br>╰──────────────────────────────────────────────────────────────────────────────────╯<br></span><span data-ty="input" data-ty-prompt="%"></span><span data-ty="input" data-ty-prompt="%">xgit cat-file --help</span><span data-ty>                                                                                   <br> Usage: xgit cat-file [OPTIONS] [TYPE] [OBJ]                                       <br>                                                                                   <br> 根据对象的哈希值，查看对象的内容。                                                <br> Usages:                                                                           <br>                                                                                   <br>  • xgit cat-file TYPE OBJ                                                         <br>  • xgit cat-file (-s | -t | -e | -p) OBJ                                          <br>                                                                                   <br>╭─ Arguments ─────────────────────────────────────────────────────────────────────╮<br>│   type      [TYPE]  要查看的对象的类型                                             │<br>│                     [default: None]                                             │<br>│   obj       [OBJ]   要查看的对象的哈希值                                           │<br>│                     [default: None]                                             │<br>╰─────────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ───────────────────────────────────────────────────────────────────────╮<br>│         -s        显示对象的大小                                                  │<br>│         -t        显示对象的类型                                                  │<br>│         -e        检查对象是否存在                                                 │<br>│         -p        按照对象的类型，显示对象的内容                                     │<br>│ --help            Show this message and exit.                                   │<br>╰─────────────────────────────────────────────────────────────────────────────────╯<br></span></div>
 
 <p>我们预期它能产生和 git 一样的效果：</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title=""><span data-ty="input" data-ty-prompt="%">echo &quot;Xianyu Xuan&quot; &gt; a.txt</span><span data-ty="input" data-ty-prompt="%">xgit hash-object a.txt -w</span><span data-ty>884ca3bad1c062af78606083817f01dc92f3152a</span><span data-ty="input" data-ty-prompt="%">zlib-flate -uncompress &lt; .git/objects/88/4ca3bad1c062af78606083817f01dc92f3152a</span><span data-ty>blob 12Xianyu Xuan</span><span data-ty="input" data-ty-prompt="%">xgit cat-file blob 884ca3bad1c062af78606083817f01dc92f3152a</span><span data-ty>Xianyu Xuan</span><span data-ty="input" data-ty-prompt="%">cat a.txt | xgit hash-object --stdin</span><span data-ty>884ca3bad1c062af78606083817f01dc92f3152a<br></span></div>
+<div class="termy" data-termynal data-ty-macos data-ty-title=""><span data-ty="input" data-ty-prompt="%">echo &quot;Xianyu Xuan&quot; &gt; a.txt</span><span data-ty="input" data-ty-prompt="%">xgit hash-object a.txt -w</span><span data-ty>884ca3bad1c062af78606083817f01dc92f3152a</span><span data-ty="input" data-ty-prompt="%">zlib-flate -uncompress &lt; .git/objects/88/4ca3bad1c062af78606083817f01dc92f3152a</span><span data-ty>blob 12Xianyu Xuan</span><span data-ty="input" data-ty-prompt="%">xgit cat-file blob 884ca3bad1c062af78606083817f01dc92f3152a</span><span data-ty>Xianyu Xuan</span><span data-ty="input" data-ty-prompt="%">cat a.txt | xgit hash-object --stdin</span><span data-ty>884ca3bad1c062af78606083817f01dc92f3152a</span><span data-ty="input" data-ty-prompt="%">xgit cat-file -p fa87295799e0c8a99ed4df60b330a805deb6822a</span><span data-ty>100644 blob e69de29bb2d1d6434b8b29ae775ad8c2e48c5391    __init__.py<br>100644 blob f01ed6f00183801a41b97b94d34fa6a88f08b78f    cli.py<br>040000 tree ab23095a203b7d5427a34e6bd67e29cdd955a85d    commands<br>100644 blob ba652e6c821887b83988d12a5de03b85d0314976    constants.py<br>100644 blob 5203a0a1944c62265ae663c8b12bdf4d3ee20b57    utils.py<br></span></div>
 
-<p>会有一些实现过程中的细节，我并没有在这里展开；因为我期望您多加思考，多尝试 git 的行为，然后实现出您的代码。相关细节会在下一节中给出我的实现。</p>
+<p>会有一些实现过程中的细节，我并没有在这里展开；因为我们期望您多加思考，多尝试 git 的行为，然后实现出您的代码。相关细节会在下一节中给出我的实现。</p>
+<div class="admonition info">
+<p>在实现过程中，您有可能会遇到一些困惑，在这里您可以得到答案。</p>
+<p>但是，如果您希望挑战自己的搜索能力 / debug 能力的话，您也可以尝试先不看下面这些内容！</p>
+<details class="info">
+<summary>一些提示</summary>
+<ul>
+<li>在 tree 对象的存储中，<code>040000</code> 有可能被存储为 <code>40000</code>。</li>
+<li>您可能会发现，使用 Typer 来实现 <code>cat-file</code> 这个命令有点困难，因为 <code>cat-file</code> 有多种不同的用法，而且一些用法是互斥的；而 Typer 对此并没有很好的支持。Git 本身是使用 C 语言实现的，因此它可以对 argument &amp; options 实现更加自由的 parse。一个解决方案：虽然不太优雅，但是您可以尝试在 <code>cat-file</code> 中使用判断来实现对各种用法的约束。</li>
+</ul>
+</details>
+</div>
 <h2 id="33-我的实现">3.3 我的实现<a class="headerlink" href="#33-我的实现" title="Permanent link">&para;</a></h2>
 <div class="admonition success">
 <p class="admonition-title">您可以在 <a href="https://github.com/smd1121/xuan-git/commit/56e91220d1cad7b531e78e05e6d536f313463463">这个 commit</a> 中看到我的实现。</p>
@@ -5592,6 +5604,15 @@ https://stackoverflow.com/questions/22968856/what-is-the-file-format-of-a-git-co
 
 ![](assets/2023-12-03-16-20-41.png) -->
 
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:fs">
+<p>通常的文件系统在组织上是树状的，但事实上由于软链接和硬链接的存在，它实质上是一个有向无环图。如果您对这个话题感兴趣，可以参考我操作系统笔记中的 <a href="../../核心知识/os/VI_file_system/13_fs_interface/#133-directory-structure--目录结构">目录结构 | 文件系统</a>。&#160;<a class="footnote-backref" href="#fnref:fs" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
 
 
 
@@ -5613,7 +5634,7 @@ https://stackoverflow.com/questions/22968856/what-is-the-file-format-of-a-git-co
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-01-02T14:19:55+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-01-02</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-01-04T14:31:16+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-01-04</span>
   </span>
 
     
