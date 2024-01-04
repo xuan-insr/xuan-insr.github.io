@@ -1,0 +1,7 @@
+mkdocs-material
+mkdocs-git-revision-date-localized-plugin
+jieba
+rich
+mkdocs-statistics-plugin
+termynal
+neoteroi-mkdocs

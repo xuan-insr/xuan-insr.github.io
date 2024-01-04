@@ -1,7 +1,7 @@
-# [WIP] 4 树对象和提交对象
+# [WIP] 4 暂存区
 
 !!! abstract
-    上一章我们讨论了 git 如何处理单个的文件。这章中，我们会了解到 git 如何处理一个目录，以及如何将目录的状态保存到 git repo 中。
+    上一章我们讨论了 git 如何处理文件的内容，以及如何组织起一个目录。在这一章中，我们会讨论 git 中的一个重要概念：暂存区。
 
     这章中，我们会实现：
 
@@ -9,7 +9,7 @@
 
 ## 4.1 预备知识
 
-### 4.1.1 暂存区 (stage / index)
+### 4.1.1 什么是暂存区 (stage / index)
 
 大家已经熟悉：在本地仓库中，我们会对文件进行一些修改。每当我们完成了一个阶段目标，我们会通过 `git add files` 的方式将我们的修改添加到暂存区 (stage, a.k.a. index) 中，然后通过 `git commit` 的方式将暂存区中的内容提交到 git repo 中。也就是说，在 git 的设计中，总共有 3 个类似的东西：本地工作目录、暂存区和 git repo，它们以如下方式交互：
 
@@ -149,15 +149,14 @@
 
 ### 4.1.2 暂存区的实现
 
-在上面一节，我们从概念上了解了暂存区的作用。在这一节，我们会具体讨论暂存区的实现。根据上一节的讨论，我们可以把暂存区用一个 tree 对象来刻画——在 `git add` 时加入或者更新文件，在 `git rm` 时删除文件，在 `git commit` 的时候将 tree 对象写入到一个 commit 中；这听起来是一个优雅的方案。
+在上面一节，我们从概念上了解了暂存区的工作方式。在这一节，我们会具体讨论暂存区的实现。根据上一节的讨论，我们可以把暂存区用一个 tree 对象来刻画——在 `git add` 时加入或者更新文件，在 `git rm` 时删除文件，在 `git commit` 的时候将 tree 对象写入到一个 commit 中；这听起来是一个优雅的方案。
 
 但是，事实上 git 为了面对一些复杂的情况（例如 conflict，我们在后面的章节中会讨论）以及一些性能上的考虑，它使用了 index file 来保存了更多的信息；这个文件存储在 `.git/index`。我们来看看 index file 的具体结构和内容[^index]。
 
 !!! info "这里可能有点脏"
     Index file 的结构和内容有点复杂。如果您对这部分不那么感兴趣，也不要求自己完全独立完成整个项目，那您不妨简略地阅读这一节，然后直接使用我的实现。
 
-[^index]: 您可以在 [git/Documentation
-/gitformat-index.txt](https://github.com/git/git/blob/master/Documentation/gitformat-index.txt) 看到原版的详细描述。
+[^index]: 您可以在 [git/Documentation/gitformat-index.txt](https://github.com/git/git/blob/master/Documentation/gitformat-index.txt) 看到原版的详细描述。
 
 举个例子，我们用 `git init` 新建一个仓库，然后 `echo "hello" > hello` `git add hello` 添加一个文件。我们来看看此时这个文件里的内容：
 
