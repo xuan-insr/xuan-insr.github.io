@@ -74,7 +74,7 @@ nav:
       - 1 构建框架: git/1_framework.md
       - 2 初始化仓库: git/2_init.md
       - 3 对象存储: git/3_obj_storage.md
-      - 4 树对象和提交对象: git/4_tree_and_commit.md
+      - 4 暂存区: git/4_index.md
     - 咸鱼暄学 Python:
       - python/index.md
       - 用 Coverage.py 衡量 Python 测试覆盖率: python/coverage.md
