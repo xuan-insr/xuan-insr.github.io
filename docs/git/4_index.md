@@ -244,14 +244,16 @@ magic word    version  entry cnt  ctime sec ctime nsec  mtime sec mtime nsec    
     - 4 字节的 gid，表示文件的所有者的 group id
     - 4 字节的 file size，表示文件的大小，单位是字节
     - 20 字节的 sha，表示文件的内容的 sha
-    - 2 字节的 flags，表示文件的状态，其中：
-        - 1 位的 assume-valid，表示文件的内容已经被验证过，因此 git 可以跳过对它的检查
-        - 1 位的 extended，表示文件的内容已经被扩展过，因此 git 可以跳过对它的检查
-        - 2 位的 stage，表示文件的状态，取值为：
-            - `b00` 表示文件的状态是「已修改」
-            - `b01` 表示文件的状态是「已暂存」
-            - `b10` 表示文件的状态是「已提交」
+    - 2 字节的 flags，其中：
+        - 1 位的 assume-valid
+        - 1 位的 extended，在 version 2 中始终是 0
+        - 2 位的 stage，表示文件的状态，用于 merge
         - 12 位的 name length，表示文件名的长度；如果长于 `0xFFF`，则取值为 `0xFFF`
+    - 在 Version 3 开始，如果上面 extended 为 1，则会有一个 2 字节的 extended flags，其中：
+        - 1 位预留
+        - 1 位的 skip-worktree，用于 sparse checkout
+        - 1 位的 intent-to-add
+        - 13 位预留，全 0
     - 文件名
         - 保存相对于 repo 根目录的路径，以 `x00` 结尾
     - padding，用 `x00` 填充，使得 entry 按 8 字节对齐；即每个 entry 的大小是 8 字节的倍数
@@ -284,7 +286,21 @@ xgit/utils.py
 
 ### 4.1.3 更新暂存区
 
-在 4.1.1，我们看到 `git add` 和 `git rm` 可以将文件添加到暂存区或者从暂存区删除。
+在 4.1.1，我们看到 `git add` 和 `git rm` 可以将文件添加到暂存区或者从暂存区删除；在这一节中，我们会实现它们实现的底层命令之一——`git update-index`。
+
+`git update-index <file>...` 将 `<file>...` 在 work-tree 的状态更新到 index 中；同时清除所有 unmerged 和 needs update 的状态（我们后面会讨论）。如果 `<file>...` 指定的文件在 index 中不存在，则默认什么都不做；如果在 workspace 中不存在，或者不是个文件，则默认会报错。
+
+另外，`git update-index` 还接受一些参数；我们把要实现的部分介绍如下：
+
+- `--add`：如果 `<file>...` 指定的文件在 index 中不存在，则将它们添加到 index 中
+- `--remove`：如果 `<file>...` 指定的文件在 index 中存在且在 work-tree 中不存在，则将它们从 index 中删除
+- `--force-remove`：如果 `<file>...` 指定的文件在 index 中存在，则将它们从 index 中删除
+- `--refresh`：检查当前 index 中的文件是否需要 merge 或 update
+    - 注：在 git 中，`git update-index <file> --refresh` 和 `git update-index --refresh <file>` 的行为并不一致：前者会在更新 `<file>` 之后检查状态，而后者是先检查状态再更新 `<file>`。为了简单起见，`xgit` 中 `--refresh` 不能与 `<file>` 一起使用。
+- `--verbose`：显示所做的添加或删除
+    - 注：在 git 中，`git update-index --add <file> --verbose` 和 `git update-index --add --verbose <file>` 的行为并不一致：前者由于 `--verbose` 在后面所以实际上不会打印 verbose 信息。在 `xgit` 中，无论 `--verbose` 在前还是在后，都会打印 verbose 信息。
+- `--cacheinfo <mode>,<object>,<path>`：可以通过 `git update-index --add --cacheinfo <mode>,<object>,<path>` 直接将一个 blob 加入到 index 中。其中 `<mode>` 是上一节中提到的 [file mode](../3_obj_storage/#file_mode)，`<object>` 是 SHA，`<path>` 是 file name（相对于 repo 的路径）。
+
 
 ## 4.2 效果
 
