@@ -154,6 +154,8 @@ Page table 是每个进程都有一份的结构，其硬件实现有多种方法
 #### 9.4.3.5 Effective memory-access time
 我们称没有发生 TLB miss 的次数的百分比为 **hit ratio**，这里记为 $r$。设每一次内存访问的用时为 $t$，那么 TLB hit 的情况下访问字节总共用时 $t$；而 TLB miss 的情况下用时 $2t$。因此有效内存访问时间（effective memory-access time）$\text{EAT} = t\cdot r + 2t(1-r) = t(2-r)$，相比将 page table 保存在寄存器中的方式，平均内存访问时间多了 $\cfrac{t(2-r)-t}{t} = 1 - r$。即，如果 hit ratio 为 99%，那么平均内存访问时间只多了 1%。
 
+在上述讨论中，我们忽略了访问 TLB 的时间，因为访问 TLB 的时间相对于访问内存的时间可以忽略不计。如果我们考虑访问 TLB 的时间，那么有效内存访问时间为 $\text{EAT} = t_{TLB} + t\cdot r + 2t(1-r) = t_{TLB} + t(2-r)$。
+
 ### 9.4.4 Memory Protection
 
 分页环境下的内存保护由与每个 frame 关联的 protection bits 实现。这些 bits 通常保存在页表中。例如 valid-invalid bit：

@@ -70,6 +70,9 @@ nav:
   - 新的技术积累！:
     - 通过造轮子学习 git！: 
       - git/index.md
+      - 录播笔记:
+        - git/notes/index.md
+        - Post 1: git/notes/1.md
       - 0 写在前面: git/0_preface.md
       - 1 构建框架: git/1_framework.md
       - 2 初始化仓库: git/2_init.md
