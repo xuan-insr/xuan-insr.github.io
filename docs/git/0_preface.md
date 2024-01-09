@@ -76,7 +76,9 @@
 
 !!! note "次要内容"
     一些可能会有人感兴趣但不重要的内容
+</section>
 
+<section markdown="1" class="grid">
 !!! quote "参考资料"
     用于标明一些参考或出处
 </section>

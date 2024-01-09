@@ -73,6 +73,7 @@ nav:
       - 录播笔记:
         - git/notes/index.md
         - Post 1: git/notes/1.md
+        - Post 2: git/notes/2.md
       - 0 写在前面: git/0_preface.md
       - 1 构建框架: git/1_framework.md
       - 2 初始化仓库: git/2_init.md
