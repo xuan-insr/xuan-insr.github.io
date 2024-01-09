@@ -3,9 +3,7 @@
 !!! abstract
     上一章我们讨论了 git 如何处理文件的内容，以及如何组织起一个目录。在这一章中，我们会讨论 git 中的一个重要概念：暂存区。
 
-    这章中，我们会实现：
-
-    - `ls-files`, `check-ignore`, `status`
+    这章中，我们会实现 `ls-files` 和 `update-index` 两个命令，分别实现对 index 的读取和修改。
 
 ## 4.1 预备知识
 
@@ -230,7 +228,7 @@ magic word    version  entry cnt  ctime sec ctime nsec  mtime sec mtime nsec    
     - 4 字节的 signature (magic word)，固定为 `DIRC`，表示 dir cache
     - 4 字节的 version number，上面的例子中是 `2`
     - 4 字节的 entry count，表示 index 中的 entry 数量，上面的例子中只有一个，即 `1`
-- 一系列 index entrys，它们按一定规则排序（稍后讨论）。每个 entry 包括：
+- 一系列 index entrys，它们按文件名排序。每个 entry 包括：
     - 8 字节的 ctime，表示文件的 metadata 最后一次修改的时间
     - 8 字节的 mtime，表示文件的内容最后一次修改的时间
     - 4 字节的 dev，表示文件的设备号
@@ -247,7 +245,7 @@ magic word    version  entry cnt  ctime sec ctime nsec  mtime sec mtime nsec    
     - 2 字节的 flags，其中：
         - 1 位的 assume-valid
         - 1 位的 extended，在 version 2 中始终是 0
-        - 2 位的 stage，表示文件的状态，用于 merge
+        - 2 位的 stage，表示文件的状态，用于 merge，我们后续讨论
         - 12 位的 name length，表示文件名的长度；如果长于 `0xFFF`，则取值为 `0xFFF`
     - 在 Version 3 开始，如果上面 extended 为 1，则会有一个 2 字节的 extended flags，其中：
         - 1 位预留
@@ -262,6 +260,20 @@ magic word    version  entry cnt  ctime sec ctime nsec  mtime sec mtime nsec    
     - 可以尝试 `assert data[-20:] == hashlib.sha1(data[:-20]).digest()`，其中 `data` 是 index file 的内容
 
 根据上面这些内容，我们就可以解析 index file 了！我们需要一个类来保存 index file 的所有细节内容，并能够根据这个类还原出一个 index file，这是后续我们对 index 做各种操作的基础。
+
+???+ tip "`stat` 和 ctime, mtime & atime"
+    `stat` 可以查看文件的一些 metadata，包括上述的 ctime, mtime, dev, ino, mode, uid, gid, size，以及一些其他信息：
+
+    ![](assets/2024-01-06-21-35-04.png)
+
+    这里我们能看到 4 个时间，在一些版本里可能是 3 个时间：
+
+    - Access (atime): 文件最后一次被访问的时间
+    - Modify (mtime): 文件的内容最后一次被修改的时间
+    - Change (ctime): 文件的 metadata (也就是 `stat` 看到的这些东西) 最后一次被修改的时间
+    - Birth time: 文件的创建时间
+
+    Index 包含这些 metadata 的原因是，计算文件的哈希值是比较耗时的操作；但如果文件的 metadata 没有变化，那么文件几乎一定不会变化。因此，git 会在 index 中保存这些 metadata，以便需要时快速判断文件是否需要更新。
 
 作为一个里程碑，让我们来实现 `git ls-files` 这个命令！这个命令非常简单，就是将 index 中的所有文件名打印出来：
 
@@ -295,36 +307,35 @@ xgit/utils.py
 - `--add`：如果 `<file>...` 指定的文件在 index 中不存在，则将它们添加到 index 中
 - `--remove`：如果 `<file>...` 指定的文件在 index 中存在且在 work-tree 中不存在，则将它们从 index 中删除
 - `--force-remove`：如果 `<file>...` 指定的文件在 index 中存在，则将它们从 index 中删除
-- `--refresh`：检查当前 index 中的文件是否需要 merge 或 update
+- `--refresh`：检查当前 index 中的文件是否需要 merge 或 update；如果不需要 update 但 ctime 等 stat 信息 out of date，更新 index 中的 stat 信息
     - 注：在 git 中，`git update-index <file> --refresh` 和 `git update-index --refresh <file>` 的行为并不一致：前者会在更新 `<file>` 之后检查状态，而后者是先检查状态再更新 `<file>`。为了简单起见，`xgit` 中 `--refresh` 不能与 `<file>` 一起使用。
+    - 在本节中，我们暂时不处理关于 merge 状态的部分。
 - `--verbose`：显示所做的添加或删除
     - 注：在 git 中，`git update-index --add <file> --verbose` 和 `git update-index --add --verbose <file>` 的行为并不一致：前者由于 `--verbose` 在后面所以实际上不会打印 verbose 信息。在 `xgit` 中，无论 `--verbose` 在前还是在后，都会打印 verbose 信息。
 - `--cacheinfo <mode>,<object>,<path>`：可以通过 `git update-index --add --cacheinfo <mode>,<object>,<path>` 直接将一个 blob 加入到 index 中。其中 `<mode>` 是上一节中提到的 [file mode](../3_obj_storage/#file_mode)，`<object>` 是 SHA，`<path>` 是 file name（相对于 repo 的路径）。
 
+!!! info "`--refresh`"
+    文档中有以下表述：
+    
+    > `--refresh` does not calculate a new sha1 file or bring the index up to date for mode/content changes. But what it *does* do is to "re-match" the stat information of a file with the index, so that you can refresh the index for a file that hasn't been changed but where the stat entry is out of date.
+
+    作为一个实例，下面的文件 `a` 在 ctime 和 mtime 被更改，而内容没有更改时，使用 `git update-index --refresh` 后 index 中的对应字段发生了变化：
+
+    ![](assets/2024-01-06-22-30-14.png)
+
+    ???+ tip "`touch`"
+        `touch` 命令可以更改文件的 atime 和 mtime。例如，`touch a` 会将 `a` 的 atime 和 mtime 更新为当前时间。而由于 atime 和 mtime 是 metadata 的一部分，因此 ctime 也会被修改。
+
+    但是，如果 `a` 的内容发生了变化，则 `git update-index --refresh` 不会更改 ctime 和 mtime，而是报告这个文件 needs update：
+
+    ![](assets/2024-01-06-22-30-35.png)
+
+    Linux 并没有提供直接修改 ctime 的指令。如果蓄意想要修改的话，只能通过修改系统时间之类比较复杂的方法。因此，index 发现 ctime 和 mtime 都没有发生变化时，认为文件不会发生变化是合理的。
+
 
 ## 4.2 效果
 
-能够通过 `cat-file -p` 查看树对象和提交对象的内容。
 
 ## 4.3 我的实现
 
-不会完全显示出来，使用的是 `less` 这个命令行工具。这是一个分页器。
 
-````python
-import typer
-import subprocess
-
-app = typer.Typer()
-
-@app.command()
-def show_data():
-    # 生成或获取要显示的数据
-    data = "这里是您的数据...\n" * 100  # 示例数据
-
-    # 使用分页器显示数据
-    with subprocess.Popen(['less'], stdin=subprocess.PIPE, text=True) as proc:
-        proc.communicate(data)
-
-if __name__ == "__main__":
-    app()
-````

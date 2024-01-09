@@ -26,3 +26,24 @@ Commit 的作者和提交者可能不是同一个人，例如 [这个 commit](ht
 而 `2d4a22863bad3835a0da2f8eedb66335b8390bb8` 是第二个提交，可以看到它多了一个 parent 字段，表示它是基于哪个提交之上修改的；这里的 parent 就是 `1a4e1286c25459fae80c8031fa68a2bf349efc5b`。
 
 一个提交可能没有 parent（例如第一个提交），也可能有多个 parent（例如 merge commit）。也是因此，我们可以从任意一个提交开始，通过 parent 字段一直追溯到第一个提交，从而还原出整个仓库的变化；而由于每个提交都包含了 tree sha，我们也可以还原出任何一个提交的快照。也就是说，这让仓库的全部历史都保存在每一个 commit 里。（所以 git 其实也是区块链。）
+
+不会完全显示出来，使用的是 `less` 这个命令行工具。这是一个分页器。
+
+````python
+import typer
+import subprocess
+
+app = typer.Typer()
+
+@app.command()
+def show_data():
+    # 生成或获取要显示的数据
+    data = "这里是您的数据...\n" * 100  # 示例数据
+
+    # 使用分页器显示数据
+    with subprocess.Popen(['less'], stdin=subprocess.PIPE, text=True) as proc:
+        proc.communicate(data)
+
+if __name__ == "__main__":
+    app()
+````
