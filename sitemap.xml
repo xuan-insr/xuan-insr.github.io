@@ -391,6 +391,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://xuan-insr.github.io/git/notes/2/</loc>
+         <lastmod>2024-01-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://xuan-insr.github.io/gitlab/</loc>
          <lastmod>2024-01-14</lastmod>
          <changefreq>daily</changefreq>
