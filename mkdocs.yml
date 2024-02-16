@@ -87,6 +87,7 @@ nav:
       - 用 GitLab CI Artifacts 在 Job 之间共享文件: gitlab/artifacts.md
     - Bazel:
       - bazel/index.md
+      - 构建系统基础 | Why Bazel: bazel/build_system.md
   - 核心知识: 
     - 核心知识/index.md
     - 操作系统:
