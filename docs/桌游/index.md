@@ -16,6 +16,16 @@
 
 | 名称 | 评价 | 人数 / 时长&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | 点评 |
 | :-: | :-: | :-: | :- |
+| **2024-2-14 无忧 3 人局** {: colspan=4}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} |
+| 历史奇旅 | <span class="box box-yellow">2</span> | 2~4/中等 | 有一点策略，但是运气成分大；虽然是竞争但是互相影响的空间很小。 |
+| 巫师牌 | <span class="box box-green">5</span> | 3~6/较长 | <span class="box box-yellow">好复刻</span> 虽然玩起来很长但是有趣；博弈感非常重，也略受运气影响。很容易逆风翻盘。 |
+| 巨兽猎踪 | - | 2~4/较长 | 规则比较复杂，玩了新手版本，体验不好。节奏有点拖沓，而且实际上并不完全有「策略空间」，因为在每个情形下应该干什么看起来是比较明显的。没有打分是因为也许非新手版本的体验能好一点。但是应该不会想再玩了。 |
+| **2024-2-13 无忧 4 人局** {: colspan=4}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} |
+| 嘿！蚊子 | <span class="box box-red">0.5</span> | 3~6/较短 | 纯纯的无聊。 |
+| 苏格兰场 | <span class="box box-blue">3.5</span> | 2~6/中等 | 根据有限的信息包围 & 抓小偷。有一定的策略空间。 |
+| 菲力猫 | <span class="box box-green">4</span> | 3~5/较短 | <span class="box box-yellow">好复刻</span> 唬人博弈拍卖。 |
+| 政变 | <span class="box box-yellow">2</span> | 2~6/较短 | 身份嘴炮游戏；但是交换身份的机制太少，所以牌运好的话一直说实话别人也没办法。 |
+| 方舟动物园 | <span class="box box-blue">3</span> | 1~4/长 | 在我玩过的这个重量的桌游里，机制算是比较清晰的，不至于像有的游戏那样玩一局还不完全明白规则。但问题在于几乎完全是 solo，跟其他玩家没有互动；在此基础之上结算流程还比较长，体验并不好。 |
 | **2023-7-13 无忧 5 人局** {: colspan=4}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} |
 | 小泥猪  | <span class="box box-yellow">1.5</span> | 2~4/短 | 运气成分极大，比较无聊。 |
 | 古墓迷踪  | <span class="box box-blue">3</span> | 2~5/中等 | 游戏进行方式比较新奇，运气成分有点大，不是很有趣。 |
@@ -23,14 +33,14 @@
 | 马王争霸  | <span class="box box-yellow">2</span> | 3~8/中等 | 赌马游戏，平衡性欠佳，整体时间略长；整体规则和卡牌设计使得赌狗游戏的乐趣被限制，比较无聊。 |
 | 御竹园  | <span class="box box-blue">2.5</span> | 2~4/中等 | 画风不错，任务带来了很大的运气成分；不公开的任务选择和任务手牌使得长线策略和互卡变得不太可能，又不像其他游戏可以推测意图。因此类似 solo 的同时又节奏拖沓，体验并不好。 |
 | **2023-7-11 无忧 4 人局** {: colspan=4}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} |
-| 卡波  | <span class="box box-green">4</span> | 2~4/中等 | <span class="box box-yellow">好复刻</span> 规则极其简单，有点上头，有记忆成分，运气成分有点大。 |
+| 卡波  | <span class="box box-green">4</span> | 2~4/中等 | <span class="box box-yellow">好复刻</span> <span class="box box-green">买了！</span> 规则极其简单，有点上头，有记忆成分，运气成分有点大。 |
 | **2023-7-9 无忧 3 人局** {: colspan=4}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} |
 | 大杀四方  | <span class="box box-blue">2.5</span> | 2~4/中等 | 平衡性欠佳，有的卡用处不大，运气成分太大，体验配不上阅读量。 |
-| 图灵机  | <span class="box box-green">5</span> | 1~4/较短 | <span class="box box-red">想买</span> 适合一个人或者合作玩，竞速也可以，需要动脑子；题目设计比较多，可重开性强。 |
+| 图灵机  | <span class="box box-green">5</span> | 1~4/较短 | <span class="box box-green">买了！</span> 适合一个人或者合作玩，竞速也可以，需要动脑子；题目设计比较多，可重开性强。 |
 | 金银岛  | <span class="box box-blue">3.5</span> | 2~5/中等 | 感觉比较适合 4~5 人玩，一人饰演两个角色的话得到的信息太多船长很难赢。机制和游戏体验很新鲜。 **2023-7-11 Update:** 4 人玩了一局，感觉体验有显著提升；但是总体感觉运气成分偏高。 |
 | 电力公司  | <span class="box box-blue">3.5</span> | 2~6/中等 | 有拍卖有互卡有计算，需要多方面考虑，平衡性也提供了不少的翻盘机会；但是游戏结束条件有点突然，在后期很容易速通结束游戏。 |
 | 太公望  | <span class="box box-blue">3</span> | 2~5/短 | 无脑赌狗游戏。 |
-| 形色牌  | <span class="box box-green">4.5</span> | 任意/短 | <span class="box box-red">想买</span> 比眼力和反应，简单好玩。 |
+| 形色牌  | <span class="box box-green">4.5</span> | 任意/短 | <span class="box box-green">买了！</span> 比眼力和反应，简单好玩。 |
 | **2023-2-2 无忧 3 人局** {: colspan=4}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} |
 | 三千世界鸦杀尽 | <span class="box box-blue">2.5</span> |2~4/较短|互坑游戏，非常看牌运，没什么策略可言。|
 | 花砖物语 AZUL | <span class="box box-blue">3.5</span> |2~4/较短|策略博弈，规则简单，可以互卡。|
@@ -45,7 +55,7 @@
 | 郁金香泡沫 | <span class="box box-yellow">1.5</span> |3~5/中等|博弈游戏，但是随机性比较大，除了节目效果以外没觉得哪里有趣。|
 | 空中之城 | <span class="box box-green">4.5</span> |2~6/较短|<span class="box box-red">想买</span> 规则简单，要骗人、互坑，有赌狗成分；演技和节目效果并存。|
 | 诡影寻踪 | <span class="box box-green">5</span> |2~5/较短|<span class="box box-green">买了！</span> 高级版的逻辑对决，推理的内容也更多；复杂模式能进一步提高推理难度。|
-| 现代艺术 | <span class="box box-green">4</span> |3~5/较短|<span class="box box-red">想买</span> 拍卖游戏，想办法提高自己手里和买过的画的价格。机制非常简单。 **2023-7-13 Update:** 多做一些谈判和发言更能体会到拍卖的感觉。 |
+| 现代艺术 | <span class="box box-green">4</span> |3~5/较短|<span class="box box-green">买了！</span> 拍卖游戏，想办法提高自己手里和买过的画的价格。机制非常简单。 **2023-7-13 Update:** 多做一些谈判和发言更能体会到拍卖的感觉。 |
 | 山中小屋 | <span class="box box-yellow">2</span> |3~6/长|冒险开图游戏；时间极长、阅读量不小的同时其他人得等着，对桌面大小也有要求。优点是确实有探索的趣味，如果做成电脑游戏会好一些，在桌游吧玩我只能说后悔开了这一局，两个小时都没玩完。|
 | 展翅翱翔 | <span class="box box-yellow">1.5</span> |1~5/中等|从多人角度来说缺乏互动性、等其他人的时间长。从单人角度来说随机性大、combo 也不够爽。除了好看点没找到优点。|
 | 平遥：汇通天下 | <span class="box box-blue">3</span> |1~4/较短|配件很好看。游戏过程中规中矩，互动有但不多；汇兑收入 +3 的卡有点太不平衡了？|
@@ -88,6 +98,7 @@
 | 情书 | <span class="box box-yellow">2</span> |2~4/较短|规则简单，有点博弈但不多，也因此上限有限。|
 | 骆驼大赛 | <span class="box box-yellow">2</span> |2~8/中等|运气游戏，能算但是还是看脸。会有节目效果，策略性比较弱。|
 | 马尼拉 | <span class="box box-yellow">1.5</span> |3~5/中等|机制比较丰富也不难懂，但是运气远大于策略。节目效果也不多。|
+| ? | <span class="box box-green">4</span> | ? | <span class="box box-yellow">好复刻</span> 一个忘记了名字的嘴炮身份游戏；规则大概是声称自己的身份，以及可以交换场上的牌。|
 | **2019-10-4 火星工厂 2 人局** {: colspan=4}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} |
 | 骨米诺 | <span class="box box-red">0.5</span> |1~8/较短|没什么策略可言，也没什么乐趣，适合当幼儿游戏。|
 | 失落的城市 | <span class="box box-yellow">1.5</span> |2/较短|规则简单，有点博弈成分，运气成分可能更大。|
