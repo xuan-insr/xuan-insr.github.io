@@ -158,12 +158,12 @@
             highlightTaxTableRow(taxableIncome, "taxTable");
 
             calculateAnnualTax();
-            annualTaxPayable = parseFloat(document.getElementById("annualTaxPayable").value) || 0;
-            highlightTaxTableRow(annualTaxPayable, "annualTaxTable");
+            annualTaxableIncome = parseFloat(document.getElementById("annualTaxableIncome").value) || 0;
+            highlightTaxTableRow(annualTaxableIncome, "annualTaxTable");
 
             calculateCombinedTax();
-            annualCombinedTaxPayable = parseFloat(document.getElementById("annualCombinedTaxPayable").value) || 0;
-            highlightTaxTableRow(annualCombinedTaxPayable, "combinedTaxTable");
+            annualTotalIncome = parseFloat(document.getElementById("annualTotalIncome").value) || 0;
+            highlightTaxTableRow(annualTotalIncome, "combinedTaxTable");
 
             var taxPayable = parseFloat(document.getElementById("taxPayable").value) || 0;
             var annualTaxPayable = parseFloat(document.getElementById("annualTaxPayable").value) || 0;
