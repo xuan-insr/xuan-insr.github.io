@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>个人所得税计算表</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.5.0/math.min.js"></script>
+    <script>
+        function getTaxRate(taxableIncome) {
+            var taxTable = [
+                [0, 36000, 3, 0],
+                [36000, 144000, 10, 2520],
+                [144000, 300000, 20, 16920],
+                [300000, 420000, 25, 31920],
+                [420000, 660000, 30, 52920],
+                [660000, 960000, 35, 85920],
+                [960000, Infinity, 45, 181920]
+            ];
+
+            for (var i = 0; i < taxTable.length; i++) {
+                if (taxableIncome >= taxTable[i][0] && taxableIncome < taxTable[i][1]) {
+                    return [i + 1, taxTable[i][2], taxTable[i][3]];
+                }
+            }
+        }
+
+        function getAnnualBonusTextRate(taxableIncome) {
+            var taxTable = [
+                [0, 36000, 3, 0],
+                [36000, 144000, 10, 210],
+                [144000, 300000, 20, 1410],
+                [300000, 420000, 25, 2660],
+                [420000, 660000, 30, 4410],
+                [660000, 960000, 35, 7160],
+                [960000, Infinity, 45, 15160]
+            ];
+
+            for (var i = 0; i < taxTable.length; i++) {
+                if (taxableIncome >= taxTable[i][0] && taxableIncome < taxTable[i][1]) {
+                    return [i + 1, taxTable[i][2], taxTable[i][3]];
+                }
+            }
+        }
+
+        function calculateTax() {
+            var taxableIncome = parseFloat(document.getElementById("taxableIncome").value) || 0;
+            var taxRate = getTaxRate(taxableIncome)[1];
+            var quickDeduction = getTaxRate(taxableIncome)[2];
+            var taxPayable = taxableIncome * taxRate / 100 - quickDeduction;
+            document.getElementById("taxRate").value = taxRate.toFixed(2);
+            document.getElementById("quickDeduction").value = quickDeduction.toFixed(2);
+            document.getElementById("taxPayable").value = taxPayable.toFixed(2);
+        }
+
+        function calculateAnnualTax() {
+            var annualBonus = parseFloat(document.getElementById("annualBonus").value) || 0;
+            var annualDonation = parseFloat(document.getElementById("annualDonation").value) || 0;
+            var annualTaxableIncome = annualBonus - annualDonation;
+            if (annualTaxableIncome <= 0) {
+                annualTaxableIncome = 0;
+            }
+            document.getElementById("annualTaxableIncome").value = annualTaxableIncome.toFixed(2);
+            var taxRate = getAnnualBonusTextRate(annualTaxableIncome)[1];
+            var quickDeduction = getAnnualBonusTextRate(annualTaxableIncome)[2];
+            var annualTaxPayable = annualTaxableIncome * taxRate / 100 - quickDeduction;
+            document.getElementById("annualTaxRate").value = taxRate.toFixed(2);
+            document.getElementById("annualQuickDeduction").value = quickDeduction.toFixed(2);
+            document.getElementById("annualTaxPayable").value = annualTaxPayable.toFixed(2);
+        }
+
+        function calculateCombinedTax() {
+            var annualComprehensiveIncomeTaxPayable = parseFloat(document.getElementById("taxableIncome").value) || 0;
+            document.getElementById("annualComprehensiveIncomeTaxPayable").value = annualComprehensiveIncomeTaxPayable.toFixed(2);
+
+            var annualBonusIncome = parseFloat(document.getElementById("annualTaxableIncome").value) || 0;
+            document.getElementById("annualBonusIncome").value = annualBonusIncome.toFixed(2);
+
+            var annualTotalIncome = annualComprehensiveIncomeTaxPayable + annualBonusIncome;
+            document.getElementById("annualTotalIncome").value = annualTotalIncome.toFixed(2);
+            var taxRate = getTaxRate(annualTotalIncome)[1];
+            var quickDeduction = getTaxRate(annualTotalIncome)[2];
+            var annualCombinedTaxPayable = annualTotalIncome * taxRate / 100 - quickDeduction;
+            document.getElementById("annualCombinedTaxRate").value = taxRate.toFixed(2);
+            document.getElementById("annualCombinedQuickDeduction").value = quickDeduction.toFixed(2);
+            document.getElementById("annualCombinedTaxPayable").value = annualCombinedTaxPayable.toFixed(2);
+        }
+
+        function highlightTaxTableRow(taxableIncome, tableName) {
+            var taxTable = document.getElementById(tableName);
+            var rows = taxTable.rows;
+            var taxRate = getTaxRate(taxableIncome);
+            var rowId = taxRate[0];
+            for (var i = 1; i < rows.length; i++) {
+                if (i == rowId) {
+                    rows[i].style.backgroundColor = "rgba(0, 255, 0, 0.1)";
+                }
+                else {
+                    rows[i].style.backgroundColor = "rgba(0, 0, 0, 0)";
+                }
+            }
+        }
+
+        function calculate() {
+            var salary = parseFloat(document.getElementById("salary").value) || 0;
+            var serviceFee = parseFloat(document.getElementById("serviceFee").value) || 0;
+            var royalty = parseFloat(document.getElementById("royalty").value) || 0;
+            var franchiseFee = parseFloat(document.getElementById("franchiseFee").value) || 0;
+            var totalIncome = salary + serviceFee + royalty + franchiseFee;
+            document.getElementById("totalIncome").value = totalIncome.toFixed(2);
+
+            var totalExpense = (serviceFee + royalty + franchiseFee) * 0.2;
+            document.getElementById("totalExpense").value = totalExpense.toFixed(2);
+
+            var taxFreeRoyalty = royalty * (1 - 0.2) * 0.3;
+            document.getElementById("taxFreeRoyalty").value = taxFreeRoyalty.toFixed(2);
+            var otherTaxFreeIncome = parseFloat(document.getElementById("otherTaxFreeIncome").value) || 0;
+            var totalTaxFreeIncome = taxFreeRoyalty + otherTaxFreeIncome;
+            document.getElementById("totalTaxFreeIncome").value = totalTaxFreeIncome.toFixed(2);
+
+            var deductibleExpense = parseFloat(document.getElementById("deductibleExpense").value) || 0;
+
+            var basicPensionInsurance = parseFloat(document.getElementById("basicPensionInsurance").value) || 0;
+            var basicMedicalInsurance = parseFloat(document.getElementById("basicMedicalInsurance").value) || 0;
+            var unemploymentInsurance = parseFloat(document.getElementById("unemploymentInsurance").value) || 0;
+            var housingFund = parseFloat(document.getElementById("housingFund").value) || 0;
+            var totalSpecialDeduction = basicPensionInsurance + basicMedicalInsurance + unemploymentInsurance + housingFund;
+            document.getElementById("totalSpecialDeduction").value = totalSpecialDeduction.toFixed(2);
+
+            var childrenEducation = parseFloat(document.getElementById("childrenEducation").value) || 0;
+            var continuingEducation = parseFloat(document.getElementById("continuingEducation").value) || 0;
+            var seriousIllnessMedicalCare = parseFloat(document.getElementById("seriousIllnessMedicalCare").value) || 0;
+            var housingLoanInterest = parseFloat(document.getElementById("housingLoanInterest").value) || 0;
+            var housingRent = parseFloat(document.getElementById("housingRent").value) || 0;
+            var supportingElderly = parseFloat(document.getElementById("supportingElderly").value) || 0;
+            var infantCare = parseFloat(document.getElementById("infantCare").value) || 0;
+            var totalAdditionalDeduction = childrenEducation + continuingEducation + seriousIllnessMedicalCare + housingLoanInterest + housingRent + supportingElderly + infantCare;
+            document.getElementById("totalAdditionalDeduction").value = totalAdditionalDeduction.toFixed(2);
+
+            var annuity = parseFloat(document.getElementById("annuity").value) || 0;
+            var commercialHealthInsurance = parseFloat(document.getElementById("commercialHealthInsurance").value) || 0;
+            var taxDeferredPensionInsurance = parseFloat(document.getElementById("taxDeferredPensionInsurance").value) || 0;
+            var allowableTax = parseFloat(document.getElementById("allowableTax").value) || 0;
+            var personalPension = parseFloat(document.getElementById("personalPension").value) || 0;
+            var other = parseFloat(document.getElementById("other").value) || 0;
+            var totalOtherDeduction = annuity + commercialHealthInsurance + taxDeferredPensionInsurance + allowableTax + personalPension + other;
+            document.getElementById("totalOtherDeduction").value = totalOtherDeduction.toFixed(2);
+
+            var donation = parseFloat(document.getElementById("donation").value) || 0;
+
+            var taxableIncome = totalIncome - totalExpense - totalTaxFreeIncome - deductibleExpense - totalSpecialDeduction - totalAdditionalDeduction - totalOtherDeduction - donation;
+            if (taxableIncome <= 0) {
+                taxableIncome = 0;
+            }
+            document.getElementById("taxableIncome").value = taxableIncome.toFixed(2);
+
+            calculateTax();
+            highlightTaxTableRow(taxableIncome, "taxTable");
+
+            calculateAnnualTax();
+            annualTaxPayable = parseFloat(document.getElementById("annualTaxPayable").value) || 0;
+            highlightTaxTableRow(annualTaxPayable, "annualTaxTable");
+
+            calculateCombinedTax();
+            annualCombinedTaxPayable = parseFloat(document.getElementById("annualCombinedTaxPayable").value) || 0;
+            highlightTaxTableRow(annualCombinedTaxPayable, "combinedTaxTable");
+
+            var taxPayable = parseFloat(document.getElementById("taxPayable").value) || 0;
+            var annualTaxPayable = parseFloat(document.getElementById("annualTaxPayable").value) || 0;
+            var annualSepreatedTaxPayable = taxPayable + annualTaxPayable;
+            document.getElementById("annualSepreatedTaxPayable").value = annualSepreatedTaxPayable.toFixed(2);
+        }
+
+        function isValidExpression(expression) {
+            // 正则表达式匹配数字、四则运算符号以及小括号
+            var regex = /^[0-9+\-*/().\s]*$/;
+            return regex.test(expression);
+        }
+
+        function calculateInput(input) {
+            var calculator = input + "Calculator";
+
+            var expression = document.getElementById(calculator).value || 0;
+            var result = 0;
+            if (!isValidExpression(expression)) {
+                result = "表达式不合法！";
+            }
+            else {
+                try {
+                    result = math.evaluate(expression);
+                } catch (e) {
+                    result = "表达式不合法: " + e.message;
+                }
+            }
+
+            document.getElementById(input).value = result.toFixed(2);
+            calculate();
+        }
+
+        var mapping = {
+            'salaryCalculator': 'slr',
+            'serviceFeeCalculator': 'srv',
+            'royaltyCalculator': 'roy',
+            'franchiseFeeCalculator': 'frn',
+            'otherTaxFreeIncomeCalculator': 'otf',
+            'deductibleExpenseCalculator': 'ded',
+            'basicPensionInsuranceCalculator': 'bpi',
+            'basicMedicalInsuranceCalculator': 'bmi',
+            'unemploymentInsuranceCalculator': 'uei',
+            'housingFundCalculator': 'hfd',
+            'childrenEducationCalculator': 'ced',
+            'continuingEducationCalculator': 'coed',
+            'seriousIllnessMedicalCareCalculator': 'sim',
+            'housingLoanInterestCalculator': 'hli',
+            'housingRentCalculator': 'hrt',
+            'supportingElderlyCalculator': 'sre',
+            'infantCareCalculator': 'inf',
+            'annuityCalculator': 'ann',
+            'commercialHealthInsuranceCalculator': 'chi',
+            'taxDeferredPensionInsuranceCalculator': 'tdp',
+            'allowableTaxCalculator': 'alt',
+            'personalPensionCalculator': 'pep',
+            'otherCalculator': 'oth',
+            'donationCalculator': 'don',
+            'annualBonusCalculator': 'abn',
+            'annualDonationCalculator': 'adn',
+        };
+        var reverseMapping = Object.keys(mapping).reduce((acc, key) => {
+            acc[mapping[key]] = key;
+            return acc;
+        }, {});
+
+        function generateLink() {
+            // 初始化查询字符串数组
+            var queryStringParts = [];
+
+            // 遍历映射对象，获取每个输入字段的值
+            Object.keys(mapping).forEach(function (field) {
+                var inputElement = document.getElementById(field);
+                if (inputElement) {
+                    var value = inputElement.value;
+                    var abbreviation = mapping[field];
+                    // 对表达式进行URL编码
+                    var encodedValue = encodeURIComponent(value);
+                    // 添加到查询字符串数组
+                    queryStringParts.push(abbreviation + "=" + encodedValue);
+                }
+            });
+
+            // 将查询字符串数组连接成一个字符串
+            var queryString = queryStringParts.join('&');
+            // 创建完整的URL
+            var link = window.location.href.split('?')[0] + "?" + queryString;
+
+            // 将链接填入地址栏（仅作示例，实际上可能需要其他方式展示链接）
+            window.location.href = link;
+
+            // 尝试将链接复制到剪切板
+            navigator.clipboard.writeText(link).then(function () {
+                console.log('链接已复制到剪切板');
+            }).catch(function (err) {
+                console.error('无法复制链接到剪切板:', err);
+            });
+        }
+
+        function fillDataFromQueryString() {
+            var params = new URLSearchParams(window.location.search);
+            for (var key in reverseMapping) {
+                var value = params.get(key);
+                if (value !== null) {
+                    document.getElementById(reverseMapping[key]).value = value;
+                }
+                calculateInput(reverseMapping[key].replace('Calculator', ''));
+            }
+            calculate();
+        }
+
+        window.onload = function () {
+            fillDataFromQueryString();
+            calculate();
+        };
+    </script>
+
+    <style>
+        .centered-container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        button {
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            padding: 4px 8px;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: .8rem;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            margin: 1em auto;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        button:active {
+            background-color: #3e8e41;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .nosort {
+            background-color: var(--md-default-bg-color);
+            border: .05rem solid var(--md-typeset-table-color);
+            border-radius: .1rem;
+            touch-action: auto;
+            margin: 1em auto;
+            font-size: .8rem;
+        }
+
+        td {
+            margin: 1em auto;
+            border: 1px solid var(--md-typeset-table-color);
+            /* 为所有的单元格和表头单元格设置边框 */
+            padding: .2em 1.25em;
+        }
+
+        th {
+            margin: 1em auto;
+            font-size: 1rem;
+            border: 1px solid var(--md-typeset-table-color);
+            /* 为所有的单元格和表头单元格设置边框 */
+            padding: .2em 1.25em;
+        }
+
+        caption {
+            margin: 1em auto;
+            font-size: 1.2rem;
+            padding: .2em .5em;
+        }
+
+        .calc,
+        .calc td {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        .calc input {
+            background-color: rgba(0, 0, 0, 0);
+            font-size: .8rem;
+        }
+
+        .level1 {
+            padding: .2em 1.25em;
+        }
+
+        .level2 {
+            padding: .2em 1.25em;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <div class="centered-container">
+            <button type="button" onclick="generateLink()">生成永久链接</button>
+        </div>
+
+        <table class="nosort">
+            <caption>综合所得个人所得税计算</caption>
+            <tr>
+                <th>项目</th>
+                <th style="width: auto">金额</th>
+                <th>计算器</th>
+            </tr>
+
+            <tr class="calc">
+                <td class="level1">一、收入合计</td>
+                <td colspan="2"><input class="calc" type="text" id="totalIncome" value="0" readonly></td>
+            </tr>
+            <tr>
+                <td class="level2">（一）工资、薪金</td>
+                <td><input type="text" id="salary" value="0" readonly></td>
+                <td><input type="text" id="salaryCalculator" oninput="calculateInput('salary')" value="0"></td>
+            </tr>
+            <tr>
+                <td class="level2">（二）劳务报酬</td>
+                <td><input type="text" id="serviceFee" value="0" readonly></td>
+                <td><input type="text" id="serviceFeeCalculator" oninput="calculateInput('serviceFee')" value="0"></td>
+            </tr>
+            <tr>
+                <td class="level2">（三）稿酬</td>
+                <td><input type="text" id="royalty" value="0" readonly></td>
+                <td><input type="text" id="royaltyCalculator" oninput="calculateInput('royalty')" value="0"></td>
+            </tr>
+            <tr>
+                <td class="level2">（四）特许权使用费</td>
+                <td><input type="text" id="franchiseFee" value="0" readonly></td>
+                <td><input type="text" id="franchiseFeeCalculator" oninput="calculateInput('franchiseFee')" value="0">
+                </td>
+            </tr>
+
+            <tr class="calc">
+                <td class="level1">二、费用合计</td>
+                <td colspan="2"><input class="calc" type="text" id="totalExpense" value="0" readonly></td>
+            </tr>
+
+            <tr class="calc">
+                <td class="level1">三、免税收入合计</td>
+                <td colspan="2"><input class="calc" type="text" id="totalTaxFreeIncome" value="0" readonly></td>
+            </tr>
+            <tr class="calc">
+                <td class="level2">（一）稿酬所得免税部分</td>
+                <td colspan="2"><input class="calc" type="text" id="taxFreeRoyalty" value="0" readonly></td>
+            </tr>
+            <tr>
+                <td class="level2">（二）其他免税收入</td>
+                <td><input type="text" id="otherTaxFreeIncome" value="0" readonly></td>
+                <td><input type="text" id="otherTaxFreeIncomeCalculator" oninput="calculateInput('otherTaxFreeIncome')"
+                        value="0"></td>
+            </tr>
+
+            <tr>
+                <td class="level1">四、减除费用</td>
+                <td><input type="text" id="deductibleExpense" value="60000" readonly></td>
+                <td><input type="text" id="deductibleExpenseCalculator" oninput="calculateInput('deductibleExpense')"
+                        value="60000"></td>
+            </tr>
+
+            <tr class="calc">
+                <td class="level1">五、专项扣除合计</td>
+                <td colspan="2"><input class="calc" type="text" id="totalSpecialDeduction" value="0" readonly></td>
+            </tr>
+            <tr>
+                <td class="level2">（一）基本养老保险费</td>
+                <td><input type="text" id="basicPensionInsurance" value="0" readonly></td>
+                <td><input type="text" id="basicPensionInsuranceCalculator"
+                        oninput="calculateInput('basicPensionInsurance')" value="0"></td>
+            </tr>
+            <tr>
+                <td class="level2">（二）基本医疗保险费</td>
+                <td><input type="text" id="basicMedicalInsurance" value="0" readonly></td>
+                <td><input type="text" id="basicMedicalInsuranceCalculator"
+                        oninput="calculateInput('basicMedicalInsurance')" value="0"></td>
+            </tr>
+            <tr>
+                <td class="level2">（三）失业保险费</td>
+                <td><input type="text" id="unemploymentInsurance" value="0" readonly></td>
+                <td><input type="text" id="unemploymentInsuranceCalculator"
+                        oninput="calculateInput('unemploymentInsurance')" value="0"></td>
+            </tr>
+            <tr>
+                <td class="level2">（四）住房公积金</td>
+                <td><input type="text" id="housingFund" value="0" readonly></td>
+                <td><input type="text" id="housingFundCalculator" oninput="calculateInput('housingFund')" value="0">
+                </td>
+            </tr>
+
+            <tr class="calc">
+                <td class="level1">六、专项附加扣除合计</td>
+                <td colspan="2"><input class="calc" type="text" id="totalAdditionalDeduction" value="0" readonly></td>
+            </tr>
+            <tr>
+                <td class="level2">（一）子女教育</td>
+                <td><input type="text" id="childrenEducation" value="0" readonly></td>
+                <td><input type="text" id="childrenEducationCalculator" oninput="calculateInput('childrenEducation')"
+                        value="0"></td>
+            </tr>
+            <tr>
+                <td class="level2">（二）继续教育</td>
+                <td><input type="text" id="continuingEducation" value="0" readonly></td>
+                <td><input type="text" id="continuingEducationCalculator"
+                        oninput="calculateInput('continuingEducation')" value="0"></td>
+            </tr>
+            <tr>
+                <td class="level2">（三）大病医疗</td>
+                <td><input type="text" id="seriousIllnessMedicalCare" value="0" readonly></td>
+                <td><input type="text" id="seriousIllnessMedicalCareCalculator"
+                        oninput="calculateInput('seriousIllnessMedicalCare')" value="0"></td>
+            </tr>
+            <tr>
+                <td class="level2">（四）住房贷款利息</td>
+                <td><input type="text" id="housingLoanInterest" value="0" readonly></td>
+                <td><input type="text" id="housingLoanInterestCalculator"
+                        oninput="calculateInput('housingLoanInterest')" value="0"></td>
+            </tr>
+            <tr>
+                <td class="level2">（五）住房租金</td>
+                <td><input type="text" id="housingRent" value="0" readonly></td>
+                <td><input type="text" id="housingRentCalculator" oninput="calculateInput('housingRent')" value="0">
+                </td>
+            </tr>
+            <tr>
+                <td class="level2">（六）赡养老人</td>
+                <td><input type="text" id="supportingElderly" value="0" readonly></td>
+                <td><input type="text" id="supportingElderlyCalculator" oninput="calculateInput('supportingElderly')"
+                        value="0"></td>
+            </tr>
+            <tr>
+                <td class="level2">（七）3 岁以下婴幼儿照护</td>
+                <td><input type="text" id="infantCare" value="0" readonly></td>
+                <td><input type="text" id="infantCareCalculator" oninput="calculateInput('infantCare')" value="0"></td>
+            </tr>
+
+            <tr class="calc">
+                <td class="level1">七、其他扣除合计</td>
+                <td colspan="2"><input class="calc" type="text" id="totalOtherDeduction" value="0" readonly></td>
+            </tr>
+            <tr>
+                <td class="level2">（一）年金</td>
+                <td><input type="text" id="annuity" value="0" readonly></td>
+                <td><input type="text" id="annuityCalculator" oninput="calculateInput('annuity')" value="0"></td>
+            </tr>
+            <tr>
+                <td class="level2">（二）商业健康保险</td>
+                <td><input type="text" id="commercialHealthInsurance" value="0" readonly></td>
+                <td><input type="text" id="commercialHealthInsuranceCalculator"
+                        oninput="calculateInput('commercialHealthInsurance')" value="0"></td>
+            </tr>
+            <tr>
+                <td class="level2">（三）税延养老保险</td>
+                <td><input type="text" id="taxDeferredPensionInsurance" value="0" readonly></td>
+                <td><input type="text" id="taxDeferredPensionInsuranceCalculator"
+                        oninput="calculateInput('taxDeferredPensionInsurance')" value="0"></td>
+            </tr>
+            <tr>
+                <td class="level2">（四）允许扣除的税费</td>
+                <td><input type="text" id="allowableTax" value="0" readonly></td>
+                <td><input type="text" id="allowableTaxCalculator" oninput="calculateInput('allowableTax')" value="0">
+                </td>
+            </tr>
+            <tr>
+                <td class="level2">（五）个人养老金</td>
+                <td><input type="text" id="personalPension" value="0" readonly></td>
+                <td><input type="text" id="personalPensionCalculator" oninput="calculateInput('personalPension')"
+                        value="0"></td>
+            </tr>
+            <tr>
+                <td class="level2">（六）其他</td>
+                <td><input type="text" id="other" value="0" readonly></td>
+                <td><input type="text" id="otherCalculator" oninput="calculateInput('other')" value="0"></td>
+            </tr>
+
+            <tr>
+                <td class="level1">八、准予扣除的捐赠额</td>
+                <td><input type="text" id="donation" value="0" readonly></td>
+                <td><input type="text" id="donationCalculator" oninput="calculateInput('donation')" value="0"></td>
+            </tr>
+
+            <tr class="calc">
+                <td class="level1">九、应纳税所得额</td>
+                <td colspan="2"><input class="calc" type="text" id="taxableIncome" value="0" readonly></td>
+            </tr>
+
+            <tr class="calc">
+                <td class="level1">十、税率（%）</td>
+                <td colspan="2"><input class="calc" type="text" id="taxRate" value="0" readonly></td>
+            </tr>
+
+            <tr class="calc">
+                <td class="level1">十一、速算扣除数</td>
+                <td colspan="2"><input class="calc" type="text" id="quickDeduction" value="0" readonly></td>
+            </tr>
+
+            <tr class="calc">
+                <td class="level1">十二、应纳税额</td>
+                <td colspan="2"><input class="calc" type="text" id="taxPayable" value="0" readonly></td>
+            </tr>
+        </table>
+
+        <table id="taxTable" class="nosort">
+            <thead>
+                <tr>
+                    <th>级数</th>
+                    <th>全年应纳税所得额</th>
+                    <th>税率（%）</th>
+                    <th>速算扣除数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>不超过 36000 元的</td>
+                    <td>3</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>超过 36000 元至 144000 元的</td>
+                    <td>10</td>
+                    <td>2520</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>超过 144000 元至 300000 元的</td>
+                    <td>20</td>
+                    <td>16920</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>超过 300000 元至 420000 元的</td>
+                    <td>25</td>
+                    <td>31920</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>超过 420000 元至 660000 元的</td>
+                    <td>30</td>
+                    <td>52920</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>超过 660000 元至 960000 元的</td>
+                    <td>35</td>
+                    <td>85920</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>超过 960000 元的</td>
+                    <td>45</td>
+                    <td>181920</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="nosort">
+            <caption>全年一次性奖金个人所得税计算</caption>
+            <tr>
+                <th>项目</th>
+                <th>金额</th>
+                <th>计算器</th>
+            </tr>
+
+            <tr>
+                <td>一、全年一次性奖金收入</td>
+                <td><input type="text" id="annualBonus" value="0" readonly></td>
+                <td><input type="text" id="annualBonusCalculator" oninput="calculateInput('annualBonus')" value="0">
+                </td>
+            </tr>
+
+            <tr>
+                <td>二、准予扣除的捐赠额</td>
+                <td><input type="text" id="annualDonation" value="0" readonly></td>
+                <td><input type="text" id="annualDonationCalculator" oninput="calculateInput('annualDonation')"
+                        value="0"></td>
+            </tr>
+
+            <tr class="calc">
+                <td>应纳税所得额</td>
+                <td colspan="2"><input type="text" id="annualTaxableIncome" value="0" readonly></td>
+                </td>
+
+            <tr class="calc">
+                <td>三、税率（%）</td>
+                <td colspan="2"><input type="text" id="annualTaxRate" value="0" readonly></td>
+            <tr>
+
+            <tr class="calc">
+                <td>四、速算扣除数</td>
+                <td colspan="2"><input type="text" id="annualQuickDeduction" value="0" readonly></td>
+            </tr>
+
+            <tr class="calc">
+                <td>五、应纳税额</td>
+                <td colspan="2"><input type="text" id="annualTaxPayable" value="0" readonly></td>
+            </tr>
+        </table>
+
+        <table id="annualTaxTable" class="nosort">
+            <thead>
+                <tr>
+                    <th>级数</th>
+                    <th>全年应纳税所得额</th>
+                    <th>税率（%）</th>
+                    <th>速算扣除数</th>
+                </tr>
+            </thead><tbody>
+                <tr>
+                    <td>1</td>
+                    <td>不超过 36000 元的</td>
+                    <td>3</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>超过 36000 元至 144000 元的</td>
+                    <td>10</td>
+                    <td>210</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>超过 144000 元至 300000 元的</td>
+                    <td>20</td>
+                    <td>1410</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>超过 300000 元至 420000 元的</td>
+                    <td>25</td>
+                    <td>2660</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>超过 420000 元至 660000 元的</td>
+                    <td>30</td>
+                    <td>4410</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>超过 660000 元至 960000 元的</td>
+                    <td>35</td>
+                    <td>7160</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>超过 960000 元的</td>
+                    <td>45</td>
+                    <td>15160</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="nosort">
+            <caption>年终奖合并综合所得计算</caption>
+            <tbody>
+                <tr class="calc">
+                    <td>全年综合所得应纳税额</td>
+                    <td><input type="text" id="annualComprehensiveIncomeTaxPayable" value="0" readonly></td>
+                </tr>
+                <tr class="calc">
+                    <td>全年一次性奖金收入</td>
+                    <td><input type="text" id="annualBonusIncome" value="0" readonly></td>
+                </tr>
+                <tr class="calc">
+                    <td>合计</td>
+                    <td><input type="text" id="annualTotalIncome" value="0" readonly></td>
+                </tr>
+                <tr class="calc">
+                    <td>税率 (%)</td>
+                    <td><input type="text" id="annualCombinedTaxRate" value="0" readonly></td>
+                </tr>
+                <tr class="calc">
+                    <td>速算扣除数</td>
+                    <td><input type="text" id="annualCombinedQuickDeduction" value="0" readonly></td>
+                </tr>
+                <tr class="calc">
+                    <td>应纳税额</td>
+                    <td><input type="text" id="annualCombinedTaxPayable" value="0" readonly></td>
+                </tr>
+                <tr class="calc">
+                    <td>（对比）年终奖单独计税应纳税额</td>
+                    <td><input type="text" id="annualSepreatedTaxPayable" value="0" readonly></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table id="combinedTaxTable" class="nosort">
+            <thead>
+                <tr>
+                    <th>级数</th>
+                    <th>全年应纳税所得额</th>
+                    <th>税率（%）</th>
+                    <th>速算扣除数</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>不超过 36000 元的</td>
+                    <td>3</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>超过 36000 元至 144000 元的</td>
+                    <td>10</td>
+                    <td>2520</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>超过 144000 元至 300000 元的</td>
+                    <td>20</td>
+                    <td>16920</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>超过 300000 元至 420000 元的</td>
+                    <td>25</td>
+                    <td>31920</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>超过 420000 元至 660000 元的</td>
+                    <td>30</td>
+                    <td>52920</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>超过 660000 元至 960000 元的</td>
+                    <td>35</td>
+                    <td>85920</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>超过 960000 元的</td>
+                    <td>45</td>
+                    <td>181920</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <div class="centered-container">
+            <button type="button" onclick="generateLink()">生成永久链接</button>
+        </div>
+    </form>
+</body>

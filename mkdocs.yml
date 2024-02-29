@@ -79,6 +79,8 @@ nav:
       - 2 初始化仓库: git/2_init.md
       - 3 对象存储: git/3_obj_storage.md
       - 4 暂存区: git/4_index.md
+    - Bash:
+      - bash/index.md
     - 咸鱼暄学 Python:
       - python/index.md
       - 用 Coverage.py 衡量 Python 测试覆盖率: python/coverage.md
@@ -167,6 +169,9 @@ nav:
   - 杂项:
     - 杂项/index.md
     - 博客搭建记录: 杂项/博客搭建记录.md
+  - 妙妙工具:
+    - magic_tools/index.md
+    - 个税计算器: magic_tools/personal_income_tax.md
   - 生活:
     - 生活/index.md
     - 讨饭历程:
