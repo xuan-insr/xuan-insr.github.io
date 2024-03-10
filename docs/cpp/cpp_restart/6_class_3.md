@@ -123,7 +123,7 @@ public:
         to = s.to;
     }
     Msg & operator=(const Msg &s) {
-        if (this == *s)     return *this;
+        if (this == &s)     return *this;
         if (strlen(content) != strlen(s.content)) {
             delete[] content;
             content = new char[strlen(s.content) + 1];

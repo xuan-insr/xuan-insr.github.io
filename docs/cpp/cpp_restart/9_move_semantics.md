@@ -117,7 +117,7 @@ lvalue 用来表征一个对象，或者说一个位置。因此，lvalue 可以
 
 左值包括：
 
-- **任何有名字的表达式** 都是左值，唯一的例外的枚举[^move-eligible]；
+- **任何有名字的表达式** 都是左值，唯一的例外是枚举[^move-eligible]；
 - **内置** 的 `++a`, `a = b`, `a += b`, `*p`, `p->m` 是 lvalue
 - 如果 `a[n]` 的操作数之一是 array lvalue 或者 pointer，则是 lvalue
 - 如果 `a` 是 lvalue，`m` 是成员变量，则 `a.m` 是 lvalue；如果 `m` 是成员变量，`p->m` 是 lvalue
