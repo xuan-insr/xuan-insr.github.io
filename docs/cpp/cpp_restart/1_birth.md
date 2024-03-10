@@ -1,5 +1,8 @@
 # 1 C++ 的诞生
 
+!!! info "本节录播地址"
+    本节的朋辈辅学录播可以在 [B 站](https://www.bilibili.com/video/BV1G24y1E7ok/?spm_id_from=333.788&vd_source=c5a9383e47adf0fdb6896be9dbbc50fc) 找到！
+
 C++ 他爹 Bjarne Stroustrup 上学的时候用 Simula 写了个模拟器。他写得十分开心，因为 Simula 提供了 **类 (class)** 的概念；这使得他能把具体问题中的概念直接映射到语言结构中，从而提供非常好的可读性。
 
 !!! note inline end ""

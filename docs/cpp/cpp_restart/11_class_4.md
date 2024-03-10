@@ -1,5 +1,11 @@
 # 11 类 (V) - 继承与抽象类、访问控制
 
+!!! info "本节录播地址"
+    本节的朋辈辅学录播可以在 [B 站](https://www.bilibili.com/video/BV1hz4y1i7Az/?spm_id_from=333.788&vd_source=c5a9383e47adf0fdb6896be9dbbc50fc) 找到！
+
+!!! warning
+    本节的文本还没完全写完！可以先去看录播））
+
 !!! danger
     本文未完成，以下仅为学习笔记。
     

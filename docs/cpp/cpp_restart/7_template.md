@@ -1,5 +1,8 @@
 # 7 模板 (I) - 基本知识与 STL 使用
 
+!!! info "本节录播地址"
+    本节的朋辈辅学录播可以在 [B 站](https://www.bilibili.com/video/BV1Fo4y187ij/?vd_source=c5a9383e47adf0fdb6896be9dbbc50fc) 找到！
+
 --8<-- "cpp/cpp_restart/toggle_visibility.md"
 
 ---

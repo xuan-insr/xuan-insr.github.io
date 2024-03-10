@@ -1,5 +1,8 @@
 # 5 类 (II) - 拷贝赋值、运算符重载与引用
 
+!!! info "本节录播地址"
+    本节的朋辈辅学录播可以在 [B 站](https://www.bilibili.com/video/BV1bo4y1p7aq/?spm_id_from=333.788&vd_source=c5a9383e47adf0fdb6896be9dbbc50fc) 找到！
+
 --8<-- "cpp/cpp_restart/toggle_visibility.md"
 
 ??? warning "本节使用的副本"

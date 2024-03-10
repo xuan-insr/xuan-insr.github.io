@@ -1,5 +1,8 @@
 # 8 模板 (II) - 理解 STL：迭代器与函数对象
 
+!!! info "本节录播地址"
+    本节的朋辈辅学录播可以在 [B 站](https://www.bilibili.com/video/BV12V4y1o7c5/?spm_id_from=333.788&vd_source=c5a9383e47adf0fdb6896be9dbbc50fc) 找到！
+
 !!! note ""
     本文部分图片来自 CppCon 2021 - Back to Basics: Classic STL
 

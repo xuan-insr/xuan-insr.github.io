@@ -1,5 +1,8 @@
 # 2 编程范式 | Programming Paradigm
 
+!!! info "本节录播地址"
+    本节的朋辈辅学录播可以在 [B 站](https://www.bilibili.com/video/BV1b84y1A7uu) 找到！
+
 !!! abstract "Takeaway"
     从汇编与 C/C++ 代码的对比中理解结构化编程，进而理解编程范式与抽象。
 
