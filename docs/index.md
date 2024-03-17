@@ -37,6 +37,7 @@ statistics: true
     - [新鲜男孩！](https://freshboy-cyh.github.io/) 
     - [fufu 酱的笔记本！](https://csfufu.life/)
     - [memset0！](https://mem.ac/)
+    - [望薮](https://ralvines.top/) （好酷，是很漂亮的地方！）
     - [旭宝的笔记本！](https://zicx.top/notebook/) （赞美旭宝！）
     - [Zizheng's Blog](https://www.zizheng.life/) （在墙外！）
     - [搜拉宅！](https://vinci-897.github.io/)
