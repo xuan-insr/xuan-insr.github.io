@@ -40,11 +40,13 @@ statistics: true
     - [望薮](https://ralvines.top/) （好酷，是很漂亮的地方！）
     - [旭宝的笔记本！](https://zicx.top/notebook/) （赞美旭宝！）
     - [Zizheng's Blog](https://www.zizheng.life/) （在墙外！）
-    - [搜拉宅！](https://vinci-897.github.io/)
+    - [小角龙！](https://zhang-each.github.io/)
     - [Jiepeng's notes](https://note.jiepeng.tech/)
     - [娃娃机！](https://lhmd.github.io/)
+    - [66666a 的博客](https://jzl-66666a.github.io/friend/)
+    - [木槿辞秋的小窝](https://ottohere-mourn.github.io/)
+    - [搜拉宅！](https://vinci-897.github.io/)
     - [Frank！](https://frankgu.top/)
-    - [小角龙！](https://zhang-each.github.io/)
     - [zbgg 日报果然断更了，哈哈](https://daily.dreamerryao.wiki)
 
 <center><img src="index.assets/image.png"/></center>
