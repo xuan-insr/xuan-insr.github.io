@@ -247,7 +247,7 @@ $$
 
 $$
 \begin{aligned}
-MIPS 
+MIPS
 &= \frac{\text{\#Instructions}}{\text{Execution time} \times 10^6} \\
 &= \frac{\text{\#Instructions}}{
     \frac{
@@ -257,7 +257,6 @@ MIPS
     } \times 10^6
 } \\
 &= \frac{\text{Clock rate}}{\text{CPI} \times 10^6}
-    
 \end{aligned}
 $$
 
