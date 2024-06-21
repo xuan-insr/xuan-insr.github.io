@@ -49,7 +49,7 @@ RETURN REAL(0.0) SEMI RBRACE EOF
 
 - **Symbol** : `a` , 匹配字符串 "a"。
 - **Alternation** : `M` 和 `N` 是两个正则表达式，`M|N` 可以匹配 `M` 和 `N` 匹配集合的并集。如 `a|b` 可以匹配字符串 "a" 或 "b"。
-- **Concatenation** : `M` 和 `N` 是两个正则表达式，`M·N` 可以匹配 `M` 和 `N` 中各一个字符串的联合。如 `(a|b)·a` 匹配字符串 "aa" 或 "ab"。
+- **Concatenation** : `M` 和 `N` 是两个正则表达式，`M·N` 可以匹配 `M` 和 `N` 中各一个字符串的联合。如 `(a|b)·a` 匹配字符串 "aa" 或 "ba"。
 - **Epsilon** : `ϵ` 匹配空字符串。如 `(a·b)|ϵ` 代表 language {"", "ab"}。
 - **Repetition** : `M` 是一个正则表达式，则 `M` 的 **克林闭包 (Kleene closure)** 为 `M*` ，如果一个字符串是由 `M` 中的字符串零至多次 concatenation 的结果，则该字符串属于 `M*` 。如 `((a|b)·a)*` 表示无穷集合 {"", "aa", "ba", "aaaa", "baaa", "aaba", "baba", "aaaaaa", ... }。
 
