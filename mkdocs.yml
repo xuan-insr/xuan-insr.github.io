@@ -317,6 +317,7 @@ extra_javascript:
 plugins:
   - search:
       separator: '[\s\u200b\-]'
+      jieba_dict: dict.txt.big
   - git-revision-date-localized:
       enable_creation_date: true
       type: timeago
