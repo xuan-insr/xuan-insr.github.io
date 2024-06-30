@@ -169,6 +169,7 @@ nav:
   - 杂项:
     - 杂项/index.md
     - 博客搭建记录: 杂项/博客搭建记录.md
+    - 常用参考资料: misc/frequently_used_references.md
   - 妙妙工具:
     - magic_tools/index.md
     - 个税计算器: magic_tools/personal_income_tax.md
