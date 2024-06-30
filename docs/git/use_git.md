@@ -30,13 +30,29 @@ git 有一堆配置。它主要分为 3 级：
 
 #### 有什么配置
 
-??? note "简单看一看觉得有用的配置"
-    `alias`，可以设置别名，比如 `git config --global alias.co checkout`，这样就可以用 `git co` 代替 `git checkout`。
+配置是分节的；例如 `push` 一节有 `autoSetupRemote` 选项，这描述了执行 `git push` 时的行为方式（即当没有指定远程分支时，是否自动 `--set-upstream`）。节有可能是 git 命令，也有可能是其他内容。
+
+- 设置别名：`alias`，比如 `git config --global alias.co checkout`，这样就可以用 `git co` 代替 `git checkout`。
+    - 也可以带参数，比如我设置了 `alias.catn = commit --amend --date=now --no-edit`，即我使用 `git catn` 来将当前修改 amend 到上一个 commit 中，将其时间改为现在，但不修改 commit message。
+- `help.autoCorrect`，默认情况下如果给 git 了一个它不认识的命令，它会报错然后建议正确的命令；这个配置可以使得它立即执行建议、在一段时间后自动执行建议，或者提供 prompt 让用户选择。
+    - ![](assets/2024-06-30-18-18-12.png)
+- `pull.ff` = `only`，这个配置相当于每次 `git pull` 都加上 `--ff-only` 选项。我在用这个。
+- `push.autoSetupMerge`，如本节开头所述。
+- `init.defaultBranch` = `main`，`git init` 时创建名为 `main` 的分支
+- `rerere.enabled` = `true`，`rerere` (reuse recorded resolution) 会记住解决冲突的方法，下次遇到相同的冲突时会自动解决；在 rebase 一个巨大分支时很有用。
+- `merge.conflictstyle` = `zdiff3`，我先用用看，参见 https://www.ductile.systems/zdiff3/
+- `core.excludesFile`，指定一个全局的 gitignore
+- `branch.sort` = `-committerdate`，设置 `git branch` 按最近提交时间排序而非字典序
+
 
 #### TODO
 
+- [delta](https://github.com/dandavison/delta)
 - [credentials](https://git-scm.com/docs/gitcredentials)
 - sparse-checkout
+- `merge.conflictStyle` 配置指定了冲突时的展示风格。
+- [rerere](https://git-scm.com/book/en/v2/Git-Tools-Rerere)
+- [git diff algorithms](https://luppeng.wordpress.com/2020/10/10/when-to-use-each-of-the-git-diff-algorithms/)
 
 #### 简单看了一眼的东西
 
@@ -45,3 +61,7 @@ git 有一堆配置。它主要分为 3 级：
     - 自 2014 年起，GitHub [不再显示 notes 了](https://github.blog/2010-08-25-git-notes-display/)。
     - GitLab 支持 notes 仍然是一个 open issue。
     - ![](assets/2024-06-24-21-16-47.png)
+
+#### 参考资料
+
+- [Popular Git Config Options](https://jvns.ca/blog/2024/02/16/popular-git-config-options/)
