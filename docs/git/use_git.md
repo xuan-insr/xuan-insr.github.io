@@ -53,6 +53,7 @@ git 有一堆配置。它主要分为 3 级：
 - `merge.conflictStyle` 配置指定了冲突时的展示风格。
 - [rerere](https://git-scm.com/book/en/v2/Git-Tools-Rerere)
 - [git diff algorithms](https://luppeng.wordpress.com/2020/10/10/when-to-use-each-of-the-git-diff-algorithms/)
+- worktree: [ref1](https://github.blog/2015-07-29-git-2-5-including-multiple-worktrees-and-triangular-workflows/), [ref2](https://gist.github.com/GeorgeLyon/ff5a42cb24c1de09e4139266a7689543), [doc](https://git-scm.com/docs/git-worktree)
 
 #### 简单看了一眼的东西
 
