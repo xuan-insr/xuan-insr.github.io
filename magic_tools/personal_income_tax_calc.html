@@ -158,17 +158,29 @@
             highlightTaxTableRow(taxableIncome, "taxTable");
 
             calculateAnnualTax();
-            annualTaxableIncome = parseFloat(document.getElementById("annualTaxableIncome").value) || 0;
+            var annualTaxableIncome = parseFloat(document.getElementById("annualTaxableIncome").value) || 0;
             highlightTaxTableRow(annualTaxableIncome, "annualTaxTable");
 
             calculateCombinedTax();
-            annualTotalIncome = parseFloat(document.getElementById("annualTotalIncome").value) || 0;
+            var annualTotalIncome = parseFloat(document.getElementById("annualTotalIncome").value) || 0;
             highlightTaxTableRow(annualTotalIncome, "combinedTaxTable");
 
             var taxPayable = parseFloat(document.getElementById("taxPayable").value) || 0;
             var annualTaxPayable = parseFloat(document.getElementById("annualTaxPayable").value) || 0;
             var annualSepreatedTaxPayable = taxPayable + annualTaxPayable;
             document.getElementById("annualSepreatedTaxPayable").value = annualSepreatedTaxPayable.toFixed(2);
+
+            var annualBonus = parseFloat(document.getElementById("annualBonus").value) || 0;
+            var annualCombinedTaxPayable = parseFloat(document.getElementById("annualCombinedTaxPayable").value) || 0;
+
+            var afterTax = totalIncome - totalSpecialDeduction - taxPayable;
+            var annualAfterTax = annualBonus - annualTaxPayable;
+            var annualCombinedAfterTax = totalIncome + annualBonus - totalSpecialDeduction - annualCombinedTaxPayable;
+            var annualSepreatedAfterTax = afterTax + annualAfterTax;
+            document.getElementById("afterTax").value = afterTax.toFixed(2);
+            document.getElementById("annualAfterTax").value = annualAfterTax.toFixed(2);
+            document.getElementById("annualCombinedAfterTax").value = annualCombinedAfterTax.toFixed(2);
+            document.getElementById("annualSepreatedAfterTax").value = annualSepreatedAfterTax.toFixed(2);
         }
 
         function isValidExpression(expression) {
@@ -189,7 +201,7 @@
                 try {
                     result = math.evaluate(expression);
                 } catch (e) {
-                    result = "表达式不合法: " + e.message;
+                    result = "表达式不合法：" + e.message;
                 }
             }
 
@@ -240,7 +252,7 @@
                 if (inputElement) {
                     var value = inputElement.value;
                     var abbreviation = mapping[field];
-                    // 对表达式进行URL编码
+                    // 对表达式进行 URL 编码
                     var encodedValue = encodeURIComponent(value);
                     // 添加到查询字符串数组
                     queryStringParts.push(abbreviation + "=" + encodedValue);
@@ -249,7 +261,7 @@
 
             // 将查询字符串数组连接成一个字符串
             var queryString = queryStringParts.join('&');
-            // 创建完整的URL
+            // 创建完整的 URL
             var link = window.location.href.split('?')[0] + "?" + queryString;
 
             // 将链接填入地址栏（仅作示例，实际上可能需要其他方式展示链接）
@@ -259,7 +271,7 @@
             navigator.clipboard.writeText(link).then(function () {
                 console.log('链接已复制到剪切板');
             }).catch(function (err) {
-                console.error('无法复制链接到剪切板:', err);
+                console.error('无法复制链接到剪切板：', err);
             });
         }
 
@@ -568,6 +580,11 @@
                 <td class="level1">十二、应纳税额</td>
                 <td colspan="2"><input class="calc" type="text" id="taxPayable" value="0" readonly></td>
             </tr>
+
+            <tr class="calc">
+                <td class="level1">🧮 实发</td>
+                <td colspan="2"><input class="calc" type="text" id="afterTax" value="0" readonly></td>
+            </tr>
         </table>
 
         <table id="taxTable" class="nosort">
@@ -666,6 +683,11 @@
                 <td>五、应纳税额</td>
                 <td colspan="2"><input type="text" id="annualTaxPayable" value="0" readonly></td>
             </tr>
+
+            <tr class="calc">
+                <td class="level1">🧮 实发</td>
+                <td colspan="2"><input class="calc" type="text" id="annualAfterTax" value="0" readonly></td>
+            </tr>
         </table>
 
         <table id="annualTaxTable" class="nosort">
@@ -676,7 +698,8 @@
                     <th>税率（%）</th>
                     <th>速算扣除数</th>
                 </tr>
-            </thead><tbody>
+            </thead>
+            <tbody>
                 <tr>
                     <td>1</td>
                     <td>不超过 36000 元的</td>
@@ -752,6 +775,14 @@
                 <tr class="calc">
                     <td>（对比）年终奖单独计税应纳税额</td>
                     <td><input type="text" id="annualSepreatedTaxPayable" value="0" readonly></td>
+                </tr>
+                <tr class="calc">
+                    <td>🧮 实发</td>
+                    <td><input type="text" id="annualCombinedAfterTax" value="0" readonly></td>
+                </tr>
+                <tr class="calc">
+                    <td>🧮 年终奖单独计税实发</td>
+                    <td><input type="text" id="annualSepreatedAfterTax" value="0" readonly></td>
                 </tr>
             </tbody>
         </table>
