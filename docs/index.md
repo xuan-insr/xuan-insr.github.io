@@ -16,7 +16,7 @@ statistics: true
     - [操作系统](核心知识/os/I_overview/1_intro/) - 已经整理完了！
     - [计算机组成](computer_organization/index.md) - 已经搬过来了！
     - [编译原理](compile_principle/) - 已经搬过来了！
-    - [计算机网络](https://www.yuque.com/xianyuxuan/coding/network) - 寒假整理一下搬过来QWQ （原来是思维导图，所以拿过来比较复杂）
+    - [计算机网络](https://www.yuque.com/xianyuxuan/coding/network) - 寒假整理一下搬过来 QWQ（原来是思维导图，所以拿过来比较复杂）
 
 ???+ info inline "统计！"
     <center>页面数：{{pages}} </center>
@@ -48,6 +48,8 @@ statistics: true
     - [搜拉宅！](https://vinci-897.github.io/)
     - [Frank！](https://frankgu.top/)
     - [zbgg 日报果然断更了，哈哈](https://daily.dreamerryao.wiki)
+    - [YardRat0117](https://yardrat0117.github.io/)（看不懂，都是洋文）
+    - [犬戎](https://inuebisu.cn/)
 
 <center><img src="index.assets/image.png"/></center>
 
