@@ -68,6 +68,7 @@ nav:
     - C++ 知识补充:
       - 理解 STL —— 迭代器与函数对象: cpp/理解 STL - 迭代器与函数对象.md
   - 新的技术积累！:
+    - 区块链: web3/blockchain.md
     - 通过造轮子学习 git！: 
       - git/index.md
       - 录播笔记:
