@@ -68,7 +68,9 @@ nav:
     - C++ 知识补充:
       - 理解 STL —— 迭代器与函数对象: cpp/理解 STL - 迭代器与函数对象.md
   - 新的技术积累！:
-    - 区块链: web3/blockchain.md
+    - Web3: 
+      - 区块链: web3/blockchain.md
+    - Prometheus: https://xuan-insr.github.io/random_notes/blog/prometheus/
     - 通过造轮子学习 git！: 
       - git/index.md
       - 录播笔记:
@@ -89,9 +91,9 @@ nav:
       - gitlab/index.md
       - 用 GitLab CI Artifacts 在 Job 之间共享文件: gitlab/artifacts.md
       - Gitlab CI 触发下游 pipeline: gitlab/downstream_pipeline.md
-    - Bazel:
-      - bazel/index.md
-      - 构建系统基础 | Why Bazel: bazel/build_system.md
+    # - Bazel:
+    #   - bazel/index.md
+    #   - 构建系统基础 | Why Bazel: bazel/build_system.md
   - 核心知识: 
     - 核心知识/index.md
     - 操作系统:
