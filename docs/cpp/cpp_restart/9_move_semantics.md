@@ -637,6 +637,9 @@ void foo(Container<T> && x) {
 
 #### 为什么不要 `return std::move(x)`
 
+!!! danger
+    本节的文本还没完全写完！可以先去看录播））
+
 [^move-eligible]: 在 C++23，这句话添加了一个新的反例，参见 [为什么不要 `return std::move(x)`](#return_std_move)
 
 ### 9.3.4 member functions with ref-qualifier
@@ -663,7 +666,8 @@ int main() {
 
 ## 9.4 移动构造函数与移动赋值运算符
 
-
+!!! danger
+    本节的文本还没完全写完！可以先去看录播））
 
 ## 9.5 完美转发 | Perfect forwarding
 
@@ -675,6 +679,8 @@ int main() {
     - 为了将这个 prvalue 传递给 `Foo &&`，会发生一次 materialization
     - 即，实际发生的是 `Foo f = Foo(static_cast<Foo &&>(Bar()));`
 
+!!! danger
+    本节的文本还没完全写完！可以先去看录播））
 
 ## 参考资料
 
