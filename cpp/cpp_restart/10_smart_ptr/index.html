@@ -1332,46 +1332,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#101-智能指针动机" class="md-nav__link">
+  <a href="#补充模板的显式特化与偏特化" class="md-nav__link">
     <span class="md-ellipsis">
-      10.1 智能指针：动机
+      补充：模板的显式特化与偏特化
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#102-垃圾回收--gc" class="md-nav__link">
+  <a href="#101-动机" class="md-nav__link">
     <span class="md-ellipsis">
-      10.2 垃圾回收 | GC
+      10.1 动机
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="10.2 垃圾回收 | GC">
+    <nav class="md-nav" aria-label="10.1 动机">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1021-概念" class="md-nav__link">
+  <a href="#问题-1指针指向的内存何时释放" class="md-nav__link">
     <span class="md-ellipsis">
-      10.2.1 概念
+      问题 1：指针指向的内存何时释放
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1022-垃圾回收的要点" class="md-nav__link">
+  <a href="#问题-2指针指向单个对象还是数组" class="md-nav__link">
     <span class="md-ellipsis">
-      10.2.2 垃圾回收的要点
+      问题 2：指针指向单个对象还是数组
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1024-智能指针与垃圾回收的关系" class="md-nav__link">
+  <a href="#问题-3指针是否允许为空" class="md-nav__link">
     <span class="md-ellipsis">
-      10.2.4 智能指针与垃圾回收的关系
+      问题 3：指针是否允许为空
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#小结动机和期望" class="md-nav__link">
+    <span class="md-ellipsis">
+      小结：动机和期望
     </span>
   </a>
   
@@ -1383,13 +1392,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#103-unique_ptr" class="md-nav__link">
+  <a href="#102-垃圾回收--gc" class="md-nav__link">
     <span class="md-ellipsis">
-      10.3 unique_ptr
+      10.2 垃圾回收 | GC
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="10.3 unique_ptr">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#103-stdunique_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.3 std::unique_ptr
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.3 std::unique_ptr">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1417,12 +1435,72 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="10.3.3 实现思路">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#成员类型" class="md-nav__link">
+    <span class="md-ellipsis">
+      成员类型
+    </span>
+  </a>
+  
 </li>
         
           <li class="md-nav__item">
-  <a href="#1034-数组类型" class="md-nav__link">
+  <a href="#构造与析构" class="md-nav__link">
     <span class="md-ellipsis">
-      10.3.4 数组类型
+      构造与析构
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#移动构造与移动赋值" class="md-nav__link">
+    <span class="md-ellipsis">
+      移动构造与移动赋值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#重载运算符" class="md-nav__link">
+    <span class="md-ellipsis">
+      重载运算符
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#其他成员函数" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他成员函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#使用时避免直接使用-new-和-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用时避免直接使用 new 和 delete
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1034-数组类型的实现思路" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.3.4 数组类型的实现思路
     </span>
   </a>
   
@@ -1447,36 +1525,27 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1037-unique_ptr-作为函数参数和返回值" class="md-nav__link">
+  <a href="#1037-用法小结" class="md-nav__link">
     <span class="md-ellipsis">
-      10.3.7 unique_ptr 作为函数参数和返回值
+      10.3.7 用法小结
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1038-不使用-unique_ptr-的场景" class="md-nav__link">
+  <a href="#1038-陷阱" class="md-nav__link">
     <span class="md-ellipsis">
-      10.3.8 不使用 unique_ptr 的场景
+      10.3.8 陷阱
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1039-unique_ptr-的陷阱" class="md-nav__link">
+  <a href="#1039-unique_ptr-在容器中使用" class="md-nav__link">
     <span class="md-ellipsis">
-      10.3.9 unique_ptr 的陷阱
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#10310-unique_ptr-在容器中使用" class="md-nav__link">
-    <span class="md-ellipsis">
-      10.3.10 unique_ptr 在容器中使用
+      10.3.9 unique_ptr 在容器中使用
     </span>
   </a>
   
@@ -1488,13 +1557,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#104-shared_ptr" class="md-nav__link">
+  <a href="#104-stdshared_ptr" class="md-nav__link">
     <span class="md-ellipsis">
-      10.4 shared_ptr
+      10.4 std::shared_ptr
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="10.4 shared_ptr">
+    <nav class="md-nav" aria-label="10.4 std::shared_ptr">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1507,18 +1576,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1042-设计原理" class="md-nav__link">
+  <a href="#1042-接口" class="md-nav__link">
     <span class="md-ellipsis">
-      10.4.2 设计原理
+      10.4.2 接口
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1043-接口" class="md-nav__link">
+  <a href="#1043-stdmake_shared" class="md-nav__link">
     <span class="md-ellipsis">
-      10.4.3 接口
+      10.4.3 std::make_shared
     </span>
   </a>
   
@@ -1534,9 +1603,28 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1045-shared_ptr-的陷阱" class="md-nav__link">
+  <a href="#1045-shared_ptr-的常见陷阱" class="md-nav__link">
     <span class="md-ellipsis">
-      10.4.5 shared_ptr 的陷阱
+      10.4.5 shared_ptr 的常见陷阱
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.4.5 shared_ptr 的常见陷阱">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#double-free-问题" class="md-nav__link">
+    <span class="md-ellipsis">
+      Double Free 问题
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#多线程环境下的问题the-reentrancy-pitfall" class="md-nav__link">
+    <span class="md-ellipsis">
+      多线程环境下的问题：the reentrancy pitfall
     </span>
   </a>
   
@@ -1546,20 +1634,25 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#105-总结" class="md-nav__link">
+  <a href="#105-回顾rule-of-zero" class="md-nav__link">
     <span class="md-ellipsis">
-      10.5 总结
+      10.5 回顾：Rule of Zero
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#参考资料" class="md-nav__link">
+  <a href="#106-本文暂未讨论的话题" class="md-nav__link">
     <span class="md-ellipsis">
-      参考资料
+      10.6 本文暂未讨论的话题
     </span>
   </a>
   
@@ -5865,46 +5958,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#101-智能指针动机" class="md-nav__link">
+  <a href="#补充模板的显式特化与偏特化" class="md-nav__link">
     <span class="md-ellipsis">
-      10.1 智能指针：动机
+      补充：模板的显式特化与偏特化
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#102-垃圾回收--gc" class="md-nav__link">
+  <a href="#101-动机" class="md-nav__link">
     <span class="md-ellipsis">
-      10.2 垃圾回收 | GC
+      10.1 动机
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="10.2 垃圾回收 | GC">
+    <nav class="md-nav" aria-label="10.1 动机">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1021-概念" class="md-nav__link">
+  <a href="#问题-1指针指向的内存何时释放" class="md-nav__link">
     <span class="md-ellipsis">
-      10.2.1 概念
+      问题 1：指针指向的内存何时释放
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1022-垃圾回收的要点" class="md-nav__link">
+  <a href="#问题-2指针指向单个对象还是数组" class="md-nav__link">
     <span class="md-ellipsis">
-      10.2.2 垃圾回收的要点
+      问题 2：指针指向单个对象还是数组
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1024-智能指针与垃圾回收的关系" class="md-nav__link">
+  <a href="#问题-3指针是否允许为空" class="md-nav__link">
     <span class="md-ellipsis">
-      10.2.4 智能指针与垃圾回收的关系
+      问题 3：指针是否允许为空
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#小结动机和期望" class="md-nav__link">
+    <span class="md-ellipsis">
+      小结：动机和期望
     </span>
   </a>
   
@@ -5916,13 +6018,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#103-unique_ptr" class="md-nav__link">
+  <a href="#102-垃圾回收--gc" class="md-nav__link">
     <span class="md-ellipsis">
-      10.3 unique_ptr
+      10.2 垃圾回收 | GC
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="10.3 unique_ptr">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#103-stdunique_ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.3 std::unique_ptr
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.3 std::unique_ptr">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -5950,12 +6061,72 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="10.3.3 实现思路">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#成员类型" class="md-nav__link">
+    <span class="md-ellipsis">
+      成员类型
+    </span>
+  </a>
+  
 </li>
         
           <li class="md-nav__item">
-  <a href="#1034-数组类型" class="md-nav__link">
+  <a href="#构造与析构" class="md-nav__link">
     <span class="md-ellipsis">
-      10.3.4 数组类型
+      构造与析构
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#移动构造与移动赋值" class="md-nav__link">
+    <span class="md-ellipsis">
+      移动构造与移动赋值
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#重载运算符" class="md-nav__link">
+    <span class="md-ellipsis">
+      重载运算符
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#其他成员函数" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他成员函数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#使用时避免直接使用-new-和-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用时避免直接使用 new 和 delete
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1034-数组类型的实现思路" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.3.4 数组类型的实现思路
     </span>
   </a>
   
@@ -5980,36 +6151,27 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1037-unique_ptr-作为函数参数和返回值" class="md-nav__link">
+  <a href="#1037-用法小结" class="md-nav__link">
     <span class="md-ellipsis">
-      10.3.7 unique_ptr 作为函数参数和返回值
+      10.3.7 用法小结
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1038-不使用-unique_ptr-的场景" class="md-nav__link">
+  <a href="#1038-陷阱" class="md-nav__link">
     <span class="md-ellipsis">
-      10.3.8 不使用 unique_ptr 的场景
+      10.3.8 陷阱
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1039-unique_ptr-的陷阱" class="md-nav__link">
+  <a href="#1039-unique_ptr-在容器中使用" class="md-nav__link">
     <span class="md-ellipsis">
-      10.3.9 unique_ptr 的陷阱
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#10310-unique_ptr-在容器中使用" class="md-nav__link">
-    <span class="md-ellipsis">
-      10.3.10 unique_ptr 在容器中使用
+      10.3.9 unique_ptr 在容器中使用
     </span>
   </a>
   
@@ -6021,13 +6183,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#104-shared_ptr" class="md-nav__link">
+  <a href="#104-stdshared_ptr" class="md-nav__link">
     <span class="md-ellipsis">
-      10.4 shared_ptr
+      10.4 std::shared_ptr
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="10.4 shared_ptr">
+    <nav class="md-nav" aria-label="10.4 std::shared_ptr">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -6040,18 +6202,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1042-设计原理" class="md-nav__link">
+  <a href="#1042-接口" class="md-nav__link">
     <span class="md-ellipsis">
-      10.4.2 设计原理
+      10.4.2 接口
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1043-接口" class="md-nav__link">
+  <a href="#1043-stdmake_shared" class="md-nav__link">
     <span class="md-ellipsis">
-      10.4.3 接口
+      10.4.3 std::make_shared
     </span>
   </a>
   
@@ -6067,9 +6229,28 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1045-shared_ptr-的陷阱" class="md-nav__link">
+  <a href="#1045-shared_ptr-的常见陷阱" class="md-nav__link">
     <span class="md-ellipsis">
-      10.4.5 shared_ptr 的陷阱
+      10.4.5 shared_ptr 的常见陷阱
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.4.5 shared_ptr 的常见陷阱">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#double-free-问题" class="md-nav__link">
+    <span class="md-ellipsis">
+      Double Free 问题
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#多线程环境下的问题the-reentrancy-pitfall" class="md-nav__link">
+    <span class="md-ellipsis">
+      多线程环境下的问题：the reentrancy pitfall
     </span>
   </a>
   
@@ -6079,20 +6260,25 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#105-总结" class="md-nav__link">
+  <a href="#105-回顾rule-of-zero" class="md-nav__link">
     <span class="md-ellipsis">
-      10.5 总结
+      10.5 回顾：Rule of Zero
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#参考资料" class="md-nav__link">
+  <a href="#106-本文暂未讨论的话题" class="md-nav__link">
     <span class="md-ellipsis">
-      参考资料
+      10.6 本文暂未讨论的话题
     </span>
   </a>
   
@@ -6131,18 +6317,40 @@
 
 <h1 id="10-智能指针">10 智能指针<a class="headerlink" href="#10-智能指针" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 5610 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6m80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3"/></svg></span> 270 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 22 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 5725 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6m80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3"/></svg></span> 278 行代码 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 3 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 23 分钟</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">本节录播地址</p>
 <p>本节的朋辈辅学录播可以在 <a href="https://www.bilibili.com/video/BV1Uo4y1g7tH/?spm_id_from=333.788&amp;vd_source=c5a9383e47adf0fdb6896be9dbbc50fc">B 站</a> 找到！</p>
 </div>
-<h2 id="101-智能指针动机">10.1 智能指针：动机<a class="headerlink" href="#101-智能指针动机" title="Permanent link">&para;</a></h2>
+<div class="admonition success">
+<p class="admonition-title">特别感谢 <a class="magiclink magiclink-github magiclink-mention" href="https://github.com/atditto" title="GitHub User: atditto">@atditto</a> 根据录播内容整理了本文文档！</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">本节部分内容来自以下演讲</p>
+<ul>
+<li><a href="https://youtu.be/YokY6HzLkXs">Back to Basics: C++ Smart Pointers - David Olsen - CppCon 2022</a></li>
+<li><a href="https://youtu.be/xnqTKD8uD64">CppCon 2014: Herb Sutter "Back to the Basics! Essentials of Modern C++ Style"</a></li>
+<li><a href="https://youtu.be/XN319NYEOcE">Back to Basics: Templates (part 1 of 2) - Bob Steagall - CppCon 2021</a></li>
+</ul>
+</div>
+<h2 id="补充模板的显式特化与偏特化">补充：模板的显式特化与偏特化<a class="headerlink" href="#补充模板的显式特化与偏特化" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>参见录播，后续会补充在 模板 (I) 中。</p>
+</div>
+<h2 id="101-动机">10.1 动机<a class="headerlink" href="#101-动机" title="Permanent link">&para;</a></h2>
 <p>在讲智能指针之前，我们先要来看看指针有什么问题。</p>
-<details class="info" open="open">
-<summary>问题 1：指针的所有权</summary>
-<p>下面是我们可能会写出来的一个函数，它接受一个 <code>double</code> 的指针和一个 <code>int</code> 的 <code>N</code>。</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">science</span><span class="p">(</span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<h3 id="问题-1指针指向的内存何时释放">问题 1：指针指向的内存何时释放<a class="headerlink" href="#问题-1指针指向的内存何时释放" title="Permanent link">&para;</a></h3>
+<p>看这样一个函数，我们尝试发现其中的问题：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">science</span><span class="p">(</span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">double</span><span class="p">[</span><span class="n">N</span><span class="o">*</span><span class="mi">2</span><span class="p">];</span>
 <span class="w">    </span><span class="n">do_setup</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">);</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">needed</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">))</span>
@@ -6150,139 +6358,159 @@
 <span class="w">    </span><span class="n">calculate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">);</span>
 <span class="w">    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-<p>这些参数其实表示一个叫 <code>data</code> 的数组。我们把这个数组的基地址传进来，相当于发生了 <code>array</code> 到 <code>point</code> 的转换，但这么做我们丢失了这个数组有多少个元素的信息，所以我们用这个额外的参数 <code>N</code> 把这个信息传进来了。</p>
-<p>这个函数在最开头 <code>new</code> 了一个类型为 <code>double</code> 的数组，做了一些前期的准备，然后判断需不需要计算。如果不需要计算的话，函数返回。如果需要计算的话就计算，计算后 <code>delete</code> 这个不再用的 <code>temp</code> 。</p>
-<p>但是这个函数有一个重大的问题，如果这个 <code>if</code> 的条件为真，它直接 <code>return</code> ， <code>new</code> 出来的这个 <code>temp</code> 没有被释放，也就是说我们应该对这个函数的每一个出口都要把他申请过的所有的资源全部释放一遍，这个事情显得比较蠢，比较累，而且比较容易出错。</p>
-<p>那么问题来了！看这个函数中一共有两个指针 <code>data</code> 和 <code>temp</code> ，为什么我们释放 <code>temp</code> 却不释放 <code>data</code> 呢？</p>
-<p>因为 <code>temp</code> 是我开出来的，那我就有责任把它释放，而 <code>data</code> 这个东西不是我开出来的，如果我把它 <code>delete</code> 外面还要用怎么办，那就是个 use after <code>delete</code> ；或者说我把它 <code>delete</code> ，外面又把它 <code>delete</code> 了一遍，那就是 double <code>delete</code>，这两个东西都会发生错误。</p>
-<p>通过这个例子就可以看到，我们要根据是否拥有来决定是否释放，但在例子中 <code>data</code> 和 <code>temp</code> 都是 <code>double*</code> 类型，也就是说，我们在代码上看不出是否拥有是否释放这种信息，那么我们只能从文档里或者从注释里找这种信息，但我们不希望这样重要的信息（是否导致ub、crash、内存鞋头）以注释的方式产生。</p>
+</code></pre></div></td></tr></table></div>
+<details class="info">
+<summary>数组和指针的区别</summary>
+<p>我们说，一个数组 <code>double arr[N]</code>，即一个 <code>double[N]</code> 类型的变量 <code>arr</code>，事实上包含了 3 部分信息：</p>
+<ol>
+<li>数组的基地址 (<code>&amp;arr[0]</code>)</li>
+<li>数组的元素类型 (<code>double</code>)</li>
+<li>数组的元素个数 (<code>N</code>)</li>
+</ol>
+<p>上面的函数接受一个 <code>double *</code> 和一个 <code>int</code>，这些参数其实有可能表示了一个叫 <code>data</code> 的数组。我们把这个数组的基地址传进来，相当于发生了 array <code>double[N]</code> 到 pointer <code>double*</code> 的转换。但这么做我们丢失了这个数组有多少个元素的信息，所以我们用这个额外的参数 <code>N</code> 把这个信息传进来了。</p>
+<p>当然，这个函数也有可能是接受了一个 <code>new double[N]</code> 开出来的数组。</p>
 </details>
-<details class="info" open="open">
-<summary>问题 2：指针指向单个对象还是数组</summary>
+<p>这个函数在最开头 <code>new</code> 了一个类型为 <code>double</code> 的数组，做了一些前期的准备，然后判断需不需要计算。如果不需要计算的话，函数返回。如果需要计算的话就计算，计算后 <code>delete</code> 这个不再用的 <code>temp</code>。</p>
+<p>但是，如果这个 <code>if</code> 的条件为真，它直接 <code>return</code>，<code>new</code> 出来的这个 <code>temp</code> 没有被释放。</p>
+<p>也就是说，为了避免这个问题，我们应该对这个函数的每一个出口都要把他申请过的所有的资源全部释放一遍，就像这样：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">science</span><span class="p">(</span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">double</span><span class="p">[</span><span class="n">N</span><span class="o">*</span><span class="mi">2</span><span class="p">];</span>
+<span class="w">    </span><span class="n">do_setup</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">needed</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="hll"><span class="w">        </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+</span><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">calculate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">);</span>
+<span class="hll"><span class="w">    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+</span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>但这种方案比较冗余，容易出错，不便于阅读和维护。</p>
+<p>那我们能不能通过某种机制（语言上的机制，或者外面套一层 wrapper 函数），默认在函数结束的时候释放所有指针呢？</p>
+<p>注意到这个函数中一共有两个指针 <code>data</code> 和 <code>temp</code> ，为什么我们释放 <code>temp</code> 却不释放 <code>data</code> 呢？因为 <code>temp</code> 是这个函数里开出来的，这个函数就有责任把它释放。而 <code>data</code> 这个东西不是这里开出来的，我们甚至不知道它到底是 <code>new</code> 出来的，还是只是一个栈上的或者静态的数组。如果 <code>delete[]</code> 了一个栈上的或者静态的数组，或者一个堆上的数组在这里释放了但是外面发生了 use after free 或者 double free，则都是 UB。所以「默认在函数结束的时候释放所有指针」这个机制并不是正确的。</p>
+<p>再看一个例子：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="nf">science</span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">float</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="w">    </span><span class="n">saxpy</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">);</span>
+<span class="w">    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>在这个函数中，有 2 个数组被传入，1 个数组作为返回值被返回。从函数的实现我们容易看出，传入的 <code>x</code> 和 <code>y</code> 会在函数中被释放，而传出的 <code>z</code> 需要有调用者来释放。这两个信息对于调用者来说非常重要，但是这两个信息并没有体现在函数的声明中。</p>
+<p>容易理解，正确的方法是，在某个指针的生命周期结束时，我们要根据是否拥有这个指针的 <strong>所有权</strong> 来决定是否释放。但在上面的例子中，所有数组都是 <code>double*</code> 或者 <code>float*</code> 类型；调用者和函数实现者需要通过注释或者文档来约定这些指针的所有权，这样很容易出错。</p>
+<p>这就是指针的第 1 个问题：</p>
+<p>我们需要依靠程序员保证指针的正确释放（有且仅有一处完成释放），但是程序员可能会犯错，导致内存泄漏或者 UB。  <br />
+我们希望有一种机制，能够自动释放指针，而不需要程序员手动释放。  <br />
+这种机制需要能够判断指针是否拥有所有权，但指针类型本身并不包含这种信息。</p>
+<h3 id="问题-2指针指向单个对象还是数组">问题 2：指针指向单个对象还是数组<a class="headerlink" href="#问题-2指针指向单个对象还是数组" title="Permanent link">&para;</a></h3>
 <p>形如 <code>T*</code> 的指针可以指向单个对象，也可以指向数组。当它指向单个对象，其实就被视为指向了一个元素大小为一的数组，但是指向单个对象的时候</p>
 <ul>
-<li>不应该用 <code>++p</code> 或 <code>--p</code> ，因为它们都会超出边界（数组可以 <code>++p</code> 或 <code>--p</code> ，但也不能超出边界）。</li>
+<li>不应该用 <code>++p</code> 或 <code>--p</code> ，因为它们都会超出边界（数组可以 <code>++p</code> 或 <code>--p</code> ，但也不能超出边界。超出边界后再去访问数组内容，则属于 UB）。</li>
 <li>使用 <code>delete</code> 释放（数组使用 <code>delete[]</code> 释放）</li>
 </ul>
-<p>上面例子说明，在C++中，指针类型本身并不包含它指向单个对象还是数组的信息。这意味着编译器无法通过类型信息来判断应该使用 <code>delete</code> 还是 <code>delete[]</code>。</p>
-</details>
-<details class="info" open="open">
-<summary>问题 3：指针是否允许为空</summary>
-<p>我们在编写代码时候经常要判断指针是否为 <code>nullptr</code>。如果可以保证某种指针可以永远不为空的话，就可以省去空指针检查，从而提高代码效率。但在C++中，指针类型本身无法表达是否允许为空。 </p>
-</details>
-<p>上面三个问题事实上都是一个问题，就是指针本身包含了这么多信息，但是指针们看起来都长 <code>T*</code> 这个样子。事实上我们所希望的智能指针，智能在于能提供这些信息。</p>
+<p>上面例子说明，在 C++ 中，指针类型本身并不包含它指向单个对象还是数组的信息。这意味着编译器无法通过类型信息来判断应该使用 <code>delete</code> 还是 <code>delete[]</code>。</p>
+<h3 id="问题-3指针是否允许为空">问题 3：指针是否允许为空<a class="headerlink" href="#问题-3指针是否允许为空" title="Permanent link">&para;</a></h3>
+<p>我们在编写代码时候经常要判断指针是否为 <code>nullptr</code>。如果可以保证某种指针可以永远不为空的话，就可以省去空指针检查，从而提高代码效率。但在 C++ 中，指针类型本身无法表达是否允许为空。 </p>
+<h3 id="小结动机和期望">小结：动机和期望<a class="headerlink" href="#小结动机和期望" title="Permanent link">&para;</a></h3>
+<p>上面三个问题事实上都是一个问题，就是指针本身包含了这么多信息，但是指针们看起来都长 <code>T*</code> 这个样子。事实上我们所希望的智能指针的「智能」，就在于要能提供这些信息。</p>
 <p>总结一下，我们希望智能指针可以实现：</p>
-<p><strong>智能</strong></p>
+<p><strong>「智能」</strong></p>
 <ul>
-<li>自动回收资源：在对象使用完成后，智能指针能够自动调用析构函数来释放资源，而不需要程序员手动调用。</li>
-<li>增加一些限制：例如强制指针不为空，从而避免空指针引用的问题。</li>
-<li>更多的安全限制或检查</li>
+<li>自动回收资源：在生命周期结束后，智能指针能够自动释放资源</li>
+<li>知道指向的是单个对象还是数组：智能指针能够根据指针的类型，自动选择 <code>delete</code> 还是 <code>delete[]</code></li>
+<li>增加一些限制：有的时候，可以强制要求智能指针不为空</li>
 </ul>
-<p><strong>指针</strong></p>
+<p><strong>「指针」</strong></p>
 <ul>
-<li>能像指针一样，指向对象，间接访问</li>
+<li>能像指针一样使用，指向对象、执行间接访问</li>
 </ul>
-<p>通过这种方式，智能指针可以像 <code>std::string</code> 一样，隐藏底层的内存管理细节，让程序员专注于业务逻辑的实现，而不必担心内存泄漏或资源管理的问题。</p>
+<p>我们还希望智能指针的实现遵从「单一职责原则」：像前面聊的 <code>std::string</code> 一样，隐藏底层的内存管理细节，让程序员专注于业务逻辑的实现，而不必担心内存泄漏或资源管理的问题。</p>
 <h2 id="102-垃圾回收--gc">10.2 垃圾回收 | GC<a class="headerlink" href="#102-垃圾回收--gc" title="Permanent link">&para;</a></h2>
-<h3 id="1021-概念">10.2.1 概念<a class="headerlink" href="#1021-概念" title="Permanent link">&para;</a></h3>
-<p>垃圾回收（Garbage Collection）的核心就是<strong>回收不可达的对象</strong>。</p>
-<details class="info" open="open">
-<summary>什么是不可达</summary>
-<p><strong>不可达</strong>就是没有任何方式可以访问到这个对象，例如：</p>
+<p>我们希望「自动回收资源」，那我们来调研学习一下其他地方是怎么实现的。这个问题就是 <strong>垃圾回收</strong>。我们简单介绍一下垃圾回收的基本概念和常见简单实现。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>GC 并不是本次内容的重点。如果感兴趣，可以在 <a href="https://www.iecc.com/gclist/GC-faq.html">https://www.iecc.com/gclist/GC-faq.html</a> 上找到更多关于 GC 的信息。</p>
+</div>
+<p>垃圾回收（Garbage Collection）的核心是 <strong>回收「不可达」的对象</strong>。</p>
+<details class="info">
+<summary>如何判断对象的「可达性」</summary>
+<p>当一个对象不能通过任何途径被访问到时，我们称这个对象是「不可达」的。我们可以通过以下几种方式判断对象的「可达性」：</p>
 <ul>
 <li>
-<p><strong>局部对象超出作用域</strong>：
-局部对象在其作用域结束时会被自动销毁，但如果存在指向该对象的指针或引用，且这些指针或引用在对象销毁后仍然存在，那么这些指针或引用将指向一个不可达的对象。</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">MyClass</span><span class="w"> </span><span class="n">obj</span><span class="p">;</span>
-<span class="w">    </span><span class="n">MyClass</span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">obj</span><span class="p">;</span>
-<span class="p">}</span><span class="w"> </span><span class="c1">// obj 超出作用域，ptr 现在指向一个不可达的对象</span>
-</code></pre></div>
-</li>
-<li>
-<p><strong>悬空指针</strong>：
-悬空指针是指向已经被释放或销毁的对象的指针。这种情况下，指针指向的对象是不可达的。</p>
-<div class="highlight"><pre><span></span><code><span class="n">MyClass</span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyClass</span><span class="p">();</span>
-<span class="k">delete</span><span class="w"> </span><span class="n">ptr</span><span class="p">;</span>
-<span class="c1">// ptr 现在是一个悬空指针，指向一个不可达的对象</span>
-</code></pre></div>
-</li>
-<li>
-<p><strong>内存泄漏</strong>：
-如果动态分配的内存没有被正确释放，那么这些内存中的对象将变得不可达。</p>
-<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">leak</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">MyClass</span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MyClass</span><span class="p">();</span>
-<span class="w">    </span><span class="c1">// 没有调用 delete ptr;</span>
-<span class="p">}</span><span class="w"> </span><span class="c1">// ptr 超出作用域，指向的对象成为不可达对象</span>
-</code></pre></div>
-</li>
-<li>
-<p><strong>循环引用</strong>：
-在使用智能指针（如 <code>std::shared_ptr</code>）时，如果存在循环引用，可能会导致对象无法被正确释放，从而成为不可达对象。</p>
-<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">Node</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="k">auto</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="k">auto</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="n">a</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
-<span class="n">b</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="c1">// 循环引用，a 和 b 成为不可达对象</span>
-</code></pre></div>
-</li>
-</ul>
-</details>
-<h3 id="1022-垃圾回收的要点">10.2.2 垃圾回收的要点<a class="headerlink" href="#1022-垃圾回收的要点" title="Permanent link">&para;</a></h3>
-<p>如何判断对象的<strong>可达性</strong>呢？</p>
-<ul>
-<li>
-<p><strong>Reference Counting</strong></p>
-<p>引用计数的核心思想是为每个对象维护一个<strong>引用计数器</strong>，记录有多少个指针指向该对象。当引用计数为零时，说明没有任何指针指向该对象，因此可以安全地回收该对象的内存。</p>
-<p>引用计数的优点是实现简单，且可以立即回收不再使用的对象。但它的缺点是：</p>
+<p><strong>Reference Counting</strong>  <br />
+    引用计数的核心思想是为每个对象维护一个<strong>引用计数器</strong>，记录有多少个指针指向该对象。当引用计数为零时，说明没有任何指针指向该对象，因此可以安全地回收该对象的内存。  <br />
+    引用计数的优点是实现简单，且可以立即回收不再使用的对象。但它的缺点是：</p>
 <ul>
 <li><strong>循环引用问题</strong>：如果两个对象互相引用，它们的引用计数永远不会为零，导致内存泄漏。</li>
 <li><strong>性能开销</strong>：每次指针的赋值或析构都需要更新引用计数，可能会带来额外的性能开销。</li>
 </ul>
 </li>
 <li>
-<p><strong>Mark &amp; Sweep（From Root Set）</strong></p>
-<p>标记-清除是一种更复杂的垃圾回收方式。它的核心思想是从程序的根对象（如全局变量、栈上的变量等）开始，递归地标记所有可以访问到的对象。标记完成后，垃圾回收器会清除所有未被标记的对象，回收它们的内存。</p>
-<p>标记-清除的优点是能够处理循环引用问题，但它的缺点是：</p>
+<p><strong>Mark &amp; Sweep</strong>  <br />
+    这是一种更复杂的垃圾回收方式。它的核心思想是从程序的 Root Set（如全局变量、栈上的变量等）开始，递归地标记所有可以访问到的对象。标记完成后，垃圾回收器会清除所有未被标记的对象，回收它们的内存。  <br />
+    它的优点是能够处理循环引用问题，但它的缺点是：</p>
 <ul>
 <li><strong>暂停时间较长</strong>：标记和清除的过程可能会暂停程序的执行，影响程序的响应速度。</li>
 <li><strong>内存碎片问题</strong>：清除过程中可能会产生内存碎片，导致内存利用率下降。</li>
 </ul>
 </li>
 </ul>
-<p>知道对象<strong>不可达</strong>时，回收多大空间？</p>
-<p>这个问题是一个<strong>类型安全</strong>的问题，尽管从 C 到 C++ 的过程中，做了一些关于类型安全的处理，但由于向前兼容等原因， C++ 仍然不是一门类型安全的语言，例如：</p>
+</details>
+<details class="info">
+<summary>知道对象「不可达」时，回收多大空间？</summary>
+<p>这个问题是一个 <strong>类型安全</strong> 的问题。尽管从 C 到 C++ 的过程中，做了一些关于类型安全的处理，但由于向前兼容等原因，C++ 仍然不是一门类型安全的语言。例如：</p>
 <ul>
-<li>
-<p><code>void *</code>： <code>void*</code> 不携带类型信息，编译器无法在编译时检查类型是否匹配。这意味着你可以在运行时将 <code>void*</code> 转换为任何类型的指针，而编译器不会报错。在这个转换过程中，如果类型不匹配，可能会导致未定义行为。</p>
+<li><code>void *</code>: C 和 C++ 都允许指针到 <code>void *</code> 类型的转换，这在损失元素个数的基础上进一步损失了元素类型的信息，导致更不知道该释放多少空间。</li>
+<li><code>union</code>: <code>union</code> 也是一个类型不安全的工具，它可以让一个变量在不同的时间点代表不同的类型，这也会导致不知道该释放多少空间。</li>
+</ul>
+</details>
+<details class="info">
+<summary>内存回收要考虑的问题</summary>
+<ul>
+<li>需要考虑哪些指标？<ul>
+<li>总体运行时间</li>
+<li>碎片</li>
+<li>停顿时间</li>
+<li>Locality</li>
+</ul>
 </li>
-<li>
-<p><code>union</code>：<code>union</code> 中的成员共享同一块内存。同一时刻，<code>union</code> 中只能保存一个成员的值，但编译器无法强制执行这一点。</p>
-</li>
-<li>
-<p><code>Type Punning</code>: 类型双关是指通过一种类型的指针访问另一种类型的数据。</p>
+<li>更多考虑<ul>
+<li>并行 / 并发</li>
+<li>类型不安全</li>
+</ul>
 </li>
 </ul>
-<h3 id="1024-智能指针与垃圾回收的关系">10.2.4 智能指针与垃圾回收的关系<a class="headerlink" href="#1024-智能指针与垃圾回收的关系" title="Permanent link">&para;</a></h3>
-<p>智能指针可以看作是 C++ 中的一种轻量级垃圾回收机制。它们通过自动管理对象的生命周期，避免了手动调用 <code>delete</code> 或 <code>delete[]</code> 的麻烦，从而减少了内存泄漏的风险。然而，智能指针并不能完全替代垃圾回收，应该通过 RAIL 机制正确管理资源。</p>
-<h2 id="103-unique_ptr">10.3 unique_ptr<a class="headerlink" href="#103-unique_ptr" title="Permanent link">&para;</a></h2>
+</details>
+<h2 id="103-stdunique_ptr">10.3 <code>std::unique_ptr</code><a class="headerlink" href="#103-stdunique_ptr" title="Permanent link">&para;</a></h2>
 <h3 id="1031-概念">10.3.1 概念<a class="headerlink" href="#1031-概念" title="Permanent link">&para;</a></h3>
 <p>我们首先要讲的第一种智能指针，叫做 <code>unique_ptr</code> ，定义在 <code>&lt;memory&gt;</code> 头文件中。</p>
 <p><code>unique_ptr</code> 假设自己是对象唯一的所有者，是引用计数的简化版本。</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p><code>unique_ptr</code> 是对象的所有者，并假设是唯一的所有者。</p>
 <ul>
-<li>是对象的所有者，并假设是唯一的所有者</li>
-<li>自动回收资源</li>
-<li>只能移动，不能拷贝</li>
+<li>这意味着：使用者有义务保证 <code>unique_ptr</code> 是对象唯一的所有者</li>
+<li>这也意味着：当 <code>unique_ptr</code> 被析构时，它可以安全地释放它所拥有的对象</li>
+<li>这还意味着：<code>unique_ptr</code> 不能被拷贝，只能被移动</li>
 </ul>
 </div>
 <h3 id="1032-使用方法">10.3.2 使用方法<a class="headerlink" href="#1032-使用方法" title="Permanent link">&para;</a></h3>
-<p><code>unique_ptr</code> 是一个类模板。它的构造函数可以接受一个指针，需要注意的是，这个智能指针只维护堆上的东西，不要把栈上的指针传给他。</p>
+<p><code>unique_ptr</code> 是一个类模板，它的构造函数可以接受一个指针。再次提醒：智能指针只维护堆上的东西，不要把栈上的指针传给他。</p>
 <div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">calculate_more</span><span class="p">(</span><span class="n">HelperType</span><span class="o">&amp;</span><span class="p">);</span>
 
 <span class="n">ResultType</span><span class="w"> </span><span class="nf">do_work</span><span class="p">(</span><span class="n">InputType</span><span class="w"> </span><span class="n">inputs</span><span class="p">){</span>
@@ -6292,26 +6520,36 @@
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">owner</span><span class="o">-&gt;</span><span class="n">important_result</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>另外 <code>unique_ptr</code> 提供了与普通指针类似的访问方式：</p>
+<p>可以看到，<code>unique_ptr</code> 提供了与普通指针类似的使用方式：</p>
 <ul>
 <li>成员访问运算符 <code>-&gt;</code>：用于访问指针所指向对象的成员。</li>
 <li>间接访问运算符 <code>*</code>：用于解引用指针，获取指针所指向的对象。</li>
 </ul>
-<p>事实上 <code>unique_ptr</code> 也可以放到类里面。我们有一个类里面有个成员 <code>unique_ptr</code> ，名字是 owner 。那么我们构造的时候，给这个owner传一个指针进去用来初始化。</p>
-<div class="highlight"><pre><span></span><code><span class="n">WidgeBase</span><span class="o">*</span><span class="w"> </span><span class="nf">create_widge</span><span class="p">(</span><span class="n">InputType</span><span class="p">);</span>
+<p>在 <code>do_work</code> 结束时，<code>owner</code> 的生命周期结束，<code>unique_ptr</code> 会自动释放它所拥有的对象。</p>
+<p><code>unique_ptr</code> 也可以放到类里面。我们有一个类里面有个成员 <code>unique_ptr</code> ，名字是 owner。那么我们构造的时候，给这个 owner 传一个指针进去用来初始化。</p>
+<div class="highlight"><pre><span></span><code><span class="n">WidgetBase</span><span class="o">*</span><span class="w"> </span><span class="nf">create_widget</span><span class="p">(</span><span class="n">InputType</span><span class="p">);</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">WidgeBase</span><span class="o">&gt;</span><span class="w"> </span><span class="n">owner</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">WidgetBase</span><span class="o">&gt;</span><span class="w"> </span><span class="n">owner</span><span class="p">;</span>
 <span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="n">MyClass</span><span class="p">(</span><span class="n">InputType</span><span class="w"> </span><span class="n">inputs</span><span class="p">)</span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">owner</span><span class="p">(</span><span class="n">create_widge</span><span class="p">(</span><span class="n">inputs</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">owner</span><span class="p">(</span><span class="n">create_widget</span><span class="p">(</span><span class="n">inputs</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
 <span class="w">    </span><span class="o">~</span><span class="n">MyClass</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
-<span class="w">    </span><span class="c1">// ... member functinos that use owner-&gt; ...</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="c1">// ... member functions that use owner-&gt; ...</span>
+<span class="p">};</span>
 </code></pre></div>
-<p>为什么 <code>~MyClass() = default</code> ，因为等于default的时候，它会调用 owner 这个成员函数的构造，owner的析构函数会析构掉这个指针。所以说我们可以看到 MyClass 里面没有必要再去写我们之前说了那五种 special member functions。</p>
+<p><code>MyClass</code> 析构时，它也会析构 owner，owner 的析构函数会释放相关资源。所以说我们可以看到 <code>MyClass</code> 里面没有必要再去写我们之前说了那五种 SMF，达成了 rule of zero：</p>
+<ul>
+<li><code>MyClass</code> 的析构会自动触发 <code>owner</code> 的析构函数</li>
+<li><code>MyClass</code> 的移动构造和移动赋值会自动触发 <code>owner</code> 的移动构造和移动赋值</li>
+<li>由于 <code>owner</code> 的的拷贝构造和拷贝赋值是被 <code>delete</code> 的，所以 <code>MyClass</code> 的拷贝构造和拷贝赋值是被 <code>delete</code> 的，所以 <code>MyClass</code> 不能被拷贝<ul>
+<li>（回顾上一节的内容：拷贝构造隐式声明被定义为删除，如果该类有无法拷贝构造或析构的非静态成员或基类，或者该类有用户定义的移动构造或移动赋值。拷贝复制类似。）</li>
+</ul>
+</li>
+</ul>
 <h3 id="1033-实现思路">10.3.3 实现思路<a class="headerlink" href="#1033-实现思路" title="Permanent link">&para;</a></h3>
-<p><strong>成员类型：</strong></p>
+<p>我们讨论 <code>unique_ptr</code> 的一个简化版本。首先不考虑存储数组的情况，只考虑指向单个对象的情况。</p>
+<h4 id="成员类型">成员类型<a class="headerlink" href="#成员类型" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="k">struct</span><span class="w"> </span><span class="nc">unique_ptr</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// ...</span>
@@ -6321,7 +6559,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>指向元素的类型是 <code>T</code> ，指针本身的类型是 <code>T *</code> 。</p>
-<p><strong>构造与析构：</strong></p>
+<h4 id="构造与析构">构造与析构<a class="headerlink" href="#构造与析构" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">unique_ptr</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">T</span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="p">;</span>
@@ -6332,8 +6570,8 @@
 <span class="w">    </span><span class="c1">// ...</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>有一个不接受指针的默认构造函数，可以发现 <code>unique_ptr</code> 是可为空的。有一个注明为 <code>explicit</code> 的接受一个指针的构造函数。有一个析构函数。为什么不是 <code>delete[]</code>，因为 <code>unique_ptr</code> 对数组做了 partial specialization。</p>
-<p><strong>移动构造与移动赋值：</strong></p>
+<p>有一个不接受指针的默认构造函数，可以发现 <code>unique_ptr</code> 是可为空的。有一个注明为 <code>explicit</code> 的接受一个指针的构造函数。有一个析构函数。</p>
+<h4 id="移动构造与移动赋值">移动构造与移动赋值<a class="headerlink" href="#移动构造与移动赋值" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">unique_prt</span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// ...</span>
 <span class="w">    </span><span class="n">unique_ptr</span><span class="p">(</span><span class="n">unique_ptr</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span><span class="p">;</span>
@@ -6351,9 +6589,9 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>我们可以看到它的拷贝构造和拷贝赋值是被 <code>delete</code> 到的，也就是它是不能调用的。
-它的移动构造和移动赋值跟前一章讲的类似。当然我们之前说 <code>unique_ptr</code> 本身可能是 nullptr ，但是我们之前也讲过 delete nullptr 是安全的。</p>
-<p><strong>重载运算符：</strong></p>
-<p><div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+它的移动构造和移动赋值跟前一章讲的类似。当然我们之前说 <code>unique_ptr</code> 本身可能是 nullptr，但是我们之前也讲过 delete nullptr 是安全的。</p>
+<h4 id="重载运算符">重载运算符<a class="headerlink" href="#重载运算符" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 
 <span class="k">struct</span><span class="w"> </span><span class="nc">unique_ptr</span><span class="w"> </span><span class="p">{</span>
 
@@ -6367,9 +6605,9 @@
 <span class="w">    </span><span class="c1">// ...</span>
 <span class="p">};</span>
 </code></pre></div>
-我们之前没有见过这个箭头运算符重载，事实上 <code>owner-&gt;calculate()</code> 可以写成 <code>(owner.operator-&gt;())-&gt;calculate()</code> 而 <code>(owner.operator-&gt;())</code> 返回的是 <code>ptr</code>，最终这个可以写成 <code>ptr-&gt;calculate()</code>。</p>
-<p>可以发现 <code>unique_ptr</code> 是 <code>ptr</code> 的一层 wrapper ，但是我们通过重载这样的 <code>*</code> 和 <code>-&gt;</code> 运算符，使得这个包装实际上是可以像原来一样使用的，或者说在函数内联完成之后，这个包装就不存在了。</p>
-<p><strong>其他成员函数</strong>
+<p>我们之前没有见过 <code>-&gt;</code> 运算符重载。事实上 <code>owner-&gt;calculate()</code> 的语义是 <code>(owner.operator-&gt;())-&gt;calculate()</code>。而 <code>(owner.operator-&gt;())</code> 返回的是 <code>ptr</code>，得到 <code>ptr-&gt;calculate()</code>。</p>
+<p>可以发现 <code>unique_ptr</code> 是 <code>ptr</code> 的一层 wrapper。但是我们通过重载这样的 <code>*</code> 和 <code>-&gt;</code> 运算符，使得这个 wrapper 实际上是透明的，是可以像原来一样使用的；或者说在函数内联完成之后，这个包装就不存在了。</p>
+<h4 id="其他成员函数">其他成员函数<a class="headerlink" href="#其他成员函数" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="k">struct</span><span class="w"> </span><span class="nc">unique_ptr</span><span class="w"> </span><span class="p">{</span>
 
@@ -6392,31 +6630,34 @@
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">};</span>
-</code></pre></div></p>
-<p>它还有一些其他的成员函数，比如说将所有权转移给其他代码的 <code>release()</code> ，它释放对当前管理的对象的所有权，并返回指向该对象的指针。还有重置 <code>unique_ptr</code> 管理的对象的 <code>reset(T* p = nullptr)</code> ，它释放当前管理的对象并接管新的对象，或者将 <code>unique_ptr</code> 设置为空。类似 <code>release()</code> 的 <code>get()</code> 只返回指针不释放所有权。<code>bool()</code> 判断指针是否为空。</p>
-<details class="info" open="open">
-<summary>避免直接使用 <code>new</code> 和 <code>delete</code></summary>
+</code></pre></div>
+<p>它还有一些其他的成员函数，比如说将所有权转移给其他代码的 <code>release()</code>，它释放对当前管理的对象的所有权，并返回指向该对象的指针。</p>
+<p>还有重置 <code>unique_ptr</code> 管理的对象的 <code>reset(T* p = nullptr)</code> ，它释放当前管理的对象并接管新的对象，或者将 <code>unique_ptr</code> 设置为空。</p>
+<p>类似 <code>release()</code> 的 <code>get()</code> 只返回指针不释放所有权。</p>
+<p><code>operator bool()</code> 判断指针是否为空，这使得智能指针和普通指针一样可以直接用在条件语句中，即隐式转换为 <code>bool</code> 类型。</p>
+<h4 id="使用时避免直接使用-new-和-delete">使用时避免直接使用 <code>new</code> 和 <code>delete</code><a class="headerlink" href="#使用时避免直接使用-new-和-delete" title="Permanent link">&para;</a></h4>
 <p>在之前的代码中，我们仍然使用了 <code>new</code> 来创建 <code>unique_ptr</code> ，但 <code>delete</code> 却通过 <code>unique_ptr</code> 的析构来自动进行，这导致了 <code>new</code> 和 <code>delete</code> 不配对。</p>
-<p>事实上在 C++14 引入了 <code>make_unique</code> 用于创建一个 <code>unique_ptr</code>。它<strong>避免了显式调用 <code>new</code></strong>并且提供了更好的<strong>异常安全性</strong>，下面给出 <code>make_unique</code> 的用法：</p>
+<p>事实上在 C++14 引入了 <code>make_unique</code> 用于创建一个 <code>unique_ptr</code>。它 <strong>避免了显式调用 <code>new</code></strong> 并且提供了更好的 <strong>异常安全性</strong>。它长这样：</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span>
+<span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">make_unique</span><span class="p">(</span><span class="n">Args</span><span class="o">&amp;&amp;</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
+</code></pre></div>
+<p>可以这样使用：</p>
 <div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">args</span><span class="p">...);</span>
 </code></pre></div>
-<p>其中 <code>Type</code> 是你想要创建的对象类型，<code>args...</code> 是传递给 <code>Type</code> 构造函数的参数。</p>
-</details>
-<h3 id="1034-数组类型">10.3.4 数组类型<a class="headerlink" href="#1034-数组类型" title="Permanent link">&para;</a></h3>
-<p><code>unique_ptr</code> 对数组做了 partial specialization 使得</p>
+<p>其中 <code>Type</code> 是想要创建的对象类型，<code>args...</code> 是传递给 <code>Type</code> 构造函数的参数。</p>
+<p>现代 C++ 中，我们应该尽量避免使用 <code>new</code> 和 <code>delete</code>，而是使用 <code>make_unique</code> 来创建智能指针。</p>
+<h3 id="1034-数组类型的实现思路">10.3.4 数组类型的实现思路<a class="headerlink" href="#1034-数组类型的实现思路" title="Permanent link">&para;</a></h3>
+<p><code>unique_ptr</code> 对数组类型的模板参数做了偏特化，使得：</p>
 <ul>
 <li><code>unique_ptr&lt;T[]&gt;</code> 提供了对数组类型的支持，自动调用 <code>delete[]</code> 来释放内存。</li>
-<li><code>unique_ptr&lt;T[]&gt;</code> 提供了下标运算符 <code>operator[]</code>，使得你可以像使用普通数组一样访问元素。</li>
+<li><code>unique_ptr&lt;T[]&gt;</code> 提供了下标运算符 <code>operator[]</code>，可以像使用普通数组一样访问元素。</li>
 </ul>
 <p><code>make_unique</code> 也对数组类型做了一些 partial specialization 使得</p>
 <ul>
-<li>
-<p>可以使用 <code>make_unique&lt;T[]&gt;(size)</code> 来创建一个动态数组，其中 <code>size</code> 是数组的大小。与普通的 <code>unique_ptr&lt;T&gt;</code> 不同，<code>make_unique&lt;T[]&gt;</code> 只接受一个参数，即数组的大小，而不接受构造函数参数。这是因为数组类型的 <code>unique_ptr</code> 不支持构造函数参数。例如：</p>
-<div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w">  </span><span class="c1">// 正确：创建一个包含 10 个 double 元素的数组</span>
-<span class="c1">// auto ptr = std::make_unique&lt;double&gt;(10);  // 错误：这不是数组类型</span>
-</code></pre></div>
-</li>
+<li>可以使用 <code>make_unique&lt;T[]&gt;(size)</code> 来创建一个动态数组，其中 <code>size</code> 是数组的大小。与普通的 <code>unique_ptr&lt;T&gt;</code> 不同，<code>make_unique&lt;T[]&gt;</code> 只接受一个参数，即数组的大小，而不接受构造函数参数。这是因为数组类型的 <code>unique_ptr</code> 不支持构造函数参数。例如：</li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</code></pre></div>
 <h3 id="1035-智能指针实例">10.3.5 智能指针实例<a class="headerlink" href="#1035-智能指针实例" title="Permanent link">&para;</a></h3>
 <p>让我们回到开头指出指针的问题中的例子。</p>
 <div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">science</span><span class="p">(</span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -6435,24 +6676,36 @@
 <span class="w">    </span><span class="n">calculate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">temp</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span><span class="w"> </span><span class="n">N</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>在这个改进后的代码中， <code>temp.get()</code> 返回 <code>unique_ptr</code> 所管理的原始指针，这样就可以将它传递给需要 <code>double*</code> 的函数（如 <code>do_setup</code>、<code>needed</code> 和 <code>calculate</code>）。并且<code>temp</code> 是一个 <code>unique_ptr&lt;double[]&gt;</code>，它会在 <code>science</code> 函数结束时自动释放所管理的内存，无论函数是如何退出的（通过 <code>return</code> 还是正常结束）。</p>
+<p>在这个改进后的代码中， <code>temp.get()</code> 返回 <code>unique_ptr</code> 所管理的原始指针，这样就可以将它传递给需要 <code>double*</code> 的函数（如 <code>do_setup</code>、<code>needed</code> 和 <code>calculate</code>）。</p>
+<p>并且 <code>temp</code> 是一个 <code>unique_ptr&lt;double[]&gt;</code>，它会在 <code>science</code> 函数结束时自动释放所管理的内存，无论函数是如何退出的（通过 <code>return</code> 还是正常结束）。</p>
 <h3 id="1036-所有权转移">10.3.6 所有权转移<a class="headerlink" href="#1036-所有权转移" title="Permanent link">&para;</a></h3>
-<p>在 <code>unique_ptr</code> 实现中我们提到了它的拷贝构造和拷贝复制是 <code>delete</code> 的，这意味着它不能被拷贝，只能通过移动语义（<code>std::move</code>）来转移所有权。</p>
-<p>将一个 <code>unique_ptr</code> 传递给另一个对象或函数时，必须使用 <code>std::move</code> 来显式地表示所有权的转移。这种必须可以在外面让调用者轻松看出所有权的转移。</p>
+<p>在 <code>unique_ptr</code> 实现中我们提到了它的拷贝构造和拷贝复制是 <code>delete</code> 的，这意味着它不能被拷贝，只能移动。</p>
 <div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">();</span>
 
-<span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">{</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">};</span><span class="w">  </span><span class="c1">// 所有权从 A 转移到 B</span>
+<span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">{</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">};</span><span class="w">  </span><span class="c1">// 移动构造：所有权从 A 转移到 B</span>
 
-<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">b</span><span class="p">);</span><span class="w">  </span><span class="c1">// 所有权从 B 转移到 A</span>
+<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">b</span><span class="p">);</span><span class="w">  </span><span class="c1">// 移动赋值：所有权从 B 转移到 A</span>
 </code></pre></div>
-<h3 id="1037-unique_ptr-作为函数参数和返回值">10.3.7  unique_ptr 作为函数参数和返回值<a class="headerlink" href="#1037-unique_ptr-作为函数参数和返回值" title="Permanent link">&para;</a></h3>
-<p><code>unique_ptr</code> 作为参数的时候，通常有几种可能：</p>
+<p>回顾之前另一个例子：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="nf">science</span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">float</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+<span class="w">    </span><span class="n">saxpy</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">);</span>
+<span class="w">    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>这个例子中，「所有权」其实既有通过函数参数转移到了这个函数中的情况，也有通过返回值传出了函数的情况。我们可以使用 <code>unique_ptr</code> 来代替这个例子。</p>
+<p>具体来说：</p>
 <ul>
-<li>
-<p><strong>按值传递：</strong>意味着函数将接管 <code>unique_ptr</code> 的所有权</p>
-<ul>
-<li>需要给一个函数<strong>传递</strong>所有权时，按值传递 <code>unique_ptr</code> </li>
-<li>需要从一个函数<strong>返回</strong>所有权时，按值传递 <code>unique_ptr</code> </li>
+<li>需要给一个函数 <strong>传递</strong> 所有权时，按值 (移动) 传递 <code>unique_ptr</code> </li>
+<li>需要从一个函数 <strong>返回</strong> 所有权时，按值 (移动) 返回 <code>unique_ptr</code> </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="n">science</span><span class="p">(</span>
 <span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
@@ -6463,30 +6716,15 @@
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">z</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-</li>
-<li>
-<p><strong>按引用传递：</strong>通常只在需要修改 <code>unique_ptr</code> 本身（例如改变它指向的对象）时使用。例如：</p>
-<div class="highlight"><pre><span></span><code>```c++
-unique_ptr&lt;widget&gt; factory();  // source - produces widget
-void sink(unique_ptr&lt;widget&gt;);  // sink - consumes widget
-void reseat(unique_ptr&lt;widget&gt;&amp;);  // &quot;will&quot; or &quot;might&quot; reseat ptr
-void thinko(const unique_ptr&lt;widget&gt;&amp;); // usually not what you want
-```
-</code></pre></div>
-</li>
-</ul>
-<p><code>unique_ptr</code> 作为返回值很好理解，就是函数将对象的所有权返回给调用者。例如：<code>auto result = science(std::move(x), std::move(y), N);</code></p>
-<h3 id="1038-不使用-unique_ptr-的场景">10.3.8 不使用 unique_ptr 的场景<a class="headerlink" href="#1038-不使用-unique_ptr-的场景" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="n">science</span><span class="p">(</span>
-<span class="w">    </span><span class="c1">// ...</span>
-<span class="w">    </span><span class="n">saxpy</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span><span class="w"> </span><span class="n">z</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span><span class="w"> </span><span class="n">N</span><span class="p">);</span>
-<span class="w">    </span><span class="c1">// ...</span>
+<p>外部可以 <code>auto result = science(std::move(upx), std::move(upy), N);</code> 来调用这个函数，这样调用者既可以清晰地看到 <code>upx</code> 和 <code>upy</code> 的所有权被转移，也可以从返回值类型清晰地看到 <code>result</code> 的所有权被返回。</p>
+<p>但其实，在更多的情况下，<code>science</code> 函数内部并不需要 <code>x</code> 和 <code>y</code> 的所有权。此时我们不传递 <code>unique_ptr</code> ，而是传递裸指针，这样可以避免不必要的所有权转移。</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">science</span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
+<span class="w">    </span><span class="n">saxpy</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span><span class="w"> </span><span class="n">N</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>上面代码中的 <code>saxpy</code> 函数中，我们并不关心对象的所有权，只是需要访问对象的内容，所以使用裸指针。</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>在有所有权转移的地方，使用智能指针；在不涉及所有权转移的地方，仍然继续使用指针 <code>.get()</code> 和引用 <code>*</code> 即可。例如：</p>
+<p>外部调用：<code>auto result = science(upx.get(), upy.get(), N);</code> ，这样调用者就可以清晰地看到 <code>upx</code> 和 <code>upy</code> 的所有权没有被转移。<code>science</code> 的实现中也不应该释放 <code>x</code> 和 <code>y</code> 的内存，因为它们的所有权并没有转移。</p>
+<p>也就是说，在有所有权转移的地方，传递智能指针；在不涉及所有权转移的地方，仍然继续使用指针 <code>.get()</code> 和引用 <code>*</code> 即可。例如：</p>
 <div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">widget</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// if required</span>
 <span class="w">    </span><span class="n">use</span><span class="p">(</span><span class="n">w</span><span class="p">);</span>
 <span class="p">}</span>
@@ -6498,10 +6736,29 @@ void thinko(const unique_ptr&lt;widget&gt;&amp;); // usually not what you want
 <span class="k">auto</span><span class="w"> </span><span class="n">upw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">widget</span><span class="o">&gt;</span><span class="p">();</span>
 <span class="n">g</span><span class="p">(</span><span class="n">upw</span><span class="p">.</span><span class="n">get</span><span class="p">());</span>
 </code></pre></div>
-<p>使用指针 <code>.get()</code> 还是引用 <code>*</code> 其实取决于指向的东西能不能为空。如果有可能指向一个空的东西的话，那么我们就使用指针 <code>.get()</code> 然后在里面去判断。如果你笃定你在你的代码里面，确定这个东西永远不会为空的话，那么你直接使用引用 <code>*</code> 就好了。</p>
-</div>
-<h3 id="1039-unique_ptr-的陷阱">10.3.9  unique_ptr 的陷阱<a class="headerlink" href="#1039-unique_ptr-的陷阱" title="Permanent link">&para;</a></h3>
-<p>留作思考题，除非明确知道一个指针来自哪里，而且它确实需要一个所有者，否则不要用它初始化 <code>unique_ptr</code> </p>
+<p>使用指针 <code>.get()</code> 还是引用 <code>*</code> 其实取决于指向的东西能不能为空。如果有可能指向一个空的东西的话，那么我们就使用指针 <code>.get()</code> 然后在里面去判断。如果你笃定你在你的代码里面，确定这个东西永远不会为空的话，那么直接使用引用 <code>*</code> 就好了。</p>
+<h3 id="1037-用法小结">10.3.7 用法小结<a class="headerlink" href="#1037-用法小结" title="Permanent link">&para;</a></h3>
+<p>将 <code>unique_ptr</code> 作为引用传递给函数的情况，通常是函数需要重新设置指针的情况。这种情况下，调用者需要明确地知道函数会改变指针的指向。</p>
+<p>我们把 <code>unique_ptr</code> 以不同方式作为函数参数和返回值的可能性提炼如下：</p>
+<div class="highlight"><pre><span></span><code><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">widget</span><span class="o">&gt;</span><span class="w"> </span><span class="n">factory</span><span class="p">(...);</span><span class="w">  </span><span class="c1">// source - produces widget</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factory</span><span class="p">(...);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">use</span><span class="p">(</span><span class="n">widget</span><span class="o">&amp;</span><span class="p">);</span><span class="w">  </span><span class="c1">// use - use content but not consume widget</span>
+<span class="n">use</span><span class="p">(</span><span class="o">*</span><span class="n">ptr</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">use</span><span class="p">(</span><span class="n">widget</span><span class="o">*</span><span class="p">);</span><span class="w">  </span><span class="c1">// use - use content but not consume widget</span>
+<span class="n">use</span><span class="p">(</span><span class="n">ptr</span><span class="p">.</span><span class="n">get</span><span class="p">());</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">sink</span><span class="p">(</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">widget</span><span class="o">&gt;</span><span class="p">);</span><span class="w">  </span><span class="c1">// sink - consumes widget</span>
+<span class="n">sink</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">ptr</span><span class="p">));</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">reseat</span><span class="p">(</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">widget</span><span class="o">&gt;&amp;</span><span class="p">);</span><span class="w">  </span><span class="c1">// &quot;will&quot; or &quot;might&quot; reseat ptr</span>
+<span class="n">reseat</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">thinko</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">widget</span><span class="o">&gt;&amp;</span><span class="p">);</span><span class="w"> </span><span class="c1">// usually not what you want</span>
+</code></pre></div>
+<h3 id="1038-陷阱">10.3.8 陷阱<a class="headerlink" href="#1038-陷阱" title="Permanent link">&para;</a></h3>
+<p>除非明确知道一个指针来自哪里，而且它确实需要一个所有者，否则不要用它初始化 <code>unique_ptr</code> </p>
 <div class="highlight"><pre><span></span><code><span class="n">T</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
 
 <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
@@ -6512,7 +6769,7 @@ void thinko(const unique_ptr&lt;widget&gt;&amp;); // usually not what you want
 <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">d</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">get</span><span class="p">());</span>
 <span class="c1">// crash due to double free</span>
 </code></pre></div>
-<h3 id="10310-unique_ptr-在容器中使用">10.3.10  unique_ptr 在容器中使用<a class="headerlink" href="#10310-unique_ptr-在容器中使用" title="Permanent link">&para;</a></h3>
+<h3 id="1039-unique_ptr-在容器中使用">10.3.9 unique_ptr 在容器中使用<a class="headerlink" href="#1039-unique_ptr-在容器中使用" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
 
 <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">());</span>
@@ -6525,64 +6782,46 @@ void thinko(const unique_ptr&lt;widget&gt;&amp;); // usually not what you want
 <span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
 <span class="n">v</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it</span><span class="p">);</span>
 </code></pre></div>
-<h2 id="104-shared_ptr">10.4 shared_ptr<a class="headerlink" href="#104-shared_ptr" title="Permanent link">&para;</a></h2>
+<h2 id="104-stdshared_ptr">10.4 <code>std::shared_ptr</code><a class="headerlink" href="#104-stdshared_ptr" title="Permanent link">&para;</a></h2>
 <h3 id="1041-概念">10.4.1 概念<a class="headerlink" href="#1041-概念" title="Permanent link">&para;</a></h3>
-<p><code>shared_ptr</code> 其实是一个更高级的智能指针版本。它高级的地方就在于它的<strong>所有权是可以共享</strong>的。这就是我们之前说的引用计数的完整版本。</p>
+<p><code>shared_ptr</code> 其实是一个更高级的智能指针版本。它高级的地方就在于它的 <strong>所有权是可以共享</strong> 的。这就是我们之前说的「引用计数」的完整版本。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul>
-<li>是对象的所有者，但可能有多个<code>shared_ptr</code> 同时指向一个对象</li>
+<li>是对象的所有者，但可能有多个 <code>shared_ptr</code> 同时指向一个对象</li>
 <li>可以被拷贝</li>
-<li>当指向一个对象的最后一个<code>shared_ptr</code> 不再指向它后（引用计数减到 0 ），对象被析构</li>
+<li>当指向一个对象的 <strong>最后一个</strong> <code>shared_ptr</code> 不再指向它后（引用计数减到 0），对象被析构</li>
 </ul>
 </div>
-<h3 id="1042-设计原理">10.4.2 设计原理<a class="headerlink" href="#1042-设计原理" title="Permanent link">&para;</a></h3>
-<p><code>shared_ptr</code> 的设计可以简化为以下几个部分：</p>
-<ul>
-<li><strong>Object</strong>：实际管理的对象。</li>
-<li><strong>Control Block</strong>：辅助管理引用计数的结构，包含一个指向对象的指针和一个引用计数。</li>
-</ul>
-<p>例如：</p>
+<p>例如可以实现为：</p>
 <div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">ControlBlock</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">object</span><span class="p">;</span><span class="w"> </span><span class="c1">// 指向实际对象</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">;</span><span class="w">   </span><span class="c1">// 引用计数</span>
 <span class="p">};</span>
 </code></pre></div>
-<p>当 <code>shared_ptr</code> 被复制时，新的 <code>shared_ptr</code> 会指向同一个 <code>Control Block</code>，并且引用计数会加 1。与 <code>std::string</code> 不同，<code>shared_ptr</code> 是浅拷贝的。也就是说，多个 <code>shared_ptr</code> 会指向同一块内存，而不是像 <code>std::string</code> 那样复制一份新的内存。</p>
-<h3 id="1043-接口">10.4.3 接口<a class="headerlink" href="#1043-接口" title="Permanent link">&para;</a></h3>
-<p><code>shared_ptr</code> 的实现思路比较复杂，所以这里我们只讲它的接口。</p>
+<p>当 <code>shared_ptr</code> 被复制时，新的 <code>shared_ptr</code> 会指向同一个 <code>Control Block</code>，并且引用计数会加 1。也就是说，<code>shared_ptr</code> 的拷贝是浅拷贝。</p>
+<p><center><img alt="" src="../2023-05-20-04-48-38.png" width="300" /> <img alt="" src="../2023-05-20-04-48-50.png" width="300" /></center></p>
+<p>因此我们可以看到，<code>shared_ptr</code> 是 <strong>有额外的内存和性能开销的</strong>，并不像 <code>unique_ptr</code> 那样只是一个指针的包装。</p>
+<h3 id="1042-接口">10.4.2 接口<a class="headerlink" href="#1042-接口" title="Permanent link">&para;</a></h3>
 <p><strong>构造与析构：</strong></p>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="k">struct</span><span class="w"> </span><span class="nc">shared_ptr</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// ...</span>
-<span class="w">    </span><span class="n">shared_ptr</span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span><span class="w"> </span><span class="c1">// Creates empty shared_ptr</span>
-<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">shared_ptr</span><span class="p">(</span><span class="n">T</span><span class="o">*</span><span class="p">);</span><span class="w"> </span><span class="c1">// Starts managing an object</span>
+<span class="w">    </span><span class="n">shared_ptr</span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span><span class="w">      </span><span class="c1">// Creates empty shared_ptr</span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">shared_ptr</span><span class="p">(</span><span class="n">T</span><span class="o">*</span><span class="p">);</span><span class="w">    </span><span class="c1">// Starts managing an object</span>
+<span class="w">    </span><span class="o">~</span><span class="n">shared_ptr</span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span><span class="w">     </span><span class="c1">// Decrements count, and Cleanup if count == 0</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>有一个默认构造函数，把它设为 <code>nullptr</code>。另外有一个直接把指针 <code>T*</code> 传进来，这个时候它才开始管理对象。</p>
+<p><strong>拷贝和移动，以及从 unique_ptr 的移动</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">shared_ptr</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="n">shared_ptr</span><span class="p">(</span><span class="n">shared_ptr</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span><span class="w">     </span><span class="c1">// copy ptrs, count++</span>
+<span class="w">    </span><span class="n">shared_ptr</span><span class="p">(</span><span class="n">shared_ptr</span><span class="o">&amp;&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span><span class="w">          </span><span class="c1">// transfer ownership</span>
+<span class="w">    </span><span class="n">shared_ptr</span><span class="p">(</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;&amp;</span><span class="p">);</span><span class="w">                </span><span class="c1">// transfer ownership</span>
 
-<span class="w">    </span><span class="o">~</span><span class="n">shared_ptr</span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span><span class="w"> </span><span class="c1">// Decrements count, and ...</span>
-<span class="w">                            </span><span class="c1">// Cleanup if count == 0</span>
-<span class="w">    </span><span class="c1">// ...</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>有一个默认构造函数，把它设为 <code>nullptr</code> 。另外有一个直接把指针 <code>T*</code> 传进来，这个时候它才开始管理对象。</p>
-<p><strong>拷贝构造和移动构造：</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">shared_ptr</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// ...</span>
-<span class="w">    </span><span class="n">shared_ptr</span><span class="p">(</span><span class="n">shared_ptr</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span><span class="c1">// copy ptrs, count++</span>
-<span class="w">    </span><span class="n">shared_ptr</span><span class="p">(</span><span class="n">shared_ptr</span><span class="o">&amp;&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span><span class="c1">// transfer ownership</span>
-<span class="w">    </span><span class="n">shared_ptr</span><span class="p">(</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;&amp;</span><span class="p">);</span><span class="c1">// transfer ownership</span>
-<span class="w">    </span><span class="c1">// ...</span>
-<span class="p">};</span>
-</code></pre></div>
-<p><code>shared_ptr</code> 支持拷贝构造和移动构造：
-- <strong>拷贝构造</strong>：引用计数加 1。
-- <strong>移动构造</strong>：不会增加引用计数，因为原 <code>shared_ptr</code> 不再指向该对象。</p>
-<p><code>shared_ptr</code> 可以接受 <code>unique_ptr</code> 的右值引用，从而将独占所有权转换为共享所有权。
-其实就是我本来有一个东西，由我单独管理。但是我现在决定要 <code>share</code>。所以我移动给一个<code>shared_ptr</code> 。</p>
-<p>**拷贝赋值和移动赋值</p>
-<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">shared_ptr</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// ...</span>
 <span class="w">    </span><span class="c1">// origin count will decrease, possibly cleanup:</span>
 <span class="w">    </span><span class="n">shared_ptr</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">shared_ptr</span><span class="w"> </span><span class="k">const</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span>
 <span class="w">    </span><span class="n">shared_ptr</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">shared_ptr</span><span class="o">&amp;&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span>
@@ -6590,7 +6829,12 @@ void thinko(const unique_ptr&lt;widget&gt;&amp;); // usually not what you want
 <span class="w">    </span><span class="c1">// ...</span>
 <span class="p">};</span>
 </code></pre></div>
-<p>在赋值操作中，<code>shared_ptr</code> 会先减少原对象的引用计数，然后再指向新对象。如果原对象的引用计数减到 0，则会释放原对象。</p>
+<ul>
+<li><strong>拷贝构造</strong>：引用计数加 1。</li>
+<li><strong>移动构造</strong>：不会增加引用计数，因为原 <code>shared_ptr</code> 不再指向该对象。</li>
+<li><code>shared_ptr</code> 可以接受 <code>unique_ptr</code> 的右值引用，从而将独占所有权转换为共享所有权。</li>
+<li>在赋值操作中，<code>shared_ptr</code> 会先减少原对象的引用计数，然后再指向新对象。如果原对象的引用计数减到 0，则会释放原对象。</li>
+</ul>
 <p><strong>重载运算符：</strong></p>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="k">struct</span><span class="w"> </span><span class="nc">shared_ptr</span><span class="w"> </span><span class="p">{</span>
@@ -6611,31 +6855,24 @@ void thinko(const unique_ptr&lt;widget&gt;&amp;); // usually not what you want
 <span class="c1">// ...</span>
 <span class="p">};</span>
 </code></pre></div>
-<p>我们可以用 <code>use_count()</code> 来获取引用计数。</p>
-<details class="info" open="open">
-<summary>避免直接使用 <code>new</code> 和 <code>delete</code></summary>
-<p>类似的，<code>shared_ptr</code> 也可以使用 <code>make_shared</code> 来创建，并且 <code>make_shared</code> 有比<code>make_unique</code> 更高的价值。</p>
-<p><code>make_shared</code> 是创建 <code>shared_ptr</code> 的首选方式，因为它只需要一次内存分配，同时为对象和 <code>Control Block</code> 分配内存。相比之下，直接使用 <code>new</code> 会进行两次内存分配。我们知道内存申请是比较昂贵的，所以说有这样的 <code>make_shared</code> 就可以省下一些时间。同时可以让对象和 <code>Control Block</code> 离得更近，进而带来更好的 locality。</p>
-<p>另外 <code>shared_ptr</code> 在 C++17 时引入对 <code>array</code> 的支持，<code>make_shared</code> 在 C++20 时引入对 <code>array</code> 的支持。</p>
-</details>
-<h3 id="1044-shared_ptr-作为函数参数和返回值">10.4.4 shared_ptr 作为函数参数和返回值<a class="headerlink" href="#1044-shared_ptr-作为函数参数和返回值" title="Permanent link">&para;</a></h3>
-<p><code>shared_ptr</code> 作为参数的时候，通常有几种可能：</p>
-<ul>
-<li><strong>按值传递：</strong>如果函数确实需要获得一个副本，按值传递。</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">widget</span><span class="o">&gt;</span><span class="w"> </span><span class="n">factory</span><span class="p">();</span><span class="w">  </span><span class="c1">// source + shared ownership</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">share</span><span class="p">(</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">widget</span><span class="o">&gt;</span><span class="p">);</span><span class="w">  </span><span class="c1">// share: &quot;will&quot; retain refcount</span>
+<h3 id="1043-stdmake_shared">10.4.3 std::make_shared<a class="headerlink" href="#1043-stdmake_shared" title="Permanent link">&para;</a></h3>
+<p>类似 <code>unique_ptr</code> 的 <code>make_unique</code>，<code>shared_ptr</code> 也有一个 <code>make_shared</code> 函数，用于创建 <code>shared_ptr</code>。</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span>
+<span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">make_shared</span><span class="p">(</span><span class="n">Args</span><span class="o">&amp;&amp;</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
 </code></pre></div>
-<ul>
-<li><strong>按引用传递：</strong>函数有可能对 <code>shared_ptr</code> 作更改时，按引用或 const 引用（避免昂贵的拷贝）传递。
-<div class="highlight"><pre><span></span><code><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">widget</span><span class="o">&gt;</span><span class="w"> </span><span class="n">factory</span><span class="p">();</span><span class="w">  </span><span class="c1">// source + shared ownership</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">reseat</span><span class="p">(</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">widget</span><span class="o">&gt;&amp;</span><span class="p">);</span><span class="w">  </span><span class="c1">// &quot;will&quot; or &quot;might&quot; reseat ptr</span>
-<span class="kt">void</span><span class="w"> </span><span class="nf">may_share</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">widget</span><span class="o">&gt;&amp;</span><span class="p">);</span><span class="w">  </span><span class="c1">// &quot;might&quot; retain refcount</span>
-</code></pre></div></li>
-</ul>
-<h3 id="1045-shared_ptr-的陷阱">10.4.5 shared_ptr 的陷阱<a class="headerlink" href="#1045-shared_ptr-的陷阱" title="Permanent link">&para;</a></h3>
+<p><code>make_shared</code> 是创建 <code>shared_ptr</code> 的首选方式，因为它只需要一次内存分配，同时为对象和引用计数分配内存。相比之下，直接使用 <code>new</code> 会进行两次内存分配。</p>
+<p>我们知道内存申请是比较昂贵的，所以说有这样的 <code>make_shared</code> 就可以省下一些时间。同时可以让对象和引用计数离得更近，进而带来更好的 locality。</p>
+<p><center><img alt="" src="../2023-05-20-04-49-05.png" width="600" /></center></p>
+<p><code>shared_ptr</code> 在 C++17 时引入对数组的支持，<code>make_shared</code> 在 C++20 时引入对数组的支持。</p>
+<h3 id="1044-shared_ptr-作为函数参数和返回值">10.4.4 shared_ptr 作为函数参数和返回值<a class="headerlink" href="#1044-shared_ptr-作为函数参数和返回值" title="Permanent link">&para;</a></h3>
+<p>类似前面的讨论，常见可能的用法是：</p>
+<div class="highlight"><pre><span></span><code><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">widget</span><span class="o">&gt;</span><span class="w"> </span><span class="n">factory</span><span class="p">();</span><span class="w">               </span><span class="c1">// source + shared ownership </span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">share</span><span class="p">(</span><span class="w"> </span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">widget</span><span class="o">&gt;</span><span class="w"> </span><span class="p">);</span><span class="w">           </span><span class="c1">// share: &quot;will&quot; retain refcount</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">reseat</span><span class="p">(</span><span class="w"> </span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">widget</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="p">);</span><span class="w">         </span><span class="c1">// &quot;will&quot; or &quot;might&quot; reseat ptr</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">may_share</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">widget</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="p">);</span><span class="c1">// &quot;might&quot; retain refcount</span>
+</code></pre></div>
+<h3 id="1045-shared_ptr-的常见陷阱">10.4.5 shared_ptr 的常见陷阱<a class="headerlink" href="#1045-shared_ptr-的常见陷阱" title="Permanent link">&para;</a></h3>
+<h4 id="double-free-问题">Double Free 问题<a class="headerlink" href="#double-free-问题" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><span class="n">T</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
 <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
 <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
@@ -6651,8 +6888,8 @@ void thinko(const unique_ptr&lt;widget&gt;&amp;); // usually not what you want
 <span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
 <span class="c1">// Good</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1">// the reentrancy pitfall</span>
-<span class="c1">// global (static or heap), or aliased local</span>
+<h4 id="多线程环境下的问题the-reentrancy-pitfall">多线程环境下的问题：the reentrancy pitfall<a class="headerlink" href="#多线程环境下的问题the-reentrancy-pitfall" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">// global (static or heap), or aliased local</span>
 <span class="p">...</span><span class="w"> </span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">widget</span><span class="o">&gt;</span><span class="w"> </span><span class="n">g_p</span><span class="w"> </span><span class="p">...</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">widget</span><span class="o">&amp;</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">g</span><span class="p">();</span><span class="w"> </span><span class="n">use</span><span class="p">(</span><span class="n">w</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
@@ -6663,8 +6900,8 @@ void thinko(const unique_ptr&lt;widget&gt;&amp;); // usually not what you want
 <span class="w">    </span><span class="n">g_p</span><span class="o">-&gt;</span><span class="n">foo</span><span class="p">();</span><span class="w"> </span><span class="c1">// bad</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1">// &quot;Pin&quot; using unaliased local copy</span>
-<span class="c1">// global (static or heap), or aliased local</span>
+<p>解决方案："Pin" using unaliased local copy</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// global (static or heap), or aliased local</span>
 <span class="p">...</span><span class="w"> </span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">widget</span><span class="o">&gt;</span><span class="w"> </span><span class="n">g_p</span><span class="w"> </span><span class="p">...</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">widget</span><span class="o">&amp;</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">g</span><span class="p">();</span><span class="w"> </span><span class="n">use</span><span class="p">(</span><span class="n">w</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
@@ -6676,45 +6913,23 @@ void thinko(const unique_ptr&lt;widget&gt;&amp;); // usually not what you want
 <span class="w">    </span><span class="n">pin</span><span class="o">-&gt;</span><span class="n">foo</span><span class="p">();</span><span class="w"> </span><span class="c1">// ok, local-&gt;</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="105-总结">10.5 总结<a class="headerlink" href="#105-总结" title="Permanent link">&para;</a></h2>
-<p>我们这次主要讲解了 <code>unique_ptr</code> 和 <code>shared_ptr</code> 这两种智能指针。需要注意的是，<code>unique_ptr</code> 没有额外开销，而 <code>shared_ptr</code> 有额外开销。我们建议大家使用 <code>std::make_unique</code> 和 <code>std::make_shared</code>，因为它们不仅能提高代码的可读性，还能减少运行时的开销。</p>
-<p>智能指针能够更好地帮助我们实现 RAII（资源获取即初始化）。例如，我们之前提到的 <code>std::string</code> 可以很好地管理字符串资源，为 RAII 提供了巨大帮助。同样，<code>std::vector</code> 等标准库容器也能提供类似的支持。此外，文件读写也可以使用 <code>std::ifstream</code> 等工具来处理。</p>
-<p>此外，我们建议大家不要在代码中直接使用 <code>new</code> 和 <code>delete</code>。所有需要动态分配内存的地方，都应该使用智能指针来代替，从而更好地适配 RAII ，避免内存泄漏等问题。
-如果一个指针不拥有它所指向的对象，即它不需要负责释放对象的内存，那么可以使用裸指针或引用。在这种情况下，裸指针是合适的。</p>
-<div class="admonition 智能指针的使用建议">
-<p class="admonition-title">智能指针的使用建议</p>
+<h2 id="105-回顾rule-of-zero">10.5 回顾：Rule of Zero<a class="headerlink" href="#105-回顾rule-of-zero" title="Permanent link">&para;</a></h2>
+<p>C++11 改进了语言和标准库，提供了对动态分配对象生命周期管理的更好工具。在这种背景下 Rule of Zero 被提出，作为对之前 Rule of Three 的更新：</p>
 <ul>
-<li><strong>函数参数传递</strong>：如果一个函数的操作与指针的所有权无关，按照指针或引用的方式传递。如果对象一定存在，使用引用；如果对象可能存在也可能不存在，使用指针。</li>
-<li><strong>函数返回值</strong>：如果一个函数创建并返回一个 <code>unique_ptr</code>，按值返回。如果 <code>unique_ptr</code> 的生命周期在函数内结束，按值传递。</li>
-<li><strong>修改智能指针指向的对象</strong>：如果需要修改智能指针指向的对象，通常传引用。</li>
-<li><strong><code>const unique_ptr</code> 引用</strong>：这种写法通常是错误的，应避免。</li>
-<li><strong><code>shared_ptr</code> 的使用</strong>：如果创建并分享一个 <code>shared_ptr</code>，按值返回。如果函数需要一个副本，按值拷贝。如果可能拷贝也可能不拷贝，按 <code>const</code> 引用传递。如果可能修改智能指针的内容，按引用传递。</li>
+<li><code>std::string</code> 代为管理字符串</li>
+<li>STL 容器代为管理数据类型，如 <code>std::vector</code> 或者 <code>std::array</code> 代为管理数组</li>
+<li>智能指针代为管理动态内存</li>
+<li><code>std::fstream</code> 等代为管理文件读写</li>
 </ul>
-</div>
-<p>接下来，我们简单介绍一下这节课没有详细讲解的一些话题，大家以后遇到这些问题时，可以知道如何去搜索相关内容。</p>
+<h2 id="106-本文暂未讨论的话题">10.6 本文暂未讨论的话题<a class="headerlink" href="#106-本文暂未讨论的话题" title="Permanent link">&para;</a></h2>
 <ul>
-<li>
-<p><strong>线程安全：</strong>
-    在多线程环境下，尤其是 <code>shared_ptr</code>，需要保证线程安全。这个话题值得深入讨论，但由于我们没有涉及多线程的内容，暂时不展开讲解。</p>
-</li>
-<li>
-<p><strong>异常安全：</strong>
-    虽然我们没有讲解异常处理，但智能指针除了之前提到的各种优点外，还能提供较好的异常安全性。因此，异常安全也是一个值得讨论的话题。</p>
-</li>
-<li>
-<p><strong>weak_ptr：</strong>
-    C++ 标准库中有几种智能指针，除了 <code>shared_ptr</code> 和 <code>unique_ptr</code> 之外，还有一个 <code>weak_ptr</code>。<code>weak_ptr</code> 是与 <code>shared_ptr</code> 共同使用的，它是 <code>shared_ptr</code> 的一个弱引用。所谓弱引用，就是即使 <code>weak_ptr</code> 存在，如果最后一个 <code>shared_ptr</code> 被销毁，对象仍然可以正常析构。<code>weak_ptr</code> 不影响对象的析构。<code>weak_ptr</code> 的一个常见用途是在缓存中使用，大家有兴趣的话可以自行查阅相关资料。</p>
-</li>
-<li>
-<p><strong>自定义删除器：</strong>
-    <code>shared_ptr</code> 和 <code>unique_ptr</code> 都支持自定义删除器。默认情况下，对于非数组类型，删除器是 <code>delete</code>，对于数组类型，删除器是 <code>delete[]</code>。但在实际应用中，我们可能需要管理非普通指针，比如 <code>FILE*</code>，这时我们希望在析构时调用 <code>fclose</code> 而不是 <code>delete</code>。这种情况下，我们可以自定义删除器。</p>
-</li>
-<li>
-<p><strong>继承关系中的智能指针：</strong>
-    在 C++ 中，子类的指针可以转换为基类的指针。同样，子类的智能指针也可以转换为基类的智能指针。这是对普通指针行为的一种模仿。如果大家有需要，可以进一步了解这方面的内容。</p>
-</li>
+<li><strong>线程安全</strong>: 在多线程环境下，尤其是 <code>shared_ptr</code>，需要保证线程安全。这个话题值得深入讨论，但由于我们没有涉及多线程的内容，暂时不展开讲解。</li>
+<li><strong>异常安全</strong>: 虽然我们还没有设计异常处理，但智能指针除了之前提到的各种优点外，还能提供较好的异常安全性。</li>
+<li><strong><code>std::weak_ptr</code></strong>: C++ 标准库中有几种智能指针，除了 <code>shared_ptr</code> 和 <code>unique_ptr</code> 之外，还有一个 <code>weak_ptr</code>。<code>weak_ptr</code> 是与 <code>shared_ptr</code> 共同使用的，它是 <code>shared_ptr</code> 的一个弱引用。所谓弱引用，就是即使 <code>weak_ptr</code> 存在，如果最后一个 <code>shared_ptr</code> 被销毁，对象仍然可以正常析构。<code>weak_ptr</code> 不影响对象的析构。<code>weak_ptr</code> 的一个常见用途是在实现 cache 时使用，大家有兴趣的话可以自行查阅相关资料。</li>
+<li><strong>自定义删除器</strong>: <code>shared_ptr</code> 和 <code>unique_ptr</code> 都支持自定义删除器。默认情况下，对于非数组类型，删除器是 <code>delete</code>，对于数组类型，删除器是 <code>delete[]</code>。但在实际应用中，我们可能需要管理非普通指针，比如 <code>FILE*</code>，这时我们希望在析构时调用 <code>fclose</code> 而不是 <code>delete</code>。这种情况下，我们可以自定义删除器。</li>
+<li><strong>继承关系中的智能指针</strong>: 在 C++ 中，子类的指针可以转换为基类的指针。同样，子类的智能指针也可以转换为基类的智能指针。这是对普通指针行为的一种模仿。如果大家有需要，可以进一步了解这方面的内容。</li>
+<li><strong><code>shared_from_this</code></strong></li>
 </ul>
-<h2 id="参考资料">参考资料<a class="headerlink" href="#参考资料" title="Permanent link">&para;</a></h2>
 
 
 
@@ -6737,7 +6952,7 @@ void thinko(const unique_ptr&lt;widget&gt;&amp;); // usually not what you want
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-13T07:51:59+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-13</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-14T08:06:35+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-14</span>
   </span>
 
     
