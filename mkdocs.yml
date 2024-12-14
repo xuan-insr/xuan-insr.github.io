@@ -208,6 +208,7 @@ theme:
   logo: logo.ico
   favicon: logo.ico
   features:
+    - content.code.copy
     - navigation.tabs # 一级导航在横着的导航栏
     - content.code.annotate # 可以在代码块中增添点击展示的注释，参见 https://squidfunk.github.io/mkdocs-material/reference/code-blocks/#adding-annotations
     # - navigation.tracking # 地址栏中的 URL 会随当前位置变化为对应小节的 URL
