@@ -5,3 +5,4 @@ rich
 mkdocs-statistics-plugin
 termynal
 neoteroi-mkdocs
+mkdocs-material[imaging]
