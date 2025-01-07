@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.48">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -5932,8 +5932,8 @@ magic word    version  entry cnt  ctime sec ctime nsec  mtime sec mtime nsec    
 00000068
 </code></pre></div>
 <p>但是我希望更清晰地显示字符的对应关系，以及方便我加注释。所以我写了下面的代码将字节流以人类友好的方式打印出来；</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">print_bytes</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">group_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">group_each_line</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">is_printable</span><span class="p">(</span><span class="n">byte</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">print_bytes</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">group_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">group_each_line</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_printable</span><span class="p">(</span><span class="n">byte</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">32</span> <span class="o">&lt;=</span> <span class="n">byte</span> <span class="o">&lt;=</span> <span class="mi">126</span>
 
     <span class="n">byte_each_line</span> <span class="o">=</span> <span class="n">group_size</span> <span class="o">*</span> <span class="n">group_each_line</span>
@@ -5952,7 +5952,7 @@ magic word    version  entry cnt  ctime sec ctime nsec  mtime sec mtime nsec    
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="n">byte</span><span class="p">)</span> <span class="k">if</span> <span class="n">is_printable</span><span class="p">(</span><span class="n">byte</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;*&#39;</span> <span class="k">for</span> <span class="n">byte</span> <span class="ow">in</span> <span class="n">group</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">print_index</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_index</span><span class="p">():</span>
     <span class="n">index_path</span> <span class="o">=</span> <span class="n">find_repo</span><span class="p">()</span> <span class="o">/</span> <span class="n">GIT_DIR</span> <span class="o">/</span> <span class="s2">&quot;index&quot;</span>
     <span class="k">with</span> <span class="n">index_path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">print_bytes</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
@@ -6333,7 +6333,7 @@ document.addEventListener("DOMContentLoaded", function() {
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.footer", "navigation.tabs", "content.code.annotate", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
         <script src="../../js/timeago.min.js"></script>
       

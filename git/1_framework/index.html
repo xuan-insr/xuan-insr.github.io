@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.48">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -5810,19 +5810,19 @@
 <li><code>setup.py</code> 是一个用于安装的脚本</li>
 </ul>
 <p><code>cli.py</code> 的内容如下：</p>
-<div class="highlight"><span class="filename">xgit/cli.py</span><pre><span></span><code><span class="kn">import</span> <span class="nn">typer</span>
+<div class="highlight"><span class="filename">xgit/cli.py</span><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">typer</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Typer</span><span class="p">(</span><span class="n">add_completion</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">init</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">commit</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">commit</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="n">app</span><span class="p">()</span>
 </code></pre></div>
 <p>这四舍五入就是 typer 的一个最小的例子。您可以尝试通过 <code>python cli.py --help</code> 或者 <code>python cli.py init</code> 来运行这个程序。</p>
@@ -5834,7 +5834,7 @@
 <li><code>@app.command()</code> 是一个装饰器，它的作用是将下面的函数注册为一个命令</li>
 </ul>
 <p><code>setup.py</code> 的内容如下：</p>
-<div class="highlight"><span class="filename">setup.py</span><pre><span></span><code><span class="kn">import</span> <span class="nn">setuptools</span>
+<div class="highlight"><span class="filename">setup.py</span><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">setuptools</span>
 
 <span class="n">setuptools</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;xgit&quot;</span><span class="p">,</span>
@@ -6119,7 +6119,7 @@ document.addEventListener("DOMContentLoaded", function() {
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.footer", "navigation.tabs", "content.code.annotate", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
         <script src="../../js/timeago.min.js"></script>
       

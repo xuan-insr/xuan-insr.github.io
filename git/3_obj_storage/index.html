@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.48">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -5972,7 +5972,7 @@ lrwxrwxrwx 1 dev dev 14 Jan  2 14:21 a_symlink_abs -&gt; /tmp/xyx0102/a
 <p>不过，<code>hash-object</code> 这个指令会接收一些选项 (options)，例如 <code>-w</code>, <code>--stdin</code>, <code>-t</code> 等。我们如何在 typer 中实现这些选项呢？</p>
 <p>与 <code>Argument</code> 类似，我们可以使用 <code>Option</code> 来定义一个选项。例如：</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">arg</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;--opt&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;an option&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">arg</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;--opt&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;an option&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">opt</span><span class="p">)</span>
 </code></pre></div>
 <p>这里我们用 <code>Option</code> 表示 <code>opt</code> 是一个选项，并指定了它的短选项 <code>-o</code> 和长选项 <code>--opt</code>，以及它的帮助信息。由于我们给它了一个默认值，因此它是可选的。</p>
@@ -6293,7 +6293,7 @@ document.addEventListener("DOMContentLoaded", function() {
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.footer", "navigation.tabs", "content.code.annotate", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
         <script src="../../js/timeago.min.js"></script>
       

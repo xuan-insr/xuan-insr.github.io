@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.48">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -5604,13 +5604,13 @@
 <p>而 <code>2d4a22863bad3835a0da2f8eedb66335b8390bb8</code> 是第二个提交，可以看到它多了一个 parent 字段，表示它是基于哪个提交之上修改的；这里的 parent 就是 <code>1a4e1286c25459fae80c8031fa68a2bf349efc5b</code>。</p>
 <p>一个提交可能没有 parent（例如第一个提交），也可能有多个 parent（例如 merge commit）。也是因此，我们可以从任意一个提交开始，通过 parent 字段一直追溯到第一个提交，从而还原出整个仓库的变化；而由于每个提交都包含了 tree sha，我们也可以还原出任何一个提交的快照。也就是说，这让仓库的全部历史都保存在每一个 commit 里。（所以 git 其实也是区块链。）</p>
 <p>不会完全显示出来，使用的是 <code>less</code> 这个命令行工具。这是一个分页器。</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">typer</span>
-<span class="kn">import</span> <span class="nn">subprocess</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">typer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Typer</span><span class="p">()</span>
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">show_data</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">show_data</span><span class="p">():</span>
     <span class="c1"># 生成或获取要显示的数据</span>
 <span class="o">&lt;</span><span class="n">div</span> <span class="n">markdown</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;margin-top: -30px; font-size: 0.75em; opacity: 0.7;&quot;</span><span class="o">&gt;</span>
 <span class="p">:</span><span class="n">material</span><span class="o">-</span><span class="n">circle</span><span class="o">-</span><span class="n">edit</span><span class="o">-</span><span class="n">outline</span><span class="p">:</span> <span class="n">约</span> <span class="mi">467</span> <span class="n">个字</span> <span class="p">:</span><span class="n">fontawesome</span><span class="o">-</span><span class="n">solid</span><span class="o">-</span><span class="n">code</span><span class="p">:</span> <span class="mi">16</span> <span class="n">行代码</span> <span class="p">:</span><span class="n">material</span><span class="o">-</span><span class="n">clock</span><span class="o">-</span><span class="n">time</span><span class="o">-</span><span class="n">two</span><span class="o">-</span><span class="n">outline</span><span class="p">:</span> <span class="n">预计阅读时间</span> <span class="mi">2</span> <span class="n">分钟</span>
@@ -5848,7 +5848,7 @@ document.addEventListener("DOMContentLoaded", function() {
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.footer", "navigation.tabs", "content.code.annotate", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
         <script src="../../js/timeago.min.js"></script>
       
