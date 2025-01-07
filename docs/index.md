@@ -52,6 +52,7 @@ statistics: true
     - [zbgg 日报果然断更了，哈哈](https://daily.dreamerryao.wiki)
     - [YardRat0117](https://yardrat0117.github.io/)（看不懂，都是洋文）
     - [犬戎](https://inuebisu.cn/)
+    - [涛宝！](https://www.oddyti.com/)
 
 <center><img src="index.assets/image.png"/></center>
 
