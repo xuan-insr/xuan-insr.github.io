@@ -1,16 +1,5 @@
-/**
- * termynal.js
- * A lightweight, modern and extensible animated terminal window, using
- * async/await.
- *
- * @author Ines Montani <ines@ines.io>
- * @version 0.0.1
- * @license MIT
- */
-
 'use strict';
 
-/** Generate a terminal widget. */
 class Termynal {
     /**
      * Construct the widget's settings.
@@ -22,7 +11,7 @@ class Termynal {
      * @param {number} options.lineDelay - Delay between each line, in ms.
      * @param {number} options.progressLength - Number of characters displayed as progress bar.
      * @param {string} options.progressChar – Character to use for progress bar, defaults to █.
-	 * @param {number} options.progressPercent - Max percent of progress.
+     * @param {number} options.progressPercent - Max percent of progress.
      * @param {string} options.cursor – Character to use for cursor, defaults to ▋.
      * @param {Object[]} lineData - Dynamically loaded line data objects.
      * @param {boolean} options.noInit - Don't initialise the animation.
@@ -40,7 +29,7 @@ class Termynal {
             || parseFloat(this.container.getAttribute(`${this.pfx}-progressLength`)) || 40;
         this.progressChar = options.progressChar
             || this.container.getAttribute(`${this.pfx}-progressChar`) || '█';
-		this.progressPercent = options.progressPercent
+        this.progressPercent = options.progressPercent
             || parseFloat(this.container.getAttribute(`${this.pfx}-progressPercent`)) || 100;
         this.cursor = options.cursor
             || this.container.getAttribute(`${this.pfx}-cursor`) || '▋';
@@ -127,27 +116,25 @@ class Termynal {
     }
 
     generateRestart() {
-        const restart = document.createElement('a')
+        const restart = document.createElement('button')
         restart.onclick = (e) => {
             e.preventDefault()
             this.container.innerHTML = ''
             this.init()
         }
-        restart.href = '#'
         restart.setAttribute('data-terminal-control', '')
         restart.innerHTML = "restart ↻"
         return restart
     }
 
     generateFinish() {
-        const finish = document.createElement('a')
+        const finish = document.createElement('button')
         finish.onclick = (e) => {
             e.preventDefault()
             this.lineDelay = 0
             this.typeDelay = 0
             this.startDelay = 0
         }
-        finish.href = '#'
         finish.setAttribute('data-terminal-control', '')
         finish.innerHTML = "fast →"
         this.finishElement = finish
@@ -190,8 +177,8 @@ class Termynal {
         const progressChar = line.getAttribute(`${this.pfx}-progressChar`)
             || this.progressChar;
         const chars = progressChar.repeat(progressLength);
-		const progressPercent = line.getAttribute(`${this.pfx}-progressPercent`)
-			|| this.progressPercent;
+        const progressPercent = line.getAttribute(`${this.pfx}-progressPercent`)
+            || this.progressPercent;
         line.textContent = '';
         this.container.appendChild(line);
 
@@ -199,9 +186,9 @@ class Termynal {
             await this._wait(this.typeDelay);
             const percent = Math.round(i / chars.length * 100);
             line.textContent = `${chars.slice(0, i)} ${percent}%`;
-			if (percent>progressPercent) {
-				break;
-			}
+            if (percent > progressPercent) {
+                break;
+            }
         }
     }
 
@@ -264,12 +251,12 @@ if (document.currentScript.hasAttribute('data-termynal-container')) {
 }
 
 
-(function(){
+(function () {
     document
-    .querySelectorAll('.termy')
-    .forEach(node => {
-        new Termynal(node, {
-            lineDelay: 500
+        .querySelectorAll('.termy')
+        .forEach(node => {
+            new Termynal(node, {
+                lineDelay: 500
+            });
         });
-    });
 })()
