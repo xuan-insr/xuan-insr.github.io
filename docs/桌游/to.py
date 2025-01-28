@@ -20,6 +20,9 @@ with open('index_draft.md', 'r', encoding='utf-8') as f:
 # 替换奇数行文本为对应的偶数行文本
 new_content = replace_odd_lines(content, pairs)
 
+# 将所有图片 `![](assets/...)` 后面增加 size 属性
+new_content = re.sub(r'!\[\]\(assets/.*?\)', r'\g<0>{: width="20px"}', new_content)
+
 # 写入替换后的内容到 index.md 文件
 with open('index.md', 'w', encoding='utf-8') as f:
     f.write(new_content)
