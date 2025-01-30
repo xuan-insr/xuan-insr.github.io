@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5727,7 +5736,7 @@
 </div>
 <h2 id="21-操作系统是啥">2.1 操作系统是啥<a class="headerlink" href="#21-操作系统是啥" title="Permanent link">&para;</a></h2>
 <p>我们在计组课上搞好了一个 CPU，还有配套的内存之类的设备，现在要用它。可以直接把汇编写到内存里运行。</p>
-<p><center><img alt="" src="../2022-12-08-18-07-39.png" width="300" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-08-18-07-39.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-18-07-39.png" width="300" /></a></center></p>
 <p>计算机最开始是为了研究可计算性理论的，但很快就被用于一些专用的计算，例如破译密码等；随后演化出了 general-purpose, multifunction mainframes</p>
 <p>如果有很多程序要一个一个运行，怎么办呢？写一个一直运行的程序 (<strong>kernel</strong>)，负责其他程序的运行。</p>
 <ul>
@@ -5741,7 +5750,7 @@
 </ul>
 <p>除了 kernel 外，操作系统还包含一些 <strong>system programs</strong>，辅助 kernel 工作。其他程序不属于操作系统，称为 <strong>application programs</strong>。</p>
 <p>总结来说，操作系统是“软件中最基础的部分”，用以控制和管理系统资源、方便用户使用计算机。</p>
-<p><center><img alt="" src="../2022-12-08-18-10-55.png" width="300" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-08-18-10-55.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-18-10-55.png" width="300" /></a></center></p>
 <h2 id="22-中断">2.2 中断<a class="headerlink" href="#22-中断" title="Permanent link">&para;</a></h2>
 <p>批处理系统的实现是容易理解的；每个程序就像是一个函数一样被操作系统调用。那么其他类型的操作系统是如何实现在程序运行时能够收回控制权呢？这就需要使用到 <strong>中断 (interrupt)</strong>。现代操作系统都是 <strong>中断驱动 (interrupt driven)</strong> 的。</p>
 <p>事件发生通常通过硬件或软件的中断通知。CPU 硬件有一条称为 <strong>interrupt-request line</strong> 的线路，CPU 在执行每一条指令后都要检测它一次。当 CPU 侦测到一个设备控制器在这条线路上发出的信号时，会读取 interrupt number 并且以此作为 interrupt vector 中的 index 来跳转到对应的 interrupt-handler routine。</p>
@@ -5757,7 +5766,7 @@
 <p>在现代的计算机硬件中，这些特性由 CPU 和 interrupt-controller hardware 实现。</p>
 <p>大多数 CPU 有两条 interrupt-request line，一条用于 nonmaskable interrupt，为一些不可恢复的内存错误等事件保留；另一条是 maskable 的，它可以在执行不可中断的关键程序之前被 CPU 关闭，用于传送一些设备控制器的中断请求。</p>
 <p>我们都知道，在调用函数时需要保存 PC 等现场状态；执行中断时也需要保存。但是，值得注意的是，虽然低级的中断可以被高级的中断打断，但是保存和恢复现场状态的过程是不应当被打断的。</p>
-<p><center><img alt="" src="../2022-12-08-18-12-37.png" width="300" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-08-18-12-37.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-18-12-37.png" width="300" /></a></center></p>
 <div class="admonition info">
 <p class="admonition-title">计时器与分时系统的实现</p>
 <p>当操作系统将 CPU 的控制权交给一个程序前，会设定好一个 <strong>计时器 (timer)</strong>。计时器通过一个时钟和一个计数器实现。当计数器的值为 0 时，就会产生一个中断，这时控制权就交给了操作系统。这种方式可以防止程序执行时间过长，也可以用来实现分时系统。</p>
@@ -5769,15 +5778,15 @@
 <p>所有的 interrupt handler 都运行在 kernel mode。原因之一是，interrupt handler 需要关闭（部分）中断响应，而用户不应当能自由地做这样的事情。</p>
 </div>
 <p>那如果用户程序确实想使用特权指令提供的功能怎么办呢？它们可以通过 <strong>system call</strong> 的方式向操作系统提出请求，由操作系统代为完成。</p>
-<p><center><img alt="" src="../2022-12-08-18-15-41.png" width="300" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-08-18-15-41.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-18-15-41.png" width="300" /></a></center></p>
 <details class="info" open="open">
 <summary>System Calls</summary>
 <p>系统调用可能需要传递参数。参数可以放在寄存器里直接传递；也可以放在一块内存中，用寄存器传递地址；也可以用栈传递。</p>
 <p>系统调用提供的功能（也就是我们不允许用户程序自由完成的功能）包括：</p>
-<p><center><img alt="" src="../2022-12-08-18-17-18.png" width="300" /></center></p>
-<p><center><img alt="" src="../2022-12-08-18-17-27.png" width="300" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-08-18-17-18.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-18-17-18.png" width="300" /></a></center></p>
+<p><center><a class="glightbox" href="../2022-12-08-18-17-27.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-18-17-27.png" width="300" /></a></center></p>
 <p>课本上给出了一些例子：</p>
-<p><center><img alt="" src="../2022-12-08-18-17-44.png" width="300" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-08-18-17-44.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-18-17-44.png" width="300" /></a></center></p>
 </details>
 <div class="admonition info">
 <p class="admonition-title">Multimode</p>
@@ -6075,5 +6084,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

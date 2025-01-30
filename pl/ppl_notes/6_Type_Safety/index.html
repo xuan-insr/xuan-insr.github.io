@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5698,14 +5707,14 @@
 </ul>
 <h2 id="运行时错误">运行时错误<a class="headerlink" href="#运行时错误" title="Permanent link">&para;</a></h2>
 <p>例如，我们希望给 <strong>E</strong> 加上除法运算：</p>
-<p><img alt="" src="../2022-12-05-15-16-04.png" /></p>
+<p><a class="glightbox" href="../2022-12-05-15-16-04.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-05-15-16-04.png" /></a></p>
 <p>但是，<code>div(num[3]; num[0])</code> 是 well-typed 的，但是会 stuck。我们有 2 种思路纠正这种问题：</p>
 <ol>
 <li>增强类型系统，使得 divide by 0 的情况不会出现。这种方式比较困难，因为我们很难静态地预测表达式在求值时是否非 0。</li>
 <li>增加动态检查，使得 divide by 0 时报错并将错误视作求值的输出。</li>
 </ol>
 <p>实现上述第 2 种思路，可以引入形如 <span class="arithmatex">\(e\)</span> err 的判断来表示 <span class="arithmatex">\(e\)</span> 会导致运行时错误，比如 divide by 0。其定义的一部分如下；</p>
-<p><img alt="" src="../2022-12-05-15-19-38.png" /></p>
+<p><a class="glightbox" href="../2022-12-05-15-19-38.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-05-15-19-38.png" /></a></p>
 <p>第一条是 err 的产生，而后面两条（以及其他类似的计算）是 err 的传播。</p>
 <p>也就是说，我们实际上将错误分为了两种：<strong>checked error</strong> 和 <strong>unchecked error</strong>；前者是类似这里 divide by 0 的错误，我们需要额外的规则来检查；而后者是类型系统本身就能够排除的错误，我们不需要额外的检查就可以实现。</p>
 
@@ -5991,5 +6000,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

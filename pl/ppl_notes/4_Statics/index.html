@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5638,7 +5647,7 @@
 <p>大多数编程语言（无论是编译型还是解释型）从代码到执行之间都可以分为两个阶段：<strong>静态 (static)</strong> 阶段和 <strong>动态 (dynamic)</strong> 阶段。静态阶段由 parsing（满足语法） 和 type checking（满足静态语义） 组成，以保证程序是 <strong>well-formed</strong> 的；动态阶段由 well-formed 程序的执行组成，如果能够正确运行，则程序是 <strong>well-behaved</strong> 的。</p>
 <p>当且仅当 well-formed 的程序在执行时是 well-behaved 的，我们称这种编程语言是 <strong>安全 (safe)</strong> 的。</p>
 <p>书中定义了 <strong>E</strong> 语言，它的抽象和具体语法如下面的 <strong>语法表 (syntax chart)</strong> 所示：</p>
-<p><img alt="" src="../2022-12-04-19-48-52.png" /></p>
+<p><a class="glightbox" href="../2022-12-04-19-48-52.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-04-19-48-52.png" /></a></p>
 <p>上表中规定了一系列 operators 和它们的 arities，例如 <code>let</code> 的 arity 就是 <code>(Exp, Exp.Exp)Exp</code>。</p>
 <p>我们在第 1 节提到，语法 (syntax) 规定了如何将各种 phrases(expr, commands / statements, decl, etc.) 组合成程序。在本节的开头我们也提到，在静态阶段，为了保证一个程序是 well-formed 的，我们需要检查它满足语法和静态语义。这里提到的 <strong>静态语义 (statics)</strong> 由一系列规则组成，这些规则是用来推导 <strong>定型判断 (typing judgments)</strong> 的。所谓 typing judgments，就是用来陈述某个表达式符合某个类型的判断。</p>
 <p>容易理解的是，表达式 <code>plus(x; num[n])</code> 是否合法，取决于 <code>x</code> 的类型是否是 <code>num</code>。也就是说，phrases 对于其所处的上下文是敏感的。因此，<strong>E</strong> 的 statics 由形如 <span class="arithmatex">\(\vec{x}\ |\ \Gamma\vdash e:\tau\)</span> 的泛型假言判断组成。其中，<span class="arithmatex">\(\vec{x} = \text{dom}(\Gamma)\)</span> 是变量的有限集合； <span class="arithmatex">\(\Gamma\)</span> 是定型上下文，它对每个 <span class="arithmatex">\(x\in \vec{x}\)</span> 有一个形如 <span class="arithmatex">\(x:\tau\)</span> 的假设。</p>
@@ -5949,5 +5958,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

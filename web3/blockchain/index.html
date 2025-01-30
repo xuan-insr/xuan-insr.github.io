@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5910,7 +5919,7 @@
 <p>值得注意的是，在生成公私钥以及签名时，我们都需要使用随机数。使用一个好的随机数生成器是非常重要的，否则会导致私钥泄露。</p>
 <h3 id="12-数据结构">1.2 数据结构<a class="headerlink" href="#12-数据结构" title="Permanent link">&para;</a></h3>
 <p>下图是我写下这段话时比特币区块链的 <a href="https://www.blockchain.com/explorer/blocks/btc/873791">最新一个区块</a>，可以看到当前长度是 873,791：</p>
-<p><img alt="" src="../assets/2024-12-08-20-12-37.png" /></p>
+<p><a class="glightbox" href="../assets/2024-12-08-20-12-37.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2024-12-08-20-12-37.png" /></a></p>
 <p>这个区块的部分具体信息是：</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;00000000000000000001e08800208cb45070a50055ea87da5bfb378103bd29c5&#39;</span><span class="p">,</span>
@@ -5952,7 +5961,7 @@
 <p>区块链上的第一个区块是 <a href="https://en.bitcoin.it/wiki/Genesis_block">Genesis Block</a>（创世纪块），它的 <code>prev_block</code> 是全 0。</p>
 <h4 id="merkle-tree">Merkle Tree<a class="headerlink" href="#merkle-tree" title="Permanent link">&para;</a></h4>
 <p>Merkle Tree 是一种树形结构，它的叶子节点是数据块的哈希值，而非叶子节点是它的子节点的哈希值的哈希值。这样，我们可以通过根节点的哈希值 <code>merkle_root</code> 来验证整个树的完整性。下图<sup id="fnref:from_white_paper"><a class="footnote-ref" href="#fn:from_white_paper">1</a></sup>是一个例子:</p>
-<p><img alt="" src="../assets/2024-12-08-21-39-05.png" /><sup id="fnref2:from_white_paper"><a class="footnote-ref" href="#fn:from_white_paper">1</a></sup></p>
+<p><a class="glightbox" href="../assets/2024-12-08-21-39-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2024-12-08-21-39-05.png" /></a><sup id="fnref2:from_white_paper"><a class="footnote-ref" href="#fn:from_white_paper">1</a></sup></p>
 <p>Merkle Tree 使用的哈希算法是 <strong>Double</strong> SHA256<sup id="fnref:double_hash"><a class="footnote-ref" href="#fn:double_hash">2</a></sup>，即 <code>dhash(a) = SHA256(SHA256(a))</code>。</p>
 <details class="info" open="open">
 <summary>特殊情况</summary>
@@ -6276,5 +6285,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -6099,7 +6108,7 @@
 </div>
 <div class="admonition example">
 <p class="admonition-title">Bridge Crossing Example</p>
-<p><center><img alt="" src="../2022-11-19-00-59-35.png" /></center></p>
+<p><center><a class="glightbox" href="../2022-11-19-00-59-35.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-00-59-35.png" /></a></center></p>
 <p>上图所示的情形也展示了一种死锁。</p>
 <p>可以看到，如果桥上的任一辆车愿意倒车回去，就能够解决死锁。我们可以通过分配优先级的方式要求哪辆车倒车。</p>
 <p>优先级可能导致 starvation。</p>
@@ -6110,19 +6119,19 @@
 <p>在图形上，我们用圆表示进程，用矩形表示资源类型。由于资源类型可能有多个实例，我们在矩形内用数量等同于实例数量的圆点表示各个实例。每条申请边由一个圆指向一个矩形，而每条分配边由矩形中的一个圆点指向一个矩形。</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<p><img alt="" src="../2022-11-19-01-19-51.png" /></p>
+<p><a class="glightbox" href="../2022-11-19-01-19-51.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-01-19-51.png" /></a></p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p>本节第一个例子的情况，可以用如下的资源分配图刻画：</p>
-<p><center><img alt="" src="../2022-11-19-01-16-49.png" width="400" /></center></p>
+<p><center><a class="glightbox" href="../2022-11-19-01-16-49.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-01-16-49.png" width="400" /></a></center></p>
 </div>
 <p>当进程申请一个资源时，应当添加一条申请边；当该申请可以得到满足时，这条申请边应当 <strong>立即</strong> 转换为分配边；当进程不再需要某个资源时，就删除对应分配边。</p>
 <p>根据资源分配图的定义我们可以知道，如果资源分配图当前没有环，那么系统当前 <strong>一定</strong> 没有死锁；如果分配图有环，那么系统当前 <strong>可能</strong> 存在死锁。但是，如果分配图有环，且每个资源类型只有 1 个实例，那么 <strong>必定</strong> 存在死锁。</p>
 <details class="example">
 <summary>分配图有环不一定存在死锁</summary>
-<p><center><img alt="" src="../2022-11-19-01-24-14.png" width="400" /></center></p>
-<p><center><img alt="" src="../2022-11-19-01-24-27.png" width="400" /></center></p>
+<p><center><a class="glightbox" href="../2022-11-19-01-24-14.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-01-24-14.png" width="400" /></a></center></p>
+<p><center><a class="glightbox" href="../2022-11-19-01-24-27.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-01-24-27.png" width="400" /></a></center></p>
 </details>
 <h2 id="83-死锁的必要条件">8.3 死锁的必要条件<a class="headerlink" href="#83-死锁的必要条件" title="Permanent link">&para;</a></h2>
 <p>事实上，当下面四个条件 <strong>同时</strong> 成立时，系统才会出现死锁：</p>
@@ -6136,7 +6145,7 @@
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p>下图中描述了一个死锁状态：</p>
-<p><center><img alt="" src="../2022-11-19-01-35-51.png" width="400" /></center></p>
+<p><center><a class="glightbox" href="../2022-11-19-01-35-51.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-01-35-51.png" width="400" /></a></center></p>
 <p>我们验证它符合上述四个条件：</p>
 <ul>
 <li>mutual exclusive：每个路口（资源） 1 ~ 4 同时只能有一辆车等待或通行</li>
@@ -6186,8 +6195,8 @@
 <h4 id="8421-资源分配图算法">8.4.2.1 资源分配图算法<a class="headerlink" href="#8421-资源分配图算法" title="Permanent link">&para;</a></h4>
 <p>这种算法适用于每种资源类型只有 1 个实例的情况。</p>
 <p>我们在资源分配图的基础上增加一种边，叫 claim edge，表示某个进程未来 <strong>可能</strong> 会需求某种资源，用虚线表示。</p>
-<p><center><img alt="" src="../2022-11-19-18-14-09.png" width="400" /></center></p>
-<p><center><img alt="" src="../2022-11-19-18-13-46.png" width="400" /></center></p>
+<p><center><a class="glightbox" href="../2022-11-19-18-14-09.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-18-14-09.png" width="400" /></a></center></p>
+<p><center><a class="glightbox" href="../2022-11-19-18-13-46.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-18-13-46.png" width="400" /></a></center></p>
 <p>当这个需求真的出现的时候，claim edge 转为 request edge；当需求被满足的时候，request edge 转为 assignment edge；当该进程释放该资源时，assignment edge 转为 claim edge。</p>
 <p>当一个需求来了的时候，如果 request edge 转为 assignment edge 不会导致图中有一个 cycle，则该要求可以被满足；否则该请求应当等待。</p>
 <h4 id="8422-安全状态--safe-state">8.4.2.2 安全状态 | Safe State<a class="headerlink" href="#8422-安全状态--safe-state" title="Permanent link">&para;</a></h4>
@@ -6198,10 +6207,10 @@
 <summary>Proof</summary>
 <p>用归纳法。如果 <span class="arithmatex">\(P_i\)</span> 的需求不能立刻满足，它只需要等到 <span class="arithmatex">\(\{P_j\ |\ j &lt; i\}\)</span> 全部完成，<span class="arithmatex">\(P_i\)</span> 就能获取所需资源。</p>
 </details>
-<p><center><img alt="" src="../2022-11-19-17-53-11.png" width="300" /></center></p>
+<p><center><a class="glightbox" href="../2022-11-19-17-53-11.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-17-53-11.png" width="300" /></a></center></p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<p><center><img alt="" src="../2022-11-19-17-54-30.png" width="400" /></center></p>
+<p><center><a class="glightbox" href="../2022-11-19-17-54-30.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-17-54-30.png" width="400" /></a></center></p>
 <p><span class="arithmatex">\(&lt;P1, P0, P2&gt;\)</span> 是一个 safe sequence。因此系统处在安全状态。</p>
 </div>
 <p>根据这一概念，我们可以这样定义死锁避免的算法：起初，系统处于安全状态。当有进程申请一个可用资源时，系统应确定，如果立刻进行这一分配后系统仍处于安全状态则可以分配，否则应当让进程等待。</p>
@@ -6212,7 +6221,7 @@
 <div class="admonition question">
 <p class="admonition-title">Question</p>
 <p>8.28 Consider the following snapshot of a system:</p>
-<p><center><img alt="" src="../2022-11-19-18-00-32.png" width="400" /></center></p>
+<p><center><a class="glightbox" href="../2022-11-19-18-00-32.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-18-00-32.png" width="400" /></a></center></p>
 <p>Answer the following questions using the banker’s algorithm: </p>
 <ol>
 <li>Illustrate that the system is in a safe state by demonstrating an order in which the threads may complete. </li>
@@ -6224,18 +6233,18 @@
 <summary>答案</summary>
 <ol>
 <li>如图：<br />
-<center><img alt="" src="../2022-11-19-18-02-55.png" width="400" /></center><br />
+<center><a class="glightbox" href="../2022-11-19-18-02-55.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-18-02-55.png" width="400" /></a></center><br />
 我们可以先让 T2 运行（也可以是 T3），此后变成：<br />
-<center><img alt="" src="../2022-11-19-18-03-07.png" width="400" /></center><br />
+<center><a class="glightbox" href="../2022-11-19-18-03-07.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-18-03-07.png" width="400" /></a></center><br />
 现在可以让除了 T4 以外的每个 thread 运行，后续类似。因此一个安全序列是 T2-&gt;T0-&gt;T1-&gt;T3-&gt;T4。因此当前系统是安全的。</li>
 <li>如果满足这一要求，之后的状态为：<br />
-<center><img alt="" src="../image-20201129221759272.png" width="400" /></center><br />
+<center><a class="glightbox" href="../image-20201129221759272.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image-20201129221759272.png" width="400" /></a></center><br />
 可见，此时任一线程都无法执行。因此此要求不能立即满足。  </li>
 <li>如果满足这一要求，之后的状态为：<br />
-<center><img alt="" src="../image-20201129221920263.png" width="400" /></center><br />
+<center><a class="glightbox" href="../image-20201129221920263.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image-20201129221920263.png" width="400" /></a></center><br />
 这不影响我们如 1) 那样完成全部线程的运行，即系统是安全的。因此此要求可以立即满足。  </li>
 <li>如果满足这一要求，之后的状态为：<br />
-<center><img alt="" src="../image-20201129222127198.png" width="400" /></center><br />
+<center><a class="glightbox" href="../image-20201129222127198.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../image-20201129222127198.png" width="400" /></a></center><br />
 我们可以按 T3-&gt;T2-&gt;T4-&gt;T1-&gt;T0 等顺序完成全部线程的运行，即系统是安全的。因此此要求可以立即满足。</li>
 </ol>
 </details>
@@ -6243,7 +6252,7 @@
 <h3 id="843-死锁检测">8.4.3 死锁检测<a class="headerlink" href="#843-死锁检测" title="Permanent link">&para;</a></h3>
 <h4 id="8431-single-instance-resources">8.4.3.1 Single Instance Resources<a class="headerlink" href="#8431-single-instance-resources" title="Permanent link">&para;</a></h4>
 <p>可以通过资源分配图的变体 <strong>wait-for graph</strong> 来解决：</p>
-<p><center><img alt="" src="../2022-11-19-13-54-31.png" width="500" /></center></p>
+<p><center><a class="glightbox" href="../2022-11-19-13-54-31.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-13-54-31.png" width="500" /></a></center></p>
 <p>在这个图里找环，用拓扑排序的话时间复杂度是 <span class="arithmatex">\(O(V + E)\)</span> 的，这最差情况下是 <span class="arithmatex">\(O(n^2)\)</span> 的。</p>
 <h4 id="8432-multi-instance-resources">8.4.3.2 Multi-Instance Resources<a class="headerlink" href="#8432-multi-instance-resources" title="Permanent link">&para;</a></h4>
 <p>类似银行家算法。如果找不到任何安全序列，则说明系统处于死锁状态。</p>
@@ -6557,5 +6566,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5711,7 +5720,7 @@
 <p>可以通过 <code>final</code> 声明类不能被继承，或者成员函数不能被 override</p>
 <p>派生类可以重新定义 ("override") 非 virtual 成员函数，但通常不要这么做。做这样的事情的场景一般是，子类有更多的信息，从而能以更高的效率完成 <strong>相同</strong> 的工作；但程序员应当保证子类和基类的这一函数的行为是相同的。<a href="https://isocpp.org/wiki/faq/strange-inheritance#redefining-nonvirtuals">Ref</a></p>
 <p>通常的编译器实现会将 vtable 放在定义了第一个非 inline virtual 函数被定义的编译单元</p>
-<p><img alt="" src="../assets/2023-06-01-14-51-02.png" /></p>
+<p><a class="glightbox" href="../assets/2023-06-01-14-51-02.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-06-01-14-51-02.png" /></a></p>
 <p>受控的是访问权而不是可见性：</p>
 <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">X</span><span class="w"> </span><span class="p">{</span>
@@ -6023,5 +6032,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

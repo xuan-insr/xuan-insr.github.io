@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5823,7 +5832,7 @@
 <li>数据和指令放在同一个存储器</li>
 </ul>
 <p><center>
-    <img alt="" src="../2023-06-23_12-05-34.png" />
+    <a class="glightbox" href="../2023-06-23_12-05-34.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-06-23_12-05-34.png" /></a>
 </center></p>
 <pre class="mermaid"><code>graph LR;
 A["Computer\nSystem"]
@@ -6096,7 +6105,7 @@ MIPS
 \]</div>
 <h3 id="内存">内存<a class="headerlink" href="#内存" title="Permanent link">&para;</a></h3>
 <p><center>
-    <img alt="" src="../2023-06-23_17-12-24.png" />
+    <a class="glightbox" href="../2023-06-23_17-12-24.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-06-23_17-12-24.png" /></a>
 </center></p>
 
 
@@ -6381,5 +6390,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

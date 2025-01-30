@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5708,7 +5717,7 @@
 <p>本文追求有逻辑地引入和学习各部分知识，因此本文的章节安排、顺序和逻辑相较于课本或者课程可能存在不同。</p>
 </div>
 <p>课程使用的课本是 <em>Operating System Concepts (10<sup>th</sup> edition)</em>：</p>
-<p><center><img alt="" src="../2022-12-08-18-19-54.png" width="300" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-08-18-19-54.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-18-19-54.png" width="300" /></a></center></p>
 <p>同时参考了 2020-2021 学年秋冬学期浙江大学申文博老师操作系统课程的 PPT 和讲解。</p>
 <p>如无特殊说明，本文（指「操作系统」导航下所有文章，后同）中的图片等资料均来源于课本和申文博老师的 PPT。</p>
 
@@ -5994,5 +6003,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

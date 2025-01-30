@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5802,7 +5811,7 @@
 <h3 id="411-什么是暂存区-stage--index">4.1.1 什么是暂存区 (stage / index)<a class="headerlink" href="#411-什么是暂存区-stage--index" title="Permanent link">&para;</a></h3>
 <p>大家已经熟悉：在本地仓库中，我们会对文件进行一些修改。每当我们完成了一个阶段目标，我们会通过 <code>git add files</code> 的方式将我们的修改添加到暂存区 (stage, a.k.a. index) 中，然后通过 <code>git commit</code> 的方式将暂存区中的内容提交到 git repo 中。也就是说，在 git 的设计中，总共有 3 个类似的东西：本地工作目录、暂存区和 git repo，它们以如下方式交互：</p>
 <figure>
-<p><img alt="" src="../assets/2023-12-09-20-40-32.png" />
+<p><a class="glightbox" href="../assets/2023-12-09-20-40-32.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-12-09-20-40-32.png" /></a>
   </p>
 <figcaption>
 <p>git 的基本用法 | <a href="https://marklodato.github.io/visual-git-guide/index-zh-cn.html">src</a></p>
@@ -5811,7 +5820,7 @@
 <details class="tip" open="open">
 <summary>文件的状态变化</summary>
 <p>在 git 和用户的视角里，每一个文件的状态变化如下图所示：</p>
-<p><center><img alt="" src="../assets/2023-12-09-21-23-04.png" /></center></p>
+<p><center><a class="glightbox" href="../assets/2023-12-09-21-23-04.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-12-09-21-23-04.png" /></a></center></p>
 <p>下面对这张图做详细的解释。</p>
 <hr />
 <p>我们使用下面这样的形式来刻画 git 仓库 (repo)、暂存区 (index / stage) 和本地工作目录 (work-tree) 某个时刻的状态快照：</p>
@@ -5842,7 +5851,7 @@ main.py(1)     main.py(1)     main.py(1)
 main.py(1)     main.py(1)     main.py(1)
 </code></pre></div>
 <p>但事实上，此时 README.md 是「已修改」的的同时，它也是「已暂存」的；准确地来说，README.md(1) 是「已暂存」的，而 README.md(2) 是「已修改」的：</p>
-<p><img alt="" src="../assets/2023-12-09-21-56-13.png" /></p>
+<p><a class="glightbox" href="../assets/2023-12-09-21-56-13.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-12-09-21-56-13.png" /></a></p>
 <details class="tip" open="open">
 <summary><code>git status</code></summary>
 <p><code>git status</code> 会告诉我们 3 种「变动」：</p>
@@ -5881,7 +5890,7 @@ main.py(1)     main.py(1)     main.py(1)
 README.md(1)   README.md(1)   README.md(2)
 main.py(1)     main.py(1)     main.py(1)
 </code></pre></div>
-<p><img alt="" src="../assets/2023-12-09-21-57-26.png" /></p>
+<p><a class="glightbox" href="../assets/2023-12-09-21-57-26.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-12-09-21-57-26.png" /></a></p>
 </details>
 <hr />
 <p>我们还可以通过 <code>git rm</code> 将文件从暂存区删除；</p>
@@ -5894,7 +5903,7 @@ main.py(1)     main.py(1)     main.py(1)
 <blockquote>
 <p>注：<code>git rm</code> 默认会从 index 和 work-tree 中删除文件；如果只想从 index 中删除，可以使用 <code>git rm --cached</code>：</p>
 </blockquote>
-<p><img alt="" src="../assets/2023-12-09-22-08-43.png" /></p>
+<p><a class="glightbox" href="../assets/2023-12-09-22-08-43.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-12-09-22-08-43.png" /></a></p>
 <div class="admonition quote">
 <p class="admonition-title">以上的内容的例子启发自 <a href="https://stackoverflow.com/a/55878249/14430730">这个回答</a>。</p>
 </div>
@@ -6019,7 +6028,7 @@ magic word    version  entry cnt  ctime sec ctime nsec  mtime sec mtime nsec    
 <details class="tip" open="open">
 <summary><code>stat</code> 和 ctime, mtime &amp; atime</summary>
 <p><code>stat</code> 可以查看文件的一些 metadata，包括上述的 ctime, mtime, dev, ino, mode, uid, gid, size，以及一些其他信息：</p>
-<p><img alt="" src="../assets/2024-01-06-21-35-04.png" /></p>
+<p><a class="glightbox" href="../assets/2024-01-06-21-35-04.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2024-01-06-21-35-04.png" /></a></p>
 <p>这里我们能看到 4 个时间，在一些版本里可能是 3 个时间：</p>
 <ul>
 <li>Access (atime): 文件最后一次被访问的时间</li>
@@ -6058,13 +6067,13 @@ magic word    version  entry cnt  ctime sec ctime nsec  mtime sec mtime nsec    
 <p><code>--refresh</code> does not calculate a new sha1 file or bring the index up to date for mode/content changes. But what it <em>does</em> do is to "re-match" the stat information of a file with the index, so that you can refresh the index for a file that hasn't been changed but where the stat entry is out of date.</p>
 </blockquote>
 <p>作为一个实例，下面的文件 <code>a</code> 在 ctime 和 mtime 被更改，而内容没有更改时，使用 <code>git update-index --refresh</code> 后 index 中的对应字段发生了变化：</p>
-<p><img alt="" src="../assets/2024-01-06-22-30-14.png" /></p>
+<p><a class="glightbox" href="../assets/2024-01-06-22-30-14.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2024-01-06-22-30-14.png" /></a></p>
 <details class="tip" open="open">
 <summary><code>touch</code></summary>
 <p><code>touch</code> 命令可以更改文件的 atime 和 mtime。例如，<code>touch a</code> 会将 <code>a</code> 的 atime 和 mtime 更新为当前时间。而由于 atime 和 mtime 是 metadata 的一部分，因此 ctime 也会被修改。</p>
 </details>
 <p>但是，如果 <code>a</code> 的内容发生了变化，则 <code>git update-index --refresh</code> 不会更改 ctime 和 mtime，而是报告这个文件 needs update：</p>
-<p><img alt="" src="../assets/2024-01-06-22-30-35.png" /></p>
+<p><a class="glightbox" href="../assets/2024-01-06-22-30-35.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2024-01-06-22-30-35.png" /></a></p>
 <p>Linux 并没有提供直接修改 ctime 的指令。如果蓄意想要修改的话，只能通过修改系统时间之类比较复杂的方法。因此，index 发现 ctime 和 mtime 都没有发生变化时，认为文件不会发生变化是合理的。</p>
 </div>
 <h2 id="42-效果">4.2 效果<a class="headerlink" href="#42-效果" title="Permanent link">&para;</a></h2>
@@ -6360,5 +6369,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

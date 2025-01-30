@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -6079,7 +6088,7 @@
 <span class="n">Matrix</span><span class="w"> </span><span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">Matrix</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* */</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>当 <code>x * y</code> 的操作数中有类实例时，则重载解析会尝试将它解释为 <code>x.operator*(y)</code> 和 <code>operator*(x, y)</code><sup><a href="https://timsong-cpp.github.io/cppwp/n4868/over.binary.general#1">over.binary.general#1</a></sup>，即 <code>x</code> 对应类中的成员 <code>operator*</code> 和全局的 <code>operator*</code> 都会被纳入候选函数集，然后再根据实际的参数列表完成重载解析：</p>
-<p><center><img alt="" src="2023-03-15-18-05-58.png" /></center></p>
+<p><center><a class="glightbox" href="2023-03-15-18-05-58.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="2023-03-15-18-05-58.png" /></a></center></p>
 <p>这里出现了一个问题！上面的函数 <code>Matrix operator*(int x, Matrix mat)</code>，我们可能会给出这样的实现：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -6097,7 +6106,7 @@
 </code></pre></div></td></tr></table></div>
 <h3 id="友元">友元<a class="headerlink" href="#友元" title="Permanent link">&para;</a></h3>
 <p>但是，这个函数并非成员函数，因此访问 private 成员 <code>data</code> 时会出现错误：</p>
-<p><center><img alt="" src="2023-03-15-18-10-24.png" /></center></p>
+<p><center><a class="glightbox" href="2023-03-15-18-10-24.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="2023-03-15-18-10-24.png" /></a></center></p>
 <p>如何解决这个问题呢？事实上，C++ 允许一个类的定义中给一个外部的函数<sup id="fnref:friend"><a class="footnote-ref" href="#fn:friend">2</a></sup>「授予」访问其 private 成员的权限，方式是将对应的函数在该类的定义中将对应的函数声明为一个 <strong>友元 (friend)</strong>：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -6889,7 +6898,7 @@ int vowelStrings(Container&amp; w, int l, int r) { /* ... */ }
 <p>这个 <code>tot</code> 虽然从全局移到了类内，但是它仍然具有 static 的生命周期。它的生命周期仍然从它的定义 <code>int User::tot = 0;</code> 开始，到程序结束为止。由于它是类的成员，因此访问它的时候需要用 <code>User::tot</code>。</p>
 <p>如我们刚才所说，<code>static</code> 成员不被绑定到类的实例中，也就是上面 <code>User</code> 类的每个实例里仍然只有 <code>id</code> 而没有 <code>tot</code>。不过，语法仍然允许用一个类的实例访问 <code>static</code> 成员，例如 <code>user.tot</code><sup id="fnref:static_call"><a class="footnote-ref" href="#fn:static_call">16</a></sup>。静态成员也受 access specifier 的影响。</p>
 <p>需要提示的是，之前我们讨论的 default member initializer 和 member initializer list 是针对 non-static 成员变量的，它们对于 static 成员变量不适用：</p>
-<p><center><img alt="" src="../2023-03-26-15-15-19.png" /></center></p>
+<p><center><a class="glightbox" href="../2023-03-26-15-15-19.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-03-26-15-15-19.png" /></a></center></p>
 <p>也就是说，在类中的 static 成员变量 <strong>只是声明</strong> <sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.static.data#3">class.static.data#3</a></sup>。也就是说，我们必须在类外给出其定义，才能让编译器知道在哪里构造这些成员：</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
@@ -6929,7 +6938,7 @@ int vowelStrings(Container&amp; w, int l, int r) { /* ... */ }
 <span class="p">}</span>
 </code></pre></div>
 <p>我们可以使用 <code>User::getTot()</code> 来调用这个函数，当然也允许通过一个具体的对象调用这个函数；但是调用时不会有 <code>this</code> 指针。可以看到，下图中调用 non-static 成员函数 <code>get()</code> 的时候传入了 <code>ff</code> 即调用者地址，而调用 <code>getTot()</code> 时并没有：</p>
-<p><img alt="" src="../2023-03-26-16-08-41.png" /></p>
+<p><a class="glightbox" href="../2023-03-26-16-08-41.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-03-26-16-08-41.png" /></a></p>
 <p><code>static</code> 成员函数不能设为 <code>const</code>。原因很简单：<code>static</code> 说明函数没有 <code>this</code>，而 <code>const</code> 说明函数的 <code>this</code> 是 <code>const X *</code>，这两个说明是互相矛盾的。</p>
 <h3 id="-隐式类型转换--implicit-conversion">▲ 隐式类型转换 | Implicit Conversion<a class="headerlink" href="#-隐式类型转换--implicit-conversion" title="Permanent link">&para;</a></h3>
 <h4 id="标准转换--standard-conversion">标准转换 | Standard Conversion<a class="headerlink" href="#标准转换--standard-conversion" title="Permanent link">&para;</a></h4>
@@ -7551,5 +7560,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

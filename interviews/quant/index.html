@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -6287,8 +6296,8 @@
 <p>HackerRank 上的一次笔试。</p>
 <details class="example" open="open">
 <summary>T1</summary>
-<p><center><img alt="" src="../2023-01-13-00-10-43.png" width="600" /></center></p>
-<p><center><img alt="" src="../2023-01-13-00-10-48.png" width="600" /></center></p>
+<p><center><a class="glightbox" href="../2023-01-13-00-10-43.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-01-13-00-10-43.png" width="600" /></a></center></p>
+<p><center><a class="glightbox" href="../2023-01-13-00-10-48.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-01-13-00-10-48.png" width="600" /></a></center></p>
 <p>题目给了部分代码，实现函数（后面几个题也是这样的，就直接写函数要求了）：</p>
 <details class="info">
 <summary>题目给出的代码</summary>
@@ -6387,10 +6396,10 @@
 </details>
 <details class="example" open="open">
 <summary>T2</summary>
-<p><center><img alt="" src="../2023-01-13-00-14-39.png" width="600" /></center>
-<center><img alt="" src="../2023-01-13-00-14-44.png" width="600" /></center>
-<center><img alt="" src="../2023-01-13-00-14-53.png" width="200" /></center>
-<center><img alt="" src="../2023-01-13-00-14-57.png" width="600" /></center></p>
+<p><center><a class="glightbox" href="../2023-01-13-00-14-39.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-01-13-00-14-39.png" width="600" /></a></center>
+<center><a class="glightbox" href="../2023-01-13-00-14-44.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-01-13-00-14-44.png" width="600" /></a></center>
+<center><a class="glightbox" href="../2023-01-13-00-14-53.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-01-13-00-14-53.png" width="200" /></a></center>
+<center><a class="glightbox" href="../2023-01-13-00-14-57.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-01-13-00-14-57.png" width="600" /></a></center></p>
 <p>要求实现函数 <code>int findMaxSubsegmentsCount(vector&lt;int&gt; arr)</code></p>
 <details class="success">
 <summary>我的答案</summary>
@@ -6881,5 +6890,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

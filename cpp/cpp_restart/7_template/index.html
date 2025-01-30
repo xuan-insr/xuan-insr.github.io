@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -6072,7 +6081,7 @@ function toggleVisibilityFoot() {
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;linkedlist.h&quot;</span>
 <span class="cp">#undef elem</span>
 </code></pre></div></td></tr></table></div>
-<p><center><img alt="" src="../2023-02-06-21-40-36.png" width="500" /></center></p>
+<p><center><a class="glightbox" href="../2023-02-06-21-40-36.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-06-21-40-36.png" width="500" /></a></center></p>
 <p>我们当时的解决方案是，用一个 <code>Shape</code> 类作为它们的基类，然后 <code>using elem = Shape;</code> 即可。</p>
 <p>不过，假如我们确实要维护两个不同类型的链表怎么办呢？比如需要分别维护一个 <code>int</code> 类型和 <code>double</code> 类型的链表。</p>
 <p>这里，我们的需求实际上是：让我们的代码独立于具体的类型 (type-independently) 工作；我们写出一个适用于所有（可能需要满足一定条件的）类型的数据结构（类）或者算法（函数）；在真正需要使用时，生成一个适用于所需要类型的实例。这种编程范式称为 <strong>泛型编程 (generic programming)</strong>。也就是说，在泛型的代码中，我们编写的并不是一个具体的类 / 函数，而是函数 / 类的一个族 (family)；或者说，我们定义了一种生成类 / 函数的模式。</p>
@@ -6187,7 +6196,7 @@ function toggleVisibilityFoot() {
 <details class="info">
 <summary>模板定义的形式</summary>
 <p>具体来说，模板定义有如下形式<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/temp.pre#1">temp.pre#1</a></sup>：</p>
-<p><center><img alt="" src="../2023-03-30-03-22-19.png" width="500" /></center></p>
+<p><center><a class="glightbox" href="../2023-03-30-03-22-19.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-03-30-03-22-19.png" width="500" /></a></center></p>
 <p>在一个 <code>template-declaration</code> 中有一个 <code>template-head</code> 和一个 <code>declaration</code>（我们暂时忽略 <code>concept-definition</code>）。<code>template-head</code> 即为 <code>template&lt;参数列表&gt;</code>，我们暂时忽略 <code>requires-clause</code>。而 <code>declaration</code> 可以是函数、类等的定义。</p>
 </details>
 <h3 id="721-隐式实例化与模板参数推导">7.2.1 隐式实例化与模板参数推导<a class="headerlink" href="#721-隐式实例化与模板参数推导" title="Permanent link">&para;</a></h3>
@@ -6197,7 +6206,7 @@ function toggleVisibilityFoot() {
 <span class="n">Container</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cd</span><span class="p">;</span>
 </code></pre></div>
 <p>在上面的例子中，<code>Container</code> 是一个模板，而 <code>Container&lt;int&gt;</code> 是将 <code>int</code> 作为模板参数 <code>T</code> 实例化出的一个类（我们将形如 <code>Container&lt;int&gt;</code> 这样的模板特化的名字称为 <code>template-id</code>）。这时，编译器会帮我们按照 <code>Container</code> 中指出的规则生成一个特化：</p>
-<p><center><img alt="" src="../2023-03-30-22-33-57.png" /></center></p>
+<p><center><a class="glightbox" href="../2023-03-30-22-33-57.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-03-30-22-33-57.png" /></a></center></p>
 <p>回顾 7.1 节中 <code>container.h</code> 的例子，我们容易理解：其实模板和那里我们实现的方式差不多，只不过这些内容变得更加优雅，而且由编译器而非预处理器完成了。</p>
 <p>也就是说，当我们需要使用一个完整类型时，隐式的实例化会发生，如上面的情况。不过，在构造指向某个类型的指针时，隐式实例化并不会发生，因为我们并不需要这个类型的完整信息：</p>
 <div class="highlight"><pre><span></span><code><span class="n">Container</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">p</span><span class="p">;</span><span class="w">     </span><span class="c1">// nothing is instantiated here</span>
@@ -6238,7 +6247,7 @@ function toggleVisibilityFoot() {
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>在第 6 行，我们使用了 <code>abs&lt;int&gt;</code>。<code>abs</code> 是一个模板，而 <code>abs&lt;int&gt;</code> 是把 <code>int</code> 作为模板参数而实例化出的一个函数。在此时，编译器会帮我们生成一个特化 <code>abs&lt;int&gt;</code>：</p>
-<p><center><img alt="" src="../2023-03-30-04-12-09.png" /></center></p>
+<p><center><a class="glightbox" href="../2023-03-30-04-12-09.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-03-30-04-12-09.png" /></a></center></p>
 <p>可以在 <a href="https://cppinsights.io/s/c7515c59">C++ Insights</a> 里面玩一下！</p>
 <p>而在第 8 行，我们写了 <code>abs&lt;&gt;(-1.0)</code> 而不是 <code>abs&lt;double&gt;(-1.0)</code>。这是合法的：虽然模板的实例化必须 <strong>知道</strong> 每个模板参数，但是这并不意味着每个参数都需要由调用者 <strong>指定</strong>。如果可能，编译器会从函数参数中推断出没有明确给出的模板参数。这一机制叫做 <strong>模板参数推导 (template argument deduction)</strong>。</p>
 <p>在这里，我们并没有给出第一个模板参数 <code>T</code> 的实参，但是编译器知道参数 <code>-1.0</code> 是一个 <code>double</code> 类型的字面量，而 <code>abs</code> 接受一个 <code>T</code> 为参数，因此编译器推导出 <code>T</code> 是 <code>double</code>，因此实例化并调用了 <code>abs&lt;double&gt;</code>。</p>
@@ -6759,13 +6768,13 @@ function toggleVisibilityFoot() {
 <p><a href="https://en.cppreference.com/w/cpp/container">Containers library</a> 中提供了若干种 container 和若干种 adaptors。</p>
 <p>容器扮演的作用是提供一些数据结构，它们的大概类型如下面三张图所示（图片来源见 7.3 节开始的 note）：</p>
 <p><strong>Sequence containers</strong> 包含单向延伸的 <code>vector</code>、双向延伸的双端队列 <code>deque</code>、大小固定的数组 <code>array</code>、双向链表 <code>list</code> 和单向链表 <code>forward_list</code>；</p>
-<p><center><img alt="" src="../2023-04-07-01-24-04.png" width="400" /></center></p>
+<p><center><a class="glightbox" href="../2023-04-07-01-24-04.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-04-07-01-24-04.png" width="400" /></a></center></p>
 <p><strong>Associative containers</strong> 中，<code>set</code> 是唯一、有序元素的集合；<code>map</code> 是键值对的集合（即字典），键唯一、有序；还有 <code>multiset</code> 和 <code>multimap</code> 分别是它们的可重版本，即键不唯一；它们通常用红黑树实现：</p>
-<p><center><img alt="" src="../2023-04-07-01-26-56.png" /></center></p>
+<p><center><a class="glightbox" href="../2023-04-07-01-26-56.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-04-07-01-26-56.png" /></a></center></p>
 <p><strong>Unordered associative containers</strong> 是 associative containers 的无序版本；用哈希实现：</p>
-<p><center><img alt="" src="../2023-04-07-01-30-35.png" /></center></p>
+<p><center><a class="glightbox" href="../2023-04-07-01-30-35.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-04-07-01-30-35.png" /></a></center></p>
 <p>另外，<strong>适配器 (adapters)</strong> 利用容器（上述容器，或者用户自定义的容器）来提供一些接口，例如栈 <code>stack</code>、队列 <code>queue</code> 和优先队列 <code>priority_queue</code> 等：</p>
-<p><center><img alt="" src="../2023-04-07-01-32-52.png" width="400" /></center></p>
+<p><center><a class="glightbox" href="../2023-04-07-01-32-52.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-04-07-01-32-52.png" width="400" /></a></center></p>
 <h4 id="7322-算法">7.3.2.2 算法<a class="headerlink" href="#7322-算法" title="Permanent link">&para;</a></h4>
 <p><a href="https://en.cppreference.com/w/cpp/algorithm">Algorithms library</a> 提供了更多的算法，其中常用的部分我们在 <a href="../../cpp_for_contests">快速入门 C++ 写题</a> 有所介绍。大家也可以在阅读完第 8 节后，自行阅读网页中的内容，查阅这些算法。下面我们给出一些简单好用的例子</p>
 <p><strong>Non-modifying sequence operations</strong></p>
@@ -6845,7 +6854,7 @@ function toggleVisibilityFoot() {
 </ul>
 </li>
 </ul>
-<p><img alt="" src="../2023-04-07-17-08-09.png" /></p>
+<p><a class="glightbox" href="../2023-04-07-17-08-09.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-04-07-17-08-09.png" /></a></p>
 <p><strong>Other operations on sorted ranges</strong></p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
@@ -7304,5 +7313,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

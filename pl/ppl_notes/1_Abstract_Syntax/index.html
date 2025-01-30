@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5719,7 +5728,7 @@
 <details class="note" open="open">
 <summary>Note</summary>
 <p>需要注意的是，这里的 variable 和 operator 不能简单地理解为编程语言中的相关概念。例如，下面这棵语法树里，诸如「函数定义」(<code>FUNCTION_DECL</code>) 之类的中间节点也是 operator；而「整型」(<code>INTEGER</code>) 之类的叶子结点也是 variable。
-<img alt="" src="../2022-11-15-23-52-03.png" /></p>
+<a class="glightbox" href="../2022-11-15-23-52-03.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-15-23-52-03.png" /></a></p>
 <p>另外，严格地说，上面这张图并不是一棵 AST (这张图来自我编译原理大作业对一个例程生成的语法树)。首先，图中仍然保留了一些形如 <code>STMT_LIST</code> 的节点，这些节点仍属于 concrete syntax 的范畴；另外，图中的 <code>ID</code> 之类的 variable 注明了其名字，例如 <code>ANS</code>, <code>GCD</code> 等，所以它有我们在 1.2 会讲到的 ABT 的性质。</p>
 </details>
 <p>AST 按语法的不同形式分为不同的 <strong>类别 (sort)</strong>，记作 <span class="arithmatex">\(s\)</span>。类别的集合记作 <span class="arithmatex">\(S\)</span>。  </p>
@@ -5800,7 +5809,7 @@
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p>前例中 <code>let x be num[7] in plus(x; x)</code> 表示为 <code>let(num[7]; x.plus(x; x))</code>；<code>let x be times(x; x) in plus(x; x)</code> 可以表示为 <code>let(times(x; x); x.plus(x; x))</code>。后者表示的 ABT 形如：
-<center><img alt="" src="../2022-11-16-22-22-42.png" /></center></p>
+<center><a class="glightbox" href="../2022-11-16-22-22-42.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-16-22-22-42.png" /></a></center></p>
 </div>
 <p>绑定使得 operator 的 arity 得到了泛化。元数形如 <span class="arithmatex">\((s_1, \dots, s_n)s\)</span>，而 <strong>泛化元数 (generalized arity)</strong> 形如 <span class="arithmatex">\((v_1, \dots, v_n)s\)</span>；其中每一个 <span class="arithmatex">\(v\)</span> 称为一个 <strong>价 (valence)</strong>，具有 <span class="arithmatex">\(s_1, \dots, s_k.s\)</span> 即 <span class="arithmatex">\(\vec{s}.s\)</span> 的形式，指定了参数的类别以及所绑定的变量的数量和类别。</p>
 <p>我们称变量序列 <span class="arithmatex">\(\vec{x}\)</span> 属于 <span class="arithmatex">\(\vec{s}\)</span>，如果它们有相同的长度 <span class="arithmatex">\(k\)</span>，且对每一个 <span class="arithmatex">\(1 \le i \le k\)</span> 都有 <span class="arithmatex">\(x_i\)</span> 的类别是 <span class="arithmatex">\(s_i\)</span>。</p>
@@ -6108,5 +6117,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

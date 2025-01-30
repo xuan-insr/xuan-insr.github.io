@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5696,16 +5705,16 @@
 <p><strong>空积 (nullary product)</strong> (a.k.a <strong>unit</strong>) 类型仅由唯一的不含任何值的空 tuple 构成。</p>
 <p>积类型在编程语言中有重要作用。各种语言中的 struct, record, pair, tuple 等类型都是积类型。可以接受多个参数或者返回多个结果的函数也是积类型的一种例子。</p>
 <p>二元积的抽象语法如下：</p>
-<p><center><img alt="" src="../2022-12-20-16-21-44.png" width="600" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-20-16-21-44.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-20-16-21-44.png" width="600" /></a></center></p>
 <p>有限积的抽象语法如下：</p>
-<p><center><img alt="" src="../2022-12-20-16-25-43.png" width="600" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-20-16-25-43.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-20-16-25-43.png" width="600" /></a></center></p>
 <p>有了 tuple，我们就可以用迭代式 <span class="arithmatex">\(\text{iter}\{\text{z}\hookrightarrow e_0 | \text{s}(x) \hookrightarrow e_1\}(e)\)</span> 代替递归式了：</p>
-<p><center><img alt="" src="../2022-12-20-20-03-43.png" width="700" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-20-20-03-43.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-20-20-03-43.png" width="700" /></a></center></p>
 <h2 id="103-primitive-mutual-recursion--原始互递归">10.3 Primitive Mutual Recursion | 原始互递归<a class="headerlink" href="#103-primitive-mutual-recursion--原始互递归" title="Permanent link">&para;</a></h2>
 <p>这样的函数：</p>
-<p><center><img alt="" src="../2022-12-20-20-11-58.png" width="200" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-20-20-11-58.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-20-20-11-58.png" width="200" /></a></center></p>
 <p>可以这样定义：</p>
-<p><center><img alt="" src="../2022-12-20-20-12-31.png" width="700" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-20-20-12-31.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-20-20-12-31.png" width="700" /></a></center></p>
 
 
 
@@ -5989,5 +5998,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

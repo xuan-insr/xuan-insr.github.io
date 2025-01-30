@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5637,7 +5646,7 @@
 </div>
 <p>GitLab 中可以通过 API 触发一个 repo 的 pipeline，这可以通过 API token 也可以通过 pipeline trigger token。</p>
 <p>除此之外，还可以在 Job 中通过 <code>trigger</code> 关键字触发一个 pipeline；这会让 pipeline 的界面中显示被 trigger 的下游 pipeline，比较漂亮。</p>
-<p><img alt="" src="../assets/2024-07-03-12-07-32.png" /></p>
+<p><a class="glightbox" href="../assets/2024-07-03-12-07-32.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2024-07-03-12-07-32.png" /></a></p>
 <p>但是 <code>trigger</code> 使用时无法提供额外的 token 用来鉴权，而要求触发上游 job 的用户有权限触发下游 pipeline；而根据 <a href="https://docs.gitlab.com/ee/user/permissions.html#gitlab-cicd-permissions:~:text=Run%20CI/CD%20pipeline%20for%20a%20protected%20branch">文档</a>，「有在下游 repo 触发 pipeline 的权限」等价于「有权限 merge 到对应 branch」。</p>
 <p>文档在 <a href="https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html">Downstream pipelines</a> 而非 <a href="https://docs.gitlab.com/ee/ci/triggers/">Trigger a pipeline</a>。</p>
 <p>一个样例：</p>
@@ -5939,5 +5948,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

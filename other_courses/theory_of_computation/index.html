@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -6519,10 +6528,10 @@
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Assignment 2 Q4. 将 <abbr title="Non-Deterministic Finite Automata">NFA</abbr> 转为 <abbr title="Deterministic Finite Automata">DFA</abbr>：
-<center><img alt="" src="../2023-02-18-20-14-37.png" width="200" /></center></p>
+<center><a class="glightbox" href="../2023-02-18-20-14-37.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-18-20-14-37.png" width="200" /></a></center></p>
 <details class="success">
 <summary>答案</summary>
-<p><center><img alt="" src="../2023-02-18-20-14-57.png" width="400" /></center></p>
+<p><center><a class="glightbox" href="../2023-02-18-20-14-57.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-18-20-14-57.png" width="400" /></a></center></p>
 </details>
 </div>
 <h3 id="14-regular-languages">1.4 Regular Languages<a class="headerlink" href="#14-regular-languages" title="Permanent link">&para;</a></h3>
@@ -6563,7 +6572,7 @@
 <li><span class="arithmatex">\(L(R_1\cup R_2) = L(R_1) \cup L(R_2)\)</span>, <span class="arithmatex">\(L(R_1R_2) = L(R_1)\circ L(R_2), L(R^*) = L(R)^*\)</span></li>
 <li>Precedence: <span class="arithmatex">\(* &gt; \circ &gt; \cup\)</span></li>
 <li><strong>Theorem.</strong> 任意 <abbr title="Non-Deterministic Finite Automata">NFA</abbr> <span class="arithmatex">\(M\)</span> 都能找到一个 <abbr title="Regular Expression">REX</abbr> <span class="arithmatex">\(R\)</span> 使得 <span class="arithmatex">\(L(M) = L(R)\)</span>，反之同理。<span class="arithmatex">\(M\)</span> 到 <span class="arithmatex">\(R\)</span> 的思路是，首先简化 <span class="arithmatex">\(M\)</span> 使得不存在 <span class="arithmatex">\(s\)</span> 的入边且 final state 仅有一个且无出边；然后每次删除一个 state，即对于它的每一对入边和出边：<br />
-<center><img alt="" src="../2023-02-18-21-00-00.png" width="400" /></center></li>
+<center><a class="glightbox" href="../2023-02-18-21-00-00.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-18-21-00-00.png" width="400" /></a></center></li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -6605,20 +6614,20 @@
 <div class="admonition tips">
 <p class="admonition-title">Tips</p>
 <p>Assignment 3 Q2 这样的题：</p>
-<p><center><img alt="" src="../2023-02-18-21-23-07.png" width="700" /></center></p>
+<p><center><a class="glightbox" href="../2023-02-18-21-23-07.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-18-21-23-07.png" width="700" /></a></center></p>
 <p>多想一想 <span class="arithmatex">\(\{0^n1^n : n \ge 0\}\)</span> 不是 regular 这个例子，同时善用德摩根律之类的各种东西把需要证明的结果凑出来，能凑出来就是 regular 的。</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>这种题<sup id="fnref2:98"><a class="footnote-ref" href="#fn:98">1</a></sup>：
-<center><img alt="" src="../2023-02-19-12-46-31.png" width="500" /></center></p>
+<center><a class="glightbox" href="../2023-02-19-12-46-31.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-19-12-46-31.png" width="500" /></a></center></p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><abbr title="Regular Languages">RL</abbr> 和 Non-<abbr title="Regular Languages">RL</abbr>、Non-<abbr title="Regular Languages">RL</abbr> 和 Non-<abbr title="Regular Languages">RL</abbr> 的 concat 都有可能是 <abbr title="Regular Languages">RL</abbr>。</p>
 <p>前者的一个例子是，<abbr title="Regular Languages">RL</abbr> 为 <span class="arithmatex">\(\varnothing\)</span>，则它们的 concat 也是 <span class="arithmatex">\(\varnothing\)</span>。</p>
 <p>后者的一个例子是：<sup id="fnref:98"><a class="footnote-ref" href="#fn:98">1</a></sup></p>
-<p><center><img alt="" src="../2023-02-19-03-56-23.png" width="600" /></center></p>
+<p><center><a class="glightbox" href="../2023-02-19-03-56-23.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-19-03-56-23.png" width="600" /></a></center></p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -6648,7 +6657,7 @@
 <details class="success">
 <summary>答案</summary>
 <p><span class="arithmatex">\(S \to e\ |\ 1S0\ |\ 0S1\)</span></p>
-<p><center><img alt="" src="../2023-02-18-23-43-13.png" width="500" /></center></p>
+<p><center><a class="glightbox" href="../2023-02-18-23-43-13.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-18-23-43-13.png" width="500" /></a></center></p>
 </details>
 </div>
 <h3 id="22-chomsky-norm-form">2.2 Chomsky Norm Form<a class="headerlink" href="#22-chomsky-norm-form" title="Permanent link">&para;</a></h3>
@@ -6788,7 +6797,7 @@
 <li><abbr title="Turing Machines 图灵机">TM</abbr> 从初始状态开始，每次读取 head 所指格子中的 symbol 并根据 transition function 的操作进行，直到遇到某个停机状态。</li>
 </ul>
 <p>构造若干 <abbr title="Turing Machines 图灵机">TM</abbr>（按定义构造，或者组合若干 <abbr title="Turing Machines 图灵机">TM</abbr>）：</p>
-<p><center><img alt="" src="../2023-02-19-02-51-18.png" width="700" /></center></p>
+<p><center><a class="glightbox" href="../2023-02-19-02-51-18.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-19-02-51-18.png" width="700" /></a></center></p>
 <h3 id="32-usages">3.2 Usages<a class="headerlink" href="#32-usages" title="Permanent link">&para;</a></h3>
 <p><abbr title="Turing Machines 图灵机">TM</abbr> 可以用来 recognize languages。</p>
 <h4 id="semidecide--recursively-enumerable">Semidecide &amp; Recursively Enumerable<a class="headerlink" href="#semidecide--recursively-enumerable" title="Permanent link">&para;</a></h4>
@@ -6858,7 +6867,7 @@
 <li><span class="arithmatex">\(E_\text{<abbr title="PushDown Automata">PDA</abbr>}\)</span>: <abbr title="PushDown Automata">PDA</abbr> -&gt; <abbr title="Context-Free Grammars">CFG</abbr></li>
 </ul>
 <p>归约可以这样写：</p>
-<p><center><img alt="" src="../2023-02-19-15-22-25.png" width="800" /></center></p>
+<p><center><a class="glightbox" href="../2023-02-19-15-22-25.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-19-15-22-25.png" width="800" /></a></center></p>
 <h3 id="42-undecidability">4.2 Undecidability<a class="headerlink" href="#42-undecidability" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -7296,5 +7305,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5629,7 +5638,7 @@
 </div>
 <p>这是计算机组成课程的学习记录。</p>
 <p>使用的课本是 <em>Computer Organization and Design - The Hardware / Software Interface (RISC-V Edition)</em>：</p>
-<p><center><img alt="image.png" src="../../../assets/1654452339796-a855e535-5361-4b3f-96bc-f084bb514e00.png" width="300" /></center></p>
+<p><center><a class="glightbox" href="../../../assets/1654452339796-a855e535-5361-4b3f-96bc-f084bb514e00.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654452339796-a855e535-5361-4b3f-96bc-f084bb514e00.png" width="300" /></a></center></p>
 <div class="admonition warning">
 <p class="admonition-title">说明</p>
 <p>我自认为在 <strong>3 Arithmetic</strong>, <strong>4 Processor</strong>, <strong>5 Cache</strong> 三章中的整理和讲解是非常详细的，如果这些部分存在看不懂的地方，请务必联系我。</p>
@@ -5934,5 +5943,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

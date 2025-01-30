@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5654,7 +5663,7 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>我画了张图！</p>
-<p><center><img alt="" src="../2023-01-31-23-59-28.png" width="500" /></center></p>
+<p><center><a class="glightbox" href="../2023-01-31-23-59-28.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-01-31-23-59-28.png" width="500" /></a></center></p>
 <p>容易理解，随着抽象程度的增加，程序的性能很有可能受到损失。例如 Python 中能保存任意整数的 bignum 的性能一定不会优于 CPU 原生支持的整型。而 C++ 的期望则是，把握这里的「or equal」，即在不损失性能的前提下提供必要的数据抽象。</p>
 </div>
 <p>于是，他设计出了 C with Classes（其中的名字「class」来自 Simula），并设计了一个预处理程序 Cpre（1981/12 首次发布），来将 C with Classes 处理成 C。</p>
@@ -5952,5 +5961,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5635,14 +5644,14 @@
 </div>
 <p>TODO: <code>span</code>, <code>variant</code></p>
 <p><a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#p5-prefer-compile-time-checking-to-run-time-checking">https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#p5-prefer-compile-time-checking-to-run-time-checking</a></p>
-<p><center><img alt="" src="../2023-02-08-20-36-38.png" width="700" /></center></p>
+<p><center><a class="glightbox" href="../2023-02-08-20-36-38.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-08-20-36-38.png" width="700" /></a></center></p>
 <p><a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#i3-avoid-singletons">https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#i3-avoid-singletons</a></p>
 <p>这是解决初始化顺序相关问题的最有效方法之一</p>
-<p><center><img alt="" src="../2023-02-08-20-50-40.png" width="700" /></center></p>
+<p><center><a class="glightbox" href="../2023-02-08-20-50-40.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-08-20-50-40.png" width="700" /></a></center></p>
 <p><a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#i7-state-postconditions">https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#i7-state-postconditions</a></p>
-<p><center><img alt="" src="../2023-02-08-21-05-53.png" width="700" /></center></p>
+<p><center><a class="glightbox" href="../2023-02-08-21-05-53.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-08-21-05-53.png" width="700" /></a></center></p>
 <p><a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#i11-never-transfer-ownership-by-a-raw-pointer-t-or-reference-t">https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#i11-never-transfer-ownership-by-a-raw-pointer-t-or-reference-t</a></p>
-<p><center><img alt="" src="../2023-02-08-21-09-26.png" width="700" /></center></p>
+<p><center><a class="glightbox" href="../2023-02-08-21-09-26.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-08-21-09-26.png" width="700" /></a></center></p>
 <p>看到 <a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#i23-keep-the-number-of-function-arguments-low">https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#i23-keep-the-number-of-function-arguments-low</a> 了，有空接着看</p>
 
 
@@ -5927,5 +5936,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

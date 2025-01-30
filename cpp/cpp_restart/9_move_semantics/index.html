@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -6208,9 +6217,9 @@ p:   .word 0
 <details class="info" open="open">
 <summary>再举个例子</summary>
 <p><code>n</code> 由于值必定是 1，因此这个函数直接被简化为了 <code>return 2;</code>，<code>n</code> 不再占据内存：</p>
-<p><img alt="" src="../assets/2023-10-04-03-26-56.png" /></p>
+<p><a class="glightbox" href="../assets/2023-10-04-03-26-56.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-10-04-03-26-56.png" /></a></p>
 <p>但是，假如我们要使用 <code>n</code> 的地址，那么 <code>n</code> 就一定会占据内存来满足我们的需求：</p>
-<p><img alt="" src="../assets/2023-10-04-03-30-08.png" /></p>
+<p><a class="glightbox" href="../assets/2023-10-04-03-30-08.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-10-04-03-30-08.png" /></a></p>
 </details>
 <p>因此，我们在后面的讨论中，始终从概念层面上认为 lvalue 会占用内存。编译器将这个内存优化掉是实践层面的事情，如前所述，并不会影响我们这样讨论的正确性。</p>
 <h3 id="913-lvalue">9.1.3 lvalue<a class="headerlink" href="#913-lvalue" title="Permanent link">&para;</a></h3>
@@ -6361,7 +6370,7 @@ p:   .word 0
 <div class="highlight"><pre><span></span><code><span class="n">T</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="p">(</span><span class="n">T</span><span class="p">(</span><span class="n">f</span><span class="p">()));</span><span class="w"> </span><span class="c1">// only one call to default constructor of T, to initialize x</span>
 </code></pre></div>
 <p><a href="https://godbolt.org/z/vKhvxre7d">https://godbolt.org/z/vKhvxre7d</a></p>
-<p><img alt="" src="../assets/2023-08-15-18-36-02.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-15-18-36-02.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-15-18-36-02.png" /></a></p>
 <p>这里，我们使用编译器选项禁用了 NRVO。<code>bar</code> 和 <code>baz</code> 的区别在于前者的返回值是 prvalue，而后者不是；其类型都与返回值类型匹配。因此，根据 copy elision 的规则，前者是强制的 copy elision (Case 1)，而后者可以发生 NRVO，但被我们禁用了。我们观察并解释这 4 条语句的过程：</p>
 <ul>
 <li>首先，我们刻画函数返回值的过程。首先，<code>return</code> 语句的表达式被求值，然后这个值被返回给函数调用表达式，我们记函数调用表达式的值为 <code>__call_expr</code>。我们用两个下划线的前缀来表征它实际上是 prvalue，起名字只是便于我们理解。</li>
@@ -6392,7 +6401,7 @@ p:   .word 0
 </details>
 <h3 id="924-小结">9.2.4 小结<a class="headerlink" href="#924-小结" title="Permanent link">&para;</a></h3>
 <p>现在，我们就能看懂这张经典的 C++ value category 结构图了：</p>
-<p><img alt="" src="../assets/2023-10-04-04-08-48.png" /></p>
+<p><a class="glightbox" href="../assets/2023-10-04-04-08-48.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-10-04-04-08-48.png" /></a></p>
 <p>我们将原来表示「临时」的 rvalue 拆分成了 prvalue 和 xvalue 两种；将表示「占内存」的 lvalue 和 xvalue 统称为 <strong>glvalue (generalized lvalue)</strong>。</p>
 <p>lvalue, xvalue 和 prvalue 是 <strong>primary categories</strong>，表达式属于且仅属于其中之一；rvalue 和 glvalue 是 <strong>mixed categories</strong>，通常用于简便的表达。</p>
 <p>我们能够总结出这三种 primary categories 所具备的主要性质：</p>
@@ -6516,9 +6525,9 @@ p:   .word 0
 <span class="p">}</span>
 </code></pre></div>
 <p>我用一张图画出来了这里发生了什么：</p>
-<p><img alt="" src="../assets/2023-10-04-04-18-57.png" /></p>
+<p><a class="glightbox" href="../assets/2023-10-04-04-18-57.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-10-04-04-18-57.png" /></a></p>
 <p>明眼人都能看出，我们拷贝了一份 <code>b</code> 之后反手就把原来的 <code>b</code> 给释放了，这听起来有点蠢。假如我们能让 <code>x</code> 把 <code>foo()</code> 的 <code>b</code>「偷」过来，同时让 <code>foo()</code> 析构的时候不要释放 <code>b</code>，不就能省一份拷贝的时间了吗？也就是说我们希望：</p>
-<p><img alt="" src="../assets/2023-10-04-04-21-11.png" /></p>
+<p><a class="glightbox" href="../assets/2023-10-04-04-21-11.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-10-04-04-21-11.png" /></a></p>
 <p>用代码来说就是：</p>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="n">Container</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Container</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="cm">/* some type */</span><span class="w"> </span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -6530,7 +6539,7 @@ p:   .word 0
 <span class="p">}</span>
 </code></pre></div>
 <p>更干净优雅一点的做法是，既然 <code>x</code> 的 <code>b</code> 要被析构，那我们不妨直接把 <code>x</code> 和 <code>foo()</code> 的 <code>b</code> 交换一下：</p>
-<p><img alt="" src="../assets/2023-10-04-04-22-46.png" /></p>
+<p><a class="glightbox" href="../assets/2023-10-04-04-22-46.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-10-04-04-22-46.png" /></a></p>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="n">Container</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">Container</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="cm">/* some type */</span><span class="w"> </span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">swap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">rhs</span><span class="p">.</span><span class="n">data</span><span class="p">);</span>
@@ -6667,7 +6676,7 @@ p:   .word 0
 <span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
 <p>这里，第 4 行用到的是拷贝构造而非移动构造；第 5 行和第 6 行用到的都是拷贝复制而非移动复制，因为 <code>a</code> 和 <code>b</code> 是左值而非右值。</p>
-<p><center><img alt="" src="../2023-04-24-01-25-33.png" /></center></p>
+<p><center><a class="glightbox" href="../2023-04-24-01-25-33.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-04-24-01-25-33.png" /></a></center></p>
 <p>但是这是不好的——显然，在第 4 行之后，我们不再关心 <code>a</code> 的成员，因为在第 5 行我们即将将其覆盖；对 <code>b</code> 来说也是一样的。也就是说，如果这里我们采用移动语义，可以将 3 次拷贝变成 3 次移动，这能显著提高程序的性能。</p>
 <p>这几处使用拷贝语义而非移动语义的原因是，<code>a</code>, <code>b</code>, <code>tmp</code> 是个左值。如果我们希望使用移动语义，就需要将它们变成右值。我们如何将一个左值变为一个右值呢？事实上，C++ 中有以下规定：</p>
 <div class="admonition note">
@@ -6735,7 +6744,7 @@ p:   .word 0
 <span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
 <p>如我们所愿，这种情况下会发生移动构造和移动赋值，而非拷贝；这在 <code>T</code> 需要 non-trivial copy（即 copy 不仅仅需要拷贝字段，还需要完成更多操作）的情况下会有性能提升：</p>
-<p><center><img alt="" src="../2023-04-24-01-49-28.png" /></center></p>
+<p><center><a class="glightbox" href="../2023-04-24-01-49-28.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-04-24-01-49-28.png" /></a></center></p>
 <p>也就是说，虽然 <code>T foo(bar);</code> 这样的构造在 <code>bar</code> 是左值的时候会使用拷贝构造，但如果我们 <strong>明知</strong> <code>bar</code> 此后不会被用到，且通过 <code>std::move(bar)</code> <strong>明确告知</strong> 编译器这一点，那么我们就可以通过 <code>T foo(std::move(bar));</code> 的方式来实现移动构造。对于赋值也是类似。</p>
 <details class="note" open="open">
 <summary>Note</summary>
@@ -6767,7 +6776,7 @@ p:   .word 0
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><img alt="" src="../assets/2023-10-08-19-12-10.png" /></p>
+<p><a class="glightbox" href="../assets/2023-10-08-19-12-10.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-10-08-19-12-10.png" /></a></p>
 <p>容易看到，右值引用本身是一个左值，否则我们就没有办法完成诸如修改它的值之类的「对左值的」操作。为什么这样设计呢？</p>
 <p>一方面，右值引用和左值引用的区别不在于能做什么事，而只是在于什么值可以绑定给这个引用。</p>
 <p>另一方面，移动语义最开始的场景 <code>x = foo();</code> 是在「不影响结果的地方」使用，因为这样一定不会带来问题；而我们后来讨论的 <code>std::move</code> 的含义则是「程序员明确知道这里使用移动不影响结果」，程序员对这样的移动语义负责。但是，假如右值引用被视为一个右值，则可能会出现一些混乱的情况：</p>
@@ -7146,5 +7155,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

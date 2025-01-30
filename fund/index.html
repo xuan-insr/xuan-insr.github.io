@@ -97,7 +97,16 @@
       
     
     
-  </head>
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -6241,7 +6250,7 @@
 <h4 id="14-常用描述性统计概念">1.4 常用描述性统计概念<a class="headerlink" href="#14-常用描述性统计概念" title="Permanent link">&para;</a></h4>
 <ul>
 <li>平均值、中位数、分位数</li>
-<li>方差和标准差：方差 <img alt="" src="https://cdn.nlark.com/yuque/__latex/ce7da6bb29235203e7c2d434860e98fa.svg#card=math&amp;code=%5Csigma%5E2%20%3D%20E%28r%20-%20E%28r%29%29%5E2&amp;id=sBxOf" /></li>
+<li>方差和标准差：方差 <a class="glightbox" href="https://cdn.nlark.com/yuque/__latex/ce7da6bb29235203e7c2d434860e98fa.svg#card=math&amp;code=%5Csigma%5E2%20%3D%20E%28r%20-%20E%28r%29%29%5E2&amp;id=sBxOf" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="https://cdn.nlark.com/yuque/__latex/ce7da6bb29235203e7c2d434860e98fa.svg#card=math&amp;code=%5Csigma%5E2%20%3D%20E%28r%20-%20E%28r%29%29%5E2&amp;id=sBxOf" /></a></li>
 <li>正态分布</li>
 <li>相关系数，绝对值不大于 1；为 1 表示完全正相关，-1 表示完全负相关，0 表示不相关
 <a name="aGXCd"></a></li>
@@ -6869,5 +6878,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

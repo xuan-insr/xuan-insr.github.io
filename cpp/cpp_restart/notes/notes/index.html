@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5838,7 +5847,7 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> stream</li>
 </ul>
 <h2 id="关于-ub-和指针等的大讨论">关于 UB 和指针等的大讨论<a class="headerlink" href="#关于-ub-和指针等的大讨论" title="Permanent link">&para;</a></h2>
-<p><center><img alt="" src="../2023-01-16-23-55-30.png" width="800" /></center></p>
+<p><center><a class="glightbox" href="../2023-01-16-23-55-30.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-01-16-23-55-30.png" width="800" /></a></center></p>
 <ul>
 <li><a href="https://loj.ac/d/3679">原帖</a></li>
 <li><a href="https://godbolt.org/z/3Thssx941">我的尝试</a></li>
@@ -5851,12 +5860,12 @@
 <li>引文 <a href="https://sf.snu.ac.kr/publications/llvmtwin.pdf">Reconciling High-Level Optimizations and Low-Level Code in LLVM</a></li>
 </ul>
 <h3 id="为什么要有-ub">为什么要有 UB<a class="headerlink" href="#为什么要有-ub" title="Permanent link">&para;</a></h3>
-<p><center><img alt="" src="../2023-01-16-23-45-33.png" width="800" /></center></p>
+<p><center><a class="glightbox" href="../2023-01-16-23-45-33.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-01-16-23-45-33.png" width="800" /></a></center></p>
 <p>Src: <a href="https://www.ralfj.de/blog/2018/07/24/pointers-and-bytes.html">https://www.ralfj.de/blog/2018/07/24/pointers-and-bytes.html</a></p>
 <div class="admonition note">
 <p class="admonition-title">一个例子</p>
 <p><a href="https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#p5-prefer-compile-time-checking-to-run-time-checking">https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#p5-prefer-compile-time-checking-to-run-time-checking</a></p>
-<p><center><img alt="" src="../2023-02-08-20-33-59.png" width="700" /></center></p>
+<p><center><a class="glightbox" href="../2023-02-08-20-33-59.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-08-20-33-59.png" width="700" /></a></center></p>
 </div>
 <h2 id="零散内容">零散内容<a class="headerlink" href="#零散内容" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5878,13 +5887,13 @@
 <h4 id="关于数组初始化">关于数组初始化<a class="headerlink" href="#关于数组初始化" title="Permanent link">&para;</a></h4>
 <p><code>int a[4] = {1, 2};</code> 效果等同于 <code>int a[4] = {1, 2, 0, 0};</code>：</p>
 <p>初始化 <code>int a[4] = {1, 2};</code> 是 <a href="https://en.cppreference.com/w/cpp/language/aggregate_initialization">aggregate initialization</a>。第一个元素是 explicitly initialized element，其他的则不是。非 explicitly initialized element 规定如下：</p>
-<p><img alt="" src="../assets/2023-06-01-11-23-45.png" /></p>
+<p><a class="glightbox" href="../assets/2023-06-01-11-23-45.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-06-01-11-23-45.png" /></a></p>
 <p>此时，即 list initialization <code>int a_1 = {};</code>。其中规定：</p>
-<p><img alt="" src="../assets/2023-06-01-11-29-53.png" /></p>
+<p><a class="glightbox" href="../assets/2023-06-01-11-29-53.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-06-01-11-29-53.png" /></a></p>
 <p>而 value initialization 对于基本类型是 zero-initialized 的：</p>
-<p><img alt="" src="../assets/2023-06-01-11-34-40.png" /></p>
+<p><a class="glightbox" href="../assets/2023-06-01-11-34-40.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-06-01-11-34-40.png" /></a></p>
 <p>而 zero initialization 对于标量类型即为显式 cast 到 0：</p>
-<p><img alt="" src="../assets/2023-06-01-11-34-08.png" /></p>
+<p><a class="glightbox" href="../assets/2023-06-01-11-34-08.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-06-01-11-34-08.png" /></a></p>
 <h2 id="要看的">要看的<a class="headerlink" href="#要看的" title="Permanent link">&para;</a></h2>
 <p><a href="https://isocpp.org/wiki/faq">c++faq</a></p>
 <p><a href="https://cppcon.org/">CppCon</a></p>
@@ -6173,5 +6182,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

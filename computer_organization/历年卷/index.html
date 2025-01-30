@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5997,7 +6006,7 @@
 <li>给 C 写汇编 [19(14)]</li>
 <li>Cache 算位数 [19(12)]</li>
 </ul>
-<p><center><img alt="image.png" src="../../../assets/1655054029001-a6ad0f7a-ded6-44f9-8ab3-d51797baf14c.png" width="600" /></center>
+<p><center><a class="glightbox" href="../../../assets/1655054029001-a6ad0f7a-ded6-44f9-8ab3-d51797baf14c.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1655054029001-a6ad0f7a-ded6-44f9-8ab3-d51797baf14c.png" width="600" /></a></center>
  D</p>
 
 
@@ -6282,5 +6291,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

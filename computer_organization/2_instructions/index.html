@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5860,20 +5869,20 @@
 <p>在一些 architecture 中，word 的起始地址必须是 word 大小的整倍数，dword 也一样，这种要求称为 <strong>alignment restriction</strong>。RISC-V 允许不对齐的寻址，但是效率会低。</p>
 <p>RISC-V 使用 <strong>little endian</strong> 小端编址。也就是说，当我们从 0x1000 这个地址读出一个 dword 时，我们读到的实际上是 0x1000~0x1007 这 8 个字节，并将 0x1000 存入寄存器低位，0x1007 存入高位。</p>
 <p><center>
-    <img alt="" src="../2023-05-06_19-21-08.png" />
+    <a class="glightbox" href="../2023-05-06_19-21-08.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-05-06_19-21-08.png" /></a>
 </center></p>
 <blockquote>
 <p>一个记忆方法是，如果你将地址横着写，即从左到右递增，那么对于大端来说是比较自然的，但是对于小端来说会比较不自然。以上面的 <code>0A0B0C0D</code> 为例子，大端为从低地址到高地址是 <code>0A</code> <code>0B</code> <code>0C</code> <code>0D</code>，而小端从低到高地址则是 <code>0D</code> <code>0C</code> <code>0B</code> <code>0A</code>。</p>
 </blockquote>
 <p>RISC-V 支持 PC relative 寻址、立即数寻址 ( <code>lui</code> )、间接寻址 ( <code>jalr</code> )、基址寻址 ( <code>8(sp)</code> )：</p>
-<p><img alt="image.png" src="../../../assets/1654055499913-f3fd752f-06b7-43e4-a06f-3640e66481ed.png" /></p>
+<p><a class="glightbox" href="../../../assets/1654055499913-f3fd752f-06b7-43e4-a06f-3640e66481ed.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654055499913-f3fd752f-06b7-43e4-a06f-3640e66481ed.png" /></a></p>
 <h4 id="补码-2s-complement">补码 2's complement<a class="headerlink" href="#补码-2s-complement" title="Permanent link">&para;</a></h4>
 <p><span class="arithmatex">\(x + \bar x = 111\dots111_2 = -1\)</span>，因此 <span class="arithmatex">\(-x = \bar x + 1\)</span>。前导 0 表示正数，前导 1 表示负数。<a href="https://www.yuque.com/xianyuxuan/coding/sca003#VqE99">See also</a></p>
 <p>因此在将不足 64 位的数据载入寄存器时，如果数据是无符号数，只需要使用 0 将寄存器的其他部分填充 (<strong>zero extension</strong>)；而如果是符号数，则需要用最高位即符号位填充剩余部分，称为符号扩展 (<strong>sign extension</strong>)。</p>
 <p>即，在指令中的 <code>lw</code> ,  <code>lh</code> ,  <code>lb</code> 使用 sign extension，而 <code>lwu</code> ,  <code>lhu</code> ,  <code>lbu</code> 使用 zero extension。</p>
 <div class="admonition info">
 <p class="admonition-title">18~19 Final</p>
-<p><img alt="image.png" src="../../../assets/1655019006306-bf6087f9-5461-4b02-be9a-8b6b410c9f89.png" /></p>
+<p><a class="glightbox" href="../../../assets/1655019006306-bf6087f9-5461-4b02-be9a-8b6b410c9f89.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1655019006306-bf6087f9-5461-4b02-be9a-8b6b410c9f89.png" /></a></p>
 <details class="info">
 <summary>答案</summary>
 <p>-0x52F00000, -0x0FFFFCDF</p>
@@ -5881,26 +5890,26 @@
 </div>
 <h3 id="22-指令指令格式">2.2 指令，指令格式<a class="headerlink" href="#22-指令指令格式" title="Permanent link">&para;</a></h3>
 <p>课本上介绍的 RISC-V 指令（ <code>lr.d</code> ,  <code>sc.d</code> 被省略了）列表如下：</p>
-<p><img alt="1.png" src="../../../assets/1654864713202-23520b16-be27-484e-8f08-39aa863679ba.png" /></p>
+<p><a class="glightbox" href="../../../assets/1654864713202-23520b16-be27-484e-8f08-39aa863679ba.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="1.png" src="../../../assets/1654864713202-23520b16-be27-484e-8f08-39aa863679ba.png" /></a></p>
 <blockquote>
 <p>在 RISC 指令集中，只有 load 系列和 store 系列指令能够访问内存。</p>
 </blockquote>
 <p>RISC-V 的跳转指令的 offset 是基于当前指令的地址的偏移；这不同于其他一些汇编是基于下一条指令的偏移的。即如果是跳转语句 <code>PC</code> 就不 +4 了，而是直接 +offset。</p>
 <p><code>lw</code> ,  <code>lwu</code> 等操作都会清零高位。</p>
 <p>RISC-V 指令格式如下：</p>
-<p><img alt="1.png" src="../../../assets/1653461947307-ab399754-6565-46f5-8554-641c7def91a4.png" />
+<p><a class="glightbox" href="../../../assets/1653461947307-ab399754-6565-46f5-8554-641c7def91a4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="1.png" src="../../../assets/1653461947307-ab399754-6565-46f5-8554-641c7def91a4.png" /></a>
 其中 <code>I</code> 型指令有两个条目；这是因为立即数移位操作 <code>slli</code> , <code>srli</code> , <code>srai</code> 并不可能对一个 64 位寄存器进行大于 63 位的移位操作，因此 12 位 imm 中只有后 6 位能实际被用到，因此前面 6 位被用来作为一个额外的操作码字段，如上图中第二个 <code>I</code> 条目那样。其他 <code>I</code> 型指令适用第一个 <code>I</code> 条目。</p>
 <p>另外，为什么 <code>SB</code> 和 <code>UJ</code> 不存立即数（也就是偏移）的最低位呢？（关注表格，可以发现只包括 <code>i[12:1]</code> 或者 <code>i[20:1]</code>，缺失 <code>i[0]</code>）因为，偏移的最后一位一定是 0，即地址一定是 2 字节对齐的，因此没有必要保存。</p>
 <details class="question">
 <summary>既然每个指令都是 4 字节对齐的，为什么不是最后两位都省略，而是只省略一位呢？</summary>
 <p>实际上，是存在指令长为 2 字节的 extension 的，只不过我们没学：</p>
-<p><img alt="image.png" src="../../../assets/1654679475579-ff3afec9-a463-41e1-a7ad-a2ec86b35e51.png" /></p>
+<p><a class="glightbox" href="../../../assets/1654679475579-ff3afec9-a463-41e1-a7ad-a2ec86b35e51.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654679475579-ff3afec9-a463-41e1-a7ad-a2ec86b35e51.png" /></a></p>
 <p><center>课本 P116</center></p>
-<p><img alt="image.png" src="../../../assets/1654679542585-af36dd13-2f74-4126-8b67-90392a0f1f8a.png" /></p>
+<p><a class="glightbox" href="../../../assets/1654679542585-af36dd13-2f74-4126-8b67-90392a0f1f8a.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654679542585-af36dd13-2f74-4126-8b67-90392a0f1f8a.png" /></a></p>
 <p><center>RISC-V Spec V20191213 P15</center></p>
 </details>
 <h3 id="23-伪指令及其实现">2.3 伪指令及其实现<a class="headerlink" href="#23-伪指令及其实现" title="Permanent link">&para;</a></h3>
-<p><img alt="image.png" src="../../../assets/1653470001735-c9b5f2b8-f4c6-48ca-beec-7987bea5d71f.png" /></p>
+<p><a class="glightbox" href="../../../assets/1653470001735-c9b5f2b8-f4c6-48ca-beec-7987bea5d71f.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1653470001735-c9b5f2b8-f4c6-48ca-beec-7987bea5d71f.png" /></a></p>
 <p>注： <code>j imm</code> 也可以用 <code>beq x0, x0, imm</code> 实现，但是此法的 <code>imm</code> 的位数会较短，所以不采用。</p>
 <h3 id="24-分支和循环">2.4 分支和循环<a class="headerlink" href="#24-分支和循环" title="Permanent link">&para;</a></h3>
 <p>略</p>
@@ -5922,9 +5931,9 @@
 </li>
 </ul>
 <p>至此，我们将所有寄存器及其用途总结如下：</p>
-<p><img alt="" src="../../../assets/1654054605190-66992a62-3995-4285-8002-c28a0a8e9073.png" /></p>
+<p><a class="glightbox" href="../../../assets/1654054605190-66992a62-3995-4285-8002-c28a0a8e9073.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../assets/1654054605190-66992a62-3995-4285-8002-c28a0a8e9073.png" /></a></p>
 <p>其中 "preserved on call" 的意思是，是否保证调用前后这些寄存器的值不变。</p>
-<p><img alt="image.png" src="../../../assets/1654866071308-dc8851c8-a41c-404f-830d-3aae477775df.png" /></p>
+<p><a class="glightbox" href="../../../assets/1654866071308-dc8851c8-a41c-404f-830d-3aae477775df.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654866071308-dc8851c8-a41c-404f-830d-3aae477775df.png" /></a></p>
 <h3 id="26-其他话题">2.6 其他话题<a class="headerlink" href="#26-其他话题" title="Permanent link">&para;</a></h3>
 <ul>
 <li>检查 index out of bounds：如果 <code>x20 = i, x11 = size</code> ，那么 <code>bgeu x20, x11, IndexOutOfBounds</code> ，即  <code>x20 &gt;= x11 || x20 &lt; 0</code> </li>
@@ -6218,5 +6227,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

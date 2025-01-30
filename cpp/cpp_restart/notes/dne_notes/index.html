@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -6851,7 +6860,7 @@ void g(X a, X b) {
 <ol>
 <li>有两个库类 <code>display</code> 和 <code>task</code>，分别表示一个显示对象和一个调度单元；程序员希望创建一个 <code>my_displayed_task</code>，这个类的每个对象既是一个 <code>display</code>，也是一个 <code>task</code>。</li>
 <li>一系列接口的组合。例如<sup id="fnref:stream class hierarchy"><a class="footnote-ref" href="#fn:stream class hierarchy">1</a></sup><br />
-<center><img alt="" src="../2023-01-29-17-15-41.png" width="250" /></center></li>
+<center><a class="glightbox" href="../2023-01-29-17-15-41.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-01-29-17-15-41.png" width="250" /></a></center></li>
 <li>Mixin (i.e. mix-in)。这种风格用一个抽象类来定义接口，用一些派生类提供实现（但是这些类本身也只是「积木」）。<a href="https://stackoverflow.com/a/18775236/14430730">What are Mixins (as a concept)</a> 的回答中比较好地解释了 mixin 的理念，但是它是用模板实现的；<a href="https://stackoverflow.com/questions/573913/a-use-for-multiple-inheritance">A use for multiple inheritance?</a> 的回答中展示了用多重继承实现 mixin 的方式。</li>
 </ol>
 <p>一个例子是这样的：
@@ -7224,5 +7233,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

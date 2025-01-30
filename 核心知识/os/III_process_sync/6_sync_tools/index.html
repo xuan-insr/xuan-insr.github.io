@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -6026,15 +6035,15 @@
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>但是，<code>count</code> 的值可能是错误的。</p>
-<p><img alt="" src="../2022-11-24-21-10-35.png" /></p>
+<p><a class="glightbox" href="../2022-11-24-21-10-35.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-24-21-10-35.png" /></a></p>
 <p>一种可能的运行顺序是：</p>
-<p><img alt="" src="../2022-11-24-21-10-59.png" /></p>
+<p><a class="glightbox" href="../2022-11-24-21-10-59.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-24-21-10-59.png" /></a></p>
 </details>
 <p>出现上例中这样的问题，是因为我们允许两个进程同时操控变量 <code>count</code>。类似这样的多个进程同时操控同一个数据，因而结果取决于每一种操控的出现顺序的情形，称为 <strong>race condition</strong>。为了防止 race condition，我们需要保证同一时间只有一个进程可以操控某个变量。</p>
 <p>Race condition 在操作系统中是常见的。Kernel code 中也包含 race condition 的可能性。</p>
 <div class="admonition example">
 <p class="admonition-title">Kernel 中也存在 race condition 的可能</p>
-<p><img alt="" src="../2022-11-24-21-12-49.png" /></p>
+<p><a class="glightbox" href="../2022-11-24-21-12-49.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-24-21-12-49.png" /></a></p>
 <p>两个进程 P0 和 P1 同时 <code>fork()</code> 时，如果不加限制，可能会出现类似前例的情况，即在某一个进程把当前的 <code>next_avaliable_pid</code> 分配给他的 child 后，在没来得及更新 <code>next_avaliable_pid</code> 前，另一个进程使用了 <code>next_avaliable_pid</code> 来给 child 分配 PID，这就会导致两个不同的线程使用同一个 PID 的情况。</p>
 </div>
 <p>因此，从操作系统的设计本身来说，避免 race condition 带来错误的结果是非常重要的。应用程序的开发人员在使用多进程时也应当充分考虑是否会带来问题。</p>
@@ -6045,7 +6054,7 @@
 <p class="admonition-title">Tips</p>
 <p>「​同步」的核心意义是，规定进程所做的工作之间的顺序或者先序关系，从而防止一些非法情况的发生。</p>
 </div>
-<p><img alt="" src="../2022-11-24-21-22-00.png" /></p>
+<p><a class="glightbox" href="../2022-11-24-21-22-00.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-24-21-22-00.png" /></a></p>
 <p>​每个进程必须在 <strong>entry section</strong> 中申请进入 critical section 的许可；在 critical section 运行结束后进入 <strong>exit section</strong>，在这里许可被释放。其他代码称为 <strong>remainder section</strong>。</p>
 <p>​Critical-section problem 的解决方法必须满足如下三个要求：</p>
 <ul>
@@ -6092,11 +6101,11 @@
 <p>To enter the critical section, process Pi first sets <code>flag[i]</code> to be true and then sets <code>turn</code> to the value <code>1-i</code> (the other process), thereby asserting that if the other process wishes to enter the critical section, it can do so. If both processes try to enter at the same time, <code>turn</code> will be set to both <code>0</code> and <code>1</code> at roughly the same time. Only one of these assignments will last; the other will occur but will be overwritten immediately. The eventual value of <code>turn</code> determines which of the two processes is allowed to enter its critical section first.</p>
 <h3 id="性质证明">性质证明<a class="headerlink" href="#性质证明" title="Permanent link">&para;</a></h3>
 <p>我们可以通过简易的分类讨论证明 Peterson's Solution 满足 6.2 中提到的三个性质：Mutual exclusion, process and bounded waiting。</p>
-<p><img alt="" src="../2022-11-24-21-40-23.png" /></p>
-<p><img alt="" src="../2022-11-24-21-40-36.png" /></p>
+<p><a class="glightbox" href="../2022-11-24-21-40-23.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-24-21-40-23.png" /></a></p>
+<p><a class="glightbox" href="../2022-11-24-21-40-36.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-24-21-40-36.png" /></a></p>
 <h3 id="reordering">Reordering<a class="headerlink" href="#reordering" title="Permanent link">&para;</a></h3>
 <p>​但实际上，Peterson's solution 在现代计算机体系结构上不一定适用，因为现代的处理器和编译器有可能会为了优化性能而对一些读写操作进行重排。在优化中，处理器或编译器会考虑其重排的合理性，即保证了在单线程程序中结果值是稳定且正确的。但是这不能保证其在多线程共用数据时的正确性，重排可能会导致不稳定或者不期望的输出。例如如果编译器将对 <code>flag[i]</code> 和 <code>turn</code> 赋值的顺序交换：</p>
-<p><img alt="" src="../2022-11-24-21-41-32.png" /></p>
+<p><a class="glightbox" href="../2022-11-24-21-41-32.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-24-21-41-32.png" /></a></p>
 <p>​Note that reordering of memory accesses can happen even on processors that don't reorder instructions<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.</p>
 <h3 id="memory-barrier">Memory Barrier<a class="headerlink" href="#memory-barrier" title="Permanent link">&para;</a></h3>
 <p>​如我们之前所说，编译器和处理器会对代码的结构进行 reorder，以达到最佳效果。</p>
@@ -6131,7 +6140,7 @@
 </code></pre></div></td></tr></table></div>
 </div>
 <p>​重排可能使得在多核运行时出现与期望不同的结果。为了解决这个问题，我们引入 <strong>Memory Barrier</strong>：它用来保证其之前的内存访问先于其后的完成。即，我们保证在此前对内存的改变对其他处理器上的进程是可见的。</p>
-<p><img alt="" src="../2022-11-24-21-44-30.png" /></p>
+<p><a class="glightbox" href="../2022-11-24-21-44-30.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-24-21-44-30.png" /></a></p>
 <h3 id="memory-model">Memory Model<a class="headerlink" href="#memory-model" title="Permanent link">&para;</a></h3>
 <p>​另外，在现代的体系结构上，一个线程写了对应的变量后有可能不会立刻写回内存，这也有可能导致问题：</p>
 <p>How a computer architecture determines what memory guarantees it will provide to an application program is known as its <strong>memory model</strong>. In general, a memory model falls into one of two categories:</p>
@@ -6182,7 +6191,7 @@
 <p>可见，如果 <code>lock</code> 在 Entry Section 时为 true，那么 <code>test_and_set(&amp;lock)</code> 将返回 true，因此会始终在 while 循环中询问。直到某个时刻 <code>lock</code> 为 false，那么 <code>test_and_set(&amp;lock)</code> 将返回 false 同时将 <code>lock</code> 置为 true，进程进入 Critical Section，同时保证其他进程无法进入 Critical Section。当持锁的进程完成 Critical Section 的运行，它在 Exit Section 中释放 <code>lock</code> ，从而允许其他进程进入 Critical Section。</p>
 <p>而如果某个时刻 <code>lock</code> 为 false，而有两个或多个进程几乎同时调用了 <code>test_and_set(&amp;lock)</code> 。但由于它是 atomic 的，因此只有一个进程可以返回 false。</p>
 <p>​但是，如上所示的控制不能满足 bounded waiting 条件：</p>
-<p><img alt="" src="../2022-11-24-21-49-56.png" /></p>
+<p><a class="glightbox" href="../2022-11-24-21-49-56.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-24-21-49-56.png" /></a></p>
 <p>​我们可以作如下更改以满足 bounded waiting：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -6377,7 +6386,7 @@
 </ul>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<p><center><img alt="" src="../2022-11-24-22-01-27.png" width="500" /></center></p>
+<p><center><a class="glightbox" href="../2022-11-24-22-01-27.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-24-22-01-27.png" width="500" /></a></center></p>
 </div>
 <p>但是，如同前面我们所说，semaphore 也具有 busy waiting 的问题。为了解决这个问题，我们可以为 semaphore 引入 <strong>waiting queue</strong>：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -6424,10 +6433,10 @@
 </blockquote>
 <p>我们在第 7 章讨论 semaphore 的若干使用案例。</p>
 <p>​同时需要注意的是，错误地使用 semaphore 可能会导致 deadlock：</p>
-<p><center><img alt="" src="../2022-11-24-22-03-17.png" width="500" /></center></p>
+<p><center><a class="glightbox" href="../2022-11-24-22-03-17.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-24-22-03-17.png" width="500" /></a></center></p>
 <p>我们在第 8 章讨论 deadlock 的更多细节。</p>
 <h2 id="68-priority-inversion">6.8 Priority Inversion<a class="headerlink" href="#68-priority-inversion" title="Permanent link">&para;</a></h2>
-<p><center><img alt="" src="../2022-11-24-22-05-01.png" width="500" /></center></p>
+<p><center><a class="glightbox" href="../2022-11-24-22-05-01.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-24-22-05-01.png" width="500" /></a></center></p>
 <p>​这个问题称为 <strong>priority inversion</strong>，即具有中等优先级的 M 的运行时间反而影响了具有较高优先级的 H 的等待时间。</p>
 <p>​我们可以通过优先级继承 <strong>priority inheritance</strong> 来解决这一问题：所有正在访问资源（如上例中，低优先级的 L 所持的锁）的进程获得需要访问这个资源的更高优先级进程的优先级，直到它们用完有关资源为止。（如上例中，priority inheritance 将允许 L 临时继承 H 的优先级从而防止被 M 抢占；当 L 释放锁后则回到原来的优先级，此时 H 将在 M 之前执行。）</p>
 <div class="footnote">
@@ -6730,5 +6739,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

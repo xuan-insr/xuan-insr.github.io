@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -6377,12 +6386,12 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>然后在 VSCode 的 Keyboard Shortcuts 里就能看到 <code>xuan.pasteUrl</code> 了，可以设置一下快捷键和 <code>when</code>：</p>
-<p><center><img alt="" src="../2023-02-09-21-28-06.png" width="800" /></center></p>
+<p><center><a class="glightbox" href="../2023-02-09-21-28-06.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-09-21-28-06.png" width="800" /></a></center></p>
 <hr />
 <h3 id="段落链接">段落链接<a class="headerlink" href="#段落链接" title="Permanent link">&para;</a></h3>
 <p>标题自己就有链接，不过通过锚的方式可以给任意地方加上链接。</p>
 <p><a href="#status_boxes">这里</a> 可以跳转到 status 小方块的效果展示区。因为我们在那里加了这样一个锚点：</p>
-<p><img alt="" src="../assets/2023-10-05-16-09-38.png" /></p>
+<p><a class="glightbox" href="../assets/2023-10-05-16-09-38.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-10-05-16-09-38.png" /></a></p>
 <p>在页面后面添加 <code>#status_boxes</code> 可以找到页面中 <code>id</code> 为 <code>status_boxes</code> 的元素。HTML 中的 <code>id</code> 是唯一的。我们加了一个 <code>id</code> 为 <code>status_box</code> 的 <code>&lt;a&gt;</code> 之后就可以通过 <code>#status_boxes</code> 访问到它了！当然也不一定需要是 <code>&lt;a&gt;</code>，别的标签也行。</p>
 <hr />
 <h3 id="并排放一些东西">并排放一些东西<a class="headerlink" href="#并排放一些东西" title="Permanent link">&para;</a></h3>
@@ -6445,8 +6454,8 @@
 <h4 id="设置亮--暗主题下显示的不同图片">设置亮 / 暗主题下显示的不同图片<a class="headerlink" href="#设置亮--暗主题下显示的不同图片" title="Permanent link">&para;</a></h4>
 <p>参见 <a href="https://squidfunk.github.io/mkdocs-material/reference/images/#light-and-dark-mode">这里</a></p>
 <p>Example: </p>
-<p><img alt="Image title" src="https://dummyimage.com/600x400/f5f5f5/aaaaaa#only-light" />
-<img alt="Image title" src="https://dummyimage.com/600x400/21222c/d5d7e2#only-dark" /></p>
+<p><a class="glightbox" href="https://dummyimage.com/600x400/f5f5f5/aaaaaa#only-light" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Image title" src="https://dummyimage.com/600x400/f5f5f5/aaaaaa#only-light" /></a>
+<a class="glightbox" href="https://dummyimage.com/600x400/21222c/d5d7e2#only-dark" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Image title" src="https://dummyimage.com/600x400/21222c/d5d7e2#only-dark" /></a></p>
 <div class="highlight"><pre><span></span><code>![Image title](https://dummyimage.com/600x400/f5f5f5/aaaaaa#only-light)
 ![Image title](https://dummyimage.com/600x400/21222c/d5d7e2#only-dark)
 </code></pre></div>
@@ -6751,5 +6760,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

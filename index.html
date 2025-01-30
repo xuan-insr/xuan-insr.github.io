@@ -99,7 +99,16 @@
       
     
     
-  </head>
+   <link href="assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5643,7 +5652,7 @@
 <details class="info inline" open="open">
 <summary>统计！</summary>
 <p><center>页面数：165 </center></p>
-<p><center>总字数：253697 </center></p>
+<p><center>总字数：254441 </center></p>
 </details>
 <details class="warning" open="open">
 <summary>施工中！</summary>
@@ -5677,7 +5686,7 @@
 <li><a href="https://yukinoshitasherry.github.io">秋月春风的书房</a></li>
 </ul>
 </details>
-<p><center><img src="index.assets/image.png"/></center></p>
+<p><center><a class="glightbox" href="index.assets/image.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="index.assets/image.png"/></a></center></p>
 
 
 
@@ -5945,5 +5954,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

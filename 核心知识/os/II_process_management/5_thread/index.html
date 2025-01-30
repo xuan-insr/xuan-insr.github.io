@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5759,8 +5768,8 @@
 </div>
 <p>在进程一节中，我们看到了进程在 fork 时有较大的开销，也看到了 copy-on-write 等技术能够减少这些开销；在调度一节中，我们同样看到了上下文切换时会带来的开销。我们容易意识到，在很多情况下，若干进程可能共享一些内容，而操作系统本身如果知道这些共享，则可以减省新建进程的开销以及进程间切换的时延。因此操作系统引入了 <strong>线程 (threads)</strong>。</p>
 <p>​在 Linux 中，线程也被称为 <strong>轻量级进程 (LightWeight Process)</strong>，这实际上是对线程非常恰当的一个描述。每个线程都有它自己的 thread ID, PC, register set 和 runtime stack。线程与同一进程的其他线程共享 code section, data section, heap, open files 以及 signals。</p>
-<p><center><img alt="" src="../2022-12-08-17-49-13.png" width="300" /></center></p>
-<p><center><img alt="" src="../2022-12-08-17-49-36.png" width="300" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-08-17-49-13.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-49-13.png" width="300" /></a></center></p>
+<p><center><a class="glightbox" href="../2022-12-08-17-49-36.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-49-36.png" width="300" /></a></center></p>
 <p>​对于支持线程的操作系统，实际调度的是内核级线程而非进程。也就是说，线程是运行以及 CPU 调度的基本单元。（而进程是分配资源的基本单元。）</p>
 <h2 id="51-多线程编程的优缺点">5.1 多线程编程的优缺点<a class="headerlink" href="#51-多线程编程的优缺点" title="Permanent link">&para;</a></h2>
 <p>采用 <strong>多线程编程 (Multi-Threaded Programming)</strong> 的优点包括：</p>
@@ -5769,7 +5778,7 @@
 <li><strong>Resource Sharing:</strong> 同一进程的线程之间天然共享内存，因此我们无需为它们编写 IPC；这也允许我们对同一块内存做并行的处理。但这也会引入风险。</li>
 <li><strong>Responsiveness:</strong> 多线程的进程会有更好的响应性，即当一个线程 blocked 或者在做一些长时间的操作时，其他线程仍然能完成工作，包括对用户的响应。<ul>
 <li>例如，在一个 client-server 结构中，我们用一个线程来响应客户端的请求：<br />
-<center><img alt="" src="../2022-12-08-17-51-33.png" width="300" /></center></li>
+<center><a class="glightbox" href="../2022-12-08-17-51-33.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-51-33.png" width="300" /></a></center></li>
 </ul>
 </li>
 <li><strong>Scalability:</strong> 在多处理器的体系结构中，多线程进程可以更好地发挥作用，因为每个线程都可以在一个处理器上运行；而单线程进程只能在一个处理器上运行。</li>
@@ -5782,7 +5791,7 @@
 <li>由于多个线程共享部分内存，因此内存保护会比较困难。</li>
 </ul>
 <h2 id="52-线程的实现方式">5.2 线程的实现方式<a class="headerlink" href="#52-线程的实现方式" title="Permanent link">&para;</a></h2>
-<p><center><img alt="" src="../2022-12-08-17-54-35.png" width="300" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-08-17-54-35.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-54-35.png" width="300" /></a></center></p>
 <p>​线程实现的重点是共享一些资源；而具体的实现分为 <strong>用户级线程 (User-Level Thread)</strong> 和 <strong>内核级线程 (Kernel-Level Thread)</strong> 两类。</p>
 <p>用户级线程的特点是，它在操作系统上只是一个进程，这个进程包含 <strong>线程库 (Thread Library)</strong> 的部分，​这部分代码负责完成线程的创建、切换等操作；而内核级线程则是由操作系统支持这些操作。</p>
 <p>​用户级线程的优点包括：</p>
@@ -5799,17 +5808,17 @@
 <h3 id="多线程模型">多线程模型<a class="headerlink" href="#多线程模型" title="Permanent link">&para;</a></h3>
 <p>​在同时支持用户级线程和内核级线程的系统中，用户级线程到内核级线程的映射方式有多种选择。</p>
 <p>​​这种方式其实和只支持用户级线程没啥区别：</p>
-<p><center><img alt="" src="../2022-12-08-17-57-30.png" width="300" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-08-17-57-30.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-57-30.png" width="300" /></a></center></p>
 <p>​这种方式和只支持内核级线程也没啥区别：</p>
-<p><center><img alt="" src="../2022-12-08-17-57-56.png" width="300" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-08-17-57-56.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-57-56.png" width="300" /></a></center></p>
 <p>​​​前面两种的组合，在这种情况下，<span class="arithmatex">\(n\)</span> 个用户级线程可以映射到 <span class="arithmatex">\(m (\le n)\)</span> 个内核级线程上：</p>
-<p><center><img alt="" src="../2022-12-08-17-58-10.png" width="300" /></center></p>
+<p><center><a class="glightbox" href="../2022-12-08-17-58-10.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-58-10.png" width="300" /></a></center></p>
 <h2 id="53-linux-线程">5.3 ​Linux 线程<a class="headerlink" href="#53-linux-线程" title="Permanent link">&para;</a></h2>
 <p>​Linux 中没有特别区分进程和线程，它们都被称为 tasks，每一个线程都有一个 <code>task_struct</code>。（虽然从概念上说，线程应该都使用其所属进程的 PCB，但是 Linux 不是这么实现的！）</p>
 <p>​Linux 中可以通过 <code>clone()</code> 新建一个线程；这个系统调用包含了一大堆选项，包括新建的是一个线程还是进程，以及继承 / 新建哪些资源等。事实上，在很多实现中，<code>fork()</code> 的内部就是调用 <code>clone()</code> 实现的。</p>
 <p>​从用户视角而言，Linux 中的线程通过 TID (Thread ID) 标识，而来自同一个进程的多个线程应当具有同样的 PID (Process ID)；系统调用 <code>gettid()</code> 和 <code>getpid()</code> 的实现和这个理解是一样的。</p>
 <p>​但是事实上，<code>task_struct</code> 里面并没有 <code>tid</code> 这个字段，而是有 <code>pid</code> 和 <code>tgid</code> (Thread Group ID) 这两个字段。其实，这里的 <code>pid</code> 和我们前述的 TID 含义一致，而这里的 <code>tgid</code> 和前述 PID 含义一致。这主要是历史原因，在还不支持线程的年代，<code>pid</code> 作为调度的依据被使用；在支持多线程后，调度的单元从进程变为了线程，如果引入一个新的字段 <code>tid</code>，则需要修改相关的代码，因此 <code>pid</code> 被保留，但发挥 <code>tid</code> 的作用；引入了一个新的字段 <code>tgid</code>，表示这一组线程的标识符，也就是其所属进程的标识符。</p>
-<p><center><img alt="" src="../2022-12-08-18-01-01.png" width="300" /><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></center></p>
+<p><center><a class="glightbox" href="../2022-12-08-18-01-01.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-18-01-01.png" width="300" /></a><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></center></p>
 <p>​正因如此，从 Linux 2.4 开始，getpid() 返回的就不再是 pid 了，而是 tgid。<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
 <p>​使用 ps 指令，还能看到一个名叫 LWP (LightWeight Process) 的值，这个值始终和 TID 的值相同；LWP 通常被用作给用户呈现，而 TID 更经常被用作 gettid() 之类的系统调用。还有一个字段叫 NLWP，表示进程中的线程个数。<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></p>
 <div class="footnote">
@@ -6109,5 +6118,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

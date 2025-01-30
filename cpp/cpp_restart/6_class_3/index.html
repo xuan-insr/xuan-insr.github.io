@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5902,7 +5911,7 @@ function toggleVisibilityFoot() {
 <p>如果按照我们之前的说法，这个函数在返回时构造一个 <code>T</code> 类型的临时对象，把它作为返回值；此时这个临时对象作为返回值会被用来初始化调用处的那个临时对象，然后被析构。随后该语句结束，临时对象被析构。也就是说，有两次构造（其中一次是拷贝构造）和两次析构发生。</p>
 <p>容易理解，在上面的两种情况下，我们可以简易地达成一个优化，从而减省一次构造和一次析构。即，我们做的事情是在返回处构造、拷贝给调用处。但是，如果我们能够直接在调用处构造，就可以省略返回处的临时对象的构造和析构了。</p>
 <p>即，<code>f();</code> 只会调用一次默认构造函数，而不会调用拷贝构造函数；如下图所示：</p>
-<p><center><img alt="" src="../2023-03-25-20-58-11.png" /></center></p>
+<p><center><a class="glightbox" href="../2023-03-25-20-58-11.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-03-25-20-58-11.png" /></a></center></p>
 <p>自 C++17 开始，在以下两种情况下，对拷贝的省略是强制的：</p>
 <p>返回一个与返回值类型相同的临时值<sup id="fnref:prvalue"><a class="footnote-ref" href="#fn:prvalue">4</a></sup>：</p>
 <div class="highlight"><pre><span></span><code><span class="n">T</span><span class="w"> </span><span class="nf">f</span><span class="p">()</span>
@@ -5918,7 +5927,7 @@ function toggleVisibilityFoot() {
 <span class="n">T</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="p">(</span><span class="n">T</span><span class="p">(</span><span class="n">f</span><span class="p">()));</span><span class="w"> </span><span class="c1">// only one call to default constructor of T, to initialize x</span>
 </code></pre></div>
 <p>也因此，在这种情形下，并不要求拷贝构造函数是可访问的：</p>
-<p><center><img alt="" src="../2023-03-25-20-58-55.png" /></center></p>
+<p><center><a class="glightbox" href="../2023-03-25-20-58-55.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-03-25-20-58-55.png" /></a></center></p>
 <p>在另外的一些情况下，也有可能有优化的空间，例如：</p>
 <div class="highlight"><pre><span></span><code><span class="n">T</span><span class="w"> </span><span class="nf">f</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span>
@@ -6381,5 +6390,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

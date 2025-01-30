@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -6140,8 +6149,8 @@ T3 懒得做了，但是输出 false 能有 25% 的分，非常离谱。</p>
 <p>另外问了有没有转正的机会。回答了「理论上是有可能的」，但是「现在实习生面试和校招面试是解耦的」。实习完之后如果实习比较好会有一个成绩，类似提前批一样走流程。</p>
 <hr />
 <p>主管面结束后，HR 通知我面试都通过了，只剩下 offer 审批流程了；并在 4.14 通知我有一个信息填错了让我修改，次日要 offer 材料上报审批。我改了之后就再也没有消息了。官网上的进展停留在下面的情况：</p>
-<p><img alt="" src="../2023-01-02-20-44-14.png" /></p>
-<p><img alt="" src="../2023-01-02-20-43-56.png" /></p>
+<p><a class="glightbox" href="../2023-01-02-20-44-14.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-01-02-20-44-14.png" /></a></p>
+<p><a class="glightbox" href="../2023-01-02-20-43-56.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-01-02-20-43-56.png" /></a></p>
 <hr />
 <h2 id="秋招">秋招<a class="headerlink" href="#秋招" title="Permanent link">&para;</a></h2>
 <p>9.19 去问了 HR 还有没有机会，HR 说有的，并关注是否考虑读研。</p>
@@ -6158,7 +6167,7 @@ T3 懒得做了，但是输出 false 能有 25% 的分，非常离谱。</p>
 <details class="success">
 <summary>我的答案</summary>
 <p>应该是个双指针，但是当时不会双指针。写了朴素循环：</p>
-<p><img alt="" src="../2023-01-02-22-32-01.png" /></p>
+<p><a class="glightbox" href="../2023-01-02-22-32-01.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-01-02-22-32-01.png" /></a></p>
 <p>问有什么优化思路，我边想边说，说到了前缀和，他也没继续问，直接往下走了。</p>
 </details>
 <p>反问阶段。问具体做什么工作。问了仓颉解决什么问题，是解决生态问题还是什么。回答最开始做是因为各种语言都有好特性，但是没有一门语言原生支持这些特性，所以华为想做。</p>
@@ -6507,5 +6516,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

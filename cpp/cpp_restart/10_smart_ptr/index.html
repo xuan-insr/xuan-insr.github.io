@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -6806,7 +6815,7 @@
 <span class="p">};</span>
 </code></pre></div>
 <p>当 <code>shared_ptr</code> 被复制时，新的 <code>shared_ptr</code> 会指向同一个 <code>Control Block</code>，并且引用计数会加 1。也就是说，<code>shared_ptr</code> 的拷贝是浅拷贝。</p>
-<p><center><img alt="" src="../2023-05-20-04-48-38.png" width="300" /> <img alt="" src="../2023-05-20-04-48-50.png" width="300" /></center></p>
+<p><center><a class="glightbox" href="../2023-05-20-04-48-38.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-05-20-04-48-38.png" width="300" /></a> <a class="glightbox" href="../2023-05-20-04-48-50.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-05-20-04-48-50.png" width="300" /></a></center></p>
 <p>因此我们可以看到，<code>shared_ptr</code> 是 <strong>有额外的内存和性能开销的</strong>，并不像 <code>unique_ptr</code> 那样只是一个指针的包装。</p>
 <h3 id="1042-接口">10.4.2 接口<a class="headerlink" href="#1042-接口" title="Permanent link">&para;</a></h3>
 <p><strong>构造与析构：</strong></p>
@@ -6868,7 +6877,7 @@
 </code></pre></div>
 <p><code>make_shared</code> 是创建 <code>shared_ptr</code> 的首选方式，因为它只需要一次内存分配，同时为对象和引用计数分配内存。相比之下，直接使用 <code>new</code> 会进行两次内存分配。</p>
 <p>我们知道内存申请是比较昂贵的，所以说有这样的 <code>make_shared</code> 就可以省下一些时间。同时可以让对象和引用计数离得更近，进而带来更好的 locality。</p>
-<p><center><img alt="" src="../2023-05-20-04-49-05.png" width="600" /></center></p>
+<p><center><a class="glightbox" href="../2023-05-20-04-49-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-05-20-04-49-05.png" width="600" /></a></center></p>
 <p><code>shared_ptr</code> 在 C++17 时引入对数组的支持，<code>make_shared</code> 在 C++20 时引入对数组的支持。</p>
 <h3 id="1044-shared_ptr-作为函数参数和返回值">10.4.4 shared_ptr 作为函数参数和返回值<a class="headerlink" href="#1044-shared_ptr-作为函数参数和返回值" title="Permanent link">&para;</a></h3>
 <p>类似前面的讨论，常见可能的用法是：</p>
@@ -7219,5 +7228,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5938,7 +5947,7 @@ function toggleVisibilityFoot() {
 <span class="cm">*/</span>
 </code></pre></div>
 <p>我们知道，<code>std::vector</code> 的底层数据结构是数组，<code>std::set</code> 的底层数据结构是红黑树，<code>std::list</code> 的底层数据是双向链表；<code>std::for_each</code> 对它们进行遍历的方式显然不同。</p>
-<p><center><img alt="Alt text" src="../image.png" width="400" /></center></p>
+<p><center><a class="glightbox" href="../image.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Alt text" src="../image.png" width="400" /></a></center></p>
 <p>但是，对它们进行遍历的方式也有共通之处：对于 <code>for_each(c.begin(), c.end(), print);</code>，它需要做的事就是，从容器的 <strong>开头</strong> 开始，每次 <strong>找到下一个元素</strong>，<strong>访问元素内容</strong>，直到容器的 <strong>末尾</strong> 为止。即：<code>for (SomeType ptr = c.begin(); ptr != c.end(); go_to_next_node(ptr)) { print(get_value(ptr)); }</code>。</p>
 <div class="admonition inline end tips">
 <p class="admonition-title">Inline</p>
@@ -5949,7 +5958,7 @@ function toggleVisibilityFoot() {
 <details class="tips" open="open">
 <summary>Tips</summary>
 <p>不过，数组的最后一个元素明明是 <code>a[N - 1]</code>，为什么要把 <code>a + N</code> 即 <code>&amp;a[N]</code> 作为末尾？原因是，我们希望循环在 <strong>越过</strong> <code>a[N - 1]</code>，即 <strong>到达但未访问</strong> <code>a[N]</code> 时就停止，也就是说我们的「末尾」其实是 <strong>one-past-the-end position</strong>，如下图所示：</p>
-<p><center><img alt="" src="../assets/2023-08-01-11-59-52.png" width="500" /></center></p>
+<p><center><a class="glightbox" href="../assets/2023-08-01-11-59-52.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-01-11-59-52.png" width="500" /></a></center></p>
 </details>
 <p>然而，对于其他数据结构，就没有指针这样简单的方式来实现遍历了。不过，我们可以通过运算符重载的方式来为其他数据结构提供用于它们的「指针」，从而能够使用和数组的指针一样的方式来遍历容器，亦即：</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyIterator</span><span class="w"> </span><span class="p">{</span>
@@ -6042,20 +6051,20 @@ function toggleVisibilityFoot() {
 <p>我们之前提到，对于 <code>std::vector&lt;int&gt; v;</code> ， <code>v.begin()</code> 的返回值类型是 <code>std::vector&lt;int&gt;::iterator</code>；而这和我们前面那段代码中所写的 <code>MyLList&lt;T&gt;::iterator</code> 一样，它其实是另一个类的别名，在我们之前的例子中，它实际上是 <code>MyLList&lt;T&gt;::MyIterator</code> 的别名。库的作者可以根据自己的喜好来定义迭代器类型实际的名称，而只需要设置好 <code>Container::iterator</code> 这个统一的别名即可。</p>
 <p>在实践中，取决于环境，<code>std::vector&lt;int&gt;::iterator</code> 可能是 <code>__gnu_cxx::__normal_iterator&lt;int*, std::vector&lt;int&gt;&gt;</code> ；对于 <code>std::map&lt;int, double&gt; m;</code> ， <code>m.begin()</code> 的返回值类型可能是 <code>std::_Rb_tree_iterator&lt;std::pair&lt;const int, double&gt;&gt;</code> 。感兴趣的小朋友可以自己在 <a href="https://godbolt.org/z/6s5x66rdG">https://godbolt.org/z/6s5x66rdG</a> 尝试（这里也展示了一种查看表达式类型的小技巧）！</p>
 <p>同时，也可以使用 C++ Insights 来查看：<a href="https://cppinsights.io/s/cd95e24b">https://cppinsights.io/s/cd95e24b</a> </p>
-<p><img alt="" src="../assets/2023-08-07-12-02-27.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-07-12-02-27.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-07-12-02-27.png" /></a></p>
 <p>不过，我们在真正使用到这些类型的时候，可以通过 <code>std::vector&lt;int&gt;::iterator</code> 来获得迭代器的类型；这是类的一个成员，声明了一个别名。</p>
 </details>
 <p>我们可以通过 <a href="https://cppinsights.io/s/90d5fb67">CppInsights</a> 查看之前遍历 <code>MyLList</code> 的代码，从而验证上述知识。</p>
 <details class="info" open="open">
 <summary>整活</summary>
 <p>我们之前提到，使用这种 range-based for loop，只需要类“包含成员函数 <code>begin()</code> 和 <code>end()</code> ，且其返回值类型支持运算符 <code>++</code> 、 <code>*</code> 和 <code>!=</code> ”，所以其实我们可以写出这样的代码 XD：</p>
-<p><img alt="" src="../assets/2023-08-07-12-05-32.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-07-12-05-32.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-07-12-05-32.png" /></a></p>
 <p>感兴趣的小朋友可以来玩一玩：<a href="https://godbolt.org/z/813b9e9Pd">https://godbolt.org/z/813b9e9Pd</a></p>
 </details>
 <details class="tip" open="open">
 <summary>Tip</summary>
 <p>另外，除了 <code>begin()</code> ，容器还会提供 <code>cbegin()</code> , <code>rbegin()</code> , <code>crbegin()</code> 这三种成员函数，提供不同的迭代器；也有对应的 <code>end()</code> 版本。这里 <code>c</code> 是指 const，即迭代器指向的变量是只读的； <code>r</code> 是指 reverse，即这种迭代器是逆序的，即：</p>
-<p><img alt="" src="../assets/2023-08-07-12-05-43.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-07-12-05-43.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-07-12-05-43.png" /></a></p>
 </details>
 <h2 id="82-迭代器的分类">8.2 迭代器的分类<a class="headerlink" href="#82-迭代器的分类" title="Permanent link">&para;</a></h2>
 <p>我们在前一节中得知，<code>std::vector</code> 和 <code>std::unordered_set</code> 之类的容器都是有迭代器的，我们可以通过迭代器遍历它们。我们还知道，我们可以通过 <code>std::sort</code> 来对 <code>vector</code> 中的元素进行排序。请问：我们是否可以用 <code>sort</code> 来对 <code>unordered_set</code> 中的元素进行排序？如果不能，为什么？</p>
@@ -6116,19 +6125,19 @@ In file included from /opt/compiler-explorer/gcc-12.2.0/lib/gcc/x86_64-linux-gnu
 2 errors generated.
 </code></pre></div>
 <p>遇到这种情况时，不要怕，我们来找 <strong>error</strong> 到底是什么：</p>
-<p><img alt="" src="../assets/2023-08-07-12-21-13.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-07-12-21-13.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-07-12-21-13.png" /></a></p>
 <p>编译器告诉我们，<code>std::__detail::_Node_iterator&lt;int, true, false&gt;</code> 之间的二元运算 <code>-</code> 是非法的；即没有运算符重载定义了这个类型之间的 <code>-</code> 运算。</p>
 <p>猜一猜，这个陌生的 <code>std::__detail::_Node_iterator&lt;int, true, false&gt;</code> 是什么东西呢？回顾前面的讨论我们不难猜出，它实际上就是 <code>std::unordered_set&lt;int&gt;::iterator</code>。也就是说，它对应的迭代器并不支持计算两个元素之间距离的功能。</p>
 <p>众所周知，<code>sort</code> 的实现类似快速排序<sup id="fnref:sort"><a class="footnote-ref" href="#fn:sort">1</a></sup>；而快速排序本身是需要 <strong>随机访问</strong> 容器中的元素的，即能够以 <span class="arithmatex">\(O(1)\)</span> 的时间使用类似 <code>c[i]</code> 的方式访问到容器中的任意一个元素；同时也需要能够以 <span class="arithmatex">\(O(1)\)</span> 的时间计算两个元素之间的 <strong>距离</strong>。但是，<code>unordered_set</code> 本身显然不能够满足上述要求。</p>
 <p>这也就告诉我们，迭代器的能力其实是有强有弱的。</p>
 <p>考虑数组，我们有大量任务可以在常数时间内完成：</p>
-<p><img alt="" src="../assets/2023-08-07-12-28-52.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-07-12-28-52.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-07-12-28-52.png" /></a></p>
 <p>而如果是双向链表，能在常数时间内完成的任务就会少了许多，例如我们失去了随机访问和计算距离等能力：</p>
-<p><img alt="" src="../assets/2023-08-07-12-29-30.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-07-12-29-30.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-07-12-29-30.png" /></a></p>
 <p>对于单向链表，我们进一步失去了访问前序元素的能力：</p>
-<p><img alt="" src="../assets/2023-08-07-12-30-06.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-07-12-30-06.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-07-12-30-06.png" /></a></p>
 <p>而在阅读一个输入流的情况下，我们也许会进一步失去「从头开始再看一遍」的能力：</p>
-<p><img alt="" src="../assets/2023-08-07-12-31-22.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-07-12-31-22.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-07-12-31-22.png" /></a></p>
 <p>由于这样的区别，我们将迭代器分为如下几个类别<sup id="fnref:it_category"><a class="footnote-ref" href="#fn:it_category">2</a></sup>：</p>
 <ul>
 <li><strong>Input</strong> Iterator : 能够用来标识、 <strong>遍历</strong> 一个容器中的元素，能够从所指的元素中 <strong>读取</strong> 值<ul>
@@ -6146,12 +6155,12 @@ In file included from /opt/compiler-explorer/gcc-12.2.0/lib/gcc/x86_64-linux-gnu
 <p>在上述类别的基础上，还有一种 <strong>Output</strong> Iterator。它和 Input Iterator 类似，需要能够用来标识、 <strong>遍历</strong> 一个容器中的元素，能够向所指的元素中 <strong>写入</strong> 值；同样不需要保证多趟算法的有效性。</p>
 <p>由于 Output Iterator 和前述 5 个类型是相互独立的。因此，我们称满足前述 5 个中某一个、同时还满足 Output Iterator 的迭代器为 <strong>mutable</strong> 的。</p>
 <p>下面的表格概括了上述内容：</p>
-<p><img alt="" src="../assets/2023-08-17-18-12-41.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-17-18-12-41.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-17-18-12-41.png" /></a></p>
 <details class="example" open="open">
 <summary>Quiz 时间!</summary>
 <p>Quiz 时间！</p>
 <p>那么，请大家根据自己的理解，结合对应容器的实现方式，写出它们提供满足什么要求的迭代器！</p>
-<p><img alt="" src="../assets/2023-08-17-18-15-13.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-17-18-15-13.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-17-18-15-13.png" /></a></p>
 <details class="note" open="open">
 <summary>图注</summary>
 <p><strong>*</strong>  对于 deque，例如每个定长数组长度为 100，那么访问 <code>q[514]</code> 其实就是访问 <code>a[5][14]</code> ，也就是第 6 个数组里的第 15 个元素。</p>
@@ -6159,7 +6168,7 @@ In file included from /opt/compiler-explorer/gcc-12.2.0/lib/gcc/x86_64-linux-gnu
 </details>
 <details class="success">
 <summary>答案</summary>
-<p><img alt="" src="../assets/2023-08-17-18-15-36.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-17-18-15-36.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-17-18-15-36.png" /></a></p>
 <details class="note" open="open">
 <summary>图注</summary>
 <p><strong>#</strong>  特别地， <code>vector&lt;bool&gt;</code> 是 <code>vector</code> 的一个显式特化，标准希望实现者可以考虑用更节省空间的方式保存 <code>vector&lt;bool&gt;</code> ，但是具体实现方法是 implementation defined 的（标准不指明实现方式，但是具体的实现者需要给出说明）；因此 <code>vector&lt;bool&gt;</code> 提供的迭代器满足的具名要求也是 implementation defined 的。</p>
@@ -6174,7 +6183,7 @@ In file included from /opt/compiler-explorer/gcc-12.2.0/lib/gcc/x86_64-linux-gnu
 <details class="tip">
 <summary>补充</summary>
 <p>这种在满足和不满足 Random Access Iterator 时有不同复杂度的实现方式是，每个 iterator <code>It</code> 都需要有一个对应的 <code>iterator_traits&lt;It&gt;</code> ，其中包含了一个 <code>iterator_category</code> ，它用来标识这个迭代器满足哪种要求。对于指向对象的指针类型， <code>iterator_traits</code> 有对应的特化，其 <code>iterator_category</code> 为 <code>random_access_iterator_tag</code> 。</p>
-<p><img alt="" src="../assets/2023-08-17-18-17-30.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-17-18-17-30.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-17-18-17-30.png" /></a></p>
 <p>在 <code>lower_bound</code> 中，使用 <code>it + n</code> 这样的操作可能是通过 <code>std::advance(it, n)</code> 的方式实现的，这个函数对于不同的 <code>iterator_traits</code> 有不同的重载；对于支持随机访问的，就会通过 <code>it + n</code> 的方式实现，而如果不支持，则通过循环实现。</p>
 </details>
 <h2 id="83-迭代器何必是迭代器">8.3 迭代器何必是迭代器<a class="headerlink" href="#83-迭代器何必是迭代器" title="Permanent link">&para;</a></h2>
@@ -6184,7 +6193,7 @@ b. 自定义比较函数是怎么实现的？如何适配有和没有自定义�
 <p>我们先来讨论 a 问题。</p>
 <p>前一节中我们讨论过， <code>sort</code> 要求传入的迭代器满足 Random Access Iterator，这一要求是因为 <code>sort</code> 的实现中会包含类似 <code>end - begin</code> , <code>it + n</code> , <code>*it</code> 之类的操作。我们在前一节也讨论过了，满足 Random Access Iterator 的迭代器需要支持上述操作；而同时，指针类型也支持这样的操作。</p>
 <p>和 8.1 小节中的「整活」类似，其实只要我们传入的类型支持上述操作就可以了。而如果类型并不支持上述操作，则会编译错误，例如 8.2 小节开头演示用 <code>sort</code> 排序其实报的错就是「并没有这两个迭代器之间的 <code>-</code> 运算」：</p>
-<p><img alt="" src="../assets/2023-08-17-18-21-09.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-17-18-21-09.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-17-18-21-09.png" /></a></p>
 <p>为了进一步解释，我们可以写一个小的 demo：</p>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="kt">void</span><span class="w"> </span><span class="n">demo</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -6206,7 +6215,7 @@ b. 自定义比较函数是怎么实现的？如何适配有和没有自定义�
 <span class="p">}</span>
 </code></pre></div>
 <p>可以看到，我们的 <code>demo</code> 用到了前述三种操作，而 15 和 16 行用指针和 vector 的迭代器调用它的时候都可以正常编译通过；但是 17 行就会出现编译错误：</p>
-<p><img alt="" src="../assets/2023-08-17-18-22-07.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-17-18-22-07.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-17-18-22-07.png" /></a></p>
 <p>所以说， <code>sort</code> 既适用于传统数组，也适用于 vector 等容器是自然的：指针和满足 Random Access Iterator 的迭代器都支持 <code>sort</code> 函数里用到的各种运算，因此自然就能通过编译。</p>
 <p>也就是说，我们要求 <code>sort</code> 传入的类型满足 Random Access Iterator 并不是一个前提，而是一个 <strong>结果</strong> —— 我们把 <code>sort</code> 以及和它类似的函数，对传入参数类型「能够在 <strong>常数</strong> 时间内移动从而指向 <strong>任一</strong> 元素的函数」的要求起了个名字，叫做 Random Access Iterator。而这种要求在语言中的体现，也并不是使用专门的 tag 来标记某个迭代器符合什么样的具名要求，而只是不符合这种要求的类型自然无法通过编译，因为对应函数中使用了要求所说明的一些操作。</p>
 <p>这符合一种称为「duck typing」的思想：If it walks like a duck and it quacks like a duck, then it must be a duck。因此，在 STL 的设计中，If something <strong>behaves</strong> like an iterator, then it <strong>is</strong> an iterator。</p>
@@ -6236,7 +6245,7 @@ b. 自定义比较函数是怎么实现的？如何适配有和没有自定义�
 </code></pre></div>
 <p>那么，其实 <code>sort</code> 中直接调用 <code>cmp(*it1, *it2)</code> 就可以实现对两个元素的比较了！</p>
 <p>与上一节讨论的「has a」关系一样，如果函数不能以 <code>cmp(*it1, *it2)</code> 的方式调用，则函数自然会报错：</p>
-<p><img alt="" src="../assets/2023-08-17-18-39-54.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-17-18-39-54.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-17-18-39-54.png" /></a></p>
 <p>所以， <code>sort</code> 大概可以是这样：</p>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">RandomIt</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Comparator</span><span class="w"> </span><span class="o">&gt;</span>
 <span class="kt">void</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="w"> </span><span class="n">RandomIt</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">RandomIt</span><span class="w"> </span><span class="n">last</span><span class="p">,</span><span class="w"> </span><span class="n">Comparator</span><span class="w"> </span><span class="n">comp</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -6322,7 +6331,7 @@ b. 自定义比较函数是怎么实现的？如何适配有和没有自定义�
 <p>因此，我们使用函数调用语句 <code>E(A...)</code> 时， <code>E</code> 可以是函数、函数引用、函数对象，或者其他值为函数引用或函数对象的表达式。函数用来赋值或者作为参数被传递时，如果接收方不是引用，则会发生 function-to-pointer 的隐式类型转换，即被隐式转换成函数指针。因此当函数作为参数被传递时，接收方要么接收到一个引用，要么接收到一个指针。</p>
 <h4 id="如何给-sort-传递自定义比较器">如何给 <code>sort</code> 传递自定义比较器<a class="headerlink" href="#如何给-sort-传递自定义比较器" title="Permanent link">&para;</a></h4>
 <p>知道了这些内容，我们就有了很多种给 <code>sort</code> 之类的函数传递函数的方式了！</p>
-<p><img alt="" src="../assets/2023-08-17-18-52-23.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-17-18-52-23.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-17-18-52-23.png" /></a></p>
 <details class="note" open="open">
 <summary>解释</summary>
 <p>聪明的小朋友可能会问了——第 15 行传递引用为什么那么麻烦呀！其实可以看到，如果不显示给出模板参数，那么就会像 13 行一样被解释成函数指针而不是函数引用。因此如果我们真的想要让它是一个引用，那就只能显式地写出其类型；如果写 <code>decltype(cmp1)</code> 的话，虽然模板参数是一个引用类型，但是传进去的其实还是个函数指针而不是引用，因为函数本身不是对象，我们不能定义一个函数类型的变量（此时，编译器会自动把参数类型从函数改为函数指针<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/temp.deduct.general#3.sentence-1">temp.deduct.general#3</a></sup> <sup><a href="https://timsong-cpp.github.io/cppwp/n4868/dcl.fct#5.sentence-3">dcl.fct#5</a></sup>；参见 <a href="https://cppinsights.io/s/bcf2606b">这里</a>）。但是如果写 <code>decltype(*cmp1)</code> 的话，这就是一个引用类型，所以传进去的就是一个引用了。</p>
@@ -6367,10 +6376,10 @@ b. 自定义比较函数是怎么实现的？如何适配有和没有自定义�
 <p>当我们写类似 <code>priority_queue&lt;int&gt; pq;</code> 的代码时，我们显式指定 <code>T</code> 为 <code>int</code> ，其他参数为默认值，并调用了第 6 行的构造函数；可以看到这个构造函数调用了 <code>Container</code> 和 <code>Compare</code> 的默认构造函数作为参数调用第 9 行的构造函数，从而构造出了本实例的比较器对象和容器对象。</p>
 <p>当我们写类似 <code>priority_queue&lt;int, vector&lt;int&gt;, decltype(lambda)&gt; pq(lambda);</code> 的代码时（ <code>lambda</code> 是一个 lambda 表达式），其实就是显式地说明了模板参数，并调用第 7 行的构造函数，将我们的自定义比较器作为参数传入作为本实例的比较器对象。容器对象仍然是调用对应构造函数构造的。</p>
 <p>所以说，我们其实可以有很多种给 priority_queue 等容器传比较器的方式！</p>
-<p><img alt="" src="../assets/2023-08-17-18-53-53.png" /></p>
+<p><a class="glightbox" href="../assets/2023-08-17-18-53-53.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-17-18-53-53.png" /></a></p>
 <div class="admonition tip">
 <p>上图中 (4) 的写法会报这样的编译错误：
-<img alt="" src="../assets/2023-08-17-18-54-02.png" />
+<a class="glightbox" href="../assets/2023-08-17-18-54-02.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2023-08-17-18-54-02.png" /></a>
 也就是说，这里 <code>_Compare</code> 即 <code>decltype(func)</code> 即 <code>bool (const int &amp;, const int &amp;)</code> 是一个函数类型，我们不能声明一个函数类型的成员变量。</p>
 </div>
 <hr />
@@ -6758,5 +6767,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

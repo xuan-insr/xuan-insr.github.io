@@ -101,7 +101,16 @@
       
     
     
-  </head>
+   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5965,7 +5974,7 @@
 <p>答案请参看 <a href="../../4_class_1/#41-%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89">4.1 类的定义</a> 中的「Note」块。</p>
 <h3 id="2-nested-name-specifier">2 nested-name-specifier<a class="headerlink" href="#2-nested-name-specifier" title="Permanent link">&para;</a></h3>
 <p>课程中，我们看到了类的定义的形式：</p>
-<p><img alt="" src="../2023-03-06-22-55-44.png" /></p>
+<p><a class="glightbox" href="../2023-03-06-22-55-44.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-03-06-22-55-44.png" /></a></p>
 <p><strong>问题</strong> ：这里的「nested-name-specifier」是什么呢？</p>
 <p>答案请参看 <a href="../../4_class_1/#41-%E7%B1%BB%E7%9A%84%E5%AE%9A%E4%B9%89">4.1 类的定义</a>。</p>
 <h3 id="3-name-equivalence">3 name equivalence<a class="headerlink" href="#3-name-equivalence" title="Permanent link">&para;</a></h3>
@@ -6354,5 +6363,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>

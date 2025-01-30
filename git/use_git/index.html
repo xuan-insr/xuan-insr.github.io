@@ -97,7 +97,16 @@
       
     
     
-  </head>
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -5699,7 +5708,7 @@
 </ul>
 </li>
 <li><code>help.autoCorrect</code>，默认情况下如果给 git 了一个它不认识的命令，它会报错然后建议正确的命令；这个配置可以使得它立即执行建议、在一段时间后自动执行建议，或者提供 prompt 让用户选择。<ul>
-<li><img alt="" src="../assets/2024-06-30-18-18-12.png" /></li>
+<li><a class="glightbox" href="../assets/2024-06-30-18-18-12.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2024-06-30-18-18-12.png" /></a></li>
 </ul>
 </li>
 <li><code>pull.ff</code> = <code>only</code>，这个配置相当于每次 <code>git pull</code> 都加上 <code>--ff-only</code> 选项。我在用这个。</li>
@@ -5726,7 +5735,7 @@
 <li><a href="https://tylercipriani.com/blog/2022/11/19/git-notes-gits-coolest-most-unloved-feature/">相关讨论</a> 指出，notes 可以用来让一些信息离线记录在 git 中，例如 code review 的信息。</li>
 <li>自 2014 年起，GitHub <a href="https://github.blog/2010-08-25-git-notes-display/">不再显示 notes 了</a>。</li>
 <li>GitLab 支持 notes 仍然是一个 open issue。</li>
-<li><img alt="" src="../assets/2024-06-24-21-16-47.png" /></li>
+<li><a class="glightbox" href="../assets/2024-06-24-21-16-47.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../assets/2024-06-24-21-16-47.png" /></a></li>
 </ul>
 </li>
 </ul>
@@ -5979,5 +5988,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../termynal.js"></script>
       
     
-  </body>
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
 </html>
