@@ -6,3 +6,4 @@ mkdocs-statistics-plugin
 termynal
 neoteroi-mkdocs
 mkdocs-material[imaging]
+mkdocs-glightbox

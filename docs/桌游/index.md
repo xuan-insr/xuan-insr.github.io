@@ -1,25 +1,25 @@
 # 桌游游玩记录！
 
-!!! note "关于「评价」"
-    这里的「评价」基于个人的体验！
-    
+!!! note "关于「评价 :material-star-outline:」"
+    这里的「评价 :material-star-outline:」基于个人的体验！
+ 
     4 ~ 5 分是非常喜欢的，2.5 ~ 3.5 分是愿意再玩的，1 ~ 2 分是还不错但是不想再玩的，1 分以下是后悔玩过的QWQ 
     
     另外 `-` 是表示因为各种原因暂时无法或者不足以给出评价的
 
-!!! info ""
-    决定了！以后每玩一次线下的、非桌游吧的桌游，按人数增加桌游预算：
-    
-    - 2 人：25 元
-    - 3 人：100 元
-    - 4+ 人：200 元
-
-| 名称 | 评价 | :octicons-people-16:/:octicons-clock-16:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | 点评 | 图图 |
+| :fontawesome-regular-chess-knight: | :material-star-outline: | :material-account-group:/:octicons-clock-16:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | :material-text-account: | :material-tooltip-image-outline: |
 | :-: | :-: | :-: | :- | :-: |
 | **2025-1-27 无忧 5 人局** {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
-| TODO |
+| 时空神探：巴黎 1920 | <span class="box box-green">4</span> | 1~4/中 | 像剧本杀的图灵机，时间更长、故事性更高，个人信息使得互动性更强一些。一盒能玩 15 个本。 | ![](assets/2025-01-30-20-36-46.png){: width="20px"} |
+| 警爆伦敦 | <span class="box box-blue">3.5</span> | 4~8/中 | <span class="box box-yellow">好复刻</span> 身份推理嘴炮游戏，比狼人杀规则简单、参与感强、上手快，但运气成分更大一些。 | ![](assets/2025-01-30-21-12-25.png){: width="20px"} |
+| 碰撞机器人 | <span class="box box-yellow">2</span> | x/短 | 做题游戏，几个人都能玩；但是好像没必要是一个桌游。（好像对它不太公平，因为图灵机也差不多） | ![](assets/2025-01-30-20-34-52.png){: width="20px"} |
+| 诺丁汉警长 | <span class="box box-blue">3.5</span> | 3~5/中 | 吹牛 + 贿赂，人不能总说实话！可惜我不太会说谎，可以在这里练练😋 | ![](assets/2025-01-30-21-12-35.png){: width="20px"} |
+| 凶煞回廊 | <span class="box box-yellow">1.5</span> | 2~7/中 | 无论是合作还是互坑的操作空间都不大；每个人对场面的影响都很重要，但没有人能算到这个程度。策略性和娱乐性都不足。 | ![](assets/2025-01-30-20-34-30.png){: width="20px"} |
+| 印加宝藏 | <span class="box box-blue">3</span> | 3~8/短 | <span class="box box-yellow">好复刻</span> 心理博弈小游戏，成为赌狗或者见好就收。 | ![](assets/2025-01-30-20-34-02.png){: width="20px"} |
 | **2025-1-25 无忧 5 人局** {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
-| TODO |
+| 截码战 | <span class="box box-green">4.5</span> | 3~8/中 | 有点抽象的有趣聚会小游戏，合作猜词，节目效果很多；随机性还是有一些。 | ![](assets/2025-01-30-19-24-35.png){: width="20px"} |
+| 七大奇迹：建筑师 | <span class="box box-yellow">2</span> | 2~7/中 | 卡牌游戏，带一点点连招，规则简单；从策略角度讲总体发挥空间不大、随机性太高、互动不足，又没有传统随机的节目效果和传统连招的爽度。 | ![](assets/2025-01-30-19-26-59.png){: width="20px"} |
+| 巧手猜图 | <span class="box box-green">4.5</span> | 3~5/中 | 特别抽象的聚会小游戏，用 5 种限制颇多的不同工具描绘图片并互相猜；大家都认真地玩的话会很有趣。 | ![](assets/2025-01-30-19-29-54.png){: width="20px"} |
 | **2024-10-5 无忧 4 人局** {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | 诈赌巫师 | <span class="box box-blue">3</span> | 3~6/中 | 赌狗下注，带一点勾心斗角但不多。 | ![](assets/2025-01-28-17-13-32.png){: width="20px"} |
 | 铁路环游 | <span class="box box-blue">3</span> | 2~5/长 | 规则简单，有互卡，但仔细算的话又太累，性价比不高；随机性也有一些。总体感觉平平。 | ![](assets/2025-01-28-17-14-03.png){: width="20px"} |
