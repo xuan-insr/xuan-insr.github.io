@@ -17,6 +17,12 @@ with open('pairs.txt', 'r', encoding='utf-8') as f:
 with open('index_draft.md', 'r', encoding='utf-8') as f:
     content = f.read()
 
+games_count = -2
+for line in content.split('\n'):
+    if line.startswith('|') and "#expand" not in line:
+        games_count += 1
+print(f"桌游总计 {games_count} 款")
+
 # 替换奇数行文本为对应的偶数行文本
 new_content = replace_odd_lines(content, pairs)
 
