@@ -3,15 +3,20 @@
 !!! note "关于「评价 :material-star-outline:」"
     这里的「评价 :material-star-outline:」基于个人的体验！
  
-    4 ~ 5 分是非常喜欢的，2.5 ~ 3.5 分是愿意再玩的，1 ~ 2 分是还不错但是不想再玩的，1 分以下是后悔玩过的QWQ 
+    4 ~ 5 分是非常喜欢的，2.5 ~ 3.5 分是愿意再玩的，1 ~ 2 分是还不错但是不想再玩的，1 分以下是后悔玩过的QWQ
     
     另外 `-` 是表示因为各种原因暂时无法或者不足以给出评价的
 
 | :fontawesome-regular-chess-knight: | :material-star-outline: | :material-account-group:/:octicons-clock-16:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | :material-text-account: | :material-tooltip-image-outline: |
 | :-: | :-: | :-: | :- | :-: |
+| **2025-2-2 无忧 5 人局** {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
+| 波多黎各 | <span class="box box-green">4</span> | 2~5/长 | 经典德式游戏，设计严谨，互 ~~动~~ 卡方式极多，重开性高。 | ![](assets/2025-02-03-23-46-11.png){: width="20px"} |
+| 圣家族大教堂 | <span class="box box-blue">2.5</span> | 1~4/短 | 投骰子，坑人可能存在但大家一般不太这么玩，策略成分有一点但不完全有。 | ![](assets/2025-02-03-23-46-19.png){: width="20px"} |
+| 伊斯坦堡 | <span class="box box-blue">3</span> | 2~5/长 | 竞速游戏，互动性相对比较弱，主要看自己的路线规划；赌狗成分不低 | ![](assets/2025-02-03-23-46-36.png){: width="20px"} |
+| 海上丝路 | <span class="box box-green">4</span> | 2~4/短 | <span class="box box-yellow">好复刻</span> 比较小品的博弈游戏，规则简单但互动性和策略性都不错，时间也不长。重开性还可以。 | ![](assets/2025-02-03-23-46-43.png){: width="20px"} |
 | **2025-1-27 无忧 5 人局** {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | 时空神探：巴黎 1920 | <span class="box box-green">4</span> | 1~4/中 | 像剧本杀的图灵机，时间更长、故事性更高，个人信息使得互动性更强一些。一盒能玩 15 个本。 | ![](assets/2025-01-30-20-36-46.png){: width="20px"} |
-| 警爆伦敦 | <span class="box box-blue">3.5</span> | 4~8/中 | <span class="box box-yellow">好复刻</span> 身份推理嘴炮游戏，比狼人杀规则简单、参与感强、上手快，但运气成分更大一些。 | ![](assets/2025-01-30-21-12-25.png){: width="20px"} |
+| 警爆伦敦 | <span class="box box-green">4</span> | 4~8/中 | <span class="box box-yellow">好复刻</span> 身份推理嘴炮游戏，比狼人杀规则简单、参与感强、上手快，但运气成分更大一些。 | ![](assets/2025-01-30-21-12-25.png){: width="20px"} |
 | 碰撞机器人 | <span class="box box-yellow">2</span> | x/短 | 做题游戏，几个人都能玩；但是好像没必要是一个桌游。（好像对它不太公平，因为图灵机也差不多） | ![](assets/2025-01-30-20-34-52.png){: width="20px"} |
 | 诺丁汉警长 | <span class="box box-blue">3.5</span> | 3~5/中 | 吹牛 + 贿赂，人不能总说实话！可惜我不太会说谎，可以在这里练练😋 | ![](assets/2025-01-30-21-12-35.png){: width="20px"} |
 | 凶煞回廊 | <span class="box box-yellow">1.5</span> | 2~7/中 | 无论是合作还是互坑的操作空间都不大；每个人对场面的影响都很重要，但没有人能算到这个程度。策略性和娱乐性都不足。 | ![](assets/2025-01-30-20-34-30.png){: width="20px"} |
@@ -27,8 +32,8 @@
 | 元素棋 | <span class="box box-blue">3.5</span> | 2~4/中 | 一个设计比较巧妙的抽象棋，可以多玩几次看看。 | ![](assets/2025-01-28-17-19-41.png){: width="20px"} |
 | 王权骰铸 | <span class="box box-yellow">2</span> | 2~6/长 | 对战游戏，桌面网游；阅读量大一点，第一次玩的话会吃点亏。半个赌狗游戏吧，剩下的看理解；不是我喜欢类型的桌游。 | ![](assets/2025-01-28-17-23-40.png){: width="20px"} |
 | **2024-10-3 无忧 3 人局** {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
-| 骑士纹章 | <span class="box box-blue">3.5</span> | 2~4/中 | 区控，互相抢地盘，牵制大于战斗。总体感觉设计比较好，没什么毒点；但是也没有特别惊艳的地方。 | ![](assets/2025-01-28-17-09-12.png){: width="20px"} |
-| 赎罪之旅 | <span class="box box-blue">3</span> | 3~5/短 | <span class="box box-yellow">好复刻</span> 轻量级打牌游戏，赌狗成分高，比较无脑，所以有节目效果。不想带脑子的时候可以玩玩。 | ![](assets/2025-01-28-16-56-25.png){: width="20px"} |
+| 骑士纹章 | <span class="box box-blue">3</span> | 2~4/中 | 区控，互相抢地盘，牵制大于战斗。总体感觉设计比较好，没什么毒点；但是也没有特别惊艳的地方。 | ![](assets/2025-01-28-17-09-12.png){: width="20px"} |
+| 赎罪之旅 | <span class="box box-green">4</span> | 3~5/短 | <span class="box box-yellow">好复刻</span> 轻量级打牌游戏，赌狗成分高，比较无脑，所以有节目效果。不想带脑子的时候可以玩玩。 25-02-02 Update: <span class="box box-blue">3</span>-><span class="box box-green">4</span> 确实无脑好玩 | ![](assets/2025-01-28-16-56-25.png){: width="20px"} |
 | 大宋百商图 | <span class="box box-blue">3</span> | 2~4/中 | 资源管理滚雪球游戏，但是中期没有那么爽。爽度和互卡的策略性不及同类经典游戏，随机成分也没有带来充分的节目效果。胜在画风不错。 | ![](assets/2025-01-28-17-09-00.png){: width="20px"} |
 | 国家公园：自然之旅 | <span class="box box-blue">3</span> | 1~5/中 | 资源管理卡牌构建，打连招，也是找爽度。从我喜欢抽象游戏的角度来看，不如香料之类的经典游戏。稍微复杂一点的机制并没有带来更高的爽度或者策略性。大家互动成分并不高。也是画风不错。 | ![](assets/2025-01-28-17-08-47.png){: width="20px"} |
 | nana | <span class="box box-yellow">2</span> | 2~5/短 | <span class="box box-yellow">好复刻</span> 小品记忆游戏，运气成分很大，毫无策略可言。 | ![](assets/2025-01-28-17-11-04.png){: width="20px"} |
