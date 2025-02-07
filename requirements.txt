@@ -7,3 +7,4 @@ termynal
 neoteroi-mkdocs
 mkdocs-material[imaging]
 mkdocs-glightbox
+mkdocs-rss-plugin

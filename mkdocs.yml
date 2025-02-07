@@ -347,3 +347,4 @@ plugins:
         - ">"
         - "%"
   - glightbox
+  - rss
