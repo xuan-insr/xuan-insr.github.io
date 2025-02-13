@@ -54,6 +54,7 @@ statistics: true
     - [犬戎](https://inuebisu.cn/)
     - [涛宝！](https://www.oddyti.com/)
     - [秋月春风的书房](https://yukinoshitasherry.github.io)
+    - [林榆雁的博客](https://socralin.github.io/)（文科！同志们，宝贵的文科博客）
 
 <center><img src="index.assets/image.png"/></center>
 
