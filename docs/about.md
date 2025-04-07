@@ -10,11 +10,11 @@
 
 ### 联系方式
 
-[cards cols=2(./docs/主页/assets/social.yaml)]
+[cards cols=2(./docs/social.yaml)]
 
 ### 工作 & 学习经历
 
-[timeline(./docs/主页/assets/exp.yaml)]
+[timeline(./docs/exp.yaml)]
 
 ### 关于「咸鱼肆」
 
