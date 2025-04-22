@@ -109,7 +109,7 @@ id := num; id := id + num
 
 <center>![graphviz (17).svg](../../assets/1613599026290-e598f3e8-dc06-445f-9e90-692638d75a9d.svg)</center>
 
-可以看到，语法分析树的所有叶子结点均为 terminals，其他节点均为 non-terminals。叶子结点的中序遍历即为原输入。与原输入相比，语法分析树显示了 token 之间的联系。每种推导对应了一棵语法分析树，但是每棵语法分析树可以对应多种推导方式。
+可以看到，语法分析树的所有叶子结点均为 terminals，其他节点均为 non-terminals。叶子结点按顺序组合，即为原输入。与原输入相比，语法分析树显示了 token 之间的联系。每种推导对应了一棵语法分析树，但是每棵语法分析树可以对应多种推导方式。
 
 可以说明，对于每一种最左推导，一定有且仅有一种最右推导与其形成同样的语法分析树；其区别只是树的分支加入的顺序。
 
@@ -188,9 +188,9 @@ id := num; id := id + num
 Recursive Descent Parsing 是 **自顶向下分析 (Top-Down Parsing)** 的一种。所谓 Top-Down Parsing，就是从顶（start symbol）开始，从上到下、从左到右构造 parse tree。
 
 ### 3.2.1 思路
-递归下降利用的核心思路是，parse tree 叶子结点的中序遍历即为输入的 token 流。
+递归下降利用的核心思路是，parse tree 叶子结点按顺序组合，即为输入的 token 流。
 
-递归下降分析的过程，即从上到下、从左到右，对 parse tree 中的每一个结点进行遍历。对于遍历到的每个结点，如果该点是
+递归下降分析的过程，即从上到下、从左到右，通过遍历 production 不断试错的方式，尝试建构出 parse tree。对于遍历到的每个结点，如果该点是
 
 - Terminal，则查看下一位输入是否与该 terminal 相同。如果相同，则接受该输入；如果不同，或者没有下一位输入，则说明出现了错误，进行 backtrack，即回溯到上一步 non-terminal（因为 terminal 一定由 non-terminal 引出）；
 - Non-terminal，则：
