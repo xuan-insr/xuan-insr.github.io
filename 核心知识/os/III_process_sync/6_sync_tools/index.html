@@ -6812,12 +6812,10 @@
 </blockquote>
 <p>我们在第 7 章讨论 semaphore 的若干使用案例。</p>
 <p>​同时需要注意的是，错误地使用 semaphore 可能会导致 deadlock：</p>
-<center>![](2022-11-24-22-03-17.png){width="500"}</center>
-
+<p><center><a class="glightbox" href="../2022-11-24-22-03-17.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-24-22-03-17.png" width="500" /></a></center></p>
 <p>我们在第 8 章讨论 deadlock 的更多细节。</p>
 <h2 id="68-priority-inversion">6.8 Priority Inversion<a class="headerlink" href="#68-priority-inversion" title="Permanent link">&para;</a></h2>
-<center>![](2022-11-24-22-05-01.png){width="500"}</center>
-
+<p><center><a class="glightbox" href="../2022-11-24-22-05-01.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-24-22-05-01.png" width="500" /></a></center></p>
 <p>​这个问题称为 <strong>priority inversion</strong>，即具有中等优先级的 M 的运行时间反而影响了具有较高优先级的 H 的等待时间。</p>
 <p>​我们可以通过优先级继承 <strong>priority inheritance</strong> 来解决这一问题：所有正在访问资源（如上例中，低优先级的 L 所持的锁）的进程获得需要访问这个资源的更高优先级进程的优先级，直到它们用完有关资源为止。（如上例中，priority inheritance 将允许 L 临时继承 H 的优先级从而防止被 M 抢占；当 L 释放锁后则回到原来的优先级，此时 H 将在 M 之前执行。）</p>
 <div class="footnote">

@@ -6316,17 +6316,14 @@
 </blockquote>
 <p><strong>输入</strong>：字符流；<strong>输出</strong>：抛弃空白符和注释后，生成一系列名字、关键字和标点符号</p>
 <p>(<strong>Input</strong>: a stream of characters; <strong>Output</strong>: a stream of names, keywords and punctuation marks, discarding space and comments)</p>
-<center>![image.png](../../assets/1613145296952-07339943-622b-4729-a243-529ae92af47f.png){width=500}</center>
-
+<p><center><a class="glightbox" href="../../assets/1613145296952-07339943-622b-4729-a243-529ae92af47f.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1613145296952-07339943-622b-4729-a243-529ae92af47f.png" width="500" /></a></center></p>
 <p>程序中每个地方都有可能出现空白符和注释，如果让语法分析器来处理它们则会使得语法分析过于复杂。</p>
 <h2 id="21-词法单词--lexical-tokens">2.1 词法单词 | Lexical Tokens<a class="headerlink" href="#21-词法单词--lexical-tokens" title="Permanent link">&para;</a></h2>
 <p>Tokens 是指程序设计语言中具有独立含义的最小词法单位，包含单词、标点符号、操作符、分隔符等。例如典型测试语言的一些 token 类型为：</p>
-<center>![image.png](../../assets/1611941915239-97da851b-2a11-4139-9a99-5aee057dc352.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1611941915239-97da851b-2a11-4139-9a99-5aee057dc352.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1611941915239-97da851b-2a11-4139-9a99-5aee057dc352.png" /></a></center></p>
 <p>另外一些 tokens 如 IF, VOID, RETURN 称作 reserved words，在大多数语言中不能成为 identifiers（即上图中的 ID）。</p>
 <p>一些 nontokens：</p>
-<center>![image.png](../../assets/1611942063214-f07199e7-df6f-46c9-8fa5-43aaed414262.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1611942063214-f07199e7-df6f-46c9-8fa5-43aaed414262.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1611942063214-f07199e7-df6f-46c9-8fa5-43aaed414262.png" /></a></center></p>
 <p>在一些需要宏预处理器的语言中，由预处理器处理源程序的字符流，并生成另外的字符流，然后由词法分析器（Lexical Analyzer）读入新产生的字符流。这种宏预处理过程也可以与词法分析器集成在一起。</p>
 <p>例如：如下程序
 <div class="highlight"><pre><span></span><code><span class="kt">float</span><span class="w"> </span><span class="nf">match0</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="cm">/* find a zero */</span>
@@ -6368,21 +6365,17 @@ RETURN REAL(0.0) SEMI RBRACE EOF
 <li><strong>Rule Priority</strong> : 对匹配到的 longest substring，选择第一个与之匹配的正则表达式。即正则表达式的书写顺序是有意义的</li>
 </ul>
 <p>例如：</p>
-<center>![image.png](../../assets/1611944572520-2f79f62c-707d-496f-8ec3-2d547b8cb1f5.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1611944572520-2f79f62c-707d-496f-8ec3-2d547b8cb1f5.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1611944572520-2f79f62c-707d-496f-8ec3-2d547b8cb1f5.png" /></a></center></p>
 <p>（其中注释是 <code>--</code> 开始的只包含小写字母、以换行结束的字符串）</p>
 <p>则 "if" 会匹配第一条（虽然也能匹配第二条，但是 <strong>Rule priority</strong> ），而 "if9" 会匹配第二条（虽然 "if" 也能匹配到第一条，但是 <strong>Longest match</strong> ）。可以看到，上面的规则是完整（complete）的，因为非法字符都能够被 <code>·</code> 识别到。</p>
 <h2 id="23-确定有限自动机--deterministic-finite-automaton-dfa">2.3 确定有限自动机 | Deterministic Finite Automaton, DFA<a class="headerlink" href="#23-确定有限自动机--deterministic-finite-automaton-dfa" title="Permanent link">&para;</a></h2>
 <p>有限自动机有一个 finite set of <em>states</em> ，以及连接各个 state 的 <em>edges</em> ，每条 edge 由一个 <em>symbol</em> 标记。有一个状态是 <em>start state</em> ，某些状态是 <em>final state</em> 。例如：</p>
-<center>![image.png](../../assets/1611944985782-a9f6bcb2-daf7-445b-a28e-517840c33b20.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1611944985782-a9f6bcb2-daf7-445b-a28e-517840c33b20.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1611944985782-a9f6bcb2-daf7-445b-a28e-517840c33b20.png" /></a></center></p>
 <p>上图是一个 DFA。在 DFA 中，不会有从一个状态出发的两条边标记为同一个符号。图 2.3 的 DFA 与图 2.2 的正则表达式匹配的是同样的字符串。</p>
 <p>图 2.3 可以合并成一个有限自动机：</p>
-<center>![image.png](../../assets/1611945582225-f9a9c301-19f3-422a-9a6c-6c1ff585ffe0.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1611945582225-f9a9c301-19f3-422a-9a6c-6c1ff585ffe0.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1611945582225-f9a9c301-19f3-422a-9a6c-6c1ff585ffe0.png" /></a></center></p>
 <p>为了识别最长的匹配，词法分析器应当记录迄今遇到的最长匹配及该匹配的位置。词法分析器使用变量 <code>Last-Final</code> 和 <code>Input-Position-of-Last-Final</code> 记录最近遇到的 final state 的编号和最后一次处于 final state 的时机。每当进入一个终态时，词法分析器更新这两个变量；当到达 <em>dead</em> state 时，从这两个变量就可以得知其匹配的 token。例如：</p>
-<center>![image.png](../../assets/1611947714564-9fc88cd1-f9d0-46a1-8aec-023365b08813.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1611947714564-9fc88cd1-f9d0-46a1-8aec-023365b08813.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1611947714564-9fc88cd1-f9d0-46a1-8aec-023365b08813.png" /></a></center></p>
 <p>有时，词法分析可以分成扫描阶段和词法分析阶段两个部分：</p>
 <ul>
 <li>扫描阶段主要负责完成一些不需要生成词法单元的简单处理，比如删除注释和将多个连续的空白字符压缩成一个字符；</li>
@@ -6393,40 +6386,33 @@ RETURN REAL(0.0) SEMI RBRACE EOF
 <p>NFA 可能存在从同一个状态出发的标有多条相同符号的边；也可能存在标有 ϵ 的边，这种边可以在不接收输入字符的情况下进行状态转换。</p>
 <h3 id="241-将正则表达式转换为-nfa">2.4.1 将正则表达式转换为 NFA<a class="headerlink" href="#241-将正则表达式转换为-nfa" title="Permanent link">&para;</a></h3>
 <p>我们可以比较容易地将一个正则表达式转为一个 NFA：</p>
-<center>![image.png](../../assets/1611947934285-c0e20303-bb12-4b4d-9c42-d701070351aa.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1611947934285-c0e20303-bb12-4b4d-9c42-d701070351aa.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1611947934285-c0e20303-bb12-4b4d-9c42-d701070351aa.png" /></a></center></p>
 <p>例如，我们将图 2.2 中 IF, ID, NUM, error 的一些表达式转换成了一个 NFA：</p>
-<center>![image.png](../../assets/1611948085434-f24756cb-d448-4310-b80f-346e972fd48f.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1611948085434-f24756cb-d448-4310-b80f-346e972fd48f.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1611948085434-f24756cb-d448-4310-b80f-346e972fd48f.png" /></a></center></p>
 <h3 id="242-将-nfa-转换为-dfa">2.4.2 将 NFA 转换为 DFA<a class="headerlink" href="#242-将-nfa-转换为-dfa" title="Permanent link">&para;</a></h3>
 <p>我们首先给出一些定义：</p>
 <ul>
 <li><span class="arithmatex">\(edge(s,c)\)</span>表示从状态 <span class="arithmatex">\(s\)</span> 沿着标有 <span class="arithmatex">\(c\)</span> 的一条边到达的所有 NFA 状态的集合</li>
 <li><span class="arithmatex">\(closure(S)\)</span> 表示从状态集合 <span class="arithmatex">\(S\)</span> 中的状态出发，只经过 <span class="arithmatex">\(\epsilon\)</span> 边就能达到的状态的集合与 <span class="arithmatex">\(S\)</span> 的并集，即：<span class="arithmatex">\(closure(S) = S\cup (\cup_{s\in T}\ edge(S,\epsilon))\)</span>，称为 <span class="arithmatex">\(S\)</span> 的 <span class="arithmatex">\(\epsilon\)</span> 闭包。我们可以用简单的算法实现 <span class="arithmatex">\(closure(S)\)</span>：</li>
 </ul>
-<center>![image.png](../../assets/1611949036498-b523ebf2-4133-4e72-944d-85a1569b81f0.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1611949036498-b523ebf2-4133-4e72-944d-85a1569b81f0.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1611949036498-b523ebf2-4133-4e72-944d-85a1569b81f0.png" /></a></center></p>
 <ul>
 <li><span class="arithmatex">\(DFAedge(d,c)\)</span>表示从状态集合 <span class="arithmatex">\(d\)</span> 中的状态出发，接受符号 <span class="arithmatex">\(c\)</span> 所达的 NFA 状态的 <span class="arithmatex">\(\epsilon\)</span> 闭包，即： <span class="arithmatex">\(DFAedge(d,c) = closure(\cup_{s\in d}\ edge(s,c))\)</span>，即 <span class="arithmatex">\(d\)</span> 经 <span class="arithmatex">\(c\)</span> 可达的所有状态的集合</li>
 </ul>
 <p>利用上面两个概念，我们可以模拟词法分析的过程（s1 是 NFA 的起始状态，c1 至 ck 是读入的字符串，d 是当前可能所处的状态集合）：</p>
-<center>![image.png](../../assets/1611949067741-36032459-df34-4c24-93a7-f202e3caaec8.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1611949067741-36032459-df34-4c24-93a7-f202e3caaec8.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1611949067741-36032459-df34-4c24-93a7-f202e3caaec8.png" /></a></center></p>
 <p>以图 2.7 为例，我们读入字符串 "in"。始态的 <span class="arithmatex">\(\epsilon\)</span> 闭包为 {1, 4, 9, 14}，接受字符 <code>i</code> 后可达 {2, 5, 6, 8, 15}，再接受 <code>n</code> 后可达 {6, 7, 8}， 其中 8 是终态，因此 "in"  是一个 ID。</p>
 <p>用类似的想法，我们可以将 NFA 转换为 DFA：</p>
-<center>![image.png](../../assets/1611949177600-aa3f5232-17c9-4d63-ac87-b53ac163a37f.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1611949177600-aa3f5232-17c9-4d63-ac87-b53ac163a37f.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1611949177600-aa3f5232-17c9-4d63-ac87-b53ac163a37f.png" /></a></center></p>
 <p>即，DFA 的始态 <code>states[1]</code> 为 NFA 的始态的 <span class="arithmatex">\(\epsilon\)</span> 闭包，当 <span class="arithmatex">\(j\leq p\)</span> 时遍历字符集 <span class="arithmatex">\(\Sigma\)</span> 中的每个字符 <code>c</code> ，令 <code>e</code> 为 <code>states[j]</code> 经 <code>c</code> 可达的所有状态。如果同形复现，即 <code>e</code> 与 <span class="arithmatex">\(i\leq p\)</span> 的某个 <code>states[i]</code> 相同，则将 <code>trans[j,c]</code> 赋值为 <code>i</code> ，即标记 <code>j</code> 经 <code>c</code> 到达 <code>i</code> ；否则 <code>p++, states[p] = e, trans[j, c] = p</code> 。 <code>j++</code> ，研究下一个状态。如果已经研究完最后一个状态，且没有新的状态，则转换结束。只要 <code>states[x]</code> 中任何状态是 NFA 的终态，则 <code>states[x]</code> 即为 DFA 的终态。</p>
-<center>![image.png](../../assets/1611949749802-c451053c-37d3-4732-8ed2-d38a194c23c2.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1611949749802-c451053c-37d3-4732-8ed2-d38a194c23c2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1611949749802-c451053c-37d3-4732-8ed2-d38a194c23c2.png" /></a></center></p>
 <p>这个 DFA 是可以最小化的。</p>
 <h3 id="243-dfa-的最小化">2.4.3 DFA 的最小化<a class="headerlink" href="#243-dfa-的最小化" title="Permanent link">&para;</a></h3>
 <p>懒得写了，请看 <a href="https://www.bilibili.com/video/BV1KT4y1U7cg/">https://www.bilibili.com/video/BV1KT4y1U7cg/</a> 54分10秒</p>
 <h2 id="25-例子从正则表达式到-dfa">2.5 例子：从正则表达式到 DFA<a class="headerlink" href="#25-例子从正则表达式到-dfa" title="Permanent link">&para;</a></h2>
 <p><code>(a|b)*a(a|b|ε)</code></p>
 <p>根据 2.4.1，我们得到该正则表达式的 NFA：</p>
-<center>![image.png](../../assets/1615312175775-8e03811c-9845-4943-985a-9d1d5824d72f.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1615312175775-8e03811c-9845-4943-985a-9d1d5824d72f.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1615312175775-8e03811c-9845-4943-985a-9d1d5824d72f.png" /></a></center></p>
 <p>Start with the state <code>state[1]</code>: </p>
 <p><span class="arithmatex">\(State[1] = \overline 1 = \{1, 2, 3, 4, 8, 9\}\)</span></p>
 <p>where <span class="arithmatex">\(\overline x\)</span> is the ε-closure of state <span class="arithmatex">\(x\)</span> in the DFA.</p>
@@ -6443,18 +6429,14 @@ RETURN REAL(0.0) SEMI RBRACE EOF
 <p>When <code>state[5]</code> accept <code>a</code>, it'll reach <code>state[2]</code>; when accept <code>b</code>, it'll reach <code>state[3]</code>.</p>
 <p>As <code>state[2, 4, 5]</code> contains the final state <code>18</code> in the NFA, so they are final states in DFA.</p>
 <p>So here we've got the DFA:</p>
-<center>![image.png](../../assets/1615312344588-0c9392db-36b2-4900-98a3-79588e44eb28.png){width=600}</center>
-
+<p><center><a class="glightbox" href="../../assets/1615312344588-0c9392db-36b2-4900-98a3-79588e44eb28.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1615312344588-0c9392db-36b2-4900-98a3-79588e44eb28.png" width="600" /></a></center></p>
 <p>And we just denote the sets of states by number 1~5:</p>
-<center>![image.png](../../assets/1615312356619-24192a1b-20e7-44d2-b4c2-8e16d450093b.png){width=500}</center>
-
+<p><center><a class="glightbox" href="../../assets/1615312356619-24192a1b-20e7-44d2-b4c2-8e16d450093b.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1615312356619-24192a1b-20e7-44d2-b4c2-8e16d450093b.png" width="500" /></a></center></p>
 <p>(If we don't do the simplification, figure above is the DFA wanted)
 We can finally simplify the DFA above to be the following one:</p>
-<center>![image.png](../../assets/1615312411106-9aeccbeb-2a29-4bb7-b3de-3d31f8260b94.png){width=400}</center>
-
+<p><center><a class="glightbox" href="../../assets/1615312411106-9aeccbeb-2a29-4bb7-b3de-3d31f8260b94.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1615312411106-9aeccbeb-2a29-4bb7-b3de-3d31f8260b94.png" width="400" /></a></center></p>
 <p>i.e. </p>
-<center>![image.png](../../assets/1615312416106-3f40e89a-cff9-4b94-b0d7-d3036da02ba4.png){width=400}</center>
-
+<p><center><a class="glightbox" href="../../assets/1615312416106-3f40e89a-cff9-4b94-b0d7-d3036da02ba4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1615312416106-3f40e89a-cff9-4b94-b0d7-d3036da02ba4.png" width="400" /></a></center></p>
 <h2 id="26-lex词法分析器的生成器">2.6 Lex：词法分析器的生成器<a class="headerlink" href="#26-lex词法分析器的生成器" title="Permanent link">&para;</a></h2>
 <p><a href="https://blog.csdn.net/weixin_44007632/article/details/108666375">这篇博客</a> 是我看到的唯一一个能看懂的 Lex 和 Yacc 教程。</p>
 <p>Lex 由词法规范生成一个 C 程序，即一个词法分析器。Lex 的一个示例是：
@@ -6495,8 +6477,7 @@ int main() {
 <li>第三个部分是可选的，保存一些可选函数。这个部分也会被直接拷贝到结果文件中。这里函数 <code>yylex()</code> 启动标准读入并对其进行分析。</li>
 </ul>
 <p>我们将上述文件保存为 <code>counter.l</code>，在命令行中使用：</p>
-<center>![](../../assets/1618656008930-2c03100a-ddea-4a6d-a9b1-6c6c427a40b7.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1618656008930-2c03100a-ddea-4a6d-a9b1-6c6c427a40b7.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/1618656008930-2c03100a-ddea-4a6d-a9b1-6c6c427a40b7.png" /></a></center></p>
 <p>即，我们使用 flex 将 .l 生成 lex.yy.c，然后编译 lex.yy.c 进行运行。</p>
 <p>我们看另一个例子：
 <div class="highlight"><pre><span></span><code>%option noyywrap
@@ -6528,8 +6509,7 @@ int main() {
 </ul>
 <h3 id="开始状态--start-state">开始状态 | Start State<a class="headerlink" href="#开始状态--start-state" title="Permanent link">&para;</a></h3>
 <p>如图所示的自动机可以用下面的 Lex 实现：</p>
-<center>![image.png](../../assets/1611952148898-d643eeab-ffe4-449d-a8e8-13f25d46c3cb.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1611952148898-d643eeab-ffe4-449d-a8e8-13f25d46c3cb.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1611952148898-d643eeab-ffe4-449d-a8e8-13f25d46c3cb.png" /></a></center></p>
 <div class="highlight"><pre><span></span><code>/* ...... */
 %Start INITIAL COMMENT
 %%

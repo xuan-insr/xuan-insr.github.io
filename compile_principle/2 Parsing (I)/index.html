@@ -6578,10 +6578,8 @@
 <p>此部分介绍 <strong>语法分析 (Parsing)</strong> 和 <strong>上下文无关文法 (Context-Free Grammar, CFG)</strong> 的相关概念以及 <strong>自顶向下分析 (Top-Down Parsing)</strong> 的有关内容。</p>
 <p><strong>输入</strong>：词法分析生成的 token 流；<strong>输出</strong>：语法分析树/中间表示</p>
 <p><strong>Input</strong>: sequence of tokens from lexer; <strong>Output</strong>: parse tree of the program (But some parsers never produce a parse tree ...)</p>
-<center>![image.png](../../assets/1613245146491-7837da83-5218-4b3f-a506-cfbacd614245.png){width=500}</center>
-
-<center>![image.png](../../assets/1613245346371-9516f890-562e-4561-a05f-785d9155c64f.png){width=400}</center>
-
+<p><center><a class="glightbox" href="../../assets/1613245146491-7837da83-5218-4b3f-a506-cfbacd614245.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1613245146491-7837da83-5218-4b3f-a506-cfbacd614245.png" width="500" /></a></center></p>
+<p><center><a class="glightbox" href="../../assets/1613245346371-9516f890-562e-4561-a05f-785d9155c64f.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1613245346371-9516f890-562e-4561-a05f-785d9155c64f.png" width="400" /></a></center></p>
 <p>在 2.5 节给出的 Lex 示例中，我们用名字 <code>digits</code> 作为了数字 <code>[0-9]+</code> 的别名。这种别名使得我们使用 Lex 编写词法规范时更加容易理解。实际上，这种别名的实现非常简单：Lex 在利用正则表达式生成有限自动机之前，用 <code>[0-9]+</code> 代替 <code>digits</code> 的所有出现即可。这与 C 语言中的宏定义类似。</p>
 <p>但是，正如我们在习题 2.2 中探讨过的那样，正则表达式不能实现对括号等的嵌套识别。考虑下面的定义：
 <div class="highlight"><pre><span></span><code>digits = [0-9]+
@@ -6649,16 +6647,14 @@ id := num; id := id + num
 <p>这种现象说明文法是 <strong>二义性的 (ambiguous)</strong> ，我们将在 3.1.3 小节讨论这个问题。</p>
 <h3 id="312-语法分析树--parse-tree">3.1.2 语法分析树 | Parse Tree<a class="headerlink" href="#312-语法分析树--parse-tree" title="Permanent link">&para;</a></h3>
 <p>推导过程中，我们对每个非终结符进行扩展。将非终结符作为父结点，扩展出的内容作为子结点，则可以形成一棵树，即语法分析树。3.1.1 例子的语法分析树为：</p>
-<center>![graphviz (17).svg](../../assets/1613599026290-e598f3e8-dc06-445f-9e90-692638d75a9d.svg)</center>
-
+<p><center><a class="glightbox" href="../../assets/1613599026290-e598f3e8-dc06-445f-9e90-692638d75a9d.svg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="graphviz (17).svg" src="../../assets/1613599026290-e598f3e8-dc06-445f-9e90-692638d75a9d.svg" /></a></center></p>
 <p>可以看到，语法分析树的所有叶子结点均为 terminals，其他节点均为 non-terminals。叶子结点按顺序组合，即为原输入。与原输入相比，语法分析树显示了 token 之间的联系。每种推导对应了一棵语法分析树，但是每棵语法分析树可以对应多种推导方式。</p>
 <p>可以说明，对于每一种最左推导，一定有且仅有一种最右推导与其形成同样的语法分析树；其区别只是树的分支加入的顺序。</p>
 <h3 id="313-二义性--ambiguity">3.1.3 二义性 | Ambiguity<a class="headerlink" href="#313-二义性--ambiguity" title="Permanent link">&para;</a></h3>
 <p>看下面一个例子：</p>
 <p><strong>Grammar</strong>: <code>E -&gt; E+E | E*E | (E) | id</code></p>
 <p><strong>String</strong>: id * id + id</p>
-<center>![image.png](../../assets/1613601009164-7a3efaae-2c26-4dd6-baf1-c053feb0600c.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1613601009164-7a3efaae-2c26-4dd6-baf1-c053feb0600c.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1613601009164-7a3efaae-2c26-4dd6-baf1-c053feb0600c.png" /></a></center></p>
 <p>这两棵语法分析树分别对应两种最左推导：</p>
 <ul>
 <li><code>E</code> =&gt; <code>E+E</code> =&gt; <code>E*E+E</code> =&gt; ...</li>
@@ -6682,12 +6678,10 @@ id := num; id := id + num
 <p>The parser doesn't really understand about associativity &amp; precedence. Instead, these declarations tell it to make certain kind of moves in certain situations. We won't be able to explain this until we get much further into parsing technology.</p>
 </blockquote>
 <h3 id="314-文件结束符--eof-marker">3.1.4 文件结束符 | EOF Marker<a class="headerlink" href="#314-文件结束符--eof-marker" title="Permanent link">&para;</a></h3>
-<center>![image.png](../../assets/1613604054056-182f9d05-272f-48bd-8a13-fe748a1a6c34.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1613604054056-182f9d05-272f-48bd-8a13-fe748a1a6c34.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1613604054056-182f9d05-272f-48bd-8a13-fe748a1a6c34.png" /></a></center></p>
 <h3 id="315-上下文无关--context-free">3.1.5 上下文无关 | Context Free<a class="headerlink" href="#315-上下文无关--context-free" title="Permanent link">&para;</a></h3>
 <p>我们所说的“上下文无关”或者“静态”，这里解释的很清楚（其实就是字面意思）：</p>
-<center>![image.png](../../assets/1613245830502-fd7fd60d-aed8-479d-8798-ece19e14eb1d.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1613245830502-fd7fd60d-aed8-479d-8798-ece19e14eb1d.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1613245830502-fd7fd60d-aed8-479d-8798-ece19e14eb1d.png" /></a></center></p>
 <p>那么什么是上下文有关呢？我们可以说，如果只有对特定的串 β 和 γ，才有规则 βAγ -&gt; βαγ 时，我们称这条规则是上下文有关的。实际上，我们在 C 语言中需要先声明后使用就是一种上下文有关的例子。即：
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">     </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
@@ -6713,10 +6707,8 @@ id := num; id := id + num
 </ul>
 <p>重复该步骤，直到所有结点都被遍历完。如果此时输入已经结束，那么我们找到了一个匹配的 parsing；否则说明仍然存在错误，继续 backtrack。</p>
 <p>下面是递归下降分析的一个实例：</p>
-<center>![image.png](../../assets/1613908497017-5933d06b-03fd-4322-ba83-38978c7f239b.png)</center>
-
-<center>![image.png](../../assets/1613908566592-5e4effbc-7d5a-4e68-836d-0fad03502e5d.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1613908497017-5933d06b-03fd-4322-ba83-38978c7f239b.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1613908497017-5933d06b-03fd-4322-ba83-38978c7f239b.png" /></a></center></p>
+<p><center><a class="glightbox" href="../../assets/1613908566592-5e4effbc-7d5a-4e68-836d-0fad03502e5d.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1613908566592-5e4effbc-7d5a-4e68-836d-0fad03502e5d.png" /></a></center></p>
 <h3 id="322-实现">3.2.2 实现<a class="headerlink" href="#322-实现" title="Permanent link">&para;</a></h3>
 <p>Grammar: <code>E -&gt; T | T+E</code>, <code>T -&gt; int | int * T | (E)</code>  </p>
 <p>我们用 C 语言尝试实现 Recursive Descent Parser：</p>
@@ -6788,12 +6780,9 @@ id := num; id := id + num
 <p>我们发现一个 non-terminal 的 production 的右端以相同的符号开始，那么我们可以通过 left factoring 解决这一问题，即提取相同的开始符号，并将剩下的部分用一个新的 non-terminal 来代替，如 <code>E -&gt; T+E | T</code> 可以改写为 <code>E -&gt; TX</code> , <code>X -&gt; +E | ϵ</code> 。类似地，<code>T -&gt; int | int*T | (E)</code> 改写为 <code>T -&gt; intY | (E)</code> , <code>Y -&gt; *T | ϵ</code>。</p>
 <h3 id="333-预测分析表--predictive-parsing-table">3.3.3 预测分析表 | Predictive Parsing Table<a class="headerlink" href="#333-预测分析表--predictive-parsing-table" title="Permanent link">&para;</a></h3>
 <p>如我们之前所说，我们需要根据每一个当前最左端的 non-terminal 以及 lookahead 得到的 next input token 来选取唯一的 production。因此我们可以通过一个表格来表示这种预测关系，下图是上述文法的对应例子（我们稍后再讨论这张表的建立方式）：</p>
-<center>![image.png](../../assets/1614579602146-1742416b-877e-4aca-9e83-90c601698828.png)</center>
-
-<center>![image.png](../../assets/1614579640808-bfe65a22-5bfe-44c9-833d-759b96cd4f28.png)</center>
-
-<center>![image.png](../../assets/1614579668723-a62ef254-18a0-4dc5-9dbe-b3f8c74b0ad3.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1614579602146-1742416b-877e-4aca-9e83-90c601698828.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1614579602146-1742416b-877e-4aca-9e83-90c601698828.png" /></a></center></p>
+<p><center><a class="glightbox" href="../../assets/1614579640808-bfe65a22-5bfe-44c9-833d-759b96cd4f28.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1614579640808-bfe65a22-5bfe-44c9-833d-759b96cd4f28.png" /></a></center></p>
+<p><center><a class="glightbox" href="../../assets/1614579668723-a62ef254-18a0-4dc5-9dbe-b3f8c74b0ad3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1614579668723-a62ef254-18a0-4dc5-9dbe-b3f8c74b0ad3.png" /></a></center></p>
 <p>本文中，如果 Parsing Table 中 non-terminal <code>A</code>  和 terminal <code>t</code> 对应的项目为 <code>a</code> ，那么记 <code>T[A,t] = a</code> 。</p>
 <h3 id="334-使用预测分析表">3.3.4 使用预测分析表<a class="headerlink" href="#334-使用预测分析表" title="Permanent link">&para;</a></h3>
 <p>由于我们的语法分析过程始终只需要考虑最左端的 non-terminal，我们可以用一个栈来存储正在生成的 parse tree，栈顶即为 leftmost non-terminal 或者即将被匹配的 leftmost terminal（如果与输入相同则出栈，如果不同则说明出现了语法错误）。如果出现了 error state，则也说明出现了语法错误；如果栈为空且输入结束，则语法分析成功结束。</p>
@@ -6838,8 +6827,7 @@ until stack == {}
 </li>
 </ul>
 <p>下面是一个例子：</p>
-<center>![image.png](../../assets/1614582173249-ba6b58c1-d0d2-4260-bcf2-309db1de2d6b.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1614582173249-ba6b58c1-d0d2-4260-bcf2-309db1de2d6b.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1614582173249-ba6b58c1-d0d2-4260-bcf2-309db1de2d6b.png" /></a></center></p>
 <h3 id="335-构造预测分析表">3.3.5 构造预测分析表<a class="headerlink" href="#335-构造预测分析表" title="Permanent link">&para;</a></h3>
 <p>对于 non-terminal <code>A</code> , production <code>A-&gt;X</code> , token <code>t</code> , 则 <code>T[A, t] = X</code> 当且仅当：</p>
 <ul>
@@ -6852,11 +6840,9 @@ until stack == {}
 <p><span class="arithmatex">\(\text{First}(X) = \{t\ |\ X\Rightarrow^* t\alpha\} \cup\{\epsilon\ |\ X\Rightarrow^* \epsilon\}\)</span>
 即，如果 <code>X</code> 可以经 0 步或多步推导出以 terminal <code>t</code> 开头的串，那么 <code>t</code> 属于 <span class="arithmatex">\(\text{First}(X)\)</span>（<span class="arithmatex">\(\alpha\)</span> 是什么并不重要，它只是用来表示 <code>t</code> 后面还可以有东西）；如果 <code>X</code> 可以经 0 步或者多步推导出空串，那么 <code>ϵ</code> 属于 <span class="arithmatex">\(\text{First}(X)\)</span>。</p>
 <p>我们可以按照如下思路计算出 First Sets：</p>
-<center>![image.png](../../assets/1614584503311-492b3b4d-5676-4013-9666-02e397ded95c.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1614584503311-492b3b4d-5676-4013-9666-02e397ded95c.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1614584503311-492b3b4d-5676-4013-9666-02e397ded95c.png" /></a></center></p>
 <p>举个例子，我们仍然研究刚刚的文法：</p>
-<center>![image.png](../../assets/1615788482936-6cdbe86f-df66-4e98-8db2-9d58e82a31c9.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1615788482936-6cdbe86f-df66-4e98-8db2-9d58e82a31c9.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1615788482936-6cdbe86f-df66-4e98-8db2-9d58e82a31c9.png" /></a></center></p>
 <p>首先， <code>X</code> , <code>Y</code> , <code>T</code> 的 First 集合是显然的，因为它们的每一种产生式的开头都是 terminal：</p>
 <p><span class="arithmatex">\(\text{First}(X) = \{+,\epsilon\},\quad \text{First}(Y) = \{*,\epsilon\},\quad \text{First}(T) = \{\ (\ ,\text{int}\}\)</span></p>
 <p>另外注意 <code>E -&gt; TX</code> ，有 <span class="arithmatex">\(\text{First}(T)\subseteq \text{First}(E)\)</span>；进一步我们发现 <code>T</code> 不可能导出空串，因此 <span class="arithmatex">\(\text{First}(E)\)</span> 没有其他元素了。因此 <span class="arithmatex">\(\text{First}(E) = \{\ (\ ,\text{int}\}\)</span>。</p>
@@ -6948,8 +6934,7 @@ until stack == {}
 <p>对 Follow Set 的计算是在建立在完成对 First Sets 计算的基础上的。对于每一个 production 右侧的每一个 token X，遍历其后面的 token Ri：将 Ri 的 First Set（减去<span class="arithmatex">\(\epsilon\)</span>）加入 X 的 Follow Set；如果 Ri 的 First Set 不包含<span class="arithmatex">\(\epsilon\)</span>则停止，否则继续遍历下一个 token；如果所有 token 都可以取<span class="arithmatex">\(\epsilon\)</span>，则将 production 左边的 Non-terminal 的 Follow Set 加入 X 的 Follow Set。</p>
 <h4 id="3353-construct-predictive-table">3.3.5.3 Construct Predictive Table<a class="headerlink" href="#3353-construct-predictive-table" title="Permanent link">&para;</a></h4>
 <p>根据我们计算出的 First Sets 和 Follow Sets，我们可以通过如下算法构造出该文法的预测分析表：</p>
-<center>![image.png](../../assets/1616998045165-7007b9df-8752-4eb9-8c22-67b97a65d3eb.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1616998045165-7007b9df-8752-4eb9-8c22-67b97a65d3eb.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1616998045165-7007b9df-8752-4eb9-8c22-67b97a65d3eb.png" /></a></center></p>
 <p>其中， <code>First(α)</code> 是该 production 的右侧的 First Set，其元素其实就是 3.3.5.1 中遍历到对应 production 时加入到 <code>First(A)</code> 的元素。因此，我们可以在 3.3.5.1 中，同时维护一个对于 production 左边 Non-terminal 的 First Set 和这个 production 本身（或者说，它的右边）的 First Set，以便这一步进行使用。</p>
 <p>这三条规则的原理是容易理解的，我们逐一解释。</p>
 <p>回顾之前对预测分析表的定义，<code>T[A, t] = α</code> 的含义是，如果当前 non-terminal 是 <code>A</code> 且下一个 input token 是 <code>t</code>，那我们采取 <code>A -&gt; α</code>。</p>
@@ -7323,16 +7308,12 @@ c. Must an unambiguous grammar be LL(1)? Why or why not?</p>
 </div>
 <h2 id="更多练习">更多练习<a class="headerlink" href="#更多练习" title="Permanent link">&para;</a></h2>
 <h3 id="2021-midterm">2021 MidTerm<a class="headerlink" href="#2021-midterm" title="Permanent link">&para;</a></h3>
-<center>![image.png](../../assets/1648238706556-9bc6df18-6a9b-4ac5-9195-9180e8aa8d95.png)</center>
-
-<center>![image.png](../../assets/1648238747487-60e3f88e-c36d-4758-9c68-330ffecda495.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1648238706556-9bc6df18-6a9b-4ac5-9195-9180e8aa8d95.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1648238706556-9bc6df18-6a9b-4ac5-9195-9180e8aa8d95.png" /></a></center></p>
+<p><center><a class="glightbox" href="../../assets/1648238747487-60e3f88e-c36d-4758-9c68-330ffecda495.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1648238747487-60e3f88e-c36d-4758-9c68-330ffecda495.png" /></a></center></p>
 <h3 id="2018-midterm">2018 MidTerm<a class="headerlink" href="#2018-midterm" title="Permanent link">&para;</a></h3>
-<center>![image.png](../../assets/1648239184216-19702a45-9fff-403f-af23-b737d50eb763.png)</center>
-
-<center>![image.png](../../assets/1648239210337-61c4bad3-a9ed-46dd-b670-71fc5c665e22.png)</center>
-
-<center>![image.png](../../assets/1648239225285-4e011a8c-98d0-4528-bb6b-6438abdf6c5b.png)</center>
+<p><center><a class="glightbox" href="../../assets/1648239184216-19702a45-9fff-403f-af23-b737d50eb763.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1648239184216-19702a45-9fff-403f-af23-b737d50eb763.png" /></a></center></p>
+<p><center><a class="glightbox" href="../../assets/1648239210337-61c4bad3-a9ed-46dd-b670-71fc5c665e22.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1648239210337-61c4bad3-a9ed-46dd-b670-71fc5c665e22.png" /></a></center></p>
+<p><center><a class="glightbox" href="../../assets/1648239225285-4e011a8c-98d0-4528-bb6b-6438abdf6c5b.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1648239225285-4e011a8c-98d0-4528-bb6b-6438abdf6c5b.png" /></a></center></p>
 
 
 

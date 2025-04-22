@@ -6414,19 +6414,15 @@
 <p>这里属性 <code>dtype</code> 是变量或者变量列表的数据类型。可以看到，在第一条文法规则中，<code>decl</code> 并没有出现在对应的语义规则中；而倒数第二条文法规则则对应了两条语义规则。</p>
 </div>
 <p>我们继续基于这个文法考虑其依赖关系。注意倒数第二条文法规则，其对应的相关图是：</p>
-<center>![image.png](../../assets/1621783492108-96af88c9-8860-44df-9b9b-fc666f79a86b.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1621783492108-96af88c9-8860-44df-9b9b-fc666f79a86b.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1621783492108-96af88c9-8860-44df-9b9b-fc666f79a86b.png" /></a></center></p>
 <p>这个相关图与例 2 中的相关图的箭头方向相反，因为例 2 中的属性是从 lhs 向 rhs 传递的，而这里相反。</p>
 <p>另外，第一条文法规则对应的语义规则中没有出现 <code>decl</code>，但是我们仍然要将其表示在相关图中，从而保证文法规则在上面得到完整体现。因为这一考虑，我们一般会在语法树上绘制相关图。这个文法规则的语法树片段以及在其上绘制的相关图为：</p>
-<center>![image.png](../../assets/1621783710687-42d36e81-0183-400c-980c-6dfcaeff8e6d.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1621783710687-42d36e81-0183-400c-980c-6dfcaeff8e6d.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1621783710687-42d36e81-0183-400c-980c-6dfcaeff8e6d.png" /></a></center></p>
 <p>实际上，这里的虚线是语法树的构成部分，而箭头才表示依赖关系。我们可以看到，在这种表示方法中，我们不使用 <code>.</code> 来标识属性和语法树结点的从属关系，而是将对应的属性写在相关结点的旁边。</p>
 <p>这样，倒数第二条文法规则的相关图画为：</p>
-<center>![image.png](../../assets/1621786118628-aa40c78f-0ca8-4545-8acf-f245cd8fc11a.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1621786118628-aa40c78f-0ca8-4545-8acf-f245cd8fc11a.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1621786118628-aa40c78f-0ca8-4545-8acf-f245cd8fc11a.png" /></a></center></p>
 <p>作为一个例子，字符串 <code>float x, y</code> 的相关图是：</p>
-<center>![image.png](../../assets/1621786141348-f750b429-7b46-4a24-8577-3dd806b8c549.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1621786141348-f750b429-7b46-4a24-8577-3dd806b8c549.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1621786141348-f750b429-7b46-4a24-8577-3dd806b8c549.png" /></a></center></p>
 <h3 id="415-考虑多个属性的情况--元语言">4.1.5 考虑多个属性的情况 &amp; 元语言<a class="headerlink" href="#415-考虑多个属性的情况--元语言" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
 <p class="admonition-title">例 4</p>
@@ -6438,15 +6434,12 @@
 </div>
 <p>在属性文法中，如我们之前用到的算术表达式以及 <code>if...then...else...</code> 表达式等允许出现的表达式的集合称作属性文法的 <strong>元语言 (meta-language)</strong>。通常我们希望元语言的内涵尽可能清晰，不致于引起其自身语义的混淆。我们还希望元语言接近于一种实际使用的编程语言，因为在语义分析程序中需要把属性等式转换成执行代码。我们甚至可以在元语言中增加函数，因为这也可以在编程语言中简单地实现。</p>
 <p>我们考虑这个文法的相关图。第一条文法规则对应的相关图为：</p>
-<center>![image.png](../../assets/1621786274481-63d79db1-f1b0-4954-9ef4-7a27a04c3e58.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1621786274481-63d79db1-f1b0-4954-9ef4-7a27a04c3e58.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1621786274481-63d79db1-f1b0-4954-9ef4-7a27a04c3e58.png" /></a></center></p>
 <p>这个相关图同时表示了两种属性的依赖关系。</p>
 <p>文法规则 <em>num -&gt; num digit</em> 的相关图为：</p>
-<center>![image.png](../../assets/1621786349403-f345ae1b-3d73-4f81-aad6-3eda00eb4058.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1621786349403-f345ae1b-3d73-4f81-aad6-3eda00eb4058.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1621786349403-f345ae1b-3d73-4f81-aad6-3eda00eb4058.png" /></a></center></p>
 <p>其他文法规则类似。最终我们可以画出字符串 <code>345o</code> 的相关图：</p>
-<center>![image.png](../../assets/1621786393403-5bb1824c-5cb9-4b50-b60e-9d5811165c9d.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1621786393403-5bb1824c-5cb9-4b50-b60e-9d5811165c9d.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1621786393403-5bb1824c-5cb9-4b50-b60e-9d5811165c9d.png" /></a></center></p>
 <h2 id="42-属性计算算法">4.2 属性计算算法<a class="headerlink" href="#42-属性计算算法" title="Permanent link">&para;</a></h2>
 <h3 id="421-相关图的赋值顺序">4.2.1 相关图的赋值顺序<a class="headerlink" href="#421-相关图的赋值顺序" title="Permanent link">&para;</a></h3>
 <p>我们需要找到一个计算顺序，其实就是要找到对应相关图的拓扑序。相关图有拓扑序的前提是它是无圈的 (Acyclic)。拓扑序的定义以及计算算法在 <a href="https://www.yuque.com/xianyuxuan/coding/zd5qu0?view=doc_embed&amp;inner=9asiq">图论 | Graph Theory</a> 可以找到。</p>
@@ -6507,8 +6500,7 @@
 </div>
 <h3 id="423-继承属性">4.2.3 继承属性<a class="headerlink" href="#423-继承属性" title="Permanent link">&para;</a></h3>
 <p>如果一个属性不是合成的，我们称它是 <strong>继承 (inherited)</strong> 属性。继承依赖可能有多种形式：</p>
-<center>![image.png](../../assets/1621787392141-15b70be2-18a7-4cb9-9e46-a26cb5152457.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1621787392141-15b70be2-18a7-4cb9-9e46-a26cb5152457.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1621787392141-15b70be2-18a7-4cb9-9e46-a26cb5152457.png" /></a></center></p>
 <p>上图中 c) 的一个例子是我们使用 First Child Next Sibling 方法构造语法树的情况（可以在这个文档里<a href="https://www.yuque.com/xianyuxuan/coding/hcr461?view=doc_embed&amp;inner=WUKsG">树基础 | Tree Basic</a> 看到这一方法的含义）。我们将在下面的例子中还会看到其他的情况。</p>
 <p>继承属性的计算可以通过对分析树或语法树的前序遍历或前序/中序遍历的组合来进行。与合成属性不同，子孙继承属性计算的顺序是重要的，因为在子孙的属性中继承属性可能有依赖关系。  </p>
 <div class="admonition example">
@@ -6595,16 +6587,12 @@
 <p>以前性能有限的时候人们希望能在语法分析的过程中就完成一些属性计算；现在虽然不需要了但是还是要学一学。</p>
 <p>我们的语法分析方法都是从左向右处理的，因此如果我们希望在语法分析过程中计算一些属性，那么这些属性一定不可以有向右的依赖。例如对于 <code>A-&gt;XY</code>，<code>Y</code>可以依赖 <code>A</code> 也可以依赖 <code>X</code>，但是 <code>X</code> 不能依赖 <code>Y</code>。例 4 中的文法就不满足这一性质。</p>
 <p>我们定义满足这一性质的属性文法为 L-attributed。形式化地：</p>
-<center>![image.png](../../assets/1650683450423-601bafb4-320b-452b-b379-5c7bb4923104.png)</center>
-
-<center>![image.png](../../assets/1650683460567-d6ed11b9-b67c-47ff-9be5-bbba4206bca2.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1650683450423-601bafb4-320b-452b-b379-5c7bb4923104.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1650683450423-601bafb4-320b-452b-b379-5c7bb4923104.png" /></a></center></p>
+<p><center><a class="glightbox" href="../../assets/1650683460567-d6ed11b9-b67c-47ff-9be5-bbba4206bca2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1650683460567-d6ed11b9-b67c-47ff-9be5-bbba4206bca2.png" /></a></center></p>
 <p>显然，S-attributed 的文法都是 L-attributed 的文法。</p>
 <p>给定一个 L 属性文法，对于 Top-Down 可以通过把继承属性转换成参数、把合成属性转换成返回值；对于 Bottom-up，LR 分析适合处理合成属性，对于继承属性很难处理。</p>
-<center>![image.png](../../assets/1650687794781-ab37ab11-7770-48b0-8abe-7beaa0996af0.png)</center>
-
-<center>![image.png](../../assets/1650687804542-7cb168c5-b62b-4528-acf9-b1a431208577.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1650687794781-ab37ab11-7770-48b0-8abe-7beaa0996af0.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1650687794781-ab37ab11-7770-48b0-8abe-7beaa0996af0.png" /></a></center></p>
+<p><center><a class="glightbox" href="../../assets/1650687804542-7cb168c5-b62b-4528-acf9-b1a431208577.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1650687804542-7cb168c5-b62b-4528-acf9-b1a431208577.png" /></a></center></p>
 <h3 id="425-将继承属性修改为合成属性-626">4.2.5 将继承属性修改为合成属性 (6.2.6)<a class="headerlink" href="#425-将继承属性修改为合成属性-626" title="Permanent link">&para;</a></h3>
 <p>定理：(Knuth [1968]) 给定一个属性文法，通过适当地修改文法，而无须改变文法的语言，所有的继承属性可以改变成合成属性。  </p>
 <p>为什么要修改成合成属性呢？我们之前讨论过，自底向上的分析适合处理合成属性，而很难处理继承属性；我们将继承属性改为合成属性的重要意义就是方便自底向上的分析。</p>
@@ -6625,16 +6613,13 @@
 </div>
 <h2 id="43-符号表">4.3 符号表<a class="headerlink" href="#43-符号表" title="Permanent link">&para;</a></h2>
 <p>对于语法树，外部数据结构最初的一个例子是符号表 (symbol table)，结合程序中声明的常量、变量和过程存储属性。</p>
-<center>![image.png](../../assets/1650682994915-ac65dd8c-1bce-43d8-a60a-85c79caded39.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1650682994915-ac65dd8c-1bce-43d8-a60a-85c79caded39.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1650682994915-ac65dd8c-1bce-43d8-a60a-85c79caded39.png" /></a></center></p>
 <p>采用哈希：</p>
-<center>![image.png](../../assets/1650685056358-4fac1ab8-8e3e-4397-8a6b-b1daef60493b.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1650685056358-4fac1ab8-8e3e-4397-8a6b-b1daef60493b.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1650685056358-4fac1ab8-8e3e-4397-8a6b-b1daef60493b.png" /></a></center></p>
 <p>这里面有多个 <code>i</code>，因为作用域屏蔽。</p>
 <p>这种有冲突就搞个列表的方式叫  separate chaining 分离链表法；还有开放寻址法 open addressing，就是冲突后找下一个有空的。</p>
 <p>多个作用域也可以像这样维护一个符号表栈：</p>
-<center>![image.png](../../assets/1650685066478-3185f586-015d-4dc0-8dac-0a0f4ef9e2d4.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1650685066478-3185f586-015d-4dc0-8dac-0a0f4ef9e2d4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1650685066478-3185f586-015d-4dc0-8dac-0a0f4ef9e2d4.png" /></a></center></p>
 <h3 id="题目选讲">题目选讲<a class="headerlink" href="#题目选讲" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
 <p class="admonition-title">2008</p>

@@ -6293,8 +6293,7 @@
 <p>文件系统的研究仍然是一个活跃的领域。Google 创建了自己的 FS 以满足具体的存储和检索需求；Distributed File Systems 也有很多研究、应用和发展。</p>
 <h2 id="141-file-system-structure--文件系统结构">14.1 File System Structure | 文件系统结构<a class="headerlink" href="#141-file-system-structure--文件系统结构" title="Permanent link">&para;</a></h2>
 <p>文件系统本身通常由多个不同的层组成，一个例子是：</p>
-<center>![](2022-12-15-16-55-38.png){width=200}</center>
-
+<p><center><a class="glightbox" href="../2022-12-15-16-55-38.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-16-55-38.png" width="200" /></a></center></p>
 <p><strong>Application programs</strong> 给出 read / write / open 某个 file path 的指令，这个指令被传递给 logical file system——</p>
 <p><strong>Logical file system</strong> 管理所有文件系统所需的 metadata（即除了文件内容之外的所有东西），例如 directory structure。它通过一个叫做 <strong>File Control Block (FCB)</strong> 的数据结构保存这些信息，即我们之前所说的 name, ownership, permissions, ref count, timestamps, pointers to data blocks on disk 等。</p>
 <p>Logical file system 将上层给出的 read / write / open 某个 file path 的指令解析为 read / write 某些 logical blocks 的指令，并传递给 file-organization module——</p>
@@ -6309,10 +6308,8 @@
 <p>文件系统会使用多种数据结构；有的数据结构会放在磁盘上，而有的会放在内存里。</p>
 <p>On-disk structures:</p>
 <ul>
-<li><strong>File control block(FCB)</strong> (per file)。保存 name, ownership, permissions, ref count, timestamps, pointers to data blocks on disk 等信息；每个 FCB 有一个唯一的标识号以与目录条目相关联。在 UNIX 中，FCB 被称为 <strong><code>inode</code></strong>；在 NTFS 中，每个 FCB 是一个叫 <strong>master file table</strong> 的结构的一行。  </li>
-</ul>
-<center>![](2022-12-15-19-53-27.png){width=300}</center>
-<ul>
+<li><strong>File control block(FCB)</strong> (per file)。保存 name, ownership, permissions, ref count, timestamps, pointers to data blocks on disk 等信息；每个 FCB 有一个唯一的标识号以与目录条目相关联。在 UNIX 中，FCB 被称为 <strong><code>inode</code></strong>；在 NTFS 中，每个 FCB 是一个叫 <strong>master file table</strong> 的结构的一行。<br />
+<center><a class="glightbox" href="../2022-12-15-19-53-27.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-19-53-27.png" width="300" /></a></center></li>
 <li><strong>Boot control block</strong> (per volume)。如果一个 volume 是 <a href="../../V_storage_management/11_mass_storage/#boot-block">boot partition</a>，那么这里保存从该 volume 引导操作系统所需的信息；否则内容为空。它通常是 volume 的第一个 block。UFS 称之为 boot block，NTFS 称之为 partition boot sector。</li>
 <li><strong>Volume control block</strong> (per volume)。包含当前 volume 的 block #, block size, free-block #, free-block ptrs, free-FCB #, free FCB ptrs 等。UFS 称之为 superblock，NTFS 将其存在 master file table 中。</li>
 <li><strong>Directory</strong> (per FS)。用来组织文件，包含文件名和对应 FCB 的标识号。在 NTFS 中，它也被存在 master file table 中。</li>
@@ -6347,15 +6344,12 @@
 <p>Unix 等系统将 devices 和 network connections 等也用文件系统来管理，因此除了 files 和 directories 有 inode 之外，上述内容也有 inode 并存在于 open-file table 中。</p>
 <h2 id="143-virtual-fs">14.3 Virtual FS<a class="headerlink" href="#143-virtual-fs" title="Permanent link">&para;</a></h2>
 <p>我们之前提到，操作系统可以同时支持多种类型的文件系统。这一特性的实现依赖于 <strong>虚拟文件系统 (Virtual FS, VFS)</strong> 机制。</p>
-<center>![](2022-12-15-20-26-37.png){width=300}</center>
-
+<p><center><a class="glightbox" href="../2022-12-15-20-26-37.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-20-26-37.png" width="300" /></a></center></p>
 <p>这种机制用面向对象的方法来实现文件系统。具体来说，操作系统定义了一套通用的文件系统访问接口，即 <code>open(), read(), write(), close()</code> 和 file descriptors；所有文件系统都需要实现它们，并把它们按照约定排布在函数表中。VFS 将上述通用操作和实现分开，即在需要调用某个函数时，去对应 FS 的函数表的约定位置找到函数指针就可以访问了。这和 C++ 中多态的虚函数表是类似的。</p>
-<center>![](2022-12-15-20-30-08.png){width=700}</center>
-
+<p><center><a class="glightbox" href="../2022-12-15-20-30-08.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-20-30-08.png" width="700" /></a></center></p>
 <h2 id="144-directory-implementation">14.4 Directory Implementation<a class="headerlink" href="#144-directory-implementation" title="Permanent link">&para;</a></h2>
 <p>目录是一种特殊的文件，它保存 file name 到 FCB 的映射关系。</p>
-<center>![](2022-12-15-20-34-16.png){width=600}</center>
-
+<p><center><a class="glightbox" href="../2022-12-15-20-34-16.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-20-34-16.png" width="600" /></a></center></p>
 <p>最简单的实现方式是 <strong>linear list</strong>，即维护 <code>dir_entry[]</code>。这种方案的缺点是查找文件很费时。</p>
 <p>使用有序数据结构（有序表、平衡树、B+ 树等）能够优化这一问题。</p>
 <p>使用 <strong>hash table</strong> 也可以解决这一问题。</p>
@@ -6363,8 +6357,7 @@
 <p>文件需要被保存到具体的 disk blocks 上，我们讨论分配的策略。</p>
 <h3 id="1451-contiguous-allocation">14.5.1 Contiguous Allocation<a class="headerlink" href="#1451-contiguous-allocation" title="Permanent link">&para;</a></h3>
 <p>这种方法下，每个文件在磁盘上占有的 blocks 是连续的。这种方案在访问磁盘时比较友好，能够显著降低 seek time。同时，目录也只需要维护文件的起始 block 及其长度：</p>
-<center>![](2022-12-15-22-00-19.png){width=300}</center>
-
+<p><center><a class="glightbox" href="../2022-12-15-22-00-19.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-22-00-19.png" width="300" /></a></center></p>
 <p>具体的分配方案也可以参考 <a href="../../IV_memory_management/9_main_memory/#923-dynamic-storage-allocation-problem">Dynamic Storage-Allocation Problem</a> 的 first-fit, best-fit 等。</p>
 <p>这也会带来外部碎片，但是 disk 通常够大，我们可能并不在意这些碎片。也可以使用压缩 (compaction) 或者说是清除碎片 (defrag) 操作，虽然它们开销较大。</p>
 <p>这种方案的一个重要问题是，如何确定一个文件需要多少空间；这个问题的核心在于，文件本身可能是会扩展的。</p>
@@ -6373,8 +6366,7 @@
 <p>还有一种解决方案创建了连续空间的链表来保存一个文件。当空间不够时，添加一块连续空间（称为 <strong>extent</strong>）。FCB 记录的信息除了起始和长度外，还额外维护下一个 extent 的信息。</p>
 <h3 id="1452-linked-allocation">14.5.2 Linked Allocation<a class="headerlink" href="#1452-linked-allocation" title="Permanent link">&para;</a></h3>
 <p>这种方法下，每个文件都是 block 组成的链表；每个 block 中有若干字节被用来保存下一块的地址。目录只需要记录起始地址和结束地址即可：</p>
-<center>![](2022-12-15-22-25-49.png){width=300}</center>
-
+<p><center><a class="glightbox" href="../2022-12-15-22-25-49.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-22-25-49.png" width="300" /></a></center></p>
 <p>这种方式没有外部碎片。但是也有若干问题：</p>
 <ul>
 <li>获取一个文件可能需要比较多的 I/O 和 disk seek；</li>
@@ -6390,8 +6382,7 @@
 </div>
 <h3 id="1453-indexed-allocation">14.5.3 Indexed Allocation<a class="headerlink" href="#1453-indexed-allocation" title="Permanent link">&para;</a></h3>
 <p>这种方式给每个文件记录一个 <strong>索引块 (index block)</strong>，记录这个文件的第 i 个块在磁盘中的哪个块。目录只需要保存索引块放在哪里即可：</p>
-<center>![](2022-12-15-22-40-18.png){width=300}</center>
-
+<p><center><a class="glightbox" href="../2022-12-15-22-40-18.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-22-40-18.png" width="300" /></a></center></p>
 <p>这种方案支持 random access，也不会有外部碎片。但是索引块本身是额外的开销，这对小文件来说是更大的 overhead。这种方案还能允许文件中存在 holes。</p>
 <p>一个问题是，索引块应当有多大；即，我们希望 overhead 不要太大，但是也要能支持大文件。有若干种可选的实现思路：</p>
 <ul>
@@ -6405,14 +6396,12 @@
 </ul>
 </li>
 </ul>
-<center>![](2022-12-15-22-51-59.png){width=300}</center>
-
+<p><center><a class="glightbox" href="../2022-12-15-22-51-59.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-22-51-59.png" width="300" /></a></center></p>
 <h2 id="146-free-space-management">14.6 Free-Space Management<a class="headerlink" href="#146-free-space-management" title="Permanent link">&para;</a></h2>
 <p>文件系统需要维护 free-space list 以得知空闲的块或 clusters。这个列表在分配空间或者文件被删除时会修改。我们讨论其实现方案。</p>
 <p>实现方案之一是用 <strong>bitmap</strong>：每个 block 用 1 bit 表示：1 表示空闲，0 表示占用。为了减少 bitmap 占用的空间，可以以 cluster 为单位分配和表示。</p>
 <p>另外也可以把所有的 free space 用 <strong>链表</strong> 连接。这种方案在需要多个空间块时需要比较多的 I/O，效率较低。</p>
-<center>![](2022-12-15-23-05-42.png){width=300}</center>
-
+<p><center><a class="glightbox" href="../2022-12-15-23-05-42.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-23-05-42.png" width="300" /></a></center></p>
 <p>为了解决上面的问题，引入 <strong>grouping</strong> 的方案。维护若干个 block 形成的链表，每个 block 保存若干空闲块的地址。这种方案可以减少需要的 I/O。</p>
 <p>另外也可以使用 <strong>counting</strong> 的方案。之前链表的方案维护的是空闲块的链表，而现在维护的是 <em>连续的空闲块</em> 的链表，即链表的每个结点是连续的空闲块的首块指针和连续的长度。</p>
 

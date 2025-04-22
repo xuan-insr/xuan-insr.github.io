@@ -7055,8 +7055,7 @@ p:   .word 0
 <span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
 <p>这里，第 4 行用到的是拷贝构造而非移动构造；第 5 行和第 6 行用到的都是拷贝复制而非移动复制，因为 <code>a</code> 和 <code>b</code> 是左值而非右值。</p>
-<center>![](2023-04-24-01-25-33.png)</center>
-
+<p><center><a class="glightbox" href="../2023-04-24-01-25-33.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-04-24-01-25-33.png" /></a></center></p>
 <p>但是这是不好的——显然，在第 4 行之后，我们不再关心 <code>a</code> 的成员，因为在第 5 行我们即将将其覆盖；对 <code>b</code> 来说也是一样的。也就是说，如果这里我们采用移动语义，可以将 3 次拷贝变成 3 次移动，这能显著提高程序的性能。</p>
 <p>这几处使用拷贝语义而非移动语义的原因是，<code>a</code>, <code>b</code>, <code>tmp</code> 是个左值。如果我们希望使用移动语义，就需要将它们变成右值。我们如何将一个左值变为一个右值呢？事实上，C++ 中有以下规定：</p>
 <div class="admonition note">
@@ -7124,8 +7123,7 @@ p:   .word 0
 <span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
 <p>如我们所愿，这种情况下会发生移动构造和移动赋值，而非拷贝；这在 <code>T</code> 需要 non-trivial copy（即 copy 不仅仅需要拷贝字段，还需要完成更多操作）的情况下会有性能提升：</p>
-<center>![](2023-04-24-01-49-28.png)</center>
-
+<p><center><a class="glightbox" href="../2023-04-24-01-49-28.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-04-24-01-49-28.png" /></a></center></p>
 <p>也就是说，虽然 <code>T foo(bar);</code> 这样的构造在 <code>bar</code> 是左值的时候会使用拷贝构造，但如果我们 <strong>明知</strong> <code>bar</code> 此后不会被用到，且通过 <code>std::move(bar)</code> <strong>明确告知</strong> 编译器这一点，那么我们就可以通过 <code>T foo(std::move(bar));</code> 的方式来实现移动构造。对于赋值也是类似。</p>
 <details class="note" open="open">
 <summary>Note</summary>

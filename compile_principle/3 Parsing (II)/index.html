@@ -6314,8 +6314,7 @@
 <p>所谓 <strong>自底向上分析 (Bottom-Up Parsing)</strong>，就是从输入的 token 流一步步简化为 start symbol。Bottom-Up Parsing 相较 Top-Down Parsing 而言更加通用，而且并没有牺牲性能。Bottom-Up Parsing 的思路基于我们之前讨论过的 Top-Down Parsing 的相关思路。</p>
 <p>同样的，我们首先讨论 Bottom-Up Parsing 的过程，稍后再讨论这些过程具体是怎么实现的，例如 parser 如何知道在什么情形下使用哪条 production。</p>
 <p>我们看这样一个例子，其左边一列是输入的 token 流一步一步被 <strong>规约 (reduce)</strong> 到 start symbol 的过程，其右边一列是每一步用到的 production。注意：自底向上分析使用 production 时是将 production 的 rhs 转换为 lhs：</p>
-<center>![](../../assets/1618581322665-4786f6cd-5978-4608-977e-0676666da18a.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1618581322665-4786f6cd-5978-4608-977e-0676666da18a.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/1618581322665-4786f6cd-5978-4608-977e-0676666da18a.png" /></a></center></p>
 <p>从下往上查看分析过程，我们可以发现一个重要事实：<strong>自底向上分析是最右分析的一个逆过程</strong>。</p>
 <p>更具体地研究这个过程。我们考虑我们发现的重要事实：如果某一次规约是 <span class="arithmatex">\(\alpha\beta\omega\to\alpha X\omega\)</span>，使用了 production <span class="arithmatex">\(X\to\beta\)</span>，那么由于这是最右分析逆过程的某一步，亦即 <span class="arithmatex">\(\alpha X\omega\to\alpha\beta\omega\)</span> 是最右分析的某一步，因此 <span class="arithmatex">\(\omega\)</span> 一定全部由 terminal 组成，这是分析过程中 <strong>已经完成了展开</strong> 的部分。那么对于这个逆过程来说，<span class="arithmatex">\(\omega\)</span> 则是 <strong>尚未被考虑</strong> 的部分。那么此时我们就可以将当前的 token 串分为两部分：<span class="arithmatex">\(\alpha\beta | \omega\)</span>，其中 | 左边的是已经被考虑过的部分，而 | 右边的是没有考虑过的部分。</p>
 <p>我们进一步可以注意到：所有操作都会发生在 | 紧邻的左右两边。实际上，只会有 2 种操作产生：</p>
@@ -6324,15 +6323,12 @@
 <li><strong>Shift</strong>，移进：将 | 右移一位，即将下一个 terminal 纳入考虑。</li>
 </ol>
 <p>因此，上面的例子实际上就是：</p>
-<center>![](../../assets/1618582403943-2cc175b0-e5b2-4f6a-b2ac-5a19b2b298c0.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1618582403943-2cc175b0-e5b2-4f6a-b2ac-5a19b2b298c0.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/1618582403943-2cc175b0-e5b2-4f6a-b2ac-5a19b2b298c0.png" /></a></center></p>
 <p>我们容易想到，这个分析过程用栈很容易实现。我们将 | 左边的部分存在栈中，那么 reduce 操作就是将栈顶的若干个元素（对应某个 production 的 rhs，也有可能是 0 个）pop 出来，然后 push 相应 production 的 lhs；而 shift 操作就是读取输入 token 流中的一个 terminal 并将其 push 到栈顶。</p>
 <p>在同一个状态下，parser 可能会有多种可选的操作，例如既可以 reduce 也可以 shift，这称为一个 shift-reduce conflict；有时还可能有多个可选的 reduce 方式，这称为一个 reduce-reduce conflict。这些冲突通常表明语法存在一定问题，当然也可以通过定义优先级的方式进行解决。我们将在后面讨论相应的解决方法。</p>
 <h3 id="viable-prefix">Viable Prefix<a class="headerlink" href="#viable-prefix" title="Permanent link">&para;</a></h3>
-<center>![image.png](../../assets/1649645253673-7e0f205b-b83b-477a-b5af-cc32592f22be.png)</center>
-
-<center>![image.png](../../assets/1649645266346-9136ce47-a39d-4413-990f-868d0fc70b1a.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1649645253673-7e0f205b-b83b-477a-b5af-cc32592f22be.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1649645253673-7e0f205b-b83b-477a-b5af-cc32592f22be.png" /></a></center></p>
+<p><center><a class="glightbox" href="../../assets/1649645266346-9136ce47-a39d-4413-990f-868d0fc70b1a.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1649645266346-9136ce47-a39d-4413-990f-868d0fc70b1a.png" /></a></center></p>
 <h2 id="35-lr0-parsing">3.5 LR(0) Parsing<a class="headerlink" href="#35-lr0-parsing" title="Permanent link">&para;</a></h2>
 <p><a href="https://www.xiaoheidiannao.com/LR0-Analysis-Table-Construction-Algorithm.html">这篇博客</a> 是使我学明白 LR(0) 分析表构造的关键博客；<a href="https://www.cnblogs.com/bryce1010/p/9387114.html">这篇博客</a> 是使我理解这张表怎么用的关键博客（3.5.3 中的伪代码也基于此处更改）；<a href="http://leaver.me/2012/05/14/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B%E7%9A%84lr%E5%88%86%E6%9E%90%E8%BF%87%E7%A8%8B/">这篇博客</a> 中有一个具体的示例演示这张表的用法。</p>
 <p>LR(0) Parsing 是 Bottom-Up Parsing 的一种。LR(k) 表示 Left-to-Right Scan, Rightmost Derivation, Predict Based on <em>k</em> Tokens of Lookahead。</p>
@@ -6348,11 +6344,9 @@
 </ul>
 <p>根据上述转换关系，我们可以得到一个 LR(0) Items 的 NFA。之所以是 NFA，是因为上述第二条转换关系导致存在 <span class="arithmatex">\(\epsilon\)</span> 转化。</p>
 <p>那么，对于我们提出的例子，其 NFA 就是：</p>
-<center>![](2023-01-24-22-38-00.png){width=200}</center>
-
+<p><center><a class="glightbox" href="../2023-01-24-22-38-00.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-01-24-22-38-00.png" width="200" /></a></center></p>
 <p>进一步地，我们将 NFA 转换为 DFA：</p>
-<center>![](2023-01-24-22-38-23.png){width=200}</center>
-
+<p><center><a class="glightbox" href="../2023-01-24-22-38-23.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-01-24-22-38-23.png" width="200" /></a></center></p>
 <p>我们可以据此构造出一个 LR(0) Parsing Table：</p>
 <table>
 <thead>
@@ -6546,8 +6540,7 @@ A -&gt; c
 B -&gt; c
 </code></pre></div>
 Start Symbol 有 LR(1) Item <code>S'-&gt;.S, $</code>，并可以通过此推出如下 State 1 中的 items。其余推导略同，下面是 LR(1) DFA：</p>
-<center>![image.png](../../assets/1619110489690-3dc51280-a2c1-46a9-a3cf-9fdc544bd4ae.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1619110489690-3dc51280-a2c1-46a9-a3cf-9fdc544bd4ae.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1619110489690-3dc51280-a2c1-46a9-a3cf-9fdc544bd4ae.png" /></a></center></p>
 <p>由此可以构造出 LR(1) Parsing Table，其方式是：</p>
 <ul>
 <li>对于 DFA 中的每一个 <span class="arithmatex">\(S_i\stackrel{t}{\longrightarrow}S_j\)</span>，我们令 <code>T[i, t] = sj</code>，其中 <span class="arithmatex">\(S_i\)</span> 是状态 i，t 是一个 terminal；</li>
@@ -6559,12 +6552,10 @@ Start Symbol 有 LR(1) Item <code>S'-&gt;.S, $</code>，并可以通过此推出
 <p>可以看到，LR(1) 的状态有点太多了。在刚刚提出 LR(1) 的那个年代，如此大的空间需求还是不太现实的。因此，LR(1) 的简化版本 LALR(1) (Look-Ahead LR(1)) 被提出了。</p>
 <p>对于每一个状态，我们将其包含的所有 LR(1) items 的第一个分量的集合成为这个状态的核心 (core)。例如，对于 3.7 最后例子中的状态图，其状态 5 和 6 的核心均为 <span class="arithmatex">\(\{A\to c., B\to c.\}\)</span>。我们将这样的具有相同核心的状态进行合并，通常能够减少许多状态。</p>
 <p>但是，这有时（虽然很少）也可能引入 reduce-reduce conflict，例如 3.7 最后的例子的 LALR(1) DFA 是：</p>
-<center>![](2023-03-19-22-40-15.png)</center>
-
+<p><center><a class="glightbox" href="../2023-03-19-22-40-15.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-03-19-22-40-15.png" /></a></center></p>
 <p>注意到合并后的状态 5&amp;6，会存在 reduce-reduce conflict。这说明这个文法不是 LALR(1) 文法。</p>
 <p>根据 DFA 可以构造 LALR(1) Parsing Table，其方法与 LR(1) 完全一致，在此不再赘述。同样地，如果构造出的 Parsing Table 没有冲突项，则说明文法是 LALR(1) 的，否则不是。</p>
-<center>![image.png](../../assets/1648826010075-7ea603c6-7f85-4c5e-b135-7e71302dcdcc.png)</center>
-
+<p><center><a class="glightbox" href="../../assets/1648826010075-7ea603c6-7f85-4c5e-b135-7e71302dcdcc.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../assets/1648826010075-7ea603c6-7f85-4c5e-b135-7e71302dcdcc.png" /></a></center></p>
 <h2 id="39-yacclalr1-语法分析器的生成器">3.9 Yacc：LALR(1) 语法分析器的生成器<a class="headerlink" href="#39-yacclalr1-语法分析器的生成器" title="Permanent link">&para;</a></h2>
 <p>我们在 <a href="https://www.yuque.com/xianyuxuan/coding/ttn5z3ka4lH">2.6 Lex：词法分析器的生成器</a> 中学习了 Lex 的使用。我们从本章的学习中发现词法分析器的生成同样是一个相当机械而复杂的过程。因此前人也设计了生成 Parser 的程序，这里我们用到的是 Yacc。</p>
 <p>Yacc 需要和 Lex 结合使用，除非我们在其中自己编写 <code>yylex()</code> 函数。</p>

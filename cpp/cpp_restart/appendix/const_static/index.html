@@ -6132,8 +6132,7 @@
 <p>这个 <code>tot</code> 虽然从全局移到了类内，但是它仍然具有 static 的生命周期。它的生命周期仍然从它的定义 <code>int User::tot = 0;</code> 开始，到程序结束为止。由于它是类的成员，因此访问它的时候需要用 <code>User::tot</code>。</p>
 <p>如我们刚才所说，<code>static</code> 成员不被绑定到类的实例中，也就是上面 <code>User</code> 类的每个实例里仍然只有 <code>id</code> 而没有 <code>tot</code>。不过，语法仍然允许用一个类的实例访问 <code>static</code> 成员，例如 <code>user.tot</code><sup id="fnref:static_call"><a class="footnote-ref" href="#fn:static_call">3</a></sup>。静态成员也受 access specifier 的影响。</p>
 <p>需要提示的是，之前我们讨论的 default member initializer 和 member initializer list 是针对 non-static 成员变量的，它们对于 static 成员变量不适用：</p>
-<center>![](2023-03-26-15-15-19.png)</center>
-
+<p><center><a class="glightbox" href="../2023-03-26-15-15-19.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-03-26-15-15-19.png" /></a></center></p>
 <p>也就是说，在类中的 static 成员变量 <strong>只是声明</strong> <sup><a href="https://timsong-cpp.github.io/cppwp/n4868/class.static.data#3">class.static.data#3</a></sup>。也就是说，我们必须在类外给出其定义，才能让编译器知道在哪里构造这些成员：</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>

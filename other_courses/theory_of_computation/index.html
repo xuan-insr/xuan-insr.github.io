@@ -6950,10 +6950,9 @@
 <li><span class="arithmatex">\(L(\varnothing) = \varnothing\)</span>, <span class="arithmatex">\(L(a) = \{a\}\)</span></li>
 <li><span class="arithmatex">\(L(R_1\cup R_2) = L(R_1) \cup L(R_2)\)</span>, <span class="arithmatex">\(L(R_1R_2) = L(R_1)\circ L(R_2), L(R^*) = L(R)^*\)</span></li>
 <li>Precedence: <span class="arithmatex">\(* &gt; \circ &gt; \cup\)</span></li>
-<li><strong>Theorem.</strong> 任意 <abbr title="Non-Deterministic Finite Automata">NFA</abbr> <span class="arithmatex">\(M\)</span> 都能找到一个 <abbr title="Regular Expression">REX</abbr> <span class="arithmatex">\(R\)</span> 使得 <span class="arithmatex">\(L(M) = L(R)\)</span>，反之同理。<span class="arithmatex">\(M\)</span> 到 <span class="arithmatex">\(R\)</span> 的思路是，首先简化 <span class="arithmatex">\(M\)</span> 使得不存在 <span class="arithmatex">\(s\)</span> 的入边且 final state 仅有一个且无出边；然后每次删除一个 state，即对于它的每一对入边和出边：  </li>
+<li><strong>Theorem.</strong> 任意 <abbr title="Non-Deterministic Finite Automata">NFA</abbr> <span class="arithmatex">\(M\)</span> 都能找到一个 <abbr title="Regular Expression">REX</abbr> <span class="arithmatex">\(R\)</span> 使得 <span class="arithmatex">\(L(M) = L(R)\)</span>，反之同理。<span class="arithmatex">\(M\)</span> 到 <span class="arithmatex">\(R\)</span> 的思路是，首先简化 <span class="arithmatex">\(M\)</span> 使得不存在 <span class="arithmatex">\(s\)</span> 的入边且 final state 仅有一个且无出边；然后每次删除一个 state，即对于它的每一对入边和出边：<br />
+<center><a class="glightbox" href="../2023-02-18-21-00-00.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-18-21-00-00.png" width="400" /></a></center></li>
 </ul>
-<center>![](2023-02-18-21-00-00.png){width=400}</center>
-
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Assignment 2 Q6. 写 <abbr title="Regular Expression">REX</abbr>：<span class="arithmatex">\(\{w\in\{a,b\}^∗:\text{ the number of }b\text{'s in }w\text{ is divisible by 3}\}\)</span></p>
@@ -7177,8 +7176,7 @@
 <li><abbr title="Turing Machines 图灵机">TM</abbr> 从初始状态开始，每次读取 head 所指格子中的 symbol 并根据 transition function 的操作进行，直到遇到某个停机状态。</li>
 </ul>
 <p>构造若干 <abbr title="Turing Machines 图灵机">TM</abbr>（按定义构造，或者组合若干 <abbr title="Turing Machines 图灵机">TM</abbr>）：</p>
-<center>![](2023-02-19-02-51-18.png){width=700}</center>
-
+<p><center><a class="glightbox" href="../2023-02-19-02-51-18.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-19-02-51-18.png" width="700" /></a></center></p>
 <h3 id="32-usages">3.2 Usages<a class="headerlink" href="#32-usages" title="Permanent link">&para;</a></h3>
 <p><abbr title="Turing Machines 图灵机">TM</abbr> 可以用来 recognize languages。</p>
 <h4 id="semidecide--recursively-enumerable">Semidecide &amp; Recursively Enumerable<a class="headerlink" href="#semidecide--recursively-enumerable" title="Permanent link">&para;</a></h4>
@@ -7234,22 +7232,21 @@
 <p>即，<span class="arithmatex">\(A \le B\)</span></p>
 <p>构造了一些语言对应的图灵机：</p>
 <ul>
-<li><span class="arithmatex">\(A_\text{DFA}\)</span> = {"D""w" : D is a <abbr title="Deterministic Finite Automata">DFA</abbr> that accepts w}: run M on w, if accept accept, else reject</li>
-<li><span class="arithmatex">\(A_\text{NFA}\)</span>: <abbr title="Non-Deterministic Finite Automata">NFA</abbr> -&gt; <abbr title="Deterministic Finite Automata">DFA</abbr>, run the <abbr title="Turing Machines 图灵机">TM</abbr> for <span class="arithmatex">\(A_\text{DFA}\)</span>, output the result<ul>
+<li><span class="arithmatex">\(A_\text{<abbr title="Deterministic Finite Automata">DFA</abbr>}\)</span> = {"D""w" : D is a <abbr title="Deterministic Finite Automata">DFA</abbr> that accepts w}: run M on w, if accept accept, else reject</li>
+<li><span class="arithmatex">\(A_\text{<abbr title="Non-Deterministic Finite Automata">NFA</abbr>}\)</span>: <abbr title="Non-Deterministic Finite Automata">NFA</abbr> -&gt; <abbr title="Deterministic Finite Automata">DFA</abbr>, run the <abbr title="Turing Machines 图灵机">TM</abbr> for <span class="arithmatex">\(A_\text{<abbr title="Deterministic Finite Automata">DFA</abbr>}\)</span>, output the result<ul>
 <li>reduction: f("N""w") = "D""w"</li>
 </ul>
 </li>
-<li><span class="arithmatex">\(A_\text{REX}\)</span>: <abbr title="Regular Expression">REX</abbr> -&gt; <abbr title="Non-Deterministic Finite Automata">NFA</abbr>, ...</li>
-<li><span class="arithmatex">\(E_\text{DFA}\)</span>: BFS, find path from <span class="arithmatex">\(s\)</span> to some <span class="arithmatex">\(f\in F\)</span></li>
-<li><span class="arithmatex">\(EQ_\text{DFA}\)</span>: f("D1""D2") = "D" where D = D1 <span class="arithmatex">\(\oplus\)</span> D2</li>
-<li><span class="arithmatex">\(A_\text{CFG}\)</span>: 转为 <abbr title="Chomsky Norm Form">CNF</abbr>，尝试所有 length = 2|w| - 1 的 derivation</li>
-<li><span class="arithmatex">\(A_\text{PDA}\)</span>: <abbr title="PushDown Automata">PDA</abbr> -&gt; <abbr title="Context-Free Grammars">CFG</abbr></li>
-<li><span class="arithmatex">\(E_\text{CFG}\)</span>: 将 e 和所有 terminals 标记，然后将标记反向传递</li>
-<li><span class="arithmatex">\(E_\text{PDA}\)</span>: <abbr title="PushDown Automata">PDA</abbr> -&gt; <abbr title="Context-Free Grammars">CFG</abbr></li>
+<li><span class="arithmatex">\(A_\text{<abbr title="Regular Expression">REX</abbr>}\)</span>: <abbr title="Regular Expression">REX</abbr> -&gt; <abbr title="Non-Deterministic Finite Automata">NFA</abbr>, ...</li>
+<li><span class="arithmatex">\(E_\text{<abbr title="Deterministic Finite Automata">DFA</abbr>}\)</span>: BFS, find path from <span class="arithmatex">\(s\)</span> to some <span class="arithmatex">\(f\in F\)</span></li>
+<li><span class="arithmatex">\(EQ_\text{<abbr title="Deterministic Finite Automata">DFA</abbr>}\)</span>: f("D1""D2") = "D" where D = D1 <span class="arithmatex">\(\oplus\)</span> D2</li>
+<li><span class="arithmatex">\(A_\text{<abbr title="Context-Free Grammars">CFG</abbr>}\)</span>: 转为 <abbr title="Chomsky Norm Form">CNF</abbr>，尝试所有 length = 2|w| - 1 的 derivation</li>
+<li><span class="arithmatex">\(A_\text{<abbr title="PushDown Automata">PDA</abbr>}\)</span>: <abbr title="PushDown Automata">PDA</abbr> -&gt; <abbr title="Context-Free Grammars">CFG</abbr></li>
+<li><span class="arithmatex">\(E_\text{<abbr title="Context-Free Grammars">CFG</abbr>}\)</span>: 将 e 和所有 terminals 标记，然后将标记反向传递</li>
+<li><span class="arithmatex">\(E_\text{<abbr title="PushDown Automata">PDA</abbr>}\)</span>: <abbr title="PushDown Automata">PDA</abbr> -&gt; <abbr title="Context-Free Grammars">CFG</abbr></li>
 </ul>
 <p>归约可以这样写：</p>
-<center>![](2023-02-19-15-22-25.png){width=800}</center>
-
+<p><center><a class="glightbox" href="../2023-02-19-15-22-25.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-19-15-22-25.png" width="800" /></a></center></p>
 <h3 id="42-undecidability">4.2 Undecidability<a class="headerlink" href="#42-undecidability" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

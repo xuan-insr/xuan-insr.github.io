@@ -6305,8 +6305,7 @@
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>它们单独使用都没什么问题。但是，当我们把这两份代码 include 到一起时就发生了错误！因为 C 语言并不允许同名函数有不同类型的版本。下面是报错之一：</p>
-<center>![](2023-02-04-22-28-48.png){width=600}</center>
-
+<p><center><a class="glightbox" href="../2023-02-04-22-28-48.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-04-22-28-48.png" width="600" /></a></center></p>
 <p>所以，如果我们想在同一个工程里同时使用这两个库，我们就不得不给相关函数改个名，例如 <code>create()</code> 分别改为 <code>llist_create()</code> 和 <code>alist_create()</code> 等。</p>
 <p>但是这很不优雅！而且当我们希望更改部分代码中使用的线性表类型的时候，我们需要将所有使用到相关函数的地方都改一遍名字！这太难过了。问题出在哪里呢？事实上，<code>create</code>, <code>add</code> 之类的函数都应当属于对应的 <code>linkedlist</code> 或者 <code>arraylist</code> 这样的具体的类型，而不应当属于全局；但 C 语言弱化了这一点。在 OOP 的思想中，我们会将 <strong>数据</strong> 和 <strong>操纵数据的函数</strong> 用更加明显的方式捆绑在一起；从语法上说，就是我们扩展了 struct：现在 struct 不仅能包含 <strong>成员变量</strong>，还能包含 <strong>成员函数</strong> 了：</p>
 <p>链表的版本（可以玩一下 <a href="https://godbolt.org/z/x4M8e86KW">https://godbolt.org/z/x4M8e86KW</a>）：</p>
@@ -6438,8 +6437,7 @@
 <span class="p">};</span>
 </code></pre></div></td></tr></table></div>
 <p>在这种情况下，如果外部代码尝试访问 private 变量，就会被编译器拒绝：</p>
-<center>![](2023-02-06-02-31-30.png){width=600}</center>
-
+<p><center><a class="glightbox" href="../2023-02-06-02-31-30.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-06-02-31-30.png" width="600" /></a></center></p>
 <p>这是封装思想的另一部分，即限制对对象的一部分状态和行为的直接访问。部分成员变量可能会被拒绝访问，只能被内部使用（例如上面的 <code>password</code>）；另一部分变量可能会通过类似 <code>getAge()</code> 和 <code>setAge()</code> 的 <strong>getters and setters</strong> 被有限制或者经检查地访问（例如上面的 <code>age</code>）。</p>
 <details class="tips">
 <summary>封装 != 安全</summary>
@@ -6576,8 +6574,7 @@
 <span class="cp">#undef elem</span>
 </code></pre></div></td></tr></table></div>
 <p>而且其实这个代码还没办法成功编译，因为在这种情况下，我们会有两份不同的 <code>node</code> 和 <code>linkedlist</code> 定义：</p>
-<center>![](2023-02-06-21-40-36.png){width=500}</center>
-
+<p><center><a class="glightbox" href="../2023-02-06-21-40-36.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-06-21-40-36.png" width="500" /></a></center></p>
 <p>即使不考虑语言的限制，也会出现的一个问题是：如果我们支持 16 种不同的图形，那么我们就需要 16 个不同的链表来保存这些图形；在每次遍历、查找、删除、插入等事件发生时，代码都需要处理这 16 个链表，这是非常不优雅的。更不优雅的是，如果要增加一种新的图形，我们需要在 <strong>每处</strong> 使用链表的地方都增加对新的图形对应链表的处理（高亮处表示增加一种新的图形需要做的更改）：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
