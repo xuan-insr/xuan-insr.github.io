@@ -21,7 +21,7 @@
         <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -6204,9 +6204,11 @@ h(x_1, \dots, x_n, t+1) &amp;= &amp;g(t, h(x_1, \dots, x_n, t), x_1, \dots, x_n)
 <h2 id="92-gödels-system-t">9.2 Gödel's System T<a class="headerlink" href="#92-gödels-system-t" title="Permanent link">&para;</a></h2>
 <p>System T 是函数类型和自然数类型的结合，同时引入了原始递归机制。</p>
 <p><strong>T</strong> 语言的抽象和具体语法如下：</p>
-<p><center><a class="glightbox" href="../2022-12-19-15-28-36.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-19-15-28-36.png" width="500" /></a></center></p>
+<center>![](2022-12-19-15-28-36.png){width=500}</center>
+
 <p>其闭值由以下规则定义，这是动态语义的一部分：</p>
-<p><center><a class="glightbox" href="../2022-12-19-15-40-09.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-19-15-40-09.png" width="150" /></a></center></p>
+<center>![](2022-12-19-15-40-09.png){width=150}</center>
+
 <p>与前面的讨论类似，这里方括号括起的部分也是用来区分不同的解释的。在 eager form of <strong>T</strong> 中方括号中的内容应当保留，在 lazy form 中则应去掉。后文中涉及动态语义的部分省略相关解释。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -6215,15 +6217,19 @@ h(x_1, \dots, x_n, t+1) &amp;= &amp;g(t, h(x_1, \dots, x_n, t), x_1, \dots, x_n)
 <p>我们分几个部分来讨论和解释上述语法。</p>
 <h3 id="921-abstraction-and-application">9.2.1 Abstraction and Application<a class="headerlink" href="#921-abstraction-and-application" title="Permanent link">&para;</a></h3>
 <p><strong>T</strong> 对于函数的处理和 <strong>EF</strong> 是一致的，其静态语义由以下规则定义：</p>
-<p><center><a class="glightbox" href="../2022-12-19-15-31-53.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-19-15-31-53.png" width="300" /></a></center></p>
+<center>![](2022-12-19-15-31-53.png){width=300}</center>
+
 <p>相关闭值的定义已经在前文讨论过了。动态语义中相关的转换规则如下：</p>
-<p><center><a class="glightbox" href="../2022-12-19-16-25-30.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-19-16-25-30.png" width="300" /></a></center></p>
+<center>![](2022-12-19-16-25-30.png){width=300}</center>
+
 <p>可以看到，这和 <strong>EF</strong> 中的并无区别。</p>
 <h3 id="922-natural-numbers">9.2.2 Natural Numbers<a class="headerlink" href="#922-natural-numbers" title="Permanent link">&para;</a></h3>
 <p><strong>T</strong> 对于自然数的定义和我们在 2.2 节中定义的基本一致，只是采用的符号略有不同。其静态语义由以下规则定义：</p>
-<p><center><a class="glightbox" href="../2022-12-19-16-39-15.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-19-16-39-15.png" width="150" /></a></center></p>
+<center>![](2022-12-19-16-39-15.png){width=150}</center>
+
 <p>相关闭值的定义已经在前文讨论过了。动态语义中相关的转换规则如下：</p>
-<p><center><a class="glightbox" href="../2022-12-19-16-31-24.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-19-16-31-24.png" width="150" /></a></center></p>
+<center>![](2022-12-19-16-31-24.png){width=150}</center>
+
 <p>我们把 <span class="arithmatex">\(\text{s(}\cdots \text{s(z))}\)</span> 简写为 <span class="arithmatex">\(\overline{n}\)</span>，表示后继被作用到 0 上 <span class="arithmatex">\(n \ge 0\)</span> 次。</p>
 <h3 id="923-recursion">9.2.3 Recursion<a class="headerlink" href="#923-recursion" title="Permanent link">&para;</a></h3>
 <p>与 <strong>E</strong> 不同，<strong>T</strong> 中对于自然数的操作只有原始递归。但事实上，这种操作更加通用，因此实际上可以实现 <strong>E</strong> 中的所有算术操作，甚至更多。</p>
@@ -6250,14 +6256,16 @@ h(\vec{x}, \text{s}(e')) &amp;= &amp;\vec{x}.e_1(e', h(\vec{x}, e'))
 <span class="n">double</span> <span class="o">(</span><span class="nc">S</span> <span class="o">(</span><span class="nc">S</span> <span class="nc">Z</span><span class="o">));;</span>
 </code></pre></div>
 <p>尝试运行可以得到正确的结果：</p>
-<p><center><a class="glightbox" href="../2022-12-19-15-22-38.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-19-15-22-38.png" width="300" /></a></center></p>
+<center>![](2022-12-19-15-22-38.png){width=300}</center>
+
 <p>进一步地，我们将其改写为递归式的形式：</p>
 <div class="highlight"><pre><span></span><code><span class="k">let</span> <span class="k">rec</span> <span class="n">double</span> <span class="n">a</span> <span class="o">=</span> 
   <span class="k">match</span> <span class="n">a</span> <span class="k">with</span>
   <span class="o">|</span> <span class="nc">Z</span> <span class="o">-&gt;</span> <span class="nc">Z</span>
   <span class="o">|</span> <span class="nc">S</span> <span class="n">x</span> <span class="o">-&gt;</span> <span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="n">double</span> <span class="n">x</span> <span class="k">in</span> <span class="nc">S</span><span class="o">(</span><span class="nc">S</span> <span class="n">y</span><span class="o">);;</span>
 </code></pre></div>
-<p><center><a class="glightbox" href="../2022-12-19-16-52-43.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-19-16-52-43.png" width="300" /></a></center></p>
+<center>![](2022-12-19-16-52-43.png){width=300}</center>
+
 <p>因此，我们可以容易地写出 <code>double</code> 对应的递归式：</p>
 <div class="arithmatex">\[\lambda(e:\text{nat})\text{rec}\{\text{z}\hookrightarrow \text{z} | \text{s}(x) \text{ with } y \hookrightarrow \text{s}(\text{s}(y))\}(e)\]</div>
 <p>即</p>
@@ -6269,9 +6277,11 @@ h(\vec{x}, \text{s}(e')) &amp;= &amp;\vec{x}.e_1(e', h(\vec{x}, e'))
 <p>这样，我们其实就容易理解课本中说「递归式 <span class="arithmatex">\(\text{rec}\{e_0;x.y.e_1\}(e)\)</span> 表示从 <span class="arithmatex">\(e_0\)</span> 开始，对变换 <span class="arithmatex">\(x.y.e_1\)</span> 的 <span class="arithmatex">\(e\)</span> 轮折叠」是什么意思了。例如调用 <span class="arithmatex">\(\text{rec}\{e_0;x.y.e_1\}(\overline{n})\)</span>，如果从参数为 <span class="arithmatex">\(\overline{n}\to 0\)</span> 的方向看，其实就是正常递归调用的路径；如果从参数为 <span class="arithmatex">\(0\to \overline{n}\)</span> 的方向看，其实就是将 <span class="arithmatex">\(\text{z}\)</span> 作为 <span class="arithmatex">\(x\)</span>、<span class="arithmatex">\(e_0\)</span> 作为 <span class="arithmatex">\(y\)</span> 计算 <span class="arithmatex">\(e_1\)</span>，然后将结果作为 <span class="arithmatex">\(y\)</span>、<span class="arithmatex">\(\text{s}(x)\)</span> 作为 <span class="arithmatex">\(x\)</span> 再计算 <span class="arithmatex">\(e_1\)</span>，重复 <span class="arithmatex">\(n\)</span> 次，得到该递归式的值。</p>
 <p>因此，我们就可以给出递归的静态和动态语义了。</p>
 <p>静态语义：</p>
-<p><center><a class="glightbox" href="../2022-12-19-17-35-31.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-19-17-35-31.png" width="400" /></a></center></p>
+<center>![](2022-12-19-17-35-31.png){width=400}</center>
+
 <p>动态语义：</p>
-<p><center><a class="glightbox" href="../2022-12-19-17-35-45.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-19-17-35-45.png" width="500" /></a></center></p>
+<center>![](2022-12-19-17-35-45.png){width=500}</center>
+
 <h3 id="924-definability">9.2.4 Definability<a class="headerlink" href="#924-definability" title="Permanent link">&para;</a></h3>
 <p>自然数上的一个数学函数 <span class="arithmatex">\(f : \mathbb{N}\to\mathbb{N}\)</span> 是 <strong>可定义 (definable)</strong> 的，当且仅当存在一个 <span class="arithmatex">\(\text{nat}\to\text{nat}\)</span> 类型的表达式 <span class="arithmatex">\(e_f\)</span>，使得 <span class="arithmatex">\(\forall n \in \mathbb{N}, e_f(\overline{n})\equiv \overline{f(n)} : \text{ nat}\)</span>。</p>
 

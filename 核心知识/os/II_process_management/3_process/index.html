@@ -21,7 +21,7 @@
         <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
@@ -6233,7 +6233,8 @@
 </ul>
 </li>
 </ul>
-<p><center><a class="glightbox" href="../2022-12-08-16-35-07.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-16-35-07.png" width="200" /></a></center></p>
+<center>![](2022-12-08-16-35-07.png){width=200}</center>
+
 <details class="info">
 <summary>ELF (Executable and Linkable Format)</summary>
 <p><center><a class="glightbox" href="../2022-12-08-16-35-45.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-16-35-45.png" width="400" /></a></center></p>
@@ -6243,7 +6244,8 @@
 </details>
 <h3 id="312-进程的状态">3.1.2 进程的状态<a class="headerlink" href="#312-进程的状态" title="Permanent link">&para;</a></h3>
 <p>进程在执行 (execute) 时会改变状态 (state)：</p>
-<p><center><a class="glightbox" href="../2022-12-08-16-38-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-16-38-05.png" width="400" /></a></center></p>
+<center>![](2022-12-08-16-38-05.png){width=400}</center>
+
 <p>一个处理器上，只有一个进程可以 running，更多的进程可能处于 ready 或 waiting 状态。</p>
 <h3 id="313-进程控制块">3.1.3 进程控制块<a class="headerlink" href="#313-进程控制块" title="Permanent link">&para;</a></h3>
 <p>操作系统用一个 <strong>Process Control Block (PCB, a.k.a. task control block)</strong> 表示进程，每个进程有且仅有一个 PCB。</p>
@@ -6257,14 +6259,17 @@
 <li><strong>Accounting information</strong> ，CPU 使用时间、时间期限、记账数据等</li>
 <li><strong>I/O status information</strong> ，分配给进程的 I/O 设备列表、打开文件列表等</li>
 </ul>
-<p><center><a class="glightbox" href="../2022-12-08-16-39-18.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-16-39-18.png" width="200" /></a></center></p>
+<center>![](2022-12-08-16-39-18.png){width=200}</center>
+
 <p>不同的系统可能有不同的 PCB。Linux 中的进程用结构体 <code>task_struct</code> 存储。</p>
 <h2 id="32-进程的创建">3.2 进程的创建<a class="headerlink" href="#32-进程的创建" title="Permanent link">&para;</a></h2>
 <p>大多数操作系统通过一个唯一的 <strong>进程标识符 (process indentifier, pid)</strong> 来识别一个进程。一个进程在运行时可以创建新的进程，则它成为父进程，新建进程称为子进程；父进程的 pid 称为子进程的 <strong>ppid (parent's pid)</strong> 。这样进程会成为一个 <strong>进程树 (process tree)</strong>：</p>
-<p><center><a class="glightbox" href="../2022-12-08-16-46-31.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-16-46-31.png" width="400" /></a></center></p>
+<center>![](2022-12-08-16-46-31.png){width=400}</center>
+
 <p>当子进程被创建时，它会需要一定的资源（CPU 时间、内存、文件、I/O 设备等）来完成任务。它可以从操作系统那里直接获取资源，也可以从父进程那里继承（共享）一些资源。建立子进程时，父进程也可以向子进程传递一些初始化数据，例如父进程创建一个显示图片的子进程时，可以将该图片的路径或文件名等传递给子进程。</p>
 <p>UNIX 系统中可以使用系统调用 <code>fork()</code> 来创建一个新进程。这个新进程是父进程的一份拷贝，它们只有 pid 和 ppid 不同，另外子进程当前内存使用记录为 0，除此以外全部相同。 <code>fork()</code> 对父进程返回该子进程的 pid，而对子进程返回 0。</p>
-<p><center><a class="glightbox" href="../2022-12-08-17-03-30.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-03-30.png" width="400" /></a></center></p>
+<center>![](2022-12-08-17-03-30.png){width=400}</center>
+
 <details class="info">
 <summary><code>fork()</code> 如何对父进程和子进程返回不同的值？</summary>
 <p>一种实现方式是，在进入 <code>fork()</code> 时存下当前的 pid，在建立新进程后（此时存下子进程的 pid），父进程和子进程都将分别完成 <code>fork()</code> 剩余代码的执行。在进行返回时， <code>fork()</code> 检查当前的 pid 与前面存下的是否一致，如果一致则说明当前是父进程，返回子进程的 pid；不一致则说明是子进程，返回 0。</p>
@@ -6287,7 +6292,8 @@
 </details>
 <p>聪明的小朋友可能会问了，上面这种代码，child 将当前地址空间拷贝一份岂不是很浪费吗？因为根本没有用到。确实如此，因此部分 UNIX 的实现引入了 copy-on-write 机制，将地址空间的复制推迟到任何一个进程需要写入的时候再进行。</p>
 <p>UNIX 对启动新进程的逻辑是简单的。fork 的意义就是制造当前进程的一个副本，而 exec 的意义是用一个新的程序替代当前的进程<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>。</p>
-<p><center><a class="glightbox" href="../2022-12-08-17-08-17.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-08-17.png" width="300" /></a></center></p>
+<center>![](2022-12-08-17-08-17.png){width=300}</center>
+
 <div class="admonition info">
 <p>系统调用 <code>getpid()</code> 和 <code>getppid()</code> 可以分别获取进程的 pid 和 ppid。</p>
 </div>
@@ -6303,7 +6309,8 @@
 <h2 id="34-进程间通信">3.4 进程间通信<a class="headerlink" href="#34-进程间通信" title="Permanent link">&para;</a></h2>
 <p><strong>进程间通信 (IPC, InterProcess Communication)</strong> 是为了在进程的资源相互隔离的情况下，让不同的进程能相互访问资源从而协调工作。</p>
 <p>​主要有两种方式：<strong>共享内存 (shared memory)</strong> 和 <strong>消息传递 (message passing)</strong>。</p>
-<p><center><a class="glightbox" href="../2022-12-08-17-16-21.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-16-21.png" width="400" /></a></center></p>
+<center>![](2022-12-08-17-16-21.png){width=400}</center>
+
 <ul>
 <li><strong>信号量 (semaphores)</strong> 本意用来线程间同步，但是可以通过 sem_open() 系统调用来建立和维护进程间的信号量；这样的信号量属于 OS 资源，它会在相关进程结束后由 OS 释放<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup><sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>。</li>
 <li><strong>共享内存</strong> 的实现是，两个进程各自有一块虚拟内存，映射到同一块物理内存。共享内存也需要信号量等同步手段保护。</li>

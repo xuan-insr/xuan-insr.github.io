@@ -21,7 +21,7 @@
         <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
@@ -6310,11 +6310,13 @@ b. Running -&gt; Terminated<br />
 c. Running -&gt; Ready，当发生了 interrupt，如计时器到时间了<br />
 d. Waiting -&gt; Ready，如 I/O 完成了<br />
 e. New -&gt; Ready</p>
-<p><center><a class="glightbox" href="../2022-12-08-16-38-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-16-38-05.png" width="400" /></a></center></p>
+<center>![](2022-12-08-16-38-05.png){width=400}</center>
+
 <p><strong>​非抢占式 (nonpreemptive)</strong> 调度只会在 a, b 处进行调度，因为只有这时候当前正在运行的进程不能再运行了；<strong>抢占式 (preemptive)</strong> 调度会发生在上述任何时机（例如，当一个新的进程被创建，即 e 发生时，也会重新进行调度）。因此，抢占式调度使得 OS 有更充分的控制，但它也更复杂。</p>
 <p>​也就是说，当上述情况发生时，调度器会被调用，来进行调度。</p>
 <h2 id="42-调度的过程">4.2 调度的过程<a class="headerlink" href="#42-调度的过程" title="Permanent link">&para;</a></h2>
-<p><center><a class="glightbox" href="../2022-12-08-17-33-40.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-33-40.png" width="600" /></a></center></p>
+<center>![](2022-12-08-17-33-40.png){width=600}</center>
+
 <p>​这个过程叫 上下文切换 (context switch)，这里的上下文其实就由 PCB 来表示。</p>
 <h2 id="43-调度算法的评价">4.3 调度算法的评价<a class="headerlink" href="#43-调度算法的评价" title="Permanent link">&para;</a></h2>
 <p>对于不同的应用场景，我们对 scheduling 的要求也有所不同，有些也会有冲突。为此，我们需要充分考虑各种算法的属性。我们可能需要的要求包括：</p>
@@ -6330,7 +6332,8 @@ e. New -&gt; Ready</p>
 <p>基于上述不同目的，多种调度算法被设计出来。</p>
 <h3 id="441-first-come-first-served-fcfs--nonpreemptive">4.4.1 ​First-Come First-Served (FCFS) | Nonpreemptive<a class="headerlink" href="#441-first-come-first-served-fcfs--nonpreemptive" title="Permanent link">&para;</a></h3>
 <p>​先申请 CPU 的进程首先获得 CPU。可以用一个 FIFO 队列简单实现。</p>
-<p><center>​​<a class="glightbox" href="../2022-12-08-17-37-10.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-37-10.png" width="400" /></a></center></p>
+<center>​​![](2022-12-08-17-37-10.png){width=400}</center>
+
 <p><strong>​Convoy effect</strong> - short process behind long process，​尤其是当有进程进入 waiting 后，再返回的时候又需要重新排队。</p>
 <h3 id="442-shortest-job-first-sjf">4.4.2 ​Shortest-Job-First (SJF)<a class="headerlink" href="#442-shortest-job-first-sjf" title="Permanent link">&para;</a></h3>
 <p>SJF 的核心想法是，让下一次运行时间最短的进程先来运行；根据数学知识，我们可以得知这样能得到最少的平均等待时间。</p>
@@ -6341,7 +6344,8 @@ e. New -&gt; Ready</p>
 <p>对于非抢占式的系统来说，当我们忽略 I/O 等会进入 waiting 的情况（因为题目通常这样设计），进程「下一次运行时间」就是整个进程所需的总运行时间。但是，对于抢占式的系统而言，「下一次运行时间」实际上是进程的剩余运行时间，因为进程可能曾经被打断过。因此我们将 SJF 进一步细分成了两种。</p>
 <h4 id="non-preemptive-shortest-next-cpu-burst">​Non-preemptive: Shortest-next-CPU-burst<a class="headerlink" href="#non-preemptive-shortest-next-cpu-burst" title="Permanent link">&para;</a></h4>
 <p>​每当 CPU 调度时，其选取 ready queue 中下次 CPU 执行时间最短的进程。这样会使得给定的一组进程具有 minimum average waiting time.</p>
-<p><center><a class="glightbox" href="../2022-12-08-17-42-28.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-42-28.png" width="300" /></a></center></p>
+<center>![](2022-12-08-17-42-28.png){width=300}</center>
+
 <ul>
 <li>在这个情景中，0s 时只有 P1 到达，因此 P1 先运行</li>
 <li>由于是非抢占式的，因此 P1 运行过程中其他进程的到达并不会导致重新调度，P1 得以完全运行</li>
@@ -6349,7 +6353,8 @@ e. New -&gt; Ready</p>
 </ul>
 <h4 id="preemptive-shortest-remaining-time-first">​Preemptive: Shortest-remaining-time-first<a class="headerlink" href="#preemptive-shortest-remaining-time-first" title="Permanent link">&para;</a></h4>
 <p>​每当 CPU 调度时（注意抢占式调度的调度时机），选择最短剩余运行时间的进程。</p>
-<p><center><a class="glightbox" href="../2022-12-08-17-42-49.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-42-49.png" width="300" /></a></center></p>
+<center>![](2022-12-08-17-42-49.png){width=300}</center>
+
 <ul>
 <li>在这个情境中，0s 时只有 P1 到达，因此 P1 先运行</li>
 <li>但不同的是，由于是抢占式的，因此 2s P2 到达时也会引发一次调度，此时 P1 的剩余时间是 8s，P2 是 6s，因此 P2 优先运行</li>
@@ -6361,20 +6366,23 @@ e. New -&gt; Ready</p>
 <p>如我们之前所述，​SJF 的两个版本都可以获得最小的平均等待时间，但最大的问题在于我们并不知道「下一次运行时间」。解决方案是预测，将下次执行时间预测为此前 CPU 执行长度的指数平均。指数平均需要操作系统统计该进程此前的运行情况；关于指数平均的具体实现，感兴趣的同学可以在课本中自行查阅。</p>
 <h3 id="443-round-robin-rr--preemptive">4.4.3 ​Round-Robin (RR) | Preemptive<a class="headerlink" href="#443-round-robin-rr--preemptive" title="Permanent link">&para;</a></h3>
 <p>​定义一个 <strong>时间片 (time slice / time quantum)</strong> ，即一个固定的较小时间单元 (10-100ms)。除非一个 process 是 ready queue 中的唯一进程，它不会连续运行超过一个时间片的时间。Ready queue 是一个 FIFO 的循环队列。每次调度时取出 ready queue 中的第一个进程，设置一个计时器使得进程在一个时间片后发生中断，然后 dispatch the process。</p>
-<p><center><a class="glightbox" href="../2022-12-08-17-44-56.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-44-56.png" width="300" /></a></center></p>
+<center>![](2022-12-08-17-44-56.png){width=300}</center>
+
 <p>​相比 SJF 而言，平均等待时间更长，但响应时间更短。</p>
 <p>​RR scheduling 的性能很大程度上取决于时间片的大小。如果时间片较小，则 response/interactivity 会很好，但会有较大的 overhead，因为有较多的 context-switch；时间片较大则响应较差，但 overhead 会较小。如果 时间片 <span class="arithmatex">\(\to \inf\)</span>，则 RR <span class="arithmatex">\(\to\)</span> FCFS。</p>
 <p>​在实践中，时间片大约 10~100ms，每次 contest-switch 约 10μs。即 context-switch 的时间花费是比较小的。</p>
 <h3 id="444-priority-scheduling">4.4.4 ​Priority Scheduling<a class="headerlink" href="#444-priority-scheduling" title="Permanent link">&para;</a></h3>
 <p>​每个进程都有一个优先级，每次调度时选取最高优先级的进程。（下例中规定优先级值小的优先级高。）</p>
-<p><center><a class="glightbox" href="../2022-12-08-17-46-04.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-46-04.png" width="300" /></a></center></p>
+<center>![](2022-12-08-17-46-04.png){width=300}</center>
+
 <p>​优先级可以是内部的或者外部的：</p>
 <ul>
 <li>internal: 一些测量数据，例如 SJF 是 Priority 的一个特例，即优先级由预测 CPU 运行时间决定。</li>
 <li>external: 由用户指定进程的重要性。</li>
 </ul>
 <p>​Priority Scheduling 也可以与 Round-Robin 结合，如：</p>
-<p><center><a class="glightbox" href="../2022-12-08-17-46-35.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-46-35.png" width="300" /></a></center></p>
+<center>![](2022-12-08-17-46-35.png){width=300}</center>
+
 <p>​要实现 Priority Scheduling，可以简单地将 ready queue 用 priority queue 实现；priority queue 也可以是抢占式或非抢占式的，如 SJF 一样。</p>
 <p>​Priority 的一个重要问题是 <strong>indefinite blocking / starvation</strong> ，即低优先级的进程可能永远没有机会被执行。一个解决方法是 <strong>Priority Aging</strong> ，即根据等待时间逐渐增加在系统中等待的进程的优先级。</p>
 <h3 id="445-multilevel-queue-scheduling">4.4.5 ​Multilevel Queue Scheduling<a class="headerlink" href="#445-multilevel-queue-scheduling" title="Permanent link">&para;</a></h3>
@@ -6383,11 +6391,12 @@ e. New -&gt; Ready</p>
 <p>同时，队列之间也应当有调度。通常使用 preemptive priority scheduling，即当且仅当高优先级的队列（如前台队列）为空时，低优先级的队列（如后台队列）中的进程才能获准运行。</p>
 <p>也可以使用队列间的 time-slicing，例如一个队列使用 80% 的时间片而另一个使用 20%。</p>
 <p>例如：</p>
-<p><center><a class="glightbox" href="../2022-12-08-17-47-27.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-47-27.png" width="300" /></a></center></p>
+<center>![](2022-12-08-17-47-27.png){width=300}</center>
+
 <h3 id="446-multilevel-feedback-queue-scheduling">4.4.6 ​Multilevel Feedback Queue Scheduling<a class="headerlink" href="#446-multilevel-feedback-queue-scheduling" title="Permanent link">&para;</a></h3>
 <p>​Multilevel Feedback Queue Scheduling 允许进程在队列之间迁移。这种算法可以有很多种实现，因为队列的数量、每个队列中的调度策略、队列之间的调度算法以及将进程升级到更高优先级/降级到更低优先级的队列的条件都是可变的。一个系统中的最优配置在另一个系统中不一定很好。这种算法也是最为复杂的。</p>
 <p>​看这样一个例子：有三个队列 0, 1, 2，优先级逐次降低。当进程 ready 时被添加到 Q0 中，Q0 内部采用 RR Scheduling，的每个进程都有 8ms 的时间完成其运行，如果没有完成则被打断并进入 Q1；只有当 Q0 为空时 Q1 才可能被运行。Q1 内部也使用 RR Scheduling，每个进程有 16ms 时间完成其运行，如果没有完成则被打断并进入 Q2；只有当 Q1 也为空时 Q2 才可能被运行。Q2 内部采用 FCFS 算法。</p>
-<p><center><a class="glightbox" href="../2022-12-08-17-47-44.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-08-17-47-44.png" width="300" /></a></center></p>
+<center>![](2022-12-08-17-47-44.png){width=300}</center>
 
 
 

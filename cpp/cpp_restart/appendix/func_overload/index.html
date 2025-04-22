@@ -21,7 +21,7 @@
         <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
@@ -6186,7 +6186,8 @@
 <span class="p">};</span>
 </code></pre></div>
 <p>这样，当我们使用 <code>Container c1, c2(4), c3(6, 2);</code> 定义三个对象时，它们会分别使用无参、一个参数和两个参数的构造函数：</p>
-<p><center><a class="glightbox" href="2023-03-03-14-45-31.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="2023-03-03-14-45-31.png" /></a></center></p>
+<center>![](2023-03-03-14-45-31.png)</center>
+
 <p>事实上，不仅是构造函数支持重载，其他的成员函数或者独立的函数<sup id="fnref:namespace-scope"><a class="footnote-ref" href="#fn:namespace-scope">1</a></sup>也支持重载。例如<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/over.pre#2">over.pre#2</a></sup>：</p>
 <div class="highlight"><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="nf">abs</span><span class="p">(</span><span class="kt">double</span><span class="p">);</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">abs</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
@@ -6196,7 +6197,8 @@
 </code></pre></div>
 <p>如果一个名字引用多个函数，则称它是 overloaded 的。当使用这样的名字的时候，编译器用来决定使用哪个；这个过程称为 <strong>重载解析 (overload resolution)</strong>。简单来说，重载解析首先收集这个名字能找到的函数形成候选函数集 (candidate functions)，然后检查参数列表来形成可行函数集 (viable functions)，然后在可行函数集中按照一定的规则比较这些函数，如果 <strong>恰好</strong> 有一个函数 (best viable function) 优于其他所有函数，则重载解析成功并调用此函数；否则编译失败。</p>
 <p>上面的「规则」比较复杂<sup id="fnref:overload_resolution"><a class="footnote-ref" href="#fn:overload_resolution">2</a></sup>，但是一个简单的例子是，不需要类型转换的比需要的要好<sup id="fnref:rank_of_conversion"><a class="footnote-ref" href="#fn:rank_of_conversion">3</a></sup>：</p>
-<p><center><a class="glightbox" href="2023-03-03-16-03-41.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="2023-03-03-16-03-41.png" /></a></center></p>
+<center>![](2023-03-03-16-03-41.png)</center>
+
 <p>因此，上面第 5 行的 <code>f(0L);</code> 中 <code>0L</code> 是 <code>long</code> 类型的字面量，它调用 <code>void f(long)</code> 不需要转换，而调用 <code>void f(float)</code> 需要转换，因此选取前者。</p>
 <p>但是，上面第 6 行的 <code>f(0);</code> 中 <code>0</code> 是 <code>int</code> 类型的字面量，它调用两个函数都需要转换，且两个转换没有一个优于另一个<sup id="fnref2:rank_of_conversion"><a class="footnote-ref" href="#fn:rank_of_conversion">3</a></sup>，因此找不到 best viable function，因此编译错误。</p>
 <p>也是因此，两个只有返回值类型不同的函数不是合法的重载，因为调用时没有办法完成重载解析：</p>

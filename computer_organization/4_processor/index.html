@@ -21,7 +21,7 @@
         <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -6342,7 +6342,8 @@
 <p>我们讨论过，计算机的 performance 受 <strong>inst#, clock cycle time 和 clock cycles per inst (CPI)</strong> 决定。Clock cycle time 和 CPI 受 processor 的实现方式影响。本章介绍 RISC-V 的 processor 一种实现。</p>
 <h2 id="41-datapath">4.1 Datapath<a class="headerlink" href="#41-datapath" title="Permanent link">&para;</a></h2>
 <h3 id="411-overview">4.1.1 Overview<a class="headerlink" href="#411-overview" title="Permanent link">&para;</a></h3>
-<p><center><a class="glightbox" href="../../../assets/1654671143448-cfbcadc6-ce0c-4723-bc9e-5c880f31fdac.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654671143448-cfbcadc6-ce0c-4723-bc9e-5c880f31fdac.png" /></a></center></p>
+<center>![image.png](../../../assets/1654671143448-cfbcadc6-ce0c-4723-bc9e-5c880f31fdac.png)</center>
+
 <p>上图展示了一个 RISC-V 核心指令的实现（并不完整），包括  <code>ld</code>  ,   <code>sd</code>  ,   <code>add</code>  ,   <code>sub</code>  ,   <code>and</code>  ,   <code>or</code>  ,   <code>beq</code>  。我们简单进行分析。</p>
 <ul>
 <li>PC 寄存器存储当前运行到的指令的地址。<strong>PC</strong> 寄存器连到 <strong>Instruction memory</strong> 中，读出的结果就是当前要运行的指令。这个指令被 <strong>Control</strong> 解析产生相应的信号。我们在 4.1.6 小节中具体说明它的实现。</li>
@@ -6351,7 +6352,8 @@
 <ul>
 <li><code>add</code>  ,   <code>sub</code>  ,   <code>and</code>  ,   <code>or</code>  这几个 R 型指令总共需要访问 3 个寄存器，如下图所示：</li>
 </ul>
-<p><center><a class="glightbox" href="../../../assets/1654672203572-171714de-bbd9-4da7-b2d6-024c1dd0b2f0.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654672203572-171714de-bbd9-4da7-b2d6-024c1dd0b2f0.png" /></a></center></p>
+<center>![image.png](../../../assets/1654672203572-171714de-bbd9-4da7-b2d6-024c1dd0b2f0.png)</center>
+
 <ul>
 <li>(1) 处取出指令，  <code>[6:0]</code>  被送到 Control 产生对应的控制信号，我们稍后可以看到；  <code>[19:15]</code>  ,   <code>[24:20]</code>  ,   <code>[11:7]</code>  分别对应  <code>rs1</code>  ,  <code>rs2</code>  ,  <code>rd</code>  ，被连入 Registers 这个结构，对应地  <code>Read data 1</code>  和  <code>Read data 2</code>  两处的值即变为  <code>rs1</code>  ,  <code>rs2</code>  的值；</li>
 <li>(2) 处 MUX 在  <code>ALUSrc = 0</code>  的信号作用下选择  <code>Read data 2</code>  作为 ALU 的输入与  <code>Read data 1</code>  进行运算，具体的运算由  <code>ALU control</code>  提供的信号指明（我们在 <strong>4.1.3 小节</strong> 讨论这个话题）。运算结果在  <code>ALU result</code>  中。</li>
@@ -6365,14 +6367,18 @@
 </div>
 <h3 id="413-alu-control">4.1.3 ALU Control<a class="headerlink" href="#413-alu-control" title="Permanent link">&para;</a></h3>
 <p>在 3.1 节中，我们设计的 ALU 需要这样的控制结构：</p>
-<p><center><a class="glightbox" href="/../assets/1654674035822-c566a50e-cde7-4244-880a-21bcc3b31699.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="/../assets/1654674035822-c566a50e-cde7-4244-880a-21bcc3b31699.png" /></a></center></p>
+<center>![image.png](/../assets/1654674035822-c566a50e-cde7-4244-880a-21bcc3b31699.png)</center>
+
 <p>我们列一下需要使用 ALU 的指令的表格（我们在）：</p>
-<p><center><a class="glightbox" href="../../../assets/1654674059843-56287529-b9a6-4441-9933-2879581bf8f3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654674059843-56287529-b9a6-4441-9933-2879581bf8f3.png" /></a></center></p>
+<center>![image.png](../../../assets/1654674059843-56287529-b9a6-4441-9933-2879581bf8f3.png)</center>
+
 <p>我们根据这个表列出真值表：</p>
-<p><center><a class="glightbox" href="../../../assets/1654674304680-f7f2359b-bd75-47d9-b19c-d53550653ed9.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654674304680-f7f2359b-bd75-47d9-b19c-d53550653ed9.png" /></a></center></p>
+<center>![image.png](../../../assets/1654674304680-f7f2359b-bd75-47d9-b19c-d53550653ed9.png)</center>
+
 <p>其中可以发现，标为绿色的列的取值要么是 0 要么是无关的，因此它们并不影响结果。</p>
 <p>根据这个真值表构造门电路，就可以构造出 ALU control 单元了。如图中所示，该单元依赖 Control 单元给出的  <code>ALUOp</code>  信号以及  <code>I[30, 14:2]</code>  ：</p>
-<p><center><a class="glightbox" href="../../../assets/1654674211472-df83a1c1-1776-4a5a-a662-cf7c81edfead.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654674211472-df83a1c1-1776-4a5a-a662-cf7c81edfead.png" /></a></center></p>
+<center>![image.png](../../../assets/1654674211472-df83a1c1-1776-4a5a-a662-cf7c81edfead.png)</center>
+
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>ALU control 模块可以这样实现：</p>
@@ -6383,7 +6389,8 @@
 <ul>
 <li>在一条指令运行完后，如果不发生跳转，PC + 4，否则 PC 跳转到 PC + offset 的位置去。这个过程是如何完成的呢？看下图：</li>
 </ul>
-<p><center><a class="glightbox" href="../../../assets/1654671880110-a3a3e4f1-ba35-4a91-810e-895996d1025c.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654671880110-a3a3e4f1-ba35-4a91-810e-895996d1025c.png" /></a></center></p>
+<center>![image.png](../../../assets/1654671880110-a3a3e4f1-ba35-4a91-810e-895996d1025c.png)</center>
+
 <ul>
 <li>(1) 中有两个加法器，一个的结果是 PC + 4，另一个是 PC + offset，其中 offset 是来自当前 instruction 的；这两个加法器通过 MUX 送给 PC</li>
 <li>MUX 的控制信号来自  (2)， (2) 是一个与门，即当且仅当两个输入信号都为真时才会输出 1，从而在上述 MUX 中选择跳转。 (2) 的两个输入分别来自：<ul>
@@ -6405,16 +6412,19 @@
 <p>用文化人的话来说，Load 指令和 Store 指令的数据通路操作留作习题。</p>
 <h3 id="416-control">4.1.6 Control<a class="headerlink" href="#416-control" title="Permanent link">&para;</a></h3>
 <p>看完上述若干小节，control 单元的设计也非常显然了。我们很容易给出如下真值表：</p>
-<p><center><a class="glightbox" href="../../../assets/1654681433205-5ed6293c-b44b-49c5-90de-ae0d3d93cac7.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654681433205-5ed6293c-b44b-49c5-90de-ae0d3d93cac7.png" /></a></center></p>
+<center>![image.png](../../../assets/1654681433205-5ed6293c-b44b-49c5-90de-ae0d3d93cac7.png)</center>
+
 <p>后面就是连电路的工作了。连出来长这样：</p>
-<p><center><a class="glightbox" href="../../../assets/1654681479004-e8c104d3-390b-4210-a4ee-1495f73f9970.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654681479004-e8c104d3-390b-4210-a4ee-1495f73f9970.png" width="400" /></a></center></p>
+<center>![image.png](../../../assets/1654681479004-e8c104d3-390b-4210-a4ee-1495f73f9970.png){width=400}</center>
+
 <h3 id="417-why-a-single-cycle-implementation-is-not-used-today">4.1.7 Why a Single-Cycle Implementation is not Used Today<a class="headerlink" href="#417-why-a-single-cycle-implementation-is-not-used-today" title="Permanent link">&para;</a></h3>
 <p>单周期的实现是指，一个指令的所有工作都在一个时钟周期内完成，也就是 CPI = 1。那么，一个时钟周期的长度就要足够最长的那个指令完成运行。但是，例如  <code>load</code>  类的指令要经过 inst mem, reg file, ALU, data mem, reg file 这么多的步骤，这会使得时钟周期变得很长，导致整体性能变得很差。单周期的实现违反了 <strong>common case fast</strong> 这一设计原则。</p>
 <p>因此，我们引入一种新的实现技术，叫 <strong>流水线 (Pipeline)</strong>。</p>
 <h2 id="42-pipeline">4.2 Pipeline<a class="headerlink" href="#42-pipeline" title="Permanent link">&para;</a></h2>
 <h3 id="421-intro">4.2.1 Intro<a class="headerlink" href="#421-intro" title="Permanent link">&para;</a></h3>
 <p>在小学奥数中我们就学过，并行能够提高整体的效率，例如这个洗衣服的例子：</p>
-<p><center><a class="glightbox" href="../../../assets/1654740094086-8364d8a3-4cec-4e6f-837e-fa717447c1db.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654740094086-8364d8a3-4cec-4e6f-837e-fa717447c1db.png" /></a></center></p>
+<center>![image.png](../../../assets/1654740094086-8364d8a3-4cec-4e6f-837e-fa717447c1db.png)</center>
+
 <p>对于单个工作，流水线技术并没有缩短其运行时间；但是由于多个工作可以并行地执行，流水线技术可以更好地压榨资源，使得它们被同时而不是轮流使用，在工作比较多的时候可以增加整体的 <strong>吞吐率 throughput</strong>，从而减少了完成整个任务的时间。</p>
 <p>在本例中，由于流水线开始和结束的时候并没有完全充满，因此吞吐率不及原来的 4 倍（4 来自于例子中有 4 个步骤）；但是当工作数足够多的时候，吞吐率就几乎是原来的 4 倍了。</p>
 <p>回到 RISC-V 中来，一个指令通常被划分为 5 个阶段：</p>
@@ -6426,7 +6436,8 @@
 <li><strong>WB, Write Back</strong>，将结果写回寄存器（如果需要的话）</li>
 </ol>
 <p>各阶段会用到的组件如下图所示（这个图还有很多问题，我们后面慢慢讨论~），可以看到这些部分是可以并行执行的（比如 Reg File 可以一边读一边写）：</p>
-<p><center><a class="glightbox" href="../../../assets/1654741944095-f2787d5f-e997-4ada-afda-38ef9bc5057e.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654741944095-f2787d5f-e997-4ada-afda-38ef9bc5057e.png" /></a></center></p>
+<center>![image.png](../../../assets/1654741944095-f2787d5f-e997-4ada-afda-38ef9bc5057e.png)</center>
+
 <p>其加速的核心主旨是，它们都希望一个周期能完成一条指令，但是单周期 CPU 的一个周期需要承担一个指令的所有步骤；而流水线技术引入后，由于它可以并行地同时执行五个阶段的步骤，所以此时的周期只需要一个阶段的长度。总的来说，单周期 CPU 的时钟周期由总耗时最长的指令决定，流水线 CPU 的时钟周期由耗时最长的指令阶段（IF, ID 等）决定。</p>
 <p>也就是说，我们本来是在一个周期中完成一个指令，而现在是在一个周期中完成五个不同指令的不同阶段。当然，每个时钟周期的长度也需要足够任何一个阶段完成执行。</p>
 <p>RISC-V 也有很多流水线友好的设计，例如：</p>
@@ -6453,7 +6464,8 @@
 </ul>
 <h3 id="422-structure-hazards">4.2.2 Structure hazards<a class="headerlink" href="#422-structure-hazards" title="Permanent link">&para;</a></h3>
 <p>但是，聪明的小朋友也可以看出一些问题！比如，前一个指令在  <code>ID</code>  阶段的时候，会使用到其在  <code>IF</code>  阶段读出的指令的内容；但与此同时后一个指令已经运行到  <code>IF</code>  阶段并读出了新的指令，那么前一个指令就没的用了！这个现象在很多地方普遍存在，包括 Control 信号的传递，因此我们实际上会在每两个 stage 之间用一些寄存器保存这些内容：</p>
-<p><center><a class="glightbox" href="../../../assets/1655061248536-62d39071-e009-424a-ab6f-4bddbdbe144f.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1655061248536-62d39071-e009-424a-ab6f-4bddbdbe144f.png" /></a></center></p>
+<center>![image.png](../../../assets/1655061248536-62d39071-e009-424a-ab6f-4bddbdbe144f.png)</center>
+
 <p>可以看到，上面这个图除了加了一些竖条条以外和之前没有流水线的时候几乎没什么差别。这些竖条条就是 pipeline registers，例如  <code>IF/ID</code>  就是  <code>IF</code>  和  <code>ID</code>  阶段之间的一些寄存器。</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -6461,15 +6473,18 @@
 <p>我们之前并没有讨论为什么要<strong>在下降沿写入</strong>，本节下一个 Info 框框就会说明啦！</p>
 </div>
 <p>我们关注 datapath 中两个从右往左传东西的情况！一个是  <code>WB</code>  阶段写回数据，一个是  <code>MEM</code>  阶段判断是否发生跳转。分别关注对应增加的 datapath：</p>
-<p><center><a class="glightbox" href="../../../assets/1654757278833-5e408879-9e7d-4e6d-80f0-0ff4a20f7c35.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654757278833-5e408879-9e7d-4e6d-80f0-0ff4a20f7c35.png" /></a></center></p>
+<center>![image.png](../../../assets/1654757278833-5e408879-9e7d-4e6d-80f0-0ff4a20f7c35.png)</center>
+
 <p>对于  <code>WB</code>  来说，我们写回时需要记录写到哪个 register 中，这个信息是  <code>ID</code>  阶段从 Instruction 中  <code>[11:7]</code>  的位置取出的，但是直到  <code>WB</code>  阶段才被用到，因此这个信息被存到了  <code>ID/EX</code>  ，下一个周期存到了  <code>EX/MEM</code>  ，下一个周期存到了  <code>MEM/WB</code>  ，然后下一个周期被使用。</p>
 <p><code>MEM</code>  判断是否发生跳转的逻辑类似，略。</p>
 <p>另外，由于在流水线中 IF 和 MEM 都有可能用到内存，为了不出现结构竞争，我们将数据和指令放在不同的地方，以避免同时出现要访问内存而导致的结构竞争。</p>
 <h3 id="423-data-hazards">4.2.3 Data Hazards<a class="headerlink" href="#423-data-hazards" title="Permanent link">&para;</a></h3>
 <p>但是，聪明的小朋友仍然可以看出一些问题！考虑这样的指令序列：</p>
-<p><center><a class="glightbox" href="../../../assets/1654795731132-5ba12d3f-c143-43d5-9114-3c22725c4abf.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654795731132-5ba12d3f-c143-43d5-9114-3c22725c4abf.png" /></a></center></p>
+<center>![image.png](../../../assets/1654795731132-5ba12d3f-c143-43d5-9114-3c22725c4abf.png)</center>
+
 <p>用简化的数据通路查看一下各指令各 stage 的执行时间：</p>
-<p><center><a class="glightbox" href="../../../assets/1654795975014-57ed0190-026f-4d9d-84eb-8a3f6fa3d26d.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654795975014-57ed0190-026f-4d9d-84eb-8a3f6fa3d26d.png" /></a></center></p>
+<center>![image.png](../../../assets/1654795975014-57ed0190-026f-4d9d-84eb-8a3f6fa3d26d.png)</center>
+
 <blockquote>
 <p>我们简单介绍一下这张图。最上面是横轴，也就是时间轴，CC 代表 Clock Cycle；下面的 10, -20 这种数据是  <code>x2</code>  寄存器的值；接下来的每一行都是一个语句的执行过程，  <code>IM</code>  就是 inst mem，对应  <code>IF</code>  stage；  <code>Reg</code>  就是 reg file，对应  <code>ID</code>  stage；长得像 ALU 的就是 ALU，对应  <code>EX</code>  stage；  <code>DM</code>  就是 data mem，对应  <code>MEM</code>  stage；最后面的  <code>Reg</code>  也是 reg file，对应  <code>WB</code>  stage。每个 stage 占用一个时钟周期。</p>
 <p>图中深色（灰色、蓝色）的部分就是对应指令会使用到的组件，其中 mem 和 reg file 用左半边为深色时表示 <strong>写入</strong>，右半边为深色时表示 <strong>读取</strong>。我们稍后解释这样表示的原因。</p>
@@ -6490,22 +6505,29 @@
 <p>这也是图例中 reg file 用左半边为深色表示写入，右半边为深色表示读取的原因：写入发生在上半个周期，而使用读取的结果发生在下半个周期。</p>
 </details>
 <p>那么，如何解决 data hazard 呢？回顾刚刚的那张图：</p>
-<p><center><a class="glightbox" href="../../../assets/1654795975014-57ed0190-026f-4d9d-84eb-8a3f6fa3d26d.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654795975014-57ed0190-026f-4d9d-84eb-8a3f6fa3d26d.png" /></a></center></p>
+<center>![image.png](../../../assets/1654795975014-57ed0190-026f-4d9d-84eb-8a3f6fa3d26d.png)</center>
+
 <p>我们注意到，虽然  <code>sub x2, x1, x3</code>  在第 5 个时钟周期的  <code>WB</code>  阶段才将结果写回，但是在第 3 个时钟周期的  <code>EX</code>  阶段其实就算出来了！所以我们可以增加额外的硬件结构，使得 ALU 的输入不仅可以来源于寄存器中读出来的、放在  <code>ID/EX</code>  中的值，还可以来源于  <code>EX/MEM</code>  中或者  <code>MEM/WB</code>  中的值，它们分别对应前一条和再前一条指令的 ALU 的计算结果。如下图所示： </p>
-<p><center><a class="glightbox" href="../../../assets/1654861103791-a16d1edb-9e66-46ed-849a-c292bba99b03.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654861103791-a16d1edb-9e66-46ed-849a-c292bba99b03.png" /></a></center></p>
+<center>![image.png](../../../assets/1654861103791-a16d1edb-9e66-46ed-849a-c292bba99b03.png)</center>
+
 <p>在第 3 个时钟周期，第一条指令的结果被算出并保存在  <code>EX/MEM</code>  </p>
 <p>学不完了，暂时不详细写了，大意就是   <code>X = 1, 2 = if (MEM.Rd != x0 &amp;&amp; EX.RsX == MEM.Rd) ForwardX = 10; else if (WB.Rd != x0 &amp;&amp; EX.RsX == WB.Rd) ForwardX = 01; else ForwardX = 00;</code>  ：</p>
-<p><center><a class="glightbox" href="../../../assets/1655054499226-ac885ac8-6b68-4191-ad18-776f62a0b762.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1655054499226-ac885ac8-6b68-4191-ad18-776f62a0b762.png" /></a></center></p>
+<center>![image.png](../../../assets/1655054499226-ac885ac8-6b68-4191-ad18-776f62a0b762.png)</center>
+
 <p>但是遇到 load 指令不得不 stall，刚刚可以是因为 EX 和 ID 就差了一轮，但是 load 的数据要到 MEM 才有，所以如果下一条指令要用，上一条也拿不出来，只能要 stall 等才行：</p>
-<p><center><a class="glightbox" href="../../../assets/1655054689394-a8283431-11f7-49fa-8bd4-96d9fbae73a5.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1655054689394-a8283431-11f7-49fa-8bd4-96d9fbae73a5.png" /></a></center></p>
-<p><center><a class="glightbox" href="../../../assets/1655054716560-ae2d14e7-454d-45d2-857c-4aa1b93107be.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1655054716560-ae2d14e7-454d-45d2-857c-4aa1b93107be.png" /></a></center></p>
+<center>![image.png](../../../assets/1655054689394-a8283431-11f7-49fa-8bd4-96d9fbae73a5.png)</center>
+
+<center>![image.png](../../../assets/1655054716560-ae2d14e7-454d-45d2-857c-4aa1b93107be.png)</center>
+
 <p>在 ID 阶段可以判定 hazard：  <code>if (EX.MemRead &amp;&amp; EX.Rd == ID.RsX) Hazard();</code>  </p>
 <p>如何 stall 呢？两个任务：让当前指令不要产生效果 (清空  <code>RegWrite</code>  和  <code>MemWrite</code>  )、让后面的语句不要受到影响 (保留  <code>PC</code>  和  <code>IF/ID</code>  一周期不改)：</p>
-<p><center><a class="glightbox" href="../../../assets/1655054837667-510c675d-617c-4ce5-bab1-7ff5bc4ade30.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1655054837667-510c675d-617c-4ce5-bab1-7ff5bc4ade30.png" /></a></center></p>
+<center>![image.png](../../../assets/1655054837667-510c675d-617c-4ce5-bab1-7ff5bc4ade30.png)</center>
+
 <p>还有一种办法是对指令进行等价换序，让某些指令尽量晚一点执行，以避免数据竞争。这种方法叫 code scheduling。</p>
-<p><center>
-    <a class="glightbox" href="../2023-06-24_11-44-24.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-06-24_11-44-24.png" /></a>
-</center></p>
+<center>
+    ![](2023-06-24_11-44-24.png)
+</center>
+
 <h3 id="424-control-hazards--branch-hazards">4.2.4 Control Hazards / Branch Hazards<a class="headerlink" href="#424-control-hazards--branch-hazards" title="Permanent link">&para;</a></h3>
 <div class="admonition example">
 <p class="admonition-title">例题</p>
@@ -6529,7 +6551,8 @@ PC: 到哪一次执行 <strong>之后</strong>，PC 的值会被改为该值</p>
 </div>
 <h2 id="43-exceptions">4.3 Exceptions<a class="headerlink" href="#43-exceptions" title="Permanent link">&para;</a></h2>
 <p>Exception 和 Interrupt 在很多地方是不作区分的，但是我们做一个简单的区分：</p>
-<p><center><a class="glightbox" href="../../../assets/1654930011877-7a77a135-36e1-4ccc-8822-49a704cc0d95.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="image.png" src="../../../assets/1654930011877-7a77a135-36e1-4ccc-8822-49a704cc0d95.png" /></a></center></p>
+<center>![image.png](../../../assets/1654930011877-7a77a135-36e1-4ccc-8822-49a704cc0d95.png)</center>
+
 <p>当 exception 发生时，在 <strong>Supervisor Exception Program Counter, SEPC</strong> 这个寄存器中保存发生 exception 的指令地址，然后将控制权交给操作系统。操作系统还必须知道发生 exception 的原因，RISC-V 中使用的方法是在 <strong>Supervisor Exception Cause Register, SCAUSE</strong> 这个寄存器中记录 exception 的原因。可以选择的另一种方法是 <strong>vectored interrupt</strong>，</p>
 
 

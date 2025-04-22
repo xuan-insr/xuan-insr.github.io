@@ -21,7 +21,7 @@
         <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
@@ -6039,11 +6039,13 @@
 <span class="p">};</span>
 </code></pre></div></td></tr></table></div>
 <p>但是，众所周知，函数调用是有开销的，函数开销主要用来传递参数和获取返回值，需要时还要保存寄存器的值。看下面的例子：</p>
-<p><center><a class="glightbox" href="2023-02-23-00-42-13.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="2023-02-23-00-42-13.png" width="300" /></a></center></p>
+<center>![](2023-02-23-00-42-13.png){width=300}</center>
+
 <p>可以看到，虽然 <code>int foo(int x) { return add5(x); }</code> 和 <code>int foo(int x) { return x + 5; }</code> 是等效的；但是由于函数调用的存在，其效率是慢的。那么，<code>getAge()</code> 作为一个函数，是否也有这种代价呢？</p>
 <p>C++ 的设计哲学决定了：不应当因为封装性而带来额外的性能开销。如果 getters 和 setters 的调用也需要额外开销的话，追求效率的程序员就会选择不使用封装。因此这个问题如何解决呢？早在 C with Classes 设计之初，这个问题就通过 <strong>内联替换 (inline substitution)</strong><sup><a href="https://timsong-cpp.github.io/cppwp/n4868/dcl.inline#2">dcl.inline#2</a></sup> 被解决了。</p>
 <p>内联替换有点类似于 function-like macros<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/cpp.replace.general#2">cpp.replace.general#2</a></sup>，即在函数调用的地方将函数体展开，而不经过函数调用的步骤。作为一个例子，在选择 <code>-O1</code> 优化的情况下，上面的代码会变成这样：</p>
-<p><center><a class="glightbox" href="2023-02-23-01-03-43.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="2023-02-23-01-03-43.png" width="300" /></a></center></p>
+<center>![](2023-02-23-01-03-43.png){width=300}</center>
+
 <p>可以明显看到，<code>foo()</code> 的计算过程中不再有函数调用出现了。</p>
 <p>再举一个例子，如果有这样的代码：</p>
 <div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">swap</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -6074,7 +6076,8 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>有了内联替换，getter 和 setter 就不再有额外的开销了：</p>
-<p><center><a class="glightbox" href="2023-02-23-02-06-15.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="2023-02-23-02-06-15.png" width="300" /></a></center></p>
+<center>![](2023-02-23-02-06-15.png){width=300}</center>
+
 <div class="admonition note inline end">
 <p class="admonition-title">Note</p>
 <p>内联函数是 C++ 和 C 共同发展的一个例子。在 C89 中并没有内联函数，而 C99 和 C++ 中都有内联函数。</p>

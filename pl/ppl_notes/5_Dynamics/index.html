@@ -21,7 +21,7 @@
         <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -6155,10 +6155,13 @@
 <p>结构化动态语义通过转换系统来归纳地指明程序执行的一步步过程。<strong>E</strong> 语言的结构化动态语义定义如下：</p>
 <p>所有状态都是初始状态。</p>
 <p>判断 <span class="arithmatex">\(e\)</span> val 表示 <span class="arithmatex">\(e\)</span> 是一个 <strong>闭值</strong>，代表已完成的计算，是封闭状态。其归纳定义由如下规则给出：</p>
-<p><center><a class="glightbox" href="../2022-12-05-14-22-26.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-05-14-22-26.png" width="150" /></a></center></p>
+<center>![](2022-12-05-14-22-26.png){width=150}</center>
+
 <p>状态之间的转换判断 <span class="arithmatex">\(e\mapsto e'\)</span> 由以下规则归纳定义：</p>
-<p><center><a class="glightbox" href="../2022-12-05-14-28-41.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-05-14-28-41.png" /></a></center></p>
-<p><center><a class="glightbox" href="../2022-12-05-14-28-20.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-05-14-28-20.png" /></a></center></p>
+<center>![](2022-12-05-14-28-41.png)</center>
+
+<center>![](2022-12-05-14-28-20.png)</center>
+
 <p>（<code>times</code> 和 <code>len</code> 类似，略）</p>
 <p>在上述定义中，5.4a, 5.4d, 5.4h 是基本的求值步骤，称为 <strong>指令转换 (instruction transition)</strong>；而其他规则用于确定执行顺序，称为 <strong>搜索转换 (search transition)</strong>。</p>
 <p>例如，5.4b 和 5.4c 就表示，如果 <span class="arithmatex">\(\text{plus}(e_1;e_2)\)</span> 中 <span class="arithmatex">\(e_1\)</span> 不在终结状态，就应当先做转换；如果 <span class="arithmatex">\(e_1\)</span> final，那么在考虑 <span class="arithmatex">\(e_2\)</span> 能否转换，如果能转换则优先转换。直到所有转换都完成，即 <span class="arithmatex">\(e_1\)</span> final 且 <span class="arithmatex">\(e_2\)</span> final，再根据 5.4a 进行求值。</p>

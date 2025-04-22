@@ -21,7 +21,7 @@
         <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
@@ -6446,17 +6446,20 @@ streams of bytes。</p>
 <p>如我们之前所说，directory 中包含了文件的很多信息；directory structure 应当实现新建、删除、查找、遍历、列出目录中的文件等基本操作。同时，设计也应当兼顾效率、便于使用、便于按一些属性聚合等要求。</p>
 <h3 id="1331-单级目录">13.3.1 单级目录<a class="headerlink" href="#1331-单级目录" title="Permanent link">&para;</a></h3>
 <p>最简单的目录结构是 <strong>single-level directory</strong>，即将所有文件都包含在同一目录中：</p>
-<p><center><a class="glightbox" href="../2022-12-14-21-33-07.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-14-21-33-07.png" width="300" /></a></center></p>
+<center>![](2022-12-14-21-33-07.png){width=300}</center>
+
 <p>这种实现方式的问题是，当文件数量增加时，并没有有效的方法来查找或者给文件分组（例如找出所有的 Java 程序）。</p>
 <p>同时，由于所有文件位于同一目录下，因此它们的名称必须是唯一的。在有多个用户时，这种需求是不太合理的。</p>
 <h3 id="1332-两级目录">13.3.2 两级目录<a class="headerlink" href="#1332-两级目录" title="Permanent link">&para;</a></h3>
 <p><strong>Two-level directory</strong> 为每个用户创建自己的 <strong>用户文件目录 (User File Directory, UFD)</strong>；这些 UFD 聚合成为 <strong>主文件目录 (Master File Directory, MFD)</strong>，当用户登录时，操作系统从 MFD 中找到用户的 UFD。</p>
 <p>这种实现方式一定程度上减少了文件数量多的问题，同时不同用户也可以分别创建同名的文件了。但是分组仍然没有支持。</p>
-<p><center><a class="glightbox" href="../2022-12-14-21-49-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-14-21-49-05.png" width="300" /></a></center></p>
+<center>![](2022-12-14-21-49-05.png){width=300}</center>
+
 <p>用户 1 访问自己的文件，可以直接通过 <code>test</code> 的方式访问；为了访问其他用户的文件，需要通过 <code>user2/data</code> 的方式访问。这样的实现方法其实是把二级目录视作一棵高度为 2 的树。</p>
 <h3 id="1333-树形目录">13.3.3 树形目录<a class="headerlink" href="#1333-树形目录" title="Permanent link">&para;</a></h3>
 <p><strong>Tree-Structured Directories</strong> 是上面方案的自然推广。在这种实现方案中，目录本身也被放在父目录的一个条目中；每个条目有一个 bit 来表示这个条目表示的是一个文件还是一个子目录。目录也被认为是一种特殊的文件。</p>
-<p><center><a class="glightbox" href="../2022-12-14-21-50-56.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-14-21-50-56.png" width="400" /></a></center></p>
+<center>![](2022-12-14-21-50-56.png){width=400}</center>
+
 <p>在正常使用时，每个进程有一个 <strong>当前目录 (current directory)</strong>；当用户指定一个文件名时，就在当前目录中寻找。用户也可以通过系统调用 <code>change_directory()</code> 来更改当前目录。</p>
 <p>如果所需目录不在当前目录，那么用户就必须提供一个 <strong>路径名 (path name)</strong>，表示在这棵树上如何走可以找到所需的文件。路径名分为两种：</p>
 <ul>
@@ -6466,7 +6469,8 @@ streams of bytes。</p>
 <p>当删除一个目录时，一种设计思路是不允许删除非空的目录；另一种是，删除目录下的所有文件（包括子目录）。</p>
 <h3 id="1334-无环图目录">13.3.4 无环图目录<a class="headerlink" href="#1334-无环图目录" title="Permanent link">&para;</a></h3>
 <p><strong>Acyclic Graph Directories</strong> 在上面的方案的基础上支持了目录共享子目录或者文件：</p>
-<p><center><a class="glightbox" href="../2022-12-14-22-07-18.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-14-22-07-18.png" width="300" /></a></center></p>
+<center>![](2022-12-14-22-07-18.png){width=300}</center>
+
 <p>一种实现方式是，引入一个名为 <strong>链接 (link)</strong> 的新的目录条目类型，表示另一个文件或者子目录的指针。在遍历目录树时，操作系统忽略链接以维护系统的无环结构。</p>
 <p>这个指针的实现方式之一是用链接文件来记录指向文件的绝对或相对路径，这种方式称为 <strong>符号链接 (symbolic link)</strong> 或者 <strong>软链接 (soft link)</strong>。当访问这种文件时，操作系统通过该路径名来 resolve 链接，从而定位真实文件。</p>
 <p>这种方式存在的一个问题是，如果删除一个被某个 soft link 所引用的文件，则会留下 <strong>dangling pointer</strong>，即那些 link 现在指向并不存在的文件。UNIX 和 Windows 采用的方式是，当真实文件被删除时，并不试图处理这些 link；用户在试图访问这些 link 时会发现真实文件已经被删除。</p>
@@ -6488,12 +6492,14 @@ streams of bytes。</p>
 <h2 id="134-fs-mounting--文件系统挂载">13.4 FS Mounting | 文件系统挂载<a class="headerlink" href="#134-fs-mounting--文件系统挂载" title="Permanent link">&para;</a></h2>
 <p>Directory Structure 可以构建在多个 volume 上，这些 volume 必须先 <strong>挂载 (mount)</strong> 到文件系统的某个位置，这个位置称为 <strong>挂载点 (mount point)</strong>。</p>
 <p>例如，下面右图展示了左图的 volume 被挂载到 <code>/users</code> 下的结果：</p>
-<p><center><a class="glightbox" href="../2022-12-15-01-58-12.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-01-58-12.png" width="300" /></a></center></p>
+<center>![](2022-12-15-01-58-12.png){width=300}</center>
+
 <h2 id="135-protection">13.5 Protection<a class="headerlink" href="#135-protection" title="Permanent link">&para;</a></h2>
 <p>文件的所有者或者创建者应该有权限决定哪些用户有权限做哪些事情。</p>
 <p>给每个文件和目录维护一个 <strong>Access Control List (ACL)</strong>，指定每个用户及其允许的访问类型。为了精简 ACL，可以将用户分为不同的类型。</p>
 <p>UNIX 将用户分为了三类（owner, group, others)，并将文件访问也分为了三类 (read, write, execute)：</p>
-<p><center><a class="glightbox" href="../2022-12-15-02-18-03.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-02-18-03.png" width="300" /></a></center></p>
+<center>![](2022-12-15-02-18-03.png){width=300}</center>
+
 <details class="info">
 <summary>root 的权限</summary>
 <p>当一个文件的 read 或 write bit not set 时，root 用户仍然能够读或写它。</p>

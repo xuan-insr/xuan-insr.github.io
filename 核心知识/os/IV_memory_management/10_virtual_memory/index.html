@@ -21,7 +21,7 @@
         <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
@@ -6383,8 +6383,10 @@
 </div>
 <h2 id="103-copy-on-write">10.3 Copy-on-Write<a class="headerlink" href="#103-copy-on-write" title="Permanent link">&para;</a></h2>
 <p>我们在第 3 节讨论 <code>fork()</code> 的时候提到了 copy-on-write 机制。很多子进程在 <code>fork()</code> 之后立刻调用 <code>exec()</code>，因此将父进程的地址空间整个复制一份是比较浪费的。这种机制允许父进程和子进程最初使用同一份物理页来进行工作，在任何一个进程需要写入某个共享 frame 时再进行复制。</p>
-<p><center><a class="glightbox" href="../2022-12-10-00-09-28.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-10-00-09-28.png" width="400" /></a></center></p>
-<p><center><a class="glightbox" href="../2022-12-10-00-09-45.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-10-00-09-45.png" width="400" /></a></center></p>
+<center>![](2022-12-10-00-09-28.png){width=400}</center>
+
+<center>![](2022-12-10-00-09-45.png){width=400}</center>
+
 <p>进一步地，Linux 等操作系统提供了 <code>vfork()</code>，进一步优化子进程在 <code>fork()</code> 之后立刻调用 <code>exec()</code> 的情形。<code>vfork()</code> 并不使用 copy-on-write；调用 <code>vfork()</code> 之后，父进程会被挂起，子进程使用父进程的地址空间。如果子进程此时修改地址空间中的任何页面，这些修改对父进程都是可见的。</p>
 <h2 id="104-page-replacement">10.4 Page Replacement<a class="headerlink" href="#104-page-replacement" title="Permanent link">&para;</a></h2>
 <p>当我们在 10.2 或者 10.3 讨论的情况下，或者在 kernel、I/O buffer 之类的情况下需要物理帧，但是没有空闲的物理帧时应该怎么办呢？我们可以交换出去一整个进程从而释放它的所有帧；更常见地，我们找到一个当前不在使用的帧，并释放它。</p>
@@ -6402,7 +6404,8 @@
 <p>这种算法换出 <strong>最先进入内存的页面</strong>。实现比较简单，使用一个队列保存调入内存的顺序即可。</p>
 <p>这种算法的问题是，其逻辑和实际不符；实际情况下有很多页面会经常被访问。</p>
 <p>另外，这种算法可能会遇到物理帧增加的时候 page-fault 反而更多的异常情况。这被称为 <strong>Belady's Anomaly</strong>：</p>
-<p><center><a class="glightbox" href="../2022-12-10-00-39-45.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-10-00-39-45.png" width="500" /></a></center></p>
+<center>![](2022-12-10-00-39-45.png){width=500}</center>
+
 <h3 id="1043-lru-least-recently-used">10.4.3 LRU (Least Recently Used)<a class="headerlink" href="#1043-lru-least-recently-used" title="Permanent link">&para;</a></h3>
 <p>这种算法换出 <strong>最久没有被访问的页面</strong>。</p>
 <p>实现的一种策略是给每个页表项一个 counter，每次访问某个 page 时，将 counter 更新为当前的时间。每次需要置换时，搜索 counter 最小的页。也可以用 heap 来优化。</p>
@@ -6461,11 +6464,13 @@
 <h3 id="1071-buddy-system">10.7.1 Buddy System<a class="headerlink" href="#1071-buddy-system" title="Permanent link">&para;</a></h3>
 <p>Buddy system 从物理连续的段上分配内存；每次分配内存大小是 2 的幂次方，例如请求是 11KB，则分配 16KB。</p>
 <p>当分配时，从物理段上切分出对应的大小，例如下图体现了分配 21KB 时的情况，<span class="arithmatex">\(C_L\)</span> 会被分配。</p>
-<p><center><a class="glightbox" href="../2022-12-10-14-04-21.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-10-14-04-21.png" width="300" /></a></center></p>
+<center>![](2022-12-10-14-04-21.png){width=300}</center>
+
 <p>当它被释放时，会 <strong>合并 (coalesce)</strong> 相邻的块形成更大的块供之后使用。</p>
 <h3 id="1072-slab-allocation">10.7.2 Slab Allocation<a class="headerlink" href="#1072-slab-allocation" title="Permanent link">&para;</a></h3>
 <p>核心的原理是，操作系统中很多 object 的大小是已知且固定的。内存被划分成若干个固定大小的块，每个块都被分配给一个具体的类型。当进程需要分配内存时，它会查询缓存，如果找到一个空闲的块，就直接使用该块；如果缓存中没有空闲的块，就会从系统内存中申请一个新的块：</p>
-<p><center><a class="glightbox" href="../2022-12-10-14-01-19.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-10-14-01-19.png" width="300" /></a></center></p>
+<center>![](2022-12-10-14-01-19.png){width=300}</center>
+
 <div class="footnote">
 <hr />
 <ol>

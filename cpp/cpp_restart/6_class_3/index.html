@@ -21,7 +21,7 @@
         <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -6253,10 +6253,11 @@ function toggleVisibilityFoot() {
 }
 </script>
 
-<p><center>
+<center>
 <button onclick="toggleVisibility()" class="box box-yellow xyx-toggle">点击此处隐藏正文所有链接</button>
 <button onclick="toggleVisibilityFoot()" class="box box-green xyx-toggle2">点击此处隐藏本文所有脚注</button>
-</center></p>
+</center>
+
 <details class="warning">
 <summary>本节使用的副本</summary>
 <p>本节引入的副本包括：</p>
@@ -6290,7 +6291,8 @@ function toggleVisibilityFoot() {
 <p>如果按照我们之前的说法，这个函数在返回时构造一个 <code>T</code> 类型的临时对象，把它作为返回值；此时这个临时对象作为返回值会被用来初始化调用处的那个临时对象，然后被析构。随后该语句结束，临时对象被析构。也就是说，有两次构造（其中一次是拷贝构造）和两次析构发生。</p>
 <p>容易理解，在上面的两种情况下，我们可以简易地达成一个优化，从而减省一次构造和一次析构。即，我们做的事情是在返回处构造、拷贝给调用处。但是，如果我们能够直接在调用处构造，就可以省略返回处的临时对象的构造和析构了。</p>
 <p>即，<code>f();</code> 只会调用一次默认构造函数，而不会调用拷贝构造函数；如下图所示：</p>
-<p><center><a class="glightbox" href="../2023-03-25-20-58-11.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-03-25-20-58-11.png" /></a></center></p>
+<center>![](2023-03-25-20-58-11.png)</center>
+
 <p>自 C++17 开始，在以下两种情况下，对拷贝的省略是强制的：</p>
 <p>返回一个与返回值类型相同的临时值<sup id="fnref:prvalue"><a class="footnote-ref" href="#fn:prvalue">4</a></sup>：</p>
 <div class="highlight"><pre><span></span><code><span class="n">T</span><span class="w"> </span><span class="nf">f</span><span class="p">()</span>
@@ -6306,7 +6308,8 @@ function toggleVisibilityFoot() {
 <span class="n">T</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="p">(</span><span class="n">T</span><span class="p">(</span><span class="n">f</span><span class="p">()));</span><span class="w"> </span><span class="c1">// only one call to default constructor of T, to initialize x</span>
 </code></pre></div>
 <p>也因此，在这种情形下，并不要求拷贝构造函数是可访问的：</p>
-<p><center><a class="glightbox" href="../2023-03-25-20-58-55.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-03-25-20-58-55.png" /></a></center></p>
+<center>![](2023-03-25-20-58-55.png)</center>
+
 <p>在另外的一些情况下，也有可能有优化的空间，例如：</p>
 <div class="highlight"><pre><span></span><code><span class="n">T</span><span class="w"> </span><span class="nf">f</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span>
@@ -6462,10 +6465,11 @@ function toggleVisibilityFoot() {
 }
 </script>
 
-<p><center>
+<center>
 <button onclick="toggleVisibility()" class="box box-yellow xyx-toggle">点击此处隐藏正文所有链接</button>
 <button onclick="toggleVisibilityFoot()" class="box box-green xyx-toggle2">点击此处隐藏本文所有脚注</button>
-</center></p>
+</center>
+
 <div class="footnote">
 <hr />
 <ol>

@@ -17,7 +17,7 @@
         <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -6214,12 +6214,14 @@
 <p>在 .h 中 extern</p>
 <p>类的显式实例化的参数类型和返回类型可以是 private 成员。</p>
 <h2 id="默认模板参数">默认模板参数<a class="headerlink" href="#默认模板参数" title="Permanent link">&para;</a></h2>
-<p><center><a class="glightbox" href="../2023-04-01-01-19-23.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-04-01-01-19-23.png" /></a></center></p>
+<center>![](2023-04-01-01-19-23.png)</center>
+
 <p><a href="https://www.foonathan.net/2020/10/tricks-default-template-argument/">https://www.foonathan.net/2020/10/tricks-default-template-argument/</a></p>
 <h2 id="74-显式特化与偏特化">7.4 显式特化与偏特化<a class="headerlink" href="#74-显式特化与偏特化" title="Permanent link">&para;</a></h2>
 <p><code>typename</code></p>
 <p>例子：<code>min</code> for <code>char const *</code></p>
-<p><center><a class="glightbox" href="../2023-04-01-01-31-41.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-04-01-01-31-41.png" /></a></center></p>
+<center>![](2023-04-01-01-31-41.png)</center>
+
 <p>给定一组的模板参数，一个模板的显式实例化和显式特化不应同同时出现，除非它们的声明之间互不矛盾。当这条规定被违反时，编译器不必给出诊断信息<sup><a href="https://timsong-cpp.github.io/cppwp/n4868/temp.spec.general#5">temp.spec.general#5</a></sup>。（由于对于类模板而言，相同的模板参数即代表相同的声明，因此</p>
 <h2 id="75-变量模板">7.5 变量模板<a class="headerlink" href="#75-变量模板" title="Permanent link">&para;</a></h2>
 <p>C++14 引入了 <strong>变量模板 (variable templates)</strong>，它的应用场景比较简单。例如：</p>
@@ -6237,13 +6239,15 @@
 <li>按给定参数列表显式实例化</li>
 <li>显式特化</li>
 </ul>
-<p><center><a class="glightbox" href="../2023-04-01-01-33-21.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-04-01-01-33-21.png" /></a></center></p>
+<center>![](2023-04-01-01-33-21.png)</center>
+
 <h2 id="77-非类型的模板参数">7.7 非类型的模板参数<a class="headerlink" href="#77-非类型的模板参数" title="Permanent link">&para;</a></h2>
 <p>参数需要是编译期常量；进一步引出 constexpr，一个例子是 numeric_limit，参见 <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2007/n2235.pdf">n2235</a>。参考 <a href="https://stackoverflow.com/a/28821610/14430730">这个回答</a>。</p>
 <h3 id="将模板作为参数">将模板作为参数<a class="headerlink" href="#将模板作为参数" title="Permanent link">&para;</a></h3>
 <p><a href="https://isocpp.org/wiki/faq/templates#template-proxies">https://isocpp.org/wiki/faq/templates#template-proxies</a></p>
 <p>大书 14.4.8</p>
-<p><center><a class="glightbox" href="../2023-04-01-01-17-38.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-04-01-01-17-38.png" /></a></center></p>
+<center>![](2023-04-01-01-17-38.png)</center>
+
 <p><a href="https://youtu.be/XN319NYEOcE?t=2492">https://youtu.be/XN319NYEOcE?t=2492</a></p>
 <h3 id="771-参数包">7.7.1 参数包<a class="headerlink" href="#771-参数包" title="Permanent link">&para;</a></h3>
 <h2 id="78-sfinae-和-concept">7.8 SFINAE 和 Concept<a class="headerlink" href="#78-sfinae-和-concept" title="Permanent link">&para;</a></h2>

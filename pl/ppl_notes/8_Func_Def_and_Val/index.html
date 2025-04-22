@@ -21,7 +21,7 @@
         <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -6101,7 +6101,8 @@
 <p>我们可以通过把一个名字绑定到一棵带约束变量的 abt 上来定义一个函数。这里的约束变量就是函数参数。我们可以用特定的表达式替换约束变量来完成函数的应用。</p>
 <h2 id="81-first-order-function--一阶函数">8.1 First-Order Function | 一阶函数<a class="headerlink" href="#81-first-order-function--一阶函数" title="Permanent link">&para;</a></h2>
 <p>语言 <strong>ED</strong> 在语言 <strong>E</strong> 的基础上扩充了函数定义和函数应用，其抽象和具体语法如下：</p>
-<p><center><a class="glightbox" href="../2022-12-17-17-55-12.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-17-17-55-12.png" width="600" /></a></center></p>
+<center>![](2022-12-17-17-55-12.png){width=600}</center>
+
 <p>函数定义中，<span class="arithmatex">\(f\)</span> 是 <span class="arithmatex">\(e\)</span> 中的一个函数名，它被绑定到抽象子 <span class="arithmatex">\(x_1.e_2\)</span> 上，即参数为 <span class="arithmatex">\(x_1\)</span>，定义是 <span class="arithmatex">\(e_2\)</span>。</p>
 <details class="note" open="open">
 <summary>关于花括号</summary>
@@ -6109,17 +6110,21 @@
 </details>
 <p><strong>函数头 (function header)</strong> <span class="arithmatex">\(f(x_1:\tau_1):\tau_2\)</span> 表示函数的 <strong>定义域 (domain)</strong> 是 <span class="arithmatex">\(\tau_1\)</span>, <strong>值域 (range)</strong> 是 <span class="arithmatex">\(\tau_2\)</span>。由于 <strong>E</strong> 中只有 <code>num</code> 和 <code>str</code> 两个类型，因此上述定义域和值域也只能是这两种。</p>
 <p>在 <strong>E</strong> 的基础上，<strong>ED</strong> 的静态语义由以下定型规则定义：</p>
-<p><center><a class="glightbox" href="../2022-12-17-18-10-36.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-17-18-10-36.png" width="300" /></a></center></p>
+<center>![](2022-12-17-18-10-36.png){width=300}</center>
+
 <p>为了给出 <strong>ED</strong> 的动态语义，我们定义 <strong>函数代换 (function substitution)</strong> <span class="arithmatex">\([\![ x_1.e_2/f ]\!] e\)</span>，表示用 <span class="arithmatex">\(x_1.e_2\)</span> 代换 <span class="arithmatex">\(e\)</span> 中所有 <span class="arithmatex">\(f\)</span> 的出现。</p>
 <p>我们下面尝试给出函数代换的具体含义。事实上，在形如 <span class="arithmatex">\(\text{apply}\{f\}(e')\)</span> 的函数应用中才会出现函数名 <span class="arithmatex">\(f\)</span>，因此此时我们对 <span class="arithmatex">\([\![ x.e/f ]\!] \text{ apply}\{f\}(e')\)</span> 的定义就类似于 <span class="arithmatex">\(\text{let } x \text{ be } e' \text{ in } e\)</span>。不过，由于 <span class="arithmatex">\(e'\)</span> 中还可能存在 <span class="arithmatex">\(f\)</span>，因此我们对函数代换的定义如下：</p>
-<p><center><a class="glightbox" href="../2022-12-18-20-15-31.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-18-20-15-31.png" width="400" /></a></center></p>
+<center>![](2022-12-18-20-15-31.png){width=400}</center>
+
 <p>有了函数代换，我们就可以在 <strong>E</strong> 的基础上定义 <strong>ED</strong> 的动态语义了：</p>
-<p><center><a class="glightbox" href="../2022-12-18-20-23-59.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-18-20-23-59.png" width="300" /></a></center></p>
+<center>![](2022-12-18-20-23-59.png){width=300}</center>
+
 <p>即，如果在某个 abt <span class="arithmatex">\(e\)</span> 中存在对函数 <span class="arithmatex">\(f\)</span> 的定义，那么在求值时，应当用 <span class="arithmatex">\(x_1.e_2\)</span> 代换 <span class="arithmatex">\(e\)</span> 中所有 <span class="arithmatex">\(f\)</span> 的出现。</p>
 <h2 id="82-high-order-functions--高阶函数">8.2 High-Order Functions | 高阶函数<a class="headerlink" href="#82-high-order-functions--高阶函数" title="Permanent link">&para;</a></h2>
 <p>在 <strong>ED</strong> 中，变量定义和函数定义非常相似；我们试图将它们统一起来。</p>
 <p>语言 <strong>EF</strong> 在语言 <strong>E</strong> 的基础上扩充了函数类型，其抽象和具体语法如下：</p>
-<p><center><a class="glightbox" href="../2022-12-18-20-46-47.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-18-20-46-47.png" width="450" /></a></center></p>
+<center>![](2022-12-18-20-46-47.png){width=450}</center>
+
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>上面的抽象语法中 <span class="arithmatex">\(\to (\tau_1; \tau_2)\)</span> 在中文课本和课件中记作 <span class="arithmatex">\(\text{arr}(\tau_1; \tau_2)\)</span>；<span class="arithmatex">\(\lambda \{\tau\}(x.e)\)</span> 在中文课本和课件中记作 <span class="arithmatex">\(\text{lam}\{\tau\}(x.e)\)</span>。</p>
@@ -6127,11 +6132,14 @@
 <p>如我们之前所说，函数定义就是将函数名绑定到抽象子上。因此我们把抽象子具体化为一种表达式形式，称作 <strong><span class="arithmatex">\(\lambda\)</span> 抽象</strong>，记作 <span class="arithmatex">\(\lambda \{\tau\}(x.e)\)</span>；其类型即为函数类型 <span class="arithmatex">\(\to (\tau_1; \tau_2)\)</span>，<span class="arithmatex">\(\tau_1\)</span> 和 <span class="arithmatex">\(\tau_2\)</span> 分别是其定义域和值域。<span class="arithmatex">\(\text{ap}(e_1;e_2)\)</span> 的函数应用，这里 <span class="arithmatex">\(e_1\)</span> 不一定是一个函数名，它可能是任何类型为函数类型的表达式。</p>
 <p>这样，我们就可以把函数当做任何其他表达式一样使用了，包括作为参数和返回值。因此，我们说在这样的语言中，函数是 <strong>一等 (first-class)</strong> 的；这样的函数被称为是高阶的，而非一阶的。</p>
 <p>在 <strong>E</strong> 的基础上，<strong>EF</strong> 的静态语义以如下定型规则给出：</p>
-<p><center><a class="glightbox" href="../2022-12-18-21-11-33.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-18-21-11-33.png" width="250" /></a></center></p>
+<center>![](2022-12-18-21-11-33.png){width=250}</center>
+
 <p>引理 4.2 的类型反转和引理 4.4 的代换在此处也成立。</p>
 <p>在 <strong>E</strong> 的基础上，<strong>EF</strong> 的动态语义以如下规则给出：</p>
-<p><center><a class="glightbox" href="../2022-12-18-22-36-56.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-18-22-36-56.png" width="250" /></a></center></p>
-<p><center><a class="glightbox" href="../2022-12-18-22-37-07.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-18-22-37-07.png" width="300" /></a></center></p>
+<center>![](2022-12-18-22-36-56.png){width=250}</center>
+
+<center>![](2022-12-18-22-37-07.png){width=300}</center>
+
 <p>和 5.2 节讨论的一样，这里用方括号括起的部分（除了代换）区分按值调用和按名调用两种规则，也就是参数是否需要被求值后再应用。</p>
 <div class="admonition note">
 <p class="admonition-title">8.4 Dynamic Scope | 动态作用域</p>

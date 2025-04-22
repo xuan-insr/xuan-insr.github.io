@@ -21,7 +21,7 @@
         <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
@@ -6574,8 +6574,10 @@
 <h4 id="8421-资源分配图算法">8.4.2.1 资源分配图算法<a class="headerlink" href="#8421-资源分配图算法" title="Permanent link">&para;</a></h4>
 <p>这种算法适用于每种资源类型只有 1 个实例的情况。</p>
 <p>我们在资源分配图的基础上增加一种边，叫 claim edge，表示某个进程未来 <strong>可能</strong> 会需求某种资源，用虚线表示。</p>
-<p><center><a class="glightbox" href="../2022-11-19-18-14-09.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-18-14-09.png" width="400" /></a></center></p>
-<p><center><a class="glightbox" href="../2022-11-19-18-13-46.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-18-13-46.png" width="400" /></a></center></p>
+<center>![](2022-11-19-18-14-09.png){width="400"}</center>
+
+<center>![](2022-11-19-18-13-46.png){width="400"}</center>
+
 <p>当这个需求真的出现的时候，claim edge 转为 request edge；当需求被满足的时候，request edge 转为 assignment edge；当该进程释放该资源时，assignment edge 转为 claim edge。</p>
 <p>当一个需求来了的时候，如果 request edge 转为 assignment edge 不会导致图中有一个 cycle，则该要求可以被满足；否则该请求应当等待。</p>
 <h4 id="8422-安全状态--safe-state">8.4.2.2 安全状态 | Safe State<a class="headerlink" href="#8422-安全状态--safe-state" title="Permanent link">&para;</a></h4>
@@ -6586,7 +6588,8 @@
 <summary>Proof</summary>
 <p>用归纳法。如果 <span class="arithmatex">\(P_i\)</span> 的需求不能立刻满足，它只需要等到 <span class="arithmatex">\(\{P_j\ |\ j &lt; i\}\)</span> 全部完成，<span class="arithmatex">\(P_i\)</span> 就能获取所需资源。</p>
 </details>
-<p><center><a class="glightbox" href="../2022-11-19-17-53-11.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-17-53-11.png" width="300" /></a></center></p>
+<center>![](2022-11-19-17-53-11.png){width="300"}</center>
+
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p><center><a class="glightbox" href="../2022-11-19-17-54-30.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-17-54-30.png" width="400" /></a></center></p>
@@ -6631,7 +6634,8 @@
 <h3 id="843-死锁检测">8.4.3 死锁检测<a class="headerlink" href="#843-死锁检测" title="Permanent link">&para;</a></h3>
 <h4 id="8431-single-instance-resources">8.4.3.1 Single Instance Resources<a class="headerlink" href="#8431-single-instance-resources" title="Permanent link">&para;</a></h4>
 <p>可以通过资源分配图的变体 <strong>wait-for graph</strong> 来解决：</p>
-<p><center><a class="glightbox" href="../2022-11-19-13-54-31.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-11-19-13-54-31.png" width="500" /></a></center></p>
+<center>![](2022-11-19-13-54-31.png){width="500"}</center>
+
 <p>在这个图里找环，用拓扑排序的话时间复杂度是 <span class="arithmatex">\(O(V + E)\)</span> 的，这最差情况下是 <span class="arithmatex">\(O(n^2)\)</span> 的。</p>
 <h4 id="8432-multi-instance-resources">8.4.3.2 Multi-Instance Resources<a class="headerlink" href="#8432-multi-instance-resources" title="Permanent link">&para;</a></h4>
 <p>类似银行家算法。如果找不到任何安全序列，则说明系统处于死锁状态。</p>

@@ -21,7 +21,7 @@
         <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -6292,10 +6292,11 @@ function toggleVisibilityFoot() {
 }
 </script>
 
-<p><center>
+<center>
 <button onclick="toggleVisibility()" class="box box-yellow xyx-toggle">点击此处隐藏正文所有链接</button>
 <button onclick="toggleVisibilityFoot()" class="box box-green xyx-toggle2">点击此处隐藏本文所有脚注</button>
-</center></p>
+</center>
+
 <hr />
 <h2 id="81-迭代器--iterators">8.1 迭代器 | Iterators<a class="headerlink" href="#81-迭代器--iterators" title="Permanent link">&para;</a></h2>
 <p>在上一节中我们看到，STL 中有十余种容器，同时有上百种算法。但是，我们很容易理解的是，即使是相同的算法，它在不同的容器上的具体实现也是不同的。看下面一个例子：</p>
@@ -6326,7 +6327,8 @@ function toggleVisibilityFoot() {
 <span class="cm">*/</span>
 </code></pre></div>
 <p>我们知道，<code>std::vector</code> 的底层数据结构是数组，<code>std::set</code> 的底层数据结构是红黑树，<code>std::list</code> 的底层数据是双向链表；<code>std::for_each</code> 对它们进行遍历的方式显然不同。</p>
-<p><center><a class="glightbox" href="../image.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Alt text" src="../image.png" width="400" /></a></center></p>
+<center>![Alt text](image.png){width=400}</center>
+
 <p>但是，对它们进行遍历的方式也有共通之处：对于 <code>for_each(c.begin(), c.end(), print);</code>，它需要做的事就是，从容器的 <strong>开头</strong> 开始，每次 <strong>找到下一个元素</strong>，<strong>访问元素内容</strong>，直到容器的 <strong>末尾</strong> 为止。即：<code>for (SomeType ptr = c.begin(); ptr != c.end(); go_to_next_node(ptr)) { print(get_value(ptr)); }</code>。</p>
 <div class="admonition inline end tips">
 <p class="admonition-title">Inline</p>
@@ -6848,10 +6850,11 @@ function toggleVisibilityFoot() {
 }
 </script>
 
-<p><center>
+<center>
 <button onclick="toggleVisibility()" class="box box-yellow xyx-toggle">点击此处隐藏正文所有链接</button>
 <button onclick="toggleVisibilityFoot()" class="box box-green xyx-toggle2">点击此处隐藏本文所有脚注</button>
-</center></p>
+</center>
+
 <div class="footnote">
 <hr />
 <ol>

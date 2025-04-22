@@ -21,7 +21,7 @@
         <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -6035,8 +6035,9 @@
 <p>为了让大家更好地感受到何为「按代码组织方式分类」，我们简单回顾一下相关的历史。</p>
 <p>我们知道，在通用计算机被发明时，代码都是用 机器码 (machine code) 编写的；在机器码中，指令由一堆 01 串来表示。为了方便阅读和调试，人们引入了 助记符 (mnemonics) 和 labels 等来以更易理解的方式表示机器指令，从而发明了 汇编语言 (assembly)。</p>
 <p>汇编语言以及之后出现的 BASIC, Fortran 等编程语言的早期版本都是 <strong>非结构化的 (non-structured)</strong> 编程语言。这是什么意思呢？我们来看一看我们熟悉的分支和循环语句在汇编中是如何表示的：</p>
-<p><center><a class="glightbox" href="../2023-02-04-01-09-01.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-04-01-09-01.png" width="200" /></a></center>
-<center><a class="glightbox" href="../2023-02-04-01-09-17.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-04-01-09-17.png" width="300" /></a></center></p>
+<center>![](2023-02-04-01-09-01.png){width=200}</center>
+<center>![](2023-02-04-01-09-17.png){width=300}</center>
+
 <p>上面两张图依次是 C++ 源码和编译出的汇编代码。可以看到：</p>
 <ul>
 <li>如果 <code>a &lt;= 10</code>：<ul>
@@ -6057,8 +6058,9 @@
 </ul>
 <p>也就是说，汇编中并不存在直接完成「分支」的语言结构，而是通过比较和跳转指令的组合来完成相应的效果的。</p>
 <p>类似地，下面的两张图也是 C++ 源码和编译出的汇编代码。汇编代码完成循环操作的方式留做练习。</p>
-<p><center><a class="glightbox" href="../2023-02-04-01-11-41.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-04-01-11-41.png" width="250" /></a></center>
-<center><a class="glightbox" href="../2023-02-04-01-12-02.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2023-02-04-01-12-02.png" width="300" /></a></center></p>
+<center>![](2023-02-04-01-11-41.png){width=250}</center>
+<center>![](2023-02-04-01-12-02.png){width=300}</center>
+
 <details class="tips">
 <summary>提示</summary>
 <p>汇编代码的 2~4 行将 <code>DWORD PTR [rbp-20]</code> 的初始值设置为传入参数 <code>a</code>；第 5 行将表示局部变量 <code>ans</code> 的 <code>DWORD PTR [rbp-4]</code> 的初始值设置为 <code>0</code>。</p>
