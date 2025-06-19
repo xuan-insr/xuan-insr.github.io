@@ -55,6 +55,8 @@ statistics: true
     - [涛宝！](https://www.oddyti.com/)
     - [秋月春风的书房](https://yukinoshitasherry.github.io)
     - [林榆雁的博客](https://socralin.github.io/)（文科！同志们，宝贵的文科博客）
+    - [叶叶子](https://forliage.github.io/about.html)
+    - [我的新站，在建，假如有人看到的话](https://xuan-insr.github.io/neura-weaver/)
 
 <center><img src="index.assets/image.png"/></center>
 
