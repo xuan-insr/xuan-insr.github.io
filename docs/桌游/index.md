@@ -7,6 +7,12 @@
     
     另外 `-` 是表示因为各种原因暂时无法或者不足以给出评价的
 
+??? info "统计"
+    - **桌游总计**：135 款
+    - **场次**：36 场
+    - **大家出场次数**：吴 16 | 刘 14 | 郭 13 | 李 12 | 土 10 | 毛 9 | 燃 6 | 朱 5 | 腾 3 | 桌 3 | 陈 2 | 旻 2 | 骁 1 | 昊 1 | 航 1 | 孔 1 | 娃 1 | 崔 1 | 霄 1 | 夏 1 | 彧 1 | 鹏 1
+
+
 | :fontawesome-regular-chess-knight: | :material-star-outline: | :material-account-group:/:octicons-clock-16:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | :material-text-account: | :material-tooltip-image-outline: |
 | :-: | :-: | :-: | :- | :-: |
 | **2026-2-21 无忧 5 人局** (腾骁土桌) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
@@ -104,14 +110,14 @@
 | 御竹园  | <span class="box box-blue">2.5</span> | 2~4/中 | 画风不错，任务带来了很大的运气成分；不公开的任务选择和任务手牌使得长线策略和互卡变得不太可能，又不像其他游戏可以推测意图。因此类似 solo 的同时又节奏拖沓，体验并不好。 | ![](assets/2025-01-30-21-40-37.png){: width="20px"} |
 | **2023-7-11 无忧 4 人局** (腾旻朱) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | 卡波  | <span class="box box-green">4</span> | 2~4/中 | <span class="box box-yellow">好复刻</span> <span class="box box-green">买了！</span> 规则极其简单，有点上头，有记忆成分，运气成分有点大。 | ![](assets/2025-01-30-21-39-55.png){: width="20px"} |
-| **2023-7-9 无忧 3 人局** (吴？刘) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
+| **2023-7-9 无忧 3 人局** (郭刘) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | 大杀四方  | <span class="box box-blue">2.5</span> | 2~4/中 | 平衡性欠佳，有的卡用处不大，运气成分太大，体验配不上阅读量。 | ![](assets/2025-01-30-21-44-49.png){: width="20px"} |
 | 图灵机  | <span class="box box-green">5</span> | 1~4/短 | <span class="box box-green">买了！</span> 适合一个人或者合作玩，竞速也可以，需要动脑子；题目设计比较多，可重开性强。 | ![](assets/2025-01-30-21-39-40.png){: width="20px"} |
 | 金银岛  | <span class="box box-blue">3.5</span> | 2~5/中 | 感觉比较适合 4~5 人玩，一人饰演两个角色的话得到的信息太多船长很难赢。机制和游戏体验很新鲜。 **2023-7-11 Update:** 4 人玩了一局，感觉体验有显著提升；但是总体感觉运气成分偏高。 | ![](assets/2025-01-30-21-39-48.png){: width="20px"} |
 | 电力公司  | <span class="box box-blue">3.5</span> | 2~6/中 | 有拍卖有互卡有计算，需要多方面考虑，平衡性也提供了不少的翻盘机会；但是游戏结束条件有点突然，在后期很容易速通结束游戏。 | ![](assets/2025-01-30-21-44-42.png){: width="20px"} |
 | 太公望  | <span class="box box-blue">3</span> | 2~5/短 | 无脑赌狗游戏。 | ![](assets/2025-01-30-21-44-33.png){: width="20px"} |
 | 形色牌  | <span class="box box-green">4.5</span> | 任意/短 | <span class="box box-green">买了！</span> 比眼力和反应，简单好玩。 | ![](assets/2025-01-30-21-40-13.png){: width="20px"} |
-| **2023-2-2 无忧 3 人局** (郭刘？) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
+| **2023-2-2 无忧 3 人局** (李刘) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | 三千世界鸦杀尽 | <span class="box box-blue">2.5</span> |2~4/短 | 互坑游戏，非常看牌运，没什么策略可言。| ![](assets/2025-01-30-21-48-49.png){: width="20px"} |
 | 花砖物语 AZUL | <span class="box box-blue">3.5</span> |2~4/短 | 策略博弈，规则简单，可以互卡。| ![](assets/2025-01-30-21-48-55.png){: width="20px"} |
 | 小传说 | <span class="box box-blue">3</span> |2~5/短 | 画风不错，普通的卡牌游戏，没有什么亮点。| ![](assets/2025-01-30-21-49-02.png){: width="20px"} |
@@ -121,7 +127,7 @@
 | 幻想国度 | <span class="box box-blue">3.5</span> |2~6/短 | 手牌管理凑羁绊，变化比较多；但是互动性差，比较看运气。| ![](assets/2025-01-30-21-49-30.png){: width="20px"} |
 | 圣光之城 | <span class="box box-green">4</span> |2~4/中|<span class="box box-yellow">好复刻</span> 博弈游戏，可以坑人，有一些运气成分。| ![](assets/2025-01-30-21-49-37.png){: width="20px"} |
 | Shear Panic | <span class="box box-green">4</span> |2~4/中 | 配件不错。博弈类的游戏，规则比较简单，体验还可以。| ![](assets/2025-01-30-21-49-48.png){: width="20px"} |
-| **2023-1-25 无忧 4 人局** (吴刘郭李 - 1) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
+| **2023-1-25 无忧 4 人局** (吴刘郭李) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | 郁金香泡沫 | <span class="box box-yellow">1.5</span> |3~5/中 | 博弈游戏，但是随机性比较大，除了节目效果以外没觉得哪里有趣。| ![](assets/2025-01-30-21-46-12.png){: width="20px"} |
 | 空中之城 | <span class="box box-green">4.5</span> |2~6/短|<span class="box box-red">想买</span> 规则简单，要骗人、互坑，有赌狗成分；演技和节目效果并存。| ![](assets/2025-01-30-21-46-01.png){: width="20px"} |
 | 诡影寻踪 | <span class="box box-green">5</span> |2~5/短|<span class="box box-green">买了！</span> 高级版的逻辑对决，推理的内容也更多；复杂模式能进一步提高推理难度。| ![](assets/2025-01-30-21-45-53.png){: width="20px"} |
@@ -142,7 +148,7 @@
 | 巴黎圣母院 | <span class="box box-blue">3</span> |2~5/中 | 带流派的策略游戏，复杂度是恰好的。多玩几次可能更舒服一些。店里甚至只有洋文说明书 XD| ![](assets/2025-01-30-21-52-54.png){: width="20px"} |
 | 群星 | <span class="box box-red">0.5</span> |2~4/中 | 很好看，不好玩。| ![](assets/2025-01-30-21-52-48.png){: width="20px"} |
 | 圣胡安 | <span class="box box-yellow">2</span> |2~4/中 | 在能打连招的卡牌里没有很多亮点，但是也不明显比其他的差。听说是简化版的前作波多黎各，评价不如前作高。| ![](assets/2025-01-30-21-52-41.png){: width="20px"} |
-| **2022-2-15 无忧 3 人局** (郭李？) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
+| **2022-2-15 无忧 3 人局** (郭李) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | 拉密 | <span class="box box-green">4.5</span> |2~4/中|<span class="box box-green">买了！</span> 数学游戏，到后面容易变成合作。我至今还好奇有没有数学解。| ![](assets/2025-01-30-21-53-37.png){: width="20px"} |
 | 石器时代 | <span class="box box-yellow">2</span> |2~4/中 | 安排人工走路线的策略游戏，没有感觉很惊艳。| ![](assets/2025-01-30-21-57-24.png){: width="20px"} |
 | 卡坦岛 | <span class="box box-yellow">1.5</span> |3~4/中 | 投骰子运气影响比较大，到后面会有很难发展的感觉，会互坑。| ![](assets/2025-01-30-21-57-13.png){: width="20px"} |
@@ -153,18 +159,18 @@
 | **2020-7-18 无忧 5 人局** (吴刘郭李) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | 爆珠发明 | <span class="box box-green">4</span> |2~4/中|<span class="box box-green">买了！</span> 略带策略的打 combo 卡牌游戏，好上手，很爽，互动性不那么强。| ![](assets/2025-01-30-21-58-10.png){: width="20px"} |
 | 庞氏骗局 | <span class="box box-green">4</span> |3~5/中|<span class="box box-green">买了！</span> 比较烧脑，交易阶段的互坑比较多，至今没找到核心策略所在。| ![](assets/2025-01-30-21-58-16.png){: width="20px"} |
-| **2020-7-4 无忧 4 人局** (吴刘郭李 -1) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
+| **2020-7-4 无忧 4 人局** (吴刘郭李) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | 出包魔法师 | <span class="box box-green">4.5</span> |2~5/中 | <span class="box box-red">想买</span> 升级版达芬奇密码，运气成分不小，推理成分也有，甚至看场外。节目效果比较多。| ![](assets/2025-01-30-21-57-55.png){: width="20px"} |
 | 逃离亚特兰蒂斯 | <span class="box box-yellow">1.5</span> |2~4/短 | 互坑是核心玩法。| ![](assets/2025-01-30-21-58-29.png){: width="20px"} |
 | 雪之时 | <span class="box box-blue">3.5</span> |3~5/短 | <span class="box box-yellow">好复刻</span> 博弈，有互坑，规则简单，有节目效果。| ![](assets/2025-01-30-21-58-23.png){: width="20px"} |
-| **2020-5-5 无忧 10 人局** (小学一帮人) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
+| **2020-5-5 无忧 10 人局** (吴刘郭李等) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | 猎巫镇 | <span class="box box-yellow">1</span> |4~12/中 | 体验稍微平衡一点的狼人杀，但是死了的人同样要等好久。|
 | 鲜血盟约 | <span class="box box-blue">3.5</span> |6~12/短 | <span class="box box-yellow">好复刻</span> <span class="box box-green">买了！</span> 身份推理，两个阵营，参与度高，好上手。但是操作上限有限，节目效果少。|
 | 并购 | <span class="box box-blue">3.5</span> |3~6/中 | 规则简洁，变化不少，策略游戏，但是随机性也不小。|
 | Dixit | <span class="box box-green">4</span> | 3~6/短 | 就不错，不费脑子的聚会游戏，可以展开想象力，换换脑子很不错。| ![](assets/2026-02-21-10-28-57.png){: width="20px"} |
 | **2020-3-29 无忧 5 人局** (吴刘郭李) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 |旭日战魂录|-|3~5/长 | 规则和计算比较复杂，内容繁多，感觉能半自动化可能好一点 XD| ![](assets/2025-01-30-22-03-04.png){: width="20px"} |
-| **2019-10-11 火星工厂 4 人局** (617 室友) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
+| **2019-10-11 火星工厂 4 人局** (夏彧鹏) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | 我是大老板 | <span class="box box-blue">3.5</span> |3~6/中|<span class="box box-green">买了！</span> 谈判游戏，规则自由，不同的人玩的流派会很不一样，不过打出高光很难。| ![](assets/2025-01-30-21-57-41.png){: width="20px"} |
 | 情书 | <span class="box box-yellow">2</span> |2~4/短 | 规则简单，有点博弈但不多，也因此上限有限。|
 | 骆驼大赛 | <span class="box box-yellow">2</span> |2~8/中 | 运气游戏，能算但是还是看脸。会有节目效果，策略性比较弱。|
