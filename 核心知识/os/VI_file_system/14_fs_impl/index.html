@@ -1,7 +1,4 @@
-
-<!doctype html>
-<html lang="zh" class="no-js">
-  <head>
+<!DOCTYPE html><html lang="zh" class="no-js"><head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -17,11 +14,14 @@
         <link rel="next" href="../../15_review/">
       
       
+        
+      
+      
         <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../../../../feed_rss_created.xml">
         <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../../../logo.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
     
     
       
@@ -29,10 +29,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -46,7 +46,7 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
         <style>:root{--md-text-font:"Noto Serif SC";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -77,43 +77,28 @@
 
     
     
-      
-        <meta  property="og:type"  content="website" >
-      
-        <meta  property="og:title"  content="14 文件系统实现 - 咸鱼暄的代码空间" >
-      
-        <meta  property="og:description"  content="None" >
-      
-        <meta  property="og:image"  content="https://xuan-insr.github.io/assets/images/social/核心知识/os/VI_file_system/14_fs_impl.png" >
-      
-        <meta  property="og:image:type"  content="image/png" >
-      
-        <meta  property="og:image:width"  content="1200" >
-      
-        <meta  property="og:image:height"  content="630" >
-      
-        <meta  property="og:url"  content="https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/VI_file_system/14_fs_impl/" >
-      
-        <meta  name="twitter:card"  content="summary_large_image" >
-      
-        <meta  name="twitter:title"  content="14 文件系统实现 - 咸鱼暄的代码空间" >
-      
-        <meta  name="twitter:description"  content="None" >
-      
-        <meta  name="twitter:image"  content="https://xuan-insr.github.io/assets/images/social/核心知识/os/VI_file_system/14_fs_impl.png" >
-      
-    
-    
-   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
-    html.glightbox-open { overflow: initial; height: 100%; }
-    .gslide-title { margin-top: 0px; user-select: text; }
-    .gslide-desc { color: #666; user-select: text; }
-    .gslide-image img { background: white; }
-    .gscrollbar-fixer { padding-right: 15px; }
-    .gdesc-inner { font-size: 0.75rem; }
-    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
-    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
-    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+<meta property="og:type" content="website">
+<meta property="og:title" content="14 文件系统实现 - 咸鱼暄的代码空间">
+<meta property="og:image" content="https://xuan-insr.github.io/assets/images/social/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/VI_file_system/14_fs_impl.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://xuan-insr.github.io/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/VI_file_system/14_fs_impl/">
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:title" content="14 文件系统实现 - 咸鱼暄的代码空间">
+<meta property="twitter:image" content="https://xuan-insr.github.io/assets/images/social/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86/os/VI_file_system/14_fs_impl.png">
+<link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
   
   
     
@@ -153,7 +138,7 @@
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -178,20 +163,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="cyan" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="orange" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
       </label>
     
   
@@ -207,7 +192,7 @@
       
         <label class="md-header__button md-icon" for="__search">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
         </label>
         <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -216,20 +201,20 @@
       <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
       </label>
       <nav class="md-search__options" aria-label="查找">
         
           <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
             
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
           </a>
         
         <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
         </button>
       </nav>
       
@@ -255,7 +240,7 @@
         <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
   </div>
   <div class="md-source__repository">
     xuan-insr/咸鱼暄的代码空间
@@ -498,7 +483,7 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -521,7 +506,7 @@
       <a href="https://github.com/xuan-insr/xuan-insr.github.io" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
   </div>
   <div class="md-source__repository">
     xuan-insr/咸鱼暄的代码空间
@@ -559,7 +544,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1">
         
           
           <div class="md-nav__link md-nav__container">
@@ -568,9 +553,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     🏡 主页
+  
+
     
   </span>
+  
   
 
             </a>
@@ -585,7 +575,11 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
-            🏡 主页
+            
+  
+    🏡 主页
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -603,9 +597,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     ❤️ 关于我
+  
+
     
   </span>
+  
   
 
       </a>
@@ -626,9 +625,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     📆 最近更新
+  
+
     
   </span>
+  
   
 
       </a>
@@ -682,7 +686,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
         
           
           <div class="md-nav__link md-nav__container">
@@ -691,9 +695,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     C++
+  
+
     
   </span>
+  
   
 
             </a>
@@ -708,7 +717,11 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            C++
+            
+  
+    C++
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -760,7 +773,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2">
         
           
           <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
@@ -768,9 +781,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     网课 slides 与随材
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -779,7 +797,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
-            网课 slides 与随材
+            
+  
+    网课 slides 与随材
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -795,9 +817,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Week1 C++ 的诞生与面向对象程序设计
+  
+
     
   </span>
+  
   
 
       </a>
@@ -818,9 +845,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Week1 内容回顾
+  
+
     
   </span>
+  
   
 
       </a>
@@ -841,9 +873,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Week2 类(I) 定义、成员、构造、析构
+  
+
     
   </span>
+  
   
 
       </a>
@@ -864,9 +901,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Week2 思考题与复习题
+  
+
     
   </span>
+  
   
 
       </a>
@@ -887,9 +929,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Week3 类 (II) 拷贝赋值、拷贝构造、SMFs
+  
+
     
   </span>
+  
   
 
       </a>
@@ -910,9 +957,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Week3 思考题与复习题
+  
+
     
   </span>
+  
   
 
       </a>
@@ -933,9 +985,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Week4 类 (III) 隐式类型转换、拷贝构造、SMFs
+  
+
     
   </span>
+  
   
 
       </a>
@@ -956,9 +1013,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Week4 思考题与复习题
+  
+
     
   </span>
+  
   
 
       </a>
@@ -979,9 +1041,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Week5 模板 (I) 基础知识与 STL 使用
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1002,9 +1069,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Week6 模板 (II) 理解 STL - 迭代器与函数对象
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1025,9 +1097,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Week7 值类型、右值引用与移动语义
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1048,9 +1125,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Week8 智能指针基础
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1071,9 +1153,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Week9 类 (IV) 继承
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1134,7 +1221,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3">
         
           
           <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
@@ -1142,9 +1229,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     正文！
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -1153,7 +1245,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
-            正文！
+            
+  
+    正文！
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1169,9 +1265,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     1 C++ 的诞生
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1192,9 +1293,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     2 编程范式
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1215,9 +1321,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     3 面向对象程序设计
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1238,9 +1349,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     4 类 (I) - 定义、成员、构造、析构
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1261,9 +1377,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     5 类 (II) - 拷贝赋值、运算符重载与引用
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1284,9 +1405,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     6 类 (III) - 拷贝构造、SMFs
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1307,9 +1433,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     7 模板 (I) - 基本知识与 STL 使用
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1330,9 +1461,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     8 模板 (II) - 理解 STL
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1353,9 +1489,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     9 右值引用和移动语义
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1376,9 +1517,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     10 智能指针基础
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1399,9 +1545,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     11 类 (IV) - 继承、RTTI
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1422,9 +1573,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     12 exception
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1489,7 +1645,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4">
         
           
           <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
@@ -1497,9 +1653,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     A 附录
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -1508,7 +1669,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_4">
             <span class="md-nav__icon md-icon"></span>
-            A 附录
+            
+  
+    A 附录
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1524,9 +1689,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     声明与定义
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1547,9 +1717,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     inline 函数
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1570,9 +1745,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     函数默认参数与重载
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1593,9 +1773,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     运算符重载
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1616,9 +1801,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     引用
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1639,9 +1829,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     I/O stream
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1662,9 +1857,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     copy elision
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1685,9 +1885,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     类型转换
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1708,9 +1913,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     bool
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1731,9 +1941,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     auto
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1754,9 +1969,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     未定义行为
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1777,9 +1997,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     std::string
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1800,9 +2025,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     智能指针
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1823,9 +2053,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     lambda
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1864,7 +2099,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5">
         
           
           <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
@@ -1872,9 +2107,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     B 总结
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -1883,7 +2123,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
-            B 总结
+            
+  
+    B 总结
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1899,9 +2143,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     member initializer lists
+  
+
     
   </span>
+  
   
 
       </a>
@@ -1948,7 +2197,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6">
         
           
           <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
@@ -1956,9 +2205,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     一些笔记和 TODO
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -1967,7 +2221,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_6">
             <span class="md-nav__icon md-icon"></span>
-            一些笔记和 TODO
+            
+  
+    一些笔记和 TODO
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1983,9 +2241,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     零散内容记录
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2006,9 +2269,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     The Design and Evaluation of C++ 阅读记录
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2029,9 +2297,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     C++ 语言标准阅读记录
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2052,9 +2325,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     C++ Core Guidelines 阅读记录
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2075,9 +2353,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Bjarne Stroustrup's FAQ 阅读记录
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2106,9 +2389,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     快速入门 C++ 写题
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2139,7 +2427,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8">
         
           
           <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
@@ -2147,9 +2435,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     C++ 知识补充
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -2158,7 +2451,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
-            C++ 知识补充
+            
+  
+    C++ 知识补充
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2174,9 +2471,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     理解 STL —— 迭代器与函数对象
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2232,7 +2534,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -2240,9 +2542,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     新的技术积累！
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -2251,7 +2558,11 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            新的技术积累！
+            
+  
+    新的技术积累！
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2277,7 +2588,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1">
         
           
           <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
@@ -2285,9 +2596,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Web3
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -2296,7 +2612,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
-            Web3
+            
+  
+    Web3
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2312,9 +2632,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     区块链
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2343,9 +2668,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Prometheus
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2390,7 +2720,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3">
         
           
           <div class="md-nav__link md-nav__container">
@@ -2399,9 +2729,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     通过造轮子学习 git！
+  
+
     
   </span>
+  
   
 
             </a>
@@ -2416,7 +2751,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
-            通过造轮子学习 git！
+            
+  
+    通过造轮子学习 git！
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2450,7 +2789,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_2">
         
           
           <div class="md-nav__link md-nav__container">
@@ -2459,9 +2798,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     录播笔记
+  
+
     
   </span>
+  
   
 
             </a>
@@ -2476,7 +2820,11 @@
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_3_2">
             <span class="md-nav__icon md-icon"></span>
-            录播笔记
+            
+  
+    录播笔记
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2494,9 +2842,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Post 1
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2517,9 +2870,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Post 2
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2548,9 +2906,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     0 写在前面
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2571,9 +2934,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     1 构建框架
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2594,9 +2962,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     2 初始化仓库
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2617,9 +2990,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     3 对象存储
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2640,9 +3018,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     4 暂存区
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2683,7 +3066,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4">
         
           
           <div class="md-nav__link md-nav__container">
@@ -2692,9 +3075,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Bash
+  
+
     
   </span>
+  
   
 
             </a>
@@ -2704,7 +3092,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_4">
             <span class="md-nav__icon md-icon"></span>
-            Bash
+            
+  
+    Bash
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2744,7 +3136,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5">
         
           
           <div class="md-nav__link md-nav__container">
@@ -2753,9 +3145,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     咸鱼暄学 Python
+  
+
     
   </span>
+  
   
 
             </a>
@@ -2770,7 +3167,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_5">
             <span class="md-nav__icon md-icon"></span>
-            咸鱼暄学 Python
+            
+  
+    咸鱼暄学 Python
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2788,9 +3189,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     用 Coverage.py 衡量 Python 测试覆盖率
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2835,7 +3241,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6">
         
           
           <div class="md-nav__link md-nav__container">
@@ -2844,9 +3250,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     GitLab CI
+  
+
     
   </span>
+  
   
 
             </a>
@@ -2861,7 +3272,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_6">
             <span class="md-nav__icon md-icon"></span>
-            GitLab CI
+            
+  
+    GitLab CI
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2879,9 +3294,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     用 GitLab CI Artifacts 在 Job 之间共享文件
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2902,9 +3322,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Gitlab CI 触发下游 pipeline
+  
+
     
   </span>
+  
   
 
       </a>
@@ -2974,9 +3399,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     核心知识
+  
+
     
   </span>
+  
   
 
             </a>
@@ -2991,7 +3421,11 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            核心知识
+            
+  
+    核心知识
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -3043,9 +3477,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     操作系统
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -3054,7 +3493,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
-            操作系统
+            
+  
+    操作系统
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -3070,9 +3513,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     1 写在前面
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3093,9 +3541,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Part.1 概述
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3130,7 +3583,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3">
         
           
           <label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
@@ -3138,9 +3591,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Part.2 进程管理
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -3149,7 +3607,11 @@
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_2_3">
             <span class="md-nav__icon md-icon"></span>
-            Part.2 进程管理
+            
+  
+    Part.2 进程管理
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -3165,9 +3627,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     3 进程
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3188,9 +3655,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     4 调度
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3211,9 +3683,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     5 线程
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3256,7 +3733,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4">
         
           
           <label class="md-nav__link" for="__nav_4_2_4" id="__nav_4_2_4_label" tabindex="0">
@@ -3264,9 +3741,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Part.3 进程同步
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -3275,7 +3757,11 @@
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_2_4">
             <span class="md-nav__icon md-icon"></span>
-            Part.3 进程同步
+            
+  
+    Part.3 进程同步
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -3291,9 +3777,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     6 同步及其工具
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3314,9 +3805,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     7 经典同步问题
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3337,9 +3833,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     8 死锁
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3380,7 +3881,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5">
         
           
           <label class="md-nav__link" for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
@@ -3388,9 +3889,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Part.4 内存管理
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -3399,7 +3905,11 @@
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_2_5">
             <span class="md-nav__icon md-icon"></span>
-            Part.4 内存管理
+            
+  
+    Part.4 内存管理
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -3415,9 +3925,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     9 主存
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3438,9 +3953,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     10 虚拟内存
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3481,7 +4001,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6">
         
           
           <label class="md-nav__link" for="__nav_4_2_6" id="__nav_4_2_6_label" tabindex="0">
@@ -3489,9 +4009,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Part.5 存储管理
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -3500,7 +4025,11 @@
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_2_6">
             <span class="md-nav__icon md-icon"></span>
-            Part.5 存储管理
+            
+  
+    Part.5 存储管理
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -3516,9 +4045,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     11 大容量存储
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3539,9 +4073,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     12 I/O 系统
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3592,9 +4131,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Part.6 文件系统
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -3603,7 +4147,11 @@
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_2_7">
             <span class="md-nav__icon md-icon"></span>
-            Part.6 文件系统
+            
+  
+    Part.6 文件系统
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -3619,9 +4167,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     13 文件系统
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3651,9 +4204,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     14 文件系统实现
+  
+
     
   </span>
+  
   
 
           <span class="md-nav__icon md-icon"></span>
@@ -3664,9 +4222,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     14 文件系统实现
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3689,7 +4252,9 @@
         <li class="md-nav__item">
   <a href="#141-file-system-structure--文件系统结构" class="md-nav__link">
     <span class="md-ellipsis">
-      14.1 File System Structure | 文件系统结构
+      
+        14.1 File System Structure | 文件系统结构
+      
     </span>
   </a>
   
@@ -3698,7 +4263,9 @@
         <li class="md-nav__item">
   <a href="#142-fs-data-structures" class="md-nav__link">
     <span class="md-ellipsis">
-      14.2 FS Data Structures
+      
+        14.2 FS Data Structures
+      
     </span>
   </a>
   
@@ -3708,7 +4275,9 @@
           <li class="md-nav__item">
   <a href="#file-creation" class="md-nav__link">
     <span class="md-ellipsis">
-      File Creation
+      
+        File Creation
+      
     </span>
   </a>
   
@@ -3717,7 +4286,9 @@
           <li class="md-nav__item">
   <a href="#file-open--close" class="md-nav__link">
     <span class="md-ellipsis">
-      File Open &amp; Close
+      
+        File Open &amp; Close
+      
     </span>
   </a>
   
@@ -3731,7 +4302,9 @@
         <li class="md-nav__item">
   <a href="#143-virtual-fs" class="md-nav__link">
     <span class="md-ellipsis">
-      14.3 Virtual FS
+      
+        14.3 Virtual FS
+      
     </span>
   </a>
   
@@ -3740,7 +4313,9 @@
         <li class="md-nav__item">
   <a href="#144-directory-implementation" class="md-nav__link">
     <span class="md-ellipsis">
-      14.4 Directory Implementation
+      
+        14.4 Directory Implementation
+      
     </span>
   </a>
   
@@ -3749,7 +4324,9 @@
         <li class="md-nav__item">
   <a href="#145-disk-block-allocation" class="md-nav__link">
     <span class="md-ellipsis">
-      14.5 Disk Block Allocation
+      
+        14.5 Disk Block Allocation
+      
     </span>
   </a>
   
@@ -3759,7 +4336,9 @@
           <li class="md-nav__item">
   <a href="#1451-contiguous-allocation" class="md-nav__link">
     <span class="md-ellipsis">
-      14.5.1 Contiguous Allocation
+      
+        14.5.1 Contiguous Allocation
+      
     </span>
   </a>
   
@@ -3768,7 +4347,9 @@
           <li class="md-nav__item">
   <a href="#1452-linked-allocation" class="md-nav__link">
     <span class="md-ellipsis">
-      14.5.2 Linked Allocation
+      
+        14.5.2 Linked Allocation
+      
     </span>
   </a>
   
@@ -3777,7 +4358,9 @@
           <li class="md-nav__item">
   <a href="#1453-indexed-allocation" class="md-nav__link">
     <span class="md-ellipsis">
-      14.5.3 Indexed Allocation
+      
+        14.5.3 Indexed Allocation
+      
     </span>
   </a>
   
@@ -3791,7 +4374,9 @@
         <li class="md-nav__item">
   <a href="#146-free-space-management" class="md-nav__link">
     <span class="md-ellipsis">
-      14.6 Free-Space Management
+      
+        14.6 Free-Space Management
+      
     </span>
   </a>
   
@@ -3826,9 +4411,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     15 总结
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3883,7 +4473,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3">
         
           
           <div class="md-nav__link md-nav__container">
@@ -3892,9 +4482,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     计算机组成
+  
+
     
   </span>
+  
   
 
             </a>
@@ -3909,7 +4504,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_3">
             <span class="md-nav__icon md-icon"></span>
-            计算机组成
+            
+  
+    计算机组成
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -3927,9 +4526,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     1 Prelude
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3950,9 +4554,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     2 Instructions
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3973,9 +4582,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     3 Arithmetic
+  
+
     
   </span>
+  
   
 
       </a>
@@ -3996,9 +4610,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     4 Processor
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4019,9 +4638,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     5 Cache
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4042,9 +4666,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     6 I/O
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4065,9 +4694,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     2022 回忆卷
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4120,7 +4754,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4">
         
           
           <div class="md-nav__link md-nav__container">
@@ -4129,9 +4763,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     编译原理
+  
+
     
   </span>
+  
   
 
             </a>
@@ -4146,7 +4785,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_4">
             <span class="md-nav__icon md-icon"></span>
-            编译原理
+            
+  
+    编译原理
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -4164,9 +4807,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     I 词法分析
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4187,9 +4835,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     II 语法分析 - 自顶向下分析
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4210,9 +4863,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     III 语法分析 - 自底向上分析
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4233,9 +4891,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     IV 语义分析
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4256,9 +4919,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     V 运行时环境
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4279,9 +4947,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     VI 代码生成
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4326,7 +4999,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5">
         
           
           <div class="md-nav__link md-nav__container">
@@ -4335,9 +5008,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     数学、数据结构和算法
+  
+
     
   </span>
+  
   
 
             </a>
@@ -4352,7 +5030,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_5">
             <span class="md-nav__icon md-icon"></span>
-            数学、数据结构和算法
+            
+  
+    数学、数据结构和算法
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -4370,9 +5052,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     入门路线
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4393,9 +5080,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     动态规划 | Dynamic Programming
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4457,7 +5149,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5">
         
           
           <div class="md-nav__link md-nav__container">
@@ -4466,9 +5158,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     安全
+  
+
     
   </span>
+  
   
 
             </a>
@@ -4483,7 +5180,11 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            安全
+            
+  
+    安全
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -4501,9 +5202,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     密码学
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4524,9 +5230,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     密码学进阶
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4547,9 +5258,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     软件安全
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4570,9 +5286,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     网络安全原理与实践
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4593,9 +5314,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     系统安全
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4616,9 +5342,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     无线与物联网安全基础
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4639,9 +5370,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     面向信息安全的信号处理
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4689,7 +5425,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6">
         
           
           <div class="md-nav__link md-nav__container">
@@ -4698,9 +5434,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     其他课程
+  
+
     
   </span>
+  
   
 
             </a>
@@ -4715,7 +5456,11 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
-            其他课程
+            
+  
+    其他课程
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -4733,9 +5478,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     计算理论
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4778,7 +5528,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3">
         
           
           <div class="md-nav__link md-nav__container">
@@ -4787,9 +5537,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     编程语言原理
+  
+
     
   </span>
+  
   
 
             </a>
@@ -4804,7 +5559,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_3">
             <span class="md-nav__icon md-icon"></span>
-            编程语言原理
+            
+  
+    编程语言原理
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -4822,9 +5581,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     我在 PPL 2022 Final 出的复习题
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4859,7 +5623,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_3">
         
           
           <label class="md-nav__link" for="__nav_6_3_3" id="__nav_6_3_3_label" tabindex="0">
@@ -4867,9 +5631,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Part I - Judgments and Rules | 判断与规则
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -4878,7 +5647,11 @@
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_3_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_3_3">
             <span class="md-nav__icon md-icon"></span>
-            Part I - Judgments and Rules | 判断与规则
+            
+  
+    Part I - Judgments and Rules | 判断与规则
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -4894,9 +5667,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     1 抽象语法
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4917,9 +5695,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     2 归纳定义
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4940,9 +5723,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     3 假言判断与一般性判断
+  
+
     
   </span>
+  
   
 
       </a>
@@ -4985,7 +5773,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_4">
         
           
           <label class="md-nav__link" for="__nav_6_3_4" id="__nav_6_3_4_label" tabindex="0">
@@ -4993,9 +5781,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Part II - Statics and Dynamics | 静态语义和动态语义
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -5004,7 +5797,11 @@
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_3_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_3_4">
             <span class="md-nav__icon md-icon"></span>
-            Part II - Statics and Dynamics | 静态语义和动态语义
+            
+  
+    Part II - Statics and Dynamics | 静态语义和动态语义
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -5020,9 +5817,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     4 静态语义
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5043,9 +5845,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     5 动态语义
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5066,9 +5873,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     6 类型安全
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5109,7 +5921,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_5">
         
           
           <label class="md-nav__link" for="__nav_6_3_5" id="__nav_6_3_5_label" tabindex="0">
@@ -5117,9 +5929,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Part III - Total Functions | 全函数
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -5128,7 +5945,11 @@
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_3_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_3_5">
             <span class="md-nav__icon md-icon"></span>
-            Part III - Total Functions | 全函数
+            
+  
+    Part III - Total Functions | 全函数
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -5144,9 +5965,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     8 函数定义和值
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5167,9 +5993,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     9 高阶递归的系统 T
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5210,7 +6041,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3_6">
         
           
           <label class="md-nav__link" for="__nav_6_3_6" id="__nav_6_3_6_label" tabindex="0">
@@ -5218,9 +6049,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     Part IV - Finite Data Types | 有限数据类型
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -5229,7 +6065,11 @@
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_3_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_3_6">
             <span class="md-nav__icon md-icon"></span>
-            Part IV - Finite Data Types | 有限数据类型
+            
+  
+    Part IV - Finite Data Types | 有限数据类型
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -5245,9 +6085,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     10 积类型
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5268,9 +6113,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     11 和类型
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5307,9 +6157,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     OCaml 入门
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5330,9 +6185,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     大物实验报告
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5376,7 +6236,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7">
         
           
           <div class="md-nav__link md-nav__container">
@@ -5385,9 +6245,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     杂项
+  
+
     
   </span>
+  
   
 
             </a>
@@ -5402,7 +6267,11 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            杂项
+            
+  
+    杂项
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -5420,9 +6289,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     博客搭建记录
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5443,9 +6317,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     常用参考资料
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5487,7 +6366,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8">
         
           
           <div class="md-nav__link md-nav__container">
@@ -5496,9 +6375,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     妙妙工具
+  
+
     
   </span>
+  
   
 
             </a>
@@ -5513,7 +6397,11 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
-            妙妙工具
+            
+  
+    妙妙工具
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -5531,9 +6419,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     个税计算器
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5589,7 +6482,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9">
         
           
           <div class="md-nav__link md-nav__container">
@@ -5598,9 +6491,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     生活
+  
+
     
   </span>
+  
   
 
             </a>
@@ -5615,7 +6513,11 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
-            生活
+            
+  
+    生活
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -5657,7 +6559,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2">
         
           
           <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
@@ -5665,9 +6567,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     讨饭历程
+  
+
     
   </span>
+  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -5676,7 +6583,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9_2">
             <span class="md-nav__icon md-icon"></span>
-            讨饭历程
+            
+  
+    讨饭历程
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -5692,9 +6603,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     🏳️‍🌈 总览
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5715,9 +6631,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     😕 拼多多
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5738,9 +6659,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     🤗 美团
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5761,9 +6687,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     🤔 蚂蚁
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5784,9 +6715,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     👍 华为
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5807,9 +6743,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     🥳 字节
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5830,9 +6771,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     👨‍💻 量化相关
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5853,9 +6799,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     其他
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5884,9 +6835,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     咸鱼暄今天吃什么
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5907,9 +6863,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     我需要一个外置大脑
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5930,9 +6891,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     关于亲密关系的碎碎念
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5953,9 +6919,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     2022 年终总结
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5976,9 +6947,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     回顾在信安的三年
+  
+
     
   </span>
+  
   
 
       </a>
@@ -5999,9 +6975,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     咸鱼暄的租房记录
+  
+
     
   </span>
+  
   
 
       </a>
@@ -6038,7 +7019,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_9">
         
           
           <div class="md-nav__link md-nav__container">
@@ -6047,9 +7028,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     桌游
+  
+
     
   </span>
+  
   
 
             </a>
@@ -6064,7 +7050,11 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9_9">
             <span class="md-nav__icon md-icon"></span>
-            桌游
+            
+  
+    桌游
+  
+
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -6084,9 +7074,14 @@
   
   
   <span class="md-ellipsis">
+    
+  
     配件相关
+  
+
     
   </span>
+  
   
 
       </a>
@@ -6118,7 +7113,7 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -6139,7 +7134,9 @@
         <li class="md-nav__item">
   <a href="#141-file-system-structure--文件系统结构" class="md-nav__link">
     <span class="md-ellipsis">
-      14.1 File System Structure | 文件系统结构
+      
+        14.1 File System Structure | 文件系统结构
+      
     </span>
   </a>
   
@@ -6148,7 +7145,9 @@
         <li class="md-nav__item">
   <a href="#142-fs-data-structures" class="md-nav__link">
     <span class="md-ellipsis">
-      14.2 FS Data Structures
+      
+        14.2 FS Data Structures
+      
     </span>
   </a>
   
@@ -6158,7 +7157,9 @@
           <li class="md-nav__item">
   <a href="#file-creation" class="md-nav__link">
     <span class="md-ellipsis">
-      File Creation
+      
+        File Creation
+      
     </span>
   </a>
   
@@ -6167,7 +7168,9 @@
           <li class="md-nav__item">
   <a href="#file-open--close" class="md-nav__link">
     <span class="md-ellipsis">
-      File Open &amp; Close
+      
+        File Open &amp; Close
+      
     </span>
   </a>
   
@@ -6181,7 +7184,9 @@
         <li class="md-nav__item">
   <a href="#143-virtual-fs" class="md-nav__link">
     <span class="md-ellipsis">
-      14.3 Virtual FS
+      
+        14.3 Virtual FS
+      
     </span>
   </a>
   
@@ -6190,7 +7195,9 @@
         <li class="md-nav__item">
   <a href="#144-directory-implementation" class="md-nav__link">
     <span class="md-ellipsis">
-      14.4 Directory Implementation
+      
+        14.4 Directory Implementation
+      
     </span>
   </a>
   
@@ -6199,7 +7206,9 @@
         <li class="md-nav__item">
   <a href="#145-disk-block-allocation" class="md-nav__link">
     <span class="md-ellipsis">
-      14.5 Disk Block Allocation
+      
+        14.5 Disk Block Allocation
+      
     </span>
   </a>
   
@@ -6209,7 +7218,9 @@
           <li class="md-nav__item">
   <a href="#1451-contiguous-allocation" class="md-nav__link">
     <span class="md-ellipsis">
-      14.5.1 Contiguous Allocation
+      
+        14.5.1 Contiguous Allocation
+      
     </span>
   </a>
   
@@ -6218,7 +7229,9 @@
           <li class="md-nav__item">
   <a href="#1452-linked-allocation" class="md-nav__link">
     <span class="md-ellipsis">
-      14.5.2 Linked Allocation
+      
+        14.5.2 Linked Allocation
+      
     </span>
   </a>
   
@@ -6227,7 +7240,9 @@
           <li class="md-nav__item">
   <a href="#1453-indexed-allocation" class="md-nav__link">
     <span class="md-ellipsis">
-      14.5.3 Indexed Allocation
+      
+        14.5.3 Indexed Allocation
+      
     </span>
   </a>
   
@@ -6241,7 +7256,9 @@
         <li class="md-nav__item">
   <a href="#146-free-space-management" class="md-nav__link">
     <span class="md-ellipsis">
-      14.6 Free-Space Management
+      
+        14.6 Free-Space Management
+      
     </span>
   </a>
   
@@ -6257,15 +7274,16 @@
           
           
             <div class="md-content" data-md-component="content">
+              
               <article class="md-content__inner md-typeset">
                 
                   
 
 
   
-    <a href="https://github.com/xuan-insr/xuan-insr.github.io/edit/main/docs/核心知识/os/VI_file_system/14_fs_impl.md" title="编辑此页" class="md-content__button md-icon">
+    <a href="https://github.com/xuan-insr/xuan-insr.github.io/edit/main/docs/核心知识/os/VI_file_system/14_fs_impl.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
     </a>
   
   
@@ -6274,14 +7292,14 @@
     
     <a href="https://github.com/xuan-insr/xuan-insr.github.io/raw/main/docs/核心知识/os/VI_file_system/14_fs_impl.md" title="查看本页的源代码" class="md-content__button md-icon">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"></path></svg>
     </a>
   
 
 
-<h1 id="14-file-system-implementation--文件系统实现">14 File System Implementation | 文件系统实现<a class="headerlink" href="#14-file-system-implementation--文件系统实现" title="Permanent link">&para;</a></h1>
+<h1 id="14-file-system-implementation--文件系统实现">14 File System Implementation | 文件系统实现<a class="headerlink" href="#14-file-system-implementation--文件系统实现" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 2958 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"/></svg></span> 11 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 10 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"></path></svg></span> 约 2958 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"></path></svg></span> 11 张图片 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"></path></svg></span> 预计阅读时间 10 分钟</p>
 </div>
 <p>如我们所说，文件系统利用磁盘驱动器所提供的读写磁盘 blocks 的接口来实现；其发挥的功能是给用户和程序提供存储功能，提供高效和便捷的磁盘访问，并将这种逻辑结构映射到物理的外存设备上。</p>
 <p>现存的文件系统由很多种，大多数操作系统也支持多种文件系统。</p>
@@ -6291,9 +7309,9 @@
 <li>Linux 的标准文件系统是 extended file system，最常见的是 ext3 和 ext4。不过 Linux 支持 40+ 种 FS。</li>
 </ul>
 <p>文件系统的研究仍然是一个活跃的领域。Google 创建了自己的 FS 以满足具体的存储和检索需求；Distributed File Systems 也有很多研究、应用和发展。</p>
-<h2 id="141-file-system-structure--文件系统结构">14.1 File System Structure | 文件系统结构<a class="headerlink" href="#141-file-system-structure--文件系统结构" title="Permanent link">&para;</a></h2>
+<h2 id="141-file-system-structure--文件系统结构">14.1 File System Structure | 文件系统结构<a class="headerlink" href="#141-file-system-structure--文件系统结构" title="Permanent link">¶</a></h2>
 <p>文件系统本身通常由多个不同的层组成，一个例子是：</p>
-<p><center><a class="glightbox" href="../2022-12-15-16-55-38.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-16-55-38.png" width="200" /></a></center></p>
+<p></p><center><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../2022-12-15-16-55-38.png" data-desc-position="bottom"><img alt="" src="../2022-12-15-16-55-38.png" width="200"></a></center><p></p>
 <p><strong>Application programs</strong> 给出 read / write / open 某个 file path 的指令，这个指令被传递给 logical file system——</p>
 <p><strong>Logical file system</strong> 管理所有文件系统所需的 metadata（即除了文件内容之外的所有东西），例如 directory structure。它通过一个叫做 <strong>File Control Block (FCB)</strong> 的数据结构保存这些信息，即我们之前所说的 name, ownership, permissions, ref count, timestamps, pointers to data blocks on disk 等。</p>
 <p>Logical file system 将上层给出的 read / write / open 某个 file path 的指令解析为 read / write 某些 logical blocks 的指令，并传递给 file-organization module——</p>
@@ -6304,12 +7322,12 @@
 <p><strong>I/O control</strong> 包括设备驱动程序和中断处理程序，以在主存和磁盘系统之间传递信息。这应用到 12 章 I/O System 的相关实现。</p>
 <p>I/O control 将上层的指令转换为 low-level, hardware-specific 的指令来实现相关操作。</p>
 <p>分层的文件系统设计可以降低文件系统本身的复杂性和冗余性，但是可能会影响性能。</p>
-<h2 id="142-fs-data-structures">14.2 FS Data Structures<a class="headerlink" href="#142-fs-data-structures" title="Permanent link">&para;</a></h2>
+<h2 id="142-fs-data-structures">14.2 FS Data Structures<a class="headerlink" href="#142-fs-data-structures" title="Permanent link">¶</a></h2>
 <p>文件系统会使用多种数据结构；有的数据结构会放在磁盘上，而有的会放在内存里。</p>
 <p>On-disk structures:</p>
 <ul>
-<li><strong>File control block(FCB)</strong> (per file)。保存 name, ownership, permissions, ref count, timestamps, pointers to data blocks on disk 等信息；每个 FCB 有一个唯一的标识号以与目录条目相关联。在 UNIX 中，FCB 被称为 <strong><code>inode</code></strong>；在 NTFS 中，每个 FCB 是一个叫 <strong>master file table</strong> 的结构的一行。<br />
-<center><a class="glightbox" href="../2022-12-15-19-53-27.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-19-53-27.png" width="300" /></a></center></li>
+<li><strong>File control block(FCB)</strong> (per file)。保存 name, ownership, permissions, ref count, timestamps, pointers to data blocks on disk 等信息；每个 FCB 有一个唯一的标识号以与目录条目相关联。在 UNIX 中，FCB 被称为 <strong><code>inode</code></strong>；在 NTFS 中，每个 FCB 是一个叫 <strong>master file table</strong> 的结构的一行。<br>
+<center><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../2022-12-15-19-53-27.png" data-desc-position="bottom"><img alt="" src="../2022-12-15-19-53-27.png" width="300"></a></center></li>
 <li><strong>Boot control block</strong> (per volume)。如果一个 volume 是 <a href="../../V_storage_management/11_mass_storage/#boot-block">boot partition</a>，那么这里保存从该 volume 引导操作系统所需的信息；否则内容为空。它通常是 volume 的第一个 block。UFS 称之为 boot block，NTFS 称之为 partition boot sector。</li>
 <li><strong>Volume control block</strong> (per volume)。包含当前 volume 的 block #, block size, free-block #, free-block ptrs, free-FCB #, free FCB ptrs 等。UFS 称之为 superblock，NTFS 将其存在 master file table 中。</li>
 <li><strong>Directory</strong> (per FS)。用来组织文件，包含文件名和对应 FCB 的标识号。在 NTFS 中，它也被存在 master file table 中。</li>
@@ -6322,9 +7340,9 @@
 <li><strong>Per-process open-file table</strong>。</li>
 <li>用于读写磁盘的 buffer。</li>
 </ul>
-<h3 id="file-creation">File Creation<a class="headerlink" href="#file-creation" title="Permanent link">&para;</a></h3>
+<h3 id="file-creation">File Creation<a class="headerlink" href="#file-creation" title="Permanent link">¶</a></h3>
 <p>当创建新文件时，application programs 调用 logical file system；后者分配一个 FCB。系统随后将对应的 directory 读到内存，并用 filename 和 FCB 更新 directory。</p>
-<h3 id="file-open--close">File Open &amp; Close<a class="headerlink" href="#file-open--close" title="Permanent link">&para;</a></h3>
+<h3 id="file-open--close">File Open &amp; Close<a class="headerlink" href="#file-open--close" title="Permanent link">¶</a></h3>
 <p>系统调用 <code>open()</code> 将文件名传给 logical file system，后者搜索 system-wide open-file table 以确定该文件是否正在被其他进程使用：</p>
 <ul>
 <li>如果不是，则需要在 directory 中找到这个 file name，并将其 FCB 从磁盘加载到内存中，并将其放在 system-wide open-file table 中。然后，在当前进程的 per-process open-file table 中新建一个 entry，指向 system-wide open-file table 中的对应项。</li>
@@ -6342,31 +7360,31 @@
 </div>
 <p>当进程关闭文件时，per-process open-file table 中对应 entry 将被删除，system-wide open-file table 中的 counter 将被 -1；如果该 counter 清零，则更新的 metadata 将被写会磁盘上的 directory structure 中，system-wide open-file table 的对应 entry 将被删除。</p>
 <p>Unix 等系统将 devices 和 network connections 等也用文件系统来管理，因此除了 files 和 directories 有 inode 之外，上述内容也有 inode 并存在于 open-file table 中。</p>
-<h2 id="143-virtual-fs">14.3 Virtual FS<a class="headerlink" href="#143-virtual-fs" title="Permanent link">&para;</a></h2>
+<h2 id="143-virtual-fs">14.3 Virtual FS<a class="headerlink" href="#143-virtual-fs" title="Permanent link">¶</a></h2>
 <p>我们之前提到，操作系统可以同时支持多种类型的文件系统。这一特性的实现依赖于 <strong>虚拟文件系统 (Virtual FS, VFS)</strong> 机制。</p>
-<p><center><a class="glightbox" href="../2022-12-15-20-26-37.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-20-26-37.png" width="300" /></a></center></p>
+<p></p><center><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../2022-12-15-20-26-37.png" data-desc-position="bottom"><img alt="" src="../2022-12-15-20-26-37.png" width="300"></a></center><p></p>
 <p>这种机制用面向对象的方法来实现文件系统。具体来说，操作系统定义了一套通用的文件系统访问接口，即 <code>open(), read(), write(), close()</code> 和 file descriptors；所有文件系统都需要实现它们，并把它们按照约定排布在函数表中。VFS 将上述通用操作和实现分开，即在需要调用某个函数时，去对应 FS 的函数表的约定位置找到函数指针就可以访问了。这和 C++ 中多态的虚函数表是类似的。</p>
-<p><center><a class="glightbox" href="../2022-12-15-20-30-08.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-20-30-08.png" width="700" /></a></center></p>
-<h2 id="144-directory-implementation">14.4 Directory Implementation<a class="headerlink" href="#144-directory-implementation" title="Permanent link">&para;</a></h2>
+<p></p><center><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../2022-12-15-20-30-08.png" data-desc-position="bottom"><img alt="" src="../2022-12-15-20-30-08.png" width="700"></a></center><p></p>
+<h2 id="144-directory-implementation">14.4 Directory Implementation<a class="headerlink" href="#144-directory-implementation" title="Permanent link">¶</a></h2>
 <p>目录是一种特殊的文件，它保存 file name 到 FCB 的映射关系。</p>
-<p><center><a class="glightbox" href="../2022-12-15-20-34-16.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-20-34-16.png" width="600" /></a></center></p>
+<p></p><center><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../2022-12-15-20-34-16.png" data-desc-position="bottom"><img alt="" src="../2022-12-15-20-34-16.png" width="600"></a></center><p></p>
 <p>最简单的实现方式是 <strong>linear list</strong>，即维护 <code>dir_entry[]</code>。这种方案的缺点是查找文件很费时。</p>
 <p>使用有序数据结构（有序表、平衡树、B+ 树等）能够优化这一问题。</p>
 <p>使用 <strong>hash table</strong> 也可以解决这一问题。</p>
-<h2 id="145-disk-block-allocation">14.5 Disk Block Allocation<a class="headerlink" href="#145-disk-block-allocation" title="Permanent link">&para;</a></h2>
+<h2 id="145-disk-block-allocation">14.5 Disk Block Allocation<a class="headerlink" href="#145-disk-block-allocation" title="Permanent link">¶</a></h2>
 <p>文件需要被保存到具体的 disk blocks 上，我们讨论分配的策略。</p>
-<h3 id="1451-contiguous-allocation">14.5.1 Contiguous Allocation<a class="headerlink" href="#1451-contiguous-allocation" title="Permanent link">&para;</a></h3>
+<h3 id="1451-contiguous-allocation">14.5.1 Contiguous Allocation<a class="headerlink" href="#1451-contiguous-allocation" title="Permanent link">¶</a></h3>
 <p>这种方法下，每个文件在磁盘上占有的 blocks 是连续的。这种方案在访问磁盘时比较友好，能够显著降低 seek time。同时，目录也只需要维护文件的起始 block 及其长度：</p>
-<p><center><a class="glightbox" href="../2022-12-15-22-00-19.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-22-00-19.png" width="300" /></a></center></p>
+<p></p><center><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../2022-12-15-22-00-19.png" data-desc-position="bottom"><img alt="" src="../2022-12-15-22-00-19.png" width="300"></a></center><p></p>
 <p>具体的分配方案也可以参考 <a href="../../IV_memory_management/9_main_memory/#923-dynamic-storage-allocation-problem">Dynamic Storage-Allocation Problem</a> 的 first-fit, best-fit 等。</p>
 <p>这也会带来外部碎片，但是 disk 通常够大，我们可能并不在意这些碎片。也可以使用压缩 (compaction) 或者说是清除碎片 (defrag) 操作，虽然它们开销较大。</p>
 <p>这种方案的一个重要问题是，如何确定一个文件需要多少空间；这个问题的核心在于，文件本身可能是会扩展的。</p>
 <p>解决方案之一是，当出现这种情况时将文件复制到一个新的足够大的空闲空间里去。这种方案会带来比较大的 overhead，尤其是文件可能很大。</p>
 <p>另一种解决方案是，让用户确定每个文件的最大大小。这种方案会带来比较大的不便，而且用户可能高估所需空间，导致较大的内部碎片。</p>
 <p>还有一种解决方案创建了连续空间的链表来保存一个文件。当空间不够时，添加一块连续空间（称为 <strong>extent</strong>）。FCB 记录的信息除了起始和长度外，还额外维护下一个 extent 的信息。</p>
-<h3 id="1452-linked-allocation">14.5.2 Linked Allocation<a class="headerlink" href="#1452-linked-allocation" title="Permanent link">&para;</a></h3>
+<h3 id="1452-linked-allocation">14.5.2 Linked Allocation<a class="headerlink" href="#1452-linked-allocation" title="Permanent link">¶</a></h3>
 <p>这种方法下，每个文件都是 block 组成的链表；每个 block 中有若干字节被用来保存下一块的地址。目录只需要记录起始地址和结束地址即可：</p>
-<p><center><a class="glightbox" href="../2022-12-15-22-25-49.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-22-25-49.png" width="300" /></a></center></p>
+<p></p><center><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../2022-12-15-22-25-49.png" data-desc-position="bottom"><img alt="" src="../2022-12-15-22-25-49.png" width="300"></a></center><p></p>
 <p>这种方式没有外部碎片。但是也有若干问题：</p>
 <ul>
 <li>获取一个文件可能需要比较多的 I/O 和 disk seek；</li>
@@ -6378,11 +7396,11 @@
 <div class="admonition info">
 <p class="admonition-title">File-Allocation Table (FAT) 使用的就是 Linked Allocation</p>
 <p>这种简单的磁盘空间分配方法用于 MS-DOS 操作系统。</p>
-<p><center><a class="glightbox" href="../2022-12-15-22-36-22.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-22-36-22.png" width="300" /></a></center></p>
+<p></p><center><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../2022-12-15-22-36-22.png" data-desc-position="bottom"><img alt="" src="../2022-12-15-22-36-22.png" width="300"></a></center><p></p>
 </div>
-<h3 id="1453-indexed-allocation">14.5.3 Indexed Allocation<a class="headerlink" href="#1453-indexed-allocation" title="Permanent link">&para;</a></h3>
+<h3 id="1453-indexed-allocation">14.5.3 Indexed Allocation<a class="headerlink" href="#1453-indexed-allocation" title="Permanent link">¶</a></h3>
 <p>这种方式给每个文件记录一个 <strong>索引块 (index block)</strong>，记录这个文件的第 i 个块在磁盘中的哪个块。目录只需要保存索引块放在哪里即可：</p>
-<p><center><a class="glightbox" href="../2022-12-15-22-40-18.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-22-40-18.png" width="300" /></a></center></p>
+<p></p><center><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../2022-12-15-22-40-18.png" data-desc-position="bottom"><img alt="" src="../2022-12-15-22-40-18.png" width="300"></a></center><p></p>
 <p>这种方案支持 random access，也不会有外部碎片。但是索引块本身是额外的开销，这对小文件来说是更大的 overhead。这种方案还能允许文件中存在 holes。</p>
 <p>一个问题是，索引块应当有多大；即，我们希望 overhead 不要太大，但是也要能支持大文件。有若干种可选的实现思路：</p>
 <ul>
@@ -6396,12 +7414,12 @@
 </ul>
 </li>
 </ul>
-<p><center><a class="glightbox" href="../2022-12-15-22-51-59.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-22-51-59.png" width="300" /></a></center></p>
-<h2 id="146-free-space-management">14.6 Free-Space Management<a class="headerlink" href="#146-free-space-management" title="Permanent link">&para;</a></h2>
+<p></p><center><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../2022-12-15-22-51-59.png" data-desc-position="bottom"><img alt="" src="../2022-12-15-22-51-59.png" width="300"></a></center><p></p>
+<h2 id="146-free-space-management">14.6 Free-Space Management<a class="headerlink" href="#146-free-space-management" title="Permanent link">¶</a></h2>
 <p>文件系统需要维护 free-space list 以得知空闲的块或 clusters。这个列表在分配空间或者文件被删除时会修改。我们讨论其实现方案。</p>
 <p>实现方案之一是用 <strong>bitmap</strong>：每个 block 用 1 bit 表示：1 表示空闲，0 表示占用。为了减少 bitmap 占用的空间，可以以 cluster 为单位分配和表示。</p>
 <p>另外也可以把所有的 free space 用 <strong>链表</strong> 连接。这种方案在需要多个空间块时需要比较多的 I/O，效率较低。</p>
-<p><center><a class="glightbox" href="../2022-12-15-23-05-42.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../2022-12-15-23-05-42.png" width="300" /></a></center></p>
+<p></p><center><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../2022-12-15-23-05-42.png" data-desc-position="bottom"><img alt="" src="../2022-12-15-23-05-42.png" width="300"></a></center><p></p>
 <p>为了解决上面的问题，引入 <strong>grouping</strong> 的方案。维护若干个 block 形成的链表，每个 block 保存若干空闲块的地址。这种方案可以减少需要的 I/O。</p>
 <p>另外也可以使用 <strong>counting</strong> 的方案。之前链表的方案维护的是空闲块的链表，而现在维护的是 <em>连续的空闲块</em> 的链表，即链表的每个结点是连续的空闲块的首块指针和连续的长度。</p>
 
@@ -6424,7 +7442,7 @@
       
   <span class="md-source-file__fact">
     <span class="md-icon" title="最后更新">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
     <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2023年11月23日 10:36:58 UTC"><span class="timeago" datetime="2023-11-23T10:36:58+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2023年11月23日 10:36:58 UTC">2023-11-23</span>
   </span>
@@ -6434,7 +7452,7 @@
       
   <span class="md-source-file__fact">
     <span class="md-icon" title="创建日期">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
     </span>
     <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2022年12月11日 05:34:16 UTC"><span class="timeago" datetime="2022-12-11T05:34:16+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2022年12月11日 05:34:16 UTC">2022-12-11</span>
   </span>
@@ -6498,30 +7516,17 @@ buttons.forEach(function(button) {
 })
 </script>
 
-<h2 ><!-- 评论 -->评论区~</h2>
+<h2><!-- 评论 -->评论区~</h2>
 
-有用的话请给我个赞和 star => <a href="https://github.com/xuan-insr/xuan-insr.github.io"><img alt="GitHub stars" src="https://img.shields.io/github/stars/xuan-insr/xuan-insr.github.io.svg?style=plastic&amp;label=Stars"></a>
+有用的话请给我个赞和 star =&gt; <a href="https://github.com/xuan-insr/xuan-insr.github.io"><img alt="GitHub stars" src="https://img.shields.io/github/stars/xuan-insr/xuan-insr.github.io.svg?style=plastic&amp;label=Stars"></a>
 
-</br>
+<br>
 
 快来跟我聊天~
 
 </div>
 
-<script src="https://giscus.app/client.js"
-        data-repo="xuan-insr/discussion"
-        data-repo-id="R_kgDOIUW7XA"
-        data-category="General"
-        data-category-id="DIC_kwDOIUW7XM4CSOC3"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="top"
-        data-theme="dark"
-        data-lang="zh-CN"
-        crossorigin="anonymous"
-        async>
+<script src="https://giscus.app/client.js" data-repo="xuan-insr/discussion" data-repo-id="R_kgDOIUW7XA" data-category="General" data-category-id="DIC_kwDOIUW7XM4CSOC3" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="dark" data-lang="zh-CN" crossorigin="anonymous" async>
 
 updateScheme();
 
@@ -6566,7 +7571,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
   回到页面顶部
 </button>
         
@@ -6576,13 +7581,13 @@ document.addEventListener("DOMContentLoaded", function() {
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      <nav class="md-footer__inner md-grid" aria-label="页脚">
         
           
           <a href="../13_fs_interface/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 13 文件系统">
             <div class="md-footer__button md-icon">
               
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
             </div>
             <div class="md-footer__title">
               <span class="md-footer__direction">
@@ -6607,7 +7612,7 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
             <div class="md-footer__button md-icon">
               
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
             </div>
           </a>
         
@@ -6630,7 +7635,8 @@ document.addEventListener("DOMContentLoaded", function() {
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
@@ -6640,7 +7646,7 @@ document.addEventListener("DOMContentLoaded", function() {
       
     
     <a href="https://github.com/smd1121" target="_blank" rel="noopener" title="github.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
     </a>
   
     
@@ -6648,7 +7654,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     
     <a href="mailto:xianyuxuan@outlook.com" target="_blank" rel="noopener" title="" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l217.6 163.2c11.4 8.5 27 8.5 38.4 0l217.6-163.2c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 176v208c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V176L294.4 339.2a63.9 63.9 0 0 1-76.8 0z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l208 156a48 48 0 0 0 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 196v188c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V196L313.6 344.8c-34.1 25.6-81.1 25.6-115.2 0z"></path></svg>
     </a>
   
 </div>
@@ -6665,10 +7671,11 @@ document.addEventListener("DOMContentLoaded", function() {
     
     
       
-      <script id="__config" type="application/json">{"base": "../../../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.footer", "navigation.tabs", "content.code.annotate", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.footer", "navigation.tabs", "content.code.annotate", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="../../../../js/timeago.min.js"></script>
       
@@ -6689,7 +7696,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <script src="../../../../termynal.js"></script>
       
     
-  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
-document$.subscribe(() => { lightbox.reload() });
-</script></body>
-</html>
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
