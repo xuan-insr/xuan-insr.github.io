@@ -9,3 +9,4 @@ mkdocs-material[imaging]
 mkdocs-glightbox
 mkdocs-rss-plugin
 markdown==3.7
+Pillow
