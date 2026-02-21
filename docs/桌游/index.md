@@ -10,14 +10,14 @@
 ??? info "统计"
     - **桌游总计**：135 款
     - **场次**：36 场
-    - **场次详情** (地点: 场次(人次))：无忧: 31(132) | 火星工厂: 2(6) | 猎人: 1(2) | 麦当劳: 1(3) | 麻将: 1(4)
-    - **大家出场次数**：吴 16 | 刘 14 | 郭 13 | 李 12 | 土 10 | 毛 9 | 燃 6 | 朱 5 | 腾 3 | 桌 3 | 陈 2 | 旻 2 | 骁 1 | 昊 1 | 航 1 | 孔 1 | 娃 1 | 崔 1 | 霄 1 | 夏 1 | 彧 1 | 鹏 1
+    - **场次详情** (地点：场次 (人次))：无忧: 31(132) | 火星工厂: 2(6) | 猎人: 1(2) | 麦当劳: 1(3) | 麻将: 1(4)
+    - **大家出场次数**：吴 16 | 刘 14 | 郭 13 | 李 12 | 土 10 | 毛 9 | 燃 6 | 朱 5 | 腾 3 | 卓 3 | 陈 2 | 旻 2 | 骁 1 | 昊 1 | 航 1 | 孔 1 | 娃 1 | 崔 1 | 霄 1 | 夏 1 | 彧 1 | 鹏 1
     - **图片数**：123 张
     - **图片总大小**：16.8 MB
 
 | :fontawesome-regular-chess-knight: | :material-star-outline: | :material-account-group:/:octicons-clock-16:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | :material-text-account: | :material-tooltip-image-outline: |
 | :-: | :-: | :-: | :- | :-: |
-| **2026-2-21 无忧 5 人局** (腾骁土桌) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
+| **2026-2-21 无忧 5 人局** (腾骁土卓) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | 狼尔街风云 | <span class="box box-yellow">2</span> | 3~11/中 | 模拟股市涨跌的谈判游戏。谈判类游戏玩了也不少了，这个感觉可以体验随机的价值涨跌，不过操作空间更小，运气对输赢的影响更大，而且买方这边的游戏丰富性不太够。感觉不如经典的其他作品。 | ![](assets/2026-02-21-23-40-17.webp){: width="20px"} |
 | 双胞胎 | <span class="box box-green">4</span> | 3~8/短 | 也是看大家脑电波能不能对得上的游戏，适合更多人游玩。本来想玩《语破天机》但是没找着；不过感觉这个更小巧、精简一些，发挥空间小一点。总体感觉不错。| ![](assets/2026-02-21-23-40-08.webp){: width="20px"} |
 | 海盐折纸 | <span class="box box-yellow">1</span> | 2~4/中 | 凑牌算分的游戏。感觉就没什么游戏性，各种元素都不明显，没什么乐趣也没什么策略。| ![](assets/2026-02-21-23-39-58.webp){: width="20px"} |
@@ -53,9 +53,9 @@
 | Onitama | <span class="box box-blue">3.5</span> | 2/中 | 难！漂亮，挺好玩，没玩会 |  ![](assets/2026-02-21-10-28-16.webp){: width="20px"}|
 | 璀璨宝石：对决 | <span class="box box-green">4</span> | 2/中 | 两个人玩互动性更加明显；没有增加复杂度的同时让可玩性有所提升 | ![](assets/2026-02-21-10-28-00.webp){: width="20px"} |
 | (再次游玩 CLANK! Catacombs) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
-| **2025-9-28 麦当劳 3 人局** (土桌) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
+| **2025-9-28 麦当劳 3 人局** (土卓) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | CLANK! Catacombs | <span class="box box-green">4.5</span> | 2~4/长 | 好玩爱玩！扣一分给巨龙牌太多 | ![](assets/2026-02-21-10-27-49.webp){: width="20px"} |
-| **2025-5-2 无忧 3 人局** (桌土) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
+| **2025-5-2 无忧 3 人局** (卓土) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | 璀璨宝石：宝可梦 | <span class="box box-blue">3</span> | 2~4/中 | 不如原作简单的同时，也没有优化什么体验。计算量增加也导致互卡更不积极。 | ![](assets/2026-02-21-10-29-22.webp){: width="20px"} |
 | (再次游玩大杀四方 & 并购) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | **2025-4-29 无忧 4 人局** (航孔娃) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
