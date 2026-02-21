@@ -10,7 +10,10 @@
 | :fontawesome-regular-chess-knight: | :material-star-outline: | :material-account-group:/:octicons-clock-16:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | :material-text-account: | :material-tooltip-image-outline: |
 | :-: | :-: | :-: | :- | :-: |
 | **2026-2-21 无忧 5 人局** (腾骁土桌) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
-| | | | |
+| 狼尔街风云 | <span class="box box-yellow">2</span> | 3~11/中 | 模拟股市涨跌的谈判游戏。谈判类游戏玩了也不少了，这个感觉可以体验随机的价值涨跌，不过操作空间更小，运气对输赢的影响更大，而且买方这边的游戏丰富性不太够。感觉不如经典的其他作品。 | ![](assets/2026-02-21-23-40-17.png){: width="20px"} |
+| 双胞胎 | <span class="box box-green">4</span> | 3~8/短 | 也是看大家脑电波能不能对得上的游戏，适合更多人游玩。本来想玩《语破天机》但是没找着；不过感觉这个更小巧、精简一些，发挥空间小一点。总体感觉不错。| ![](assets/2026-02-21-23-40-08.png){: width="20px"} |
+| 海盐折纸 | <span class="box box-yellow">1</span> | 2~4/中 | 凑牌算分的游戏。感觉就没什么游戏性，各种元素都不明显，没什么乐趣也没什么策略。| ![](assets/2026-02-21-23-39-58.png){: width="20px"} |
+| (再次游玩 CLANK! Catacombs、Durian、截码战) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | **2026-2-20 无忧 5 人局** (郭吴昊李) {: colspan=5}| &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | &#8288 {: style="padding:0"} | |
 | 搜索 (Scout) | <span class="box box-blue">3.5</span> | 2~5/短 | 打牌游戏，有一点点构筑成分，设计还算比较精巧，快速、容易上手。 | ![](assets/2026-02-21-10-26-07.png){: width="20px"} |
 | 吹牛 (幕后交易) | <span class="box box-blue">3.5</span> | 3~5/中 | 拍卖 + 谈判游戏，有点《庞氏骗局》的意思，会小巧一些，但是过程并没有更简单。我觉得设计得蛮不错的。 | ![](assets/2026-02-21-10-24-48.png){: width="20px"} |
