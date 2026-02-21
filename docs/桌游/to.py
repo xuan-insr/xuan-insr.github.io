@@ -22,8 +22,34 @@ def replace_odd_lines(text, pairs):
 
 # 场次行：含 | **、人局**、#expand（即「XX Y 人局」标题行）
 SESSION_ROW_RE = re.compile(r'\|\s*\*\*[^*]+\*\*\s*\(([^)]+)\)')
+# 从「日期 地点 N 人局」或「日期 地点 N 人局 & ...」中解析出 (地点，人数)
+SESSION_SEGMENT_RE = re.compile(r'\d{4}-\d{1,2}-\d{1,2}\s+(.+?)\s+(\d+)\s*人局')
 def is_session_row(line):
     return '| **' in line and '人局**' in line and '#expand' in line
+
+def extract_location_stats(content):
+    """从内容中解析每行场次的 **...** 部分，按 & 拆成多场，每场得到 (地点，人数)。返回 {地点：(场次数，人次数)}。"""
+    location_sessions = []  # (地点，人数) 的列表
+    for line in content.split('\n'):
+        if not is_session_row(line):
+            continue
+        m = re.search(r'\|\s*\*\*([^*]+)\*\*', line)
+        if not m:
+            continue
+        bold_text = m.group(1).strip()
+        for segment in bold_text.split('&'):
+            segment = segment.strip()
+            for mo in SESSION_SEGMENT_RE.finditer(segment):
+                place, num = mo.group(1).strip(), int(mo.group(2))
+                location_sessions.append((place, num))
+    # 汇总为 地点 -> (场次数，人次数)
+    out = {}
+    for place, num in location_sessions:
+        if place not in out:
+            out[place] = [0, 0]
+        out[place][0] += 1
+        out[place][1] += num
+    return out
 
 def build_stats(content):
     games_count = -2
@@ -39,10 +65,13 @@ def build_stats(content):
                 for char in m.group(1):
                     if char != '等':
                         person_count[char] += 1
+    location_stats = extract_location_stats(content)
+    location_detail = ' | '.join(f'{p}: {c}({t})' for p, (c, t) in sorted(location_stats.items(), key=lambda x: (-x[1][0], x[0]))) if location_stats else '—'
     lines = [
         f'??? info "统计"',
         f'    - **桌游总计**：{games_count} 款',
         f'    - **场次**：{sessions_count} 场',
+        f'    - **场次详情** (地点：场次 (人次))：{location_detail}',
         '    - **大家出场次数**：' + ' | '.join(f'{p} {n}' for p, n in person_count.most_common()) if person_count else '    - **大家出场次数**：—',
     ]
     stats_markdown = '\n'.join(lines)
